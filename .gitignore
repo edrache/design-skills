@@ -1,0 +1,14 @@
+# Sensitive data
+.env
+
+# Google OAuth
+credentials.json
+token.json
+
+# Temporary files
+.tmp/
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store

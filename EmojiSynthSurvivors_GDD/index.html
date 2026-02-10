@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDD: Emoji Synth Survivors</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="dark-theme">
+    <nav id="sidebar">
+        <div class="logo">EMOJI SYNTH</div>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#mechanics">Gameplay Mechanics</a></li>
+            <li><a href="#audio">Audio Synthesis</a></li>
+            <li><a href="#visuals">Visual Style</a></li>
+            <li><a href="#technical">Technical Stack</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+        </ul>
+    </nav>
+    <main>
+        <header>
+            <h1>Emoji Synth Survivors</h1>
+            <p class="tagline">The chaos of survival, the rhythm of creation.</p>
+        </header>
+
+        <div class="concept-art glass-panel">
+            <img src="concept.png" alt="Emoji Synth Survivors Concept Art"
+                style="width: 100%; border-radius: 10px; box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);">
+        </div>
+
+        <section id="overview" class="glass-panel">
+            <h2>Game Overview</h2>
+            <div class="content-grid">
+                <div class="info-card">
+                    <h3>Pitch</h3>
+                    <p>A rhythmic bullet-heaven where every kill is a beat and every level is a new track. Transform the
+                        chaos of survival into a musical masterpiece through real-time procedural audio synthesis.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Genre</h3>
+                    <p>Musical Roguelite / Bullet Heaven / Procedural Synth</p>
+                </div>
+            </div>
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Live Audio Synthesis</strong>: No pre-recorded loops. Music is generated on-the-fly via Web
+                    Audio API.</li>
+                <li><strong>Combat Rhythm</strong>: Enemy eliminations trigger drum hits and synth stabs quantized to
+                    the current BPM.</li>
+                <li><strong>Procedural Composition</strong>: Player upgrades add new instruments (Bass, Lead, Arp) to
+                    the growing track.</li>
+                <li><strong>Visual Synesthesia</strong>: Neon emoji graphics pulse and glow in perfect sync with the
+                    audio frequency.</li>
+            </ul>
+        </section>
+
+        <section id="mechanics" class="glass-panel">
+            <h2>Core Gameplay Mechanics</h2>
+            <div class="mechanics-grid">
+                <div class="info-card">
+                    <h3>Survival Loop</h3>
+                    <p>Move with WASD. Collect XP gems dropped by enemies to level up. Choose musical upgrades that also
+                        enhance your combat abilities.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Dynamic composition</h3>
+                    <p>Instead of manual upgrades, the track evolves based on time and tactical progression. New layers
+                        (Arps, Pads, Leads) are introduced automatically at key musical phrasing points (every 32 or 64
+                        measures).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="audio" class="glass-panel">
+            <h2>Musical Narrative & Composition</h2>
+            <p>The game follows the structure of a complete electronic music track. The audio isn't just a background;
+                it <strong>is</strong> the gameplay progression.</p>
+            <ul>
+                <li><strong>The Composition Cycle</strong>:
+                    <ul>
+                        <li><strong>Intro (0-1 min)</strong>: Percussion and sparse bass. Low enemy density.</li>
+                        <li><strong>Build-up</strong>: Intensity increases. Emojis move faster. Arpeggios fade in.</li>
+                        <li><strong>The Drop</strong>: Enemy screen wipe. Bass becomes heavy and distorted. Visuals
+                            pulse at max intensity.</li>
+                        <li><strong>Bridge/Break</strong>: Music strips back. Enemies spawn in rhythmic patterns rather
+                            than hordes. A moment for the player to breathe and "re-tune".</li>
+                        <li><strong>Outro/Climax</strong>: All layers active. High-stakes survival as the track reaches
+                            its finale.</li>
+                    </ul>
+                </li>
+                <li><strong>Intensity-Driven Enemy Density</strong>: The number and speed of emojis are mapped directly
+                    to the current musical energy level (Energy RMS).</li>
+                <li><strong>Auto-Progressive Layers</strong>: New oscillators and effects are initialized by the Tone.js
+                    scheduler as the game reaches predefined "track markers".</li>
+            </ul>
+
+            <div class="info-card" style="margin-top: 2rem; border-left: 4px solid var(--accent-alt);">
+                <h3>Starting Genre: Deep House</h3>
+                <p>The first "level" or track follows the <strong>Deep House</strong> aesthetic to provide a hypnotic,
+                    steady progression.</p>
+                <ul>
+                    <li><strong>Tempo</strong>: A steady 124 BPM (the "Golden Ratio" of house).</li>
+                    <li><strong>The Four-to-the-Floor</strong>: Every 👾 kill reinforces the 4/4 kick drum pattern.</li>
+                    <li><strong>Atmospherics</strong>: Lush, reverb-heavy synthesizer pads and minor 7th / 9th chords to
+                        create a "deep" and soulful vibe.</li>
+                    <li><strong>Sub-Bass</strong>: Smooth, sine-based basslines that pulse with the kick (Sidechain
+                        effect).</li>
+                    <li><strong>Percussive Shakers</strong>: High-frequency emojis (💎) add rhythmic complexity (16th
+                        notes) as intensity rises.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="visuals" class="glass-panel">
+            <h2>Visual Style & Aesthetics</h2>
+            <p>Minimalist but high-impact. The game uses standard emojis but elevates them with heavy post-processing.
+            </p>
+            <ul>
+                <li><strong>Neon Palette</strong>: Hot pinks, cyan, and lime green against a deep void 🌌.</li>
+                <li><strong>Audio Reactive</strong>: The stage "bounces" on the kick drum, and glow intensity scales
+                    with high frequencies.</li>
+                <li><strong>Emoji Cast</strong>:
+                    <ul>
+                        <li>👤 Player: The Maestro</li>
+                        <li>👾 Basic Enemy: The Snare</li>
+                        <li>👹 Elite Enemy: The Bass Drop</li>
+                        <li>💎 XP: Musical Notes</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section id="technical" class="glass-panel">
+            <h2>Technical Stack</h2>
+            <div class="content-grid">
+                <div class="info-card">
+                    <h3>Engine</h3>
+                    <p>Vanilla JavaScript / Canvas API for performance. <strong>Tone.js</strong> for professional-grade
+                        audio synthesis and scheduling.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Deployment</h3>
+                    <p>Lightweight web application, playable in any modern browser.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="glass-panel">
+            <h2>Development Roadmap</h2>
+            <h3>Phase 1: MVP</h3>
+            <ul>
+                <li>Basic movement and 1 type of enemy.</li>
+                <li>Simple synth engine (Kick on kill, basic Bassline).</li>
+                <li>Emoji rendering system.</li>
+            </ul>
+            <h3>Phase 2: Composition</h3>
+            <ul>
+                <li>Upgrade system with musical layers.</li>
+                <li>Key changes and "Boss Drops".</li>
+                <li>Refined neon post-processing effects.</li>
+            </ul>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

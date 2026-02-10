@@ -1,0 +1,174 @@
+:root {
+    --bg-color: #050505;
+    --accent-color: #ff3e3e;
+    /* Necromancer red */
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    min-height: 100vh;
+}
+
+#sidebar {
+    width: 250px;
+    background: rgba(0, 0, 0, 0.9);
+    border-right: 1px solid var(--glass-border);
+    padding: 2rem;
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 62, 62, 0.5);
+}
+
+#sidebar ul {
+    list-style: none;
+}
+
+#sidebar ul li {
+    margin-bottom: 1.5rem;
+}
+
+#sidebar ul li a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+#sidebar ul li a:hover,
+#sidebar ul li a.active {
+    color: var(--accent-color);
+    padding-left: 5px;
+}
+
+main {
+    margin-left: 250px;
+    padding: 3rem;
+    width: 100%;
+    max-width: 1000px;
+}
+
+header {
+    margin-bottom: 4rem;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5rem;
+    color: white;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 30px rgba(255, 62, 62, 0.2);
+}
+
+.tagline {
+    font-size: 1.25rem;
+    color: var(--accent-color);
+    font-weight: 300;
+}
+
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.content-grid,
+.mechanics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.emoji-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.emoji-card {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid var(--glass-border);
+}
+
+.emoji-card span {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+ul {
+    list-style-type: square;
+    margin-left: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.8rem;
+    color: var(--text-secondary);
+}
+
+strong {
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        display: none;
+    }
+
+    main {
+        margin-left: 0;
+        padding: 1.5rem;
+    }
+}

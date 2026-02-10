@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDD: Necromancer Island</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="dark-theme">
+    <nav id="sidebar">
+        <div class="logo">NECROMANCER</div>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#mechanics">Mechanics</a></li>
+            <li><a href="#world">World System</a></li>
+            <li><a href="#visuals">Visual Style</a></li>
+            <li><a href="#technical">Architecture</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+        </ul>
+    </nav>
+    <main>
+        <header>
+            <h1>Necromancer Island</h1>
+            <p class="tagline">Systemic disruption of local equilibrium.</p>
+        </header>
+
+        <section id="overview" class="glass-panel">
+            <h2>Game Overview</h2>
+            <div class="content-grid">
+                <div class="info-card">
+                    <h3>Genre</h3>
+                    <p>Systemic Simulation / God Game</p>
+                </div>
+                <div class="info-card">
+                    <h3>Target Audience</h3>
+                    <p>Enthusiasts of emerging systems and simulation games.</p>
+                </div>
+            </div>
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Local Equilibrium:</strong> Independent regions balancing Sustain vs Demand.</li>
+                <li><strong>Systemic Disruption:</strong> Player acts as a local catalyst for chaos.</li>
+                <li><strong>Visual Decay:</strong> Saturation and emoji-based feedback of world state.</li>
+                <li><strong>Emergent Narrative:</strong> The story is told through the simulation's recovery or
+                    collapse.</li>
+            </ul>
+        </section>
+
+        <section id="mechanics" class="glass-panel">
+            <h2>Core Gameplay Mechanics</h2>
+            <div class="mechanics-grid">
+                <div class="info-card">
+                    <h3>Necromancer Actions</h3>
+                    <p>The player introduces disturbances through local killings and spawning Death Sources.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Simulation Loop</h3>
+                    <p>Turn-based: Sustain Production &rarr; Diffusion &rarr; Consumption &rarr; Regression/Expansion.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <h3>Regional Death Severity</h3>
+                    <p>Accumulated death triggers regional repression events and player "Death" time-skips.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="world" class="glass-panel">
+            <h2>World System</h2>
+            <p>The world is a 20x20 grid of emoji-represented cells:</p>
+            <div class="emoji-grid">
+                <div class="emoji-card"><span>🌲</span> Forest (Sustain)</div>
+                <div class="emoji-card"><span>🌊</span> Water (Sustain)</div>
+                <div class="emoji-card"><span>🏡</span> Village (Demand)</div>
+                <div class="emoji-card"><span>🏙️</span> City (High Demand)</div>
+                <div class="emoji-card"><span>⬜</span> Plain (Neutral)</div>
+                <div class="emoji-card"><span>⛰️</span> Mountain (Impassable)</div>
+            </div>
+        </section>
+
+        <section id="visuals" class="glass-panel">
+            <h2>Visual & Audio Style</h2>
+            <p><strong>Aesthetic:</strong> Dark, minimalist UI with vibrant emoji representing the living world.</p>
+            <ul>
+                <li><strong>High Stability:</strong> Bright, saturated emojis.</li>
+                <li><strong>Regression:</strong> Desaturated colors, "ruin" emoji variants.</li>
+                <li><strong>Chaos:</strong> Glitchy animations or color shifts during repression events.</li>
+            </ul>
+        </section>
+
+        <section id="technical" class="glass-panel">
+            <h2>Technical Architecture</h2>
+            <p>Built with Vanilla JavaScript and CSS Grid.</p>
+            <ul>
+                <li><strong>Engine:</strong> Discrete turn simulation loop.</li>
+                <li><strong>Connectivity:</strong> Flood-fill based region partitioning.</li>
+                <li><strong>Efficiency:</strong> Reactive DOM updates only on changed cells.</li>
+            </ul>
+        </section>
+
+        <section id="roadmap" class="glass-panel">
+            <h2>Roadmap</h2>
+            <ul>
+                <li><strong>MVP:</strong> Core simulation, emoji visuals, basic player interaction.</li>
+                <li><strong>V1.1:</strong> Sound synthesis based on world stability.</li>
+                <li><strong>V1.2:</strong> More complex region events and "Necromancer Spirit" progression.</li>
+            </ul>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
