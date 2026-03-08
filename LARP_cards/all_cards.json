@@ -39,7 +39,7 @@
         "group": "Karty Zakonne",
         "type": "PRZEDMIOT",
         "title": "Klucz Cieśli",
-        "rules": "Pokaż i Odrzuć w HORTUS – weź 2 Klocki Muru i Pracuj nad Murami lub Pokaż i Odrzuć, by uniknąć Kradzieży.",
+        "rules": "Pokaż i Odrzuć w HORTUS gdy wykonujesz Akcję'Pracuj nad Murami' – weź dodatkowe 2 Klocki Muru.  Lub Pokaż i Odrzuć (gdziekolwiek), by uniknąć Kradzieży.",
         "flavor": "",
         "count": 3,
         "image": "Klucz_Cieśli.png"
@@ -102,7 +102,7 @@
         "group": "Karty Zakonne",
         "type": "PRZEDMIOT",
         "title": "Psalterium",
-        "rules": "Odrzuć i zamień Kulę w Kielichu na przeciwną.",
+        "rules": "Pokaż Przełożonemu i Odrzuć - wybierz jaką Kulę Przełożony ma zamienić w Kielichu na przeciwną (Białą na Czarną, czy Czarną na Białą)",
         "flavor": "",
         "count": 3,
         "image": "Psalterium.png"
@@ -209,8 +209,8 @@
     {
         "group": "Karty Zakazane",
         "type": "PRZEDMIOT",
-        "title": "Płyta Nagrobna",
-        "rules": "Pokaż i Odrzuć w HORTUS – weź 2 Klocki Muru i Pracuj nad Murami.",
+        "title": "KAWAŁEK PŁYTY NAGROBNEJ",
+        "rules": "Pokaż Przełożonemu i Odrzuć - dodaj lub usuń 2 Klocki Muru",
         "flavor": "",
         "count": 3,
         "image": "Płyta_Nagrobna.png"
@@ -552,7 +552,7 @@
         "group": "Stany i Inne",
         "type": "SPECJALNA",
         "title": "Kradzież",
-        "rules": "(Koszt 1C) Pokaż Ofierze i Odrzuć: Ofiara musi oddać Ci losowy Przedmiot lub Kulę. Nie działa w CAPELLA. Nie możesz tej karty stracić. Limit w ręce: 1.",
+        "rules": "Koszt: 1 Czarna Kula. Pokaż Ofierze i Odrzuć: Ofiara musi oddać Ci losowy Przedmiot lub Kulę. Nie działa w CAPELLA. Nie możesz tej karty stracić. Limit w ręce: 1.",
         "flavor": "",
         "count": 15,
         "image": "Kradzież.png"
