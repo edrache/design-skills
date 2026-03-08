@@ -1,0 +1,992 @@
+[
+    {
+        "group": "Karty Zakonne",
+        "type": "PRZEDMIOT",
+        "title": "Srebrny Klucz",
+        "rules": "Pokaż Przełożonemu i Odrzuć - weź wszystkie klucze do wybranej sali na następny Cykl. W następnym Cyklu nie bierzesz innego klucza.",
+        "flavor": "",
+        "count": 3,
+        "image": "Srebrny_Klucz.png"
+    },
+    {
+        "group": "Karty Zakonne",
+        "type": "PRZEDMIOT",
+        "title": "Święta Oliwa",
+        "rules": "Pokaż i Odrzuć - usuń jeden Stan Brudny lub Splugawiony u siebie oraz jeśli chcesz u wybranej, innej Postaci w tej samej Sali (weź wtedy 1 Białą Kulę).",
+        "flavor": "",
+        "count": 3,
+        "image": "Święta_Oliwa.png"
+    },
+    {
+        "group": "Karty Zakonne",
+        "type": "PRZEDMIOT",
+        "title": "Zioła Lecznicze",
+        "rules": "Pokaż i Odrzuć - usuń jeden Stan Ranny u siebie oraz jeśli chcesz u wybranej, innej Postaci (weź wtedy 1 Białą Kulę).",
+        "flavor": "",
+        "count": 3,
+        "image": "Zioła_Lecznicze.png"
+    },
+    {
+        "group": "Karty Zakonne",
+        "type": "PRZEDMIOT",
+        "title": "Woda Święcona",
+        "rules": "Pokaż i Odrzuć - usuń cały Stan Splugawiony u wybranej Postaci w tej samej Sali. Weź 1 Białą Kulę, jeśli pomogłeś komuś innym.",
+        "flavor": "",
+        "count": 3,
+        "image": "Woda_Święcona.png"
+    },
+    {
+        "group": "Karty Zakonne",
+        "type": "PRZEDMIOT",
+        "title": "Klucz Cieśli",
+        "rules": "Pokaż i Odrzuć w HORTUS – weź 2 Klocki Muru i Pracuj nad Murami lub Pokaż i Odrzuć, by uniknąć Kradzieży.",
+        "flavor": "",
+        "count": 3,
+        "image": "Klucz_Cieśli.png"
+    },
+    {
+        "group": "Karty Zakonne",
+        "type": "PRZEDMIOT",
+        "title": "Indult",
+        "rules": "Pokaż i Odrzuć na koniec cyklu: Możesz przyjść do tej samej Sali w następnym Cyklu (zamiast rotacji) nawet jeśli nie masz Klucza (ale wtedy nie bierz innego Klucza).",
+        "flavor": "",
+        "count": 3,
+        "image": "Indult.png"
+    },
+    {
+        "group": "Karty Zakonne",
+        "type": "PRZEDMIOT",
+        "title": "Litania Pokutna",
+        "rules": "Pokaż Przełożonemu i Odrzuć - dorzuć 1 Białą Kulę z puli do Kielicha.",
+        "flavor": "",
+        "count": 6,
+        "image": "Litania_Pokutna.png"
+    },
+    {
+        "group": "Karty Zakonne",
+        "type": "PRZEDMIOT",
+        "title": "Psalm Ochronny",
+        "rules": "Pokaż i Odrzuć: Blokuje kradzież Twojego przedmiotu lub otrzymanie statusu RANNY.",
+        "flavor": "",
+        "count": 3,
+        "image": "Psalm_Ochronny.png"
+    },
+    {
+        "group": "Karty Zakonne",
+        "type": "PRZEDMIOT",
+        "title": "Liber Obedientiae",
+        "rules": "Odrzuć podczas Głosowania – wybrany Gracz musi głosować jak Ty.",
+        "flavor": "",
+        "count": 3,
+        "image": "Liber_Obedientiae.png"
+    },
+    {
+        "group": "Karty Zakonne",
+        "type": "PRZEDMIOT",
+        "title": "Spis Spowiedzi",
+        "rules": "Pokaż i Odrzuć podczas Spowiedzi – wybrany Gracz musi wyznać oba Grzechy.",
+        "flavor": "",
+        "count": 2,
+        "image": "Spis_Spowiedzi.png"
+    },
+    {
+        "group": "Karty Zakonne",
+        "type": "PRZEDMIOT",
+        "title": "Archiwum Zakonu",
+        "rules": "Pokaż i Odrzuć: Wybrana Postać w tej samej Sali musi pokazać Ci wszystkie swoje Przedmioty.",
+        "flavor": "",
+        "count": 4,
+        "image": "Archiwum_Zakonu.png"
+    },
+    {
+        "group": "Karty Zakonne",
+        "type": "PRZEDMIOT",
+        "title": "Psalterium",
+        "rules": "Odrzuć i zamień Kulę w Kielichu na przeciwną.",
+        "flavor": "",
+        "count": 3,
+        "image": "Psalterium.png"
+    },
+    {
+        "group": "Karty Zakonne",
+        "type": "PRZEDMIOT",
+        "title": "Anielski Chór",
+        "rules": "Pokaż i Odrzuć podczas Głosowania – dodaj 1 do Twojego Głosu.",
+        "flavor": "",
+        "count": 3,
+        "image": "Anielski_Chór.png"
+    },
+    {
+        "group": "Karty Zakonne",
+        "type": "PRZEDMIOT",
+        "title": "Księga Wykroczeń",
+        "rules": "Pokaż Przełożonemu i Odrzuć – przejrzyj zawartość Skrzynki Donosów.",
+        "flavor": "",
+        "count": 4,
+        "image": "Księga_Wykroczeń.png"
+    },
+    {
+        "group": "Karty Zakazane",
+        "type": "PRZEDMIOT",
+        "title": "Ukryty Sztylet",
+        "rules": "Pokaż Ofierze i Odrzuć - ofiara otrzymuje status Ranny lub Pokaż i Odrzuć by uniknąć Kradzieży.",
+        "flavor": "",
+        "count": 3,
+        "image": "Ukryty_Sztylet.png"
+    },
+    {
+        "group": "Karty Zakazane",
+        "type": "PRZEDMIOT",
+        "title": "Mapa Podziemi",
+        "rules": "Pokaż Przełożonemu i Odrzuć - Dobierz 2 Karty z Dowolnej Talii.",
+        "flavor": "",
+        "count": 3,
+        "image": "Mapa_Podziemi.png"
+    },
+    {
+        "group": "Karty Zakazane",
+        "type": "PRZEDMIOT",
+        "title": "Kielich Aptekarza",
+        "rules": "Pokaż i Odrzuć, by uniknąć efektów jednej Mikstury.",
+        "flavor": "",
+        "count": 3,
+        "image": "Kielich_Aptekarza.png"
+    },
+    {
+        "group": "Karty Zakazane",
+        "type": "PRZEDMIOT",
+        "title": "Pismo Apostaty",
+        "rules": "Pokaż Ofierze i Odrzuć - ofiara musi natychmiast oddać Ci wybraną przez Ciebie Kulę.",
+        "flavor": "",
+        "count": 4,
+        "image": "Pismo_Apostaty.png"
+    },
+    {
+        "group": "Karty Zakazane",
+        "type": "PRZEDMIOT",
+        "title": "Przekleństwo Judasza",
+        "rules": "Pokaż Przełożonemu i Odrzuć - dorzuć 1 Czarną Kulę z puli do Kielicha.",
+        "flavor": "",
+        "count": 4,
+        "image": "Przekleństwo_Judasza.png"
+    },
+    {
+        "group": "Karty Zakazane",
+        "type": "PRZEDMIOT",
+        "title": "Liber Furti",
+        "rules": "Pokaż Ofierze i Odrzuć - ofiara musi natychmiast oddać Ci losowy Przedmiot.",
+        "flavor": "",
+        "count": 3,
+        "image": "Liber_Furti.png"
+    },
+    {
+        "group": "Karty Zakazane",
+        "type": "PRZEDMIOT",
+        "title": "Ars Occulta",
+        "rules": "Pokaż Przełożonemu i Odrzuć – wybierz Postać. Jeden Donos z imieniem tej Postaci zostanie usunięty podczas Wieczerzy.",
+        "flavor": "",
+        "count": 4,
+        "image": "Ars_Occulta.png"
+    },
+    {
+        "group": "Karty Zakazane",
+        "type": "PRZEDMIOT",
+        "title": "Malleus Hereticorum",
+        "rules": "Pokaż podczas Wieczerzy i Odrzuć – dodaj +2 do Winy wybranej Postaci.",
+        "flavor": "",
+        "count": 3,
+        "image": "Malleus_Hereticorum.png"
+    },
+    {
+        "group": "Karty Zakazane",
+        "type": "PRZEDMIOT",
+        "title": "Kość Mnicha",
+        "rules": "Pokaż Przełożonemu i Odrzuć – weź z puli 2 dowolne Kule.",
+        "flavor": "",
+        "count": 3,
+        "image": "Kość_Mnicha.png"
+    },
+    {
+        "group": "Karty Zakazane",
+        "type": "PRZEDMIOT",
+        "title": "Płyta Nagrobna",
+        "rules": "Pokaż i Odrzuć w HORTUS – weź 2 Klocki Muru i Pracuj nad Murami.",
+        "flavor": "",
+        "count": 3,
+        "image": "Płyta_Nagrobna.png"
+    },
+    {
+        "group": "Karty Zakazane",
+        "type": "PRZEDMIOT",
+        "title": "Czarna Relikwia",
+        "rules": "Pokaż Przełożonemu i Odrzuć – zamień dwie kule w Kielichu na przeciwne.",
+        "flavor": "",
+        "count": 3,
+        "image": "Czarna_Relikwia.png"
+    },
+    {
+        "group": "Karty Zakazane",
+        "type": "PRZEDMIOT",
+        "title": "Złamany Krzyż",
+        "rules": "Pokaż i Odrzuć – wybrany Gracz pokazuje Ci wszystkie Przedmioty i Kule.",
+        "flavor": "",
+        "count": 3,
+        "image": "Złamany_Krzyż.png"
+    },
+    {
+        "group": "Karty Zakazane",
+        "type": "PRZEDMIOT",
+        "title": "Kościany Pierścień",
+        "rules": "Pokaż i Odrzuć gdy jesteś celem działań innego Gracza. Akcja się nie udaje.",
+        "flavor": "",
+        "count": 3,
+        "image": "Kościany_Pierścień.png"
+    },
+    {
+        "group": "Karty Zakazane",
+        "type": "PRZEDMIOT",
+        "title": "Malleus Maleficarum",
+        "rules": "Pokaż Przełożonemu i Odrzuć - weź kartę z Talii Mikstur i 1 Czarną Kulę z puli.",
+        "flavor": "",
+        "count": 3,
+        "image": "Malleus_Maleficarum.png"
+    },
+    {
+        "group": "Mikstury",
+        "type": "PRZEDMIOT / MIKSTURA",
+        "title": "Wino Opatrzności",
+        "rules": "Wypij (Odrzuć) i zdejmij wszystkie statusy jednego rodzaju.",
+        "flavor": "",
+        "count": 3,
+        "image": "Wino_Opatrzności.png"
+    },
+    {
+        "group": "Mikstury",
+        "type": "PRZEDMIOT / MIKSTURA",
+        "title": "Łzy Pańskie",
+        "rules": "Wypij (Odrzuć) – weź z puli wybraną Kulę. Jeśli wypiłeś podczas Wieczerzy – odrzuć swoją losową Kulę.",
+        "flavor": "",
+        "count": 3,
+        "image": "Łzy_Pańskie.png"
+    },
+    {
+        "group": "Mikstury",
+        "type": "PRZEDMIOT / MIKSTURA",
+        "title": "Napar Kojący",
+        "rules": "Wypij podczas Wieczerzy (Odrzuć) - zmniejsz swoją Winę o 1.",
+        "flavor": "",
+        "count": 3,
+        "image": "Napar_Kojący.png"
+    },
+    {
+        "group": "Mikstury",
+        "type": "PRZEDMIOT / MIKSTURA",
+        "title": "Wilcza Jagoda",
+        "rules": "(Koszt 1C) Podaj ofierze: Podczas najbliższej Wieczerzy Wina ofiary rośnie o 1 (ofiara oddaje kartę Przełożonemu jako dowód).",
+        "flavor": "",
+        "count": 3,
+        "image": "Wilcza_Jagoda.png"
+    },
+    {
+        "group": "Mikstury",
+        "type": "PRZEDMIOT / MIKSTURA",
+        "title": "Jad Skorpeny",
+        "rules": "(Koszt 1C) Podaj ofierze: Ofiara natychmiast otrzymuje status SPLUGAWIONY (musi pobrać oznaczenie).",
+        "flavor": "",
+        "count": 3,
+        "image": "Jad_Skorpeny.png"
+    },
+    {
+        "group": "Mikstury",
+        "type": "PRZEDMIOT / MIKSTURA",
+        "title": "Nalewka Z Muchomora",
+        "rules": "(Koszt 1C) Podaj ofierze: Ofiara natychmiast otrzymuje status RANNY (musi pobrać oznaczenie).",
+        "flavor": "",
+        "count": 3,
+        "image": "Nalewka_Z_Muchomora.png"
+    },
+    {
+        "group": "Mikstury",
+        "type": "PRZEDMIOT / MIKSTURA",
+        "title": "Esencja Prawdy",
+        "rules": "(Koszt 1C) Podaj ofierze: Podczas najbliższej Spowiedzi lub Wieczerzy ofiara musi wyznać oba Grzechy (ofiara oddaje kartę Przełożonemu jako dowód).",
+        "flavor": "",
+        "count": 3,
+        "image": "Esencja_Prawdy.png"
+    },
+    {
+        "group": "Mikstury",
+        "type": "PRZEDMIOT / MIKSTURA",
+        "title": "Wywar Z Mamrota",
+        "rules": "(Koszt 1C) Podaj ofierze: Podczas najbliższej Wieczerzy musi ujawnić zaplanowaną Akcję Nocną oraz ma o 1 Głos mniej w Głosowaniu (ofiara oddaje kartę Przełożonemu jako dowód).",
+        "flavor": "",
+        "count": 3,
+        "image": "Wywar_Z_Mamrota.png"
+    },
+    {
+        "group": "Mikstury",
+        "type": "PRZEDMIOT / MIKSTURA",
+        "title": "Olej Nienawiści",
+        "rules": "(Koszt 1C) Podaj ofierze: Podczas najbliższej Wieczerzy musi ujawnić jakie Donosy wrzuciła tego Dnia do Skrzynki (ofiara oddaje kartę Przełożonemu jako dowód).",
+        "flavor": "",
+        "count": 3,
+        "image": "Olej_Nienawiści.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Pusty Mieszek",
+        "flavor": "\"Gdy sakiewka milczy, serce krzyczy o winie. Srebro zniknęło, pozostał tylko zapach pychy\"",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Pusty_Mieszek.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Zerwany Różaniec",
+        "flavor": "\"Paciorki rozsypane w walce o tchnienie. Ktoś puścił sznur modlitwy, by chwycić za gardło\"",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Zerwany_Różaniec.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Czerwona Wstążka",
+        "flavor": "\"Pamiątka świata, który miał spłonąć w ogniu nawrócenia. Zapach perfum tam, gdzie winno być kadzidło\".",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Czerwona_Wstążka.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Zatarty Sygnet",
+        "flavor": "\"Herb rodu, który dawno zniknął z kronik. Ktoś nosi go blisko ciała, jakby wciąż wierzył w swoją starą krew\".",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Zatarty_Sygnet.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Wydarta Karta",
+        "flavor": "\"Biała plama w historii Zakonu. Imię wymazane nożem, prawda pogrzebana pod warstwą pergaminu\".",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Wydarta_Karta.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Słoik Z Maścią",
+        "flavor": "\"Gęsta miazga, która nie niesie ulgi, lecz skrywa to, co winno ulec rozkładowi. Albo odurza duszę\"",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Słoik_Z_Maścią.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Niebieski Inkaust",
+        "flavor": "\"Kropla atramentu, która może zmienić testament lub wydać wyrok. Narzędzie tych, co kłamią piórem\".",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Niebieski_Inkaust.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Stary Klucz",
+        "flavor": "\"Żelazo, które otwiera to, co Inkwizycja kazała zamknąć. Czy to cela heretyka, czy skrzynia ze srebrem?\".",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Stary_Klucz.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Okruchy Chleba",
+        "flavor": "\"Świeża strawa znaleziona tam, gdzie panuje tylko mrok. Ktoś karmi demony... lub ukrytych heretyków\".",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Okruchy_Chleba.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Skrawek Pergaminu",
+        "flavor": "\"Słowa spisane w gorączce, o ogniu, który nie pochodzi z ołtarza. Pismo drżące, pełne jadu\"",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Skrawek_Pergaminu.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Opiłki Żelaza",
+        "flavor": "\"Pył, który zostaje po piłowaniu kajdan lub okuć bramy. Zdrada ma kolor rdzy\"",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Opiłki_Żelaza.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Szkic Klasztoru",
+        "flavor": "\"Każdy kamień ma swój słaby punkt. Ktoś nakreślił go z precyzją, której nie uczy się nowicjuszy\"",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Szkic_Klasztoru.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Maska Z Płótna",
+        "flavor": "\"Twarz kata nie potrzebuje oczu, by zadawać ból. Cuchnie potem i lękiem dawnych ofiar\".",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Maska_Z_Płótna.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Splamione Sukno",
+        "flavor": "\"Czerwień na bieli habitu. Nie wygląda na wino mszalne, lecz na krew, która nie chciała przestać płynąć\".",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Splamione_Sukno.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Woskowy Odlew",
+        "flavor": "\"Ślad klucza odciśnięty w miękkim wosku. Ktoś przygotowywał się do wejścia tam, gdzie drzwi winny być zamknięte\".",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Woskowy_Odlew.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Opalona Drzazga",
+        "flavor": "\"Drewno pachnące smołą i ogniem. Nie pochodzi z kominka, lecz z miejsca, które miało spłonąć doszczętnie\".",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Opalona_Drzazga.png"
+    },
+    {
+        "group": "Dowody Grzechu",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Srebrny Medalion",
+        "flavor": "\"Cenne wotum, które zniknęło z ołtarza. Albo list żelazny, który ma chronić szpiega przed stosem",
+        "rules": "Odrzuć podczas Wieczerzy i udowodnij Grzech Postaci, by dodać jej +3 Winy.",
+        "count": 1,
+        "image": "Srebrny_Medalion.png"
+    },
+    {
+        "group": "Stany i Inne",
+        "type": "PRZEDMIOT / DOWÓD GRZECHU",
+        "title": "Pęk Kluczy",
+        "rules": "„Brzęczą w mroku, otwierając przejścia, o których bracia zapomnieli. Klucze do wolności... lub do cudzych tajemnic”.",
+        "flavor": "",
+        "count": 1,
+        "image": "Pęk_Kluczy.png"
+    },
+    {
+        "group": "Stany i Inne",
+        "type": "STAN",
+        "title": "Ranny",
+        "rules": "Przyklej CZERWONE oznaczenie w widocznym miejscu. Nie możesz brać udziału w Głosowaniu podczas Wieczerzy o ile nie wydasz 1 Kuli. Nie możesz Pracować nad Murami.",
+        "flavor": "",
+        "count": 15,
+        "image": "Ranny.png"
+    },
+    {
+        "group": "Stany i Inne",
+        "type": "STAN",
+        "title": "Splugawiony",
+        "rules": "Przyczep OZNACZENIE na palcu. Podczas Wieczerzy otrzymujesz +1 Winę. Podczas Spowiedzi musisz wyznać Oba Grzechy.",
+        "flavor": "",
+        "count": 15,
+        "image": "Splugawiony.png"
+    },
+    {
+        "group": "Stany i Inne",
+        "type": "STAN",
+        "title": "Brudny",
+        "rules": "Przyklej CZARNE oznaczenie w widocznym miejscu. Nie możesz dotykać RELIKWII – wszystkie akcje z nią związane (w tym wrzucenie kul po Wieczerzy) musi wykonać za Ciebie inna Postać.",
+        "flavor": "",
+        "count": 15,
+        "image": "Brudny.png"
+    },
+    {
+        "group": "Stany i Inne",
+        "type": "PRZEDMIOT",
+        "title": "Przychylność Świętego Oficjum",
+        "rules": "„Cień Inkwizycji bywa chłodny, lecz chroni przed żarem stosu”. Pokaż i Odrzuć podczas Wieczerzy, aby otrzymać spisaną poniżej zasługę: ________________________________________ ____________________________",
+        "flavor": "",
+        "count": 30,
+        "image": "Przychylność_Świętego_Oficjum.png"
+    },
+    {
+        "group": "Stany i Inne",
+        "type": "SPECJALNA",
+        "title": "Łaska Posłańca",
+        "rules": "(Natchniony przez Wędrowca) „Głos Boży przemawia przez Twe usta”. Pokaż i Odrzuć podczas Głosowania. Dodaj 2 Głosy. Nie możesz tej karty stracić.",
+        "flavor": "",
+        "count": 2,
+        "image": "Łaska_Posłańca.png"
+    },
+    {
+        "group": "Stany i Inne",
+        "type": "SPECJALNA",
+        "title": "Przekleństwo Konającego",
+        "flavor": "",
+        "rules": "(Piętno Potępionego) \"Moja krew woła o pomstę\". Musisz ujawnić podczas Wieczerzy. Każdy Donos na Ciebie daje +2 do Winy. Nie możesz tej karty stracić.",
+        "count": 1,
+        "image": "Przekleństwo_Konającego.png"
+    },
+    {
+        "group": "Stany i Inne",
+        "type": "SPECJALNA",
+        "title": "Kradzież",
+        "rules": "(Koszt 1C) Pokaż Ofierze i Odrzuć: Ofiara musi oddać Ci losowy Przedmiot lub Kulę. Nie działa w CAPELLA. Nie możesz tej karty stracić. Limit w ręce: 1.",
+        "flavor": "",
+        "count": 15,
+        "image": "Kradzież.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / MEDYK",
+        "title": "Plotka: Medyk",
+        "rules": "Podobno Medyk ma pod łóżkiem skrytkę ze złotem, które kradł, gdy bracia głodowali. SZANTAŻ: Przekaż tę kartę Graczowi. Musi on natychmiast oddać Ci 1 wybraną przez CIEBIE Kulę. Jeśli nie ma kul, dostaje kartę za darmo. Dziurkuj swój Numer. OCZYSZCZENIE: Oddaj Przełożonemu zgodnie z aktualnie obowiązującym Edyktem. Plotka wybrzmi na Wieczerzy. HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / MEDYK",
+        "title": "Plotka: Medyk",
+        "rules": "Podobno Medyk profanuje ciała zmarłych skalpelem, szukając w nich tego, co należy do Boga. SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / KUCHARZ",
+        "title": "Plotka: Kucharz",
+        "rules": "Podobno Kucharz trzyma w kuchni bluźniercze księgi o potędze niszczycielskiego ognia. SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / KUCHARZ",
+        "title": "Plotka: Kucharz",
+        "rules": "Podobno wizje braci to efekt ziół, które Kucharz dodaje nam do wspólnej strawy.",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "",
+        "title": "Plotka",
+        "rules": "SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / ZBROJMISTRZ",
+        "title": "Plotka: Zbrojmistrz",
+        "rules": "Podobno Zbrojmistrz to morderca swego dowódcy, który ukrył się w zakonie przed stryczkiem. SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / ZBROJMISTRZ",
+        "title": "Plotka: Zbrojmistrz",
+        "rules": "Podobno Zbrojmistrz celowo niszczy okucia bram, by wydawać się dla zakonu niezbędnym. SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / SKRYBA",
+        "title": "Plotka: Skryba",
+        "rules": "Podobno Skryba nocami śle listy do syna spłodzonego w grzechu, o którym nikt nie wie. SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej).",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "",
+        "title": "Plotka",
+        "rules": "HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / SKRYBA",
+        "title": "Plotka: Skryba",
+        "rules": "Podobno za złoto fałszuje testamenty i kroniki, zmieniając wolę zmarłych. SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / SZAFARZ",
+        "title": "Plotka: Szafarz",
+        "rules": "Podobno Szafarz wymienia relikwie na złoto u pogan, szargając honor zakonu. SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / SZAFARZ",
+        "title": "Plotka: Szafarz",
+        "rules": "Podobno Szafarz ma prywatny skarbiec, którego nigdy nie odda wspólnocie. SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / OGRODNIK",
+        "title": "Plotka: Ogrodnik",
+        "rules": "Podobno to Ogrodnik wzniecił pożar spichlerza i drży, że prawda wyjdzie na jaw. SZANTAŻ: (Jak wyżej).",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "",
+        "title": "Plotka",
+        "rules": "OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / OGRODNIK",
+        "title": "Plotka: Ogrodnik",
+        "rules": "Podobno Ogrodnik zdradza tajemnice murów budowniczym z Miasta za worek monet. SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / KRONIKARZ",
+        "title": "Plotka: Kronikarz",
+        "rules": "Podobno Kronikarz żyje pod fałszywym imieniem i ukradł tożsamość kuzynowi. SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / KRONIKARZ",
+        "title": "Plotka: Kronikarz",
+        "rules": "Podobno Kronikarz pali niewygodne strony kronik, by chronić grzechy mocodawców. SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / MĘDRZEC",
+        "title": "Plotka: Mędrzec",
+        "rules": "Podobno dłonie Mędrca pamiętają dotyk maski kata i ból zadawany niewinnym ofiarom.",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "",
+        "title": "Plotka",
+        "rules": "SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / MĘDRZEC",
+        "title": "Plotka: Mędrzec",
+        "rules": "Podobno Mędrzec ukrywa w murach wyklętych heretyków, karmiąc ich wbrew prawu. SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / NOWICJUSZ",
+        "title": "Plotka: Nowicjusz",
+        "rules": "Podobno Nowicjusz patrzył na agonię brata Tomasza i umyślnie mu nie pomógł. SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / NOWICJUSZ",
+        "title": "Plotka: Nowicjusz",
+        "rules": "Podobno Nowicjusz to kret spisujący raporty o braciach dla władz zewnętrznych. SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA /",
+        "title": "Plotka",
+        "rules": "Podobno Bibliotekarz chowa zakazane pisma pogan,",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "BIBLIOTEKARZ",
+        "title": "Plotka",
+        "rules": "których lektura sprowadza szaleństwo. SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / BIBLIOTEKARZ",
+        "title": "Plotka: Bibliotekarz",
+        "rules": "Podobno Bibliotekarz wycina ryciny z ksiąg i sprzedaje je handlarzom w Mieście. SZANTAŻ: (Jak wyżej). OCZYSZCZENIE: (Jak wyżej). HISTORIA: [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ][ 8 ][ 9 ][ 10 ]",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / OPAT",
+        "title": "Plotka: Opat",
+        "rules": "Podobno nasz Opat ukrył w murach złoto z podatków, których nigdy nie przekazał królowi. WYMIANA: Oddaj tę kartę Przełożonemu w dowolnym momencie. Weź 1 Czarną Kulę.",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / OPAT",
+        "title": "Plotka: Opat",
+        "rules": "Podobno nasz Opat sypia na jedwabiach pod grubym habitem, gardząc ubóstwem zakonu. WYMIANA: Oddaj tę kartę Przełożonemu w dowolnym momencie. Weź 1 Czarną Kulę.",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / OPAT",
+        "title": "Plotka: Opat",
+        "rules": "Podobno nasz Opat to bękart możnego rodu, zesłany tu, by nie psuć krwi prawowitym dziedzicom. WYMIANA: Oddaj tę kartę Przełożonemu w dowolnym momencie. Weź 1 Czarną Kulę.",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / OPAT",
+        "title": "Plotka: Opat",
+        "rules": "Podobno nasz Opat nocami pije wino z piwnic, podczas gdy wirujemy pić tylko wodę z rzeki. WYMIANA: Oddaj tę kartę Przełożonemu w dowolnym momencie. Weź 1 Czarną Kulę.",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / OPAT",
+        "title": "Plotka: Opat",
+        "rules": "Podobno nasz Opat znał ojca Medyka i razem dopuścili się oszustwa na handlu relikwiami. WYMIANA: Oddaj tę kartę Przełożonemu w dowolnym momencie. Weź 1 Czarną Kulę.",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / OPAT",
+        "title": "Plotka: Opat",
+        "rules": "Podobno nasz Opat koresponduje z kobietą z Miasta i śle jej nasze ostatnie ziarno. WYMIANA: Oddaj tę kartę Przełożonemu w dowolnym momencie. Weź 1 Czarną Kulę.",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / OPAT",
+        "title": "Plotka: Opat",
+        "rules": "Podobno nasz Opat nakazał zamurować żywcem brata, który odkrył jego prawdziwe imię. WYMIANA: Oddaj tę kartę Przełożonemu w dowolnym momencie. Weź 1 Czarną Kulę.",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / OPAT",
+        "title": "Plotka: Opat",
+        "rules": "Podobno nasz Opat nie potrafi czytać, a wszystkie pisma święte tylko udaje, że rozumie. WYMIANA: Oddaj tę kartę Przełożonemu w dowolnym momencie. Weź 1 Czarną Kulę.",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / OPAT",
+        "title": "Plotka: Opat",
+        "rules": "Podobno nasz Opat boi się ciemności i nakazuje Nowicjuszowi czuwać pod drzwiami z kagankiem. WYMIANA: Oddaj tę kartę Przełożonemu w dowolnym momencie. Weź 1 Czarną Kulę.",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / OPAT",
+        "title": "Plotka: Opat",
+        "rules": "Podobno nasz Opat został tu zesłany, bo w poprzednim klasztorze doprowadził braci do buntu. WYMIANA: Oddaj tę kartę Przełożonemu w dowolnym momencie. Weź 1 Czarną Kulę.",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / INKWIZYTOR",
+        "title": "Plotka: Inkwizytor",
+        "rules": "Podobno Inkwizytor sam kiedyś stał przed sądem za czarnoksięstwo i ocalał tylko dzięki zdradzie bliskich. WYMIANA: Oddaj Przełożonemu. Możliwe tylko, jeśli NIE MASZ żadnych Stanów. Weź: 1 Kula lub 1 Donos lub 1 dowolna karta. WIECZERZA: Możesz oddać tę kartę Przełożonemu za darmo (bez nagrody).",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / INKWIZYTOR",
+        "title": "Plotka: Inkwizytor",
+        "rules": "Podobno Inkwizytor nosi na piersi heretyckie znamię, które ukrywa pod ciężkim medalionem. WYMIANA: Oddaj Przełożonemu. Możliwe tylko, jeśli NIE",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "",
+        "title": "Plotka",
+        "rules": "MASZ żadnych Stanów. Weź: 1 Kula lub 1 Donos lub 1 dowolna karta. WIECZERZA: Możesz oddać tę kartę Przełożonemu za darmo (bez nagrody).",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / INKWIZYTOR",
+        "title": "Plotka: Inkwizytor",
+        "rules": "Podobno Inkwizytor ma listę osób do spalenia gotową jeszcze przed przyjazdem do tego miejsca. WYMIANA: Oddaj Przełożonemu. Możliwe tylko, jeśli NIE MASZ żadnych Stanów. Weź: 1 Kula lub 1 Donos lub 1 dowolna karta. WIECZERZA: Możesz oddać tę kartę Przełożonemu za darmo (bez nagrody).",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / INKWIZYTOR",
+        "title": "Plotka: Inkwizytor",
+        "rules": "Podobno Inkwizytor czerpie radość z tortur i sam ostrzy narzędzia kata w swojej celi. WYMIANA: Oddaj Przełożonemu. Możliwe tylko, jeśli NIE MASZ żadnych Stanów. Weź: 1 Kula lub 1 Donos lub 1 dowolna karta. WIECZERZA: Możesz oddać tę kartę Przełożonemu za darmo (bez nagrody).",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / INKWIZYTOR",
+        "title": "Plotka: Inkwizytor",
+        "rules": "Podobno Inkwizytor przyjechał tu tylko po to, by odnaleźć zakazaną księgę Bibliotekarza. WYMIANA: Oddaj Przełożonemu. Możliwe tylko, jeśli NIE MASZ żadnych Stanów. Weź: 1 Kula lub 1 Donos lub 1 dowolna karta. WIECZERZA: Możesz oddać tę kartę Przełożonemu za darmo (bez nagrody).",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / INKWIZYTOR",
+        "title": "Plotka: Inkwizytor",
+        "rules": "Podobno Inkwizytor jest opętany przez demona pychy i nie służy Bogu, lecz własnej potędze. WYMIANA: Oddaj Przełożonemu. Możliwe tylko, jeśli NIE MASZ żadnych Stanów. Weź: 1 Kula lub 1 Donos lub 1",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "",
+        "title": "Plotka",
+        "rules": "dowolna karta. WIECZERZA: Możesz oddać tę kartę Przełożonemu za darmo (bez nagrody).",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / INKWIZYTOR",
+        "title": "Plotka: Inkwizytor",
+        "rules": "Podobno Inkwizytor wcale nie ma pełnomocnictw papieskich, a jego dokumenty to fałszerstwo. WYMIANA: Oddaj Przełożonemu. Możliwe tylko, jeśli NIE MASZ żadnych Stanów. Weź: 1 Kula lub 1 Donos lub 1 dowolna karta. WIECZERZA: Możesz oddać tę kartę Przełożonemu za darmo (bez nagrody).",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / INKWIZYTOR",
+        "title": "Plotka: Inkwizytor",
+        "rules": "Podobno Inkwizytor skazał na stos własną siostrę, by przejąć jej majątek na rzecz zakonu. WYMIANA: Oddaj Przełożonemu. Możliwe tylko, jeśli NIE MASZ żadnych Stanów. Weź: 1 Kula lub 1 Donos lub 1 dowolna karta. WIECZERZA: Możesz oddać tę kartę Przełożonemu za darmo (bez nagrody).",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / INKWIZYTOR",
+        "title": "Plotka: Inkwizytor",
+        "rules": "Podobno Inkwizytor nocami słyszy głosy potępionych, którzy nie dają mu zaznać spokoju. WYMIANA: Oddaj Przełożonemu. Możliwe tylko, jeśli NIE MASZ żadnych Stanów. Weź: 1 Kula lub 1 Donos lub 1 dowolna karta. WIECZERZA: Możesz oddać tę kartę Przełożonemu za darmo (bez nagrody).",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "SPECJALNA / PLOTKA / INKWIZYTOR",
+        "title": "Plotka: Inkwizytor",
+        "rules": "Podobno Inkwizytor nienawidzi naszego zakonu i przyrzekł, że zetrze te mury w pył. WYMIANA: Oddaj Przełożonemu. Możliwe tylko, jeśli NIE MASZ żadnych Stanów. Weź: 1 Kula lub 1 Donos lub 1 dowolna karta.",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    },
+    {
+        "group": "Plotki",
+        "type": "",
+        "title": "Plotka",
+        "rules": "WIECZERZA: Możesz oddać tę kartę Przełożonemu za darmo (bez nagrody).",
+        "flavor": "",
+        "count": 1,
+        "image": "Plotka.png"
+    }
+]

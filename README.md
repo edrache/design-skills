@@ -34,6 +34,7 @@ This project includes several skills that extend the agent's capabilities. / Pro
 - **pdf-to-md**: Extract content from PDF files and convert them into well-formatted Markdown documents. / Wyodrębnianie treści z plików PDF i konwersja na sformatowane dokumenty Markdown.
 - **pdf-translator-pl**: Translation of RPG manuals from PDF (English) to PDF (Polish). / Tłumaczenie podręczników RPG z formatu PDF (angielski) na PDF (polski).
 - **rpg-translator**: Translation of RPG Markdown files from English to Polish, maintaining the original atmosphere. / Tłumaczenie plików Markdown gier RPG z angielskiego na polski z zachowaniem klimatu.
+- **deploy-mikrus**: Fast deployment of applications to VPS (Mikrus) using rsync/SSH. / Szybkie wdrażanie aplikacji na VPS (Mikrus) przez rsync/SSH.
 
 ### Anthropic Skills / Umiejętności Anthropic
 

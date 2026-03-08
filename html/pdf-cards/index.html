@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monastic Card Ritual - Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Solid PDF Generation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- Premium Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@400;700&family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --monk-black: #1a1a1a;
+            --monk-white: #ffffff;
+            --monk-accent: #8b0000;
+        }
+
+        body {
+            font-family: 'EB Garamond', serif;
+            background-color: #0f172a;
+            background-image: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .gothic-font {
+            font-family: 'Grenze Gotisch', cursive;
+        }
+
+        .cinzel-font {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* UI Styles */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Card styles for Preview */
+        .card-view {
+            width: 63mm;
+            height: 88mm;
+            background: white;
+            color: black;
+            padding: 4mm;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1.5px solid #000;
+            overflow: hidden;
+            font-family: 'EB Garamond', serif;
+        }
+
+        .card-view.pdf-mode {
+            box-shadow: none;
+            margin: 0;
+            border: none;
+            background: white;
+        }
+
+        .card-type {
+            font-size: 8px;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #4a5568;
+            margin-bottom: 2px;
+        }
+
+        .card-title {
+            font-size: 13px;
+            line-height: 1.2;
+            font-weight: 700;
+            text-align: center;
+            border-bottom: 2px solid black;
+            padding-bottom: 4px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 24px;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 38mm;
+            border: 1.5px solid black;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .rules-container {
+            margin-top: 5px;
+            flex-grow: 1;
+            border: 1.5px solid black;
+            padding: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 11px;
+            line-height: 1.3;
+        }
+
+        .flavor-text {
+            font-style: italic;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            margin-top: 6px;
+            padding-top: 4px;
+            font-size: 9px;
+            color: #444;
+            text-align: center;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        #printArea {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="p-4 md:p-8">
+
+    <div id="appUI" class="max-w-7xl mx-auto">
+        <header class="mb-10 text-center">
+            <h1 class="text-5xl font-bold gothic-font mb-4 tracking-wider text-white">SCRIPTUM MONACHORUM</h1>
+            <p class="text-blue-300 cinzel-font text-sm uppercase tracking-[0.2em]">Sacrum Generator Kart Ritualnych</p>
+        </header>
+
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+            <div class="xl:col-span-5 space-y-6">
+                <!-- Instruction -->
+                <div class="glass-panel p-6 rounded-2xl shadow-2xl">
+                    <h2 class="text-xl font-bold mb-4 gothic-font text-blue-200">System Ksiąg</h2>
+                    <ul class="space-y-2 text-sm text-gray-300 list-disc ml-5">
+                        <li>Nowy, precyzyjny silnik do PDF: <strong>jsPDF + html2canvas</strong>.</li>
+                        <li>Generuje prawdziwy PDF, w którym każda strona ma dokładnie wymiar <strong>63x88mm</strong>.</li>
+                        <li><span class="text-red-400 font-bold">Ważne:</span> Przeglądarki blokują renderowanie grafik prosto z dysku (błąd <i>SecurityError</i>). Aby tego uniknąć, użyj opcji <strong>"Wczytaj grafiki"</strong> poniżej!</li>
+                    </ul>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl shadow-2xl">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold gothic-font text-blue-200">Rytuał JSON</h2>
+                        <span id="cardCount" class="bg-blue-900 text-blue-200 text-xs px-2 py-1 rounded-full font-bold cinzel-font">0 Kart</span>
+                    </div>
+                    <textarea id="jsonInput"
+                        class="w-full h-[400px] p-4 font-mono text-sm bg-slate-900/50 text-blue-100 border border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                        spellcheck="false"></textarea>
+
+                    <div class="mt-6 flex flex-wrap gap-4">
+                        <button onclick="updatePreview()"
+                            class="flex-1 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-lg active:scale-95 cinzel-font text-sm">
+                            Odśwież Wizję
+                        </button>
+                        <button onclick="generateStrictPDF(event)"
+                            class="flex-1 bg-white hover:bg-gray-100 text-slate-900 font-bold py-3 px-6 rounded-xl transition-all shadow-lg active:scale-95 cinzel-font text-sm">
+                            Pobierz PDF (63x88mm)
+                        </button>
+                    </div>
+                    
+                    <div class="mt-6 p-4 border border-blue-500/30 rounded-lg bg-blue-900/10">
+                        <h3 class="text-sm font-bold text-blue-200 mb-2">Rozwiązanie na błąd zabezpieczeń (CORS):</h3>
+                        <p class="text-xs text-gray-400 mb-3">Zanim pobierzesz PDF, wybierz z dysku obrazki, których używasz. To pozwala wczytać je "bezpośrednio" w pamięć i omija blokadę zapisu PDF.</p>
+                        <input type="file" id="imageUploader" multiple accept="image/*" class="w-full text-xs text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-500 cursor-pointer" onchange="handleLocalImages(event)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="xl:col-span-7">
+                <div class="glass-panel p-8 rounded-3xl shadow-2xl min-h-[600px]">
+                    <h2 class="text-2xl font-bold mb-8 gothic-font text-center text-blue-100 border-b border-blue-500/20 pb-4">Krypta Podglądu</h2>
+                    <div id="previewContainer" class="flex flex-wrap justify-center gap-6"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Container for generating PDF -->
+    <div id="printArea"></div>
+
+    <script>
+        const initialData = [
+            {
+                "title": "Błogosławieństwo Ciszy",
+                "type": "Czar Natychmiastowy",
+                "image": "img/0.png",
+                "rules": "Czaruj tylko w swojej turze. Przeciwnik nie może rzucać czarów w Twojej turze.",
+                "flavor": "W milczeniu odnajdziesz głos Boga."
+            },
+            {
+                "title": "Relikwia Męczennika",
+                "type": "Artefakt",
+                "image": "img/1.png",
+                "rules": "Gdy ta karta opuszcza pole bitwy, dobierz dwie karty.",
+                "flavor": "Nawet po śmierci, ich Wiara nas prowadzi."
+            },
+            {
+                "title": "Strażnik Opactwa",
+                "type": "Stworzenie — Mnich",
+                "image": "img/2.png",
+                "rules": "Zasięg, Czujność. Nie może atakować, dopóki masz mniej niż 10 punktów życia.",
+                "flavor": "Stoi niewzruszony, jak mury, których strzeże."
+            },
+            {
+                "title": "Ostatnie Namaszczenie",
+                "type": "Rytuał Zmartwychwstania",
+                "image": "img/3.png",
+                "rules": "Wybierz stworzenie w twoim cmentarzu. Przywróć je na pole bitwy pod twoją kontrolą.",
+                "flavor": "Śmierć to tylko przejście."
+            }
+        ];
+
+        document.getElementById('jsonInput').value = JSON.stringify(initialData, null, 4);
+
+        let localImageMap = {};
+
+        function handleLocalImages(event) {
+            const files = event.target.files;
+            if (!files || files.length === 0) return;
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const blobUrl = URL.createObjectURL(file);
+                // Map both strict filename and path formats for convenience
+                localImageMap[file.name] = blobUrl;
+                localImageMap[`img/${file.name}`] = blobUrl;
+            }
+            updatePreview();
+            alert(`Wczytano ${files.length} grafik do pamięci podręcznej! Generowanie PDF powinno teraz działać.`);
+        }
+
+        function createCardHtml(card, index, isPdf = false) {
+            let imgPath = card.image || `img/${index}.png`;
+            
+            // Bypass CORS file:// via locally loaded Blob URLs
+            if (localImageMap[imgPath]) {
+                imgPath = localImageMap[imgPath];
+            } else {
+                const rawName = imgPath.split('/').pop();
+                if (localImageMap[rawName]) {
+                    imgPath = localImageMap[rawName];
+                }
+            }
+
+            const pdfClass = isPdf ? 'pdf-mode' : '';
+            return `
+                <div class="card-view ${pdfClass}">
+                    <div class="card-type cinzel-font">${card.type || 'Karta'}</div>
+                    <div class="card-title cinzel-font">${card.title || 'Inkantacja Bez Nazwy'}</div>
+                    <div class="image-container">
+                        <img src="${imgPath}" class="card-image" onerror="this.style.display='none'">
+                    </div>
+                    <div class="rules-container">
+                        <div class="rules-text">${card.rules || ''}</div>
+                        ${card.flavor ? `<div class="flavor-text italic">${card.flavor}</div>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function updatePreview() {
+            const input = document.getElementById('jsonInput').value;
+            const container = document.getElementById('previewContainer');
+            const counter = document.getElementById('cardCount');
+            try {
+                const data = JSON.parse(input);
+                container.innerHTML = data.map((card, idx) => createCardHtml(card, idx, false)).join('');
+                counter.textContent = `${data.length} Kart`;
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function generateStrictPDF(event) {
+            const input = document.getElementById('jsonInput').value;
+            const printArea = document.getElementById('printArea');
+            const btn = event.currentTarget;
+            const originalText = btn.innerText;
+
+            try {
+                const data = JSON.parse(input);
+                if (!Array.isArray(data) || data.length === 0) {
+                    alert('Brak kart do wygenerowania.');
+                    return;
+                }
+
+                btn.innerText = "Tworzenie Pergaminu... (Proszę czekać)";
+                
+                // Show printArea off-screen so html2canvas can read it properly
+                printArea.innerHTML = '';
+                printArea.style.display = 'block';
+                printArea.style.position = 'fixed'; // Keep in view but hidden behind other layers
+                printArea.style.top = '0';
+                printArea.style.left = '0';
+                printArea.style.zIndex = '-9999';
+                printArea.style.opacity = '1';
+
+                const { jsPDF } = window.jspdf;
+                // Create PDF with exact 63x88 dimension
+                const doc = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: [63, 88]
+                });
+
+                for (let i = 0; i < data.length; i++) {
+                    const card = data[i];
+                    printArea.innerHTML = createCardHtml(card, i, true);
+                    const cardElement = printArea.querySelector('.card-view');
+                    
+                    // Preload image to ensure html2canvas catches it
+                    const img = cardElement.querySelector('img');
+                    if (img && img.src) {
+                        await new Promise((resolve) => {
+                            if (img.complete) resolve();
+                            img.onload = resolve;
+                            img.onerror = resolve;
+                        });
+                    }
+
+                    // Render to canvas (scale makes it high-res)
+                    const canvas = await html2canvas(cardElement, {
+                        scale: 4, // 4x resolution for sharper text and images
+                        useCORS: true,
+                        backgroundColor: '#ffffff'
+                    });
+
+                    const imgData = canvas.toDataURL('image/jpeg', 0.98);
+
+                    // Add new page for cards after the first one
+                    if (i > 0) {
+                        doc.addPage([63, 88], 'portrait');
+                    }
+                    
+                    // Add image to full page size (63x88mm)
+                    doc.addImage(imgData, 'JPEG', 0, 0, 63, 88);
+                }
+
+                doc.save('rytualy_opactwa.pdf');
+
+                // Cleanup
+                printArea.style.display = 'none';
+                printArea.innerHTML = '';
+                btn.innerText = originalText;
+
+            } catch (e) {
+                console.error(e);
+                alert("Błąd podczas generowania: " + e.message);
+                btn.innerText = originalText;
+                printArea.style.display = 'none';
+            }
+        }
+
+        window.onload = updatePreview;
+    </script>
+</body>
+</html>
