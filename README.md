@@ -35,6 +35,9 @@ This project includes several skills that extend the agent's capabilities. / Pro
 - **pdf-translator-pl**: Translation of RPG manuals from PDF (English) to PDF (Polish). / Tłumaczenie podręczników RPG z formatu PDF (angielski) na PDF (polski).
 - **rpg-translator**: Translation of RPG Markdown files from English to Polish, maintaining the original atmosphere. / Tłumaczenie plików Markdown gier RPG z angielskiego na polski z zachowaniem klimatu.
 - **deploy-mikrus**: Fast deployment of applications to VPS (Mikrus) using rsync/SSH. / Szybkie wdrażanie aplikacji na VPS (Mikrus) przez rsync/SSH.
+- **seer-manager**: Experienced manager persona that structures any text, review, or summary using the SEER method (Summarize, Elaborate, Example, Restate). / Persona doświadczonego managera tworzącego profesjonalne podsumowania metodą SEER.
+- **polish-lyric-writer**: Professional Polish song lyric writer following high literary standards (Osiecka, Młynarski style) — avoids clichés, enforces meter, ensures a strong hook. / Profesjonalny tekściarz piszący po polsku z dbałością o rytm, rym i szlagwort.
+- **merge-pdfs**: Merge multiple PDF files into a single document in a user-specified order. / Łączenie wielu plików PDF w jeden dokument w wybranej kolejności.
 
 ### Anthropic Skills / Umiejętności Anthropic
 

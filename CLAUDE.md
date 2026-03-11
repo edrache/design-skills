@@ -25,7 +25,16 @@ This project separates deterministic execution from probabilistic orchestration:
 - `.tmp/` - Intermediate processing data (gitignored, can be deleted)
 - `.env` - Environment variables (gitignored)
 - `skills/` - Specialized agent capabilities
-  - `skills/skills-custom/` - Custom skills (pdf-to-md, rpg-translator, deploy-mikrus, etc.)
+  - `skills/skills-custom/` - Custom skills:
+    - `pdf-to-md` - Extract PDF content to Markdown
+    - `pdf-translator-pl` - Translate RPG PDFs from English to Polish PDF
+    - `rpg-translator` - Translate RPG Markdown EN→PL with terminology consistency
+    - `deploy-mikrus` - Deploy apps to VPS (Mikrus) via rsync/SSH
+    - `seer-manager` - Structure text using SEER method (Summarize, Elaborate, Example, Restate)
+    - `polish-lyric-writer` - Write professional Polish song lyrics with meter and hooks
+    - `merge-pdfs` - Merge multiple PDFs into one in a specified order
+    - `compress-pdf` - Compress PDF(s) with quality presets, custom DPI, and target file size
+    - `spritesheet` - Pack images into a sprite sheet or extract sprites from a sheet
   - `skills/skills-anthrophics/` - Anthropic's official skills library
   - `skills/dist/` - Compiled `.skill` files ready for deployment
 
@@ -52,3 +61,9 @@ skills/skills-custom/<skill-name>/
 ```
 
 Compiled skills are output to `skills/dist/` as `.skill` files.
+
+## Skills Registration (REQUIRED)
+
+After creating any new skill, you MUST update the skills list in CLAUDE.md:
+1. Add a line under `skills/skills-custom/` in the Directory Structure section: `- \`skill-name\` - One-line description in English`
+2. Do this before finishing — it is part of the skill creation workflow.

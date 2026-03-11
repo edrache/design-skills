@@ -37,7 +37,7 @@ def load_b64(fname: str) -> str:
     return fallback_b64
 
 # --- Formatowanie tekstu reguł (pogrubienie słów kluczowych Plotek) ---
-KEYWORDS = ["SZANTAŻ:", "OCZYSZCZENIE:", "HISTORIA:", "WYMIANA:", "WIECZERZA:"]
+KEYWORDS = ["SZANTAŻ:", "OCZYSZCZENIE:", "HISTORIA:", "WYMIANA:", "WIECZERZA:", "ROZSIEWANIE:", "KONFRONTACJA:"]
 
 def format_rules(text: str) -> str:
     for kw in KEYWORDS:
@@ -52,6 +52,7 @@ GROUP_COLOR = {
     "Dowody Grzechu":  "#4a3a1a",  # ciemny brąz
     "Stany i Inne":    "#2a2a2a",  # ciemna szarość
     "Plotki":          "#3a1a4a",  # ciemny fiolet
+    "Plotka":          "#3a1a4a",  # ciemny fiolet
 }
 
 # --- HTML ---
@@ -108,6 +109,28 @@ body {
     font-size: 8.5px; color: #444; text-align: center;
 }
 strong { font-weight: 700; }
+.bottom-bar {
+    border-top-width: 1.5px; border-top-style: solid;
+    padding-top: 3px; margin-top: 3px;
+    flex-shrink: 0;
+}
+.bottom-bar .historia-label {
+    font-size: 7.5px; font-weight: 700;
+    text-align: center; letter-spacing: 1px;
+    font-family: 'Cinzel', serif;
+    margin-bottom: 2px;
+}
+.bottom-bar table {
+    width: 100%; border-collapse: collapse;
+    table-layout: fixed;
+}
+.bottom-bar td {
+    border-width: 1px; border-style: solid;
+    text-align: center; font-size: 7px;
+    font-family: 'Cinzel', serif; font-weight: 700;
+    padding: 1px 0;
+    width: 10%;
+}
 """
 
 GOOGLE_FONTS = (
@@ -137,6 +160,16 @@ for c in cards:
         f'<div class="flavor-text">{c["flavor"]}</div>'
         if c.get("flavor") else ""
     )
+    if c.get("bottom") and "HISTORIA" in c["bottom"]:
+        cells = "".join(f'<td style="border-color:{color};">{i}</td>' for i in range(1, 11))
+        bottom_html = f"""<div class="bottom-bar" style="border-color:{color};">
+  <div class="historia-label" style="color:{color};">HISTORIA</div>
+  <table><tr>{cells}</tr></table>
+</div>"""
+    elif c.get("bottom"):
+        bottom_html = f'<div class="bottom-bar" style="border-color:{color};">{c["bottom"]}</div>'
+    else:
+        bottom_html = ""
 
     # Dynamiczne rozmiary
     rules_len = len(c.get("rules", ""))
@@ -158,6 +191,7 @@ for c in cards:
     {flavor_html}
     <div>{rules_txt}</div>
   </div>
+  {bottom_html}
 </div>"""
 
     count = c.get("count", 1)

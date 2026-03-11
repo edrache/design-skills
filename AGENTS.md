@@ -59,6 +59,14 @@ Errors are learning opportunities. When something breaks:
 - `directives/` - SOPs in Markdown (the instruction set)
 - `.env` - Environment variables and API keys
 - `credentials.json`, `token.json` - Google OAuth credentials (required files, in `.gitignore`)
+- `skills/skills-custom/` - Custom agent skills:
+  - `pdf-to-md` - Extract PDF content to Markdown
+  - `pdf-translator-pl` - Translate RPG PDFs from English to Polish PDF
+  - `rpg-translator` - Translate RPG Markdown EN→PL with terminology consistency
+  - `deploy-mikrus` - Deploy apps to VPS (Mikrus) via rsync/SSH
+  - `seer-manager` - Structure text using SEER method (Summarize, Elaborate, Example, Restate)
+  - `polish-lyric-writer` - Write professional Polish song lyrics with meter and hooks
+  - `merge-pdfs` - Merge multiple PDFs into one in a specified order
 
 **Key principle:** Local files are only for processing. Deliverables live in cloud services (Google Sheets, Slides, etc.) where the user can access them. Everything in `.tmp/` can be deleted and regenerated.
 
