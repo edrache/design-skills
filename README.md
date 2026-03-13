@@ -24,6 +24,8 @@ This project follows a 3-layer architecture designed to separate deterministic e
 - `.tmp/` - Intermediate processing data (excluded from git).
 - `.env` - Environment variables (excluded from git).
 - `skills/` - Specialized agent capabilities and tools.
+- `HomebrewWorld/` - RPG system design and content generation (Homebrew World). / Projektowanie i generowanie treści RPG (Homebrew World).
+
 
 ## Available Skills / Dostępne Umiejętności
 
@@ -38,6 +40,8 @@ This project includes several skills that extend the agent's capabilities. / Pro
 - **seer-manager**: Experienced manager persona that structures any text, review, or summary using the SEER method (Summarize, Elaborate, Example, Restate). / Persona doświadczonego managera tworzącego profesjonalne podsumowania metodą SEER.
 - **polish-lyric-writer**: Professional Polish song lyric writer following high literary standards (Osiecka, Młynarski style) — avoids clichés, enforces meter, ensures a strong hook. / Profesjonalny tekściarz piszący po polsku z dbałością o rytm, rym i szlagwort.
 - **merge-pdfs**: Merge multiple PDF files into a single document in a user-specified order. / Łączenie wielu plików PDF w jeden dokument w wybranej kolejności.
+- **homebrew-world-designer**: Expert RPG Designer for the Homebrew World system. Generates playbooks, moves, and settings. / Ekspert projektowania RPG dla systemu Homebrew World. Generuje klasy, ruchy i settingi.
+
 
 ### Anthropic Skills / Umiejętności Anthropic
 
