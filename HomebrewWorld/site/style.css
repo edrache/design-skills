@@ -51,9 +51,9 @@ p, li, h1, h2, h3, b, span, div {
 }
 
 .shell, .container {
-    width: min(1160px, calc(100% - 32px));
+    width: min(1080px, calc(100% - 32px));
     margin: 0 auto;
-    padding: 32px 0 56px;
+    padding: 24px 0 44px;
 }
 
 .container {
@@ -62,11 +62,13 @@ p, li, h1, h2, h3, b, span, div {
 
 .hero {
     position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     overflow: hidden;
-    margin-bottom: 32px;
-    padding: clamp(2rem, 4vw, 3.6rem);
+    margin-bottom: 18px;
+    padding: clamp(0.9rem, 1.8vw, 1.35rem);
     border: 1px solid var(--line);
-    border-radius: 32px;
+    border-radius: 24px;
     background:
         linear-gradient(135deg, rgba(255, 248, 238, 0.08), rgba(255, 248, 238, 0.02)),
         rgba(12, 10, 15, 0.72);
@@ -91,21 +93,45 @@ p, li, h1, h2, h3, b, span, div {
     position: relative;
     z-index: 1;
     display: flex;
-    gap: 14px;
+    gap: 10px;
     flex-wrap: wrap;
     align-items: center;
 }
 
+.eyebrow,
+h1,
+.lead,
+.page-summary,
+.toolbar {
+    grid-column: 1 / -1;
+}
+
+.hero-top {
+    grid-column: 1;
+    justify-self: start;
+}
+
+.page-toolbar {
+    grid-column: 2;
+    justify-self: end;
+    align-self: center;
+    margin-top: 0;
+}
+
 .page-toolbar, .toolbar {
-    margin-top: 28px;
+    margin-top: 12px;
+}
+
+.page-toolbar {
+    margin-top: 0;
 }
 
 .eyebrow {
-    margin-bottom: 18px;
+    margin-bottom: 8px;
     color: var(--accent-strong);
     text-transform: uppercase;
-    letter-spacing: 0.24em;
-    font-size: 0.74rem;
+    letter-spacing: 0.22em;
+    font-size: 0.68rem;
     font-weight: 800;
 }
 
@@ -118,15 +144,15 @@ p, li, h1, h2, h3, b, span, div {
     justify-content: center;
     gap: 0.6rem;
     min-height: 44px;
-    padding: 12px 16px;
+    padding: 10px 14px;
     border-radius: 999px;
     border: 1px solid var(--line);
     background: var(--panel);
     color: var(--text);
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 0.74rem;
     font-weight: 800;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition);
 }
@@ -167,38 +193,70 @@ p, li, h1, h2, h3, b, span, div {
 h1 {
     margin: 0;
     font-family: "Cormorant Garamond", serif;
-    font-size: clamp(3.6rem, 9vw, 7.2rem);
+    max-width: 9ch;
+    font-size: clamp(2rem, 4vw, 3.2rem);
     line-height: 0.9;
     font-weight: 700;
+}
+
+.page-title {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-top: 0.35rem;
+    max-width: 12ch;
+    font-size: clamp(1.7rem, 3.2vw, 2.7rem);
+}
+
+.page-title .title-emoji {
+    font-size: 0.72em;
+    line-height: 1;
 }
 
 .lead,
 .page-summary {
     position: relative;
     z-index: 1;
-    width: min(48rem, 100%);
-    margin-top: 20px;
+    width: min(32rem, 100%);
+    margin-top: 10px;
     color: var(--muted);
-    font-size: clamp(1rem, 2vw, 1.15rem);
-    line-height: 1.8;
+    font-size: clamp(0.88rem, 1vw, 0.96rem);
+    line-height: 1.45;
 }
 
-.lead { margin-top: 24px; }
+.page-summary {
+    width: min(44rem, 100%);
+    margin-top: 0.4rem;
+    font-size: clamp(0.9rem, 1vw, 1rem);
+    line-height: 1.45;
+}
+
+.page-summary-copy {
+    display: none;
+}
+
+.lang-pl .page-summary-copy.lang-pl,
+.lang-en .page-summary-copy.lang-en,
+.lang-default .page-summary-copy.lang-default {
+    display: block;
+}
+
+.lead { margin-top: 10px; }
 
 /* Grid for index */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-    gap: 18px;
-    margin-top: 26px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: 14px;
+    margin-top: 18px;
 }
 
 .world-card {
-    padding: 24px;
-    border-radius: 24px;
+    padding: 18px;
+    border-radius: 20px;
     border: 1px solid var(--line);
     background: linear-gradient(180deg, var(--panel-strong), rgba(255, 248, 238, 0.04));
-    min-height: 240px;
+    min-height: 190px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -212,25 +270,26 @@ h1 {
 }
 
 .world-kicker {
-    margin: 0 0 24px;
+    margin: 0 0 16px;
     color: var(--accent-strong);
-    font-size: 0.72rem;
+    font-size: 0.66rem;
     font-weight: 800;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
 }
 
 .world-card h2 {
     margin: 0;
-    font-size: clamp(1.7rem, 3vw, 2.4rem);
-    line-height: 1;
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    line-height: 0.98;
     font-family: "Cormorant Garamond", serif;
 }
 
 .world-meta {
-    margin: 14px 0 28px;
+    margin: 10px 0 18px;
     color: var(--muted);
-    line-height: 1.7;
+    font-size: 0.92rem;
+    line-height: 1.5;
 }
 
 .world-link {
@@ -238,11 +297,13 @@ h1 {
     align-items: center;
     justify-content: center;
     width: fit-content;
-    padding: 12px 18px;
+    min-height: 40px;
+    padding: 10px 15px;
     border-radius: 999px;
     text-decoration: none;
     color: #1a1410;
     background: var(--accent-strong);
+    font-size: 0.82rem;
     font-weight: 800;
 }
 
@@ -537,10 +598,10 @@ footer {
     justify-content: space-between;
     gap: 16px;
     flex-wrap: wrap;
-    margin-top: 24px;
+    margin-top: 18px;
     padding: 0 4px;
     color: var(--muted);
-    font-size: 0.9rem;
+    font-size: 0.82rem;
 }
 
 /* Adventure Generator */
@@ -726,16 +787,49 @@ footer {
 @media (max-width: 600px) {
     .container, .shell {
         width: min(100% - 20px, 1400px);
-        padding-top: 20px;
+        padding-top: 18px;
     }
 
     .hero {
-        padding: 24px;
-        border-radius: 24px;
+        padding: 14px 14px;
+        border-radius: 18px;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    h1 {
+        max-width: 11ch;
+        font-size: clamp(1.85rem, 9vw, 2.5rem);
+    }
+
+    .hero-top,
+    .page-toolbar,
+    .eyebrow,
+    h1,
+    .lead,
+    .page-summary,
+    .toolbar {
+        grid-column: 1;
+    }
+
+    .page-toolbar {
+        justify-self: start;
+        align-self: start;
+        margin-top: 8px;
+    }
+
+    .grid {
+        gap: 12px;
+    }
+
+    .world-card {
+        min-height: 0;
+        padding: 16px;
     }
 
     .page-title {
-        gap: 10px;
+        gap: 8px;
+        max-width: 100%;
+        font-size: clamp(1.55rem, 7vw, 2.1rem);
     }
 
     .card {
@@ -753,7 +847,9 @@ footer {
     }
 
     .page-summary {
-        font-size: 1rem;
+        width: 100%;
+        font-size: 0.9rem;
+        line-height: 1.45;
     }
 }
 

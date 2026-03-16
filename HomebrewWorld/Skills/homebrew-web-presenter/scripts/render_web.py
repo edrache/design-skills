@@ -3,6 +3,7 @@ import html as html_lib
 import json
 import os
 import re
+import shutil
 import sys
 
 EMOJI_MAP = {
@@ -54,6 +55,34 @@ def load_setting_summaries():
 
 SETTING_SUMMARIES = load_setting_summaries()
 
+
+def get_shared_stylesheet_path():
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(script_dir))))
+    return os.path.join(repo_root, 'HomebrewWorld', 'site', 'style.css')
+
+
+def prepare_stylesheet(output_dir):
+    stylesheet_source = get_shared_stylesheet_path()
+    output_abs = os.path.abspath(output_dir)
+    site_root = os.path.dirname(stylesheet_source)
+
+    try:
+        common_root = os.path.commonpath([output_abs, site_root])
+    except ValueError:
+        common_root = None
+
+    if common_root == site_root:
+        stylesheet_target = stylesheet_source
+        stylesheet_href = os.path.relpath(stylesheet_target, output_abs)
+        return stylesheet_href
+
+    os.makedirs(output_abs, exist_ok=True)
+    stylesheet_target = os.path.join(output_abs, 'style.css')
+    if os.path.abspath(stylesheet_source) != stylesheet_target:
+        shutil.copyfile(stylesheet_source, stylesheet_target)
+    return './style.css'
+
 def get_emoji(text, default='📜'):
     text = text.lower()
     for key, emoji in EMOJI_MAP.items():
@@ -98,6 +127,36 @@ def infer_home_href(source_dir, output_dir):
     if not os.path.exists(site_index):
         return None
     return os.path.relpath(site_index, output_abs)
+
+
+def build_pdf_download_html(output_dir, langs):
+    output_abs = os.path.abspath(output_dir)
+    pdf_links = []
+
+    for lang in langs:
+        if lang == 'default':
+            filename = 'playbooks.pdf'
+            label = 'Pobierz PDF'
+        elif lang == 'pl':
+            filename = 'playbooks_pl.pdf'
+            label = 'Pobierz PDF PL'
+        elif lang == 'en':
+            filename = 'playbooks_en.pdf'
+            label = 'Download PDF EN'
+        else:
+            filename = f'playbooks_{lang}.pdf'
+            label = f'PDF {lang.upper()}'
+
+        pdf_path = os.path.join(output_abs, filename)
+        if os.path.exists(pdf_path):
+            pdf_links.append(
+                f'<a class="toolbar-chip" href="{html_lib.escape(filename, quote=True)}" download>{html_lib.escape(label)}</a>'
+            )
+
+    if not pdf_links:
+        return ""
+
+    return f'<div class="pdf-downloads">{" ".join(pdf_links)}</div>'
 
 def parse_markdown_to_cards(content):
     sections = re.split(r'^##\s+', content, flags=re.MULTILINE)
@@ -311,8 +370,6 @@ def generate_site(source_dir, output_dir, home_href=None):
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     skill_dir = os.path.dirname(script_dir)
-    with open(os.path.join(skill_dir, 'assets', 'style.css'), 'r') as f:
-        css = f.read()
     with open(os.path.join(skill_dir, 'assets', 'script.js'), 'r') as f:
         js = f.read()
 
@@ -349,9 +406,12 @@ def generate_site(source_dir, output_dir, home_href=None):
         toolbar_bits.append(f'<span class="stat-badge">{content_counts[only_lang]} playbookow</span>')
     toolbar_html = f'<div class="page-toolbar">{" ".join(toolbar_bits)}</div>' if toolbar_bits else ""
     summary_html = build_summary_html(setting_name, langs)
+    pdf_download_html = build_pdf_download_html(output_dir, langs)
 
     if home_href is None:
         home_href = infer_home_href(source_dir, output_dir)
+
+    stylesheet_href = prepare_stylesheet(output_dir)
 
     home_link_html = ""
     if home_href:
@@ -371,9 +431,7 @@ def generate_site(source_dir, output_dir, home_href=None):
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Cormorant+Garamond:wght@600;700&amp;display=swap" rel="stylesheet">
-    <style>
-    {css}
-    </style>
+    <link rel="stylesheet" href="{html_lib.escape(stylesheet_href, quote=True)}">
 </head>
 <body class="lang-default">
     <div class="container">
@@ -381,6 +439,7 @@ def generate_site(source_dir, output_dir, home_href=None):
             <p class="eyebrow">Homebrew World Setting</p>
             <div class="hero-top">
                 {lang_selector_html}
+                {pdf_download_html}
             </div>
             <h1 class="page-title">{title_display}</h1>
             {summary_html}

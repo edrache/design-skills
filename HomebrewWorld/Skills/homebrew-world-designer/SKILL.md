@@ -1,6 +1,6 @@
 ---
 name: homebrew-world-designer
-description: Expert RPG Designer for the Homebrew World system. Generates playbooks and additional moves with original Homebrew World structure, mechanics, and tags for a given setting. Use this skill when creating new playbooks and moves for the Homebrew World RPG.
+description: Expert RPG Designer for the Homebrew World system. Generates playbooks and additional moves with original Homebrew World structure, mechanics, and tags for a given setting, and prepares merged per-language PDF bundles of all playbooks plus optional moves. Use this skill when creating new Homebrew World setting materials.
 ---
 
 # Homebrew World Designer
@@ -31,6 +31,24 @@ This PDF demonstrates exactly how playbooks, formatting, and moves are structure
 Save all generated `.md` files in a dedicated setting folder within:
 `/Users/marek/OfflineDocuments/Repo/Antigravity/Design/HomebrewWorld/Settings/[Setting_Name]/`
 Generate the content in separate Markdown code blocks, each preceded by a filename header (e.g., `FILE: filename.md`).
+
+## PDF Deliverables
+
+After the Markdown files exist, also prepare print-ready PDF bundles per language:
+- Generate a black-and-white 2-page PDF for each `Playbook_*.md`.
+- Generate a black-and-white 1-page PDF for `Optional_Moves.md`.
+- Merge those PDFs into one final language-specific PDF.
+- If the setting has both `pl/` and `en/`, build them separately so each language gets its own merged PDF.
+
+Use:
+`/Users/marek/OfflineDocuments/Repo/Antigravity/Design/HomebrewWorld/Skills/homebrew-playbook-sheet/scripts/build_playbook_book.py`
+
+Recommended pattern:
+- `python3 .../build_playbook_book.py HomebrewWorld/Settings/<Setting>/pl --output-dir <target> --merged-name playbooks_pl.pdf`
+- `python3 .../build_playbook_book.py HomebrewWorld/Settings/<Setting>/en --output-dir <target> --merged-name playbooks_en.pdf`
+
+If a setting has only one language folder or uses the setting root directly, output:
+- `playbooks.pdf`
 
 ### Playbook Requirements (FILE: Playbook_[ClassName].md)
 For the 5 playbooks you create, each MUST contain the following sections:

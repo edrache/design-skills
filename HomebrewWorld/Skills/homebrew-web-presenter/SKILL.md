@@ -13,7 +13,7 @@ This skill transforms Markdown-based Homebrew World materials into an interactiv
 2.  **Generate Website**: Run `scripts/render_web.py` with the setting folder as input and an explicit output directory when needed.
     - If the setting has subfolders `en/` and `pl/`, the script automatically creates a language toggle.
     - For published pages, render directly into `HomebrewWorld/site/<slug>/`.
-3.  **Output**: A standalone `index.html` with embedded CSS/JS is generated in the target folder, usually either `web_presentation/` or `HomebrewWorld/site/<slug>/`.
+3.  **Output**: A standalone `index.html` is generated in the target folder, usually either `web_presentation/` or `HomebrewWorld/site/<slug>/`. Published pages in `HomebrewWorld/site/` must link the shared stylesheet at `HomebrewWorld/site/style.css` instead of embedding page-local CSS.
 
 ## Features
 
@@ -44,10 +44,11 @@ Every generated page should satisfy the following baseline requirements:
 
 ## Implementation Notes
 
-When updating `assets/style.css`, `assets/script.js`, or generated inline output, carry these concrete patterns over:
+When updating the shared stylesheet, `assets/script.js`, or generated output, carry these concrete patterns over:
 
 - **Typography**: Use `Manrope` for UI/body copy and `Cormorant Garamond` for page and card headings.
 - **Theme tokens**: Prefer the shared warm token set (`--bg`, `--panel`, `--panel-strong`, `--line`, `--text`, `--muted`, `--accent`, `--accent-strong`) rather than per-setting colors.
+- **Shared stylesheet**: Published pages under `HomebrewWorld/site/` must reference the root `style.css` via a relative `<link rel="stylesheet">`, for example `../style.css` from a setting page. Do not emit inline `<style>` blocks there.
 - **Hero shell**: Every page should start with a hub-like hero containing eyebrow, backlink, language toggles, title, summary, and compact stat chips.
 - **Sidebar return link**: Put the backlink to `HomebrewWorld/site/index.html` inside the sidebar, not in the hero area.
 - **Setting summary**: The `page-summary` paragraph in the hero must describe the specific setting itself, not the renderer. For bilingual pages, provide both PL and EN summaries and keep them synchronized with the language toggle.
@@ -67,7 +68,8 @@ When updating `assets/style.css`, `assets/script.js`, or generated inline output
 - **Script**: `scripts/render_web.py` - The core engine that parses Markdown and generates HTML.
 - **Setting summaries**: `references/setting_summaries.json` - Per-setting PL/EN hero copy used by `page-summary`.
 - **Assets**: 
-    - `assets/style.css` - Custom CSS for the "IMPECCABLE" look.
+    - `HomebrewWorld/site/style.css` - Shared published stylesheet used by the homepage and all published setting pages.
+    - `assets/style.css` - Legacy/local stylesheet mirror if a non-site output needs a copied stylesheet.
     - `assets/script.js` - Interactive elements, sidebar logic, and language switching.
 
 ## Usage
