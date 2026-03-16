@@ -1,0 +1,2577 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinners - Homebrew World</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Cormorant+Garamond:wght@600;700&amp;display=swap" rel="stylesheet">
+    <style>
+    :root {
+    --bg: #111015;
+    --panel: rgba(255, 248, 238, 0.08);
+    --panel-strong: rgba(255, 248, 238, 0.14);
+    --line: rgba(255, 248, 238, 0.16);
+    --text: #f6f0e8;
+    --muted: #cabfb1;
+    --accent: #d29b5c;
+    --accent-strong: #f0c489;
+    --shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+    --transition: 180ms ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "Manrope", sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background:
+        radial-gradient(circle at top left, rgba(210, 155, 92, 0.18), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(128, 62, 46, 0.25), transparent 28%),
+        linear-gradient(180deg, #17141d 0%, #0d0c10 100%);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 90%);
+}
+
+p, li, h1, h2, h3, b, span, div {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.container {
+    width: min(1400px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 32px 0 56px;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 32px;
+    padding: clamp(2rem, 4vw, 3.6rem);
+    border: 1px solid var(--line);
+    border-radius: 32px;
+    background:
+        linear-gradient(135deg, rgba(255, 248, 238, 0.08), rgba(255, 248, 238, 0.02)),
+        rgba(12, 10, 15, 0.72);
+    box-shadow: var(--shadow);
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: auto -10% -35% 50%;
+    width: 60%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(240, 196, 137, 0.35), transparent 60%);
+    filter: blur(18px);
+}
+
+.hero-top,
+.page-toolbar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.page-toolbar {
+    margin-top: 28px;
+}
+
+.eyebrow {
+    margin-bottom: 18px;
+    color: var(--accent-strong);
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    font-size: 0.74rem;
+    font-weight: 800;
+}
+
+.home-link,
+.lang-toggle,
+.stat-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 44px;
+    padding: 12px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition);
+}
+
+.home-link:hover,
+.lang-toggle:hover,
+.stat-badge:hover {
+    transform: translateY(-1px);
+    border-color: rgba(240, 196, 137, 0.45);
+    background: rgba(255, 248, 238, 0.14);
+}
+
+.home-link:focus-visible,
+.lang-toggle:focus-visible,
+#sidebar-toggle:focus-visible,
+.tab:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 2px;
+}
+
+.lang-selector {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.lang-toggle {
+    cursor: pointer;
+}
+
+.lang-toggle.active {
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+    color: #1a1410;
+}
+
+.page-title {
+    position: relative;
+    z-index: 1;
+    margin: 18px 0 0;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.title-emoji {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.title-text {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(3.6rem, 9vw, 7.2rem);
+    line-height: 0.9;
+    font-weight: 700;
+}
+
+.page-summary {
+    position: relative;
+    z-index: 1;
+    width: min(48rem, 100%);
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 1.8;
+}
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+    transition: grid-template-columns 0.3s ease, gap 0.3s ease;
+}
+
+.main-layout.sidebar-collapsed {
+    grid-template-columns: 76px minmax(0, 1fr);
+}
+
+.tabs-container,
+.card {
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, var(--panel-strong), rgba(255, 248, 238, 0.04));
+    box-shadow: var(--shadow);
+}
+
+.tabs-container {
+    position: sticky;
+    top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: calc(100vh - 48px);
+    padding: 16px;
+    border-radius: 24px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+}
+
+.sidebar-collapsed .tabs-container {
+    padding: 16px 10px;
+}
+
+#sidebar-toggle {
+    width: 44px;
+    height: 44px;
+    align-self: center;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--panel);
+    color: var(--text);
+    cursor: pointer;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition);
+}
+
+#sidebar-toggle:hover {
+    transform: translateY(-1px);
+    border-color: rgba(240, 196, 137, 0.45);
+    background: rgba(255, 248, 238, 0.14);
+}
+
+.tabs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: opacity 0.25s ease;
+}
+
+.sidebar-collapsed .tabs-list {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tabs-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.9rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    background: transparent;
+    color: var(--muted);
+    text-align: left;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition);
+}
+
+.tab:hover {
+    transform: translateY(-1px);
+    color: var(--text);
+    background: rgba(255, 248, 238, 0.08);
+    border-color: rgba(255, 248, 238, 0.12);
+}
+
+.tab.active {
+    color: #1a1410;
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+    box-shadow: 0 12px 24px rgba(240, 196, 137, 0.18);
+}
+
+.content-area {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    min-width: 0;
+}
+
+.playbook-content {
+    display: none;
+    scroll-margin-top: 2rem;
+    grid-template-columns: minmax(0, 1fr) 350px;
+    gap: 24px;
+    animation: fadeIn 0.35s ease-out;
+}
+
+.lang-pl .playbook-content.lang-pl,
+.lang-en .playbook-content.lang-en,
+.lang-default .playbook-content.lang-default {
+    display: grid;
+}
+
+.tab {
+    display: none;
+}
+
+.lang-pl .tab.lang-pl,
+.lang-en .tab.lang-en,
+.lang-default .tab.lang-default {
+    display: flex;
+}
+
+.main-column,
+.side-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-width: 0;
+}
+
+.card {
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    backdrop-filter: blur(12px);
+}
+
+.card:hover {
+    border-color: rgba(240, 196, 137, 0.45);
+    background: linear-gradient(180deg, rgba(255, 248, 238, 0.18), rgba(255, 248, 238, 0.06));
+    transform: translateY(-3px);
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    line-height: 1;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+h2::before {
+    content: "";
+    width: 4px;
+    height: 1.5rem;
+    background: var(--accent-strong);
+    border-radius: 2px;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--muted);
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    margin-bottom: 0.75rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent-strong);
+    opacity: 0.7;
+}
+
+.stat-badge {
+    margin-right: 0.5rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.look-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.look-row {
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    background: rgba(255, 248, 238, 0.05);
+    border-radius: 12px;
+    border-left: 3px solid var(--accent-strong);
+}
+
+.look-label {
+    font-weight: 800;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    margin-bottom: 0.25rem;
+}
+
+.look-options {
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+.section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent-strong) 0%, transparent 100%);
+    opacity: 0.2;
+    margin: 2rem 0 1rem 0;
+    max-width: 100%;
+}
+
+.move-card {
+    border-left: 4px solid var(--accent-strong);
+}
+
+.move-card b {
+    color: var(--accent-strong);
+}
+
+.gear-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.gear-item {
+    padding: 1rem;
+    background: rgba(255, 248, 238, 0.05);
+    border-radius: 12px;
+    border: 1px solid var(--line);
+}
+
+.optional-moves-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+    gap: 2rem;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    padding: 0 4px;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* Adventure Generator */
+.adventure-generator-card {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(180deg, var(--panel-strong), rgba(255, 248, 238, 0.02));
+    border: 1px solid rgba(240, 196, 137, 0.3);
+    box-shadow: 0 10px 40px rgba(210, 155, 92, 0.08);
+}
+
+.adventure-generator-card h2 {
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.generator-result {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--accent-strong);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 900px;
+    margin-inline: auto;
+    font-family: "Cormorant Garamond", serif;
+}
+
+.generator-result p {
+    color: var(--text);
+    margin: 0;
+}
+
+.generator-result p:first-child {
+    margin-bottom: 0.75rem;
+    color: var(--accent-strong);
+    font-size: 1.6rem;
+}
+
+.rng-highlight {
+    color: var(--text);
+    padding-bottom: 2px;
+    border-bottom: 1px dashed rgba(240, 196, 137, 0.45);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.rng-highlight:hover {
+    color: var(--accent-strong);
+    border-bottom-color: var(--accent-strong);
+}
+
+.generator-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.rng-roll-btn {
+    font-size: 1.05rem;
+    padding: 1rem 2.5rem;
+    border-radius: 999px;
+    letter-spacing: 0.08em;
+}
+
+.adventure-tables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.adventure-table-card {
+    padding: 1.8rem;
+    background: rgba(255, 248, 238, 0.02);
+}
+
+.adventure-table-card h3 {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    color: var(--text);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.5rem;
+}
+
+.adventure-prefix {
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--accent);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.adventure-items {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.adventure-items .rng-item {
+    margin-bottom: 0.5rem;
+    padding-left: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.adventure-items .rng-item::before {
+    content: none;
+}
+
+.rng-num {
+    color: var(--accent);
+    font-weight: 800;
+    width: 2.2ch;
+    flex-shrink: 0;
+    text-align: right;
+    font-size: 0.9rem;
+    margin-top: 0.15rem;
+}
+
+.rng-text {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 1400px) {
+    .playbook-content {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 1100px) {
+    .main-layout,
+    .main-layout.sidebar-collapsed {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .tabs-container {
+        position: sticky;
+        top: 12px;
+        flex-direction: row;
+        align-items: center;
+        max-height: none;
+        padding: 12px;
+        overflow: visible;
+    }
+
+    #sidebar-toggle {
+        display: none;
+    }
+
+    .tabs-list {
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(240, 196, 137, 0.45) transparent;
+    }
+
+    .tabs-list::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .tabs-list::-webkit-scrollbar-thumb {
+        background: rgba(240, 196, 137, 0.35);
+        border-radius: 999px;
+    }
+
+    .tab {
+        width: auto;
+        white-space: nowrap;
+        padding: 0.75rem 1rem;
+    }
+
+    .playbook-content {
+        scroll-margin-top: 5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: min(100% - 20px, 1400px);
+        padding-top: 20px;
+    }
+
+    .hero {
+        padding: 24px;
+        border-radius: 24px;
+    }
+
+    .page-title {
+        gap: 10px;
+    }
+
+    .card {
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+
+    .lang-selector {
+        gap: 0.5rem;
+    }
+
+    .lang-toggle {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.7rem;
+    }
+
+    .page-summary {
+        font-size: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+    </style>
+</head>
+<body class="lang-default">
+    <div class="container">
+        <header class="hero">
+            <p class="eyebrow">Homebrew World Setting</p>
+            <div class="hero-top">
+                
+                <div class="lang-selector"><button class="lang-toggle" data-lang="en" type="button">English</button> <button class="lang-toggle" data-lang="pl" type="button">Polski</button></div>
+            </div>
+            <h1 class="page-title"><span class="title-emoji">🌍</span> <span class="title-text">Sinners</span></h1>
+            <p class="page-summary">Materiały do gry Homebrew World ułożone w tej samej bibliotece wizualnej co strona główna: ciepła paleta, szklane panele i czytelny katalog playbooków.</p>
+            <div class="page-toolbar"><span class="stat-badge">5 playbookow EN</span> <span class="stat-badge">5 playbookow PL</span> <span class="stat-badge">Ruchy opcjonalne i szybka nawigacja</span></div>
+        </header>
+
+        <div class="main-layout">
+            <aside class="tabs-container" id="sidebar">
+                <button id="sidebar-toggle" aria-label="Toggle Sidebar" aria-expanded="true" type="button">☰</button>
+                <div class="tabs-list" role="tablist" aria-label="Playbook navigation">
+                    <button class="tab lang-pl" data-tab="pl_playbook_korzeniarka" type="button">🌿 KORZENIARKA</button>
+<button class="tab lang-pl" data-tab="pl_playbook_organizator" type="button">💼 ORGANIZATOR</button>
+<button class="tab lang-pl" data-tab="pl_playbook_piosenkarz" type="button">🎵 PIOSENKARZ</button>
+<button class="tab lang-pl" data-tab="pl_playbook_straznik_ognia" type="button">👤 STRAŻNIK OGNIA</button>
+<button class="tab lang-pl" data-tab="pl_playbook_twardziel" type="button">🛡️ TWARDZIEL</button>
+<button class="tab lang-pl" data-tab="pl_optional_moves" type="button">🌟 Opcjonalne Ruchy</button>
+<button class="tab lang-pl" data-tab="pl_adventures" type="button">🗺️ Generator Przygód — Sinners</button>
+<button class="tab lang-en" data-tab="en_playbook_crooner" type="button">🎵 THE CROONER</button>
+<button class="tab lang-en" data-tab="en_playbook_firekeeper" type="button">🔥 THE FIREKEEPER</button>
+<button class="tab lang-en" data-tab="en_playbook_heavy" type="button">🛡️ THE HEAVY</button>
+<button class="tab lang-en" data-tab="en_playbook_operator" type="button">🔧 THE OPERATOR</button>
+<button class="tab lang-en" data-tab="en_playbook_rootworker" type="button">🌿 THE ROOTWORKER</button>
+<button class="tab lang-en" data-tab="en_optional_moves" type="button">🌟 Optional Moves</button>
+<button class="tab lang-en" data-tab="en_adventures" type="button">🗺️ Adventure Generator — Sinners</button>
+                </div>
+            </aside>
+
+            <div class="content-area">
+                
+    <div id="pl_playbook_korzeniarka" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Strażniczka Conjure</b></p>
+<p>Nauczono cię starej roboty w rodzinie. Kiedy przygotowujesz urok, ochronę albo dokarmienie istniejącego talizmanu, rzuć +MĄD. Na 10+ wybierz 2. Na 7-9 wybierz 1.</p>
+<ul>
+<li>Działa przez całą noc.</li>
+<li>Chroni jedną osobę albo próg przed nadnaturalnym wtargnięciem.</li>
+<li>Ujawnia, kiedy zostało naruszone albo przełamane.</li>
+</ul>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was nosi amulet, który zrobiłam?</li>
+<li>Który/-a z was błagał/-a mnie o pomoc za późno?</li>
+<li>Który/-a z was widział/-a, jak moja robota ratuje życie?</li>
+<li>Który/-a z was boi się ceny, jaką płacę za mój fach?</li>
+</ul>
+<p>---</p>
+<p><b>Czytająca Karty</b></p>
+<p>Ludzie mówią ci więcej, kiedy myślą, że przemawia los. Kiedy rozkładasz komuś karty, kości, muszle albo znaki i ta osoba odpowiada uczciwie, oboje dostajecie +1 naprzód, działając zgodnie z odczytem.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was zadał/-a mi pytanie, na które bał/-a się usłyszeć odpowiedź?</li>
+<li>Który/-a z was zignorował/-a moje ostrzeżenie?</li>
+<li>Który/-a z was wie, że czasem kłamię, żeby oszczędzić czyjeś serce?</li>
+<li>Który/-a z was ciągle wraca po kolejny odczyt?</li>
+</ul>
+<p>---</p>
+<p><b>Uzdrowicielka Sąsiedztwa</b></p>
+<p>To do ciebie przynosi się rany, gorączki i bałagan. Kiedy poświęcasz kilka minut na opatrzenie kogoś ziołami, dotykiem albo modlitwą, leczysz 1k6 PŻ.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was przyszedł/-a do moich drzwi, krwawiąc?</li>
+<li>Który/-a z was jest mi winny/-a lekarstwo albo milczenie?</li>
+<li>Który/-a z was został/-a ze mną przez długą noc?</li>
+<li>Który/-a z was widział/-a, jak nie zdołałam kogoś uratować?</li>
+</ul>
+<p>---</p>
+<p><b>Owdowiała przez Noc</b></p>
+<p>Straciłeś/-aś już coś przez głód zza zasłony. Kiedy działasz bezpośrednio przeciw nadnaturalnemu stworzeniu, dostajesz +1 stałe do końca sceny.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was zna imię osoby, którą straciłem/-am?</li>
+<li>Który/-a z was był/-a tamtej nocy, gdy wszystko się zmieniło?</li>
+<li>Który/-a z was uważa, że żałoba zaostrzyła mnie w broń?</li>
+<li>Który/-a z was nadal widzi we mnie czułość?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Rootwork</b></p>
+<p>Kiedy przygotowujesz osobę, miejsce albo przedmiot przeciw złu za pomocą korzeni, proszków, wody, modlitwy albo krwi, opisz stołowi, jak to wygląda, i rzuć +MĄD. Na 10+ działa i wybierz 2. Na 7-9 wybierz 1.</p>
+<ul>
+<li>Jest dość silne, by na chwilę powstrzymać nadnaturalne stworzenie.</li>
+<li>Trwa do świtu.</li>
+<li>Nie domaga się natychmiastowej ofiary.</li>
+</ul>
+<p><b>Dokarmianie Mojo</b></p>
+<p>Kiedy odświeżasz urok albo mojo bag sojusznika, otrzymuje on przewagę przy następnym rzucie przeciw klątwie, opętaniu albo nadnaturalnej krzywdzie.</p>
+<p><b>Widziałem/-am Gorsze</b></p>
+<p>Kiedy dzieje się przy tobie coś niemożliwego, możesz zachować spokój i zapytać MG, czego to chce, co to wiąże albo co to powstrzymuje przed wejściem.</p>
+<p><b>Brzytwa Znikąd</b></p>
+<p>Kiedy ktoś lekceważy cię w zwarciu, dostajesz +1 obrażeń naprzód.</p>
+<p><b>Błogosławieństwo Domu</b></p>
+<p>Kiedy przed zmrokiem poświęcasz drzwi, pokój albo ognisko, pierwsza nadnaturalna rzecz, która spróbuje to przekroczyć, musi się zawahać, ujawnić albo zapłacić cenę, którą nazwie MG.</p>
+<p><b>Mów Cicho do Zmarłych</b></p>
+<p>Kiedy szepczesz do ciała albo nawiedzonego miejsca, rzuć +MĄD. Na 10+ MG mówi ci coś użytecznego, co ono pamięta. Na 7-9 powie ci, ale coś jeszcze też to usłyszy.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🌿 # KORZENIARKA</h2><p>*Znasz stare zabezpieczenia, stare imiona i wiesz, jak cienki staje się świat, gdy żałoba i muzyka go rozrywają.*</p>
+<p><b>Kostka Obrażeń:</b> k6</p>
+<p><b>PŻ:</b> 6 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Czarny mieszkaniec Delty:</b> Annie, Ruthie, Hattie, Viola / Elijah, Amos, Ezekiel, Solomon</p>
+<p><b>Biały miejscowy/-a:</b> Joan, Alma, Birdie, June / Calvin, Roy, Bert, Ellis</p>
+<p><b>Choctaw:</b> Aponi, Kaya, Nita, Fala / Chayton, Miko, Tushka, Hoke</p>
+<p><b>Irlandzki/-a włóczęga:</b> Maeve, Nora, Brigid, Siobhan / Eamon, Finn, Declan, Remmick</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> Czarny mieszkaniec Delty | Biały miejscowy/-a | Choctaw | Irlandzki/-a włóczęga | zapytaj stołu</p>
+<p><b>Wiek:</b> ciepły/-a i wszystkowiedzący/-a | w średnim wieku i budzący/-a respekt | starożytny/-a w oczach</p>
+<p><b>Oczy:</b> rozbawione i groźne | zmęczone i dobre | utkwione w rzeczach, których inni nie widzą</p>
+<p><b>Sylwetka:</b> miękka i zakorzeniona | szczupła i praktyczna | drobna i niewzruszona</p>
+<p><b>Strój:</b> robocza sukienka z ukrytymi kieszeniami | fartuch i amulety | ciemna elegancja z rytualnym sznytem</p>
+<p><b>Znak szczególny:</b> mojo bag | słoiki i proszki | ostrze wyciągane znikąd</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Mocne Korzenie:</b> Kiedy używasz <b>Rootwork</b>, na 12+ wybierasz wszystkie 3 opcje.</li>
+<li><b>Zabutelkuj Świt:</b> Raz na sesję wyciągasz przygotowaną święconą mieszankę, która liczy się jako niebezpieczna i magiczna przeciw nadnaturalnemu wrogowi.</li>
+<li><b>Stare Imię:</b> Kiedy pierwszy raz spotykasz potwora, klątwę albo ducha, zadajesz MG jedno dodatkowe pytanie o to, jak można się temu przeciwstawić.</li>
+<li><b>Spokój do Kości:</b> Jesteś odporny/-a na zwyczajny strach.</li>
+<li><b>Krąg Ochronny:</b> Kiedy grupa odpoczywa tam, gdzie przygotowałeś/-aś obronę, wszyscy leczą twój poziom PŻ podczas <b>Obozowania</b>.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Chroń osobę, dom albo wspomnienie przed ciemnością.</li>
+<li>Zażądaj prawdziwej ceny od kogoś, kto lekceważy twoją robotę.</li>
+<li>Poznaj prawdziwą naturę klątwy, ducha albo głodu.</li>
+<li>Zachowaj w sobie czułość, nawet gdy przemoc byłaby łatwiejsza.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 9.</p>
+<ul>
+<li>Brzytwa (wręcz, 1 slot)</li>
+<li>Torba z korzeniami i proszkami (1 slot)</li>
+<li>Mojo bag (małe)</li>
+<li>Szklana butelka święconej wody (1 slot)</li>
+<li>Zużyta talia kart albo zestaw kości (1 slot)</li>
+<li>Słoik z lekami i opatrunkami (1 slot)</li>
+<li>Ciężki szal albo płaszcz (1 slot)</li>
+<li>Pęk świec (1 slot)</li>
+<li>Mały dzwoneczek (małe)</li>
+<li>Igła do szycia i czarna nić (małe)</li>
+<li>Srebrny naparstek albo pierścień (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_organizator" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Przemytnik/-czka</b></p>
+<p>Wiesz, jak przewozić alkohol, gorący towar i ludzi przez zły teren. Kiedy organizujesz transport albo kontrabandę, zapytaj MG, jaki będzie koszt, i dostajesz +1 naprzód przy radzeniu sobie z tym.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was jechał/-a ze mną w kursie, który powinien nas zabić?</li>
+<li>Który/-a z was wie, gdzie chowam najlepszy towar?</li>
+<li>Który/-a z was uważa, że zawsze mam drugi plan?</li>
+<li>Który/-a z was nadal chce swój udział ze starego skoku?</li>
+</ul>
+<p>---</p>
+<p><b>Gaduła</b></p>
+<p>Potrafisz sprzedać marzenie, zanim sala zrozumie, że go potrzebuje. Kiedy <b>Targujesz się</b>, obiecując przyjemność, zysk albo poczucie przynależności, masz przewagę.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was pierwszy raz uwierzył/-a w jeden z moich niemożliwych pomysłów?</li>
+<li>Który/-a z was przyłapał/-a mnie na kłamstwie i mimo to został/-a?</li>
+<li>Który/-a z was wie, kogo czaruję, gdy się boję?</li>
+<li>Który/-a z was trzyma mnie uczciwym/-ą bardziej, niż lubię?</li>
+</ul>
+<p>---</p>
+<p><b>Kochanek/-anka z Zaplecza</b></p>
+<p>Zostawiłeś/-aś kłopoty w zbyt wielu łóżkach i na zbyt wielu dworcach. Kiedy ktoś chce od ciebie więcej, niż możesz dać, zapytaj MG, jaką niebezpieczną okazję to otwiera.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was zna jedną osobę, której nie powinienem/-nam był/-a zostawić?</li>
+<li>Który/-a z was widział/-a, jak wybrałem/-am apetyt zamiast ostrożności?</li>
+<li>Który/-a z was przyszedł/-a odebrać obietnicę złożoną w ciemności?</li>
+<li>Który/-a z was uważa, że nadal mylę miłość z ucieczką?</li>
+</ul>
+<p>---</p>
+<p><b>Rozkręcający/-a Klub</b></p>
+<p>Uruchamiałeś/-aś imprezy w miejscach, które nie powinny zadziałać. Kiedy rozstawiasz nocny interes w szemranym miejscu, rzuć +INT. Na 10+ wybierz 3. Na 7-9 wybierz 2.</p>
+<ul>
+<li>Wieść idzie do właściwych ludzi.</li>
+<li>Gotówka zaczyna płynąć wcześnie.</li>
+<li>Unikasz natychmiastowych kłopotów z prawem albo lokalną władzą.</li>
+<li>Znajdujesz jedną użyteczną osobę jeszcze przed rozpoczęciem nocy.</li>
+</ul>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Którego/-ą z was wciągnąłem/-am w jeden z moich numerów?</li>
+<li>Który/-a z was widział/-a, jak zamieniłem/-am ruinę w wypłatę?</li>
+<li>Który/-a z was wierzy, że mogę zbudować coś prawdziwego?</li>
+<li>Który/-a z was spodziewa się, że zwieje, kiedy wszystko się posypie?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Czytaj Salę</b></p>
+<p>Kiedy wchodzisz w zatłoczone miejsce, szukając zysku, zagrożenia albo słabego punktu, rzuć +CHA. Na 10+ zadaj 3 pytania. Na 7-9 zadaj 1.</p>
+<ul>
+<li>Kto tutaj chce wejść w to na tyle mocno, by zapłacić?</li>
+<li>Kto tutaj jest o jedno złe słowo od przemocy?</li>
+<li>Kto tutaj jest powiązany z lokalną władzą?</li>
+<li>Jaka jest najszybsza droga wyjścia, jeśli wszystko pójdzie źle?</li>
+</ul>
+<p><b>Szybkie Ręce</b></p>
+<p>Kiedy chowasz, podrzucasz, podmieniasz albo ukrywasz coś małego, rzuć +ZRC. Na 10+ nikt tego nie zauważa, dopóki sam/-a tego nie chcesz. Na 7-9 robisz to, ale zostawiasz ślad, świadka albo złą podejrzliwość.</p>
+<p><b>Każdy Zna Kogoś</b></p>
+<p>Kiedy przybywasz w miejsce, gdzie krążą pieniądze, nazwij typ osoby, której potrzebujesz; MG powie ci, gdzie ją znaleźć albo dlaczego już cię zna.</p>
+<p><b>Tu Nie Ma Chłopców</b></p>
+<p>Kiedy ktoś próbuje cię umniejszyć, zlekceważyć albo zamknąć w pudełku, dostajesz +1 naprzód przeciw niemu.</p>
+<p><b>Dogadajmy Się</b></p>
+<p>Kiedy oferujesz procent, przysługę albo przyszłą okazję, żeby uniknąć natychmiastowych kłopotów, rzuć +CHA. Na 10+ kupują to na razie. Na 7-9 najpierw chcą dowodu.</p>
+<p><b>Ukryte Ostrze</b></p>
+<p>Zawsze masz przy sobie nóż, brzytwę, mały pistolet albo podobną drobną broń, chyba że dokładnie cię przeszukano i rozebrano.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>💼 # ORGANIZATOR</h2><p>*Potrafisz znaleźć salę, butelki, pianistę, kupca i kłamstwo, które wytrzyma do świtu.*</p>
+<p><b>Kostka Obrażeń:</b> k8</p>
+<p><b>PŻ:</b> 8 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Czarny mieszkaniec Delty:</b> Stack, Louis, Booker, Caleb / Pearline, Grace, Odessa, Lottie</p>
+<p><b>Biały miejscowy/-a:</b> Mary, June, Evelyn, Joan / Clyde, Roy, Vernon, Travis</p>
+<p><b>Choctaw:</b> Talowah, Chayton, Miko, Hosa / Kaya, Nita, Aponi, Fala</p>
+<p><b>Irlandzki/-a włóczęga:</b> Seamus, Declan, Finn, Ciaran / Nora, Brigid, Maeve, Eileen</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> Czarny mieszkaniec Delty | Biały miejscowy/-a | Choctaw | Irlandzki/-a włóczęga | zapytaj stołu</p>
+<p><b>Wiek:</b> gładki/-a i ostry/-a | stylowy/-a i niebezpieczny/-a | starszy/-a, niż przyznaje to twój uśmiech</p>
+<p><b>Oczy:</b> roześmiane i nieczytelne | głodne i oceniające | czułe, gdy nikt nie patrzy</p>
+<p><b>Sylwetka:</b> zwinna i smukła | elegancka i żylasta | miękka, dopóki nie zaczynają się kłopoty</p>
+<p><b>Strój:</b> miejski garnitur i wypolerowane buty | schludna suknia i rękawiczki podróżne | krzykliwy styl kupiony za ciężkie pieniądze</p>
+<p><b>Znak szczególny:</b> papieros między dwoma palcami | uśmiech, któremu nikt nie ufa | zapach, który przychodzi przed tobą</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Faworyt Domu:</b> Raz na sesję ogłoś, że jesteś rozpoznawany/-a i mile widziany/-a w miejscu, gdzie mogłoby to mieć sens.</li>
+<li><b>Dwa Kroki Naprzód:</b> Kiedy plan się sypie, zapytaj MG, na co już się przygotowałeś/-aś.</li>
+<li><b>Aksamitna Groźba:</b> Kiedy <b>Targujesz się</b>, na 12+ przeciwnik ujawnia też coś użytecznego.</li>
+<li><b>Szybki Draw:</b> Pierwszy raz, gdy atakujesz z zaskoczenia w scenie, zadajesz +1k6 obrażeń.</li>
+<li><b>Wygląda na Łatwe:</b> Kiedy uciekasz dzięki urokowi, przebrania albo zamieszaniu, masz przewagę.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Zamień złą salę w swoją salę.</li>
+<li>Zdobądź kogoś, kto powinien wiedzieć lepiej.</li>
+<li>Zbuduj coś prawdziwego z kłamstw i kombinowania.</li>
+<li>Podejmij ryzyko dla przyjemności, stylu albo zysku.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 9.</p>
+<ul>
+<li>Mały pistolet (blisko, przeładowanie, 1 slot)</li>
+<li>Brzytwa (wręcz, 1 slot)</li>
+<li>Elegancki garnitur albo suknia (1 slot)</li>
+<li>Rolka banknotów i plantacyjnych kwitów (1 slot)</li>
+<li>Piersiówka z importowanym alkoholem (1 slot)</li>
+<li>Talia kart albo ustawione kości (małe)</li>
+<li>Kluczyki do auta albo ciężarówki (małe)</li>
+<li>Księga rachunkowa (1 slot)</li>
+<li>Zegarek kieszonkowy (małe)</li>
+<li>Perfumy albo brylantyna (małe)</li>
+<li>Srebrna spinka do krawata albo broszka (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_piosenkarz" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Śpiewający/-a na Sali</b></p>
+<p>Wiesz, jak utrzymać pełną salę w jednym kawałku. Kiedy śpiewasz, by powstrzymać tłum przed paniką, przemocą albo rozpaczą, masz przewagę.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was pierwszy raz usłyszał/-a mnie z końca sali i podszedł/-a bliżej?</li>
+<li>Który/-a z was wie, jak brzmię, kiedy naprawdę się boję?</li>
+<li>Który/-a z was widział/-a, jak uspokajam salę stojącą na krawędzi?</li>
+<li>Który/-a z was uważa, że występuję tylko dla siebie?</li>
+</ul>
+<p>---</p>
+<p><b>Poślubiony/-a Kłopotom</b></p>
+<p>Masz zobowiązania, kochanków i sekrety splątane ze sobą. Kiedy ktoś próbuje cię zawstydzić, usidlić albo zdemaskować, rzuć +CHA. Na 10+ traci przewagę. Na 7-9 wybierz jedno: waha się, ujawnia, czego naprawdę chce, albo wyślizgujesz się czysto.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, czyj pierścionek nadal noszę albo ukrywam?</li>
+<li>Którego/-ą z was pocałowałem/-am, choć nie powinienem/-nam?</li>
+<li>Który/-a z was wierzy, że zasługuję na coś lepszego niż to miasteczko?</li>
+<li>Który/-a z was zobaczył/-a niebezpieczeństwo wokół mnie wcześniej niż ja?</li>
+</ul>
+<p>---</p>
+<p><b>Gwiazda po Godzinach</b></p>
+<p>Twoja prawdziwa robota zaczyna się, gdy porządni ludzie wracają do domu. Kiedy szukasz plotek, słabości albo apetytu w nocnym życiu, zadajesz jedno dodatkowe pytanie po <b>Czytaniu Sali</b> albo <b>Rozpoznawaniu rzeczywistości</b>.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was poszedł/-a za mną, kiedy muzyka już ucichła?</li>
+<li>Który/-a z was wie, co ludzie wyznają mi w ciemności?</li>
+<li>Który/-a z was uważa, że gram głębszą grę, niż przyznaję?</li>
+<li>Którego/-ą z was uczyniłem/-am zazdrosnym/-ą?</li>
+</ul>
+<p>---</p>
+<p><b>Skuszony/-a</b></p>
+<p>Spojrzałeś/-aś przez próg i zapragnąłeś/-aś tego, co patrzyło z powrotem. Za pierwszym razem w każdej sesji, gdy oprzesz się ofercie mocy, przynależności albo wiecznej rozkoszy, zaznacz XP.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was przyłapał/-a mnie, jak zbyt uważnie słucham niewłaściwego głosu?</li>
+<li>Który/-a z was wie, jakiego rodzaju wieczności kiedyś pragnąłem/-am?</li>
+<li>Który/-a z was uważa, że nadal mogę to wybrać?</li>
+<li>Który/-a z was wciąż ściąga mnie z powrotem ku żywym?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Uśmiech w Półmroku</b></p>
+<p>Kiedy używasz uroku, chemii albo intymności, by ktoś opuścił gardę, rzuć +CHA. Na 10+ trzymaj 2. Na 7-9 trzymaj 1. Wydaj 1 za 1, aby zadać osobiste pytanie, na które musi odpowiedzieć szczerze, zostać z kimś sam na chwilę albo sprawić, że zawaha się przed skrzywdzeniem cię.</p>
+<p><b>Aksamitny Głos</b></p>
+<p>Kiedy śpiewasz, nucisz albo mówisz cicho ponad narastającym strachem, wybierz jednego sojusznika, który otrzymuje +1 naprzód, i jednego wroga, który na moment traci rezon.</p>
+<p><b>Wszyscy Patrzą</b></p>
+<p>Kiedy wszystkie oczy są skierowane na ciebie, dostajesz +1 pancerza.</p>
+<p><b>Cięcie i Zwrot</b></p>
+<p>Kiedy wyrywasz się komuś w zwarciu, rzuć +ZRC. Na 10+ uwalniasz się i możesz zabrać ze sobą kogoś jeszcze. Na 7-9 uwalniasz się, ale coś po sobie zostawiasz.</p>
+<p><b>Smak Niebezpieczeństwa</b></p>
+<p>Kiedy gonisz za pożądaniem prosto w oczywiste kłopoty, zaznacz XP, jeśli naprawdę to robisz.</p>
+<p><b>Nie, To Ty Patrz na Mnie</b></p>
+<p>Kiedy spotykasz spojrzenie czegoś uwodzicielskiego, nadnaturalnego albo drapieżnego i nie odwracasz wzroku, rzuć +CHA. Na 10+ to coś jest wytrącone z równowagi; otrzymujesz +1 naprzód przeciw temu. Na 7-9 utrzymujesz jego uwagę, ale ono poznaje o tobie coś prawdziwego.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🎵 # PIOSENKARZ</h2><p>*Żyjesz z uwagi, chemii i tej drżącej sekundy tuż przed tym, jak wszyscy odpuszczą.*</p>
+<p><b>Kostka Obrażeń:</b> k8</p>
+<p><b>PŻ:</b> 8 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Czarny mieszkaniec Delty:</b> Pearline, Grace, Odessa, Viola / Louis, Booker, Caleb, Amos</p>
+<p><b>Biały miejscowy/-a:</b> Mary, June, Alma, Sadie / Clyde, Roy, Ellis, Vernon</p>
+<p><b>Choctaw:</b> Nita, Kaya, Fala, Aponi / Talowah, Hosa, Miko, Chayton</p>
+<p><b>Irlandzki/-a włóczęga:</b> Nora, Maeve, Eileen, Brigid / Finn, Declan, Seamus, Eamon</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> Czarny mieszkaniec Delty | Biały miejscowy/-a | Choctaw | Irlandzki/-a włóczęga | zapytaj stołu</p>
+<p><b>Wiek:</b> młody/-a i olśniewający/-a | dojrzały/-a i magnetyczny/-a | piękny/-a w niebezpieczny sposób</p>
+<p><b>Oczy:</b> roześmiane i zapraszające | zadymione i zmęczone | drapieżne, gdy światła przygasają</p>
+<p><b>Sylwetka:</b> zgrabna i luźna | pełna krągłości albo kątów | giętka jak brzytwa</p>
+<p><b>Strój:</b> parkietowa elegancja | schludne kościelne ubranie obrócone w grzech | jedwab, satyna albo coś, co łapie światło</p>
+<p><b>Znak szczególny:</b> głos stworzony do małych sal | zapach, którego nikt nie zapomina | uśmiech proszący się o kłopoty</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Ukradnij Światło Reflektorów:</b> Kiedy wchodzisz do sceny efektownie, wszyscy najpierw zauważają ciebie.</li>
+<li><b>Za Blisko, by Puścić:</b> Kiedy komuś, kogo oczarowałeś/-aś, grozi krzywda, dostajesz +1 stałe, by interweniować.</li>
+<li><b>Zabójczy Refren:</b> Twoja kostka obrażeń staje się k10, gdy atakujesz z zaskoczenia, przez intymność albo zdradę.</li>
+<li><b>Niedomknięta Sprawa:</b> Raz na sesję ogłoś, że ktoś ważny z twojej przeszłości jest dziś tutaj.</li>
+<li><b>Łamacz/-ka Serc:</b> Kiedy ktoś wybiera ciebie zamiast bezpieczeństwa, zaznacz XP.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Wydobądź z kogoś wyznanie, pragnienie albo słabość.</li>
+<li>Zaryzykuj dla kogoś, kogo powinieneś/-naś zostawić w spokoju.</li>
+<li>Spraw, by cała sala kręciła się wokół ciebie.</li>
+<li>Zamień pokusę w dźwignię zamiast poddania.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 9.</p>
+<ul>
+<li>Ręczny mikrofon, harmonijka albo sceniczny rekwizyt (wręcz, 1 slot)</li>
+<li>Buty do tańca albo obcasy (1 slot)</li>
+<li>Ukryty nóż w podwiązce albo brzytwa w rękawie (wręcz, 1 slot)</li>
+<li>Perfumy, puder albo brylantyna (małe)</li>
+<li>Papierośnica (małe)</li>
+<li>Dobry płaszcz albo sceniczny strój (1 slot)</li>
+<li>Piersiówka (1 slot)</li>
+<li>Listy, zdjęcia albo notatki do szantażu (1 slot)</li>
+<li>Biżuteria kostiumowa albo ślubny pierścionek (małe)</li>
+<li>Srebrna spinka do włosów albo mankietu (małe)</li>
+<li>Kieszonkowe lusterko (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_straznik_ognia" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Dziecko Kaznodziei</b></p>
+<p>Wychowano cię tak, byś bał/-a się tego, co przez ciebie przepływa. Kiedy jawnie przywołujesz Pismo, modlitwę albo hymn przeciw nadnaturalnemu zagrożeniu, masz przewagę.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was pierwszy raz usłyszał/-a mój śpiew i wiedział/-a, że będzie mnie to coś kosztować?</li>
+<li>Który/-a z was widział/-a, jak złamałem/-am obietnicę daną rodzinie?</li>
+<li>Który/-a z was uważa, że mój dar jest święty?</li>
+<li>Który/-a z was już prosił/-a mnie, żebym zagrał/-a dla zmarłych?</li>
+</ul>
+<p>---</p>
+<p><b>Cudowne Dziecko Juke Jointu</b></p>
+<p>Twój talent był zbyt wielki na ganek i smażalnię ryb. Kiedy grasz dla tłumu, który chce zapomnienia, przy wyniku 7+ na <b>Targowanie się</b> albo <b>Stawianie czoła niebezpieczeństwu</b> dzięki muzyce jeden pobliski sojusznik również otrzymuje +1 naprzód.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was pierwszy raz postawił/-a mnie przed płacącą publicznością?</li>
+<li>Który/-a z was słyszał/-a, jak ukradłem/-am melodię z czegoś nienaturalnego?</li>
+<li>Który/-a z was wciąż ostrzega mnie, żebym nie gonił/-a za brawami?</li>
+<li>Który/-a z was widział/-a, co się stało, gdy zagrałem/-am za mocno?</li>
+</ul>
+<p>---</p>
+<p><b>Uciekinier/-ka z Kościoła</b></p>
+<p>Nauczyłeś/-aś się ukrywać głód za czystą koszulą i spuszczoną głową. Kiedy <b>Rozpoznajesz rzeczywistość</b> w sprawie grzechu, pokusy albo hipokryzji, zadajesz jedno dodatkowe pytanie.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was pomógł/-a mi odejść przed świtem?</li>
+<li>Który/-a z was nadal uważa, że powinienem/-nam wrócić?</li>
+<li>Który/-a z was wie, co zrobiłem/-am przed ucieczką?</li>
+<li>Który/-a z was przypomina mi dom, który porzuciłem/-am?</li>
+</ul>
+<p>---</p>
+<p><b>Śpiewający/-a Nad Grobem</b></p>
+<p>Śpiewałeś/-aś nad ciałami i czułeś/-aś, jak coś odpowiada. Kiedy poświęcasz chwilę na śpiew nad zmarłym, zapytaj MG, co w tym miejscu nie chce spocząć.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was przyprowadził/-a mnie na pogrzeb, którego nie zapomnę?</li>
+<li>Który/-a z was słyszał/-a, jak śpiewam komuś, kto już odszedł?</li>
+<li>Który/-a z was wierzy, że zmarli słuchają, kiedy gram?</li>
+<li>Który/-a z was boi się, co pewnej nocy może mi odpowiedzieć?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Pieśń Przebijająca Zasłonę</b></p>
+<p>Kiedy śpiewasz albo grasz z całego serca w miejscu silnych emocji, rzuć +CHA. Na 10+ wybierz 2. Na 7-9 wybierz 1.</p>
+<ul>
+<li>Wyciągasz na wierzch ukrytą prawdę, wspomnienie albo ducha.</li>
+<li>Wszyscy, którzy podążą za twoim prowadzeniem, dostają +1 naprzód.</li>
+<li>Powstrzymujesz strach, panikę albo rozpacz na kilka chwil.</li>
+</ul>
+<p><b>Urodzony/-a do Bluesa</b></p>
+<p>Kiedy <b>Występujesz</b> dla ludzi w bólu, potrzebie albo żałobie, rzuć +CHA. Na 10+ całkowicie oddają się chwili; zapytaj MG, kto w tej scenie zmienia się najbardziej przez twoją muzykę. Na 7-9 czują to, ale przyciągasz też niechcianą uwagę.</p>
+<p><b>Fałszywa Nuta</b></p>
+<p>Kiedy do sceny wchodzi coś nadnaturalnego, zapytaj MG, co brzmi w nim nie tak. Otrzymujesz +1 naprzód, działając na podstawie odpowiedzi.</p>
+<p><b>Srebrny Rezonans</b></p>
+<p>Kiedy trafiasz nadnaturalne stworzenie srebrnym elementem instrumentu, struną albo slide'em, twój atak zyskuje ignoruje pancerz.</p>
+<p><b>Utrzymaj Salę</b></p>
+<p>Kiedy stajesz głosem między paniką a tłumem, rzuć +CHA. Na 10+ tłum trzyma się razem i idzie za tobą. Na 7-9 wytrwa, ale wybierz jedno: domaga się uspokojenia, zostawia kogoś z tyłu albo to ty bierzesz na siebie najgorsze zagrożenie.</p>
+<p><b>To Jeszcze Nie Moja Pieśń</b></p>
+<p>Kiedy śmierć albo opętanie sięga po ciebie przez muzykę, rzuć +MĄD. Na 10+ odcinasz to od siebie. Na 7-9 wybierz jedno: odcinasz to, ale masz utrudnienie do następnego rzutu, albo wpuszczasz to tylko tyle, by dowiedzieć się czegoś użytecznego.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # STRAŻNIK OGNIA</h2><p>*Urodziłeś/-aś się z pieśnią, która otwiera rany, leczy ludzi i przyciąga z ciemności głodne rzeczy.*</p>
+<p><b>Kostka Obrażeń:</b> k6</p>
+<p><b>PŻ:</b> 6 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Czarny mieszkaniec Delty:</b> Sammie, Elijah, Isaiah, Moses / Ruthie, Pearline, Annie, Grace</p>
+<p><b>Biały miejscowy/-a:</b> Mary, Joan, June, Birdie / Ellis, Roy, Bert, Calvin</p>
+<p><b>Choctaw:</b> Chayton, Nita, Hosa, Talowah / Aponi, Koi, Issi, Fala</p>
+<p><b>Irlandzki/-a włóczęga:</b> Remmick, Eamon, Declan, Seamus / Siobhan, Maeve, Brigid, Nora</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> Czarny mieszkaniec Delty | Biały miejscowy/-a | Choctaw | Irlandzki/-a włóczęga | zapytaj stołu</p>
+<p><b>Wiek:</b> młody/-a i nieopierzony/-a | przedwcześnie zużyty/-a | stary/-a duszą i czujny/-a</p>
+<p><b>Oczy:</b> rozgorączkowane | modlitewne i dalekie | łagodne, dopóki nie zacznie grać muzyka</p>
+<p><b>Sylwetka:</b> koścista | szczupła i niespokojna | drobna i żylasta</p>
+<p><b>Strój:</b> odświętny strój już przetarty | robocze ubranie w pyle bawełny | sceniczna elegancja z jednym dobrym połyskiem</p>
+<p><b>Znak szczególny:</b> ukochana gitara | poranione opuszki palców | głos, który ucisza salę</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Otwórz Zasłonę:</b> Kiedy używasz <b>Pieśni Przebijającej Zasłonę</b>, na 12+ wybierasz 3.</li>
+<li><b>Pożyczony Refren:</b> Kiedy śpiewasz z sojusznikiem, oboje odzyskujecie 1k6 PŻ.</li>
+<li><b>Twarda Ewangelia:</b> Twoja kostka obrażeń wzrasta do k8.</li>
+<li><b>Nazwij Głód:</b> Raz na scenę zapytaj MG, czego nadnaturalny wróg najbardziej chce właśnie teraz.</li>
+<li><b>Ostatnia Nuta Trwa:</b> Kiedy masz zostać wyłączony/-a z walki, nadal trzymając instrument, rzuć +CHA. Na 10+ zostajesz na nogach z 1 PŻ.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Zagraj pieśń, która wypowie brzydką prawdę, której nikt nie chce usłyszeć.</li>
+<li>Użyj swojego daru, by chronić swoich ludzi, a nie tylko siebie.</li>
+<li>Podąż za melodią, omenem albo opowieścią w niebezpieczne miejsce.</li>
+<li>Nie pozwól, by strach cię uciszył.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 9.</p>
+<ul>
+<li>Gitara rezonatorowa (blisko, 2 sloty)</li>
+<li>Kieszonkowy pistolet (blisko, przeładowanie, 1 slot)</li>
+<li>Srebrny slide albo rezonatorowa płytka (małe)</li>
+<li>Butelka bimbru (1 slot)</li>
+<li>Składany nóż (wręcz, 1 slot)</li>
+<li>Niedzielny garnitur albo sceniczna suknia (1 slot)</li>
+<li>Zapasowe struny i kostki (1 slot)</li>
+<li>Cynowy krzyżyk albo obrazek święty (małe)</li>
+<li>Ogryzek świecy (małe)</li>
+<li>Kawałek kredy (małe)</li>
+<li>Pudełko zapałek (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_twardziel" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Weteran/-ka Wojny</b></p>
+<p>Nauczyłeś/-aś się iść naprzód pod ostrzałem. Kiedy <b>Stawiasz czoła niebezpieczeństwu</b> pod kulami, eksplozjami albo w krzyżowym ogniu, masz przewagę.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, co wojna kazała mi zrobić?</li>
+<li>Który/-a z was ufa mi z bronią, ale nie z pokojem?</li>
+<li>Który/-a z was widział/-a, jak raz zamarłem/-am, i nigdy tego nie zapomniał/-a?</li>
+<li>Który/-a z was prosił/-a mnie, żebym nauczył/-a go zabijać?</li>
+</ul>
+<p>---</p>
+<p><b>Starsze Rodzeństwo</b></p>
+<p>Od lat sprzątasz po kimś, kogo kochasz. Kiedy przyjmujesz obrażenia przeznaczone dla sojusznika w zasięgu, zmniejszasz je o 1k4.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Którego/-ą z was chronię już z przyzwyczajenia?</li>
+<li>Który/-a z was przypomina mi kogoś, kogo zawiodłem/-am?</li>
+<li>Który/-a z was zna najgorszą rzecz, jaką zrobiłem/-am dla rodziny?</li>
+<li>Który/-a z was uważa, że trzymam innych zbyt mocno?</li>
+</ul>
+<p>---</p>
+<p><b>Człowiek od Brudnej Roboty z Chicago</b></p>
+<p>Egzekwowałeś/-aś długi, groźby i ostatnie szanse. Kiedy <b>Targujesz się</b>, opierając się na jawnej przemocy i pokazując, że doprowadzisz sprawę do końca, rzuć +SIŁ zamiast +CHA.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was widział/-a, jak ściągałem/-am dług?</li>
+<li>Który/-a z was nadal zastanawia się, kogo zostawiłem/-am zakopanego/-ą na północy?</li>
+<li>Który/-a z was poprosił/-a mnie o pomoc, której powinienem/-nam był/-a odmówić?</li>
+<li>Który/-a z was wierzy, że nigdy już nie będę czysty/-a?</li>
+</ul>
+<p>---</p>
+<p><b>Obrońca Miejscowych</b></p>
+<p>Zostałeś/-aś tam, gdzie inni uciekali. Kiedy <b>Bronisz</b> domu, interesu, obozu albo wspólnej przestrzeni, trzymasz +1 Gotowości.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Którego/-ą z was ostrzegałem/-am, żeby tu nie wracał/-a?</li>
+<li>Który/-a z was widział/-a, jak stałem/-am twardo, kiedy wszyscy inni uciekli?</li>
+<li>Który/-a z was wie, dlaczego to miejsce tyle dla mnie znaczy?</li>
+<li>Który/-a z was sprawia, że wierzę, iż nadal warto to ratować?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Pewna Ręka</b></p>
+<p>Kiedy atakujesz bronią palną na bliski dystans, zadajesz +1 obrażeń.</p>
+<p><b>Stań w Drzwiach</b></p>
+<p>Kiedy <b>Bronisz</b> drzwi, schodów, mostu albo innego wąskiego przejścia, na 10+ trzymasz 3 zamiast 2.</p>
+<p><b>Zimna Determinacja</b></p>
+<p>Kiedy strach, żałoba albo nadnaturalna presja miałyby cię zatrzymać, rzuć +KON. Na 10+ idziesz dalej. Na 7-9 idziesz dalej, ale MG wybiera jedną rzecz, którą odsłaniasz.</p>
+<p><b>Twardy/-a jak Delta</b></p>
+<p>Liczysz się jako 1 pancerza.</p>
+<p><b>Jedno Dobre Ostrzeżenie</b></p>
+<p>Kiedy jasno mówisz komuś, co się stanie, jeśli cię przekroczy, i naprawdę to masz na myśli, rzuć +CHA. Na 10+ cofają się, zwlekają albo pokazują, czego boją się najbardziej. Na 7-9 wahają się, ale tylko przez chwilę.</p>
+<p><b>Brudna Walka</b></p>
+<p>Kiedy <b>Tniesz i Rąbiesz</b>, na 10+ możesz też wybrać jedno: rozbrajasz przeciwnika, spychasz go tam, gdzie chcesz, albo odcinasz go od sojusznika.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🛡️ # TWARDZIEL</h2><p>*Wiesz, jak szybko marzenie zamienia się w krew. Kiedy drzwi pękają, to ty w nich stoisz.*</p>
+<p><b>Kostka Obrażeń:</b> k10</p>
+<p><b>PŻ:</b> 10 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Czarny mieszkaniec Delty:</b> Smoke, Elijah, Ezekiel, Amos / Annie, Ruth, Hattie, Viola</p>
+<p><b>Biały miejscowy/-a:</b> Bert, Clyde, Roy, Vernon / Joan, Sadie, Alma, Ruth</p>
+<p><b>Choctaw:</b> Chayton, Hoke, Miko, Tushka / Aponi, Isi, Kaya, Hoshi</p>
+<p><b>Irlandzki/-a włóczęga:</b> Remmick, Ciaran, Padraig, Finn / Maeve, Siobhan, Brigid, Eileen</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> Czarny mieszkaniec Delty | Biały miejscowy/-a | Choctaw | Irlandzki/-a włóczęga | zapytaj stołu</p>
+<p><b>Wiek:</b> w sile wieku i barczysty/-a | poorany/-a bliznami i doświadczony/-a | zmęczony/-a, ale nadal groźny/-a</p>
+<p><b>Oczy:</b> twarde i nieruchome | opiekuńcze i czujne | nawiedzone i niewyspane</p>
+<p><b>Sylwetka:</b> gruba i potężna | długa i złośliwa | ciężka od dawnych obrażeń</p>
+<p><b>Strój:</b> robocza koszula i kabura | wyprasowany garnitur ze schowaną bronią | wojskowe resztki i buty</p>
+<p><b>Znak szczególny:</b> drżące dłonie poskramiane siłą | blizna z wojny | spojrzenie kończące kłótnie</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Tommy Gun:</b> Kiedy zasypujesz przygotowaną bronią automatyczną gradem kul, zyskuje ona niechlujna i potężna.</li>
+<li><b>Bez Odwrotu:</b> Kiedy <b>Bronisz</b>, nawet przy porażce trzymasz 1 Gotowości.</li>
+<li><b>Krew i Dym:</b> Kiedy otrzymujesz obrażenia, dostajesz +1 naprzód przeciw temu, kto ci je zadał.</li>
+<li><b>Wojenna Skrzynia:</b> Na początku każdej sesji masz jeden dodatkowy użyteczny oręż albo ładunek wybuchowy, jeśli fikcja na to pozwala.</li>
+<li><b>Nie Tak Łatwo Go Zatrzymać:</b> Kiedy miałbyś umrzeć od przemocy, rzuć +KON. Na 10+ przeżywasz wystarczająco długo, by dokończyć jeszcze jedną rzecz.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Chroń kogoś, kto sam nie przetrwa nocy.</li>
+<li>Zakończ zagrożenie szybko, zanim dosięgnie twoich ludzi.</li>
+<li>Spłać stary dług krwią, pieniędzmi albo poświęceniem.</li>
+<li>Nie pozwól, by gnębiciel decydował, kto zasługuje na wolność.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 10.</p>
+<ul>
+<li>Rewolwer (blisko, przeładowanie, 1 slot)</li>
+<li>Strzelba (blisko, niechlujna, przeładowanie, 2 sloty)</li>
+<li>Nóż okopowy (wręcz, 1 slot)</li>
+<li>Ciężki płaszcz albo marynarka (1 slot)</li>
+<li>Kastet (wręcz, 1 slot)</li>
+<li>Zapas nabojów i śrutu (1 slot)</li>
+<li>Łom (potężna, 2 sloty)</li>
+<li>Nieśmiertelnik albo osobisty amulet (małe)</li>
+<li>Papierosy (małe)</li>
+<li>Pudełko zapałek (małe)</li>
+<li>Srebrna moneta (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+<div id="pl_optional_moves" class="playbook-content lang-pl"><div class="optional-moves-container"><div class="card"><h2>📜 # Ruchy Opcjonalne — Sinners</h2><p>---</p>
+<p><b>Otwórz Juke Joint</b></p>
+<p>Kiedy grupa zamienia surowe miejsce w juke joint, fish fry, rent party, nabożeństwo albo całonocne zgromadzenie, powiedzcie, kto ogarniał muzykę, jedzenie, pieniądze i drzwi, a potem osoba prowadząca całe przedsięwzięcie rzuca +CHA. Na 10+ wybierz 3. Na 7-9 wybierz 2.</p>
+<ul>
+<li>Wieść dociera do właściwych ludzi.</li>
+<li>Tłum przychodzi gotowy wydawać, a nie bić się.</li>
+<li>Lokalne kłopoty zostają na razie na zewnątrz.</li>
+<li>Dziś wydarza się tu coś prawdziwego i pięknego.</li>
+</ul>
+<p>---</p>
+<p><b>Droga po Zmroku</b></p>
+<p>Kiedy podróżujesz po drogach Delty, nadrzecznych brzegach, polach albo zaroślach po zachodzie słońca, rzuć +MĄD. Na 10+ omijasz najgorsze rzeczy nocy i docierasz z dość wczesnym ostrzeżeniem, by się przygotować. Na 7-9 docierasz, ale wybierz jedno: ktoś was śledzi, coś zostawiasz za sobą albo widzisz coś, czego wolałbyś/-abyś nie oglądać.</p>
+<p>---</p>
+<p><b>Utrzymaj Próg</b></p>
+<p>Kiedy coś niebezpiecznego chce zostać wpuszczone, a ty trzymasz linię przy drzwiach, bramie, ognisku albo oknie, rzuć +KON. Na 10+ nie może przekroczyć progu, dopóki fikcja się nie zmieni. Na 7-9 na razie zostaje na zewnątrz, ale wybierz jedno: dostaje się do twojej głowy, znajduje inną drogę albo ktoś w środku pęka pod presją.</p>
+<p>---</p>
+<p><b>Głodna Pieśń</b></p>
+<p>Kiedy muzyka, modlitwa, wspomnienie albo nadnaturalne piękno kusi cię, byś oddał/-a się temu całkowicie, rzuć +MĄD. Na 10+ zachowujesz siebie i możesz zapytać MG, czego pieśń chce. Na 7-9 zachowujesz siebie, ale wybierz jedno: masz utrudnienie naprzód, ujawniasz brzydką prawdę albo robisz krok za daleko, zanim się zatrzymasz.</p>
+<p>---</p>
+<p><b>Przejdź przez Wrogie Miasteczko</b></p>
+<p>Kiedy grupa musi kupować, sprzedawać, pracować albo przejść przez wrogie miasteczko, gdzie niewłaściwe spojrzenia mogą wszystko zniszczyć, rzuć +INT. Na 10+ wybierz 2. Na 7-9 wybierz 1.</p>
+<ul>
+<li>Załatwiacie sprawę szybko i czysto.</li>
+<li>Nie jesteście nic winni lokalnej władzy.</li>
+<li>Nikt ważny nie poznaje waszych nazwisk.</li>
+<li>Dostrzegacie zagrożenie, zanim się zamknie wokół was.</li>
+</ul></div></div></div>
+
+    <div id="pl_adventures" class="playbook-content lang-pl">
+        <div class="main-column" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2rem;">
+            <div class="card adventure-generator-card">
+                <h2>✨ Generator Przygód — Sinners Generator</h2>
+                <div class="generator-result" id="rng-result-pl">
+                    ...
+                </div>
+                <div class="generator-actions">
+                    <button type="button" class="lang-toggle active rng-roll-btn" onclick="generateAdventure('pl')">🎲 Losuj / Roll</button>
+                </div>
+            </div>
+            
+            <div class="adventure-tables-grid" id="rng-tables-pl">
+    
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 1: Akcja i Wygenerowane Miejsce</h3>
+                    <div class="adventure-prefix">Odkrywamy</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">zrujnowany juke joint</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">nawiedzony dom na plantacji</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">opuszczoną stację benzynową</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">zapomniane skrzyżowanie dróg</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">tonącą w bagnie wioskę</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">spaloną do cienia stodołę</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">zawalony pod ciężarem ołowiu kościół</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">zakamarek starego cmentarza</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">dawno ukryty tabor wędrowny</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">wyłączony z użytku dworzec kolejowy</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">spróchniałe więzienie na mokradłach</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">zakurzony gabinet starego szeryfa</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">ukryty magazyn bimbrowników</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">obóz wędrownych kaznodziejów</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">stary wóz pełen obcych instrumentów</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">zagubioną ścieżkę do ciemnego lasu</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">pochłonięty przez rzekę dom gier</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">wiatę pełną wygłodniałych psów</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">splamioną krwią podłogę młyna</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">duszny pokój taniego motelu</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 2: Położenie i Geografia</h3>
+                    <div class="adventure-prefix">która leży</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">na obrzeżach mglistego bagna</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">tuż przy spienionych wodach Missisipi</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">w sercu mrocznych lasów Luizjany</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">na końcu wyludnionej międzystanowej</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">w zakazanym miasteczku dla czarnych</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">na polu wyschniętej bawełny</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">głęboko w rozlewiskach rzeki</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">w cieniu olbrzymiego, sczerniałego dębu</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">niedaleko wyblakłych torów kolejowych</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">w opuszczonej samotni przy granicy hrabstwa</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">pośród zatrutych studni</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">ukryta przed wzrokiem pożeraczy grzechów</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">za niebezpiecznymi moczarami</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">w miejscu, gdzie nie dociera światło księżyca</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">tuż przy starym, spróchniałym moście</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">na ziemi należącej do okrutnego właściciela ziemskiego</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">naprzeciwko wrogiego posterunku policji</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">za bagnistą barierą z korzeni namorzynów</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">blisko skrzyżowania diabelskiego paktu</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">w zapadlisku po starym pożarze</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 3: Cel i Pożądany Obiekt</h3>
+                    <div class="adventure-prefix">szukając</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">zaginionej płyty bluesowego mistrza.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">ukrytego dziennika spalonego szeryfa.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">legendarnej gitary, która kradnie dusze.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">paktu, który może zmyć nasze grzechy.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">zakopanego skarbu bezwzględnych bimbrowników.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">świętego krzyża dawnego kaznodziei.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">dowodów niewinności zbiegłego brata.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">klucza do zardzewiałych kajdan z przeszłości.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">butelki wywaru, który pozwala widzieć demony.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">fałszywych papierów do ucieczki na północ.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">łez niewinnie skazanego człowieka.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">kości dawno zamordowanego muzyka.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">amuletu chroniącego przed ogarem piekielnym.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">listu od ukochanej zabitej przed laty.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">zemsty, która nie przyniesie ulgi.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">srebrnej laski czarnoksiężnika Hoodoo.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">krwi kogoś, kto nigdy nie zgrzeszył.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">nut piosenki, która sprowadza ciemność.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">starej strzelby odziedziczonej po dziadku.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">bezpiecznego schronienia przed nocą.</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 4: Cel Misji</h3>
+                    <div class="adventure-prefix">Jesteśmy tutaj, aby</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">wyrównać stare rachunki</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">uwolnić niesłusznie pojmanego</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">odprawić rytuał odpędzający złe duchy</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">spalić do gołej ziemi miejsce dawnego koszmaru</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">oddać dług zaciągnięty na rozstajach</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">zebrać rzadkie zioła rosnące tylko w cieniu śmierci</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">przekonać lokalnego barona do ustępstw</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">odnaleźć lekarstwo na zgniłą duszę</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">ochronić miejscowych przed nocnym gniewem</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">zakończyć nienaturalną suszę nękającą pola</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">złożyć ślubowanie krwi</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">zamknąć portal z którego wycieka zło</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">zaśpiewać pieśń wolności</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">pogrzebać wreszcie kogoś, kto wstał z martwych</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">zatuszować krwawe ślady</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">odebrać to, co nam się prawnie należy</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">uciec przed pościgiem łowców głów</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">zdobyć przychylność miejscowego szeryfa</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">udowodnić, że magia Hoodoo to nie tylko mity</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">przerwać klątwę rzuconą na muzyka</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 5: Główne Zagrożenie / Przeszkody</h3>
+                    <div class="adventure-prefix">strzeżony przez</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">sfanatyzowany tłum rolników</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">sfosylizowanych, bagnistych nieumarłych</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">gang bezwzględnych przemytników</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">milicję skorumpowanego burmistrza</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">potężne, zgłodniałe aligatory</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">hordę piekielnych ogarów</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">duchy ofiar linczu</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">klątwy niewidzialnego kapłana voodoo</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">zmroczone, żądne krwi kruki</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">upiornych śpiewaków bluesa</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">czarnoksiężników ukrytych w cieniach</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">zmutowanych włóczęgów</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">zdradliwych nadzorców z farmy więziennej</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">watahy wilków kontrolowanych przez ciemność</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">zaklęte pnącza kudzu, które dławią tych, którzy podejdą za blisko</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">chmarę opętanych szarańczy</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">krwawe widma Ku Klux Klanu</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">ożywione kukły ze zniszczonych plonów</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">szalonego poborcę podatkowego i jego strzelców</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">roje zabójczych os na usługach czarnoksiężnika</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 6: Główny Antagonista</h3>
+                    <div class="adventure-prefix">i</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">bezlitosnego sędziego hrabstwa.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">demona z rozstajnych dróg.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">potężnego kapłanaciemnych sił.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">przeklętego muzyka pragnącego naszej krwi.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">bimbrowniczego magnata bez serca.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">łowcę niewolników, który nigdy nie umarł w pełni.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">starą wiedźmę, której ukradliśmy amulet.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">opętanego kaznodzieję żądającego absolutnego posłuszeństwa.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">zdradzieckiego przyjaciela z czasów prohibicji.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">właściciela plantacji o morderczych zamiarach.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">wielkiego bestię mokradeł, potęgę głębin.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">oszusta, który gra życiem bywalców juke jointu.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">martwego stróża prawa łaknącego potępienia wszystkich winnych.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">wcielonego cienia naszego, popełnionego kiedyś w gniewie grzechu.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">diabła we własnej, pociągającej ludzkiej osobie.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">szalonego barda szerzącego plagę nieszczęść swoim śpiewem.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">matronę trzymającą wszystkich w garści długów i krwi.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">bezwzględnego łowcę głów na usługach pana ciemności.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">ducha nienawiści podsycającego waśnie i gniew miasteczka.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">kogoś z dawnych lat, kogo celowo pozostawiliśmy na śmierć.</span></li>
+</ul>
+                </div>
+        
+
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_crooner" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Front-Room Singer</b></p>
+<p>You know how to hold a packed room together. When you sing to keep a crowd from panic, violence, or despair, take advantage.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you first heard me from the back of the room and came closer?</li>
+<li>Which of you knows what I sound like when I'm truly afraid?</li>
+<li>Which of you has seen me calm a room on the edge of breaking?</li>
+<li>Which of you thinks I only perform for myself?</li>
+</ul>
+<p>---</p>
+<p><b>Married to Trouble</b></p>
+<p>You have obligations, lovers, and secrets tangled together. When someone tries to shame, trap, or expose you, roll +CHA. On a 10+, they lose the upper hand. On a 7-9, choose one: they hesitate, they reveal what they really want, or you slip away clean.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows whose ring I still wear or hide?</li>
+<li>Which of you have I kissed when I should not have?</li>
+<li>Which of you believes I deserve better than this town?</li>
+<li>Which of you saw the danger around me before I did?</li>
+</ul>
+<p>---</p>
+<p><b>After-Hours Star</b></p>
+<p>Your real work starts when the proper people go home. When you seek rumors, weakness, or appetite in a nightlife scene, ask one extra question after <b>Read the Room</b> or <b>Discern Realities</b>.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has followed me after the music ended?</li>
+<li>Which of you knows what people confess to me in the dark?</li>
+<li>Which of you thinks I play a deeper game than I admit?</li>
+<li>Which of you have I made jealous?</li>
+</ul>
+<p>---</p>
+<p><b>Tempted One</b></p>
+<p>You have looked over the threshold and wanted what looked back. The first time each session you resist an offer of power, belonging, or eternal pleasure, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you caught me listening too closely to the wrong voice?</li>
+<li>Which of you knows what kind of forever I once wanted?</li>
+<li>Which of you thinks I might still choose it?</li>
+<li>Which of you keeps pulling me back toward the living?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Low-Light Smile</b></p>
+<p>When you use allure, chemistry, or intimacy to get someone to lower their guard, roll +CHA. On a 10+, hold 2. On a 7-9, hold 1. Spend hold, 1 for 1, to ask a personal question they must answer honestly, get them alone for a moment, or make them hesitate before harming you.</p>
+<p><b>Velvet Voice</b></p>
+<p>When you sing, hum, or speak softly over rising fear, choose one ally who takes +1 forward and one foe who falters for a moment.</p>
+<p><b>Everybody's Watching</b></p>
+<p>When all eyes are on you, take +1 armor.</p>
+<p><b>Cut and Turn</b></p>
+<p>When you break away from someone in close quarters, roll +DEX. On a 10+, you slip free and may take someone with you. On a 7-9, you slip free but leave something behind.</p>
+<p><b>Taste for Danger</b></p>
+<p>When you chase desire into obvious trouble, mark XP if you see it through.</p>
+<p><b>No, You Look at Me</b></p>
+<p>When you meet the gaze of something seductive, supernatural, or predatory and refuse to look away, roll +CHA. On a 10+, it is unsettled; take +1 forward against it. On a 7-9, you hold its attention, but it learns something true about you.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Steal the Spotlight:</b> When you enter a scene dramatically, everyone notices you first.</li>
+<li><b>Too Close to Let Go:</b> When someone you've charmed would be harmed, take +1 ongoing to intervene.</li>
+<li><b>Killer Chorus:</b> Your damage die becomes d10 when you attack with surprise, intimacy, or betrayal.</li>
+<li><b>Unfinished Business:</b> Once per session, declare that someone important from your past is here tonight.</li>
+<li><b>Heartbreaker:</b> When someone chooses you over safety, mark XP.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🎵 # THE CROONER</h2><p>*You live on attention, chemistry, and the trembling second before everybody gives in.*</p>
+<p><b>Damage Die:</b> d8</p>
+<p><b>HP:</b> 8 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Black Southerner:</b> Pearline, Grace, Odessa, Viola / Louis, Booker, Caleb, Amos</p>
+<p><b>White Local:</b> Mary, June, Alma, Sadie / Clyde, Roy, Ellis, Vernon</p>
+<p><b>Choctaw:</b> Nita, Kaya, Fala, Aponi / Talowah, Hosa, Miko, Chayton</p>
+<p><b>Irish Drifter:</b> Nora, Maeve, Eileen, Brigid / Finn, Declan, Seamus, Eamon</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Heritage:</b> Black Southerner | White Local | Choctaw | Irish Drifter | ask the table</p>
+<p><b>Age:</b> young and dazzling | mature and magnetic | beautiful in a dangerous way</p>
+<p><b>Eyes:</b> laughing and inviting | smoky and tired | predatory when the lights go low</p>
+<p><b>Build:</b> graceful and loose | all curves or angles | lithe as a switchblade</p>
+<p><b>Clothing:</b> dance-floor finery | neat church clothes turned sinful | silk, satin, or something that catches the light</p>
+<p><b>Signature:</b> a voice built for close rooms | a scent nobody forgets | a smile that asks for trouble</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Draw out a confession, desire, or weakness.</li>
+<li>Risk yourself for someone you should leave alone.</li>
+<li>Make a room revolve around you.</li>
+<li>Turn temptation into leverage instead of surrender.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 9.</p>
+<ul>
+<li>Hand microphone, harmonica, or stage prop weapon (hand, 1 slot)</li>
+<li>Dress shoes or heels made for dancing (1 slot)</li>
+<li>Concealed garter knife or sleeve razor (hand, 1 slot)</li>
+<li>Perfume, powder, or pomade (small)</li>
+<li>Cigarette case (small)</li>
+<li>Good coat or performance outfit (1 slot)</li>
+<li>Flask (1 slot)</li>
+<li>Letters, photos, or blackmail notes (1 slot)</li>
+<li>Costume jewelry or wedding ring (small)</li>
+<li>Hairpin or cufflink of silver (small)</li>
+<li>Compact mirror (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_firekeeper" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Preacher's Child</b></p>
+<p>You were raised to fear what moves through you. When you openly invoke scripture, prayer, or a hymn against a supernatural threat, take advantage.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you first heard me sing and knew it would cost me something?</li>
+<li>Which of you has seen me break a promise to my family?</li>
+<li>Which of you thinks my gift is holy?</li>
+<li>Which of you has already asked me to play for the dead?</li>
+</ul>
+<p>---</p>
+<p><b>Juke Prodigy</b></p>
+<p>Your talent was too large for porches and fish fries. When you perform before a crowd that wants release, on a 7+ to <b>Parley</b> or <b>Defy Danger</b> through music, one nearby ally also takes +1 forward.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you put me in front of a paying crowd for the first time?</li>
+<li>Which of you heard me steal a melody from somewhere unnatural?</li>
+<li>Which of you keeps warning me not to chase applause?</li>
+<li>Which of you saw what happened the last time I played too hard?</li>
+</ul>
+<p>---</p>
+<p><b>Church Runaway</b></p>
+<p>You learned to hide your hunger behind a clean shirt and a bowed head. When you <b>Discern Realities</b> about sin, temptation, or hypocrisy, ask one extra question.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you helped me leave before dawn?</li>
+<li>Which of you still thinks I should go back?</li>
+<li>Which of you knows what I did before I ran?</li>
+<li>Which of you reminds me of the home I abandoned?</li>
+</ul>
+<p>---</p>
+<p><b>Grave Singer</b></p>
+<p>You have sung over bodies and felt something answer back. When you spend a few moments singing over the dead, ask the GM what in this place refuses to rest.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you brought me to a funeral I cannot forget?</li>
+<li>Which of you has heard me sing to someone already gone?</li>
+<li>Which of you believes the dead listen when I play?</li>
+<li>Which of you fears what might answer me one night?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Veil-Piercing Song</b></p>
+<p>When you sing or play with your full heart in a place of strong feeling, roll +CHA. On a 10+, choose 2. On a 7-9, choose 1.</p>
+<ul>
+<li>Draw out a hidden truth, memory, or spirit.</li>
+<li>Give everyone who follows your lead +1 forward.</li>
+<li>Hold back fear, panic, or despair for a few moments.</li>
+</ul>
+<p><b>Born for the Blues</b></p>
+<p>When you <b>Perform</b> for people in pain, want, or grief, roll +CHA. On a 10+, they give themselves to the moment; ask the GM who in the scene is most changed by your music. On a 7-9, they feel it, but you also attract unwanted attention.</p>
+<p><b>Hear the Wrong Note</b></p>
+<p>When something supernatural enters the scene, ask the GM what sounds wrong about it. Take +1 forward acting on the answer.</p>
+<p><b>Silver Resonance</b></p>
+<p>When you strike a supernatural creature with a silver instrument part, string, or slide, your attack gains ignores armor.</p>
+<p><b>Keep the Room</b></p>
+<p>When you step between panic and a crowd with your voice, roll +CHA. On a 10+, the crowd holds together and follows your lead. On a 7-9, they hold, but choose one: they demand reassurance, they leave someone behind, or you take the brunt of the danger.</p>
+<p><b>Not Yet My Song</b></p>
+<p>When death or possession reaches for you through music, roll +WIS. On a 10+, shut it out. On a 7-9, choose one: you shut it out but take disadvantage on your next roll, or you let it in just enough to learn something useful.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Open the Veil:</b> When you use <b>Veil-Piercing Song</b>, on a 12+ choose 3.</li>
+<li><b>Borrowed Chorus:</b> When you sing with an ally, both of you heal 1d6 HP.</li>
+<li><b>Hard Gospel:</b> Your damage die becomes d8.</li>
+<li><b>Name the Hunger:</b> Once per scene, ask the GM what a supernatural foe wants most right now.</li>
+<li><b>Last Note Standing:</b> When you would be taken out while still holding your instrument, roll +CHA. On a 10+, stay standing with 1 HP.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🔥 # THE FIREKEEPER</h2><p>*Born with a song that opens wounds, heals a room, and draws hungry things out of the dark.*</p>
+<p><b>Damage Die:</b> d6</p>
+<p><b>HP:</b> 6 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Black Southerner:</b> Sammie, Elijah, Isaiah, Moses / Ruthie, Pearline, Annie, Grace</p>
+<p><b>White Local:</b> Mary, Joan, June, Birdie / Ellis, Roy, Bert, Calvin</p>
+<p><b>Choctaw:</b> Chayton, Nita, Hosa, Talowah / Aponi, Koi, Issi, Fala</p>
+<p><b>Irish Drifter:</b> Remmick, Eamon, Declan, Seamus / Siobhan, Maeve, Brigid, Nora</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Heritage:</b> Black Southerner | White Local | Choctaw | Irish Drifter | ask the table</p>
+<p><b>Age:</b> young and untested | worn before your time | old-souled and watchful</p>
+<p><b>Eyes:</b> fever-bright | prayerful and distant | soft until the music starts</p>
+<p><b>Build:</b> raw-boned | lean and restless | slight and wiry</p>
+<p><b>Clothing:</b> Sunday best gone threadbare | work clothes dusted with cotton | stage finery with one good shine</p>
+<p><b>Signature:</b> a beloved guitar | scarred fingertips | a voice that silences a room</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Play a song that tells an ugly truth no one wants spoken.</li>
+<li>Use your gift to protect your people, not just yourself.</li>
+<li>Follow a melody, omen, or story somewhere dangerous.</li>
+<li>Refuse to let fear silence you.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 9.</p>
+<ul>
+<li>Resonator guitar (close, 2 slots)</li>
+<li>Pocket pistol (near, reload, 1 slot)</li>
+<li>Silver slide or resonator plate (small)</li>
+<li>Bottle of corn liquor (1 slot)</li>
+<li>Folding knife (hand, 1 slot)</li>
+<li>Sunday suit or stage dress (1 slot)</li>
+<li>Spare strings and picks (1 slot)</li>
+<li>Tin cross or prayer card (small)</li>
+<li>Candle stub (small)</li>
+<li>Chalk nub (small)</li>
+<li>Matchbook (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_heavy" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>War Veteran</b></p>
+<p>You learned to keep moving under gunfire. When you <b>Defy Danger</b> under bullets, explosions, or crossfire, take advantage.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows what the war made me do?</li>
+<li>Which of you trusts me with a gun but not with peace?</li>
+<li>Which of you saw me freeze once, and never forgot it?</li>
+<li>Which of you has asked me to teach you how to kill?</li>
+</ul>
+<p>---</p>
+<p><b>Older Sibling</b></p>
+<p>You have spent years cleaning up after somebody you love. When you take damage meant for an ally within reach, reduce it by 1d4.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you have I protected out of habit?</li>
+<li>Which of you keeps reminding me of someone I failed?</li>
+<li>Which of you knows the worst thing I ever did for family?</li>
+<li>Which of you thinks I hold on too tight?</li>
+</ul>
+<p>---</p>
+<p><b>Chicago Muscle</b></p>
+<p>You enforced debts, threats, and last chances. When you <b>Parley</b> with naked violence and show you can carry it through, roll +STR instead of +CHA.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has seen me collect on a promise?</li>
+<li>Which of you still wonders who I left buried up north?</li>
+<li>Which of you asked me for help I should have refused?</li>
+<li>Which of you believes I can never go clean?</li>
+</ul>
+<p>---</p>
+<p><b>Local Protector</b></p>
+<p>You stayed when others ran. When you <b>Defend</b> a home, business, camp, or community space, hold +1 Readiness.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you did I warn not to come back here?</li>
+<li>Which of you saw me stand my ground when everyone else ran?</li>
+<li>Which of you knows why this place matters to me?</li>
+<li>Which of you makes me believe it could still be worth saving?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Gun Hand</b></p>
+<p>When you attack with a firearm at near range, deal +1 damage.</p>
+<p><b>Stand in the Door</b></p>
+<p>When you <b>Defend</b> a doorway, stair, bridge, or other choke point, on a 10+ hold 3 instead of 2.</p>
+<p><b>Cold Resolve</b></p>
+<p>When fear, grief, or supernatural pressure would make you hesitate, roll +CON. On a 10+, keep moving. On a 7-9, keep moving, but the GM chooses one thing you leave exposed.</p>
+<p><b>Hard as the Delta</b></p>
+<p>You count as 1 armor.</p>
+<p><b>One Good Warning</b></p>
+<p>When you clearly tell someone what will happen if they cross you and mean every word, roll +CHA. On a 10+, they back off, stall, or show you what they fear most. On a 7-9, they hesitate, but only for a moment.</p>
+<p><b>Dirty Fight</b></p>
+<p>When you <b>Hack and Slash</b>, on a 10+ you may also choose one: disarm them, drive them where you want, or keep them off an ally.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Tommy Gun:</b> When you unleash a burst from a prepared automatic weapon, it gains messy and forceful.</li>
+<li><b>No Retreat:</b> When you <b>Defend</b>, even on a miss hold 1 Readiness.</li>
+<li><b>Blood and Smoke:</b> When you take damage, take +1 forward against whoever dealt it.</li>
+<li><b>War Chest:</b> You begin each session with one extra useful weapon or explosive the fiction supports.</li>
+<li><b>Can't Keep Him Down:</b> When you would die from violence, roll +CON. On a 10+, survive long enough to finish one more thing.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🛡️ # THE HEAVY</h2><p>*You know how fast a dream can turn to blood. When the door caves in, you are what stands there.*</p>
+<p><b>Damage Die:</b> d10</p>
+<p><b>HP:</b> 10 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Black Southerner:</b> Smoke, Elijah, Ezekiel, Amos / Annie, Ruth, Hattie, Viola</p>
+<p><b>White Local:</b> Bert, Clyde, Roy, Vernon / Joan, Sadie, Alma, Ruth</p>
+<p><b>Choctaw:</b> Chayton, Hoke, Miko, Tushka / Aponi, Isi, Kaya, Hoshi</p>
+<p><b>Irish Drifter:</b> Remmick, Ciaran, Padraig, Finn / Maeve, Siobhan, Brigid, Eileen</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Heritage:</b> Black Southerner | White Local | Choctaw | Irish Drifter | ask the table</p>
+<p><b>Age:</b> broad-shouldered and prime | scarred and seasoned | tired but still dangerous</p>
+<p><b>Eyes:</b> flat and hard | protective and watchful | haunted and sleepless</p>
+<p><b>Build:</b> thick and powerful | rangy and mean | heavy with old damage</p>
+<p><b>Clothing:</b> work shirt and shoulder holster | pressed suit with a hidden gun | military leftovers and boots</p>
+<p><b>Signature:</b> shaking hands you master by force | a war scar | a stare that ends arguments</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Protect someone who cannot survive the night alone.</li>
+<li>End a threat cleanly before it reaches your people.</li>
+<li>Pay an old debt in blood, money, or sacrifice.</li>
+<li>Refuse to let a bully decide who gets to live free.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 10.</p>
+<ul>
+<li>Revolver (near, reload, 1 slot)</li>
+<li>Shotgun (close, messy, reload, 2 slots)</li>
+<li>Trench knife (hand, 1 slot)</li>
+<li>Heavy coat or suit jacket (1 slot)</li>
+<li>Brass knuckles (hand, 1 slot)</li>
+<li>Spare shells and cartridges (1 slot)</li>
+<li>Crowbar (forceful, 2 slots)</li>
+<li>Dog tags or keepsake charm (small)</li>
+<li>Cigarettes (small)</li>
+<li>Match tin (small)</li>
+<li>Silver coin (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_operator" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Bootleg Runner</b></p>
+<p>You know how to move heat, liquor, and people through bad country. When you arrange transport or contraband, ask the GM what it will cost and take +1 forward dealing with it.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you rode with me on a run that should have killed us?</li>
+<li>Which of you knows where I keep the good stuff hidden?</li>
+<li>Which of you thinks I always have a second angle?</li>
+<li>Which of you still wants a cut from an old score?</li>
+</ul>
+<p>---</p>
+<p><b>Smooth Talker</b></p>
+<p>You can sell a dream before the room knows it needs one. When you <b>Parley</b> with promises of pleasure, profit, or belonging, take advantage.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you first believed one of my impossible ideas?</li>
+<li>Which of you caught me in a lie and stayed anyway?</li>
+<li>Which of you knows who I charm when I'm scared?</li>
+<li>Which of you keeps me honest more than I like?</li>
+</ul>
+<p>---</p>
+<p><b>Backroom Lover</b></p>
+<p>You have left trouble in too many beds and train stations. When someone wants more from you than you can give, ask the GM what dangerous opportunity it opens up.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows the one person I should not have left behind?</li>
+<li>Which of you saw me choose appetite over caution?</li>
+<li>Which of you came to collect on a promise I made in the dark?</li>
+<li>Which of you thinks I still confuse love with escape?</li>
+</ul>
+<p>---</p>
+<p><b>Club Starter</b></p>
+<p>You've opened parties in places that should never have worked. When you set up a night's business in a rough place, roll +INT. On a 10+, choose 3. On a 7-9, choose 2.</p>
+<ul>
+<li>Word gets out to the right people.</li>
+<li>Cash starts flowing early.</li>
+<li>You avoid immediate trouble from the law or local power.</li>
+<li>You find one useful person before the night starts.</li>
+</ul>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you did I recruit into one of my schemes?</li>
+<li>Which of you saw me turn a ruin into a payday?</li>
+<li>Which of you believes I can build something real?</li>
+<li>Which of you expects me to run when it collapses?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Read the Room</b></p>
+<p>When you enter a crowded place looking for profit, danger, or weakness, roll +CHA. On a 10+, ask 3. On a 7-9, ask 1.</p>
+<ul>
+<li>Who here wants in badly enough to pay?</li>
+<li>Who here is one wrong word from violence?</li>
+<li>Who here is connected to local power?</li>
+<li>What's the quickest way out if this turns bad?</li>
+</ul>
+<p><b>Fast Hands</b></p>
+<p>When you palm, plant, switch, or conceal something small, roll +DEX. On a 10+, no one notices until you want them to. On a 7-9, you do it, but leave a trace, a witness, or a bad suspicion.</p>
+<p><b>Everybody Knows Somebody</b></p>
+<p>When you arrive somewhere with money changing hands, name the sort of person you need; the GM will tell you where to find them or why they already know you.</p>
+<p><b>Ain't No Boys Here</b></p>
+<p>When someone tries to belittle, dismiss, or box you in, take +1 forward against them.</p>
+<p><b>Cut a Deal</b></p>
+<p>When you offer a split, favor, or future opportunity to avoid immediate trouble, roll +CHA. On a 10+, they take it for now. On a 7-9, they want proof first.</p>
+<p><b>Hidden Blade</b></p>
+<p>You always have a knife, razor, holdout pistol, or similar small weapon on you unless you are stripped and searched.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>House Favorite:</b> Once per session, declare that you are recognized and welcome somewhere you plausibly could be.</li>
+<li><b>Two Steps Ahead:</b> When your plan goes wrong, ask the GM what you already prepared for this.</li>
+<li><b>Velvet Threat:</b> When you <b>Parley</b>, on a 12+ they also reveal something useful.</li>
+<li><b>Quick Draw:</b> The first time you attack from surprise in a scene, deal +1d6 damage.</li>
+<li><b>Make It Look Easy:</b> When you escape by charm, disguise, or confusion, take advantage.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🔧 # THE OPERATOR</h2><p>*You can find a room, a bottle, a pianist, a buyer, and a lie that holds together until sunrise.*</p>
+<p><b>Damage Die:</b> d8</p>
+<p><b>HP:</b> 8 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Black Southerner:</b> Stack, Louis, Booker, Caleb / Pearline, Grace, Odessa, Lottie</p>
+<p><b>White Local:</b> Mary, June, Evelyn, Joan / Clyde, Roy, Vernon, Travis</p>
+<p><b>Choctaw:</b> Talowah, Chayton, Miko, Hosa / Kaya, Nita, Aponi, Fala</p>
+<p><b>Irish Drifter:</b> Seamus, Declan, Finn, Ciaran / Nora, Brigid, Maeve, Eileen</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Heritage:</b> Black Southerner | White Local | Choctaw | Irish Drifter | ask the table</p>
+<p><b>Age:</b> smooth and sharp | stylish and dangerous | older than your smile admits</p>
+<p><b>Eyes:</b> laughing and unreadable | hungry and appraising | tender when nobody's looking</p>
+<p><b>Build:</b> sleek and quick | elegant and wiry | soft until trouble starts</p>
+<p><b>Clothing:</b> city suit and polished shoes | neat dress and travel gloves | loud style bought with hard money</p>
+<p><b>Signature:</b> a cigarette between two fingers | a grin nobody trusts | cologne that arrives before you do</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Turn a bad room into your kind of room.</li>
+<li>Win someone over who should know better.</li>
+<li>Build something real out of lies and hustle.</li>
+<li>Take a risk for pleasure, style, or profit.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 9.</p>
+<ul>
+<li>Holdout pistol (near, reload, 1 slot)</li>
+<li>Straight razor (hand, 1 slot)</li>
+<li>Fine suit or dress (1 slot)</li>
+<li>Roll of bills and plantation scrip (1 slot)</li>
+<li>Flask of imported liquor (1 slot)</li>
+<li>Deck of cards or loaded dice (small)</li>
+<li>Car keys or truck keys (small)</li>
+<li>Ledger book (1 slot)</li>
+<li>Pocket watch (small)</li>
+<li>Perfume or pomade (small)</li>
+<li>Silver tie pin or brooch (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_rootworker" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Conjure Keeper</b></p>
+<p>You were taught the old work by blood. When you prepare a charm, ward, or feeding for an existing talisman, roll +WIS. On a 10+, choose 2. On a 7-9, choose 1.</p>
+<ul>
+<li>It lasts the whole night.</li>
+<li>It protects one person or threshold from supernatural intrusion.</li>
+<li>It reveals when it has been tested or broken.</li>
+</ul>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you wears a charm I made?</li>
+<li>Which of you begged me for help too late?</li>
+<li>Which of you has seen my work save a life?</li>
+<li>Which of you fears what I had to pay for my craft?</li>
+</ul>
+<p>---</p>
+<p><b>Card Reader</b></p>
+<p>People tell you more when they think fate is talking. When you lay cards, bones, shells, or signs for someone and they answer honestly, both of you take +1 forward acting on the reading.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you asked me a question you were afraid to hear answered?</li>
+<li>Which of you ignored my warning?</li>
+<li>Which of you knows I sometimes lie to spare a heart?</li>
+<li>Which of you keeps coming back for another reading?</li>
+</ul>
+<p>---</p>
+<p><b>Healer of the Quarter</b></p>
+<p>You are the one people bring wounds, fevers, and messes to. When you spend a few minutes tending someone with herbs, touch, or prayer, heal 1d6 HP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you showed up bleeding at my door?</li>
+<li>Which of you owes me for medicine or silence?</li>
+<li>Which of you stayed with me through a long night?</li>
+<li>Which of you saw me fail to save someone?</li>
+</ul>
+<p>---</p>
+<p><b>Widowed by the Night</b></p>
+<p>You have already lost something to hunger from beyond the veil. When you act directly against a supernatural creature, take +1 ongoing until the scene ends.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows the name of the one I lost?</li>
+<li>Which of you was there the night everything changed?</li>
+<li>Which of you thinks grief sharpened me into a weapon?</li>
+<li>Which of you still sees tenderness in me?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Rootwork</b></p>
+<p>When you prepare a person, place, or object against evil with roots, powders, water, prayer, or blood, tell the table what it looks like and roll +WIS. On a 10+, it works and choose 2. On a 7-9, choose 1.</p>
+<ul>
+<li>It is strong enough to turn aside a supernatural creature for a moment.</li>
+<li>It lasts until dawn.</li>
+<li>It does not demand an immediate sacrifice.</li>
+</ul>
+<p><b>Feed the Mojo</b></p>
+<p>When you refresh an ally's charm or mojo bag, they take advantage on their next roll against curse, possession, or supernatural harm.</p>
+<p><b>I've Seen Worse</b></p>
+<p>When something impossible happens in front of you, you may stay calm and ask the GM what it wants, what binds it, or what keeps it out.</p>
+<p><b>Razor From Nowhere</b></p>
+<p>When someone underestimates you in close quarters, take +1 damage forward.</p>
+<p><b>House Blessing</b></p>
+<p>When you sanctify a doorway, room, or campfire before nightfall, the first supernatural thing that tries to cross it must hesitate, reveal itself, or pay a price the GM names.</p>
+<p><b>Speak Soft to the Dead</b></p>
+<p>When you whisper to a body or a haunted place, roll +WIS. On a 10+, the GM tells you something useful it remembers. On a 7-9, it tells you, but something else hears as well.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Strong Roots:</b> When you use <b>Rootwork</b>, on a 12+ choose all 3.</li>
+<li><b>Bottle the Dawn:</b> Once per session, produce a prepared sanctified mixture that counts as dangerous and magical against a supernatural foe.</li>
+<li><b>Old Name for It:</b> When you first encounter a monster, curse, or spirit, ask the GM one extra question about how it can be resisted.</li>
+<li><b>Bone-Deep Calm:</b> You are immune to mundane fear.</li>
+<li><b>Protective Circle:</b> When the group shelters where you have prepared defenses, everyone heals your level in HP during <b>Making Camp</b>.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🌿 # THE ROOTWORKER</h2><p>*You know the old protections, the old names, and how thin the world gets when grief and music open it up.*</p>
+<p><b>Damage Die:</b> d6</p>
+<p><b>HP:</b> 6 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Black Southerner:</b> Annie, Ruthie, Hattie, Viola / Elijah, Amos, Ezekiel, Solomon</p>
+<p><b>White Local:</b> Joan, Alma, Birdie, June / Calvin, Roy, Bert, Ellis</p>
+<p><b>Choctaw:</b> Aponi, Kaya, Nita, Fala / Chayton, Miko, Tushka, Hoke</p>
+<p><b>Irish Drifter:</b> Maeve, Nora, Brigid, Siobhan / Eamon, Finn, Declan, Remmick</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Heritage:</b> Black Southerner | White Local | Choctaw | Irish Drifter | ask the table</p>
+<p><b>Age:</b> warm and knowing | middle-aged and formidable | ancient behind the eyes</p>
+<p><b>Eyes:</b> amused and dangerous | tired and kind | fixed on things others miss</p>
+<p><b>Build:</b> soft and rooted | lean and practical | slight and unshakable</p>
+<p><b>Clothing:</b> work dress with hidden pockets | apron and charms | dark finery with a ritual touch</p>
+<p><b>Signature:</b> a mojo bag | mason jars and powders | a blade produced from nowhere</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Protect a person, home, or memory from the dark.</li>
+<li>Demand a real price from someone who treats your work lightly.</li>
+<li>Learn the true nature of a curse, spirit, or hunger.</li>
+<li>Keep one foot in tenderness even when violence would be easier.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 9.</p>
+<ul>
+<li>Straight razor (hand, 1 slot)</li>
+<li>Charm satchel of roots and powders (1 slot)</li>
+<li>Mojo bag (small)</li>
+<li>Glass bottle of sanctified water (1 slot)</li>
+<li>Deck of worn cards or bone set (1 slot)</li>
+<li>Mason jar medicine kit (1 slot)</li>
+<li>Heavy shawl or coat (1 slot)</li>
+<li>Candle bundle (1 slot)</li>
+<li>Small bell (small)</li>
+<li>Sewing needle and black thread (small)</li>
+<li>Silver thimble or ring (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+<div id="en_optional_moves" class="playbook-content lang-en"><div class="optional-moves-container"><div class="card"><h2>🌟 # Optional Moves — Sinners</h2><p>---</p>
+<p><b>Open the Juke</b></p>
+<p>When the group turns a rough place into a juke joint, fish fry, rent party, revival, or all-night gathering, say who handled the music, the food, the money, and the door, then roll +CHA from whoever led the whole affair. On a 10+, choose 3. On a 7-9, choose 2.</p>
+<ul>
+<li>The right people hear about it.</li>
+<li>The crowd comes ready to spend, not fight.</li>
+<li>Local trouble stays outside for now.</li>
+<li>Something true and beautiful happens here tonight.</li>
+</ul>
+<p>---</p>
+<p><b>After Sundown Travel</b></p>
+<p>When you travel Delta roads, riverbanks, fields, or backwoods after sunset, roll +WIS. On a 10+, you avoid the worst of the night and arrive with warning enough to prepare. On a 7-9, you arrive, but choose one: you are followed, you leave something behind, or you see something you wish you had not.</p>
+<p>---</p>
+<p><b>Hold the Threshold</b></p>
+<p>When something dangerous wants to be invited in and you hold the line at a door, gate, campfire, or window, roll +CON. On a 10+, it cannot cross unless the fiction changes. On a 7-9, it stays out for now, but choose one: it gets in your head, it finds another way around, or someone inside cracks under the pressure.</p>
+<p>---</p>
+<p><b>The Hungry Song</b></p>
+<p>When music, prayer, memory, or supernatural beauty tempts you to give yourself over, roll +WIS. On a 10+, you keep hold of yourself and may ask the GM what the song wants. On a 7-9, you keep yourself, but choose one: take disadvantage forward, reveal an ugly truth, or step closer before you stop.</p>
+<p>---</p>
+<p><b>Pass Through Hostile Town</b></p>
+<p>When the group must buy, sell, work, or move through a hostile town where the wrong eyes can ruin everything, roll +INT. On a 10+, choose 2. On a 7-9, choose 1.</p>
+<ul>
+<li>You finish quickly and cleanly.</li>
+<li>You do not owe a favor to local power.</li>
+<li>Nobody important learns your names.</li>
+<li>You spot the danger before it closes.</li>
+</ul></div></div></div>
+
+    <div id="en_adventures" class="playbook-content lang-en">
+        <div class="main-column" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2rem;">
+            <div class="card adventure-generator-card">
+                <h2>✨ Adventure Generator — Sinners Generator</h2>
+                <div class="generator-result" id="rng-result-en">
+                    ...
+                </div>
+                <div class="generator-actions">
+                    <button type="button" class="lang-toggle active rng-roll-btn" onclick="generateAdventure('en')">🎲 Losuj / Roll</button>
+                </div>
+            </div>
+            
+            <div class="adventure-tables-grid" id="rng-tables-en">
+    
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 1: Action & Location</h3>
+                    <div class="adventure-prefix">We discover</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a ruined juke joint</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a haunted plantation house</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">an abandoned gas station</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a forgotten crossroads</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a village sinking into the swamp</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a barn burnt to ashes</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a church collapsed beneath a hail of lead</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a hidden corner of an old cemetery</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a long-hidden traveling circus camp</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a decommissioned railway station</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a rotting prison in the wetlands</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">the dusty office of a murdered sheriff</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a hidden moonshiners' warehouse</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a camp of wandering preachers</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">an old wagon full of strange instruments</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a lost path into the deep dark woods</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a gambling den swallowed by the river</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a shelter full of starving hounds</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">the blood-stained floor of a mill</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a stifling room in a cheap motel</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 2: Placement & Geography</h3>
+                    <div class="adventure-prefix">which lies</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">on the outskirts of a foggy marsh</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">right by the foaming waters of the Mississippi</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">in the heart of Louisiana's dark forests</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">at the end of a deserted interstate highway</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">in a forbidden sundown town</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">on a dried-up cotton field</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">deep in the river's backwaters</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">in the shadow of a massive, blackened oak</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">near faded train tracks</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">in an abandoned hermitage by the county line</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">amidst poisoned wells</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">hidden from the sight of sin-eaters</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">beyond treacherous mire</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">where the moonlight never reaches</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">right by an old, crumbling bridge</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">on land owned by a cruel landlord</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">across from a hostile police station</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">behind a swampy barrier of mangrove roots</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">close to a devil's pact crossroads</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">in a sinkhole left by an old fire</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 3: Goal & Target</h3>
+                    <div class="adventure-prefix">searching for</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a lost record by a blues master.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">the hidden diary of a burned sheriff.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a legendary guitar that steals souls.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a pact that can wash away our sins.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">the buried treasure of ruthless bootleggers.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">the holy cross of an old preacher.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">proof of an escaped brother's innocence.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">the key to rusted shackles from the past.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a bottle of brew that lets you see demons.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">forged papers to escape up North.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">the tears of an innocent executed man.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">the bones of a long-murdered musician.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">an amulet protecting against the hellhound.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a letter from a lover killed years ago.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">revenge that will bring no relief.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">the silver cane of a Hoodoo warlock.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">the blood of someone who has never sinned.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">sheet music for a song that brings darkness.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">an old shotgun inherited from a grandfather.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a safe sanctuary against the coming night.</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 4: Purpose & Mission</h3>
+                    <div class="adventure-prefix">We are here to</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">settle old scores</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">free someone unjustly captured</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">perform a ritual banishing evil spirits</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">burn a place of past nightmares to the ground</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">repay a debt made at the crossroads</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">gather rare herbs that only grow in death's shadow</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">force the local baron to make concessions</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">find a cure for a rotting soul</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">protect the locals from the night's wrath</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">end an unnatural drought plaguing the fields</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">make a blood oath</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">close a portal leaking evil</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">sing a song of freedom</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">finally bury someone who has risen from the dead</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">cover up bloody tracks</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">reclaim what is rightfully ours</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">escape the pursuit of bounty hunters</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">gain the favor of the local sheriff</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">prove that Hoodoo magic is more than just myth</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">break the curse cast upon a musician</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 5: Minor Threats & Obstacles</h3>
+                    <div class="adventure-prefix">guarded by</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a fanatic mob of farmers</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">fossilized, swampy undead</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a gang of ruthless smugglers</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a corrupt mayor's militia</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">massive, starved alligators</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a horde of hellhounds</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">the ghosts of lynching victims</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">the curses of an unseen voodoo priest</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">shadow-tainted, bloodthirsty crows</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">phantom blues singers</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">warlocks hidden in the shadows</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">mutated vagabonds</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">treacherous overseers from a prison farm</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">packs of wolves controlled by darkness</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">enchanted kudzu vines that choke those who approach</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a swarm of possessed locusts</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">bloody specters of the Ku Klux Klan</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">animated scarecrows from ruined crops</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a mad tax collector and his gunmen</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">swarms of killer wasps serving a sorcerer</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 6: Major Boss & Antagonist</h3>
+                    <div class="adventure-prefix">and</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a merciless county judge.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a demon from the crossroads.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a powerful priest of dark forces.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a cursed musician thirsting for our blood.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a heartless moonshine magnate.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a slave catcher who never truly died.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">an old witch whose amulet we stole.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a possessed preacher demanding absolute obedience.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a treacherous friend from the prohibition era.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a plantation owner with murderous intent.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">the great beast of the wetlands, power of the deep.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a swindler gambling with the lives of juke joint patrons.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a dead lawman hungry for the damnation of all the guilty.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">the incarnate shadow of a sin we committed in anger.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">the Devil in his own tantalizing human form.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a mad bard spreading a plague of misfortune with his song.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a matron holding everyone in her grip of debts and blood.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a ruthless bounty hunter serving the lord of darkness.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">the spirit of hatred fueling the town's feuds and anger.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">someone from our past we deliberately left to die.</span></li>
+</ul>
+                </div>
+        
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+
+        <footer>
+            <span>Wygenerowano automatycznie • Homebrew World Web Presenter</span>
+            <span>Sinners • katalog playbookow</span>
+        </footer>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.playbook-content');
+    const langToggles = document.querySelectorAll('.lang-toggle');
+    const body = document.body;
+    const html = document.documentElement;
+
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const mainLayout = document.querySelector('.main-layout');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function getVisibleTabs(lang) {
+        return Array.from(tabs).filter((tab) => tab.classList.contains(`lang-${lang}`));
+    }
+
+    function syncAriaStates(activeTabId) {
+        tabs.forEach((tab) => {
+            const isActive = tab.getAttribute('data-tab') === activeTabId;
+            tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            tab.setAttribute('tabindex', isActive ? '0' : '-1');
+        });
+    }
+
+    if (sidebarToggle && mainLayout) {
+        if (localStorage.getItem('sidebar-collapsed') === 'true') {
+            mainLayout.classList.add('sidebar-collapsed');
+            sidebarToggle.innerText = '⮕';
+            sidebarToggle.setAttribute('aria-expanded', 'false');
+        } else {
+            sidebarToggle.setAttribute('aria-expanded', 'true');
+        }
+
+        sidebarToggle.addEventListener('click', () => {
+            const isCollapsed = mainLayout.classList.toggle('sidebar-collapsed');
+            sidebarToggle.innerText = isCollapsed ? '⮕' : '☰';
+            sidebarToggle.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
+            localStorage.setItem('sidebar-collapsed', isCollapsed);
+        });
+    }
+
+    function switchTab(tabId) {
+        tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-tab') === tabId));
+        syncAriaStates(tabId);
+
+        const target = document.getElementById(tabId);
+        if (target) {
+            target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+            const url = new URL(window.location);
+            url.hash = tabId;
+            window.history.replaceState(null, '', url);
+        }
+    }
+
+    function switchLanguage(lang) {
+        body.classList.forEach((cls) => {
+            if (cls.startsWith('lang-')) body.classList.remove(cls);
+        });
+        body.classList.add(`lang-${lang}`);
+        html.lang = lang === 'default' ? 'pl' : lang;
+
+        langToggles.forEach((btn) => {
+            const isActive = btn.getAttribute('data-lang') === lang;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        const visibleTabs = getVisibleTabs(lang);
+        const nextTab = visibleTabs[0];
+        if (nextTab) {
+            const nextTabId = nextTab.getAttribute('data-tab');
+            tabs.forEach((tab) => tab.classList.toggle('active', tab === nextTab));
+            syncAriaStates(nextTabId);
+        }
+
+        window.scrollTo(0, 0);
+    }
+
+    tabs.forEach((tab) => {
+        tab.setAttribute('role', 'tab');
+        tab.addEventListener('click', () => {
+            switchTab(tab.getAttribute('data-tab'));
+        });
+    });
+
+    langToggles.forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+            switchLanguage(toggle.getAttribute('data-lang'));
+        });
+    });
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-tab') === id));
+                syncAriaStates(id);
+            }
+        });
+    }, observerOptions);
+
+    contents.forEach((section) => observer.observe(section));
+
+    const initialHash = window.location.hash.substring(1);
+    const availableLangs = Array.from(langToggles).map((t) => t.getAttribute('data-lang'));
+    
+    let preferredLang = 'default';
+    if (initialHash && availableLangs.includes(initialHash.split('_')[0])) {
+        preferredLang = initialHash.split('_')[0];
+    } else if (availableLangs.includes('en')) {
+        preferredLang = 'en';
+    } else if (availableLangs.length > 0) {
+        preferredLang = availableLangs[0];
+    } else if (document.querySelector('.tab.lang-default')) {
+        preferredLang = 'default';
+    }
+
+    switchLanguage(preferredLang);
+    
+    if (initialHash) {
+        setTimeout(() => {
+            const target = document.getElementById(initialHash);
+            if (target) {
+                switchTab(initialHash);
+                target.scrollIntoView({ behavior: 'auto' });
+            }
+        }, 100);
+    } else {
+        const initialVisibleTab = getVisibleTabs(preferredLang)[0];
+        if (initialVisibleTab) {
+            syncAriaStates(initialVisibleTab.getAttribute('data-tab'));
+        }
+        window.scrollTo(0, 0);
+    }
+    
+    window.generateAdventure = function(lang) {
+        const container = document.getElementById(`rng-tables-${lang}`);
+        if (!container) return;
+        
+        const tables = container.querySelectorAll('.adventure-table-card');
+        if (tables.length < 6) return;
+        
+        let parts = [];
+        tables.forEach(table => {
+            const prefixEl = table.querySelector('.adventure-prefix');
+            const items = table.querySelectorAll('.rng-text');
+            
+            const prefix = prefixEl ? prefixEl.textContent.trim() : "";
+            
+            if (items.length > 0) {
+                const randomText = items[Math.floor(Math.random() * items.length)].textContent.trim();
+                parts.push((prefix ? prefix + " " : "") + `<span class="rng-highlight">${randomText}</span>`);
+            } else {
+                parts.push(prefix);
+            }
+        });
+        
+        if (parts.length >= 6) {
+            const sentence1 = parts[0] + " " + parts[1] + " " + parts[2];
+            const sentence2 = parts[3] + " " + parts[4] + " " + parts[5];
+            
+            let s1 = sentence1.replace(/\s+/g, ' ').replace(/\s+\./g, '.');
+            if(!s1.endsWith('.')) s1 += '.';
+            let s2 = sentence2.replace(/\s+/g, ' ').replace(/\s+\./g, '.');
+            if(!s2.endsWith('.')) s2 += '.';
+
+            const capitalize = (str) => {
+                let inTag = false;
+                for (let i = 0; i < str.length; i++) {
+                    if (str[i] === '<') inTag = true;
+                    else if (str[i] === '>') inTag = false;
+                    else if (!inTag && /[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/.test(str[i])) {
+                        return str.substring(0, i) + str[i].toUpperCase() + str.substring(i + 1);
+                    }
+                }
+                return str;
+            };
+
+            s1 = capitalize(s1);
+            s2 = capitalize(s2);
+            
+            const resultEl = document.getElementById(`rng-result-${lang}`);
+            if (resultEl) {
+                resultEl.innerHTML = `<p>${s1}</p><p>${s2}</p>`;
+            }
+        }
+    };
+
+    availableLangs.forEach(l => {
+        if(document.getElementById(`rng-result-${l}`)) {
+            generateAdventure(l);
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

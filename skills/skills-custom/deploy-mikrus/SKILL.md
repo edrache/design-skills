@@ -43,6 +43,6 @@ The script uses the following defaults:
 - **Port**: `10131`
 - **User**: `deploy`
 - **Base Directory**: `/cytrus/katalog1`
-- **Key**: `~/.ssh/id_ed25519_mikrus_game`
+- **Key**: `~/.ssh/id_ed25519_mikrus_deploy`
 
 You can override these by setting environment variables (e.g., `REMOTE_HOST`, `REMOTE_PORT`) before running the script if necessary.

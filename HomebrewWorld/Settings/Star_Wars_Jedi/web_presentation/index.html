@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars Jedi - Homebrew World</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Cormorant+Garamond:wght@600;700&amp;display=swap" rel="stylesheet">
+    <style>
+    :root {
+    --bg: #111015;
+    --panel: rgba(255, 248, 238, 0.08);
+    --panel-strong: rgba(255, 248, 238, 0.14);
+    --line: rgba(255, 248, 238, 0.16);
+    --text: #f6f0e8;
+    --muted: #cabfb1;
+    --accent: #d29b5c;
+    --accent-strong: #f0c489;
+    --shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+    --transition: 180ms ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "Manrope", sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background:
+        radial-gradient(circle at top left, rgba(210, 155, 92, 0.18), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(128, 62, 46, 0.25), transparent 28%),
+        linear-gradient(180deg, #17141d 0%, #0d0c10 100%);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 90%);
+}
+
+p, li, h1, h2, h3, b, span, div {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.container {
+    width: min(1400px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 32px 0 56px;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 32px;
+    padding: clamp(2rem, 4vw, 3.6rem);
+    border: 1px solid var(--line);
+    border-radius: 32px;
+    background:
+        linear-gradient(135deg, rgba(255, 248, 238, 0.08), rgba(255, 248, 238, 0.02)),
+        rgba(12, 10, 15, 0.72);
+    box-shadow: var(--shadow);
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: auto -10% -35% 50%;
+    width: 60%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(240, 196, 137, 0.35), transparent 60%);
+    filter: blur(18px);
+}
+
+.hero-top,
+.page-toolbar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.page-toolbar {
+    margin-top: 28px;
+}
+
+.eyebrow {
+    margin-bottom: 18px;
+    color: var(--accent-strong);
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    font-size: 0.74rem;
+    font-weight: 800;
+}
+
+.home-link,
+.lang-toggle,
+.stat-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 44px;
+    padding: 12px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition);
+}
+
+.home-link:hover,
+.lang-toggle:hover,
+.stat-badge:hover {
+    transform: translateY(-1px);
+    border-color: rgba(240, 196, 137, 0.45);
+    background: rgba(255, 248, 238, 0.14);
+}
+
+.home-link:focus-visible,
+.lang-toggle:focus-visible,
+#sidebar-toggle:focus-visible,
+.tab:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 2px;
+}
+
+.lang-selector {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.lang-toggle {
+    cursor: pointer;
+}
+
+.lang-toggle.active {
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+    color: #1a1410;
+}
+
+.page-title {
+    position: relative;
+    z-index: 1;
+    margin: 18px 0 0;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.title-emoji {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.title-text {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(3.6rem, 9vw, 7.2rem);
+    line-height: 0.9;
+    font-weight: 700;
+}
+
+.page-summary {
+    position: relative;
+    z-index: 1;
+    width: min(48rem, 100%);
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 1.8;
+}
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+    transition: grid-template-columns 0.3s ease, gap 0.3s ease;
+}
+
+.main-layout.sidebar-collapsed {
+    grid-template-columns: 76px minmax(0, 1fr);
+}
+
+.tabs-container,
+.card {
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, var(--panel-strong), rgba(255, 248, 238, 0.04));
+    box-shadow: var(--shadow);
+}
+
+.tabs-container {
+    position: sticky;
+    top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: calc(100vh - 48px);
+    padding: 16px;
+    border-radius: 24px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+}
+
+.sidebar-collapsed .tabs-container {
+    padding: 16px 10px;
+}
+
+#sidebar-toggle {
+    width: 44px;
+    height: 44px;
+    align-self: center;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--panel);
+    color: var(--text);
+    cursor: pointer;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition);
+}
+
+#sidebar-toggle:hover {
+    transform: translateY(-1px);
+    border-color: rgba(240, 196, 137, 0.45);
+    background: rgba(255, 248, 238, 0.14);
+}
+
+.tabs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: opacity 0.25s ease;
+}
+
+.sidebar-collapsed .tabs-list {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tabs-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.9rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    background: transparent;
+    color: var(--muted);
+    text-align: left;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition);
+}
+
+.tab:hover {
+    transform: translateY(-1px);
+    color: var(--text);
+    background: rgba(255, 248, 238, 0.08);
+    border-color: rgba(255, 248, 238, 0.12);
+}
+
+.tab.active {
+    color: #1a1410;
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+    box-shadow: 0 12px 24px rgba(240, 196, 137, 0.18);
+}
+
+.content-area {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    min-width: 0;
+}
+
+.playbook-content {
+    display: none;
+    scroll-margin-top: 2rem;
+    grid-template-columns: minmax(0, 1fr) 350px;
+    gap: 24px;
+    animation: fadeIn 0.35s ease-out;
+}
+
+.lang-pl .playbook-content.lang-pl,
+.lang-en .playbook-content.lang-en,
+.lang-default .playbook-content.lang-default {
+    display: grid;
+}
+
+.tab {
+    display: none;
+}
+
+.lang-pl .tab.lang-pl,
+.lang-en .tab.lang-en,
+.lang-default .tab.lang-default {
+    display: flex;
+}
+
+.main-column,
+.side-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-width: 0;
+}
+
+.card {
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    backdrop-filter: blur(12px);
+}
+
+.card:hover {
+    border-color: rgba(240, 196, 137, 0.45);
+    background: linear-gradient(180deg, rgba(255, 248, 238, 0.18), rgba(255, 248, 238, 0.06));
+    transform: translateY(-3px);
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    line-height: 1;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+h2::before {
+    content: "";
+    width: 4px;
+    height: 1.5rem;
+    background: var(--accent-strong);
+    border-radius: 2px;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--muted);
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    margin-bottom: 0.75rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent-strong);
+    opacity: 0.7;
+}
+
+.stat-badge {
+    margin-right: 0.5rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.look-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.look-row {
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    background: rgba(255, 248, 238, 0.05);
+    border-radius: 12px;
+    border-left: 3px solid var(--accent-strong);
+}
+
+.look-label {
+    font-weight: 800;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    margin-bottom: 0.25rem;
+}
+
+.look-options {
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+.section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent-strong) 0%, transparent 100%);
+    opacity: 0.2;
+    margin: 2rem 0 1rem 0;
+    max-width: 100%;
+}
+
+.move-card {
+    border-left: 4px solid var(--accent-strong);
+}
+
+.move-card b {
+    color: var(--accent-strong);
+}
+
+.gear-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.gear-item {
+    padding: 1rem;
+    background: rgba(255, 248, 238, 0.05);
+    border-radius: 12px;
+    border: 1px solid var(--line);
+}
+
+.optional-moves-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+    gap: 2rem;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    padding: 0 4px;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 1400px) {
+    .playbook-content {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 1100px) {
+    .main-layout,
+    .main-layout.sidebar-collapsed {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .tabs-container {
+        position: sticky;
+        top: 12px;
+        flex-direction: row;
+        align-items: center;
+        max-height: none;
+        padding: 12px;
+        overflow: visible;
+    }
+
+    #sidebar-toggle {
+        display: none;
+    }
+
+    .tabs-list {
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(240, 196, 137, 0.45) transparent;
+    }
+
+    .tabs-list::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .tabs-list::-webkit-scrollbar-thumb {
+        background: rgba(240, 196, 137, 0.35);
+        border-radius: 999px;
+    }
+
+    .tab {
+        width: auto;
+        white-space: nowrap;
+        padding: 0.75rem 1rem;
+    }
+
+    .playbook-content {
+        scroll-margin-top: 5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: min(100% - 20px, 1400px);
+        padding-top: 20px;
+    }
+
+    .hero {
+        padding: 24px;
+        border-radius: 24px;
+    }
+
+    .page-title {
+        gap: 10px;
+    }
+
+    .card {
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+
+    .lang-selector {
+        gap: 0.5rem;
+    }
+
+    .lang-toggle {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.7rem;
+    }
+
+    .page-summary {
+        font-size: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+    </style>
+</head>
+<body class="lang-default">
+    <div class="container">
+        <header class="hero">
+            <p class="eyebrow">Homebrew World Setting</p>
+            <div class="hero-top">
+                
+                <div class="lang-selector"><button class="lang-toggle" data-lang="en" type="button">English</button> <button class="lang-toggle" data-lang="pl" type="button">Polski</button></div>
+            </div>
+            <h1 class="page-title"><span class="title-emoji">🪬</span> <span class="title-text">Star Wars Jedi</span></h1>
+            <p class="page-summary">Materiały do gry Homebrew World ułożone w tej samej bibliotece wizualnej co strona główna: ciepła paleta, szklane panele i czytelny katalog playbooków.</p>
+            <div class="page-toolbar"><span class="stat-badge">5 playbookow EN</span> <span class="stat-badge">5 playbookow PL</span> <span class="stat-badge">Ruchy opcjonalne i szybka nawigacja</span></div>
+        </header>
+
+        <div class="main-layout">
+            <aside class="tabs-container" id="sidebar">
+                <button id="sidebar-toggle" aria-label="Toggle Sidebar" aria-expanded="true" type="button">☰</button>
+                <div class="tabs-list" role="tablist" aria-label="Playbook navigation">
+                    <button class="tab lang-pl" data-tab="pl_playbook_konsul" type="button">👤 KONSUL</button>
+<button class="tab lang-pl" data-tab="pl_playbook_padawan" type="button">👤 PADAWAN</button>
+<button class="tab lang-pl" data-tab="pl_playbook_poszukiwacz" type="button">👤 POSZUKIWACZ</button>
+<button class="tab lang-pl" data-tab="pl_playbook_straznik" type="button">👤 STRAŻNIK</button>
+<button class="tab lang-pl" data-tab="pl_playbook_zwiadowca" type="button">👤 ZWIADOWCA</button>
+<button class="tab lang-pl" data-tab="pl_optional_moves" type="button">🌟 Opcjonalne Ruchy</button>
+<button class="tab lang-en" data-tab="en_playbook_consular" type="button">👤 THE CONSULAR</button>
+<button class="tab lang-en" data-tab="en_playbook_guardian" type="button">👤 THE GUARDIAN</button>
+<button class="tab lang-en" data-tab="en_playbook_padawan" type="button">👤 THE PADAWAN</button>
+<button class="tab lang-en" data-tab="en_playbook_sentinel" type="button">👤 THE SENTINEL</button>
+<button class="tab lang-en" data-tab="en_playbook_wayseeker" type="button">👤 THE WAYSEEKER</button>
+<button class="tab lang-en" data-tab="en_optional_moves" type="button">🌟 Optional Moves</button>
+                </div>
+            </aside>
+
+            <div class="content-area">
+                
+    <div id="pl_playbook_konsul" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Dyplomata/-ka</b></p>
+<p>Reprezentowałeś/-aś Zakon Jedi w formalnych negocjacjach. Kiedy <b>Pertraktujesz</b>, powołując się na autorytet Zakonu, na 7+ zawsze masz realną szansę powodzenia — MG nie może po prostu stwierdzić, że nie masz żadnej dźwigni.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was widział/-a, jak odwiodłem/-am kogoś od przemocy?</li>
+<li>Który/-a z was uważa, że jestem zbyt miękki/-a na tę galaktykę?</li>
+<li>Za którym/-ą z was wstawiłem/-am się w Świątyni, kiedy nikt inny tego nie zrobił?</li>
+<li>Który/-a z was nosi sekret, który pomogłem/-am zachować?</li>
+</ul>
+<p>---</p>
+<p><b>Strażnik/-czka Wiedzy</b></p>
+<p>Studiowałeś/-aś głębsze archiwa Świątyni Jedi. Kiedy <b>Popisujesz się Wiedzą</b> na temat Mocy, starożytnej historii lub obcych kultur, rzucasz z +1.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was przyszedł/-a do mnie po wiedzę, której nie mógł/-a znaleźć nigdzie indziej?</li>
+<li>Który/-a z was nie ufa temu, co wiem, bo wie, skąd to pochodzi?</li>
+<li>Który/-a z was nosi przy sobie coś, o czego pochodzeniu wiedziałem/-am od razu?</li>
+<li>Który/-a z was zadał/-a mi pytanie, na które wciąż nie odpowiedziałem/-am?</li>
+</ul>
+<p>---</p>
+<p><b>Wrażliwy/-a na Moc</b></p>
+<p>Twój związek z Mocą jest niezwykle silny i niefiltrowany. Raz na sesję możesz ogłosić wizję Mocy jako prawdziwą — MG musi wpleść ją w fikcję.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was pojawił/-a się w moich wizjach?</li>
+<li>Który/-a z was uważa moją wrażliwość za niepokojącą?</li>
+<li>Który/-a z was ufa moim przeczuciom, choć nie potrafi wyjaśnić dlaczego?</li>
+<li>Kogo z was ostrzegałem/-am przed czymś, co się spełniło?</li>
+</ul>
+<p>---</p>
+<p><b>Mediator/-ka</b></p>
+<p>Rozstrzygałeś/-aś spory między frakcjami, gatunkami i kulturami. Kiedy wkraczasz, by zatrzymać konflikt między dwiema stronami, obie się zatrzymują — MG nie może natychmiast eskalować sytuacji, chyba że jakiś BG zrobi coś prowokacyjnego.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Którego/-ą z was odwiodłem/-am od walki, którą by wygrał/-a?</li>
+<li>Który/-a z was ma do mnie żal za to, że zatrzymałem/-am coś, co chciał/-a dokończyć?</li>
+<li>Który/-a z was przyszedł/-a do mnie, kiedy sam/-a nie mógł/-a czegoś rozwiązać?</li>
+<li>Kogo z was wciąż muszę pojednać z kimś innym?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Sztuczka Umysłu</b></p>
+<p>Kiedy próbujesz wpłynąć na słabowolną istotę za pomocą Mocy, rzuć +CHA. Na 10+, stosuje się ona do prostej sugestii. Na 7–9, stosuje się, ale coś cię to kosztuje — pamięta więcej niż powinna, albo ktoś to zauważa.</p>
+<p><b>Wyczucie Mocy</b></p>
+<p>Kiedy otwierasz się na Moc, by odczytać sytuację lub osobę, rzuć +MĄD. Na 10+, zadaj MG trzy pytania. Na 7–9, zadaj jedno.</p>
+<ul>
+<li>Czego ta osoba naprawdę pragnie?</li>
+<li>Czy grozi tu niebezpieczeństwo i skąd?</li>
+<li>Co ostatnio wydarzyło się w tym miejscu?</li>
+<li>Kto tutaj coś ukrywa lub kłamie?</li>
+</ul>
+<p><b>Telekineza</b></p>
+<p>Kiedy poruszasz przedmiotami za pomocą Mocy, rzuć +MĄD. Na 10+, kontrolujesz to precyzyjnie. Na 7–9, poruszasz tym, ale MG wprowadza komplikację — za szybko, za daleko lub zbyt zauważalnie.</p>
+<p><b>Kojąca Obecność</b></p>
+<p>Kiedy spędzasz chwilę w skupionej, spokojnej obecności z kimś przestraszonym lub rozgniewanym, traci ten stan. Może zyskać inny, jeśli sytuacja się nie zmieni.</p>
+<p><b>Więź Mocy</b></p>
+<p>Wybierz jednego innego BG. Łączy was więź Mocy. Kiedy któreś z was jest w śmiertelnym niebezpieczeństwie, drugie zawsze to wie, bez względu na odległość. Kiedy bezpośrednio sobie pomagacie, oboje rzucacie z +1.</p>
+<p><b>Spokój bez Zbroi</b></p>
+<p>Nie nosisz zbroi. Kiedy otrzymujesz obrażenia, rzuć +MĄD. Na 10+, zmniejsz obrażenia o wartość twojego modyfikatora MĄD. Na 7–9, zmniejsz je o 1.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # KONSUL</h2><p>*Przemawiasz w imieniu Mocy. Galaktyka ugina się przed mądrością, zanim ugnie się przed mieczem.*</p>
+<p><b>Kostka Obrażeń:</b> k6</p>
+<p><b>PŻ:</b> 6 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Człowiek:</b> Qui-Gon, Sifo-Dyas, Jard, Oppo / Jocasta, Yaddle, Depa, Shaak</p>
+<p><b>Cerean:</b> Ki-Adi, Sylvar, Lorn, Belan / Tionne, Sela, Vara, Nomi</p>
+<p><b>Kel Dor:</b> Plo, Aven, Koro, Desh / Seva, Lira, Kora, Pala</p>
+<p><b>Togruta:</b> Raana, Nomi, Aslan, Kiran / Ahsoka, Miraj, Riyo, Sharl</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Gatunek:</b> Człowiek | Cerean | Kel Dor | Togruta | zapytaj MG</p>
+<p><b>Wiek:</b> młody/-a i żarliwy/-a | w średnim wieku, wyważony/-a | stary/-a i spokojny/-a jak woda</p>
+<p><b>Oczy:</b> szukające i życzliwe | nieruchome i nieodgadnione | jaśniejące wewnętrznym światłem</p>
+<p><b>Sylwetka:</b> szczupła i nieśpiesząca się | wysoka i opanowana | drobna, choć zaskakująco obecna</p>
+<p><b>Strój:</b> eleganckie szaty Jedi | skromne ubranie medytacyjne | dyplomatyczne szaty</p>
+<p><b>Znak szczególny:</b> kryształ medytacyjny noszony jak wisiorek | dziennik wizji Mocy | dar od wdzięcznego świata</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Głęboka Więź:</b> Twoja Więź Mocy może obejmować drugiego BG.</li>
+<li><b>Dalekowidztwo:</b> Raz na sesję zadaj MG pytanie o przyszłość wymagające odpowiedzi tak/nie. MG musi odpowiedzieć szczerze, ale niejasno.</li>
+<li><b>Uśpienie Mocą:</b> Kiedy w pełni się koncentrujesz, możesz utrzymywać stworzenie lub przedmiot w całkowitym bezruchu, dopóki skupiasz na tym uwagę. Nie możesz nic innego robić.</li>
+<li><b>Słowa Mocy:</b> Twoja Sztuczka Umysłu działa na silnowolne istoty, ale na 7–9 MG trzyma 2 żetony przeciwko tobie zamiast 1.</li>
+<li><b>Mistrz/-yni Negocjacji:</b> Kiedy <b>Pertraktujesz</b>, wynik 7–9 staje się 10+. Na 10+, dostajesz to, czego chcesz, a druga strona jest ci winna przysługę.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Rozwiąż konflikt bez użycia przemocy.</li>
+<li>Podziel się wiedzą, która zapobiegnie cierpieniu.</li>
+<li>Chroń czyjąś godność, kiedy inni chcą ją zniszczyć.</li>
+<li>Działaj zgodnie z wizją Mocy, mimo niepewności.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 8.</p>
+<ul>
+<li>Miecz świetlny (zasięg bliski, 2 sloty)</li>
+<li>Szaty Jedi (1 slot)</li>
+<li>Datapad z dostępem do archiwów (1 slot)</li>
+<li>Komlink (1 slot)</li>
+<li>Zioła lecznicze lub plaster baktowy (1 slot)</li>
+<li>Fragment holochronu (1 slot)</li>
+<li>Korale medytacyjne (małe)</li>
+<li>Racja żywnościowa (małe)</li>
+<li>Dyplomatyczne referencje (małe)</li>
+<li>Holorejestratory (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_padawan" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Wybrany/-a</b></p>
+<p>Zostałeś/-aś zidentyfikowany/-a jako wrażliwy/-a na Moc niezwykle późno, albo twoja liczba midi-chlorianów jest wyjątkowo wysoka. Raz na sesję możesz potraktować rzut jako 12+, akceptując pokusę ciemnej strony — MG proponuje, a ty decydujesz, czy ją przyjąć.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was był/-a przy tym, kiedy po raz pierwszy zademonstrował/-am niezwykłą moc?</li>
+<li>Który/-a z was martwi się o to, czym mogę się stać?</li>
+<li>Który/-a z was wierzy we mnie bardziej niż Rada?</li>
+<li>Który/-a z was widział/-a, jak tracę kontrolę nad swoją mocą?</li>
+</ul>
+<p>---</p>
+<p><b>Ocalały/-a</b></p>
+<p>Zostałeś/-aś odnaleziony/-a na świecie zniszczonym przez wojnę lub uciekłeś/-aś z niewolnictwa przed przybyciem do Świątyni. Kiedy znosisz trudy, brak, ból lub deprywację, masz +1 trwały, dopóki sytuacja się nie zmieni.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, skąd pochodzę?</li>
+<li>Który/-a z was pytał/-a mnie o życie przed Świątynią — i co mu/jej odpowiedziałem/-am?</li>
+<li>Który/-a z was chronił/-a mnie, gdy byłem/-am jeszcze zbyt rozgniewany/-a, żeby chronić siebie?</li>
+<li>Który/-a z was patrzy na galaktykę tak samo twardo jak ja?</li>
+</ul>
+<p>---</p>
+<p><b>Cień Mistrza</b></p>
+<p>Twój Mistrz jest powszechnie znany — podziwiany, budzący strach lub kontrowersyjny. Kiedy powołujesz się na jego/jej reputację, rzuć +CHA. Na 10+, otwiera to drzwi i wzbudza szacunek. Na 7–9, wzbudza też komplikacje.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was zna mojego Mistrza osobiście?</li>
+<li>Który/-a z was uważa, że nigdy nie wyjdę z cienia mojego Mistrza?</li>
+<li>Który/-a z was zaproponował/-a, że nauczy mnie czegoś, czego mój Mistrz nie nauczył?</li>
+<li>Który/-a z was ukrywa sekret związany z moim Mistrzem?</li>
+</ul>
+<p>---</p>
+<p><b>Cudowne Dziecko</b></p>
+<p>Przewyższasz swój wiek w jednej dziedzinie. Wybierz: walka, moce Mocy lub wiedza. Kiedy działasz w ramach tej dziedziny, traktuj 7–9 jako 10+. Ale twoje porażki przyciągają większą uwagę — Rada cię obserwuje.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wystawił/-a moje zdolności na próbę i był/-a zaskoczony/-a?</li>
+<li>Który/-a z was uważa, że mój talent to tyle samo ciężar co dar?</li>
+<li>Który/-a z was pomógł/-a mi, gdy mimo umiejętności zawiodłem/-am?</li>
+<li>Który/-a z was uważa, że nie jestem tak utalentowany/-a, jak myśli Rada?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Wciąż się Uczę</b></p>
+<p>Kiedy <b>Popisujesz się Wiedzą</b> lub próbujesz ruchu poza zakresem swojego szkolenia, na pudło wciąż dowiadujesz się czegoś prawdziwego. MG mówi ci jedną uczciwą rzecz o sytuacji, nawet gdy coś się nie udaje.</p>
+<p><b>Ostrze Ucznia</b></p>
+<p>Kiedy <b>Tniesz i Rąbiesz</b> mieczem świetlnym, możesz rzucać +MĄD zamiast +SIŁ. Na 12+, szkolenie twojego Mistrza prowadzi twoją rękę — zadajesz maksymalne obrażenia.</p>
+<p><b>Surowa Moc</b></p>
+<p>Kiedy przekraczasz granicę swojego szkolenia i kanalizujesz surową energię Mocy, rzuć +MĄD. Na 10+, wybierz 2. Na 7–9, wybierz 1, ale weź –1 w przód.</p>
+<ul>
+<li>Zadaj k10 obrażeń pobliskiemu celowi.</li>
+<li>Zrzuć z nóg wszystkich w pobliżu.</li>
+<li>Przesuń ciężki przedmiot przez pokój.</li>
+<li>Osłoń się przed nadchodzącym atakiem.</li>
+</ul>
+<p><b>Więź z Mistrzem</b></p>
+<p>Nazwij swojego Mistrza (postać MG). Gdy Mistrz jest obecny, masz +1 do wszystkich rzutów. Gdy Mistrz jest zagrożony, rzuć +MĄD, żeby działać racjonalnie zamiast impulsywnie.</p>
+<p><b>Szybka Nauka</b></p>
+<p>Kiedy inny BG uczy cię czegoś przez demonstrację, możesz użyć jego ruchu raz do końca sesji.</p>
+<p><b>Szczere Serce</b></p>
+<p>Kiedy apeluje do czyjejś lepszej natury z autentyczną uczciwością — bez sztuczek, bez nacisku — rzuć +CHA. Na 10+, ta osoba odpowiada równie szczerze. Na 7–9, mięknie, ale prosi cię o coś w zamian.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # PADAWAN</h2><p>*Nie jesteś jeszcze rycerzem/-ką. Ale Moc cię wybrała — i to coś znaczy.*</p>
+<p><b>Kostka Obrażeń:</b> k6</p>
+<p><b>PŻ:</b> 6 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Człowiek:</b> Anakin, Ferus, Obi-Wan, Bruck / Barriss, Darra, Siri, Tera</p>
+<p><b>Togruta:</b> Ahsoka, Mira, Sela, Kira / Rani, Teva, Nola, Sorin</p>
+<p><b>Twi'lek:</b> Bela, Koh, Raan, Lyos / Neva, Sira, Kira, Lyra</p>
+<p><b>Zabrak:</b> Bao, Tol, Ven, Erath / Rin, Vel, Sora, Kiran</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Gatunek:</b> Człowiek | Togruta | Twi'lek | Zabrak | zapytaj MG</p>
+<p><b>Wiek:</b> młody/-a i niepewny/-a | młody/-a i porywczy/-a | młody/-a i niezwykle spokojny/-a</p>
+<p><b>Oczy:</b> pełne entuzjazmu | niespokojne i pytające | szeroko otwarte, chłonące wszystko</p>
+<p><b>Sylwetka:</b> drobna i zwinna | rosnąca i trochę niezgrabna | delikatna, ale zaskakująco silna</p>
+<p><b>Strój:</b> standardowe szaty Padawana | szaty z osobistymi modyfikacjami | pożyczone ubranie, które nie do końca pasuje</p>
+<p><b>Znak szczególny:</b> warkocz Padawana (jego styl dużo mówi) | dar od Mistrza | pamiątka sprzed Świątyni</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Pasowanie na Rycerza/-rkę:</b> Zostajesz mianowany/-a rycerzem/-ką. Zmień nazwę tego playbookа i wybierz ruch startowy z dowolnego innego playbookа Jedi. Tracisz Więź z Mistrzem.</li>
+<li><b>Intuicja Mocy:</b> Zawsze wiesz, kiedy coś jest nie tak, nawet gdy nie potrafisz tego wytłumaczyć.</li>
+<li><b>Rosnąca Moc:</b> Twoja Surowa Moc daje teraz 3 wybory na 10+ i 2 na 7–9.</li>
+<li><b>Gwałtowna Siła:</b> Raz na sesję możesz odnieść automatyczny sukces w fizycznym użyciu Mocy. MG nazywa konsekwencję, którą musisz zaakceptować.</li>
+<li><b>Moc Chroni:</b> Kiedy masz zginąć, rzuć +MĄD. Na 10+, przeżywasz z 1 PŻ i wizją od Mocy.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Sprawić dumę swojemu Mistrzowi w ważnym momencie.</li>
+<li>Przyznać się do błędu i naprawić go.</li>
+<li>Stanąć w obronie kogoś, kiedy twój Mistrz milczałby.</li>
+<li>Oprzeć się pokusie drogi na skróty.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 7.</p>
+<ul>
+<li>Treningowy miecz świetlny lub pełny miecz świetlny (zasięg bliski, 2 sloty)</li>
+<li>Szaty Padawana (1 slot)</li>
+<li>Komlink z drugiej ręki (1 slot)</li>
+<li>Apteczka (1 slot)</li>
+<li>Racja żywnościowa (małe)</li>
+<li>Holoprojektor (małe)</li>
+<li>Szczęśliwa pamiątka sprzed Świątyni (małe)</li>
+<li>Dar od Mistrza (małe, twój wybór)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_poszukiwacz" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Ścieżka Wygnańca</b></p>
+<p>Opuściłeś/-aś Zakon dobrowolnie lub zostałeś/-aś zwolniony/-a przez Radę, by kroczyć żywą Mocą samotnie. Masz +1 kiedy <b>Popisujesz się Wiedzą</b> na temat świata naturalnego, żywych istot lub dzikich miejsc. Zaczynasz też z lojalnym towarzyszem — stworzeniem nie-bojowym (zapytaj MG o szczegóły).</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, dlaczego opuściłem/-am Zakon?</li>
+<li>Który/-a z was kroczy równie dziwną ścieżką jak moja?</li>
+<li>Który/-a z was prosił/-a mnie, żebym wrócił/-a — i co odpowiedziałem/-am?</li>
+<li>Który/-a z was rozumie, czego się wyrzekłem/-am?</li>
+</ul>
+<p>---</p>
+<p><b>Żywa Moc</b></p>
+<p>Byłeś/-aś uczony/-a — przez Qui-Gona Jinna lub linię wywodzącą się od niego — by ufać chwili obecnej, nie wielkiemu planowi. Kiedy działasz wyłącznie na instynkt, bez przygotowania, rzuć +MĄD. Na 10+, Moc prowadzi cię doskonale. Na 7–9, lądujesz gdzieś nieoczekiwanym, ale nie spotyka cię krzywda.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was widział/-a, jak robię coś, co nie powinno działać?</li>
+<li>Który/-a z was uważa, że jestem nieostrożny/-a, gdy to nazywam zaufaniem?</li>
+<li>Który/-a z was raz poszedł/-a za moim instynktem — i co się stało?</li>
+<li>Który/-a z was ma tego samego nauczyciela w swojej linii?</li>
+</ul>
+<p>---</p>
+<p><b>Uczeń/-nnica Ducha Mocy</b></p>
+<p>Rozmawiałeś/-aś z Jedi, który stał się jednym z Mocą. Raz na sesję możesz zadać mu/jej jedno pytanie. Odpowiedź jest zawsze prawdziwa, ale nigdy kompletna.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, kto mnie prowadzi?</li>
+<li>Który/-a z was próbował/-a słuchać — i nic nie usłyszał/-a?</li>
+<li>Który/-a z was jest wspominany/-a przez te głosy?</li>
+<li>Który/-a z was ma powód obawiać się tego, co mój nauczyciel może wiedzieć?</li>
+</ul>
+<p>---</p>
+<p><b>Długa Droga</b></p>
+<p>Przemierzyłeś/-aś więcej galaktyki niż większość Jedi kiedykolwiek widzi. Kiedy przybywasz gdzieś nowego, rzuć +MĄD. Na 10+, byłeś/-aś tu wcześniej lub znasz kogoś, kto był — zapytaj MG o jedną przydatną lokalną informację. Na 7–9, wiesz coś, ale to przestarzałe.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Kogo z was spotkałem/-am już wcześniej, w miejscu, którego żadne z nas się nie spodziewało?</li>
+<li>Który/-a z was szuka czegoś, do czego mógłbym/-abym go/ją zaprowadzić?</li>
+<li>Który/-a z was nigdy nie opuścił/-a swojego macierzystego sektora?</li>
+<li>Który/-a z was nosi przy sobie coś, co rozpoznaję ze świata, który odwiedziłem/-am?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Wyczucie Żywej Mocy</b></p>
+<p>Jesteś zawsze dostrojony/-a do żywych istot w swoim otoczeniu. W naturalnym lub dzikim środowisku Moc ostrzega cię przed niebezpieczeństwem, zanim nadejdzie. Nigdy nie jesteś zaskoczony/-a przez stworzenia ani zagrożenia naturalne.</p>
+<p><b>Ostrze Wędrowcy</b></p>
+<p>Twój miecz świetlny jest stary i wytarty, ale perfekcyjnie utrzymany. Kiedy <b>Tniesz i Rąbiesz</b>, na 12+ wybierz jedno: zadaj podwójne obrażenia, broń przeciwnika zostaje uszkodzona lub zniszczona, albo kończysz walkę bez dalszego rozlewu krwi.</p>
+<p><b>Strojenie Mocy</b></p>
+<p>Kiedy łączysz się z miejscem, stworzeniem lub przedmiotem przez Moc, rzuć +MĄD. Na 10+, poznajesz jego historię, rezonans emocjonalny i obecny stan. Na 7–9, poznajesz jedno z trzech.</p>
+<p><b>Pokój Wędrowcy</b></p>
+<p>Kiedy siadasz do jedzenia z nieznajomymi, oferujesz pomoc bezinteresownie lub jako pierwszy/-a okazujesz zaufanie, rzuć +CHA. Na 10+, traktują cię jak zaufanego przyjaciela przez całą scenę. Na 7–9, są ostrożni, ale otwarci.</p>
+<p><b>Bez Zobowiązań</b></p>
+<p>Nie nosisz żadnego tytułu, rozkazu ani politycznego ciężaru. Kiedy ktoś próbuje użyć twojej roli instytucjonalnej przeciwko tobie — grozić twojemu Zakonowi, powołać się na wyższy stopień, wywierać presję przez twój status — to nie działa. Nie masz Zakonu, któremu można grozić.</p>
+<p><b>Wola Mocy</b></p>
+<p>Raz na sesję opisz, dokąd — twoim zdaniem — wskazuje Moc. MG musi potwierdzić lub zaprzeczyć jednym słowem. Jeśli potwierdzi, MG zadba o to, byś to znalazł/-a.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # POSZUKIWACZ</h2><p>*Kroczyć samotnie z Mocą. Bez Rady, bez rozkazu — tylko żywa Moc i dokąd prowadzi.*</p>
+<p><b>Kostka Obrażeń:</b> k8</p>
+<p><b>PŻ:</b> 8 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Człowiek:</b> Qui-Gon, Cal, Kanan, Jard / Serra, Depa, Tera, Nomi</p>
+<p><b>Kel Dor:</b> Plo, Aven, Koro, Renn / Seva, Lira, Nala, Pala</p>
+<p><b>Lasat:</b> Gron, Borrik, Harl, Zev / Shira, Vela, Nira, Dara</p>
+<p><b>Dathomirianin/-ka (jasna strona):</b> Karis, Dren, Soroh, Veln / Mira, Sela, Nara, Lira</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Gatunek:</b> Człowiek | Kel Dor | Lasat | Dathomirianin/-ka (jasna strona) | zapytaj MG</p>
+<p><b>Wiek:</b> wędrowny/-a i młody/-a | doświadczony/-a i zahartowany/-a | spokojny/-a i bezczasowy/-a</p>
+<p><b>Oczy:</b> spokojne i patrzące w dal | ciekawe i żywe | pełne pokoju i wiedzy</p>
+<p><b>Sylwetka:</b> szczupłe mięśnie wędrowcy | nieśpieszna i niezobciążona | zahartowana przez drogi</p>
+<p><b>Strój:</b> wytarte ubranie podróżne na starych szatach Jedi | łatane ubranie z wielu światów | bez żadnych oznak Jedi</p>
+<p><b>Znak szczególny:</b> kij lub laska | dziwne stworzenie, które cię śledzi | mapa miejsc, które wołały cię przez Moc</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Mowa Midi-chlorianów:</b> Możesz porozumiewać się z każdą żywą istotą przez Moc, nieważne jak prymitywną.</li>
+<li><b>Uzdrowienie Mocą:</b> Kiedy kładziesz ręce na kimś i skupiasz Moc, rzuć +MĄD. Na 10+, ulecz jego kostkę obrażeń + twój MĄD. Na 7–9, ulecz jego kostkę obrażeń.</li>
+<li><b>Pathfinder:</b> Kiedy prowadzisz grupę przez nieznane terytorium, na 10+ MG nie może wprowadzać wrogich spotkań. Na 7–9, wybierz jedno: bezpieczne przejście albo dobry czas — nie obie rzeczy.</li>
+<li><b>Więź Duchów:</b> Możesz zadawać swojemu Duchowi Mocy dwa pytania na sesję zamiast jednego.</li>
+<li><b>Jedno z Żywą Mocą:</b> Kiedy giniesz, rzuć +MĄD. Na 10+, stajesz się Duchem Mocy i możesz pozostać z grupą tak długo, jak zechcesz.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Podążaj tam, dokąd prowadzi Moc, nawet gdy nie możesz wyjaśnić dlaczego.</li>
+<li>Zostaw miejsce lepszym niż je zastałeś/-aś.</li>
+<li>Pomóż komuś, kto niczego nie prosi w zamian.</li>
+<li>Zaufaj nieznajomemu.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 8.</p>
+<ul>
+<li>Miecz świetlny (zasięg bliski, 2 sloty) — stary, ale perfekcyjny</li>
+<li>Płaszcz podróżny i wytarte szaty (1 slot)</li>
+<li>Komlink (1 slot)</li>
+<li>Apteczka (1 slot)</li>
+<li>Racje na 3 dni (1 slot)</li>
+<li>Sprzęt wspinaczkowy lub hak z liną (1 slot)</li>
+<li>Towarzysz-stworzenie (0 slotów — podróżuje z tobą)</li>
+<li>Holodziennik (małe)</li>
+<li>Lokalna waluta z 3 różnych światów (małe)</li>
+<li>Kryształ Mocy lub kamień medytacyjny (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_straznik" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Strażnik Pokoju</b></p>
+<p>Byłeś/-aś szkolony/-a specjalnie do ochrony słabych i przestrzegania prawa Republiki. Kiedy <b>Bronisz</b> kogoś, kto jest pod twoją opieką, na 10+ wybierasz 3 opcje zamiast 2.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was znalazł/-a się w niebezpieczeństwie, któremu mogłem/-am zapobiec?</li>
+<li>Który/-a z was widział/-a, jak zawahałem/-am się, gdy powinienem/-nam działać?</li>
+<li>Kogo z was uratowałem/-am kiedyś — i jak się czujesz, będąc mi to winny/-a?</li>
+<li>Który/-a z was walczy nieuczciwie — i czy to aprobuje?</li>
+</ul>
+<p>---</p>
+<p><b>Ostrze Świątyni</b></p>
+<p>Rywalizowałeś/-aś w turniejach bojowych Świątyni i uplasowałeś/-aś się w czołówce swojej klasy. Zaczynasz z ruchem <b>Mistrzostwo Formy</b>, nawet jeśli nie wybrałeś/-aś go jako awansu.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was sparował/-a ze mną i przegrał/-a?</li>
+<li>Który/-a z was uważa, że za bardzo polegam na mieczu?</li>
+<li>Który/-a z was widział/-a moją Formę walki i zrozumiał/-a, co ona mówi o mnie?</li>
+<li>Który/-a z was ma styl walki, który wciąż mnie zaskakuje?</li>
+</ul>
+<p>---</p>
+<p><b>Weteran/-ka Wojen</b></p>
+<p>Służyłeś/-aś w otwartym konflikcie — Wojnach Klonów, przygranicznej potyczce, tłumieniu piractwa — zanim zostałeś/-aś rycerzem/-ką. Kiedy <b>Tniesz i Rąbiesz</b> kogoś, kto aktywnie usiłuje cię zabić, zadajesz +1k6 obrażeń.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was nigdy nie brał/-a udziału w prawdziwej walce?</li>
+<li>Który/-a z was widział/-a, co zrobiłem/-am w boju — i nikomu o tym nie powiedział/-a?</li>
+<li>Który/-a z was został/-a ranny/-a przez mój rozkaz?</li>
+<li>Który/-a z was uważa, że widziałem/-am za wiele?</li>
+</ul>
+<p>---</p>
+<p><b>Ochroniarz/-ka</b></p>
+<p>Przed uzyskaniem tytułu rycerza/-ki byłeś/-aś przydzielony/-a do ochrony dygnitarza i nauczyłeś/-aś się stawiać innych na pierwszym miejscu. Kiedy ktoś w twojej obecności otrzymuje obrażenia, możesz zdecydować, że zamiast niego to ty je otrzymujesz.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Kogo z was wciąż chronię z przyzwyczajenia?</li>
+<li>Który/-a z was ciągle robi rzeczy, które mi to utrudniają?</li>
+<li>Który/-a z was wie, kogo mi przydzielono do ochrony — i co się z tą osobą stało?</li>
+<li>Który/-a z was uratował/-a mnie w rewanżu?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Dyscyplina Miecza</b></p>
+<p>Kiedy <b>Tniesz i Rąbiesz</b> mieczem świetlnym, możesz rzucać +MĄD zamiast +SIŁ.</p>
+<p><b>Odbicie</b></p>
+<p>Kiedy atak dystansowy cię trafia, rzuć +ZRC. Na 10+, odbijasz go całkowicie. Na 7–9, odbijasz go, ale wybierz jedno: tracisz równowagę (utrudnienie na następny rzut) albo przekierowujesz go, lecz nie na wybrany cel.</p>
+<p><b>Uderzenie Mocą</b></p>
+<p>Kiedy odpychasz kogoś lub coś Mocą, rzuć +MĄD. Na 10+, są odrzuceni daleko i stracili równowagę. Na 7–9, wybierz jedno: chwieją się do tyłu, albo tracą równowagę, ale oboje pozostajecie blisko siebie.</p>
+<p><b>Postawa Strażnika</b></p>
+<p>Kiedy <b>Bronisz</b> z dobytem mieczem świetlnym, trzymasz 1 dodatkowy żeton na 7+.</p>
+<p><b>Czujne Oko</b></p>
+<p>Kiedy analizujesz sytuację bojową przed działaniem, rzuć +MĄD. Na 10+, zadaj MG dwa pytania o zagrożenia lub słabe punkty w scenie. Na 7–9, zadaj jedno.</p>
+<p><b>Żelazna Wola</b></p>
+<p>Kiedy działasz mimo strachu, bólu lub zwątpienia, rzuć +KON. Na 10+, ignorujesz efekt i działasz z pełną siłą. Na 7–9, działasz, ale MG trzyma 1 żeton przeciwko tobie do późniejszego wykorzystania.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # STRAŻNIK</h2><p>*Miecz Zakonu Jedi. Stajesz między niewinnymi a ciemnością.*</p>
+<p><b>Kostka Obrażeń:</b> k10</p>
+<p><b>PŻ:</b> 10 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Człowiek:</b> Anakin, Mace, Cin, Bao-Dur / Aayla, Depa, Shaak, Barriss</p>
+<p><b>Zabrak:</b> Agen, Eeth, Tol, Venn / Rin, Sera, Vel, Kiran</p>
+<p><b>Mirialańczyk/-ka:</b> Prosset, Ardis, Coln, Daren / Luminara, Seris, Yla, Nora</p>
+<p><b>Nautolan:</b> Kit, Boro, Lenn, Arak / Nala, Sela, Kirra, Deena</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Gatunek:</b> Człowiek | Zabrak | Mirialańczyk/-ka | Nautolan | zapytaj MG</p>
+<p><b>Wiek:</b> młody/-a i pełny/-a zapału | doświadczony/-a i spokojny/-a | zahartowany/-a i rozważny/-a</p>
+<p><b>Oczy:</b> pełne ognia | spokojne i odległe | cierpliwe i głębokie</p>
+<p><b>Sylwetka:</b> szczupła i zwinna | szeroka i potężna | żylasta i precyzyjna</p>
+<p><b>Strój:</b> standardowe szaty Jedi | wytarta zbroja polowa | minimalistyczny strój podróżny</p>
+<p><b>Znak szczególny:</b> wyszczerbiony uchwyt miecza świetlnego | warkocz, którego nigdy nie ściąłeś/-aś | blizna z pierwszej misji</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Mistrzostwo Formy:</b> Kiedy <b>Tniesz i Rąbiesz</b>, na 12+ dodatkowo rozbrajasz, odpychasz lub przerażasz przeciwnika (twój wybór).</li>
+<li><b>Podwójne Ostrza:</b> Możesz władać dwoma mieczami świetlnymi. Kiedy to robisz, zadajesz +1 obrażeń na 10+.</li>
+<li><b>Punkt Pęknięcia:</b> Raz na scenę zapytaj MG: „Co jest tutaj najsłabszym punktem?" MG musi odpowiedzieć szczerze.</li>
+<li><b>Niezłomny/-a:</b> Kiedy masz zostać wyłączony/-a z walki, rzuć +KON. Na 10+, pozostajesz w walce z 1 PŻ.</li>
+<li><b>Mistrzostwo Ostrza:</b> Twoja kostka obrażeń miecza świetlnego wzrasta do k12.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Chroń kogoś słabszego od siebie przed krzywdą.</li>
+<li>Pokonaj godnego przeciwnika w pojedynku.</li>
+<li>Odmów zadania ciosu pokonanemu wrogowi.</li>
+<li>Stań między niewinnymi a czymś strasznym.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 10.</p>
+<ul>
+<li>Miecz świetlny (zasięg bliski, 2 sloty)</li>
+<li>Szaty Jedi (1 slot)</li>
+<li>Komlink (1 slot)</li>
+<li>Apteczka (1 slot)</li>
+<li>Zbroja polowa (+1 pancerz, niezgrabna, 2 sloty)</li>
+<li>Datapad (1 slot)</li>
+<li>Hak z liną (1 slot)</li>
+<li>Zapasowy zasilacz do miecza (małe)</li>
+<li>Racja żywnościowa (małe)</li>
+<li>Flara sygnałowa (małe)</li>
+<li>Holoprojektor (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_zwiadowca" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Cień Zakonu</b></p>
+<p>Byłeś/-aś szkolony/-a przez Cienie Jedi do tropieniu artefaktów ciemnej strony i kultów. Zawsze wiesz, kiedy ktoś za tobą chodzi. Zaczynasz z ukrytym blasterem kieszonkowym (zasięg bliski/średni, głośny, małe).</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, co robię w imieniu Zakonu?</li>
+<li>Który/-a z was zadał/-a mi pytanie, na które odmówiłem/-am odpowiedzi?</li>
+<li>Kogo z was obserwowałem/-am, bez jego/jej wiedzy?</li>
+<li>Który/-a z was dowiedział/-a się o mnie czegoś, czego nie zamierzałem/-am ujawniać?</li>
+</ul>
+<p>---</p>
+<p><b>Śledczy/-a</b></p>
+<p>Współpracowałeś/-aś z Biurem Bezpieczeństwa Republiki lub planetarną służbą ścigania. Kiedy <b>Odczytujesz Sytuację</b> na miejscu zbrodni lub podczas przesłuchania, zadajesz jedno dodatkowe pytanie ponad to, co daje rzut.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was pomógł/-a mi zamknąć sprawę, z którą sam/-a sobie nie radziłem/-am?</li>
+<li>Który/-a z was był/-a kiedyś podejrzanym/-ą w sprawie, którą prowadziłem/-am?</li>
+<li>Który/-a z was ma pytania o to, jak skończyła się sprawa, którą razem prowadziliśmy?</li>
+<li>Który/-a z was wie, że nagiąłem/-am zasady, żeby osiągnąć wynik?</li>
+</ul>
+<p>---</p>
+<p><b>Infiltrator/-ka</b></p>
+<p>Działałeś/-aś pod przykryciem w organizacjach przestępczych, kultach lub na terytorium wroga. Możesz stworzyć przekonującą fałszywą tożsamość dla siebie po kilku godzinach przygotowań. Na 7+ podczas utrzymywania legendy — trzyma się.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was znał/-a mnie pod innym imieniem?</li>
+<li>Który/-a z was zna historyjkę o mnie, która nie jest prawdą?</li>
+<li>Który/-a z was krył/-a mnie, kiedy moja tożsamość była o krok od dekonspiracji?</li>
+<li>Który/-a z was nie jest pewny/-a, która wersja mnie jest prawdziwa?</li>
+</ul>
+<p>---</p>
+<p><b>Tropiciel/-ka</b></p>
+<p>Byłeś/-aś szkolony/-a w pogoni — przez ląd, przez kosmos, przez Moc. Kiedy śledzisz kogoś przez trudny teren lub miasto, zawsze znajdujesz trop. MG może uczynić go niebezpiecznym lub kosztownym, ale nie niemożliwym.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Kogo z was wysłano, żebym cię znalazł/-a?</li>
+<li>Który/-a z was zna kogoś, kogo wciąż szukam?</li>
+<li>Który/-a z was uciekał/-a przed czymś — i czy o to pytałem/-am?</li>
+<li>Który/-a z was pomógł/-a mi schwytać kogoś i jak się czujesz z tym, co się z nim stało?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Czytanie Pokoju</b></p>
+<p>Kiedy wchodzisz w nowe miejsce i przez chwilę obserwujesz, rzuć +MĄD. Na 10+, zadaj trzy pytania. Na 7–9, zadaj jedno.</p>
+<ul>
+<li>Kto tu jest uzbrojony i niebezpieczny?</li>
+<li>Kto tu rządzi i kto tego nie znosi?</li>
+<li>Co jest tu ukrywane lub o czym kłamią?</li>
+<li>Którędy stąd najszybciej wyjść?</li>
+</ul>
+<p><b>Krok Cienia</b></p>
+<p>Kiedy poruszasz się cicho i niewidocznie, rzuć +ZRC. Na 10+, nie zostajesz wykryty/-a i jesteś na miejscu. Na 7–9, jesteś na miejscu, ale wybierz jedno: wydajesz mały dźwięk, zostawiasz ślad, albo ktoś cię na chwilę widzi.</p>
+<p><b>Empatia Mocy</b></p>
+<p>Kiedy dotykasz przedmiotu lub miejsca nasyconego silnymi emocjami, przeżywasz błysk tego, co tam się wydarzyło. MG mówi ci jedną prawdziwą rzecz o znaczącym, niedawnym zdarzeniu.</p>
+<p><b>Podwójne Uderzenie</b></p>
+<p>Kiedy <b>Tniesz i Rąbiesz</b> z bronią w każdej ręce, rzuć dwa razy i weź wyższy wynik.</p>
+<p><b>Podziemne Kontakty</b></p>
+<p>Utrzymujesz sieć informatorów w szarej strefie. Kiedy szukasz informacji na obszarze miejskim, rzuć +CHA. Na 10+, znajdujesz to szybko. Na 7–9, informacja jest dostępna, ale wiąże się z komplikacją lub kosztem.</p>
+<p><b>Maska Mocy</b></p>
+<p>Kiedy koncentrujesz się i nieruchomiejesz w Mocy, zanikasz dla zmysłów wrażliwych na Moc. Użytkownicy ciemnej strony i adepci Mocy nie mogą wyczuć twojej obecności, dopóki utrzymujesz skupienie.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # ZWIADOWCA</h2><p>*Poruszasz się w szarych strefach — pół śledczy/-a, pół cień, w całości Jedi.*</p>
+<p><b>Kostka Obrażeń:</b> k8</p>
+<p><b>PŻ:</b> 8 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Człowiek:</b> Quinlan, Tholme, A'Sharad, Ferus / Tera, Siri, Darra, Nomi</p>
+<p><b>Twi'lek:</b> Aayla, Raan, Koh, Lyal / Neva, Sirra, Kira, Bela</p>
+<p><b>Mirialańczyk/-ka:</b> Prana, Coln, Desh, Telo / Seris, Yla, Nora, Vel</p>
+<p><b>Zabrak:</b> Bren, Kol, Shan, Daven / Lira, Reva, Nara, Sela</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Gatunek:</b> Człowiek | Twi'lek | Mirialańczyk/-ka | Zabrak | zapytaj MG</p>
+<p><b>Wiek:</b> bystry/-a i młody/-a | zahartowany/-a i obserwujący/-a | bezczasowy/-a i nieodgadniony/-a</p>
+<p><b>Oczy:</b> szybkie i oceniające | miękkie i rozbrajające | czujne i spokojne</p>
+<p><b>Sylwetka:</b> szczupła i niepozorna | wysportowana i opanowana | drobna, łatwa do przeoczenia</p>
+<p><b>Strój:</b> zwykłe ubranie podróżne | strój cywilny pod przykryciem | zmodyfikowany strój Jedi</p>
+<p><b>Znak szczególny:</b> ukryta dodatkowa broń | fałszywy chip tożsamości | ślad po misji, która poszła źle</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Doskonałe Przebranie:</b> Twoje fałszywe tożsamości są nieskazitelne. Nawet użytkownicy Mocy nie wyczują oszustwa, chyba że sam/-a je ujawnisz.</li>
+<li><b>Zasadzka:</b> Kiedy <b>Tniesz i Rąbiesz</b> z ukrycia, zadajesz +2k6 obrażeń.</li>
+<li><b>Przesłuchanie Mocą:</b> Kiedy naciskasz kogoś Mocą w poszukiwaniu prawdy, rzuć +MĄD. Na 10+, odpowiada na jedno pytanie szczerze. Na 7–9, odpowiada, ale wie, że dotknąłeś/-aś jego umysłu.</li>
+<li><b>Duch:</b> Kiedy poruszasz się przez obszar, który jest aktywnie przeszukiwany w twoim poszukiwaniu, rzuć +ZRC. Na 10+, przechodzisz niezauważony/-a. Na 7–9, wybierz jedno: przechodzisz, albo nie zostawiasz śladów.</li>
+<li><b>Tancerz/-ka Ostrzy:</b> Kiedy <b>Tniesz i Rąbiesz</b>, na 7–9 nie otrzymujesz kontrataków wroga.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Odkryj oszustwo, które inni uznali za prawdę.</li>
+<li>Chroń kogoś, nie pozwalając mu wiedzieć, że tam byłeś/-aś.</li>
+<li>Prowadź trop do końca, bez względu na to, dokąd prowadzi.</li>
+<li>Wybierz miłosierdzie, kiedy sprawiedliwość byłaby łatwiejsza.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 9.</p>
+<ul>
+<li>Miecz świetlny (zasięg bliski, 2 sloty)</li>
+<li>Ubranie cywilne i zestaw do przebrania (1 slot)</li>
+<li>Komlink, szyfrowany (1 slot)</li>
+<li>Hak z liną (1 slot)</li>
+<li>Apteczka (1 slot)</li>
+<li>Blaster kieszonkowy (zasięg bliski/średni, głośny, 1 slot)</li>
+<li>Wytrych / kol sieczkowy (małe)</li>
+<li>Racja żywnościowa (małe)</li>
+<li>Granat ogłuszający (zasięg średni, głośny, małe)</li>
+<li>Fałszywy chip tożsamości (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+<div id="pl_optional_moves" class="playbook-content lang-pl"><div class="optional-moves-container"><div class="card"><h2>🪬 # Ruchy Opcjonalne — Zakon Jedi</h2><p>---</p>
+<p><b>Skok w Nadprzestrzeń</b></p>
+<p>Kiedy grupa planuje skok w nadprzestrzeń pod presją lub przez nieznany sektor, rzuć +INT. Na 10+, skok jest czysty i szybki. Na 7–9, wybierz jedno: skok działa, ale trwa dłużej niż oczekiwano; statek doznaje niewielkich uszkodzeń podczas tranzytu; albo lądujecie nieco poza kursem i musicie się zorientować. Na pudło MG decyduje, gdzie wylądujecie.</p>
+<p>---</p>
+<p><b>Ścigani</b></p>
+<p>Kiedy siły Imperium, łowcy nagród lub agenci ciemnej strony zamykają się na waszej lokalizacji, rzuć +ZRC. Na 10+, wymykacie się bez śladu. Na 7–9, uciekacie, ale zostawiacie coś za sobą: świadka, skan identyfikacyjny kadłuba, przedmiot albo kontakt, który teraz zna wasze twarze.</p>
+<p>---</p>
+<p><b>Rezonans Mocy</b></p>
+<p>Kiedy wchodzisz w miejsce, w którym Moc jest wyjątkowo silna — pole bitwy przesiąknięte śmiercią, starożytna świątynia Jedi, świat tętniący żywą Mocą — rzuć +MĄD. Na 10+, Moc daje ci wyraźną wizję: zadaj MG jedno konkretne pytanie i otrzymaj szczerą odpowiedź. Na 7–9, otrzymujesz wizję, ale dezorientuje cię; weź –1 w przód i zadaj MG jedno pytanie, którego odpowiedź może być fragmentaryczna lub symboliczna.</p>
+<p>---</p>
+<p><b>Negocjowanie Bezpiecznego Przejścia</b></p>
+<p>Kiedy próbujesz zapewnić grupie przejście przez wrogie lub zastrzeżone terytorium siłą słów zamiast walki, rzuć +CHA. Na 10+, przechodzicie bez incydentów. Na 7–9, wybierz jedno: przechodzicie, ale jesteście komuś winni przysługę; przechodzicie, ale jesteście śledzeni; albo przechodzicie, lecz tylko część grupy bez komplikacji.</p>
+<p>---</p>
+<p><b>Rozbicie Obozu na Pograniczu</b></p>
+<p>Kiedy rozbijasz obóz w dzikim lub niebezpiecznym miejscu — na dżunglowym księżycu, na pustynnym świecie rubieży, na opuszczonej stacji orbitalnej — rzuć +MĄD. Na 10+, wybierz 3. Na 7–9, wybierz 2.</p>
+<ul>
+<li>Obóz jest ukryty i bezpieczny.</li>
+<li>Każdy leczy swój poziom w PŻ.</li>
+<li>Zdobywacie jedną przydatną informację lokalną.</li>
+<li>Nikt was nie niepokoi do rana.</li>
+</ul></div></div></div>
+
+    <div id="en_playbook_consular" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Diplomat</b></p>
+<p>You have represented the Jedi Order in formal negotiations. When you <b>Parley</b> using the weight of the Order behind you, on a 7+ you always have a real chance of success — the GM cannot simply say there is no leverage.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has seen me talk someone down from violence?</li>
+<li>Which of you thinks I am too soft for the real galaxy?</li>
+<li>Which of you did I speak up for at the Temple when no one else would?</li>
+<li>Which of you carries a secret I helped them keep?</li>
+</ul>
+<p>---</p>
+<p><b>Lore Keeper</b></p>
+<p>You studied the deeper archives of the Jedi Temple. When you <b>Spout Lore</b> about the Force, ancient history, or alien cultures, take +1.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you came to me for knowledge they couldn't find elsewhere?</li>
+<li>Which of you distrusts what I know because of where I learned it?</li>
+<li>Which of you carries something whose origins I recognized immediately?</li>
+<li>Which of you has asked a question I still haven't answered?</li>
+</ul>
+<p>---</p>
+<p><b>Force Sensitive</b></p>
+<p>Your connection to the Force is unusually strong and unfiltered. Once per session, you may declare a Force vision as true — the GM must work it into the fiction.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has appeared in my visions?</li>
+<li>Which of you finds my sensitivity unsettling?</li>
+<li>Which of you trusts my instincts even when they can't explain why?</li>
+<li>Which of you have I warned about something that came true?</li>
+</ul>
+<p>---</p>
+<p><b>Mediator</b></p>
+<p>You have settled disputes between factions, species, and cultures. When you step in to stop a conflict between two parties, both sides pause — the GM cannot immediately escalate unless a PC does something provocative.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you have I talked out of a fight they would have won?</li>
+<li>Which of you resents me for stopping something they wanted to finish?</li>
+<li>Which of you came to me when they couldn't resolve something on their own?</li>
+<li>Which of you do I still need to reconcile with someone?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Mind Trick</b></p>
+<p>When you attempt to influence a weak-willed being with the Force, roll +CHA. On a 10+, they comply with a simple suggestion. On a 7–9, they comply but something costs you — they remember more than they should, or someone notices.</p>
+<p><b>Force Sense</b></p>
+<p>When you open yourself to the Force to read a situation or person, roll +WIS. On a 10+, ask the GM three questions. On a 7–9, ask one.</p>
+<ul>
+<li>What does this person truly want?</li>
+<li>Is there danger here, and from where?</li>
+<li>What has recently happened in this place?</li>
+<li>Who here is hiding something?</li>
+</ul>
+<p><b>Telekinesis</b></p>
+<p>When you move objects with the Force, roll +WIS. On a 10+, you control it precisely. On a 7–9, you move it but the GM introduces a complication — too fast, too far, or too noticed.</p>
+<p><b>Calming Presence</b></p>
+<p>When you spend a moment in focused presence with someone who is frightened or angry, they lose that condition. They may gain another if the situation doesn't change.</p>
+<p><b>Force Bond</b></p>
+<p>Choose one other PC. You share a Force bond. When either of you is in mortal danger, the other always knows, regardless of distance. When you act to help each other directly, both of you take +1.</p>
+<p><b>Unarmored Serenity</b></p>
+<p>You do not wear armor. When you take damage, roll +WIS. On a 10+, reduce the damage by your WIS modifier. On a 7–9, reduce it by 1.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Deep Rapport:</b> Your Force Bond can include a second PC.</li>
+<li><b>Farsight:</b> Once per session, ask the GM a yes/no question about the future. They must answer honestly, but vaguely.</li>
+<li><b>Force Stasis:</b> When you concentrate fully, you can hold a creature or object completely still for as long as you focus. You can do nothing else while maintaining it.</li>
+<li><b>Words of Power:</b> Your Mind Trick works on strong-willed beings, but on a 7–9 the GM holds 2 against you instead of 1.</li>
+<li><b>Master Negotiator:</b> When you <b>Parley</b>, a 7–9 result becomes a 10+ result. On a 10+, you get what you want and they owe you a favor.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # THE CONSULAR</h2><p>*You speak for the Force. The galaxy bends to wisdom before it bends to a blade.*</p>
+<p><b>Damage Die:</b> d6</p>
+<p><b>HP:</b> 6 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Human:</b> Qui-Gon, Sifo-Dyas, Jard, Oppo / Jocasta, Yaddle, Depa, Shaak</p>
+<p><b>Cerean:</b> Ki-Adi, Sylvar, Lorn, Belan / Tionne, Sela, Vara, Nomi</p>
+<p><b>Kel Dor:</b> Plo, Aven, Koro, Desh / Seva, Lira, Kora, Pala</p>
+<p><b>Togruta:</b> Raana, Nomi, Aslan, Kiran / Ahsoka, Miraj, Riyo, Sharl</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Species:</b> Human | Cerean | Kel Dor | Togruta | ask your GM</p>
+<p><b>Age:</b> youthful and earnest | middle-aged and measured | ancient and serene</p>
+<p><b>Eyes:</b> searching and kind | still and unreadable | bright with inner light</p>
+<p><b>Build:</b> slim and unhurried | tall and composed | small and deceptively present</p>
+<p><b>Clothing:</b> fine Jedi robes | unadorned meditation wear | diplomat's vestments</p>
+<p><b>Signature:</b> a meditation crystal worn as pendant | a journal of Force visions | a gift from a grateful world</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Resolve a conflict without violence.</li>
+<li>Share knowledge that prevents suffering.</li>
+<li>Protect someone's dignity when others would strip it.</li>
+<li>Act on a Force vision despite uncertainty.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 8.</p>
+<ul>
+<li>Lightsaber (close, 2 slots)</li>
+<li>Jedi robes (1 slot)</li>
+<li>Datapad with archive access (1 slot)</li>
+<li>Comlink (1 slot)</li>
+<li>Healing herbs or bacta patch (1 slot)</li>
+<li>Holocron fragment (1 slot)</li>
+<li>Meditation beads (small)</li>
+<li>Ration pack (small)</li>
+<li>Diplomatic credentials (small)</li>
+<li>Holorecorder (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_guardian" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Peacekeeper</b></p>
+<p>You were trained specifically to protect the weak and uphold Republic law. When you <b>Defend</b> someone in your care, on a 10+ choose 3 instead of 2.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has been in danger I could have prevented?</li>
+<li>Which of you has seen me hesitate when I should have acted?</li>
+<li>Which of you did I rescue once — and how do you feel about owing me that?</li>
+<li>Which of you fights dirty, and do I approve?</li>
+</ul>
+<p>---</p>
+<p><b>Temple Blade</b></p>
+<p>You competed in the Temple's combat trials and placed among the top of your class. You start with the move <b>Form Mastery</b> even if you haven't taken it as an advance.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has sparred with me and lost?</li>
+<li>Which of you thinks I rely too much on my blade?</li>
+<li>Which of you has seen the Form I use and understood what it says about me?</li>
+<li>Which of you has a fighting style that still surprises me?</li>
+</ul>
+<p>---</p>
+<p><b>War Veteran</b></p>
+<p>You served in open conflict — the Clone Wars, border skirmish, pirate suppression — before your Knighting. When you <b>Hack and Slash</b> against someone who is actively trying to kill you, deal +1d6 damage.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has never been in real combat before?</li>
+<li>Which of you saw me do something in battle that you've never told anyone?</li>
+<li>Which of you was hurt because of an order I gave?</li>
+<li>Which of you thinks I've seen too much?</li>
+</ul>
+<p>---</p>
+<p><b>Bodyguard</b></p>
+<p>You were assigned to protect a dignitary before your Knighting and learned to put others first. When someone in your presence takes damage, you may choose to take that damage instead.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you am I still protecting out of habit?</li>
+<li>Which of you keeps doing things that make my job harder?</li>
+<li>Which of you knows who I was assigned to guard — and what happened to them?</li>
+<li>Which of you has saved my life in return?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Saber Discipline</b></p>
+<p>When you <b>Hack and Slash</b> with your lightsaber, you may roll +WIS instead of +STR.</p>
+<p><b>Deflect</b></p>
+<p>When a ranged attack hits you, roll +DEX. On a 10+, you deflect it completely. On a 7–9, you deflect it but choose one: you are off-balance (disadvantage on your next roll), or you redirect it but not at a target of your choice.</p>
+<p><b>Force Push</b></p>
+<p>When you hurl someone or something away with the Force, roll +WIS. On a 10+, they are hurled back and off-balance. On a 7–9, choose one: they stumble back, or they are pulled off-balance but you both stay close.</p>
+<p><b>Guardian's Stance</b></p>
+<p>When you <b>Defend</b> with your lightsaber drawn, hold 1 extra on a 7+.</p>
+<p><b>Watchful Eye</b></p>
+<p>When you study a combat situation before acting, roll +WIS. On a 10+, ask the GM two questions about threats or weaknesses in the scene. On a 7–9, ask one.</p>
+<p><b>Knight's Resolve</b></p>
+<p>When you act despite fear, pain, or doubt, roll +CON. On a 10+, ignore the effect and act with full strength. On a 7–9, act, but the GM holds 1 against you to use later.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Form Mastery:</b> When you <b>Hack and Slash</b>, on a 12+ you also disarm, knock back, or terrify your opponent (your choice).</li>
+<li><b>Twin Blades:</b> You may wield two lightsabers. When you do, deal +1 damage on a 10+.</li>
+<li><b>Shatterpoint:</b> Once per scene, ask the GM "what is the weakest point here?" The GM must answer honestly.</li>
+<li><b>Unbreakable:</b> When you would be taken out, roll +CON. On a 10+, you stay in the fight with 1 HP.</li>
+<li><b>Blade Mastery:</b> Your lightsaber damage die increases to d12.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # THE GUARDIAN</h2><p>*The sword arm of the Jedi Order. You stand between the innocent and the darkness.*</p>
+<p><b>Damage Die:</b> d10</p>
+<p><b>HP:</b> 10 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Human:</b> Anakin, Mace, Cin, Bao-Dur / Aayla, Depa, Shaak, Barriss</p>
+<p><b>Zabrak:</b> Agen, Eeth, Tol, Venn / Rin, Sera, Vel, Kiran</p>
+<p><b>Mirialan:</b> Prosset, Ardis, Coln, Daren / Luminara, Seris, Yla, Nora</p>
+<p><b>Nautolan:</b> Kit, Boro, Lenn, Arak / Nala, Sela, Kirra, Deena</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Species:</b> Human | Zabrak | Mirialan | Nautolan | ask your GM</p>
+<p><b>Age:</b> young and eager | seasoned and calm | weathered and deliberate</p>
+<p><b>Eyes:</b> fierce and bright | steady and distant | patient and deep</p>
+<p><b>Build:</b> lean and quick | broad and powerful | wiry and precise</p>
+<p><b>Clothing:</b> standard Jedi robes | worn field armor | minimal traveling gear</p>
+<p><b>Signature:</b> a notched lightsaber hilt | a braid you never cut | a scar from your first mission</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Protect someone weaker than yourself from harm.</li>
+<li>Defeat a worthy opponent in single combat.</li>
+<li>Refuse to strike down a defeated enemy.</li>
+<li>Stand between innocents and something terrible.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 10.</p>
+<ul>
+<li>Lightsaber (close, 2 slots)</li>
+<li>Jedi robes (1 slot)</li>
+<li>Comlink (1 slot)</li>
+<li>Medpac (1 slot)</li>
+<li>Field armor (+1 armor, clumsy, 2 slots)</li>
+<li>Datapad (1 slot)</li>
+<li>Grappling hook (1 slot)</li>
+<li>Extra power cell (small)</li>
+<li>Ration pack (small)</li>
+<li>Emergency flare (small)</li>
+<li>Holoprojector (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_padawan" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Chosen</b></p>
+<p>You were identified as Force-sensitive unusually late, or your midi-chlorian count is exceptionally high. Once per session you may treat a roll as a 12+ by accepting a dark-side temptation — the GM offers, and you choose whether to take it.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you was there when I first demonstrated unusual power?</li>
+<li>Which of you worries about what I might become?</li>
+<li>Which of you believes in me more than the Council does?</li>
+<li>Which of you has seen me lose control of my power?</li>
+</ul>
+<p>---</p>
+<p><b>Survivor</b></p>
+<p>You were found on a war-torn world or escaped slavery before coming to the Temple. When you endure hardship, deprivation, or pain, take +1 ongoing until the situation changes.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows where I came from?</li>
+<li>Which of you has asked me about my life before the Temple — and what did I tell you?</li>
+<li>Which of you protected me when I was still too angry to protect myself?</li>
+<li>Which of you sees the galaxy the same hard way I do?</li>
+</ul>
+<p>---</p>
+<p><b>The Master's Shadow</b></p>
+<p>Your Master is well-known — respected, feared, or controversial. When you invoke your Master's reputation, roll +CHA. On a 10+, it opens doors and creates respect. On a 7–9, it creates complications as well.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows my Master personally?</li>
+<li>Which of you thinks I'll never step out of my Master's shadow?</li>
+<li>Which of you has offered to teach me something my Master hasn't?</li>
+<li>Which of you keeps a secret that involves my Master?</li>
+</ul>
+<p>---</p>
+<p><b>Prodigy</b></p>
+<p>You excel beyond your years in one discipline. Choose: combat, Force powers, or lore. When you act within that discipline, treat a 7–9 as a 10+. But your failures draw more scrutiny — the Council is watching you.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you tested my abilities and was surprised?</li>
+<li>Which of you thinks my talent is a burden as much as a gift?</li>
+<li>Which of you has helped me when I failed despite my skill?</li>
+<li>Which of you thinks I'm not as talented as the Council believes?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Still Learning</b></p>
+<p>When you <b>Spout Lore</b> or attempt a move outside your training, on a miss you still learn something true. The GM tells you one honest fact about the situation even as things go wrong.</p>
+<p><b>Apprentice's Blade</b></p>
+<p>When you <b>Hack and Slash</b> with your lightsaber, you may roll +WIS instead of +STR. On a 12+, your Master's training guides your hand — deal maximum damage.</p>
+<p><b>Raw Force</b></p>
+<p>When you push yourself beyond your training and channel raw Force energy, roll +WIS. On a 10+, choose 2. On a 7–9, choose 1 but take –1 forward.</p>
+<ul>
+<li>Deal d10 damage to a nearby target.</li>
+<li>Knock everyone near you off their feet.</li>
+<li>Move a heavy object across the room.</li>
+<li>Shield yourself from an incoming attack.</li>
+</ul>
+<p><b>Bond with Master</b></p>
+<p>Name your Master (a GM character). When your Master is present, take +1 to all rolls. When your Master is endangered, roll +WIS to act rationally rather than impulsively.</p>
+<p><b>Quick Study</b></p>
+<p>When another PC teaches you something through demonstration, you can use their move once before the end of the session.</p>
+<p><b>Earnest Heart</b></p>
+<p>When you appeal to someone's better nature with genuine honesty — no tricks, no leverage — roll +CHA. On a 10+, they respond honestly in kind. On a 7–9, they soften but ask something of you.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Knighting:</b> You are raised to Knight. Rename this playbook and choose a class move from any other Jedi playbook. You lose Bond with Master.</li>
+<li><b>Force Intuition:</b> You always know when something is wrong, even when you can't explain it.</li>
+<li><b>Growing Power:</b> Your Raw Force now gives 3 choices on a 10+ and 2 on a 7–9.</li>
+<li><b>Reckless Strength:</b> Once per session, you may succeed automatically on a physical Force use. The GM names a consequence you must accept.</li>
+<li><b>The Force Protects:</b> When you would die, roll +WIS. On a 10+, you survive with 1 HP and a vision from the Force.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # THE PADAWAN</h2><p>*You are not yet a Knight. But the Force chose you, and that means something.*</p>
+<p><b>Damage Die:</b> d6</p>
+<p><b>HP:</b> 6 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Human:</b> Anakin, Ferus, Obi-Wan, Bruck / Barriss, Darra, Siri, Tera</p>
+<p><b>Togruta:</b> Ahsoka, Mira, Sela, Kira / Rani, Teva, Nola, Sorin</p>
+<p><b>Twi'lek:</b> Bela, Koh, Raan, Lyos / Neva, Sira, Kira, Lyra</p>
+<p><b>Zabrak:</b> Bao, Tol, Ven, Erath / Rin, Vel, Sora, Kiran</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Species:</b> Human | Togruta | Twi'lek | Zabrak | ask your GM</p>
+<p><b>Age:</b> young and uncertain | young and fierce | young and unusually calm</p>
+<p><b>Eyes:</b> eager and bright | troubled and questioning | wide and taking everything in</p>
+<p><b>Build:</b> small and quick | growing and a little awkward | slight and unexpectedly strong</p>
+<p><b>Clothing:</b> standard Padawan robes | robes worn with personal modification | borrowed gear that doesn't quite fit</p>
+<p><b>Signature:</b> a Padawan braid (the style says a lot) | a gift from your Master | a trinket from before the Temple</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Make your Master proud in a moment that truly matters.</li>
+<li>Admit you were wrong and make it right.</li>
+<li>Stand up for someone when your Master would have stayed silent.</li>
+<li>Resist the temptation of a shortcut.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 7.</p>
+<ul>
+<li>Training lightsaber or full lightsaber (close, 2 slots)</li>
+<li>Padawan robes (1 slot)</li>
+<li>Comlink, hand-me-down (1 slot)</li>
+<li>Medpac (1 slot)</li>
+<li>Ration pack (small)</li>
+<li>Holoprojector (small)</li>
+<li>Good luck charm from before the Temple (small)</li>
+<li>A gift from your Master (small, your choice)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_sentinel" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Shadow</b></p>
+<p>You were trained by the Jedi Shadows to hunt dark side artifacts and Force cults. You always know when you are being followed. You start with a holdout blaster (close/near, loud, small).</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows what I do in the Order's name?</li>
+<li>Which of you has asked me something I refused to answer?</li>
+<li>Which of you have I watched without you knowing?</li>
+<li>Which of you found out something about me I didn't intend to share?</li>
+</ul>
+<p>---</p>
+<p><b>Investigator</b></p>
+<p>You worked alongside the Republic Security Bureau or a planetary law enforcement body. When you <b>Discern Realities</b> at a crime scene or during an interrogation, ask one additional question beyond what the roll grants.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you helped me close a case I couldn't crack alone?</li>
+<li>Which of you was once a suspect in something I was investigating?</li>
+<li>Which of you has questions about how a case we shared ended?</li>
+<li>Which of you knows I bent the rules to get a result?</li>
+</ul>
+<p>---</p>
+<p><b>Infiltrator</b></p>
+<p>You've gone undercover in criminal organizations, dark-side cults, or enemy territory. You can create a convincing false identity for yourself with a few hours of preparation. On a 7+ when maintaining a cover, it holds.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knew me under a different name?</li>
+<li>Which of you knows a cover story about me that isn't true?</li>
+<li>Which of you has covered for me when my identity was almost blown?</li>
+<li>Which of you isn't sure which version of me is real?</li>
+</ul>
+<p>---</p>
+<p><b>Tracker</b></p>
+<p>You were trained in pursuit — by land, by space, through the Force. When you track someone across difficult terrain or through a city, you always find the trail. The GM can make it dangerous or costly, but never impossible.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you have I been sent to find before?</li>
+<li>Which of you knows someone I am still looking for?</li>
+<li>Which of you ran from something — and have I asked you about it?</li>
+<li>Which of you helped me catch someone, and how do you feel about what happened to them?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Read the Room</b></p>
+<p>When you enter a new location and take a moment to observe, roll +WIS. On a 10+, ask three questions. On a 7–9, ask one.</p>
+<ul>
+<li>Who here is armed and dangerous?</li>
+<li>Who is in charge, and who resents them?</li>
+<li>What is being hidden or lied about?</li>
+<li>Where is the quickest exit?</li>
+</ul>
+<p><b>Shadow Step</b></p>
+<p>When you move silently and unseen, roll +DEX. On a 10+, you are not detected and in position. On a 7–9, you are in position but choose one: you make a small noise, you leave a trace, or you are briefly glimpsed.</p>
+<p><b>Force Empathy</b></p>
+<p>When you touch an object or place saturated with strong emotion, you experience a flash of what happened there. The GM tells you one true thing about a significant recent event.</p>
+<p><b>Dual Strike</b></p>
+<p>When you <b>Hack and Slash</b> with a weapon in each hand, roll twice and take the higher result.</p>
+<p><b>Underworld Contacts</b></p>
+<p>You maintain a network of informants in the grey economy. When you seek information in an urban area, roll +CHA. On a 10+, you find it quickly. On a 7–9, the information is available but comes with a complication or cost.</p>
+<p><b>Force Cloak</b></p>
+<p>When you concentrate and become still in the Force, you fade from Force-sensitive perception. Darksiders and Force adepts cannot sense your presence while you maintain this focus.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Perfect Disguise:</b> Your false identities are flawless. Even Force users cannot sense the deception unless you reveal yourself.</li>
+<li><b>Ambush:</b> When you <b>Hack and Slash</b> from hiding, deal +2d6 damage.</li>
+<li><b>Force Interrogation:</b> When you press someone for truth through the Force, roll +WIS. On a 10+, they answer one question honestly. On a 7–9, they answer but know you've touched their mind.</li>
+<li><b>Ghost:</b> When you move through an area being actively searched for you, roll +DEX. On a 10+, you pass unseen. On a 7–9, choose one: you pass, or you leave no trace.</li>
+<li><b>Blade Dancer:</b> When you <b>Hack and Slash</b>, on a 7–9 you do not take the enemy's counter-attack.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # THE SENTINEL</h2><p>*You walk in the grey spaces — part investigator, part shadow, all Jedi.*</p>
+<p><b>Damage Die:</b> d8</p>
+<p><b>HP:</b> 8 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Human:</b> Quinlan, Tholme, A'Sharad, Ferus / Tera, Siri, Darra, Nomi</p>
+<p><b>Twi'lek:</b> Aayla, Raan, Koh, Lyal / Neva, Sirra, Kira, Bela</p>
+<p><b>Mirialan:</b> Prana, Coln, Desh, Telo / Seris, Yla, Nora, Vel</p>
+<p><b>Zabrak:</b> Bren, Kol, Shan, Daven / Lira, Reva, Nara, Sela</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Species:</b> Human | Twi'lek | Mirialan | Zabrak | ask your GM</p>
+<p><b>Age:</b> sharp and youthful | weathered and observant | ageless and unreadable</p>
+<p><b>Eyes:</b> quick and calculating | soft and disarming | watchful and still</p>
+<p><b>Build:</b> lean and unremarkable | athletic and controlled | slight and easily overlooked</p>
+<p><b>Clothing:</b> nondescript traveling clothes | undercover civilian wear | modified Jedi attire</p>
+<p><b>Signature:</b> a concealed second weapon | a false identity chip | a mark from a mission gone wrong</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Uncover a deception that others have accepted as truth.</li>
+<li>Protect someone without letting them know you were there.</li>
+<li>Follow a lead to its end, no matter where it goes.</li>
+<li>Choose mercy when justice would have been easier.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 9.</p>
+<ul>
+<li>Lightsaber (close, 2 slots)</li>
+<li>Civilian clothes and disguise kit (1 slot)</li>
+<li>Comlink, encrypted (1 slot)</li>
+<li>Grappling hook (1 slot)</li>
+<li>Medpac (1 slot)</li>
+<li>Holdout blaster (close/near, loud, 1 slot)</li>
+<li>Lock picks / slicer spike (small)</li>
+<li>Ration pack (small)</li>
+<li>Stun grenade (near, loud, small)</li>
+<li>False identity chip (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_wayseeker" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Exile's Path</b></p>
+<p>You left the Order voluntarily or were released by the Council to walk the living Force alone. Take +1 when you <b>Spout Lore</b> about the natural world, living creatures, or wild places. You also start with a loyal non-combat creature companion — ask your GM for details.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows why I left the Order?</li>
+<li>Which of you has followed a path as strange as mine?</li>
+<li>Which of you has asked me to come back — and what did I say?</li>
+<li>Which of you understands what I've given up?</li>
+</ul>
+<p>---</p>
+<p><b>Living Force</b></p>
+<p>You were taught — by Qui-Gon Jinn or a lineage that traces to him — to trust the present moment over the grand design. When you act entirely on instinct without preparation, roll +WIS. On a 10+, the Force guides you perfectly. On a 7–9, you end up somewhere unexpected but unharmed.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has seen me do something that shouldn't have worked?</li>
+<li>Which of you thinks I am reckless when I call it trust?</li>
+<li>Which of you followed my instinct once — and what happened?</li>
+<li>Which of you shares the same teacher in their lineage?</li>
+</ul>
+<p>---</p>
+<p><b>Force Ghost's Student</b></p>
+<p>You have communed with a Jedi who has become one with the Force. Once per session, you may ask them one question. The answer is always true, but never complete.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows who guides me?</li>
+<li>Which of you has tried to listen and heard nothing?</li>
+<li>Which of you do the voices mention?</li>
+<li>Which of you has reason to fear what my teacher might know?</li>
+</ul>
+<p>---</p>
+<p><b>The Long Road</b></p>
+<p>You have traveled more of the galaxy than most Jedi ever do. When you arrive somewhere new, roll +WIS. On a 10+, you've been here before or know someone who has — ask the GM for one useful piece of local knowledge. On a 7–9, you know something, but it is out of date.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you have I met before, in a place neither of us expected?</li>
+<li>Which of you is looking for something I might lead them to?</li>
+<li>Which of you has never left their home sector?</li>
+<li>Which of you carries something I recognize from a world I've visited?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Living Force Awareness</b></p>
+<p>You are always attuned to the living things around you. In a natural or wild environment, the Force warns you of danger before it arrives. You are never surprised by creatures or natural hazards.</p>
+<p><b>Wanderer's Blade</b></p>
+<p>Your lightsaber is old and travel-worn, but perfectly maintained. When you <b>Hack and Slash</b>, on a 12+ choose one: deal double damage, your opponent's weapon is damaged or destroyed, or you end the fight without further bloodshed.</p>
+<p><b>Force Attunement</b></p>
+<p>When you commune with a location, creature, or object in the Force, roll +WIS. On a 10+, you learn its history, emotional resonance, and current state. On a 7–9, you learn one of the three.</p>
+<p><b>Traveler's Peace</b></p>
+<p>When you sit and eat with strangers, offer help freely, or show trust first, roll +CHA. On a 10+, they treat you as a trusted friend for the rest of the scene. On a 7–9, they are cautious but open.</p>
+<p><b>Unattached</b></p>
+<p>You carry no rank, no assignment, no political weight. When someone would use your institutional role against you — threatening your Order, pulling rank, leveraging your standing — it doesn't apply. You have no Order to threaten.</p>
+<p><b>The Will of the Force</b></p>
+<p>Once per session, describe what you believe the Force is pointing toward. The GM must confirm or deny it with a single word. If confirmed, the GM will arrange for you to find it.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Midi-chlorian Speech:</b> You can communicate with any living creature through the Force, however primitive.</li>
+<li><b>Force Healing:</b> When you lay hands on someone and focus the Force, roll +WIS. On a 10+, heal their damage die + your WIS. On a 7–9, heal their damage die.</li>
+<li><b>Pathfinder:</b> When you lead a group through unknown territory, on a 10+ the GM cannot introduce hostile encounters. On a 7–9, choose one: safe passage or good time, not both.</li>
+<li><b>Spirit Bond:</b> You may ask your Force Ghost two questions per session instead of one.</li>
+<li><b>One with the Living Force:</b> When you die, roll +WIS. On a 10+, you become a Force Ghost and may remain with the group as long as you choose.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # THE WAYSEEKER</h2><p>*You walk the Force alone. No Council, no assignment — just the living Force and where it leads.*</p>
+<p><b>Damage Die:</b> d8</p>
+<p><b>HP:</b> 8 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Human:</b> Qui-Gon, Cal, Kanan, Jard / Serra, Depa, Tera, Nomi</p>
+<p><b>Kel Dor:</b> Plo, Aven, Koro, Renn / Seva, Lira, Nala, Pala</p>
+<p><b>Lasat:</b> Gron, Borrik, Harl, Zev / Shira, Vela, Nira, Dara</p>
+<p><b>Dathomirian (light-side):</b> Karis, Dren, Soroh, Veln / Mira, Sela, Nara, Lira</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Species:</b> Human | Kel Dor | Lasat | Dathomirian (light-side) | ask your GM</p>
+<p><b>Age:</b> wandering and young | experienced and weathered | serene and timeless</p>
+<p><b>Eyes:</b> calm and far-seeing | curious and alive | peaceful and knowing</p>
+<p><b>Build:</b> traveler's lean muscle | unhurried and unencumbered | road-hardened and adaptable</p>
+<p><b>Clothing:</b> worn traveling clothes over old Jedi robes | patchwork gear from many worlds | no Jedi markings at all</p>
+<p><b>Signature:</b> a walking staff | a strange creature that follows you | a map of places that called to you in the Force</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Follow where the Force leads, even if you can't explain why.</li>
+<li>Leave a place better than you found it.</li>
+<li>Help someone who asks for nothing in return.</li>
+<li>Trust a stranger.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 8.</p>
+<ul>
+<li>Lightsaber (close, 2 slots) — old but perfectly kept</li>
+<li>Traveling cloak and worn robes (1 slot)</li>
+<li>Comlink (1 slot)</li>
+<li>Medpac (1 slot)</li>
+<li>Rations for 3 days (1 slot)</li>
+<li>Climbing gear or grappling spike (1 slot)</li>
+<li>Creature companion (no slots — travels with you)</li>
+<li>Holojournal (small)</li>
+<li>Local currency from 3 different worlds (small)</li>
+<li>Force crystal or meditation stone (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+<div id="en_optional_moves" class="playbook-content lang-en"><div class="optional-moves-container"><div class="card"><h2>🪬 # Optional Moves — The Jedi Order</h2><p>---</p>
+<p><b>Jumping to Hyperspace</b></p>
+<p>When the group plots a hyperspace jump under pressure or through unfamiliar space, roll +INT. On a 10+, the jump is clean and fast. On a 7–9, choose one: the jump works but takes longer than expected, the ship takes minor damage in transit, or you arrive somewhat off-course and must orient yourselves. On a miss, the GM decides where you end up.</p>
+<p>---</p>
+<p><b>Hunted</b></p>
+<p>When Imperial forces, bounty hunters, or dark-side agents close in on your location, roll +DEX. On a 10+, you slip away cleanly, leaving no trace. On a 7–9, you escape but leave something behind: a witness, a hull ID scan, an item, or a contact who now knows your face.</p>
+<p>---</p>
+<p><b>Resonance of the Force</b></p>
+<p>When you enter a place where the Force runs strong — a battlefield soaked in death, an ancient Jedi shrine, a world alive with the living Force — roll +WIS. On a 10+, the Force gives you a clear vision: ask the GM one specific question and receive an honest answer. On a 7–9, you receive a vision but it disorients you; take –1 forward and ask the GM one question whose answer may be fragmentary or symbolic.</p>
+<p>---</p>
+<p><b>Negotiating Safe Passage</b></p>
+<p>When you attempt to secure passage through hostile or restricted territory by talking rather than fighting, roll +CHA. On a 10+, you pass without incident. On a 7–9, choose one: you pass but owe a favor, you pass but you are being followed, or you pass but only part of the group makes it through cleanly.</p>
+<p>---</p>
+<p><b>Making Camp in the Frontier</b></p>
+<p>When you make camp in wild or dangerous space — a jungle moon, a desert rim world, an abandoned orbital station — roll +WIS. On a 10+, choose 3. On a 7–9, choose 2.</p>
+<ul>
+<li>The camp is hidden and secure.</li>
+<li>Everyone heals their level in HP.</li>
+<li>You gain one useful piece of local knowledge.</li>
+<li>You are not disturbed until morning.</li>
+</ul></div></div></div>
+            </div>
+        </div>
+
+        <footer>
+            <span>Wygenerowano automatycznie • Homebrew World Web Presenter</span>
+            <span>Star Wars Jedi • katalog playbookow</span>
+        </footer>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.playbook-content');
+    const langToggles = document.querySelectorAll('.lang-toggle');
+    const body = document.body;
+    const html = document.documentElement;
+
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const mainLayout = document.querySelector('.main-layout');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function getVisibleTabs(lang) {
+        return Array.from(tabs).filter((tab) => tab.classList.contains(`lang-${lang}`));
+    }
+
+    function syncAriaStates(activeTabId) {
+        tabs.forEach((tab) => {
+            const isActive = tab.getAttribute('data-tab') === activeTabId;
+            tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            tab.setAttribute('tabindex', isActive ? '0' : '-1');
+        });
+    }
+
+    if (sidebarToggle && mainLayout) {
+        if (localStorage.getItem('sidebar-collapsed') === 'true') {
+            mainLayout.classList.add('sidebar-collapsed');
+            sidebarToggle.innerText = '⮕';
+            sidebarToggle.setAttribute('aria-expanded', 'false');
+        } else {
+            sidebarToggle.setAttribute('aria-expanded', 'true');
+        }
+
+        sidebarToggle.addEventListener('click', () => {
+            const isCollapsed = mainLayout.classList.toggle('sidebar-collapsed');
+            sidebarToggle.innerText = isCollapsed ? '⮕' : '☰';
+            sidebarToggle.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
+            localStorage.setItem('sidebar-collapsed', isCollapsed);
+        });
+    }
+
+    function switchTab(tabId) {
+        tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-tab') === tabId));
+        syncAriaStates(tabId);
+
+        const target = document.getElementById(tabId);
+        if (target) {
+            target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+            const url = new URL(window.location);
+            url.hash = tabId;
+            window.history.replaceState(null, '', url);
+        }
+    }
+
+    function switchLanguage(lang) {
+        body.classList.forEach((cls) => {
+            if (cls.startsWith('lang-')) body.classList.remove(cls);
+        });
+        body.classList.add(`lang-${lang}`);
+        html.lang = lang === 'default' ? 'pl' : lang;
+
+        langToggles.forEach((btn) => {
+            const isActive = btn.getAttribute('data-lang') === lang;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        const visibleTabs = getVisibleTabs(lang);
+        const nextTab = visibleTabs[0];
+        if (nextTab) {
+            const nextTabId = nextTab.getAttribute('data-tab');
+            tabs.forEach((tab) => tab.classList.toggle('active', tab === nextTab));
+            syncAriaStates(nextTabId);
+        }
+
+        window.scrollTo(0, 0);
+    }
+
+    tabs.forEach((tab) => {
+        tab.setAttribute('role', 'tab');
+        tab.addEventListener('click', () => {
+            switchTab(tab.getAttribute('data-tab'));
+        });
+    });
+
+    langToggles.forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+            switchLanguage(toggle.getAttribute('data-lang'));
+        });
+    });
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-tab') === id));
+                syncAriaStates(id);
+            }
+        });
+    }, observerOptions);
+
+    contents.forEach((section) => observer.observe(section));
+
+    const initialHash = window.location.hash.substring(1);
+    const availableLangs = Array.from(langToggles).map((t) => t.getAttribute('data-lang'));
+    
+    let preferredLang = 'default';
+    if (initialHash && availableLangs.includes(initialHash.split('_')[0])) {
+        preferredLang = initialHash.split('_')[0];
+    } else if (availableLangs.includes('en')) {
+        preferredLang = 'en';
+    } else if (availableLangs.length > 0) {
+        preferredLang = availableLangs[0];
+    } else if (document.querySelector('.tab.lang-default')) {
+        preferredLang = 'default';
+    }
+
+    switchLanguage(preferredLang);
+    
+    if (initialHash) {
+        setTimeout(() => {
+            const target = document.getElementById(initialHash);
+            if (target) {
+                switchTab(initialHash);
+                target.scrollIntoView({ behavior: 'auto' });
+            }
+        }, 100);
+    } else {
+        const initialVisibleTab = getVisibleTabs(preferredLang)[0];
+        if (initialVisibleTab) {
+            syncAriaStates(initialVisibleTab.getAttribute('data-tab'));
+        }
+        window.scrollTo(0, 0);
+    }
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars - Homebrew World</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Cormorant+Garamond:wght@600;700&amp;display=swap" rel="stylesheet">
+    <style>
+    :root {
+    --bg: #111015;
+    --panel: rgba(255, 248, 238, 0.08);
+    --panel-strong: rgba(255, 248, 238, 0.14);
+    --line: rgba(255, 248, 238, 0.16);
+    --text: #f6f0e8;
+    --muted: #cabfb1;
+    --accent: #d29b5c;
+    --accent-strong: #f0c489;
+    --shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+    --transition: 180ms ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "Manrope", sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background:
+        radial-gradient(circle at top left, rgba(210, 155, 92, 0.18), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(128, 62, 46, 0.25), transparent 28%),
+        linear-gradient(180deg, #17141d 0%, #0d0c10 100%);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 90%);
+}
+
+p, li, h1, h2, h3, b, span, div {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.container {
+    width: min(1400px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 32px 0 56px;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 32px;
+    padding: clamp(2rem, 4vw, 3.6rem);
+    border: 1px solid var(--line);
+    border-radius: 32px;
+    background:
+        linear-gradient(135deg, rgba(255, 248, 238, 0.08), rgba(255, 248, 238, 0.02)),
+        rgba(12, 10, 15, 0.72);
+    box-shadow: var(--shadow);
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: auto -10% -35% 50%;
+    width: 60%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(240, 196, 137, 0.35), transparent 60%);
+    filter: blur(18px);
+}
+
+.hero-top,
+.page-toolbar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.page-toolbar {
+    margin-top: 28px;
+}
+
+.eyebrow {
+    margin-bottom: 18px;
+    color: var(--accent-strong);
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    font-size: 0.74rem;
+    font-weight: 800;
+}
+
+.home-link,
+.lang-toggle,
+.stat-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 44px;
+    padding: 12px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition);
+}
+
+.home-link:hover,
+.lang-toggle:hover,
+.stat-badge:hover {
+    transform: translateY(-1px);
+    border-color: rgba(240, 196, 137, 0.45);
+    background: rgba(255, 248, 238, 0.14);
+}
+
+.home-link:focus-visible,
+.lang-toggle:focus-visible,
+#sidebar-toggle:focus-visible,
+.tab:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 2px;
+}
+
+.lang-selector {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.lang-toggle {
+    cursor: pointer;
+}
+
+.lang-toggle.active {
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+    color: #1a1410;
+}
+
+.page-title {
+    position: relative;
+    z-index: 1;
+    margin: 18px 0 0;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.title-emoji {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.title-text {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(3.6rem, 9vw, 7.2rem);
+    line-height: 0.9;
+    font-weight: 700;
+}
+
+.page-summary {
+    position: relative;
+    z-index: 1;
+    width: min(48rem, 100%);
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 1.8;
+}
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+    transition: grid-template-columns 0.3s ease, gap 0.3s ease;
+}
+
+.main-layout.sidebar-collapsed {
+    grid-template-columns: 76px minmax(0, 1fr);
+}
+
+.tabs-container,
+.card {
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, var(--panel-strong), rgba(255, 248, 238, 0.04));
+    box-shadow: var(--shadow);
+}
+
+.tabs-container {
+    position: sticky;
+    top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: calc(100vh - 48px);
+    padding: 16px;
+    border-radius: 24px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+}
+
+.sidebar-collapsed .tabs-container {
+    padding: 16px 10px;
+}
+
+#sidebar-toggle {
+    width: 44px;
+    height: 44px;
+    align-self: center;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--panel);
+    color: var(--text);
+    cursor: pointer;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition);
+}
+
+#sidebar-toggle:hover {
+    transform: translateY(-1px);
+    border-color: rgba(240, 196, 137, 0.45);
+    background: rgba(255, 248, 238, 0.14);
+}
+
+.tabs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: opacity 0.25s ease;
+}
+
+.sidebar-collapsed .tabs-list {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tabs-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.9rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    background: transparent;
+    color: var(--muted);
+    text-align: left;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition);
+}
+
+.tab:hover {
+    transform: translateY(-1px);
+    color: var(--text);
+    background: rgba(255, 248, 238, 0.08);
+    border-color: rgba(255, 248, 238, 0.12);
+}
+
+.tab.active {
+    color: #1a1410;
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+    box-shadow: 0 12px 24px rgba(240, 196, 137, 0.18);
+}
+
+.content-area {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    min-width: 0;
+}
+
+.playbook-content {
+    display: none;
+    scroll-margin-top: 2rem;
+    grid-template-columns: minmax(0, 1fr) 350px;
+    gap: 24px;
+    animation: fadeIn 0.35s ease-out;
+}
+
+.lang-pl .playbook-content.lang-pl,
+.lang-en .playbook-content.lang-en,
+.lang-default .playbook-content.lang-default {
+    display: grid;
+}
+
+.tab {
+    display: none;
+}
+
+.lang-pl .tab.lang-pl,
+.lang-en .tab.lang-en,
+.lang-default .tab.lang-default {
+    display: flex;
+}
+
+.main-column,
+.side-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-width: 0;
+}
+
+.card {
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    backdrop-filter: blur(12px);
+}
+
+.card:hover {
+    border-color: rgba(240, 196, 137, 0.45);
+    background: linear-gradient(180deg, rgba(255, 248, 238, 0.18), rgba(255, 248, 238, 0.06));
+    transform: translateY(-3px);
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    line-height: 1;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+h2::before {
+    content: "";
+    width: 4px;
+    height: 1.5rem;
+    background: var(--accent-strong);
+    border-radius: 2px;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--muted);
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    margin-bottom: 0.75rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent-strong);
+    opacity: 0.7;
+}
+
+.stat-badge {
+    margin-right: 0.5rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.look-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.look-row {
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    background: rgba(255, 248, 238, 0.05);
+    border-radius: 12px;
+    border-left: 3px solid var(--accent-strong);
+}
+
+.look-label {
+    font-weight: 800;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    margin-bottom: 0.25rem;
+}
+
+.look-options {
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+.section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent-strong) 0%, transparent 100%);
+    opacity: 0.2;
+    margin: 2rem 0 1rem 0;
+    max-width: 100%;
+}
+
+.move-card {
+    border-left: 4px solid var(--accent-strong);
+}
+
+.move-card b {
+    color: var(--accent-strong);
+}
+
+.gear-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.gear-item {
+    padding: 1rem;
+    background: rgba(255, 248, 238, 0.05);
+    border-radius: 12px;
+    border: 1px solid var(--line);
+}
+
+.optional-moves-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+    gap: 2rem;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    padding: 0 4px;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* Adventure Generator */
+.adventure-generator-card {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(180deg, var(--panel-strong), rgba(255, 248, 238, 0.02));
+    border: 1px solid rgba(240, 196, 137, 0.3);
+    box-shadow: 0 10px 40px rgba(210, 155, 92, 0.08);
+}
+
+.adventure-generator-card h2 {
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.generator-result {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--accent-strong);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 900px;
+    margin-inline: auto;
+    font-family: "Cormorant Garamond", serif;
+}
+
+.generator-result p {
+    color: var(--text);
+    margin: 0;
+}
+
+.generator-result p:first-child {
+    margin-bottom: 0.75rem;
+    color: var(--accent-strong);
+    font-size: 1.6rem;
+}
+
+.adv-highlight {
+    color: var(--text);
+    padding-bottom: 2px;
+    border-bottom: 1px dashed rgba(240, 196, 137, 0.45);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.adv-highlight:hover {
+    color: var(--accent-strong);
+    border-bottom-color: var(--accent-strong);
+}
+
+.generator-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.adv-roll-btn {
+    font-size: 1.05rem;
+    padding: 1rem 2.5rem;
+    border-radius: 999px;
+    letter-spacing: 0.08em;
+}
+
+.adventure-tables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.adventure-table-card {
+    padding: 1.8rem;
+    background: rgba(255, 248, 238, 0.02);
+}
+
+.adventure-table-card h3 {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    color: var(--text);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.5rem;
+}
+
+.adventure-prefix {
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--accent);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.adventure-items {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.adventure-items .adv-item {
+    margin-bottom: 0.5rem;
+    padding-left: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.adventure-items .adv-item::before {
+    content: none;
+}
+
+.adv-num {
+    color: var(--accent);
+    font-weight: 800;
+    width: 2.2ch;
+    flex-shrink: 0;
+    text-align: right;
+    font-size: 0.9rem;
+    margin-top: 0.15rem;
+}
+
+.adv-text {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 1400px) {
+    .playbook-content {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 1100px) {
+    .main-layout,
+    .main-layout.sidebar-collapsed {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .tabs-container {
+        position: sticky;
+        top: 12px;
+        flex-direction: row;
+        align-items: center;
+        max-height: none;
+        padding: 12px;
+        overflow: visible;
+    }
+
+    #sidebar-toggle {
+        display: none;
+    }
+
+    .tabs-list {
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(240, 196, 137, 0.45) transparent;
+    }
+
+    .tabs-list::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .tabs-list::-webkit-scrollbar-thumb {
+        background: rgba(240, 196, 137, 0.35);
+        border-radius: 999px;
+    }
+
+    .tab {
+        width: auto;
+        white-space: nowrap;
+        padding: 0.75rem 1rem;
+    }
+
+    .playbook-content {
+        scroll-margin-top: 5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: min(100% - 20px, 1400px);
+        padding-top: 20px;
+    }
+
+    .hero {
+        padding: 24px;
+        border-radius: 24px;
+    }
+
+    .page-title {
+        gap: 10px;
+    }
+
+    .card {
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+
+    .lang-selector {
+        gap: 0.5rem;
+    }
+
+    .lang-toggle {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.7rem;
+    }
+
+    .page-summary {
+        font-size: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+    </style>
+</head>
+<body class="lang-default">
+    <div class="container">
+        <header class="hero">
+            <p class="eyebrow">Homebrew World Setting</p>
+            <div class="hero-top">
+                
+                <div class="lang-selector"><button class="lang-toggle" data-lang="en" type="button">English</button></div>
+            </div>
+            <h1 class="page-title"><span class="title-emoji">🌍</span> <span class="title-text">Star Wars</span></h1>
+            <p class="page-summary">Materiały do gry Homebrew World ułożone w tej samej bibliotece wizualnej co strona główna: ciepła paleta, szklane panele i czytelny katalog playbooków.</p>
+            <div class="page-toolbar"><span class="stat-badge">5 playbookow</span> <span class="stat-badge">Ruchy opcjonalne i szybka nawigacja</span></div>
+        </header>
+
+        <div class="main-layout">
+            <aside class="tabs-container" id="sidebar">
+                <button id="sidebar-toggle" aria-label="Toggle Sidebar" aria-expanded="true" type="button">☰</button>
+                <div class="tabs-list" role="tablist" aria-label="Playbook navigation">
+                    <button class="tab lang-en" data-tab="en_playbook_bounty_hunter" type="button">🏹 Łowca Nagród</button>
+<button class="tab lang-en" data-tab="en_playbook_jedi_adept" type="button">✨ Adept Jedi</button>
+<button class="tab lang-en" data-tab="en_playbook_rebel_ace" type="button">🚀 As Rebelii</button>
+<button class="tab lang-en" data-tab="en_playbook_scoundrel" type="button">🗡️ Łotr</button>
+<button class="tab lang-en" data-tab="en_playbook_slicer_mechanic" type="button">💻 Slicer i Mechanik</button>
+<button class="tab lang-en" data-tab="en_optional_moves" type="button">🌟 Optional Moves</button>
+<button class="tab lang-en" data-tab="en_adventures" type="button">🗺️ Adventure Generator — Star Wars</button>
+                </div>
+            </aside>
+
+            <div class="content-area">
+                
+    <div id="en_playbook_bounty_hunter" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło:</h2><p>Wybierz jedno.</p>
+<div class="section-divider"></div>
+<h3>✨ Dłużnik Gildii</h3>
+<p>Gdy ujawniasz, że gildia ma interes w tej sprawie, zyskujesz przewagę przy zastraszaniu drobnych łowców, pośredników i ludzi półświatka.</p>
+<p>Raz na sesję możesz stwierdzić, że znasz lokalnego pośrednika kontraktów; MG powie, czego chce w zamian.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który z was wie, ile naprawdę jestem winien gildii?</li>
+<li>Która z was namówiła mnie kiedyś do złamania zasad kontraktu?</li>
+<li>Który z was może zostać wykorzystany jako nacisk przeciwko mnie?</li>
+<li>Której z was jeszcze nie powiedziałem, kto naprawdę wystawił cenę za moją głowę?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>⚔️ Wojownik Klanu</h3>
+<p>Gdy otwarcie powołujesz się na honor klanu, kodeks albo przysięgę rodu, zyskujesz przewagę, jeśli ktoś traktuje tradycję poważnie.</p>
+<p>Gdy podejmujesz walkę, by dotrzymać słowa, zaznacz XP, jeśli to słowo narazi cię na stratę.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który z was walczył już kiedyś u mojego boku zgodnie z kodeksem?</li>
+<li>Która z was nie rozumie, dlaczego honor jest dla mnie ważniejszy niż kredyty?</li>
+<li>Który z was zna hańbę, która ciąży na moim klanie?</li>
+<li>Której z was przysiągłem ochronę, choć nie było w tym żadnego zysku?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>🏹 Łowca z Rubieży</h3>
+<p>Gdy tropisz istotę przez dzicz, pustkowia albo dziką stację, zawsze znajdziesz ślad, o ile coś faktycznie tędy przeszło.</p>
+<p>Gdy opisujesz, po jakim śladzie poznajesz ofiarę, zyskujesz przewagę na pierwszy rzut pościgu.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was widziała mnie, gdy polowałem jeszcze na bestie zamiast ludzi?</li>
+<li>Który z was pachnie dla mnie jak ktoś, kto nie przetrwa długo na rubieżach?</li>
+<li>Która z was uratowała mnie przed stworzeniem, którego nie doszacowałem?</li>
+<li>Którego z was uczę, jak czytać ślady, krew i ciszę terenu?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Były Szturmowiec</h3>
+<p>Gdy wykorzystujesz imperialne procedury, szyki albo sygnały ręczne, zyskujesz przewagę.</p>
+<p>Gdy ktoś rozpoznaje w tobie dawnego żołnierza imperium, MG powie, czego się po tobie spodziewa albo czego się boi.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który z was widział mnie jeszcze w białym pancerzu?</li>
+<li>Która z was najbardziej nie ufa mi z powodu mojej imperialnej przeszłości?</li>
+<li>Któremu z was próbuję wynagrodzić to, co zrobiłem w służbie imperium?</li>
+<li>Który z was zna nazwę jednostki, z której zdezerterowałem?</li>
+</ul></div>
+<div class="card"><h2>📜 Ruchy startowe</h2><p>Masz wszystkie poniższe ruchy:</p>
+<div class="section-divider"></div>
+<h3>✨ Kontrakt na Głowę</h3>
+<p>Gdy analizujesz cel, nazwij nagrodę, powód pościgu albo frakcję, która go chroni, i rzuć+Rozum. Przy 10+ zadaj 3 pytania. Przy 7-9 zadaj 1.</p>
+<ul>
+<li>Gdzie cel będzie próbował zniknąć?</li>
+<li>Kto finansuje jego ucieczkę?</li>
+<li>Jaka słabość wystawi go na twoją zasadzkę?</li>
+<li>Co wokół niego ma tag `valuable`?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Sprzęt Łowcy</h3>
+<p>Masz 3 ładunki gadżetów. Gdy sięgasz po odpowiedni gadżet, wydaj 1 ładunek i wybierz: linka obezwładniająca, ładunek ogłuszający, skaner ciepła, przecinak termiczny, hak magnetyczny. Jeśli opis pasuje do sytuacji, zyskaj przewagę.</p>
+<div class="section-divider"></div>
+<h3>✨ Żywy Jest Więcej Wart</h3>
+<p>Gdy próbujesz schwytać przeciwnika bez zabijania, zadaj normalne obrażenia i możesz zrezygnować z 1d6 obrażeń, by nadać mu tag `restrained` albo `stunned`.</p>
+<div class="section-divider"></div>
+<h3>✨ Bez Litości, Bez Pośpiechu</h3>
+<p>Gdy tropisz cel przez niebezpieczny teren, zawsze znajdujesz ślad, chyba że istnieje nadnaturalna przeszkoda. Jeśli cel ma tag `fugitive`, zyskujesz przewagę na pierwszy rzut przeciw jego planowi ucieczki.</p>
+<div class="section-divider"></div>
+<h3>✨ Reputacja Zimnej Krwi</h3>
+<p>Gdy ujawniasz swoją tożsamość komuś, kto zna twoje dokonania, rzuć+Prezencja. Przy 10+ wybierz 2. Przy 7-9 wybierz 1.</p>
+<ul>
+<li>Ustępuje ci z drogi.</li>
+<li>Zdradza ci informację za darmo.</li>
+<li>Nie odważy się cię zdradzić w tej scenie.</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Pancerz i Impet</h3>
+<p>Gdy wchodzisz pierwszy pod ostrzał albo wyważasz sobie drogę do celu, możesz przyjąć 1d6 obrażeń, by zyskać przewagę i zadać dodatkowe +1d6 obrażeń przy pierwszym trafieniu.</p></div>
+<div class="card"><h2>📜 Rozwinięcia</h2><ul>
+<li>Zwiększ liczbę ładunków w `Sprzęcie Łowcy` do 5.</li>
+<li>Gdy korzystasz z jetpacka, możesz zawsze dotrzeć na pozycję niedostępną dla zwykłego piechura.</li>
+<li>Na 12+ przy `Reputacji Zimnej Krwi` również zastraszasz obstawę celu.</li>
+<li>Gdy bierzesz kontrakt na kogoś z tagiem `imperial`, wybierz: wiesz, kto go wystawił, albo gdzie wypłacą zaliczkę.</li>
+<li>Raz na sesję możesz stwierdzić, że masz lokalnego informatora na planecie; MG powie, czego chce w zamian.</li>
+<li><b>Lepsza cecha</b>: Zwiększ jedną z cech o +1, maksymalnie do +2.</li>
+<li><b>Mistrzowska cecha</b>: Wymaga: Lepsza cecha oraz co najmniej jedno inne rozwinięcie. Zwiększ jedną z cech o +1, maksymalnie do +3.</li>
+</ul></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🏹 # Łowca Nagród</h2></div>
+<div class="card"><h2>📜 Imię</h2><ul>
+<li>Człowiek: Kest, Mira, Jax, Sol</li>
+<li>Mandalorianin: Ordo, Vexa, Kryze, Tor</li>
+<li>Trandoshanin: Sskarr, Vrass, Kexx, Trask</li>
+<li>Twi'lek: Nima, Ryl, Tavo, Seli</li>
+</ul></div>
+<div class="card"><h2>📜 Wygląd:</h2><p>Wybierz po jednym lub zainspiruj się:</p>
+<div class="look-row"><div class="look-label">gatunek</div><div class="look-options">Człowiek, Mandalorianin, Trandoshanin albo Twi'lek</div></div>
+<div class="look-row"><div class="look-label">nakrycie głowy</div><div class="look-options">hełm z trofeami albo kaptur skrywający twarz</div></div>
+<div class="look-row"><div class="look-label">broń</div><div class="look-options">zużyty karabin albo ciężki blaster</div></div>
+<div class="look-row"><div class="look-label">wyposażenie</div><div class="look-options">pas z gadżetami albo jetpack</div></div>
+<div class="look-row"><div class="look-label">sylwetka lub detal</div><div class="look-options">chłodne spojrzenie albo liczne oznaczenia kontraktów</div></div></div>
+<div class="card"><h2>📜 HP</h2><p>22</p></div>
+<div class="card"><h2>📜 Kość obrażeń</h2><p>d10</p></div>
+<div class="card"><h2>📜 Popędy</h2><ul>
+<li>Schwytać cel, którego nikt inny nie potrafi dopaść.</li>
+<li>Udowodnić przewagę swojego kodeksu nad cudzym prawem.</li>
+<li>Wziąć zapłatę od niebezpiecznych ludzi i przeżyć konsekwencje.</li>
+<li>Ochronić swoją reputację, nawet jeśli kosztuje cię to zysk.</li>
+</ul></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Wybierz 7-11 przedmiotów:</p>
+<ul>
+<li>ciężki blaster karabinowy (2 sloty)</li>
+<li>pistolet blasterowy (1 slot)</li>
+<li>pancerz łowcy nagród (2 sloty)</li>
+<li>jetpack albo plecak wspinaczkowy (2 sloty)</li>
+<li>kajdany energetyczne (1 slot)</li>
+<li>skaner biosygnatur (1 slot)</li>
+<li>2 dodatkowe ładunki do `Sprzętu Łowcy` (1 slot)</li>
+<li>racje polowe / Supplies (1 slot)</li>
+<li>detektor podsłuchów (1 slot)</li>
+<li>refleksyjna peleryna maskująca (1 slot)</li>
+</ul>
+<p>Małe przedmioty:</p>
+<ul>
+<li>znacznik gildii</li>
+<li>kostka kredytowa z zaliczką</li>
+<li>kość lub ząb dawnego trofeum</li>
+<li>kod dostępu do lokalnej siatki</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_jedi_adept" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło:</h2><p>Wybierz jedno.</p>
+<div class="section-divider"></div>
+<h3>✨ Padawan Ocalały</h3>
+<p>Gdy wspominasz nauki mistrza w chwili zwątpienia, możesz zadać MG jedno pytanie: „Co byłoby tu drogą Jedi?” Odpowiedź będzie szczera, choć może być trudna.</p>
+<p>Gdy pierwszy raz w scenie bronisz kogoś słabszego od siebie, zyskujesz przewagę.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was ukryła mnie podczas czystki albo pomogła mi uciec?</li>
+<li>Który z was widział mnie, gdy byłem jeszcze uczniem bez kontroli nad sobą?</li>
+<li>Która z was najbardziej przypomina mi kogoś, kogo utraciłem?</li>
+<li>Któremu z was wciąż nie wyznałem całej prawdy o swoim mistrzu?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Strażnik Ruin</h3>
+<p>Gdy po raz pierwszy badajesz starożytne sanktuarium, relikt albo miejsce silne w Mocy, możesz zadać MG dwa pytania zamiast jednego.</p>
+<p>Gdy bronisz świętego miejsca albo cennego artefaktu przed profanacją, zyskujesz przewagę.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was pomogła mi ocalić coś z ruin, których przysiągłem strzec?</li>
+<li>Który z was nie rozumie, dlaczego pewnych rzeczy nie wolno ruszać?</li>
+<li>Która z was jako jedyna widziała, co śpi pod tym miejscem?</li>
+<li>Któremu z was najmniej ufam w pobliżu reliktów i skarbów?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Uczeń na Wygnaniu</h3>
+<p>Gdy działasz zgodnie z surową lekcją swego wygnanego mistrza, nazwij ją i zyskaj przewagę.</p>
+<p>Raz na sesję możesz stwierdzić, że twój mistrz przewidział podobną sytuację; opisz ostrzeżenie, które ci zostawił.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który z was nalega, żebym wrócił do wojny, z której mój mistrz uciekł?</li>
+<li>Która z was słyszała część nauk mojego mistrza i chce więcej?</li>
+<li>Który z was uważa mojego mistrza za tchórza albo zdrajcę?</li>
+<li>Której z was najbardziej obawiam się nie zdołać ocalić?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Dziecko Proroctwa</h3>
+<p>Gdy wypowiadasz niepokojącą wizję o kimś obecnym, rzuć+Wola. Przy 10+ zadaj MG jedno pytanie o jego los, a on odpowie szczerze. Przy 7-9 odpowiedź przychodzi w obrazach i znakach.</p>
+<p>Gdy ktoś ufa twojej wizji mimo ryzyka, oboje zyskujecie przewagę na pierwszy rzut wykonany według tego ostrzeżenia.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was wierzy, że moje przeznaczenie odmieni losy galaktyki?</li>
+<li>Który z was boi się, że przyniosę tylko śmierć i ruinę?</li>
+<li>Która z was była już kiedyś obecna w jednej z moich wizji?</li>
+<li>Któremu z was nie wolno powiedzieć, co naprawdę widziałem o jego przyszłości?</li>
+</ul></div>
+<div class="card"><h2>📜 Ruchy startowe</h2><p>Masz wszystkie poniższe ruchy:</p>
+<div class="section-divider"></div>
+<h3>✨ Zmysł Mocy</h3>
+<p>Gdy zatrzymasz się, wyciszysz i otworzysz na Moc, zadaj MG jedno pytanie o obecną osobę, miejsce albo zagrożenie. MG odpowie szczerze i wskaże subtelny ślad, przeczucie lub wizję. Jeśli cel ma tag `force-sensitive`, zyskujesz przewagę przy pierwszym działaniu przeciw niemu lub dla jego dobra.</p>
+<div class="section-divider"></div>
+<h3>✨ Świetlna Obrona</h3>
+<p>Gdy odbijasz lub parujesz atak mieczem świetlnym, rzuć+Zręczność. Przy 10+ wybierz 2. Przy 7-9 wybierz 1.</p>
+<ul>
+<li>Zmniejszasz własne obrażenia o połowę.</li>
+<li>Zadajesz napastnikowi d8 obrażeń.</li>
+<li>Chronisz pobliskiego sojusznika.</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Pchnięcie Mocy</h3>
+<p>Gdy uwalniasz Moc, by odepchnąć, przytrzymać albo przewrócić cel, rzuć+Wola. Przy 10+ osiągasz efekt i wybierz 1. Przy 7-9 osiągasz efekt, ale MG wybiera 1.</p>
+<ul>
+<li>Nie ujawniasz swojej obecności osobom z tagiem `imperial`.</li>
+<li>Nie niszczysz niczego cennego po drodze.</li>
+<li>Nie wystawiasz się na kontratak.</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Trening Zakonu</h3>
+<p>Wybierz dwie formy: Ataru, Soresu, Shien, Makashi. Gdy walczysz zgodnie z wybraną formą, opisz to i zyskaj przewagę.</p>
+<ul>
+<li>Ataru: gdy jesteś w ruchu lub przeskakujesz przeszkody.</li>
+<li>Soresu: gdy bronisz kogoś albo utrzymujesz pozycję.</li>
+<li>Shien: gdy odpierasz ostrzał lub walczysz z wieloma słabszymi przeciwnikami.</li>
+<li>Makashi: gdy stajesz do pojedynku jeden na jednego.</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Spokój Jest Bronią</h3>
+<p>Gdy ktoś próbuje sprowokować cię do gniewu, możesz najpierw zadać mu jedno pytanie: „Czego naprawdę chcesz?” Jeśli odpowie, zyskujesz przewagę na kolejny rzut przeciw niemu. Jeśli zignorujesz odpowiedź i zaatakujesz z gniewu, zaznacz XP.</p>
+<div class="section-divider"></div>
+<h3>✨ Nie Ma Przypadków</h3>
+<p>Raz na scenę, gdy spotykasz nową osobę lub wchodzisz w nowe miejsce, możesz stwierdzić, że już widziałeś to w przebłysku Mocy. Zadaj MG jedno pytanie o najbliższe niebezpieczeństwo albo ukrytą szansę; odpowiedź jest prawdziwa.</p></div>
+<div class="card"><h2>📜 Rozwinięcia</h2><ul>
+<li>Gdy używasz `Pchnięcia Mocy`, możesz zamiast tego rozbroić cel albo wyrwać mu przedmiot z rąk.</li>
+<li>Zyskujesz nową formę z `Treningu Zakonu`.</li>
+<li>Kiedy leczysz przez medytację i dotyk, przy 10+ leczysz dodatkowe 1d6 HP.</li>
+<li>Gdy działasz wobec kogoś z tagiem `dark-side`, na 12+ osiągasz efekt i wzbudzasz w nim wahanie.</li>
+<li>Raz na sesję możesz ogłosić, że w pobliżu znajduje się dawna kryjówka Jedi; MG powie, co w niej przetrwało.</li>
+<li><b>Lepsza cecha</b>: Zwiększ jedną z cech o +1, maksymalnie do +2.</li>
+<li><b>Mistrzowska cecha</b>: Wymaga: Lepsza cecha oraz co najmniej jedno inne rozwinięcie. Zwiększ jedną z cech o +1, maksymalnie do +3.</li>
+</ul></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>✨ # Adept Jedi</h2></div>
+<div class="card"><h2>📜 Imię</h2><ul>
+<li>Człowiek: Kira, Daren, Voss, Talia</li>
+<li>Togruta: Shaali, Reka, Vesh, Nari</li>
+<li>Mirialanka: Seva, Lin Marr, Teren, Vika</li>
+<li>Zabrak: Kael, Sorn, Azra, Vek</li>
+</ul></div>
+<div class="card"><h2>📜 Wygląd:</h2><p>Wybierz po jednym lub zainspiruj się:</p>
+<div class="look-row"><div class="look-label">gatunek</div><div class="look-options">Człowiek, Togruta, Mirialanka albo Zabrak</div></div>
+<div class="look-row"><div class="look-label">ubiór</div><div class="look-options">skromne szaty albo zużyty pancerz pól bitewnych</div></div>
+<div class="look-row"><div class="look-label">broń lub symbol</div><div class="look-options">miecz świetlny po mistrzu albo własnoręcznie złożony</div></div>
+<div class="look-row"><div class="look-label">twarz</div><div class="look-options">skupione oczy albo blizna po treningu</div></div>
+<div class="look-row"><div class="look-label">detal</div><div class="look-options">ceremonialny amulet Zakonu albo ukryty symbol upadłej świątyni</div></div></div>
+<div class="card"><h2>📜 HP</h2><p>18</p></div>
+<div class="card"><h2>📜 Kość obrażeń</h2><p>d8</p></div>
+<div class="card"><h2>📜 Popędy</h2><ul>
+<li>Bronić kogoś bezbronnego przed tyranią.</li>
+<li>Odsłonić prawdę ukrytą przez władzę albo kult.</li>
+<li>Oprzeć się pokusie szybkiego, brutalnego rozwiązania.</li>
+<li>Przywrócić nadzieję tam, gdzie wszyscy spodziewają się tylko strachu.</li>
+</ul></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Wybierz 7-11 przedmiotów:</p>
+<ul>
+<li>miecz świetlny (2 sloty)</li>
+<li>treningowy lub zapasowy kryształ ogniskujący (1 slot)</li>
+<li>prosty komunikator dalekiego zasięgu (1 slot)</li>
+<li>medpac z 2 użyciami (1 slot)</li>
+<li>holokron albo fragment archiwum Jedi (1 slot)</li>
+<li>płaszcz pustynny lub podróżna peleryna (1 slot)</li>
+<li>racje polowe / Supplies (1 slot)</li>
+<li>linka z zaczepem magnetycznym (1 slot)</li>
+<li>aparat oddechowy do krótkich spacerów próżniowych (1 slot)</li>
+</ul>
+<p>Małe przedmioty:</p>
+<ul>
+<li>znacznik Zakonu</li>
+<li>kredowy marker do znaków</li>
+<li>zestaw do czyszczenia ostrza</li>
+<li>pamiątka po mistrzu</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_rebel_ace" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło:</h2><p>Wybierz jedno.</p>
+<div class="section-divider"></div>
+<h3>✨ Weteran Eskadry</h3>
+<p>Gdy wspominasz poległych towarzyszy i działasz w ich imieniu, zyskujesz przewagę.</p>
+<p>Gdy po bitwie masz chwilę ciszy, możesz zadać MG jedno pytanie: „Kto dziś zapłacił najwyższą cenę za nasze zwycięstwo?”</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was leciała ze mną w eskadrze, która już nie wróci?</li>
+<li>Który z was przypomina mi kogoś, kogo straciłem?</li>
+<li>Która z was była świadkiem obietnicy, którą złożyłem poległym?</li>
+<li>Który z was uważa, że za bardzo żyję dawną wojną?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>🚩 Kurier Rebelii</h3>
+<p>Gdy przewozisz wiadomość, kod albo osobę, które nie mogą wpaść w obce ręce, zyskujesz przewagę na uniki, ukrywanie się i przebicie przez blokadę.</p>
+<p>Raz na sesję możesz ujawnić, że masz zaszyfrowany kanał kontaktu z komórką rebelii.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was wie, co kiedyś przewoziłem przez blokadę?</li>
+<li>Który z was nieświadomie pomógł mi dostarczyć tajną przesyłkę?</li>
+<li>Która z was nadal jest ścigana przez ludzi, którzy chcieli przechwycić mój ładunek?</li>
+<li>Któremu z was nie powinienem zdradzać, dla kogo naprawdę latam?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Kierowca Złomu</h3>
+<p>Gdy prowadzisz wrak, składaka albo pojazd, który nie powinien działać, zyskujesz przewagę.</p>
+<p>Gdy coś się psuje w najgorszym możliwym momencie, możesz powiedzieć, która część jest winna i jak utrzymać ją przy życiu jeszcze chwilę.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który z was pierwszy zobaczył mnie za sterami kompletnego złomu?</li>
+<li>Która z was pomogła mi ukraść albo wygrać statek, którym dziś latam?</li>
+<li>Który z was ciągle twierdzi, że ten wrak zaraz się rozpadnie?</li>
+<li>Która z was najbardziej lubi latanie, kiedy wszystko się trzęsie i płonie?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Syn Imperium</h3>
+<p>Gdy wykorzystujesz wiedzę z akademii imperialnej o procedurach, taktyce lub łączności, zyskujesz przewagę.</p>
+<p>Gdy spotykasz imperialnego pilota lub oficera, MG powie, skąd może cię kojarzyć.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który z was zna moje prawdziwe nazwisko z czasów akademii?</li>
+<li>Która z was nie wierzy, że naprawdę zerwałem z imperium?</li>
+<li>Który z was chce, żebym wykorzystał dawne kontakty jeszcze raz?</li>
+<li>Która z was pomogła mi zniknąć, gdy porzuciłem imperialne skrzydła?</li>
+</ul></div>
+<div class="card"><h2>📜 Ruchy startowe</h2><p>Masz wszystkie poniższe ruchy:</p>
+<div class="section-divider"></div>
+<h3>✨ Urodzony za Sterami</h3>
+<p>Gdy pilotujesz statek, śmigacz albo walker pod presją, rzuć+Zręczność. Przy 10+ wykonujesz manewr i wybierz 2. Przy 7-9 wybierz 1.</p>
+<ul>
+<li>Unikasz ognia bez strat.</li>
+<li>Ustawiasz sojusznika na doskonałej pozycji.</li>
+<li>Dostrzegasz słaby punkt przeciwnika lub terenu.</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Jeszcze Jeden Przelot</h3>
+<p>Gdy ryzykujesz drugi przelot nad celem zamiast odskoczyć, zyskujesz przewagę na atak. Jeśli rzut zakończy się 6-, zaznacz XP i MG pokaże koszt brawury.</p>
+<div class="section-divider"></div>
+<h3>✨ Czytaj Radar</h3>
+<p>Gdy skanujesz pole walki albo ruch w mieście z kokpitu, zadaj MG jedno pytanie. Jeśli twój cel ma tag `capital-ship`, `fighter` albo `pursuer`, zadaj dodatkowe pytanie.</p>
+<ul>
+<li>Co za chwilę wleci nam w martwy punkt?</li>
+<li>Gdzie jest jedyna bezpieczna droga?</li>
+<li>Kto udaje chaos, a naprawdę zastawia pułapkę?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>🚀 Załoga, Nie Pasażerowie</h3>
+<p>Gdy dajesz komuś w pojeździe konkretne zadanie, a on je podejmuje, zyskuje przewagę. Jeśli zrobi to mimo strachu, oboje zaznaczcie więź albo XP, jeśli nie używacie więzi.</p>
+<div class="section-divider"></div>
+<h3>🚀 As Rebelii</h3>
+<p>Gdy jawnie stajesz przeciw siłom z tagiem `imperial`, wszyscy sojusznicy, którzy widzą twój pierwszy śmiały manewr, otrzymują +1 morale; pierwszy z nich, który działa natychmiast po tobie, zyskuje przewagę.</p>
+<div class="section-divider"></div>
+<h3>✨ Nigdy Nie Lecę Sam</h3>
+<p>Masz astromecha, zaufanego mechanika albo wiernego strzelca. Gdy ten towarzysz pomaga ci w pojeździe, możesz przerzucić jedną kość i zachować lepszy wynik. Opisz, jak to robi.</p></div>
+<div class="card"><h2>📜 Rozwinięcia</h2><ul>
+<li>Wybierz wyspecjalizowany pojazd: myśliwiec przechwytujący, szybki frachtowiec albo śmigacz zwiadowczy. Zawsze masz do niego dostęp między misjami, chyba że fabularnie go utracisz.</li>
+<li>Gdy wykonujesz `Jeszcze Jeden Przelot`, na 10+ zadajesz dodatkowe +1d6 obrażeń.</li>
+<li>Raz na bitwę możesz ogłosić, że znasz słaby punkt wrogiej formacji; pierwszy sojuszniczy atak przeciw niej ma przewagę.</li>
+<li>Kiedy uciekasz przez asteroidę, wrakowisko albo miejskie tunele, zawsze pozostawiasz pościg daleko w tyle na 10+.</li>
+<li>Twój towarzysz z `Nigdy Nie Lecę Sam` ma własną specjalność; raz na sesję rozwiązuje problem techniczny bez rzutu.</li>
+<li><b>Lepsza cecha</b>: Zwiększ jedną z cech o +1, maksymalnie do +2.</li>
+<li><b>Mistrzowska cecha</b>: Wymaga: Lepsza cecha oraz co najmniej jedno inne rozwinięcie. Zwiększ jedną z cech o +1, maksymalnie do +3.</li>
+</ul></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🚀 # As Rebelii</h2></div>
+<div class="card"><h2>📜 Imię</h2><ul>
+<li>Człowiek: Wren, Cass, Juno, Hal</li>
+<li>Duros: Ellix, Drovan, Nesk, Varo</li>
+<li>Mon Calamari: Teren, Cala, Nym, Oris</li>
+<li>Rodianin: Greedo, Vexa, Talo, Nerr</li>
+</ul></div>
+<div class="card"><h2>📜 Wygląd:</h2><p>Wybierz po jednym lub zainspiruj się:</p>
+<div class="look-row"><div class="look-label">gatunek</div><div class="look-options">Człowiek, Duros, Mon Calamari albo Rodianin</div></div>
+<div class="look-row"><div class="look-label">ubiór</div><div class="look-options">kombinezon pilota albo wysłużona kurtka eskadry</div></div>
+<div class="look-row"><div class="look-label">znak rozpoznawczy</div><div class="look-options">ręcznie malowany emblemat jednostki albo hełm pełen zadrapań</div></div>
+<div class="look-row"><div class="look-label">oczy lub dłonie</div><div class="look-options">nerwowe dłonie pewne tylko przy sterach albo czujne spojrzenie</div></div>
+<div class="look-row"><div class="look-label">towarzysz lub detal</div><div class="look-options">gogle na czole albo astromech z własnym charakterem</div></div></div>
+<div class="card"><h2>📜 HP</h2><p>20</p></div>
+<div class="card"><h2>📜 Kość obrażeń</h2><p>d8</p></div>
+<div class="card"><h2>📜 Popędy</h2><ul>
+<li>Zaryzykować wszystko dla niemożliwego manewru.</li>
+<li>Dostarczyć ludzi lub dane przez linię ognia.</li>
+<li>Ośmieszyć przeważające siły wroga brawurą.</li>
+<li>Utrzymać przy życiu swoją załogę mimo beznadziejnych szans.</li>
+</ul></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Wybierz 7-11 przedmiotów:</p>
+<ul>
+<li>lekki pistolet blasterowy (1 slot)</li>
+<li>kombinezon lotniczy z hełmem (1 slot)</li>
+<li>zestaw narzędzi pilota (1 slot)</li>
+<li>datapad z mapami nadprzestrzennymi (1 slot)</li>
+<li>awaryjna flara albo boja sygnałowa (1 slot)</li>
+<li>racje polowe / Supplies (1 slot)</li>
+<li>medpac (1 slot)</li>
+<li>brelok z transponderami i fałszywymi kodami (1 slot)</li>
+<li>spadochron repulsorowy albo hamulec spadania (1 slot)</li>
+</ul>
+<p>Małe przedmioty:</p>
+<ul>
+<li>naszywka eskadry</li>
+<li>kostka sabaka na szczęście</li>
+<li>zdjęcie załogi</li>
+<li>komlink do kanału awaryjnego</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_scoundrel" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło:</h2><p>Wybierz jedno.</p>
+<div class="section-divider"></div>
+<h3>✨ Przemytnik Szlaków</h3>
+<p>Gdy opisujesz ukryty szlak, fałszywy transponder albo trasę omijającą kontrole, zyskujesz przewagę na przemyt i ucieczkę.</p>
+<p>Raz na sesję możesz stwierdzić, że znasz nieoficjalną drogę wejścia lub wyjścia z portu, stacji albo sektora.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was leciała już ze mną trasą, której nie ma na żadnej mapie?</li>
+<li>Który z was nie ma pojęcia, ile razy przemyt uratował mu skórę?</li>
+<li>Która z was czekała kiedyś na dostawę, z którą się spóźniłem?</li>
+<li>Któremu z was nadal nie powiedziałem, co naprawdę przewoziłem?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Hazardzista</h3>
+<p>Gdy ryzykujesz wszystko w grze, zakładzie albo bezczelnym blefie, zyskujesz przewagę.</p>
+<p>Gdy wygrywasz coś wartościowego przy stole, MG powie, kto natychmiast uzna to za swój problem.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który z was widział, jak wygrałem coś, czego nie powinienem był dotykać?</li>
+<li>Która z was nadal ma do mnie żal o zakład, którego nie spłaciłem?</li>
+<li>Który z was jest najłatwiejszy do odczytania przy stole?</li>
+<li>Która z was uratowała mnie po nocy, która zaczęła się od kart i skończyła strzelaniną?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Uciekający Informator</h3>
+<p>Gdy sprzedajesz półprawdę, przeciek albo kompromitującą wiadomość, zyskujesz przewagę, jeśli ktoś rozpaczliwie potrzebuje informacji.</p>
+<p>Raz na sesję możesz ogłosić, że już słyszałeś plotkę o aktualnym problemie; zadaj MG jedno pytanie o sekret, a odpowiedź będzie szczera.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was wie, jaki sekret sprzedałem dwa razy?</li>
+<li>Który z was mógłby wydać mnie za odpowiednią cenę?</li>
+<li>Która z was chroni mnie, choć nie zasłużyłem na to zaufanie?</li>
+<li>Któremu z was wciąż nie powiedziałem, kto naprawdę chce mnie uciszyć?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Książę Ulicy</h3>
+<p>Gdy pojawiasz się w porcie, slumsach albo dzielnicy przemytników, możesz zapytać MG, kto tu rządzi i czego chce od ciebie.</p>
+<p>Gdy korzystasz ze swojej reputacji ulicznej, zyskujesz przewagę przy szukaniu kryjówek, plotek i drobnych przysług.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was zna moje ulice lepiej, niż bym chciał?</li>
+<li>Który z was uważa mnie tylko za lokalnego cwaniaka bez znaczenia?</li>
+<li>Która z was zawdzięcza mi schronienie w porcie albo podziemiu?</li>
+<li>Którego z was moje dawne układy mogą jeszcze wciągnąć w kłopoty?</li>
+</ul></div>
+<div class="card"><h2>📜 Ruchy startowe</h2><p>Masz wszystkie poniższe ruchy:</p>
+<div class="section-divider"></div>
+<h3>✨ Zawsze Mam Plan</h3>
+<p>Gdy ujawniasz przygotowany wcześniej szczegół, opisz go i rzuć+Rozum. Przy 10+ był trafiony idealnie. Przy 7-9 działa, ale wybierz 1.</p>
+<ul>
+<li>Kosztował cię przysługę.</li>
+<li>Zostawił ślad dla ludzi z tagiem `crime` albo `imperial`.</li>
+<li>Działa tylko przez chwilę.</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Strzelam Pierwszy</h3>
+<p>Gdy sięgasz po ukrytą broń w chwili napięcia, zyskujesz przewagę. Jeśli mimo to wyrzucisz 6-, twoja broń zacina się, kończy ładunek albo trafiasz nie to, co chciałeś.</p>
+<div class="section-divider"></div>
+<h3>✨ Gładka Gadka</h3>
+<p>Gdy blefujesz, targujesz się albo odwracasz uwagę, rzuć+Prezencja. Przy 10+ wybierz 2. Przy 7-9 wybierz 1.</p>
+<ul>
+<li>Kupują twoją historię na tę scenę.</li>
+<li>Zdradzają ci użyteczny szczegół.</li>
+<li>Dają ci dostęp, którego normalnie by odmówili.</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Kanały i Kryjówki</h3>
+<p>Na każdej zaludnionej planecie wiesz, gdzie znaleźć jedną z poniższych rzeczy: bezpieczny nocleg, fałszywe papiery, szybki transport, szemranego pośrednika. Jeśli miejsce ma tag `underworld`, zyskujesz przewagę, gdy korzystasz z tej sieci.</p>
+<div class="section-divider"></div>
+<h3>✨ Dług i Przysługa</h3>
+<p>Gdy spotykasz kogoś z półświatka albo dawnego interesu, możesz ogłosić, że jest ci winien przysługę albo ty jemu. MG powie którą z opcji uznać za prawdę i co to znaczy teraz.</p>
+<div class="section-divider"></div>
+<h3>✨ Szybki Odskok</h3>
+<p>Gdy uciekasz z bliska, przez tłum, kanały serwisowe albo prom dokujący, zawsze znajdujesz drogę ucieczki. Jeśli zabierasz przy tym coś z tagiem `valuable`, rzuć+Zręczność; przy 10+ uciekasz czysto, przy 7-9 wybierz 1: zostawiasz trop, gubisz coś własnego, ktoś rusza za tobą.</p></div>
+<div class="card"><h2>📜 Rozwinięcia</h2><ul>
+<li>Gdy używasz `Zawsze Mam Plan`, na 12+ plan obejmuje także drogę odwrotu i dodatkowy zysk.</li>
+<li>Wybierz jednego potężnego patrona półświatka; raz na sesję możesz poprosić jego ludzi o krótką pomoc.</li>
+<li>Kiedy `Gładka Gadka` działa na kogoś z tagiem `official`, możesz dodatkowo zdobyć podpis, pieczęć albo przepustkę.</li>
+<li>Masz ukrytą skrytkę w swoim statku, mieszkaniu albo droidzie; nikt jej nie znajduje bez konkretnego powodu.</li>
+<li>Raz na sesję możesz stwierdzić, że znałeś cel albo miejsce jeszcze przed sceną; zadaj MG jedno pytanie o sekret i uzyskaj szczerą odpowiedź.</li>
+<li><b>Lepsza cecha</b>: Zwiększ jedną z cech o +1, maksymalnie do +2.</li>
+<li><b>Mistrzowska cecha</b>: Wymaga: Lepsza cecha oraz co najmniej jedno inne rozwinięcie. Zwiększ jedną z cech o +1, maksymalnie do +3.</li>
+</ul></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🗡️ # Łotr</h2></div>
+<div class="card"><h2>📜 Imię</h2><ul>
+<li>Człowiek: Han, Sana, Lio, Vexa</li>
+<li>Twi'lek: Numa, Rylis, Zhett, Oola</li>
+<li>Bothanin: Keth, Borsk, Mirax, Neth</li>
+<li>Falleen: Xev, Saria, Vanto, Kess</li>
+</ul></div>
+<div class="card"><h2>📜 Wygląd:</h2><p>Wybierz po jednym lub zainspiruj się:</p>
+<div class="look-row"><div class="look-label">gatunek</div><div class="look-options">Człowiek, Twi'lek, Bothanin albo Falleen</div></div>
+<div class="look-row"><div class="look-label">ubiór</div><div class="look-options">doskonale skrojony płaszcz albo zabrudzona kamizelka</div></div>
+<div class="look-row"><div class="look-label">twarz</div><div class="look-options">szybki uśmiech albo spojrzenie, które zawsze coś ukrywa</div></div>
+<div class="look-row"><div class="look-label">broń lub narzędzie</div><div class="look-options">ukryty blaster albo talia pełna kodów dostępu</div></div>
+<div class="look-row"><div class="look-label">detal</div><div class="look-options">podrabiane dokumenty albo statek, który ledwie trzyma się razem</div></div></div>
+<div class="card"><h2>📜 HP</h2><p>18</p></div>
+<div class="card"><h2>📜 Kość obrażeń</h2><p>d6</p></div>
+<div class="card"><h2>📜 Popędy</h2><ul>
+<li>Zgarnąć łup zanim potężniejsi zrozumieją jego wartość.</li>
+<li>Wyjść cało z układu, który nie miał prawa się udać.</li>
+<li>Zdobyć przewagę dzięki urokowi, kłamstwu lub brawurze.</li>
+<li>Spłacić albo pogłębić dług w najbardziej nieodpowiednim momencie.</li>
+</ul></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Wybierz 7-11 przedmiotów:</p>
+<ul>
+<li>ciężki blaster kieszonkowy (1 slot)</li>
+<li>modny płaszcz z ukrytymi kieszeniami (1 slot)</li>
+<li>podrabiane dokumenty i identyfikatory (1 slot)</li>
+<li>zestaw do oszustw przy stole i skanery kart (1 slot)</li>
+<li>datapad z tajnymi kontaktami (1 slot)</li>
+<li>narzędzie do otwierania zamków elektronicznych (1 slot)</li>
+<li>racje polowe / Supplies (1 slot)</li>
+<li>mała skrzynka kontrabandy (2 sloty)</li>
+<li>generator dymu albo wabik holo (1 slot)</li>
+</ul>
+<p>Małe przedmioty:</p>
+<ul>
+<li>zapalniczka plazmowa</li>
+<li>kościana kostka do gry</li>
+<li>srebrny żeton kasyna</li>
+<li>klucz do dawnej kryjówki</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_slicer_mechanic" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło:</h2><p>Wybierz jedno.</p>
+<div class="section-divider"></div>
+<h3>✨ Technik Hangaru</h3>
+<p>Gdy masz dostęp do warsztatu, hangaru albo skrzynki części, możesz naprawić prostą usterkę bez rzutu.</p>
+<p>Gdy rozpoznajesz model statku, MG powie ci jego najczęstszą awarię, obejście albo niebezpieczny punkt.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który z was widział, jak uruchomiłem wrak, który miał już nigdy nie latać?</li>
+<li>Która z was wciąż twierdzi, że ukradłem komuś ten sukces?</li>
+<li>Który z was przynosi mi najwięcej złomu i oczekuje cudu?</li>
+<li>Która z was ufa moim naprawom nawet wtedy, gdy wszystko iskrzy?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Haker Sektora</h3>
+<p>Gdy pierwszy raz dotykasz nowego systemu bezpieczeństwa, możesz od razu zadać MG jedno pytanie o jego słabość.</p>
+<p>Gdy zostawiasz cyfrowy ślad celowo, możesz wskazać, kogo ma obciążyć.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który z was wie, jaką sieć złamałem jako swoją pierwszą?</li>
+<li>Która z was korzystała już z moich włamań, ale nigdy tego nie przyzna?</li>
+<li>Który z was boi się, że kiedyś przejrzę jego prywatne dane?</li>
+<li>Której z was nie powiedziałem jeszcze, kto naprawdę zapłacił za moje największe włamanie?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Zbieracz Złomu</h3>
+<p>Gdy przeszukujesz wrak, pobojowisko albo składowisko, zawsze znajdujesz coś użytecznego, chyba że ktoś był tu pierwszy i zabrał wszystko.</p>
+<p>Gdy mówisz, z czego składasz prowizoryczne rozwiązanie, zyskujesz przewagę przy jego użyciu.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który z was nie rozumie, dlaczego nigdy nie wyrzucam pozornie bezużytecznych części?</li>
+<li>Która z was była ze mną, gdy znalazłem najcenniejszy element w stercie śmieci?</li>
+<li>Który z was pachnie dla mnie jak ktoś, kto kupuje sprzęt bez pytania o pochodzenie?</li>
+<li>Której z was obiecałem kiedyś zbudować coś z rzeczy, które inni uznali za złom?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Droid z Wolnej Woli</h3>
+<p>Nie można cię przeprogramować zwykłymi ograniczeniami właściciela, kodami posłuszeństwa ani prostym resetem.</p>
+<p>Gdy ktoś traktuje cię jak sprzęt zamiast osobę, zyskujesz przewagę na pierwszy rzut przeciw niemu.</p>
+<p>Kiedy przedstawiasz się pozostałym postaciom, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was zna prawdę o tym, jak uzyskałem wolną wolę?</li>
+<li>Który z was nadal ma odruch wydawania mi rozkazów?</li>
+<li>Która z was pomogła mi uciec przed próbą przeprogramowania?</li>
+<li>Któremu z was najbardziej ufam, choć wie, czym naprawdę jestem?</li>
+</ul></div>
+<div class="card"><h2>📜 Ruchy startowe</h2><p>Masz wszystkie poniższe ruchy:</p>
+<div class="section-divider"></div>
+<h3>💻 Slicer</h3>
+<p>Gdy włamujesz się do systemu, droida albo zabezpieczeń, rzuć+Rozum. Przy 10+ wybierz 3. Przy 7-9 wybierz 2.</p>
+<ul>
+<li>Robisz to szybko.</li>
+<li>Nie zostawiasz śladu dla ludzi z tagiem `imperial` lub `corporate`.</li>
+<li>Uzyskujesz dodatkowe dane, których nie szukałeś.</li>
+<li>Możesz zablokować system za sobą.</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ To Jeszcze Da Się Naprawić</h3>
+<p>Gdy masz chwilę, części i dostęp do celu, możesz naprawić uszkodzone urządzenie, statek albo droida. Jeśli sytuacja jest improwizowana lub pod ostrzałem, rzuć+Rozum. Przy 10+ działa i wybierz 1. Przy 7-9 działa, ale MG wybiera 1.</p>
+<ul>
+<li>Naprawa wytrzyma długo.</li>
+<li>Nie zużywasz Supplies ani części.</li>
+<li>Efekt daje przewagę następnej osobie, która z tego skorzysta.</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Improwizowany Gadżet</h3>
+<p>Raz na scenę możesz złożyć jednorazowe urządzenie z podręcznych części: zagłuszacz, impuls elektromagnetyczny, sensor ruchu, zdalny zapłon, dekoder. Opisz, jak działa; jeśli wykorzystuje tag otoczenia, zyskaj przewagę.</p>
+<div class="section-divider"></div>
+<h3>✨ Rozmawiam z Droidami</h3>
+<p>Gdy poświęcasz chwilę na kontakt z droidem albo pojazdem SI, możesz zadać MG jedno pytanie o jego ostatnie rozkazy, właściciela albo największą obawę. Jeśli cel ma tag `damaged`, możesz od razu usunąć ten tag po krótkiej naprawie.</p>
+<div class="section-divider"></div>
+<h3>✨ Obchodzę Zabezpieczenia</h3>
+<p>Gdy obchodzisz drzwi, wieżyczkę, cele więzienne albo czujniki, zawsze mówisz, czego potrzebujesz: czasu, dostępu fizycznego albo rozproszenia. Jeśli drużyna ci to zapewni, przechodzicie dalej bez rzutu.</p>
+<div class="section-divider"></div>
+<h3>✨ Wiem, Co Zaraz Wybuchnie</h3>
+<p>Gdy oceniasz maszynę, generator albo statek pod kątem awarii, MG powie ci, co się stanie, jeśli nic nie zrobicie. Pierwsza akcja wykonana na podstawie tej odpowiedzi ma przewagę.</p></div>
+<div class="card"><h2>📜 Rozwinięcia</h2><ul>
+<li>Twój `Improwizowany Gadżet` może działać przez całą scenę zamiast jednorazowo.</li>
+<li>Gdy `Slicer` działa na system z tagiem `military`, na 10+ możesz też sfałszować rozkaz lub zapis.</li>
+<li>Masz własnego droida pomocniczego; raz na sesję wykonuje za ciebie prostą naprawę albo odwraca uwagę strażników.</li>
+<li>Kiedy `To Jeszcze Da Się Naprawić` dotyczy statku, przy 10+ odzyskujecie też 1 zużyty zasób podróży.</li>
+<li>Raz na sesję możesz ogłosić, że już wcześniej podrzuciłeś backdoor do lokalnej sieci; MG powie, jak można go teraz użyć.</li>
+<li><b>Lepsza cecha</b>: Zwiększ jedną z cech o +1, maksymalnie do +2.</li>
+<li><b>Mistrzowska cecha</b>: Wymaga: Lepsza cecha oraz co najmniej jedno inne rozwinięcie. Zwiększ jedną z cech o +1, maksymalnie do +3.</li>
+</ul></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>💻 # Slicer i Mechanik</h2></div>
+<div class="card"><h2>📜 Imię</h2><ul>
+<li>Człowiek: Lysa, Corin, Dex, Vale</li>
+<li>Chadra-Fan: Tik, Skee, Nib, Valla</li>
+<li>Jawa: Teek, Utu, Nekk, Rrza</li>
+<li>Droid przerobiony: K4-RI, V1X, N0VA, CH-7</li>
+</ul></div>
+<div class="card"><h2>📜 Wygląd:</h2><p>Wybierz po jednym lub zainspiruj się:</p>
+<div class="look-row"><div class="look-label">gatunek</div><div class="look-options">Człowiek, Chadra-Fan, Jawa albo przerobiony droid</div></div>
+<div class="look-row"><div class="look-label">wyposażenie</div><div class="look-options">zestaw narzędzi przy pasie albo gogle wielospektralne</div></div>
+<div class="look-row"><div class="look-label">ślady pracy</div><div class="look-options">smugi smaru na rękach albo przepalone rękawy</div></div>
+<div class="look-row"><div class="look-label">ubiór lub obudowa</div><div class="look-options">płaszcz z izolacją albo korpus pełen przeróbek</div></div>
+<div class="look-row"><div class="look-label">detal</div><div class="look-options">cichy droid pomocniczy albo cybernetyczny interfejs własnej roboty</div></div></div>
+<div class="card"><h2>📜 HP</h2><p>16</p></div>
+<div class="card"><h2>📜 Kość obrażeń</h2><p>d6</p></div>
+<div class="card"><h2>📜 Popędy</h2><ul>
+<li>Otworzyć coś, czego nie da się otworzyć.</li>
+<li>Utrzymać w ruchu sprzęt, który dawno powinien eksplodować.</li>
+<li>Udowodnić, że spryt technologiczny bije wojskową przewagę.</li>
+<li>Uwolnić droida, system albo ludzi spod kontroli właściciela.</li>
+</ul></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Wybierz 7-11 przedmiotów:</p>
+<ul>
+<li>zestaw narzędzi technicznych (1 slot)</li>
+<li>cyberdeck / zestaw do slicingu (1 slot)</li>
+<li>dron zwiadowczy albo droid pomocniczy (2 sloty)</li>
+<li>przewody obejściowe i moduły zasilania (1 slot)</li>
+<li>gogle wielospektralne (1 slot)</li>
+<li>ładunek EMP niskiej mocy (1 slot)</li>
+<li>racje polowe / Supplies (1 slot)</li>
+<li>spawarka ręczna lub palnik plazmowy (1 slot)</li>
+<li>panel kodów przejściowych (1 slot)</li>
+</ul>
+<p>Małe przedmioty:</p>
+<ul>
+<li>śrubokręt precyzyjny</li>
+<li>kostka pamięci</li>
+<li>zwój izolacji</li>
+<li>szczęśliwa śrubka z pierwszego statku</li>
+</ul></div>
+        </div>
+    </div>
+    
+<div id="en_optional_moves" class="playbook-content lang-en"><div class="optional-moves-container"><div class="card"><h2>📜 # Ruchy Opcjonalne</h2></div> <div class="card"><h2>📜 Ruchy opcjonalne</h2><div class="section-divider"></div>
+<h3>✨ Przebij Się przez Blokadę</h3>
+<p>Gdy próbujecie przedrzeć się przez blokadę, kontrolę celną, patrol orbitalny albo wojskowy kordon, powiedzcie, jak to robicie, i wybierzcie lidera manewru. Lider rzuca odpowiednią cechą. Przy 10+ przechodzicie; wybierz 2. Przy 7-9 przechodzicie, ale wybierz 1, a MG wybiera 1.</p>
+<ul>
+<li>Nie tracicie czasu, paliwa ani cennego okna przelotu.</li>
+<li>Nie musicie porzucać ładunku, pasażera ani dowodu.</li>
+<li>Nie ustalono waszej tożsamości ani wektora ucieczki.</li>
+<li>Docieracie tam, gdzie chcieliście, a nie tylko gdzie się dało.</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Zgub Ogon</h3>
+<p>Gdy uciekacie przed pościgiem przez gwiezdne szlaki, miejskie korytarze, pustkowia albo tłum, rzuć i dodaj...</p>
+<ul>
+<li>+Zręczność, by ich wyprzedzić lub zgubić manewrem</li>
+<li>+Rozum, by przygotować sprytną trasę albo pułapkę</li>
+<li>+Wola, by zachować zimną krew i nie spanikować</li>
+</ul>
+<p>Na 10+ gubicie pościg; wybierz 1. Na 7-9 gubicie go na razie, ale wybierz 1, a MG wybiera 1.</p>
+<ul>
+<li>Zostawiacie ich daleko za sobą.</li>
+<li>Nie tracicie niczego po drodze.</li>
+<li>Nie rozdzielacie się.</li>
+<li>Nie pakujecie się w nowy kłopot.</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Działaj pod Okiem Imperium</h3>
+<p>Gdy próbujesz zrobić coś ryzykownego pod obserwacją okupanta, służb bezpieczeństwa, siatki donosicieli albo wojskowej administracji, rzuć+Prezencja, jeśli udajesz i grasz rolę, albo +Rozum, jeśli działasz metodycznie i zgodnie z procedurami. Przy 10+ robisz to i zachowujesz pozory. Przy 7-9 robisz to, ale wybierz 1.</p>
+<ul>
+<li>Ktoś coś zapamiętał.</li>
+<li>Musisz zostawić ślad, papier albo nagranie.</li>
+<li>Zajmuje to dłużej, niż powinno.</li>
+<li>Zwracasz uwagę kogoś, kto ma władzę.</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Zanurz Się w Półświatku</h3>
+<p>Gdy szukasz pomocy, plotki, towaru, fałszywych papierów albo kryjówki w półświatku, nazwij, kogo lub czego szukasz, i rzuć+Prezencja. Przy 10+ znajdujesz to, czego potrzebujesz; MG powie u kogo. Przy 7-9 znajdujesz to, ale wybierz 1.</p>
+<ul>
+<li>Cena jest wysoka.</li>
+<li>Towar albo informacja ma wadę.</li>
+<li>Ktoś niepożądany dowiaduje się, że pytasz.</li>
+<li>Musisz najpierw zrobić przysługę.</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Wsłuchaj Się w Echo Mocy</h3>
+<p>Gdy zatrzymujesz się w miejscu naznaczonym Mocą, dawną przemocą, cierpieniem albo wielkim przeznaczeniem i otwierasz się na jego echo, rzuć+Wola. Przy 10+ zadaj MG 3 pytania. Przy 7-9 zadaj 1.</p>
+<ul>
+<li>Co wydarzyło się tu naprawdę?</li>
+<li>Kto albo co pozostawiło tu najsilniejszy ślad?</li>
+<li>Czego powinienem się tu obawiać?</li>
+<li>Co ukryto tu przed zwykłymi zmysłami?</li>
+<li>Dokąd prowadzi najsilniejszy ślad?</li>
+</ul>
+<div class="section-divider"></div>
+<h3>✨ Skocz w Nadprzestrzeń</h3>
+<p>Gdy wykonujesz skok w nadprzestrzeń pod presją czasu, uszkodzeń, pościgu albo niepełnych danych, rzuć+Rozum. Przy 10+ skaczesz tam, gdzie chciałeś; wybierz 1. Przy 7-9 skaczesz, ale MG wybiera 1.</p>
+<ul>
+<li>Napęd wytrzymuje i nie wymaga natychmiastowych napraw.</li>
+<li>Nie zostawiasz prostego śladu do prześledzenia.</li>
+<li>Wychodzicie blisko celu, a nie niebezpiecznie daleko.</li>
+<li>Zabieracie ze sobą wszystko i wszystkich, których zamierzaliście.</li>
+</ul></div></div></div>
+
+    <div id="en_adventures" class="playbook-content lang-en">
+        <div class="main-column" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2rem;">
+            <div class="card adventure-generator-card">
+                <h2>✨ Adventure Generator — Star Wars Generator</h2>
+                <div class="generator-result" id="adv-result-en">
+                    ...
+                </div>
+                <div class="generator-actions">
+                    <button type="button" class="lang-toggle active adv-roll-btn" onclick="generateAdventure('en')">🎲 Losuj / Roll</button>
+                </div>
+            </div>
+            
+            <div class="adventure-tables-grid" id="adv-tables-en">
+    
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 1: Action & Location</h3>
+                    <div class="adventure-prefix">We discover</div>
+<ul class="adventure-items">
+<li class="adv-item"><span class="adv-num">1.</span> <span class="adv-text">a crashed diplomatic corvette</span></li>
+<li class="adv-item"><span class="adv-num">2.</span> <span class="adv-text">a hidden volcanic base</span></li>
+<li class="adv-item"><span class="adv-num">3.</span> <span class="adv-text">a forgotten smuggler port</span></li>
+<li class="adv-item"><span class="adv-num">4.</span> <span class="adv-text">a dead mining colony</span></li>
+<li class="adv-item"><span class="adv-num">5.</span> <span class="adv-text">a space station overrun by pirates</span></li>
+<li class="adv-item"><span class="adv-num">6.</span> <span class="adv-text">the ruins of an ancient Jedi temple</span></li>
+<li class="adv-item"><span class="adv-num">7.</span> <span class="adv-text">an ice cave full of predatory beasts</span></li>
+<li class="adv-item"><span class="adv-num">8.</span> <span class="adv-text">the wreck of an old Republic dreadnought</span></li>
+<li class="adv-item"><span class="adv-num">9.</span> <span class="adv-text">an abandoned Imperial listening outpost</span></li>
+<li class="adv-item"><span class="adv-num">10.</span> <span class="adv-text">an illegal clone or droid factory</span></li>
+<li class="adv-item"><span class="adv-num">11.</span> <span class="adv-text">a secret Imperial research lab</span></li>
+<li class="adv-item"><span class="adv-num">12.</span> <span class="adv-text">a former bounty hunter guild hideout</span></li>
+<li class="adv-item"><span class="adv-num">13.</span> <span class="adv-text">a deep-forest camp of local separatists</span></li>
+<li class="adv-item"><span class="adv-num">14.</span> <span class="adv-text">an underwater habitational dome of the cartels</span></li>
+<li class="adv-item"><span class="adv-num">15.</span> <span class="adv-text">the ruined palace of a Syndicate warlord</span></li>
+<li class="adv-item"><span class="adv-num">16.</span> <span class="adv-text">an orbiting scrapyard of scavengers</span></li>
+<li class="adv-item"><span class="adv-num">17.</span> <span class="adv-text">a dormant supercomputer of military intelligence</span></li>
+<li class="adv-item"><span class="adv-num">18.</span> <span class="adv-text">the desert wreck of a massive sandcrawler</span></li>
+<li class="adv-item"><span class="adv-num">19.</span> <span class="adv-text">a nebula graveyard of warships</span></li>
+<li class="adv-item"><span class="adv-num">20.</span> <span class="adv-text">an underground facility for illegal swoop races</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 2: Placement & Geography</h3>
+                    <div class="adventure-prefix">which lies</div>
+<ul class="adventure-items">
+<li class="adv-item"><span class="adv-num">1.</span> <span class="adv-text">in an unstable asteroid belt</span></li>
+<li class="adv-item"><span class="adv-num">2.</span> <span class="adv-text">within the gaseous rings of a cold giant</span></li>
+<li class="adv-item"><span class="adv-num">3.</span> <span class="adv-text">on the far edges of the Outer Rim</span></li>
+<li class="adv-item"><span class="adv-num">4.</span> <span class="adv-text">amidst the dense, living jungle of Felucia</span></li>
+<li class="adv-item"><span class="adv-num">5.</span> <span class="adv-text">in the endless glaciers of a meteor-frozen world</span></li>
+<li class="adv-item"><span class="adv-num">6.</span> <span class="adv-text">on the perilous Kessel Run smuggling route</span></li>
+<li class="adv-item"><span class="adv-num">7.</span> <span class="adv-text">in the dark thicket of Coruscant's polluted lower levels</span></li>
+<li class="adv-item"><span class="adv-num">8.</span> <span class="adv-text">on the toxic, barren wastes of a factory planet</span></li>
+<li class="adv-item"><span class="adv-num">9.</span> <span class="adv-text">near a swarm of sensor-invisible star nebulas</span></li>
+<li class="adv-item"><span class="adv-num">10.</span> <span class="adv-text">in an active volcanic zone on the edge of a battlefield system</span></li>
+<li class="adv-item"><span class="adv-num">11.</span> <span class="adv-text">beneath a kilometer-thick ice shell of an isolated moon</span></li>
+<li class="adv-item"><span class="adv-num">12.</span> <span class="adv-text">buried deep in the sands of the desert planet Tatooine</span></li>
+<li class="adv-item"><span class="adv-num">13.</span> <span class="adv-text">on a forgotten moon belonging to a sunless system</span></li>
+<li class="adv-item"><span class="adv-num">14.</span> <span class="adv-text">at the bottom of a massive, fully undiscovered ocean</span></li>
+<li class="adv-item"><span class="adv-num">15.</span> <span class="adv-text">carved by lumberjacks into the giant ancient trees of Kashyyyk</span></li>
+<li class="adv-item"><span class="adv-num">16.</span> <span class="adv-text">completely off the known hyperspace navigation routes</span></li>
+<li class="adv-item"><span class="adv-num">17.</span> <span class="adv-text">hidden right next to a corruption-filled smuggler spaceport</span></li>
+<li class="adv-item"><span class="adv-num">18.</span> <span class="adv-text">in a highly unstable gravitational anomaly zone</span></li>
+<li class="adv-item"><span class="adv-num">19.</span> <span class="adv-text">tightly shrouded within the wreck of an Imperial Star Destroyer</span></li>
+<li class="adv-item"><span class="adv-num">20.</span> <span class="adv-text">within a heavily guarded planetary biological quarantine zone</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 3: Goal & Target</h3>
+                    <div class="adventure-prefix">searching for</div>
+<ul class="adventure-items">
+<li class="adv-item"><span class="adv-num">1.</span> <span class="adv-text">emergency disks protecting the encoded plans of a battlestation.</span></li>
+<li class="adv-item"><span class="adv-num">2.</span> <span class="adv-text">a highly sought-after stolen shipment of precious coaxium.</span></li>
+<li class="adv-item"><span class="adv-num">3.</span> <span class="adv-text">a miraculously surviving archive with Jedi data, like an old holocron.</span></li>
+<li class="adv-item"><span class="adv-num">4.</span> <span class="adv-text">a powerful, military hyper-radio relay of the Rebel Alliance.</span></li>
+<li class="adv-item"><span class="adv-num">5.</span> <span class="adv-text">magnificent, now-illegal crystals for energy weapon technology.</span></li>
+<li class="adv-item"><span class="adv-num">6.</span> <span class="adv-text">a physical key in the form of a code cylinder held by a Moff.</span></li>
+<li class="adv-item"><span class="adv-num">7.</span> <span class="adv-text">old reserves and stockpiles of laser weaponry from the Clone Wars.</span></li>
+<li class="adv-item"><span class="adv-num">8.</span> <span class="adv-text">a talented shield engineering deserter fleeing the army.</span></li>
+<li class="adv-item"><span class="adv-num">9.</span> <span class="adv-text">hidden credits in a vault secured by Hutt armed guards.</span></li>
+<li class="adv-item"><span class="adv-num">10.</span> <span class="adv-text">a few advanced memory cores for cybernetic implants.</span></li>
+<li class="adv-item"><span class="adv-num">11.</span> <span class="adv-text">drives with recordings of brutal crimes by stationed garrison officers.</span></li>
+<li class="adv-item"><span class="adv-num">12.</span> <span class="adv-text">a navicomputer untouched for decades in a highly sought-after freighter.</span></li>
+<li class="adv-item"><span class="adv-num">13.</span> <span class="adv-text">an unapproved formula for a powerful biopreparation, from which its creator is fleeing.</span></li>
+<li class="adv-item"><span class="adv-num">14.</span> <span class="adv-text">a legendary warrior or Master hiding from the Inquisition.</span></li>
+<li class="adv-item"><span class="adv-num">15.</span> <span class="adv-text">an old Mandalorian weapon adorned with unique beskar ores.</span></li>
+<li class="adv-item"><span class="adv-num">16.</span> <span class="adv-text">a broken reactor with a boiling, stolen prototype.</span></li>
+<li class="adv-item"><span class="adv-num">17.</span> <span class="adv-text">the only working deflector shield saving a defenseless local station from a gang's wrath.</span></li>
+<li class="adv-item"><span class="adv-num">18.</span> <span class="adv-text">the priceless coordinates of a hidden cell or haven for surviving refugees.</span></li>
+<li class="adv-item"><span class="adv-num">19.</span> <span class="adv-text">an old protocol droid or astromech model possessing forbidden maps.</span></li>
+<li class="adv-item"><span class="adv-num">20.</span> <span class="adv-text">a mind-destroying implant programmed by command for a selected politician.</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 4: Purpose & Mission</h3>
+                    <div class="adventure-prefix">We are here to</div>
+<ul class="adventure-items">
+<li class="adv-item"><span class="adv-num">1.</span> <span class="adv-text">liberate and extract a valuable resistance leader taken prisoner</span></li>
+<li class="adv-item"><span class="adv-num">2.</span> <span class="adv-text">initiate a chain reaction of destruction in the shield generator of a blocking ship or station</span></li>
+<li class="adv-item"><span class="adv-num">3.</span> <span class="adv-text">quietly infiltrate bases under the lock of Imperial administration</span></li>
+<li class="adv-item"><span class="adv-num">4.</span> <span class="adv-text">negotiate an alliance with the galaxy's scum and traders in dangerous territory</span></li>
+<li class="adv-item"><span class="adv-num">5.</span> <span class="adv-text">retake a legally purchased shuttle seized by law enforcement from an aggressive group</span></li>
+<li class="adv-item"><span class="adv-num">6.</span> <span class="adv-text">safely extract and escort a spooked informant before they perish in a trap</span></li>
+<li class="adv-item"><span class="adv-num">7.</span> <span class="adv-text">systematically block or permanently sabotage the equipment of a local satrap's guard</span></li>
+<li class="adv-item"><span class="adv-num">8.</span> <span class="adv-text">orchestrate a preemptive and forceful return to take control of an illegal ore mine</span></li>
+<li class="adv-item"><span class="adv-num">9.</span> <span class="adv-text">steal a valuable data disk of an old house without triggering any cameras</span></li>
+<li class="adv-item"><span class="adv-num">10.</span> <span class="adv-text">slice the security and activate a long-disabled secret enemy transmitter on the local network</span></li>
+<li class="adv-item"><span class="adv-num">11.</span> <span class="adv-text">dodge and weave until we lose the ongoing pursuit of a relentless customs patrol</span></li>
+<li class="adv-item"><span class="adv-num">12.</span> <span class="adv-text">incapacitate and abduct a highly-rated stormtrooper company commander for interrogation</span></li>
+<li class="adv-item"><span class="adv-num">13.</span> <span class="adv-text">crack the code with a slicing maneuver and break into the restricted Imperial banking network</span></li>
+<li class="adv-item"><span class="adv-num">14.</span> <span class="adv-text">acquire stimulants and antibiotics for an underground hospital hiding in the jungle</span></li>
+<li class="adv-item"><span class="adv-num">15.</span> <span class="adv-text">thwart the dark machinations of the Black Sun before their invasion</span></li>
+<li class="adv-item"><span class="adv-num">16.</span> <span class="adv-text">hastily restart a crucial settlement core after a terrorist warlord's bombing</span></li>
+<li class="adv-item"><span class="adv-num">17.</span> <span class="adv-text">immediately evacuate residents under blaster cover from a horrific orbital bombardment</span></li>
+<li class="adv-item"><span class="adv-num">18.</span> <span class="adv-text">permanently ground an insolent, elite assassin droid programmed for death</span></li>
+<li class="adv-item"><span class="adv-num">19.</span> <span class="adv-text">shatter the harmful and effective negotiations of two criminal cartels</span></li>
+<li class="adv-item"><span class="adv-num">20.</span> <span class="adv-text">thoroughly scan the resistance to facilitate a future grand maneuver of a surprise Light Side attack</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 5: Minor Threats & Obstacles</h3>
+                    <div class="adventure-prefix">guarded by</div>
+<ul class="adventure-items">
+<li class="adv-item"><span class="adv-num">1.</span> <span class="adv-text">fanatical stormtroopers in white armor indifferent to casualties</span></li>
+<li class="adv-item"><span class="adv-num">2.</span> <span class="adv-text">elite, deadly bounty hunters paid by cartels reluctant with beskar</span></li>
+<li class="adv-item"><span class="adv-num">3.</span> <span class="adv-text">notorious alien smugglers and mercenaries ready to die</span></li>
+<li class="adv-item"><span class="adv-num">4.</span> <span class="adv-text">marine commando troopers specialized in aquatic combat protecting underwater territory</span></li>
+<li class="adv-item"><span class="adv-num">5.</span> <span class="adv-text">gigantic predatory life forms like mutated rancor-like beasts or huge jungle spiders</span></li>
+<li class="adv-item"><span class="adv-num">6.</span> <span class="adv-text">dilapidated but still aggressive packs of combat droids retired from the Republic era</span></li>
+<li class="adv-item"><span class="adv-num">7.</span> <span class="adv-text">software-linked, lethally accurate automated turbolaser defenses</span></li>
+<li class="adv-item"><span class="adv-num">8.</span> <span class="adv-text">muscular, ruthless underworld thugs ticking with brute force and equipped with vibroweapons</span></li>
+<li class="adv-item"><span class="adv-num">9.</span> <span class="adv-text">dark force users employing terror, hunting the force-sensitive with red lightsabers</span></li>
+<li class="adv-item"><span class="adv-num">10.</span> <span class="adv-text">subterranean insectoids moving in a mutated horde destroying all electrical equipment with their saliva</span></li>
+<li class="adv-item"><span class="adv-num">11.</span> <span class="adv-text">fiercely loyal henchmen defending their dictator's wealth to the death against any theft</span></li>
+<li class="adv-item"><span class="adv-num">12.</span> <span class="adv-text">damaged self-defense systems of a ship or tomb reacting defensively with plasma spewed everywhere</span></li>
+<li class="adv-item"><span class="adv-num">13.</span> <span class="adv-text">savages of a non-human race who ritually devour alien intruders appearing unexpectedly in the wilds</span></li>
+<li class="adv-item"><span class="adv-num">14.</span> <span class="adv-text">technology-devouring lizard-hounds from great rocky cliffs with whom pacifism cannot be negotiated</span></li>
+<li class="adv-item"><span class="adv-num">15.</span> <span class="adv-text">trained government intelligence commandos wearing armor that camouflages in ambient light before firing</span></li>
+<li class="adv-item"><span class="adv-num">16.</span> <span class="adv-text">sharpshooting guards embodying the heaviest walls of steel fire, never missing an inch</span></li>
+<li class="adv-item"><span class="adv-num">17.</span> <span class="adv-text">primitive but brutally armed bandits of a local hostile race demanding sacrifices in live fire</span></li>
+<li class="adv-item"><span class="adv-num">18.</span> <span class="adv-text">advanced hidden technical traps ready to release massive clouds of choking gas and swarms of insects from pipes</span></li>
+<li class="adv-item"><span class="adv-num">19.</span> <span class="adv-text">a friendly albeit deceived settlement of natives manipulated by forgery against any intruder</span></li>
+<li class="adv-item"><span class="adv-num">20.</span> <span class="adv-text">a ruthlessly rigorous customs officer cordon destroying any ship trying to bypass landing laws without a bribe</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 6: Major Boss & Antagonist</h3>
+                    <div class="adventure-prefix">and</div>
+<ul class="adventure-items">
+<li class="adv-item"><span class="adv-num">1.</span> <span class="adv-text">a sadistic galactic government station commandant who will burn the village if played hard.</span></li>
+<li class="adv-item"><span class="adv-num">2.</span> <span class="adv-text">a bloated and vengeful Warlord of a slug-like trader syndicate coming for our debt.</span></li>
+<li class="adv-item"><span class="adv-num">3.</span> <span class="adv-text">a cunning and agile embodiment of arrogance, a smuggler with powerful, relentless cartel claims.</span></li>
+<li class="adv-item"><span class="adv-num">4.</span> <span class="adv-text">a terrifying adept coveting and using the Dark Side to murderously torture victims.</span></li>
+<li class="adv-item"><span class="adv-num">5.</span> <span class="adv-text">a wandering and unfailing armored Mandalorian locked in his helmet to catch us.</span></li>
+<li class="adv-item"><span class="adv-num">6.</span> <span class="adv-text">a villainous pirate whom our crew left to the stormtroopers a year ago to save ourselves.</span></li>
+<li class="adv-item"><span class="adv-num">7.</span> <span class="adv-text">a non-human engineering magnate lacking basic ethical norms, valuing experiments over life.</span></li>
+<li class="adv-item"><span class="adv-num">8.</span> <span class="adv-text">a cynical colonol of a police unit on the planet with a coldly calculated fury to neutralize everyone.</span></li>
+<li class="adv-item"><span class="adv-num">9.</span> <span class="adv-text">a treacherously rigorous brother of a former force-wielding organization of hate, wearing the pure robes of a pastor-warrior of darkness.</span></li>
+<li class="adv-item"><span class="adv-num">10.</span> <span class="adv-text">the central processor of an armed gunship with a mission to fry all aliens from its cannon barrels as hostile entities from the netherworld.</span></li>
+<li class="adv-item"><span class="adv-num">11.</span> <span class="adv-text">a long-dead lord remaining as an echo and phenomenally powerful dark gust of Force magic protecting his remains from destruction.</span></li>
+<li class="adv-item"><span class="adv-num">12.</span> <span class="adv-text">a dictatorial manager of a commercial resource empire seeing people merely as zeros, striving to squeeze the power of violence from his region.</span></li>
+<li class="adv-item"><span class="adv-num">13.</span> <span class="adv-text">an exceptionally capable peer-companion, a former military or academic guardian who took another escaping path to a smuggling lord of betrayal, shooting us in the back without mercy and conscience with a sniper rifle, this time killing the shadows of former colleagues.</span></li>
+<li class="adv-item"><span class="adv-num">14.</span> <span class="adv-text">a deranged but rock-solid brute warrior of a large alien race endowed with anger to bloody carve up everyone in gladiator armor bound in captured plasma steel.</span></li>
+<li class="adv-item"><span class="adv-num">15.</span> <span class="adv-text">an insolent warlord and mobster with alliance pacts between two governments, highly versed in covering the tracks of a rogue boasting weapons with stolen modules from rebel authority soldiers under his own territory of evil bloody bloodshed over the planet's nobility, a quiet and certain butcher of all who whisper of the betrayals of their fathers without honor.</span></li>
+<li class="adv-item"><span class="adv-num">16.</span> <span class="adv-text">a psychotic but brilliant biogenetic scientist ready to release a deadly plague if we interrupt him.</span></li>
+<li class="adv-item"><span class="adv-num">17.</span> <span class="adv-text">a self-proclaimed King of the Void commanding a bloody pirate flotilla on a destructive colossal flagship stolen from the Republican fleet archives, ready to evaporate our scoundrels from space instantly with its deathly crosshairs, silently looking down upon us, hating us as an absolutist of war.</span></li>
+<li class="adv-item"><span class="adv-num">18.</span> <span class="adv-text">a savage warrior serving as the apex beast of a religious alien sacrificial caste, aiming to claim the heads of our characters as relics of the dark beliefs of his people to earn the elevation of the galaxy's hunts, shooting and endlessly hurling without caring about dying for the frenzy.</span></li>
+<li class="adv-item"><span class="adv-num">19.</span> <span class="adv-text">a corrupt magnate ruler and senator with everyone on his payroll, bribed to avoid losing his seat for mistakes, throwing all available security forces to neutralize the heroes with a political sentence to cover up blood money to maintain positions at the Empire's benefit table and hang us where traces disappear.</span></li>
+<li class="adv-item"><span class="adv-num">20.</span> <span class="adv-text">a bitter, elite, and relentless outcast of enemy-toppling soldiers seeking revenge for wrongs suffered to destroy and hunt in the name of his own private battle, eager to drag us to the grave through his impeccable strikes of armor of hate in a one-on-one clash in the universe of killing with bloody fury in the isolation of the galaxy, always chasing us in the stars without fatigue, relentless blow after blow of a warrior of frenzy and inevitable anger.</span></li>
+</ul>
+                </div>
+        
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+
+        <footer>
+            <span>Wygenerowano automatycznie • Homebrew World Web Presenter</span>
+            <span>Star Wars • katalog playbookow</span>
+        </footer>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.playbook-content');
+    const langToggles = document.querySelectorAll('.lang-toggle');
+    const body = document.body;
+    const html = document.documentElement;
+
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const mainLayout = document.querySelector('.main-layout');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function getVisibleTabs(lang) {
+        return Array.from(tabs).filter((tab) => tab.classList.contains(`lang-${lang}`));
+    }
+
+    function syncAriaStates(activeTabId) {
+        tabs.forEach((tab) => {
+            const isActive = tab.getAttribute('data-tab') === activeTabId;
+            tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            tab.setAttribute('tabindex', isActive ? '0' : '-1');
+        });
+    }
+
+    if (sidebarToggle && mainLayout) {
+        if (localStorage.getItem('sidebar-collapsed') === 'true') {
+            mainLayout.classList.add('sidebar-collapsed');
+            sidebarToggle.innerText = '⮕';
+            sidebarToggle.setAttribute('aria-expanded', 'false');
+        } else {
+            sidebarToggle.setAttribute('aria-expanded', 'true');
+        }
+
+        sidebarToggle.addEventListener('click', () => {
+            const isCollapsed = mainLayout.classList.toggle('sidebar-collapsed');
+            sidebarToggle.innerText = isCollapsed ? '⮕' : '☰';
+            sidebarToggle.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
+            localStorage.setItem('sidebar-collapsed', isCollapsed);
+        });
+    }
+
+    function switchTab(tabId) {
+        tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-tab') === tabId));
+        syncAriaStates(tabId);
+
+        const target = document.getElementById(tabId);
+        if (target) {
+            target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+            const url = new URL(window.location);
+            url.hash = tabId;
+            window.history.replaceState(null, '', url);
+        }
+    }
+
+    function switchLanguage(lang) {
+        body.classList.forEach((cls) => {
+            if (cls.startsWith('lang-')) body.classList.remove(cls);
+        });
+        body.classList.add(`lang-${lang}`);
+        html.lang = lang === 'default' ? 'pl' : lang;
+
+        langToggles.forEach((btn) => {
+            const isActive = btn.getAttribute('data-lang') === lang;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        const visibleTabs = getVisibleTabs(lang);
+        const nextTab = visibleTabs[0];
+        if (nextTab) {
+            const nextTabId = nextTab.getAttribute('data-tab');
+            tabs.forEach((tab) => tab.classList.toggle('active', tab === nextTab));
+            syncAriaStates(nextTabId);
+        }
+
+        window.scrollTo(0, 0);
+    }
+
+    tabs.forEach((tab) => {
+        tab.setAttribute('role', 'tab');
+        tab.addEventListener('click', () => {
+            switchTab(tab.getAttribute('data-tab'));
+        });
+    });
+
+    langToggles.forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+            switchLanguage(toggle.getAttribute('data-lang'));
+        });
+    });
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-tab') === id));
+                syncAriaStates(id);
+            }
+        });
+    }, observerOptions);
+
+    contents.forEach((section) => observer.observe(section));
+
+    const initialHash = window.location.hash.substring(1);
+    const availableLangs = Array.from(langToggles).map((t) => t.getAttribute('data-lang'));
+    
+    let preferredLang = 'default';
+    if (initialHash && availableLangs.includes(initialHash.split('_')[0])) {
+        preferredLang = initialHash.split('_')[0];
+    } else if (availableLangs.includes('en')) {
+        preferredLang = 'en';
+    } else if (availableLangs.length > 0) {
+        preferredLang = availableLangs[0];
+    } else if (document.querySelector('.tab.lang-default')) {
+        preferredLang = 'default';
+    }
+
+    switchLanguage(preferredLang);
+    
+    if (initialHash) {
+        setTimeout(() => {
+            const target = document.getElementById(initialHash);
+            if (target) {
+                switchTab(initialHash);
+                target.scrollIntoView({ behavior: 'auto' });
+            }
+        }, 100);
+    } else {
+        const initialVisibleTab = getVisibleTabs(preferredLang)[0];
+        if (initialVisibleTab) {
+            syncAriaStates(initialVisibleTab.getAttribute('data-tab'));
+        }
+        window.scrollTo(0, 0);
+    }
+    
+    window.generateAdventure = function(lang) {
+        const container = document.getElementById(`adv-tables-${lang}`);
+        if (!container) return;
+        
+        const tables = container.querySelectorAll('.adventure-table-card');
+        if (tables.length < 6) return;
+        
+        let parts = [];
+        tables.forEach(table => {
+            const prefixEl = table.querySelector('.adventure-prefix');
+            const items = table.querySelectorAll('.adv-text');
+            
+            const prefix = prefixEl ? prefixEl.textContent.trim() : "";
+            
+            if (items.length > 0) {
+                const randomText = items[Math.floor(Math.random() * items.length)].textContent.trim();
+                parts.push((prefix ? prefix + " " : "") + `<span class="adv-highlight">${randomText}</span>`);
+            } else {
+                parts.push(prefix);
+            }
+        });
+        
+        if (parts.length >= 6) {
+            const sentence1 = parts[0] + " " + parts[1] + " " + parts[2];
+            const sentence2 = parts[3] + " " + parts[4] + " " + parts[5];
+            
+            let s1 = sentence1.replace(/\s+/g, ' ').replace(/\s+\./g, '.');
+            if(!s1.endsWith('.')) s1 += '.';
+            let s2 = sentence2.replace(/\s+/g, ' ').replace(/\s+\./g, '.');
+            if(!s2.endsWith('.')) s2 += '.';
+
+            const capitalize = (str) => {
+                let inTag = false;
+                for (let i = 0; i < str.length; i++) {
+                    if (str[i] === '<') inTag = true;
+                    else if (str[i] === '>') inTag = false;
+                    else if (!inTag && /[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/.test(str[i])) {
+                        return str.substring(0, i) + str[i].toUpperCase() + str.substring(i + 1);
+                    }
+                }
+                return str;
+            };
+
+            s1 = capitalize(s1);
+            s2 = capitalize(s2);
+            
+            const resultEl = document.getElementById(`adv-result-${lang}`);
+            if (resultEl) {
+                resultEl.innerHTML = `<p>${s1}</p><p>${s2}</p>`;
+            }
+        }
+    };
+
+    availableLangs.forEach(l => {
+        if(document.getElementById(`adv-result-${l}`)) {
+            generateAdventure(l);
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

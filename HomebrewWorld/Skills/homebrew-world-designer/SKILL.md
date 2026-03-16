@@ -77,6 +77,23 @@ These moves should follow the spirit of the original Homebrew World optional mov
 
 Good target: if the setting were played for multiple sessions, each optional move should plausibly come up again and again.
 
+### Adventure Generator (FILE: adventure.md)
+Create a separate Markdown block for the adventure generator. It MUST contain 6 roll tables (d20) with 20 options each, designed to randomly generate adventure hooks adapted to the requested setting.
+The tables are divided into two sets of 3. Each set forms a cohesive sentence when a result from each table is combined.
+The sentence fragments and options must match the structure found in `AdventureGenerator.pdf` but be explicitly adapted to the given setting.
+
+First Sentence (Tables 1-3):
+- **Table 1: Action & Location** (Begins with: "Odkrywamy..." / "We discover...") - 20 options.
+- **Table 2: Placement & Geography** (Continues with: "która leży..." / "which lies...") - 20 options.
+- **Table 3: Goal & Target** (Ends with: "szukając..." / "searching for...") - 20 options.
+
+Second Sentence (Tables 4-6):
+- **Table 4: Purpose & Mission** (Begins with: "Jesteśmy tutaj, aby..." / "We are here to...") - 20 options.
+- **Table 5: Minor Threats & Obstacles** (Continues with: "strzeżony przez..." / "guarded by...") - 20 options.
+- **Table 6: Major Boss & Antagonist** (Ends with: "i..." / "and...") - 20 options.
+
+Ensure all grammatical forms fit seamlessly when assembling the sentence, and the content firmly establishes the setting's lore, vibe, and threats.
+
 ## Language
 The content of the files should be in: Polish.
 
@@ -126,3 +143,9 @@ From the original `Homebrew World.pdf`, optional moves are broad and reusable, f
 - traveling through dangerous territory
 
 When generating `Optional Moves`, use this same design principle: recurring situation moves for the setting, not narrow spectacle moves.
+
+### Adventure Generator Pattern
+From the provided `AdventureGenerator.pdf`, the recurring pattern for adventure generation relies on combining options from multiple tables to form two sentences.
+Sentence 1: `Odkrywamy` [1-20] `która leży` [1-20] `szukając` [1-20].
+Sentence 2: `Jesteśmy tutaj, aby` [1-20] `strzeżony przez` [1-20] `i` [1-20].
+The exact wording of the Polish prefixes ("Odkrywamy", "która leży", "szukając", "Jesteśmy tutaj, aby", "strzeżony przez", "i") should be retained exactly as the table headers, while the 20 options inside each table must be entirely customized to the prompt's setting.

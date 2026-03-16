@@ -6,7 +6,7 @@ REMOTE_USER="${REMOTE_USER:-deploy}"
 REMOTE_HOST="${REMOTE_HOST:-aneta131.mikrus.xyz}"
 REMOTE_PORT="${REMOTE_PORT:-10131}"
 BASE_REMOTE_DIR="${BASE_REMOTE_DIR:-/cytrus/katalog1}"
-SSH_KEY="${SSH_KEY:-$HOME/.ssh/id_ed25519_mikrus_game}"
+SSH_KEY="${SSH_KEY:-$HOME/.ssh/id_ed25519_mikrus_deploy}"
 
 MODE="dry-run"
 DELETE_REMOTE="0"
