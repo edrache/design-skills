@@ -49,6 +49,9 @@ When updating `assets/style.css`, `assets/script.js`, or generated inline output
 - **Typography**: Use `Manrope` for UI/body copy and `Cormorant Garamond` for page and card headings.
 - **Theme tokens**: Prefer the shared warm token set (`--bg`, `--panel`, `--panel-strong`, `--line`, `--text`, `--muted`, `--accent`, `--accent-strong`) rather than per-setting colors.
 - **Hero shell**: Every page should start with a hub-like hero containing eyebrow, backlink, language toggles, title, summary, and compact stat chips.
+- **Sidebar return link**: Put the backlink to `HomebrewWorld/site/index.html` inside the sidebar, not in the hero area.
+- **Setting summary**: The `page-summary` paragraph in the hero must describe the specific setting itself, not the renderer. For bilingual pages, provide both PL and EN summaries and keep them synchronized with the language toggle.
+- **Summary source**: Store per-setting hero summaries in `references/setting_summaries.json` so content updates do not require editing `scripts/render_web.py`.
 - **Viewport sanity**: Keep `overflow-x: hidden` on `body`, not on the main `.container`.
 - **Text wrapping**: Always apply `word-break: break-word` to `p, li, h1, h2, h3` to catch overflows.
 - **Grid robustness**: Ensure `.main-column` and `.side-column` have `min-width: 0`.
@@ -57,10 +60,12 @@ When updating `assets/style.css`, `assets/script.js`, or generated inline output
 - **Optional Moves**: Use `minmax(min(100%, 350px), 1fr)` for the optional moves grid to handle narrow viewports gracefully.
 - **Clean footer**: Keep footer text concise, two-part when possible, and visually aligned with the homepage footer.
 - **Language controls**: Toggle buttons should update pressed state and keep `html[lang]` synchronized with visible content.
+- **Toolbar discipline**: Do not add generic helper badges like `Ruchy opcjonalne i szybka nawigacja`; keep the toolbar limited to compact factual counts.
 
 ## Resources
 
 - **Script**: `scripts/render_web.py` - The core engine that parses Markdown and generates HTML.
+- **Setting summaries**: `references/setting_summaries.json` - Per-setting PL/EN hero copy used by `page-summary`.
 - **Assets**: 
     - `assets/style.css` - Custom CSS for the "IMPECCABLE" look.
     - `assets/script.js` - Interactive elements, sidebar logic, and language switching.

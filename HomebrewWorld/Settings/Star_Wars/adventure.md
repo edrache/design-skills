@@ -46,28 +46,28 @@
 19. szczelnie spowita we wraku imperialnego krążownika niszczycielskiego
 20. na terenie planetarnej, pilnie strzeżonej strefy kwarantanny biologicznej
 
-### Tabela 3: Cel i Pożądany Obiekt
-**szukając**
-1. dysków awaryjnych chroniących zakodowane plany stacji bojowej.
-2. pilnie poszukiwanego skradzionego ładunku cennego koaksjum.
-3. cudem przetrwałego archiwum z danymi Jedi, np. starego holokronu.
-4. silnego, wojskowego przekaźnika hyper-radiowego zgrupowania Rebeliantów.
-5. wspaniałych, nielegalnych już kryształów do technologii broni energetycznych.
-6. fizycznego klucza w postaci walca kodowego przetrzymywanego przez moffa.
-7. dawnych rezerw i zapasów broni laserowej z czasów Wojny Klonów.
-8. utalentowanego dezertera od inżynierii tarcz uciekającego przed armią.
-9. ukrytych kredytów w skarbcu zabezpieczonym przez zbrojną straż Huttów.
-10. nielicznych zaawansowanych rdzeni pamięci do cybernetycznych wszczepów.
-11. nośników z nagraniami brutalnych zbrodni stacjonujących oficerów garnizonu.
-12. nietkniętego od dekad komputera nawigacyjnego w bardzo poszukiwanym frachtowcu.
-13. niezatwierdzonej formuły potężnego biopreparatu, przed którą ucieka jej twórca.
-14. legendarnego wojownika lub Mistrza kryjącego się przed Inkwizycją.
-15. zdobionego w unikalne rudy beskaru starego oręża Mandalorianina.
-16. zepsutego reaktora z wpadającym we wrzenie skradzionym prototypem.
-17. jedynej sprawnej tarczy ochronnej ratującej bezbronną lokalną stację przed gniewem gangu.
-18. bezcennych współrzędnych ukrytej komórki lub przystani dla ocalałych uchodźców.
-19. starego modelu droida protokolarnego lub astromecha posiadającego zakazane mapy.
-20. zaprogramowanego z polecenia dowództwa implantu niszczącego umysł u wybranego polityka.
+### Tabela 3: Cel
+**prowadząc do**
+1. opuszczonego doku serwisowego ukrytego pod imperialnym miastem.
+2. księżyca więziennego odciętego od wszystkich map nawigacyjnych.
+3. świątyni Jedi wykutej w ścianie burzowego kanionu.
+4. rebelianckiej kryjówki zamaskowanej we wraku frachtowca.
+5. laboratorium badawczego dryfującego w pasie szczątków.
+6. hutckiego skarbca wykopanego pod areną walk.
+7. stacji przekaźnikowej zawieszonej wśród igieł lodowej planety.
+8. podziemnego miasta droidów ukrytego pod pustynią.
+9. orbitalnego cmentarzyska krążowników spętanego polem minowym.
+10. dawnej fortecy Separatystów zajętej przez piratów.
+11. klasztoru Mocy ukrytego pośród czarnych bagien.
+12. platformy wiertniczej balansującej nad morzem lawy.
+13. kolonii górniczej zamkniętej szczelną kwarantanną.
+14. hangaru przemytników wyrąbanego we wnętrzu asteroidy.
+15. pałacu syndykatu wyrastającego nad toksycznymi kanałami.
+16. wraku niszczyciela wbitego w dżunglę od pokoleń.
+17. tajnego więzienia Inkwizycji pod szczytem lodowca.
+18. ukrytego sanktuarium uchodźców w jądrze mgławicy.
+19. wieży celnej kontrolującej jedyne bezpieczne lądowisko w sektorze.
+20. zrujnowanej stoczni klonów pochłanianej przez piaski Tatooine.
 
 ### Tabela 4: Cel Misji
 **Jesteśmy tutaj, aby**

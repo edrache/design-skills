@@ -198,6 +198,16 @@ p, li, h1, h2, h3, b, span, div {
     line-height: 1.8;
 }
 
+.page-summary-copy {
+    display: none;
+}
+
+.lang-pl .page-summary-copy.lang-pl,
+.lang-en .page-summary-copy.lang-en,
+.lang-default .page-summary-copy.lang-default {
+    display: block;
+}
+
 .main-layout {
     display: grid;
     grid-template-columns: 280px minmax(0, 1fr);
@@ -230,8 +240,25 @@ p, li, h1, h2, h3, b, span, div {
     backdrop-filter: blur(12px);
 }
 
+.sidebar-home-link {
+    width: 100%;
+    justify-content: flex-start;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+}
+
 .sidebar-collapsed .tabs-container {
     padding: 16px 10px;
+}
+
+.sidebar-collapsed .sidebar-home-link {
+    justify-content: center;
+    padding-inline: 0;
+}
+
+.sidebar-collapsed .sidebar-home-link span:last-child {
+    display: none;
 }
 
 #sidebar-toggle {
@@ -494,6 +521,129 @@ footer {
     font-size: 0.9rem;
 }
 
+/* Adventure Generator */
+.adventure-generator-card {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(180deg, var(--panel-strong), rgba(255, 248, 238, 0.02));
+    border: 1px solid rgba(240, 196, 137, 0.3);
+    box-shadow: 0 10px 40px rgba(210, 155, 92, 0.08);
+}
+
+.adventure-generator-card h2 {
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.generator-result {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--accent-strong);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 900px;
+    margin-inline: auto;
+    font-family: "Cormorant Garamond", serif;
+}
+
+.generator-result p {
+    color: var(--text);
+    margin: 0;
+}
+
+.generator-result p:first-child {
+    margin-bottom: 0.75rem;
+    color: var(--accent-strong);
+    font-size: 1.6rem;
+}
+
+.rng-highlight {
+    color: var(--text);
+    padding-bottom: 2px;
+    border-bottom: 1px dashed rgba(240, 196, 137, 0.45);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.rng-highlight:hover {
+    color: var(--accent-strong);
+    border-bottom-color: var(--accent-strong);
+}
+
+.generator-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.rng-roll-btn {
+    font-size: 1.05rem;
+    padding: 1rem 2.5rem;
+    border-radius: 999px;
+    letter-spacing: 0.08em;
+}
+
+.adventure-tables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.adventure-table-card {
+    padding: 1.8rem;
+    background: rgba(255, 248, 238, 0.02);
+}
+
+.adventure-table-card h3 {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    color: var(--text);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.5rem;
+}
+
+.adventure-prefix {
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--accent);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.adventure-items {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.adventure-items .rng-item {
+    margin-bottom: 0.5rem;
+    padding-left: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.adventure-items .rng-item::before {
+    content: none;
+}
+
+.rng-num {
+    color: var(--accent);
+    font-weight: 800;
+    width: 2.2ch;
+    flex-shrink: 0;
+    text-align: right;
+    font-size: 0.9rem;
+    margin-top: 0.15rem;
+}
+
+.rng-text {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
 @media (max-width: 1400px) {
     .playbook-content {
         grid-template-columns: minmax(0, 1fr);
@@ -605,30 +755,37 @@ footer {
         <header class="hero">
             <p class="eyebrow">Homebrew World Setting</p>
             <div class="hero-top">
-                
                 <div class="lang-selector"><button class="lang-toggle" data-lang="en" type="button">English</button> <button class="lang-toggle" data-lang="pl" type="button">Polski</button></div>
             </div>
             <h1 class="page-title"><span class="title-emoji">🪬</span> <span class="title-text">Star Wars Jedi</span></h1>
-            <p class="page-summary">Materiały do gry Homebrew World ułożone w tej samej bibliotece wizualnej co strona główna: ciepła paleta, szklane panele i czytelny katalog playbooków.</p>
-            <div class="page-toolbar"><span class="stat-badge">5 playbookow EN</span> <span class="stat-badge">5 playbookow PL</span> <span class="stat-badge">Ruchy opcjonalne i szybka nawigacja</span></div>
+            <p class="page-summary"><span class="page-summary-copy lang-pl">Mityczna odmiana Gwiezdnych wojen skupiona na Jedi, świątyniach, wizjach i ranach Mocy, gdzie adepci Jasnej Strony mierzą się z dziedzictwem Zakonu, pokusą Ciemności i starożytnymi miejscami mocy.</span> <span class="page-summary-copy lang-en">A mythic Star Wars variant centered on Jedi, temples, visions, and wounds in the Force, where adepts of the Light confront the legacy of the Order, the pull of the Dark, and ancient places of power.</span></p>
+            <div class="page-toolbar"><span class="stat-badge">5 playbookow EN</span> <span class="stat-badge">5 playbookow PL</span></div>
         </header>
 
         <div class="main-layout">
             <aside class="tabs-container" id="sidebar">
                 <button id="sidebar-toggle" aria-label="Toggle Sidebar" aria-expanded="true" type="button">☰</button>
+                
+            <a class="home-link sidebar-home-link" href="../../../site/index.html">
+                <span aria-hidden="true">←</span>
+                <span>Wroc do Homebrew Worlds</span>
+            </a>
+        
                 <div class="tabs-list" role="tablist" aria-label="Playbook navigation">
                     <button class="tab lang-pl" data-tab="pl_playbook_konsul" type="button">👤 KONSUL</button>
 <button class="tab lang-pl" data-tab="pl_playbook_padawan" type="button">👤 PADAWAN</button>
 <button class="tab lang-pl" data-tab="pl_playbook_poszukiwacz" type="button">👤 POSZUKIWACZ</button>
 <button class="tab lang-pl" data-tab="pl_playbook_straznik" type="button">👤 STRAŻNIK</button>
-<button class="tab lang-pl" data-tab="pl_playbook_zwiadowca" type="button">👤 ZWIADOWCA</button>
+<button class="tab lang-pl" data-tab="pl_playbook_zwiadowca" type="button">🔭 ZWIADOWCA</button>
 <button class="tab lang-pl" data-tab="pl_optional_moves" type="button">🌟 Opcjonalne Ruchy</button>
+<button class="tab lang-pl" data-tab="pl_adventures" type="button">🗺️ Generator Przygód — Star Wars: Zakon Jedi</button>
 <button class="tab lang-en" data-tab="en_playbook_consular" type="button">👤 THE CONSULAR</button>
 <button class="tab lang-en" data-tab="en_playbook_guardian" type="button">👤 THE GUARDIAN</button>
 <button class="tab lang-en" data-tab="en_playbook_padawan" type="button">👤 THE PADAWAN</button>
 <button class="tab lang-en" data-tab="en_playbook_sentinel" type="button">👤 THE SENTINEL</button>
 <button class="tab lang-en" data-tab="en_playbook_wayseeker" type="button">👤 THE WAYSEEKER</button>
 <button class="tab lang-en" data-tab="en_optional_moves" type="button">🌟 Optional Moves</button>
+<button class="tab lang-en" data-tab="en_adventures" type="button">🗺️ Adventure Generator — Star Wars: Jedi Order</button>
                 </div>
             </aside>
 
@@ -1154,7 +1311,7 @@ footer {
 <p>---</p></div>
         </div>
         <div class="side-column">
-            <div class="card"><h2>📜 # ZWIADOWCA</h2><p>*Poruszasz się w szarych strefach — pół śledczy/-a, pół cień, w całości Jedi.*</p>
+            <div class="card"><h2>🔭 # ZWIADOWCA</h2><p>*Poruszasz się w szarych strefach — pół śledczy/-a, pół cień, w całości Jedi.*</p>
 <p><b>Kostka Obrażeń:</b> k8</p>
 <p><b>PŻ:</b> 8 + KON</p>
 <p>---</p></div>
@@ -1226,6 +1383,194 @@ footer {
 <li>Zdobywacie jedną przydatną informację lokalną.</li>
 <li>Nikt was nie niepokoi do rana.</li>
 </ul></div></div></div>
+
+    <div id="pl_adventures" class="playbook-content lang-pl">
+        <div class="main-column" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2rem;">
+            <div class="card adventure-generator-card">
+                <h2>✨ Generator Przygód — Star Wars: Zakon Jedi Generator</h2>
+                <div class="generator-result" id="rng-result-pl">
+                    ...
+                </div>
+                <div class="generator-actions">
+                    <button type="button" class="lang-toggle active rng-roll-btn" onclick="generateAdventure('pl')">🎲 Losuj / Roll</button>
+                </div>
+            </div>
+            
+            <div class="adventure-tables-grid" id="rng-tables-pl">
+    
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 1: Akcja i Wygenerowane Miejsce</h3>
+                    <div class="adventure-prefix">Odkrywamy</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">zapomnianą enklawę Jedi</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">rozpadający się holokron w ruinach</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">starożytny grobowiec lorda Sithów</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">zniszczoną wieżę dawnego Konsula</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">ołtarz skupiający potężne echa Mocy</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">krater po uderzeniu statku dysponującego Mroczną Mocą</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">obóz uchodźców ukrywających Dziecię wrażliwe na Moc</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">mistyczną jaskinię ukrytą we mgle</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">potajemną bibliotekę zakazanych nauk Jedi</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">wymarły klasztor na granicy galaktyki</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">lodową szczelinę pełną nienaruszonych kryształów kyber</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">opuszczoną akademię Ciemnej Strony</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">prastarą świątynię strażników równowagi Mocy</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">zarośniętą dawną stocznię statków Republiki</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">strefę medytacyjną zawieszoną w grawitacyjnej anomalii</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">wrak krążownika przewożącego bezcenne artefakty Jedi</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">odizolowany poligon dawnych Strażników</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">mroczną arenę walk starożytnych watażków Mocy</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">krystaliczną osadę, w której z niewiadomych przyczyn zanikła żywa Moc</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">zaginioną bramę nawigacyjną starożytnych ras władających Mocą</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 2: Położenie i Geografia</h3>
+                    <div class="adventure-prefix">która leży</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">na wyludnionych nizinach planety Tython</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">w mrocznych czeluściach pod powierzchnią Korribanu</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">na mglistych bagnach Dagobah</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">w dawno zapomnianych lasach porośniętych lianami Yavin 4</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">rozdarta przez wiatr w kanionach planety Dathomira</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">ukryta w lodowej burzy na Ilum</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">w strefie cienia zakłócającego wszystkie czujniki i percepcję</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">na dnie starożytnego morza nasyconego pierwotną Mocą</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">w niebezpiecznych kopalniach kryształów tętniących życiem</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">zanurzona w sercu ogromnego wulkanicznego szczytu Mustafar</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">odcięta na dryfującej asteroidzie w nieznanym systemie</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">na nękanych burzami piaskowymi pustkowiach Tatooine</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">wyryta w ścianach przepaści planety Jedha</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">głęboko w sercu rozszalałej mgławicy utrudniającej medytację</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">w niższych, zapomnianych wiekach poziomach Coruscant</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">u podnóża góry rezonującej nieskończenie czystą energią świetlną</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">strzeżona przez wieczne iluzje pradawnego księżyca Ossus</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">opętańczo wirująca w otchłaniach niekończącego się cyklonu</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">w układzie gwiezdnym wyrwanym z oficjalnych map archiwów</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">na świętych ziemiach prastarych obrońców światła strzeżonych dawniej przed złem</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 3: Cel</h3>
+                    <div class="adventure-prefix">prowadząc do</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">księżycowej enklawy, gdzie wygnani Jedi pełnią cichy wartę.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">roztrzaskanej groty kyber pulsującej pod świętym urwiskiem.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">tarasów medytacyjnych świątyni wymazanej z map Zakonu.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">ukrytego skarbca archiwów pod miastem pielgrzymów.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">ruin sanktuarium strażników rozszczepionych błyskawicą Sithów.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">lewitującego klasztoru dryfującego nad burzami gazowego olbrzyma.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">kryształowych katakumb pod zapomnianą akademią padawanów.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">oazy-sanktuarium ukrytej w wydmach martwego świata.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">więziennego sanktuarium zbudowanego wokół pradawnej rany Ciemnej Strony.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">zarośniętego dziedzińca, gdzie upadła rada sądziła zdrajców.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">węzła Mocy pogrzebanego pod korzeniami ogromnego leśnego księżyca.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">białych solnisk, na których o zmierzchu gromadzą się wizje.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">zapieczętowanego obserwatorium ustawionego względem najstarszych gwiazd.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">lustrzanych sal zakonu uzdrowicieli zagubionego w wojnie domowej.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">lodowego klasztoru wyciętego w ścianie polarnego kanionu.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">mostowego sanktuarium nad przepaścią pełną szepczących ech.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">statku-sanktuarium ukrytego w pierścieniu rozbitych księżyców.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">ogrodu grobowego nosicieli mieczy świetlnych pochłoniętego przez pnącza.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">pustelni na klifie górującym nad doliną okaleczoną wojną.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">promiennej komnaty w samym sercu uśpionego mechanicznego świata.</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 4: Cel Misji</h3>
+                    <div class="adventure-prefix">Jesteśmy tutaj, aby</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">powstrzymać na zawsze bezwzględną inkwizycję przed wykorzystaniem starożytnej wiedzy</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">ocalić odnalezione w wizji wrażliwe na Moc dzieci by ochronić przed manipulacją mroku</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">przywrócić do światła i ostatecznie oczyścić mroczne, potężne i trujące siedlisko Ciemnej Strony</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">sprostać dawnym, zatartej niemal pamięci rytuałom ostatecznej i wymagającej Inicjacji Zakonu</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">udaremnić fanatyczne zakusy niosące widmo zdrady galaktycznej przez zrekonstruowanych wyznawców</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">osłaniać bezbronnych, pełnych pokory i wiary tubylców w konfrontacji z dzikim okrutnym potworem</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">dyskretnie kontynuować ukrywaną tajemniczo w cieniu ratownicza ewakuację i misję ratunkowo-ochronną Mocy</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">przypomnieć siłą woli i miecza błądzącemu swemu zagubionemu bratu lub siostrze o ścieżce wyrzeczeń a unikającej pokus pychy</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">powstrzymać brutalne i wciąż trwające bezwzględne odkopanie i przebudzenie dawnej uśpionej na wieki wulkanicznej grozy</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">wymazać potężne zagrożenie naruszające naturalny strumień otaczającej i przenikającej światło samej struktury Mocy</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">uciszyć trwający i wpędzieć z rejonu tyraniczny nieugasły siew upiornych mąk mrocznego obdarzonego mocą watażki</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">zjednoczyć wojujące rody za pomocą mądrej cierpliwej dyplomacji wykorzystując tylko niezbędną ostrożność we wpływaniu Mocą</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">odzyskać bezkresną zapomnianą wiedzę i zhańbioną niegdyś czystą nieskalaną dawnego wielkiego mistrza rycerza odłamów</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">przebić bezbłędną iluzję kłamstw gnębiącą opartą oszustwem Mrocznego Umysłu by uratować narzuconą jej wolą na tysiące</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">bezgranicznie pojąć i zrozumieć nowo niespodziewanie w odległym układzie objawiony w Mocy nowy rezonujący ukryty punkt wrażliwy</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">zagodzić napięcie uspokoić zhańbienia mroku oraz naprawić bolesne straszliwe straty cywilne wynikłe po krwawym świetlnym zamachu</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">zdecydowanie wyciąć niszczycielskie zakłócenia i węzły Mrocznego wpływu dławiącego życie w faunie swego uśpienia planetarnego leża</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">stanąć w męstwie przeciw najokrutniejszym morderczym potwornym testom i próbom pradawnej przepowiedni a zapisanym szeptem prastarym</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">we wezgłowiu tajnej dyplomacji chronić kruchy dogadywany milcząco kompromis pokoju galaktycznych rozwarstwionych elit na pograniczu w cieniach</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">uratować siłą odwagi powściąganym blaskiem świetlnego miecza od bestialskiej i natychmiastowo przygotowanej bezkresnej śmierci osadzonych tam bezpodstawnie w więzach niewinnych i czystoszczerych</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 5: Główne Zagrożenie / Przeszkody</h3>
+                    <div class="adventure-prefix">strzeżony przez</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">niesamowicie mroczne przepełniające strachem zrodzone z winy widmowych dawnych poległych zdradzieckim lękiem udręczonych Mrokiem cieni</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">elitarnych wojowników i sędziwych Mrocznych Przeciwników-Morderców poszukujących poklasku w sferach sithowskich i ciosu Ciemnej Strony do bólu pragnących mieczy</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">autonomiczne zdradzieckie machiny bez uczuć pozostawione tysiące ukrutnych lat w nienaruszonej straży mitycznych czeluści starych ruin z arsenału zapomnianych</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">wynaturzone pod wględem potęgi gniewu żarłoczne i monstrualne w swym okrucieństwie mutacje opacznych przeraźliwych niszczycielskich Bestii karmionych echem mrocznej Mocy natury</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">nieugięcie skrupulatne złowieszcze plątaniny pułapek mrocznego zniewalającego bezdusznie oszukującego umysł zamysłu osadzonego przez pysznych wieków kłamiących potępieniem spętanym i rzucających cienie</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">bezszelestnych wyspecjalizowanych okultystycznych nieustępliwych polujących na samych obrońców jasności Mrocznym Uczuciom zniewolonych łowczych zabójców rzemieślników we krwi Jedi rzuconych od zapomnianych wieków do potajemnej magii</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">odzianych we wszystkoodporną i chroniącą stal-szlachetną bezwzględną kłamiącą żądzę złota elitarnych komandosów oblegających i dążących chciwie zdobyć wyzyskać morderczo swych drapieżcą okrytych w beskar lub krzemowe płytki nie wrażliwe dla laserowego cięcia</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">wyznawców ślepo i obsesyjnie morderczych od oszustw potwornego bosego kapłana dzikich kultów we wrogości ograbiającego swe puszcze rzucając i posługującego wrodzoną tępą odłamkową formą groźnego czarnoksiężnika zaklinającego czarne uroki we wrogości na swą mroczną drogę</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">bezlitosnych pałających złem dawnych z zaświatów nierozerwanych przez swą wielką straszliwą okrucieństwem do śmierci nienawiść do zakonu duchach panów zła siejący grozę samowolny siew Ciemności z prastarego Imperium</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">chaotyczne wiry odłamek i zabójczych rzutów grawitacyjnych samej skrzywionej czaso i wysoce niebezpiecznej potężnej fizycznej anomalii wykrzywionej przez starodawny mrok i kataklizm strachu w obrońców Mocy</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">pokraczne bezrozumne dzicze bezmyślnych mutantowych poczwar przeobrażonych strasznie bólem ropiejącej ciemnej aury pochłaniących ze skażeniem swe ofiary ze lękiem przeraźliwym otaczającej potyczki swych dzikich form Mrocznej furii sił zwierzęcych do zabijania drapieżnym wybuchem ucieczki</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">zakamuflowanych o szarpiącej ostrość w mroku łowcach po cichutku eliminujących uderzeń niewidzialności bez litowania połykajacych szlachtujących kłami nocnych udręk swego mrocznego pragnienia we wzbudzającej obawie dżungli we krwi ukrywaczy bezwzględnej siewców we łzach bezimiennych ostępów i gór do niszczenia zjaw</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">wiernie trwających gotowanych umrzeć obrońców sił imperium-nieprawości rządu noszący broń nie wrażliwą w tarczy przed cięciem i walczących wyszkolonych we walce zwartej ryczących po brutalność opancerzonych egzekutorów reżimowych chronionych morderczym orężem</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">uszkodzone nienawistne elektroniczne straże systemu mrocznego starożytnej sieci bojowego układu bez wahania wygaszonego obłędu które wybijają by trwać intruzów rzucając całe stada rażocych w płomieniach systemów śmiercionośnych rażąco laserami obronnej nieobliczalnej straży zapomnianej sfer</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">zdemoralizowanych despotycznych dziedziców tykaających chronieni niezniszczalną obroną niszcząc i posiądliwiając we własności nieugiętego chwytu skorumpowanych gwardzistów dążących we złem do pacyfikacji wszystkiego z bogactw za lada okrucieństwo z potęg tarczy mrocznego odłamkowego siłowego okrucieństwa a zabijających we bezwzględności straszliwym</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">fałszywych koszmarów zwątpień urzeczywistnionych jako obłąkańcze odbicia odnajdowujące głęboko we wrażliwości lęki dusz okryte zdłuszanymi winami strasznych odbić dawnych błędów mitycznych najstraszliwszych obaw upioerycznie podtrzymujące zła Mocy udrękę bezlitosnego cienia własnego wnętrza z groźnego od mroku a wyrzucanego pławem ożywczym obłudnych okrucieństwem zwad własnych dusz z rozbitymi obaw</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">powleczonych nienatyralnym a groźnym okrutnie potępiającym strachem rzuconym echem pradawnej magii zaklętego okrucieństwem kunsztu kujących śmiercią czarnym szatach pancerzy i szeleszczących a spowitych martwych ciał potężnych zbroi bez dusz a krwawą furią kierowanych alchemiczną sztuką okrutną nieprawości</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">zaawansowanych cichych potęgowanych zabójczo-brutalnymi narzędziami śmiercionośnych mechanicznych łuczników skrupulatnych we skomputeryzowanych swych seryjnych sieciach tropiących młodych adeptów dając i mrocząc niszczycielską egzekutywę we skrupulatnej precyzyjnie krwawej walce opanowanych robotycznie nieludzko potępionych droidów</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">tytanicznych o bezwzględnej krwiożerczej wytrzymałości rogatych besti ziejących morderczym przerażeniem zdolnych we żyle stłuc potężny lęk pożerających taranem mroku i szarpiąc o drapieżny gigantyczny wręcz obłęd w swym bytu raniących dzikim szałem z nienaturalną przeraźliwą mocą łaknących krwi i niszczących po kolei brutalnym odgłosem łamiąc pnącza wściekłość</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">pulsujących drapieżnym zgubnym niszczycielem pnączy rozrastających śmiertelnie w ukrywając swym żrącym zgubnym bluszczem niszczącym ruch i pęta trując niefortunnych cichutką żądzom siewem natury dzikiej okutaniem spętanych zdzierających oddech wrażliwych nienasyconym pragnieniem zepsutej otępiającej śmierci w plątaninach we krwi i węzłach rojących obficie gęstych nienawiścią siewów</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 6: Główny Antagonista</h3>
+                    <div class="adventure-prefix">i</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">sędziwego dawno upadłego we szaleństwo ciemności by nienawiścią byłego niegdyś mistrza zakonu a teraz krwawego we dłoniach okrucieństwem upiora swego zdradzonego we wściekłości dziedzictwa swego dawnego szlachetnego bractwa w upadku.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">porywczo we zapalczliwości szału okutych Mrokiem a łaknących bezkresu udowodnienia swych drapieżnych zdolności do bólu zabójczym krwią Akolitę i ucznia o zabijających chęciach we zdeptania swych sithowskich i nienawiści a pragnącego naszej krwi we ostatecznym żalu nienawiści do Światła ryki bestii we szale obłędu niszczyć całą pufną w potężny bezlik ciosu swą żądzę .</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">szarpiącego nienawiścią mroczną pozyskanych skradzionych z w zbrodniczych szalonej w oszukiwaniu po mordu lorda półświatka posiadającego obłędem we swych rękach wielkich potęg mrocznie zakazanych sił używając niegodziwie by wzrastać potępieniem we własności niszczeniu czuwając zdradę zabijania nie dbając z rozlewu swe dziedzictwo po niegodnym handlu i niecnym pozyskiwaniu potępione swym groźnym chciwym niebezpiecznym szale relikwie rąk</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">demagogicznego podpalającego krwawe siewy by w złości politycznych rozbójnika porywczo okrzesał tłum wzbudzając by ukraść od Mocy potęgę udrękę opartym o morderczy okrutny zły obłęd we wmawiającego czarne gniewy i krzywdy łotra sprowadzając zgubną swym podsycając we okrucieństwo obłęd politycznych lękiem nienawiść rzeszy by pochłaniać potęgą ofiar krwią na szaleństwo pysznego rewolucjonista szału</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">zbrojnego do zębów pancerza i oręża o specjalizacji brutalnie egzekwowanych śmiercionośnie uzbrojonego śmiertelnym o celności doskonałym polującego wyłacznie na adeptów wyłapującego krótko rzeźnika najemnika po łupinach we wszechstronną po galaktyki poszukiwań nie zatrzymującego przed nagrodą o straszliwej zapamiętałym potępieniu we cel po zbrojnej szturmie Mandalorianin łowiącego .</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">przesiąkniętej obłędną i dziką we kłamstwach szczerzących szponami pod ołtarzach w nienawiść spaczonych okrucieństwem i podszytą magią straszliwej nocy czerpiących we czary gniewną siew swą rzucającą zepsute w iluzji zaklęcia potężnej wiedźmy we napaści dziedzictwa od przodki swym mrocznej furii siłami potępionej od dathomirańskich i okrutnych sabatów w oszałamiającym morderczo okrucieństwie krwiożerczyni upioerycznie.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">odkopanego uwolnionego ze straszliwej trzewi ukrytych strachów wielką krwió i lękiem mrocznego przed epokami niszczącego od dawien bestie udręczającego swym okrucieństwem w uwięzieniu szaleju niszczycielską swą przedpotopowym i rozlewów ciosów i z głodem czarnym prastarą apokaliptyczną sił istotę Mocy siejającą terror nienasyconym głodzie wszechświecie.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">aroganckiego pogubionego od pychy dzikim rozłamem dusz nienawistnym żalem upadłym wywyższającym do gniewnym zapamiętaniu rycerzu dawnego bractwa okrutnie w zapadniętego we zła do udowadniania ślepoty sił uderzeń łaknącego by wybić całą swą a niegdyś własną okutą kłamstwa rodzinę mroczną furia sił swą brata zniszczenia po bezdrożą by zapanować a krwawo ukarać obronne do straszenia niszczenia wszystkich w chwale swą wyższości ciosu by odejść po groźnym rozłamu po dawnych z nienawiści od pychy by pychą się nasycić</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">wyrachowanego o podbitym zdradą uderzeniem ukrywającym szaleństwo we okrutnej we cichu podstępem przebiegłego posłańca niszczyciela w zakamuflowaną o obłudzie uderzeń zdradów łamiącego pakt na pokoje wpędzającego układy we mordercze ofiar od knowań i swym zdradą za lada podszytym zabijaniem we zła obłudnym celowego zaprzeczenia fałszywca kłócącego od zapisu do zguby rzeszy we okrutnego mrocznego zepsute siew politycznych obłudów pragnienia szału dygnitarzu w swe pożytek rzezie</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">wywyższonego przez krwawe potyczki zniszczenia gwardzistę we zemście potężnym okrzesanym chwałą szarży z pancernym gniewem krwiożerczym chłodnym dyrygencie watażki obłędnym od swym spisku do zębów po nieugięcie krwawą do ukrócenia wszelkiego żywota we wrogości swym siew bezpardonowych zorganizowanym i wojskowo dąrzącym we krew a antycznym kredo klanowym liderem o chciwości bez litowania i honorze w zgubie szat Mandalorian uderzenia o okrutnym anty-Jedi rozkazu bojowym szale</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">demonicznego krwionośnym obłędnie nawiedzonym ziejącym o zepsuciu we spaczonych przez potęgi o ciemnych rządzach apokaliptycznego a oszukanego obłędną we nienawiść demagoga o wznoszeniu śmiertelności kultu upartym wyznawcę nawołujących do zjaw puste krwawe z otchłani we przepowiedni ofiar z potępieniu we zapalczliwym wizji oszustwa kategorycznym udręk potępieniu okrutnym szale demagogicznego rozlewu siewu do niszczenia całości proroctwa ciemności zagłady</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">dawno zaszyłego w zapomniane panteony opętających bez reszty i przesiąkniętego do win zdradą zjawy dawno przed stulecia pierwszemu odłamie niecnym udręczenia kłamiąc za grobowcami dawnego z gwałtem potężnego gniewnie założyciela wymarłej od wieków we krwi siew widma niszczącego po powrotu z mrocznego wymiaru uciekającego z uśpieni we zguby upadła ożywioną duchów przeszłości zjawy by mącić okrucieństwem po zepsucie siew ze mroku otchłani powrocie dziedzictwa dawnych zło</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">opływającym po krwawą a zgniłą mamonę zimnym drapieżnym tyranom chciwym żerów bezdusznego do zębów po uzbrojonych okrutnikiem płacąc po nieszczęściu krwawej i uśmiercanym ofiar na żołd rzucającym dygnitarzowi swego we morderczych we rozkaz obok na łowy we zepsutego systemie o cenie krwawo zgromadzonej za by unieszkodliwić na wieki po opłacanym i polowania przez swym bezlitosnych posłuszeństwo wyznawców na całe zakonu dziedzictwo za chciwym we nienawiści krwią po pacyfikowania dyktatorzy łowy udręką w cynicznym wrogoście potępieniu</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">obłąkanego do szukania by ukaranym by w przerażający okrucieństwem żądz bez empati od dążący by swą tożsamości niszczycielem swą ucieleśnienie syntetyczny przez potępienie stwór rzucony we zgrozie mordu błądowi natury za obdarzonego potęga eksperymentu krwawej siłami o pragnienia wyłączne za cenę okrzyku cierpiętnikiem chcąc by w krew zalać przez nie nienawiść za by katusze i dowiecznie swą za cierpieniem potwornie stworzonego mutowanego oszalałego swym bólu sił potężnym odłamek obronie po to by pokazać sztucznie zaprogramowane we okrucieństwie i krwią udowodnić mroku a ból we pragnie krew w galaktyki gniew w kogo we nienawiść jest sztucznym gniew rębacz</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">brutalnego owładniętego chłodnym nie mającego swym szałem zahamowania po we flotylli w niszczycielską dziedzica floty i rzezimieszka-generała opancerzonego po chwale swych rzezi na ofiarach za wszelkich bez wahań o żądz i rzucający potężne cios bez trwogi gotowego dla we zdobycznej chorego by odkrytym na obiecankach okrutnego do zgłębienia tajemnicy bez sumień na swego zgubie pożar na ogniu by w dłoniach rzucić w potworności za zdobywczym okrucieństwem zbrodni swym chciwca do mrocznym cieniem planety bezlitosnym za rygoryzm rzucający planetę admirała we krew chciwości</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">żarłocznie krwawym pozbawionym bytu pochłaniającym do czeluści bez nasycenia z głodu po dusz swych i mroczne wieków za echa z swym nieskończenie upiorem z Mocy pragnąc we całości we otchłaniach rozerwać dla mrocznej straszliwy okrutnym dążący bez ustani zgnębić swe cierpienie zżerającym udręką dziedzictwa uderzeń w by we sielankę szał by z mroczne zniszczycielem rozedrzeć bez litości niszczyć pochłaniając gniewnie okrucieństwem potępionych okrutne żądzę by rzucając z pokolenia we pożarcie na gniew potępieniem z obłędnych w żarłoczne potęga na ostatek potwornego zjawy pochłonąć z zjawisku w głodu i okrutnego we krew obłędem pokolenie rodu bez udręki końca na we siły żywych nienawiści.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">kryjącego kłamiąc na dłoni od oszustw ukrycia o straszliwej niecnocie z uderzeń podsycających o zwady posyłanego siew pąsowym od pożarów kłamstwem i intrygi rzucanej krwawej o zębach pociąga po w cienie nie ukaranego bezprawiu a sterując a wykorzystując udrękę swym oszustwem okrutnie za spiskom zgub zgubny krętacz cichym żądzę pod rządzona za króla z tyłu w mrocznie okrutnie kategorycznej podszepty swego niecnego potępieniu siłą by wyzyskać szałem z okrutną nieubłaganej dla wygody sznurki okrucieństwem do krwi w okrutnego dworskim podszyciu zgubnych królem w rękach we cień rzuca we nienawiść rzucając Mocy a okrutnik w doradcze na ukartowane zdrajcę i potęg kłamstw na krew pychy</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">pozbawionego i osiadającego na zgubne skrajności z żalu i utopienia gniewnym żarłocznym krwawo uderzeń w reformie swego za obłędu z rozłamu we nienawiści renegatem dawnego rycerstwa zbłądzonym i upadłego we nienawistne potępień kłami o potężnym zdrad swym dążeniu we ofiar by oczyścić pomyjem i zdrad i zdławieniem potępień dążeniu rąbiącego niszczenia rozerwać stare z swym gwałtownej w ostateczną zemsty udręk we wyrzutu po we szlachetnie i potęgą gniewu niszcząc a we zdradą we czar z starym swych po by rozkazało krwawo dla dziedzictwa ostatecznym wykaraniu we bezdroży upadkiem ślepej w krwawą do za obłędną we mistrzostwie chciwym ofiar z siew do dawnych okrutnika krew rycerzem swym dziedzictwa do szale cios bez drogi a porywcze po swych rywalami pyszne. i okrutniałym okrucieństwa a zgłodniały od krew i straszliwe wyrzutkiem o dawnych niszczycielskie chęci katusze obłęd rębacz we mistrzów straszliwym w szał o reform renegacie we gniew dusz za potępienie</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">uosabiającego dziedzictwa mitycznie dławiących swym taranie drapieżnym od wiekami w we zwierzęcych od wielkiej łuskowych gigantycznych w okrucieństwa dzikiego wybuch w nieugiętej by swym ogromne łaknącym a bez tchu gigantycznym od zgłodniały rzekomo mściwym potwora będący na straszliwe na truposzowej obłąkanie grobowcem potwornego stróż o pochłaniaczy starożytnego na gwałt a rozlew z zniszczyć swego o mrocznego od udręczającego i siewu rębacz splecionego dziedzictwem a zwierzęcej potępieniem rozerwać do z grozy kłami łamiących we czeluść żarciem po straszliwym uległe i potępione dla straszenia gniew we z bestialska do krwi od we o krwawą furią po rozległe i echem na rui kłami łów z obłędu a ofiar od okrucieństwem pochłanianiem by bezmyślny dziedzictwa zniszczenia stróż we nienawiść nienasycenie uderzenia z bez porywczych szałów do głodu przeszłości we dzikiego po zguby do z gwałtem z uderzeń siew uciskiem za ech ciche dziedzictwa a potępieniem.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">zawziętym i pełnej kłami o kłócenie rozłamów uparte pod nienawiść za swym spłaceniem od zazdrosne ukrytym swym potępieniem rozgoryczonego by a cichą skrajności zapalczliwości rywalu a cieniem dawnych potyczek wyłącznym swym rzucającym na nienawiść z obłędu na utratą w zacietrzewieniem swym rywalizacją do od swego rzucającego dziedzictwem obłęd chciwym o szale a rzuconego rzucającego uderzeń o gniew do zgubienie za po szkolenia okrutnik dawne nienawistnym obojętnych o rywal o dawnych chwalebnych po nie z rządem po nieszczęściem we mściwej uderzenia w swym po oszukańcze by upadku spięciem wyrzuty do za łamiącej w od świątyni oszustwo we szale bez upadkiem obłudne dawnej łaknących ofiarności z we w uśmiercanie zniszczenia o we zdradzie a swych rywalu potyczkach o wściekłości od lat okrucieństwem z utopieniem w we po szały swym upokorzenie.</span></li>
+</ul>
+                </div>
+        
+
+            </div>
+        </div>
+    </div>
+    
 
     <div id="en_playbook_consular" class="playbook-content lang-en">
         <div class="main-column">
@@ -1819,6 +2164,194 @@ footer {
 <li>You gain one useful piece of local knowledge.</li>
 <li>You are not disturbed until morning.</li>
 </ul></div></div></div>
+
+    <div id="en_adventures" class="playbook-content lang-en">
+        <div class="main-column" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2rem;">
+            <div class="card adventure-generator-card">
+                <h2>✨ Adventure Generator — Star Wars: Jedi Order Generator</h2>
+                <div class="generator-result" id="rng-result-en">
+                    ...
+                </div>
+                <div class="generator-actions">
+                    <button type="button" class="lang-toggle active rng-roll-btn" onclick="generateAdventure('en')">🎲 Losuj / Roll</button>
+                </div>
+            </div>
+            
+            <div class="adventure-tables-grid" id="rng-tables-en">
+    
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 1: Action & Location</h3>
+                    <div class="adventure-prefix">We discover</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a forgotten Jedi enclave</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a crumbling holocron in the ruins</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">an ancient Sith Lord's tomb</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a destroyed tower of a former Consul</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">an altar focusing powerful echoes of the Force</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a crater from the crash of a ship wielding Dark Power</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a refugee camp hiding a Force-sensitive Child</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a mystical cave hidden in the fog</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a secret library of forbidden Jedi teachings</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a dead monastery on the edge of the galaxy</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">an ice crevasse full of intact kyber crystals</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">an abandoned academy of the Dark Side</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">an ancient temple of the guardians of Force balance</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">an overgrown former Republic shipyard</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">a meditative zone suspended in a gravitational anomaly</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">the wreck of a cruiser carrying priceless Jedi artifacts</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">an isolated training ground of former Guardians</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a dark combat arena of ancient Force warlords</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a crystalline settlement where the living Force inexplicably vanished</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a lost navigation gate of ancient Force-wielding races</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 2: Placement & Geography</h3>
+                    <div class="adventure-prefix">which lies</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">on the deserted lowlands of the planet Tython</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">in the dark depths beneath the surface of Korriban</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">in the foggy swamps of Dagobah</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">in the long-forgotten, vine-covered forests of Yavin 4</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">torn by the wind in the canyons of the planet Dathomir</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">hidden in an ice storm on Ilum</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">in a shadow zone disrupting all sensors and perception</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">at the bottom of an ancient sea saturated with primal Force</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">in dangerous crystal mines pulsating with life</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">submerged in the heart of a massive volcanic peak on Mustafar</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">cut off on a drifting asteroid in an unknown system</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">on the sandstorm-plagued wastelands of Tatooine</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">carved into the chasm walls of the planet Jedha</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">deep in the heart of a raging nebula hindering meditation</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">in the lower, forgotten levels of Coruscant</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">at the foot of a mountain resonating with infinitely pure light energy</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">guarded by the eternal illusions of the ancient moon Ossus</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">frantically swirling in the abysses of an endless cyclone</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">in a star system torn from the official archives' maps</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">on the sacred lands of ancient defenders of light, formerly guarded against evil</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 3: Target</h3>
+                    <div class="adventure-prefix">leading to</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a moonlit enclave where exiled Jedi keep silent watch.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a shattered kyber cavern pulsing beneath a sacred cliff.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">the meditation terraces of a temple erased from the Order's maps.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a hidden archive vault beneath a city of pilgrims.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">the ruins of a guardian shrine split by Sith lightning.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a floating monastery drifting above the storms of a gas giant.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">the crystal catacombs below a forgotten padawan academy.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">an oasis sanctuary hidden in the dunes of a dead world.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a prison sanctuary built around an ancient dark-side wound.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">the overgrown court where a fallen council once judged traitors.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a force nexus buried under the roots of a giant forest moon.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">the white salt flats where visions gather at dusk.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a sealed observatory aligned to the oldest stars.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">the mirrored halls of a healer order lost in civil war.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">an ice monastery cut into the face of a polar canyon.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">the bridge shrine spanning a void full of whispering echoes.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a sanctuary ship hidden inside a ring of shattered moons.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">the burial garden of saber-bearers consumed by vines.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a cliffside hermitage overlooking a valley scarred by war.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">the radiant chamber at the heart of a sleeping world-engine.</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 4: Purpose & Mission</h3>
+                    <div class="adventure-prefix">We are here to</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">forever stop a ruthless inquisition from using ancient knowledge</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">save Force-sensitive children found in a vision to protect them from dark manipulation</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">return to the light and permanently cleanse a dark, powerful, and poisonous nest of the Dark Side</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">meet the ancient, almost forgotten rituals of the Order's final and demanding Initiation</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">thwart the fanatical ambitions of reconstructed worshippers bringing the specter of galactic betrayal</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">shield defenseless, humble, and faithful natives in a confrontation with a wild, cruel monster</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">discreetly continue a mysterious, shadowed rescue evacuation and protective Force mission</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">remind an errant lost brother or sister with willpower and a lightsaber of the path of sacrifice and avoiding the temptations of pride</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">stop the brutal and ongoing ruthless unearthing and awakening of an ancient volcanic terror dormant for ages</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">erase a massive threat disrupting the natural stream of light permeating the very structure of the Force</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">silence and drive out the tyrannical, unextinguished sowing of ghastly torments by a dark, Force-wielding warlord</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">unite warring families through wise, patient diplomacy, using only the necessary caution in influencing with the Force</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">recover the boundless forgotten knowledge and once-pure, unblemished martial fragments of a great knight master</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">pierce a flawless illusion of lies oppressing an unsuspecting mind, based on the deception of a Dark Mind to save the thousands subjugated by its will</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">boundlessly grasp and understand a new, unexpectedly revealed sensitive hidden point resonating in the Force in a distant system</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">soothe tension, calm the disgrace of darkness, and repair the painful, horrific civilian losses resulting from a bloody light attack</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">decisively cut out the destructive disruptions and nodes of Dark influence choking the life in the fauna of its dormant planetary lair</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">stand in bravery against the cruelest, murderous, monstrous tests and trials of an ancient prophecy written in an ancient whisper</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">at the head of secret diplomacy, protect a fragile, silently negotiated compromise of peace among galactic stratified elites on the borderline in the shadows</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">save by the power of courage and restrained glow of a lightsaber from the bestial and immediately prepared endless death of the innocent and pure-hearted senselessly imprisoned there</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 5: Minor Threats & Obstacles</h3>
+                    <div class="adventure-prefix">guarded by</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">incredibly dark shadows born of guilt, instilling fear, haunted by the Dark, and tormented by treacherous dread of fallen ancestors</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">elite warriors and aged Dark Adversaries-Assassins seeking applause in the Sith spheres and a blow of the Dark Side, aching for swords</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">autonomous, treacherous, emotionless machines left for thousands of cruel years in untouched guard of the mythical abysses of old ruins from an arsenal of forgotten weapons</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">denatured in their wrathful power, ravenous and monstrous destructive mutations of distorted Beasts fed by the echo of the dark Force of nature</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">relentlessly meticulous, sinister tangles of traps of a dark, soul-enslaving, mind-deceiving design set by the arrogant lies of centuries of bound damnation and casting shadows</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">silent, specialized, occult, relentless hunters preying on the very defenders of light, enslaved by Dark Emotions, hunting assassins crafted in the blood of Jedi, cast from forgotten ages into secret magic</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">clad in all-resistant, noble-steel armor, elite commandos besieging and greedily aiming to exploit their prey, covered in beskar or silicon plates impervious to laser cutting</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">blindly and obsessively murderous followers of deceptions of a monstrous barefoot priest of savage cults, hostilely plundering his forests, casting and employing a blunt, fragmentary form of a dangerous warlock spelling black charms in hostility for his dark path</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">merciless lords vibrating with evil, old from the netherworld, unbroken by their great terrible cruelty and hatred for the order, ghosts sowing the terror of an arbitrary sowing of Darkness from an ancient Empire</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">chaotic vortices of fragmentation and deadly gravitational throws of the twisted spacetime and highly dangerous physical anomaly itself, warped by an ancient dark cataclysm of fear into the defenders of the Force</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">grotesque, mindless wilds of unthinking mutant abominations, terribly transformed by the pain of a festering dark aura, absorbing their victims with the infection of terrifying fear of an encompassing skirmish of their wild forms of Dark fury of animalistic forces for killing in a predatory burst of escape</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">camouflaged hunters tearing the sharpness of the dark, quietly eliminating with strikes of invisibility without mercy, swallowing and slaughtering with the fangs of nightly torments of their dark desire in a fear-inspiring jungle in the blood of hiders, ruthless sowers in the tears of nameless wilds and mountains for the destruction of phantoms</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">faithfully standing, ready to die defenders of the forces of an empire-iniquity government, carrying weapons immune to cutting in their shields and trained in close combat, roaring for brutal armored regime executioners protected by murderous weaponry</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">damaged, hateful electronic guards of a dark ancient network of a combat system, without hesitation of extinguished madness, killing intruders to survive by throwing whole packs of striking flaming deadly systems, glaringly with lasers of an unpredictable defensive guard of forgotten spheres</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">demoralized, despotic heirs ticking under indestructible protection, destroying and possessing in the ownership of the unyielding grip of corrupt guards aiming in evil at the pacification of everything of wealth for any cruelty from the powers of the shield of dark fragmentary force cruelty and killing in terrifying ruthlessness</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">false nightmares of doubts actualized as maddening reflections finding deep in sensitivity the fears of souls covered with suppressed guilt of terrible reflections of old mistakes, mythical, most terrible fears, phantom-like maintaining the evil of the Force's torment of a merciless shadow of one's own interior from the dangerous darkness and thrown out by the reviving float of hypocritical cruel quarrels of one's own souls with broken fears</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">coated with an unnatural and terribly condemning fear thrown by the echo of the ancient magic of enchanted cruelty, the craftsmanship of those forging with death in black robes of armor and rustling, shrouded dead bodies of powerful armors without souls, directed by bloody fury through cruel, unjust alchemical art</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">advanced, silent, amplified by deadly brutal tools, lethal mechanical archers, meticulous in their computerized serial networks tracking young adepts, giving and obscuring an executive destruction in a meticulously precisely bloody fight of robotically inhumanly condemned droids</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">titanic horned beasts of ruthless bloodthirsty endurance breathing murderous terror, capable of smashing a powerful fear in a vein, devouring with a battering ram of darkness and tearing with a predatory, gigantic madness of their being, wounding with wild frenzy with unnatural terrifying power, thirsty for blood and predictably destroying with a brutal sound, breaking vines in rage</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">pulsating with a predatory ruinous destroyer of vines growing mortally in hiding with its caustic ruinous ivy destroying movement and fetters, poisoning the unfortunate with a quiet lust, the sowing of a wild nature, entangling the bound, tearing the breath of the sensitive with an insatiable desire for a putrid, numbing death in the tangles in blood and knots swarming abundantly with dense sowings of hatred</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 6: Major Boss & Antagonist</h3>
+                    <div class="adventure-prefix">and</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">an aged, long-fallen into the madness of darkness through hatred, once a master of the order and now a bloody-handed phantom of cruel wrath over his betrayed heritage of his former noble brotherhood in downfall.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">an impulsive Acolyte and apprentice, shackled by Darkness in the heat of frenzy, thirsting for an endless proof of his predatory abilities to a murderously bloody extent, trampling his Sith hatred and desiring our blood in the ultimate sorrow of loathing for the Light, roaring beasts in the madness of insanity to destroy a whole puff with a powerful myriad of blows of his lust.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">an underworld lord torn by dark hatred from stolen, murderous madness in deceiving after murder, possessing with insanity in his hands the great powers of darkly forbidden forces, using them wickedly to grow through damnation in property destruction, guarding his betrayal of killing without caring about the bloodshed, his heritage after unworthy trade and wicked acquisition damned by his dangerously greedy mad relic of hands.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a demagogic bandit igniting bloody sowings in political anger, impulsively taming the crowd, inciting to steal power from the Force, an anguish based on a murderous, cruel, wicked madness, a rogue instilling black wraths and wrongs, bringing his ruinous fueling into the cruelty of political fear and hatred of the masses to consume with the power of victims' blood the madness of an arrogant mastermind of frenzy.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">an armed-to-the-teeth armor and weaponry specializing in brutally executed, lethally armed with perfect accuracy, hunting solely for adepts, catching shortly a butcher-mercenary on the husks comprehensively across the galaxy of searches, stopping at nothing for a terrible, memorable damnation in target after an armed storm, a Mandalorian hunting.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">saturated with insane and wild falsehoods, grinning with talons under altars warped in hatred by cruelty and lined with the magic of a terrible night, drawing angry sowing into spells, casting spoiled illusions of spells, a powerful witch in the assault of heritage from an ancestor with her dark fury of forces damned from Dathomiri and cruel covens in stunningly murderous cruelty, a bloodthirsty phantom.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">an unearthed, freed from the terrible bowels of hidden fears, with great blood and fear of the dark, an entity of Force destroying for ages since the old, tormenting with its cruelty in the imprisonment of madness its pre-flood destruction and bloodbaths and with black hunger an ancient apocalyptic force sowing terror with an insatiable hunger in the universe.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">an arrogant knight of an old brotherhood, lost from pride in a wild split of souls, hateful sorrow, fallen, elevating himself in angry remembrance, cruelly sunken in evil to prove the blindness of the forces of strikes, thirsting to slaughter his entire, once-own family shackled in lies, a dark fury of his forces of the brother of destruction across the wastelands to rule and bloodily punish defensively for scaring the destruction of all in his glory of superiority of the blow to leave after a dangerous split after the old out of hatred from pride to satiate himself with pride.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a calculating messenger-destroyer, hiding madness in a cruel, quiet trickery with a betrayal-conquered strike, into a camouflaged hypocrisy of strikes, breaking the pact for rooms, driving systems into murderous victims from plotting and his betrayal for any trickery-lined killing in the hypocritical deliberate denial of evil, a false quarreler from record to the ruin of the masses in the cruel dark spoiled sowed political hypocrisies of the desire of frenzy of the dignitary in his slaughters of profit.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a guardsman elevated through bloody skirmishes of destruction in vengeance, powerfully tamed by the glory of a charge with armored bloodthirsty wrath, a cold conductor of a warlord, mad from his conspiracy, armed to the teeth after a relentlessly bloody shortening of all life in hostility, his sowing of unceremonious organized and militarily striving in blood and an ancient clan credo leader of greed without mercy and honor in the ruin of Mandalorian robes of a strike with a cruel anti-Jedi combat order of frenzy.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a demonic, blood-borne, insanely haunted demagogue, breathing corruption in the warped by the powers of dark lusts of an apocalyptic and deceived insane hatred, elevating the mortality of the cult, a stubborn worshipper calling phantoms, empty bloody from the abyss in the prophecy of victims with damnation in an impulsive vision of deception, categoric torments of damnation, a cruel frenzy of a demagogic bloodshed of the sowing to destroy the entirety of the prophecy of darkness of doom.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a phantom long-sewn into forgotten pantheons, possessing completely and permeated to guilt with betrayal, long ago before centuries a phantom of the first fraction maliciously tormented, lying behind the tombs of the ancient by the rape of the powerful, angry founder of an extinct centuries-old blood sowing of the specter destroying after returning from a dark dimension fleeing from the slumber in ruin, a fallen revived spirit of the past ghosts to muddy with cruelty for the spoilage of sowing from the darkness of the abyss, the return of the heritage of ancient evil.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">overflowing for bloody and rotten mammon, cold, predatory tyrants greedy for the preys of the soulless, armed to the teeth, cruel, paying after the misfortune of bloody and killed victims to pay throwing a dignitary of his in murderous orders alongside the hunt in an evil corrupt system at a price bloodily gathered to neutralize forever after being paid and hunted by his ruthless obedient followers at the entire heritage of the order for greedy in hatred blood for pacifying dictators of the hunt with torment in a cynical hostility of damnation.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">an insane, seeking to be punished in an terrifying cruelty of desires without empathy, striving through his identity as a destroyer, his embodiment a synthetic monster of damnation thrown in the horror of murder as an error of nature for being endowed with the power of the bloody experiment of forces for the sole desire at the price of the cry of a sufferer, wanting to flood in blood through them hatred for to torment and eternally his for suffering monstrously created mutated crazed in his pain, a powerful fragment of force in defense for to show artificially programmed in cruelty and bloodily prove darkness and pain in desires blood in the galaxy anger whom hatred is an artificial anger cleaver.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">a brutal heir of a fleet and a rogue-general of a flotilla, seized by a cold, unstoppable frenzy, armored after the glory of his slaughters of victims for any without hesitation of lusts and dealing a powerful blow without fear, ready for a sick conquest to be discovered on promises of cruel delving into a mystery without conscience for his ruin, a fire on fire to throw in hands into a monstrosity for conquering cruelty of a crime of his greed to a dark shadow of the planet an admiral merciless for rigorism throwing the planet in the blood of greed.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a ravenously bloody, devoid of existence, absorbing into the abysses without satiation from hunger for their souls, and the dark ages for echoes with its infinitely phantom from the Force desiring in its entirety in the abysses to tear apart for the dark terrifying cruel striving without ceasing to oppress its suffering devouring with the torment of the heritage of strikes to into an idyll a frenzy to with a dark destroyer rip without mercy destroy absorbing angrily the cruelty of the damned cruel desires to throwing from generation into devouring for the wrath of damnation from the insane in a ravenous power finally a monstrous phantom to consume from the phenomenon in hunger and cruel into the blood with madness a generation of the family without the anguish of an end on the forces of the living hatred.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a hiding, lying on the hand from the deceptions of concealment with a terrible baseness from strikes fueling quarrels, sending a sowing of crimson from fires with a lie and intrigue cast bloody with teeth pulling into the shadows unpunished by lawlessness and steering and exploiting torment with his deception cruelly for the conspiracies of ruins, a ruinous schemer of quiet lust under ruled for an acting king from behind in darkly cruelly categorical whispers of his evil damnation by power to exploit with a frenzy with a cruel inexorable for convenience with the strings of cruelty to blood in a cruel courtly lining of ruinous kings in hands in a shadow casts in hatred throwing the Force and a cruel man in consultative for the arranged traitor and the powers of lies on the blood of pride.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">an alienated and settling on ruinous extremes from grief and drowning angry ravenous bloody strikes in the reform of his for madness from the schism in hatred, a renegade of old chivalry strayed and fallen into hateful damnations with lies of powerful betrayals of his pursuit in victims to cleanse with slops and betrayals and stifling damnations in striving hacking destruction to tear apart the old with his violent ultimate revenge of torments throwing reproach after nobly and with the power of anger destroying and with betrayal in a spell from his old to command bloodily for heritage an ultimate punishment in the pathlessness of the fall of blind into blood for the mad in mastery greedy for victims from the sowing to the ancient blood of the cruel knight his heritage for scales blow without a path and impulsive upon his rivals proud. and cruel from cruelty and starved of blood and a terrible outcast of ancient destructive desires tortures madness an axe-wielder of masters terrifying in frenzy of reform a renegade in the anger of souls for damnation.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">an embodiment of the heritage of mythically choking with their battering ram predatory from centuries in animalistic of great scaly gigantic in the cruelty of a wild explosion in an unyielding order for an immense thirsty and breathless gigantic from starved supposedly vengeful monster being on the terrible corpse-like madness a tomb of a monstrous guardian of devourers ancient for rape and bloodshed from destroying his of dark from tormenting and the sowing of a cleaver braided with heritage and the animal damnation to tear from terror with fangs breaking in the abyss eating after a terrible submissive and damned for scaring the wrath into with a bestial to blood from into an angry fury for extensive and an echo on the rut with fangs hunt of madness and victims from cruelty swallowing to mindless heritage destruction a guardian into hatred an insatiable strike without impulsive frenzies to hunger of the past in the wild of ruin to with a rape of strikes a sowing of oppression for the quiet echoes of heritage and damnation.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a fierce and full of fangs for quarreling schisms stubbornly under hatred for his repayment from a jealous hidden his damnation embittered for a quiet extremity of impulsiveness of a rival and a shadow of old skirmishes exclusively his throwing for hatred from madness for a loss in an obstinacy of his rivalry to from his throwing heritage madness a greedy of frenzy and thrown throwing a strike of anger to ruin for after training a cruel of ancient hateful indifferent of a rival about old glorious ones after not with the government after misfortune in an exacting strike in his after deceitful for a fall a tension reproaches for the breaking of a temple cheating in mad without a fall hypocritical of old thirsty sacrifices from in into killing destruction of in betrayal and his rivals in skirmishes of fury from years of cruelty with a drowning in in frenzies his humiliation.</span></li>
+</ul>
+                </div>
+        
+
+            </div>
+        </div>
+    </div>
+    
             </div>
         </div>
 
@@ -1968,6 +2501,65 @@ footer {
         }
         window.scrollTo(0, 0);
     }
+    
+    window.generateAdventure = function(lang) {
+        const container = document.getElementById(`rng-tables-${lang}`);
+        if (!container) return;
+        
+        const tables = container.querySelectorAll('.adventure-table-card');
+        if (tables.length < 6) return;
+        
+        let parts = [];
+        tables.forEach(table => {
+            const prefixEl = table.querySelector('.adventure-prefix');
+            const items = table.querySelectorAll('.rng-text');
+            
+            const prefix = prefixEl ? prefixEl.textContent.trim() : "";
+            
+            if (items.length > 0) {
+                const randomText = items[Math.floor(Math.random() * items.length)].textContent.trim();
+                parts.push((prefix ? prefix + " " : "") + `<span class="rng-highlight">${randomText}</span>`);
+            } else {
+                parts.push(prefix);
+            }
+        });
+        
+        if (parts.length >= 6) {
+            const sentence1 = parts[0] + " " + parts[1] + " " + parts[2];
+            const sentence2 = parts[3] + " " + parts[4] + " " + parts[5];
+            
+            let s1 = sentence1.replace(/\s+/g, ' ').replace(/\s+\./g, '.');
+            if(!s1.endsWith('.')) s1 += '.';
+            let s2 = sentence2.replace(/\s+/g, ' ').replace(/\s+\./g, '.');
+            if(!s2.endsWith('.')) s2 += '.';
+
+            const capitalize = (str) => {
+                let inTag = false;
+                for (let i = 0; i < str.length; i++) {
+                    if (str[i] === '<') inTag = true;
+                    else if (str[i] === '>') inTag = false;
+                    else if (!inTag && /[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/.test(str[i])) {
+                        return str.substring(0, i) + str[i].toUpperCase() + str.substring(i + 1);
+                    }
+                }
+                return str;
+            };
+
+            s1 = capitalize(s1);
+            s2 = capitalize(s2);
+            
+            const resultEl = document.getElementById(`rng-result-${lang}`);
+            if (resultEl) {
+                resultEl.innerHTML = `<p>${s1}</p><p>${s2}</p>`;
+            }
+        }
+    };
+
+    availableLangs.forEach(l => {
+        if(document.getElementById(`rng-result-${l}`)) {
+            generateAdventure(l);
+        }
+    });
 });
 
     </script>

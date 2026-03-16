@@ -27,5 +27,6 @@ This skill publishes the static `HomebrewWorld` website from local setting folde
 - Source folders are discovered in `HomebrewWorld/Settings/`.
 - Output is generated into `HomebrewWorld/site/`.
 - Each published setting gets its own static page and a backlink to the hub homepage.
+- When publishing adventure generators, keep Table 3 as `Target` only. It must contain locations and use the `prowadząc do...` / `leading to...` phrasing rather than an object-seeking goal.
 - If a dedicated publisher script exists in the repo, it should call the shared presenter rather than embedding a separate theme.
 - Keep `Settings/<Setting>/web_presentation/` and `site/<slug>/` aligned when both are used in the workflow.

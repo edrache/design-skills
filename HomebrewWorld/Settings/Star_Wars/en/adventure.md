@@ -46,28 +46,28 @@
 19. tightly shrouded within the wreck of an Imperial Star Destroyer
 20. within a heavily guarded planetary biological quarantine zone
 
-### Table 3: Goal & Target
-**searching for**
-1. emergency disks protecting the encoded plans of a battlestation.
-2. a highly sought-after stolen shipment of precious coaxium.
-3. a miraculously surviving archive with Jedi data, like an old holocron.
-4. a powerful, military hyper-radio relay of the Rebel Alliance.
-5. magnificent, now-illegal crystals for energy weapon technology.
-6. a physical key in the form of a code cylinder held by a Moff.
-7. old reserves and stockpiles of laser weaponry from the Clone Wars.
-8. a talented shield engineering deserter fleeing the army.
-9. hidden credits in a vault secured by Hutt armed guards.
-10. a few advanced memory cores for cybernetic implants.
-11. drives with recordings of brutal crimes by stationed garrison officers.
-12. a navicomputer untouched for decades in a highly sought-after freighter.
-13. an unapproved formula for a powerful biopreparation, from which its creator is fleeing.
-14. a legendary warrior or Master hiding from the Inquisition.
-15. an old Mandalorian weapon adorned with unique beskar ores.
-16. a broken reactor with a boiling, stolen prototype.
-17. the only working deflector shield saving a defenseless local station from a gang's wrath.
-18. the priceless coordinates of a hidden cell or haven for surviving refugees.
-19. an old protocol droid or astromech model possessing forbidden maps.
-20. a mind-destroying implant programmed by command for a selected politician.
+### Table 3: Target
+**leading to**
+1. an abandoned service dock hidden beneath an Imperial city.
+2. a prison moon cut out of every active nav chart.
+3. a Jedi temple carved into the wall of a storm canyon.
+4. a Rebel hideout masked inside the wreck of a freighter.
+5. a research lab drifting through a belt of debris.
+6. a Hutt vault dug beneath a combat arena.
+7. a relay station hanging among the spires of an ice world.
+8. an underground droid city buried below the desert.
+9. an orbital graveyard of cruisers bound inside a minefield.
+10. a former Separatist fortress now occupied by pirates.
+11. a Force monastery hidden among black swamps.
+12. a drilling platform balancing over a sea of lava.
+13. a mining colony locked under total quarantine.
+14. a smuggler hangar carved into the heart of an asteroid.
+15. a syndicate palace rising above toxic canals.
+16. a destroyer wreck embedded in jungle for generations.
+17. a secret Inquisitor prison beneath a glacier summit.
+18. a hidden refugee sanctuary in the core of a nebula.
+19. a customs tower controlling the sector's only safe landing zone.
+20. a ruined clone shipyard being swallowed by the sands of Tatooine.
 
 ### Table 4: Purpose & Mission
 **We are here to**

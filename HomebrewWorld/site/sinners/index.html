@@ -198,6 +198,16 @@ p, li, h1, h2, h3, b, span, div {
     line-height: 1.8;
 }
 
+.page-summary-copy {
+    display: none;
+}
+
+.lang-pl .page-summary-copy.lang-pl,
+.lang-en .page-summary-copy.lang-en,
+.lang-default .page-summary-copy.lang-default {
+    display: block;
+}
+
 .main-layout {
     display: grid;
     grid-template-columns: 280px minmax(0, 1fr);
@@ -230,8 +240,25 @@ p, li, h1, h2, h3, b, span, div {
     backdrop-filter: blur(12px);
 }
 
+.sidebar-home-link {
+    width: 100%;
+    justify-content: flex-start;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+}
+
 .sidebar-collapsed .tabs-container {
     padding: 16px 10px;
+}
+
+.sidebar-collapsed .sidebar-home-link {
+    justify-content: center;
+    padding-inline: 0;
+}
+
+.sidebar-collapsed .sidebar-home-link span:last-child {
+    display: none;
 }
 
 #sidebar-toggle {
@@ -728,17 +755,22 @@ footer {
         <header class="hero">
             <p class="eyebrow">Homebrew World Setting</p>
             <div class="hero-top">
-                
                 <div class="lang-selector"><button class="lang-toggle" data-lang="en" type="button">English</button> <button class="lang-toggle" data-lang="pl" type="button">Polski</button></div>
             </div>
             <h1 class="page-title"><span class="title-emoji">🌍</span> <span class="title-text">Sinners</span></h1>
-            <p class="page-summary">Materiały do gry Homebrew World ułożone w tej samej bibliotece wizualnej co strona główna: ciepła paleta, szklane panele i czytelny katalog playbooków.</p>
-            <div class="page-toolbar"><span class="stat-badge">5 playbookow EN</span> <span class="stat-badge">5 playbookow PL</span> <span class="stat-badge">Ruchy opcjonalne i szybka nawigacja</span></div>
+            <p class="page-summary"><span class="page-summary-copy lang-pl">Gotycki southern horror zanurzony w bagnach, bluesie i przemocy starego Południa, gdzie grzech, Hoodoo, duchy i diabelskie pakty mieszają się z rasową przemocą, biedą i nocnymi polowaniami.</span> <span class="page-summary-copy lang-en">A gothic Southern horror steeped in swamps, blues, and the violence of the old South, where sin, Hoodoo, ghosts, and devil bargains mix with racial terror, poverty, and hunts that begin after dark.</span></p>
+            <div class="page-toolbar"><span class="stat-badge">5 playbookow EN</span> <span class="stat-badge">5 playbookow PL</span></div>
         </header>
 
         <div class="main-layout">
             <aside class="tabs-container" id="sidebar">
                 <button id="sidebar-toggle" aria-label="Toggle Sidebar" aria-expanded="true" type="button">☰</button>
+                
+            <a class="home-link sidebar-home-link" href="../index.html">
+                <span aria-hidden="true">←</span>
+                <span>Wroc do Homebrew Worlds</span>
+            </a>
+        
                 <div class="tabs-list" role="tablist" aria-label="Playbook navigation">
                     <button class="tab lang-pl" data-tab="pl_playbook_korzeniarka" type="button">🌿 KORZENIARKA</button>
 <button class="tab lang-pl" data-tab="pl_playbook_organizator" type="button">💼 ORGANIZATOR</button>
@@ -1445,29 +1477,29 @@ footer {
         
 
                 <div class="card adventure-table-card">
-                    <h3>🎲 Tabela 3: Cel i Pożądany Obiekt</h3>
-                    <div class="adventure-prefix">szukając</div>
+                    <h3>🎲 Tabela 3: Cel</h3>
+                    <div class="adventure-prefix">prowadząc do</div>
 <ul class="adventure-items">
-<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">zaginionej płyty bluesowego mistrza.</span></li>
-<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">ukrytego dziennika spalonego szeryfa.</span></li>
-<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">legendarnej gitary, która kradnie dusze.</span></li>
-<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">paktu, który może zmyć nasze grzechy.</span></li>
-<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">zakopanego skarbu bezwzględnych bimbrowników.</span></li>
-<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">świętego krzyża dawnego kaznodziei.</span></li>
-<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">dowodów niewinności zbiegłego brata.</span></li>
-<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">klucza do zardzewiałych kajdan z przeszłości.</span></li>
-<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">butelki wywaru, który pozwala widzieć demony.</span></li>
-<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">fałszywych papierów do ucieczki na północ.</span></li>
-<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">łez niewinnie skazanego człowieka.</span></li>
-<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">kości dawno zamordowanego muzyka.</span></li>
-<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">amuletu chroniącego przed ogarem piekielnym.</span></li>
-<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">listu od ukochanej zabitej przed laty.</span></li>
-<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">zemsty, która nie przyniesie ulgi.</span></li>
-<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">srebrnej laski czarnoksiężnika Hoodoo.</span></li>
-<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">krwi kogoś, kto nigdy nie zgrzeszył.</span></li>
-<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">nut piosenki, która sprowadza ciemność.</span></li>
-<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">starej strzelby odziedziczonej po dziadku.</span></li>
-<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">bezpiecznego schronienia przed nocą.</span></li>
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">polany na rozstajach, gdzie diabeł wciąż dobija targów po północy.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">zalanej piwnicy kościoła pełnej szepczącej wody.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">tylnego pokoju speluny z deskami po masakrze.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">kaplicy na polu trzciny cukrowej spalonej od środka.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">wyspy-cmentarza pochłoniętej przez wodę, której żaden przewoźnik nie nazwie.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">podziemi biura szeryfa zamurowanych w pośpiechu.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">ganku wdowy, która nigdy nie przestała śpiewać w blasku księżyca.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">dołu na terenie farmy więziennej, gdzie łańcuchy wciąż ciągną się po błocie.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">ukrytej bimbrowni pod sadem dawnego kaznodziei.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">kolejowego tunelu, w którym stare pieśni pracy rozbrzmiewają bez głosów.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">cyprysowej kotliny zajętej przez psy o oczach jak latarnie.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">zielarskiej chaty zapadniętej głęboko w trzcinach bagna.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">sali balowej plantatorskiego dworu opuszczonego po nocy sądu.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">sceny przydrożnej speluny, gdzie żaden muzyk nie przeżywa ostatniej zwrotki.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">zapadliska za namiotem przebudzenia splamionego starą krwią.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">korony wału prowadzącej prosto do zaginionej osady.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">zimnego strychu, gdzie tłum linczujący zostawił szaty i liny.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">jaskini bimbrowników o ścianach rozświetlanych błękitnym ogniem.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">nadrzecznej chaty, do której po zmroku wciąż pukają umarli.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">ukrytego schronienia wyciętego w najstarszej części bagna.</span></li>
 </ul>
                 </div>
         
@@ -2247,29 +2279,29 @@ footer {
         
 
                 <div class="card adventure-table-card">
-                    <h3>🎲 Table 3: Goal & Target</h3>
-                    <div class="adventure-prefix">searching for</div>
+                    <h3>🎲 Table 3: Target</h3>
+                    <div class="adventure-prefix">leading to</div>
 <ul class="adventure-items">
-<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a lost record by a blues master.</span></li>
-<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">the hidden diary of a burned sheriff.</span></li>
-<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a legendary guitar that steals souls.</span></li>
-<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a pact that can wash away our sins.</span></li>
-<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">the buried treasure of ruthless bootleggers.</span></li>
-<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">the holy cross of an old preacher.</span></li>
-<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">proof of an escaped brother's innocence.</span></li>
-<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">the key to rusted shackles from the past.</span></li>
-<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a bottle of brew that lets you see demons.</span></li>
-<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">forged papers to escape up North.</span></li>
-<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">the tears of an innocent executed man.</span></li>
-<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">the bones of a long-murdered musician.</span></li>
-<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">an amulet protecting against the hellhound.</span></li>
-<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a letter from a lover killed years ago.</span></li>
-<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">revenge that will bring no relief.</span></li>
-<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">the silver cane of a Hoodoo warlock.</span></li>
-<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">the blood of someone who has never sinned.</span></li>
-<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">sheet music for a song that brings darkness.</span></li>
-<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">an old shotgun inherited from a grandfather.</span></li>
-<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a safe sanctuary against the coming night.</span></li>
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">the crossroads clearing where the devil still bargains after midnight.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a flood-swallowed church cellar full of whispering water.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">the back room of a juke joint boarded up after a massacre.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a cane field chapel burned black from the inside.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">the drowned graveyard island no ferryman will name.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a sheriff's office basement bricked over in a hurry.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">the moonlit porch of a widow who never stopped singing.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a prison farm pit where chains still drag through the mud.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">the hidden stillhouse under the preacher's orchard.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a railroad tunnel where old work songs echo without voices.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">the cypress hollow claimed by lantern-eyed hounds.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a medicine shack sunk deep in the marsh reeds.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">the ballroom of a plantation house abandoned after judgment night.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a roadhouse stage where no musician survives the last verse.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">the sinkhole behind a revival tent stained with old blood.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">the levee path leading straight to a vanished settlement.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">the cold attic where a lynch mob left its robes and ropes.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a moonshine cave lit by blue fire from the walls.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">the riverbank shack where the dead still knock after dusk.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a hidden refuge cut into the oldest part of the swamp.</span></li>
 </ul>
                 </div>
         

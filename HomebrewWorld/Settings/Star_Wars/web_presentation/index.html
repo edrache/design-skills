@@ -198,6 +198,16 @@ p, li, h1, h2, h3, b, span, div {
     line-height: 1.8;
 }
 
+.page-summary-copy {
+    display: none;
+}
+
+.lang-pl .page-summary-copy.lang-pl,
+.lang-en .page-summary-copy.lang-en,
+.lang-default .page-summary-copy.lang-default {
+    display: block;
+}
+
 .main-layout {
     display: grid;
     grid-template-columns: 280px minmax(0, 1fr);
@@ -230,8 +240,25 @@ p, li, h1, h2, h3, b, span, div {
     backdrop-filter: blur(12px);
 }
 
+.sidebar-home-link {
+    width: 100%;
+    justify-content: flex-start;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+}
+
 .sidebar-collapsed .tabs-container {
     padding: 16px 10px;
+}
+
+.sidebar-collapsed .sidebar-home-link {
+    justify-content: center;
+    padding-inline: 0;
+}
+
+.sidebar-collapsed .sidebar-home-link span:last-child {
+    display: none;
 }
 
 #sidebar-toggle {
@@ -530,14 +557,14 @@ footer {
     font-size: 1.6rem;
 }
 
-.adv-highlight {
+.rng-highlight {
     color: var(--text);
     padding-bottom: 2px;
     border-bottom: 1px dashed rgba(240, 196, 137, 0.45);
     transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.adv-highlight:hover {
+.rng-highlight:hover {
     color: var(--accent-strong);
     border-bottom-color: var(--accent-strong);
 }
@@ -547,7 +574,7 @@ footer {
     justify-content: center;
 }
 
-.adv-roll-btn {
+.rng-roll-btn {
     font-size: 1.05rem;
     padding: 1rem 2.5rem;
     border-radius: 999px;
@@ -589,7 +616,7 @@ footer {
     list-style: none;
 }
 
-.adventure-items .adv-item {
+.adventure-items .rng-item {
     margin-bottom: 0.5rem;
     padding-left: 0;
     display: flex;
@@ -597,11 +624,11 @@ footer {
     gap: 12px;
 }
 
-.adventure-items .adv-item::before {
+.adventure-items .rng-item::before {
     content: none;
 }
 
-.adv-num {
+.rng-num {
     color: var(--accent);
     font-weight: 800;
     width: 2.2ch;
@@ -611,7 +638,7 @@ footer {
     margin-top: 0.15rem;
 }
 
-.adv-text {
+.rng-text {
     color: var(--muted);
     font-size: 0.95rem;
     line-height: 1.5;
@@ -728,17 +755,22 @@ footer {
         <header class="hero">
             <p class="eyebrow">Homebrew World Setting</p>
             <div class="hero-top">
-                
                 <div class="lang-selector"><button class="lang-toggle" data-lang="en" type="button">English</button></div>
             </div>
             <h1 class="page-title"><span class="title-emoji">🌍</span> <span class="title-text">Star Wars</span></h1>
-            <p class="page-summary">Materiały do gry Homebrew World ułożone w tej samej bibliotece wizualnej co strona główna: ciepła paleta, szklane panele i czytelny katalog playbooków.</p>
-            <div class="page-toolbar"><span class="stat-badge">5 playbookow</span> <span class="stat-badge">Ruchy opcjonalne i szybka nawigacja</span></div>
+            <p class="page-summary"><span class="page-summary-copy lang-en">Adventure science fantasy about smugglers, rebels, droids, and Imperial agents on the edges of a galaxy full of blockades, war ruins, secret bases, and desperate hyperspace jumps.</span></p>
+            <div class="page-toolbar"><span class="stat-badge">5 playbookow</span></div>
         </header>
 
         <div class="main-layout">
             <aside class="tabs-container" id="sidebar">
                 <button id="sidebar-toggle" aria-label="Toggle Sidebar" aria-expanded="true" type="button">☰</button>
+                
+            <a class="home-link sidebar-home-link" href="../../../site/index.html">
+                <span aria-hidden="true">←</span>
+                <span>Wroc do Homebrew Worlds</span>
+            </a>
+        
                 <div class="tabs-list" role="tablist" aria-label="Playbook navigation">
                     <button class="tab lang-en" data-tab="en_playbook_bounty_hunter" type="button">🏹 Łowca Nagród</button>
 <button class="tab lang-en" data-tab="en_playbook_jedi_adept" type="button">✨ Adept Jedi</button>
@@ -1481,41 +1513,41 @@ footer {
         <div class="main-column" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2rem;">
             <div class="card adventure-generator-card">
                 <h2>✨ Adventure Generator — Star Wars Generator</h2>
-                <div class="generator-result" id="adv-result-en">
+                <div class="generator-result" id="rng-result-en">
                     ...
                 </div>
                 <div class="generator-actions">
-                    <button type="button" class="lang-toggle active adv-roll-btn" onclick="generateAdventure('en')">🎲 Losuj / Roll</button>
+                    <button type="button" class="lang-toggle active rng-roll-btn" onclick="generateAdventure('en')">🎲 Losuj / Roll</button>
                 </div>
             </div>
             
-            <div class="adventure-tables-grid" id="adv-tables-en">
+            <div class="adventure-tables-grid" id="rng-tables-en">
     
 
                 <div class="card adventure-table-card">
                     <h3>🎲 Table 1: Action & Location</h3>
                     <div class="adventure-prefix">We discover</div>
 <ul class="adventure-items">
-<li class="adv-item"><span class="adv-num">1.</span> <span class="adv-text">a crashed diplomatic corvette</span></li>
-<li class="adv-item"><span class="adv-num">2.</span> <span class="adv-text">a hidden volcanic base</span></li>
-<li class="adv-item"><span class="adv-num">3.</span> <span class="adv-text">a forgotten smuggler port</span></li>
-<li class="adv-item"><span class="adv-num">4.</span> <span class="adv-text">a dead mining colony</span></li>
-<li class="adv-item"><span class="adv-num">5.</span> <span class="adv-text">a space station overrun by pirates</span></li>
-<li class="adv-item"><span class="adv-num">6.</span> <span class="adv-text">the ruins of an ancient Jedi temple</span></li>
-<li class="adv-item"><span class="adv-num">7.</span> <span class="adv-text">an ice cave full of predatory beasts</span></li>
-<li class="adv-item"><span class="adv-num">8.</span> <span class="adv-text">the wreck of an old Republic dreadnought</span></li>
-<li class="adv-item"><span class="adv-num">9.</span> <span class="adv-text">an abandoned Imperial listening outpost</span></li>
-<li class="adv-item"><span class="adv-num">10.</span> <span class="adv-text">an illegal clone or droid factory</span></li>
-<li class="adv-item"><span class="adv-num">11.</span> <span class="adv-text">a secret Imperial research lab</span></li>
-<li class="adv-item"><span class="adv-num">12.</span> <span class="adv-text">a former bounty hunter guild hideout</span></li>
-<li class="adv-item"><span class="adv-num">13.</span> <span class="adv-text">a deep-forest camp of local separatists</span></li>
-<li class="adv-item"><span class="adv-num">14.</span> <span class="adv-text">an underwater habitational dome of the cartels</span></li>
-<li class="adv-item"><span class="adv-num">15.</span> <span class="adv-text">the ruined palace of a Syndicate warlord</span></li>
-<li class="adv-item"><span class="adv-num">16.</span> <span class="adv-text">an orbiting scrapyard of scavengers</span></li>
-<li class="adv-item"><span class="adv-num">17.</span> <span class="adv-text">a dormant supercomputer of military intelligence</span></li>
-<li class="adv-item"><span class="adv-num">18.</span> <span class="adv-text">the desert wreck of a massive sandcrawler</span></li>
-<li class="adv-item"><span class="adv-num">19.</span> <span class="adv-text">a nebula graveyard of warships</span></li>
-<li class="adv-item"><span class="adv-num">20.</span> <span class="adv-text">an underground facility for illegal swoop races</span></li>
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a crashed diplomatic corvette</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a hidden volcanic base</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a forgotten smuggler port</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a dead mining colony</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a space station overrun by pirates</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">the ruins of an ancient Jedi temple</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">an ice cave full of predatory beasts</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">the wreck of an old Republic dreadnought</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">an abandoned Imperial listening outpost</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">an illegal clone or droid factory</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a secret Imperial research lab</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a former bounty hunter guild hideout</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a deep-forest camp of local separatists</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">an underwater habitational dome of the cartels</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">the ruined palace of a Syndicate warlord</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">an orbiting scrapyard of scavengers</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a dormant supercomputer of military intelligence</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">the desert wreck of a massive sandcrawler</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a nebula graveyard of warships</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">an underground facility for illegal swoop races</span></li>
 </ul>
                 </div>
         
@@ -1524,54 +1556,54 @@ footer {
                     <h3>🎲 Table 2: Placement & Geography</h3>
                     <div class="adventure-prefix">which lies</div>
 <ul class="adventure-items">
-<li class="adv-item"><span class="adv-num">1.</span> <span class="adv-text">in an unstable asteroid belt</span></li>
-<li class="adv-item"><span class="adv-num">2.</span> <span class="adv-text">within the gaseous rings of a cold giant</span></li>
-<li class="adv-item"><span class="adv-num">3.</span> <span class="adv-text">on the far edges of the Outer Rim</span></li>
-<li class="adv-item"><span class="adv-num">4.</span> <span class="adv-text">amidst the dense, living jungle of Felucia</span></li>
-<li class="adv-item"><span class="adv-num">5.</span> <span class="adv-text">in the endless glaciers of a meteor-frozen world</span></li>
-<li class="adv-item"><span class="adv-num">6.</span> <span class="adv-text">on the perilous Kessel Run smuggling route</span></li>
-<li class="adv-item"><span class="adv-num">7.</span> <span class="adv-text">in the dark thicket of Coruscant's polluted lower levels</span></li>
-<li class="adv-item"><span class="adv-num">8.</span> <span class="adv-text">on the toxic, barren wastes of a factory planet</span></li>
-<li class="adv-item"><span class="adv-num">9.</span> <span class="adv-text">near a swarm of sensor-invisible star nebulas</span></li>
-<li class="adv-item"><span class="adv-num">10.</span> <span class="adv-text">in an active volcanic zone on the edge of a battlefield system</span></li>
-<li class="adv-item"><span class="adv-num">11.</span> <span class="adv-text">beneath a kilometer-thick ice shell of an isolated moon</span></li>
-<li class="adv-item"><span class="adv-num">12.</span> <span class="adv-text">buried deep in the sands of the desert planet Tatooine</span></li>
-<li class="adv-item"><span class="adv-num">13.</span> <span class="adv-text">on a forgotten moon belonging to a sunless system</span></li>
-<li class="adv-item"><span class="adv-num">14.</span> <span class="adv-text">at the bottom of a massive, fully undiscovered ocean</span></li>
-<li class="adv-item"><span class="adv-num">15.</span> <span class="adv-text">carved by lumberjacks into the giant ancient trees of Kashyyyk</span></li>
-<li class="adv-item"><span class="adv-num">16.</span> <span class="adv-text">completely off the known hyperspace navigation routes</span></li>
-<li class="adv-item"><span class="adv-num">17.</span> <span class="adv-text">hidden right next to a corruption-filled smuggler spaceport</span></li>
-<li class="adv-item"><span class="adv-num">18.</span> <span class="adv-text">in a highly unstable gravitational anomaly zone</span></li>
-<li class="adv-item"><span class="adv-num">19.</span> <span class="adv-text">tightly shrouded within the wreck of an Imperial Star Destroyer</span></li>
-<li class="adv-item"><span class="adv-num">20.</span> <span class="adv-text">within a heavily guarded planetary biological quarantine zone</span></li>
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">in an unstable asteroid belt</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">within the gaseous rings of a cold giant</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">on the far edges of the Outer Rim</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">amidst the dense, living jungle of Felucia</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">in the endless glaciers of a meteor-frozen world</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">on the perilous Kessel Run smuggling route</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">in the dark thicket of Coruscant's polluted lower levels</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">on the toxic, barren wastes of a factory planet</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">near a swarm of sensor-invisible star nebulas</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">in an active volcanic zone on the edge of a battlefield system</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">beneath a kilometer-thick ice shell of an isolated moon</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">buried deep in the sands of the desert planet Tatooine</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">on a forgotten moon belonging to a sunless system</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">at the bottom of a massive, fully undiscovered ocean</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">carved by lumberjacks into the giant ancient trees of Kashyyyk</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">completely off the known hyperspace navigation routes</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">hidden right next to a corruption-filled smuggler spaceport</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">in a highly unstable gravitational anomaly zone</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">tightly shrouded within the wreck of an Imperial Star Destroyer</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">within a heavily guarded planetary biological quarantine zone</span></li>
 </ul>
                 </div>
         
 
                 <div class="card adventure-table-card">
-                    <h3>🎲 Table 3: Goal & Target</h3>
-                    <div class="adventure-prefix">searching for</div>
+                    <h3>🎲 Table 3: Target</h3>
+                    <div class="adventure-prefix">leading to</div>
 <ul class="adventure-items">
-<li class="adv-item"><span class="adv-num">1.</span> <span class="adv-text">emergency disks protecting the encoded plans of a battlestation.</span></li>
-<li class="adv-item"><span class="adv-num">2.</span> <span class="adv-text">a highly sought-after stolen shipment of precious coaxium.</span></li>
-<li class="adv-item"><span class="adv-num">3.</span> <span class="adv-text">a miraculously surviving archive with Jedi data, like an old holocron.</span></li>
-<li class="adv-item"><span class="adv-num">4.</span> <span class="adv-text">a powerful, military hyper-radio relay of the Rebel Alliance.</span></li>
-<li class="adv-item"><span class="adv-num">5.</span> <span class="adv-text">magnificent, now-illegal crystals for energy weapon technology.</span></li>
-<li class="adv-item"><span class="adv-num">6.</span> <span class="adv-text">a physical key in the form of a code cylinder held by a Moff.</span></li>
-<li class="adv-item"><span class="adv-num">7.</span> <span class="adv-text">old reserves and stockpiles of laser weaponry from the Clone Wars.</span></li>
-<li class="adv-item"><span class="adv-num">8.</span> <span class="adv-text">a talented shield engineering deserter fleeing the army.</span></li>
-<li class="adv-item"><span class="adv-num">9.</span> <span class="adv-text">hidden credits in a vault secured by Hutt armed guards.</span></li>
-<li class="adv-item"><span class="adv-num">10.</span> <span class="adv-text">a few advanced memory cores for cybernetic implants.</span></li>
-<li class="adv-item"><span class="adv-num">11.</span> <span class="adv-text">drives with recordings of brutal crimes by stationed garrison officers.</span></li>
-<li class="adv-item"><span class="adv-num">12.</span> <span class="adv-text">a navicomputer untouched for decades in a highly sought-after freighter.</span></li>
-<li class="adv-item"><span class="adv-num">13.</span> <span class="adv-text">an unapproved formula for a powerful biopreparation, from which its creator is fleeing.</span></li>
-<li class="adv-item"><span class="adv-num">14.</span> <span class="adv-text">a legendary warrior or Master hiding from the Inquisition.</span></li>
-<li class="adv-item"><span class="adv-num">15.</span> <span class="adv-text">an old Mandalorian weapon adorned with unique beskar ores.</span></li>
-<li class="adv-item"><span class="adv-num">16.</span> <span class="adv-text">a broken reactor with a boiling, stolen prototype.</span></li>
-<li class="adv-item"><span class="adv-num">17.</span> <span class="adv-text">the only working deflector shield saving a defenseless local station from a gang's wrath.</span></li>
-<li class="adv-item"><span class="adv-num">18.</span> <span class="adv-text">the priceless coordinates of a hidden cell or haven for surviving refugees.</span></li>
-<li class="adv-item"><span class="adv-num">19.</span> <span class="adv-text">an old protocol droid or astromech model possessing forbidden maps.</span></li>
-<li class="adv-item"><span class="adv-num">20.</span> <span class="adv-text">a mind-destroying implant programmed by command for a selected politician.</span></li>
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">an abandoned service dock hidden beneath an Imperial city.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a prison moon cut out of every active nav chart.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a Jedi temple carved into the wall of a storm canyon.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a Rebel hideout masked inside the wreck of a freighter.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a research lab drifting through a belt of debris.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a Hutt vault dug beneath a combat arena.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a relay station hanging among the spires of an ice world.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">an underground droid city buried below the desert.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">an orbital graveyard of cruisers bound inside a minefield.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a former Separatist fortress now occupied by pirates.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a Force monastery hidden among black swamps.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a drilling platform balancing over a sea of lava.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a mining colony locked under total quarantine.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a smuggler hangar carved into the heart of an asteroid.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">a syndicate palace rising above toxic canals.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a destroyer wreck embedded in jungle for generations.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a secret Inquisitor prison beneath a glacier summit.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a hidden refugee sanctuary in the core of a nebula.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a customs tower controlling the sector's only safe landing zone.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a ruined clone shipyard being swallowed by the sands of Tatooine.</span></li>
 </ul>
                 </div>
         
@@ -1580,26 +1612,26 @@ footer {
                     <h3>🎲 Table 4: Purpose & Mission</h3>
                     <div class="adventure-prefix">We are here to</div>
 <ul class="adventure-items">
-<li class="adv-item"><span class="adv-num">1.</span> <span class="adv-text">liberate and extract a valuable resistance leader taken prisoner</span></li>
-<li class="adv-item"><span class="adv-num">2.</span> <span class="adv-text">initiate a chain reaction of destruction in the shield generator of a blocking ship or station</span></li>
-<li class="adv-item"><span class="adv-num">3.</span> <span class="adv-text">quietly infiltrate bases under the lock of Imperial administration</span></li>
-<li class="adv-item"><span class="adv-num">4.</span> <span class="adv-text">negotiate an alliance with the galaxy's scum and traders in dangerous territory</span></li>
-<li class="adv-item"><span class="adv-num">5.</span> <span class="adv-text">retake a legally purchased shuttle seized by law enforcement from an aggressive group</span></li>
-<li class="adv-item"><span class="adv-num">6.</span> <span class="adv-text">safely extract and escort a spooked informant before they perish in a trap</span></li>
-<li class="adv-item"><span class="adv-num">7.</span> <span class="adv-text">systematically block or permanently sabotage the equipment of a local satrap's guard</span></li>
-<li class="adv-item"><span class="adv-num">8.</span> <span class="adv-text">orchestrate a preemptive and forceful return to take control of an illegal ore mine</span></li>
-<li class="adv-item"><span class="adv-num">9.</span> <span class="adv-text">steal a valuable data disk of an old house without triggering any cameras</span></li>
-<li class="adv-item"><span class="adv-num">10.</span> <span class="adv-text">slice the security and activate a long-disabled secret enemy transmitter on the local network</span></li>
-<li class="adv-item"><span class="adv-num">11.</span> <span class="adv-text">dodge and weave until we lose the ongoing pursuit of a relentless customs patrol</span></li>
-<li class="adv-item"><span class="adv-num">12.</span> <span class="adv-text">incapacitate and abduct a highly-rated stormtrooper company commander for interrogation</span></li>
-<li class="adv-item"><span class="adv-num">13.</span> <span class="adv-text">crack the code with a slicing maneuver and break into the restricted Imperial banking network</span></li>
-<li class="adv-item"><span class="adv-num">14.</span> <span class="adv-text">acquire stimulants and antibiotics for an underground hospital hiding in the jungle</span></li>
-<li class="adv-item"><span class="adv-num">15.</span> <span class="adv-text">thwart the dark machinations of the Black Sun before their invasion</span></li>
-<li class="adv-item"><span class="adv-num">16.</span> <span class="adv-text">hastily restart a crucial settlement core after a terrorist warlord's bombing</span></li>
-<li class="adv-item"><span class="adv-num">17.</span> <span class="adv-text">immediately evacuate residents under blaster cover from a horrific orbital bombardment</span></li>
-<li class="adv-item"><span class="adv-num">18.</span> <span class="adv-text">permanently ground an insolent, elite assassin droid programmed for death</span></li>
-<li class="adv-item"><span class="adv-num">19.</span> <span class="adv-text">shatter the harmful and effective negotiations of two criminal cartels</span></li>
-<li class="adv-item"><span class="adv-num">20.</span> <span class="adv-text">thoroughly scan the resistance to facilitate a future grand maneuver of a surprise Light Side attack</span></li>
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">liberate and extract a valuable resistance leader taken prisoner</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">initiate a chain reaction of destruction in the shield generator of a blocking ship or station</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">quietly infiltrate bases under the lock of Imperial administration</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">negotiate an alliance with the galaxy's scum and traders in dangerous territory</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">retake a legally purchased shuttle seized by law enforcement from an aggressive group</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">safely extract and escort a spooked informant before they perish in a trap</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">systematically block or permanently sabotage the equipment of a local satrap's guard</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">orchestrate a preemptive and forceful return to take control of an illegal ore mine</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">steal a valuable data disk of an old house without triggering any cameras</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">slice the security and activate a long-disabled secret enemy transmitter on the local network</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">dodge and weave until we lose the ongoing pursuit of a relentless customs patrol</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">incapacitate and abduct a highly-rated stormtrooper company commander for interrogation</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">crack the code with a slicing maneuver and break into the restricted Imperial banking network</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">acquire stimulants and antibiotics for an underground hospital hiding in the jungle</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">thwart the dark machinations of the Black Sun before their invasion</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">hastily restart a crucial settlement core after a terrorist warlord's bombing</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">immediately evacuate residents under blaster cover from a horrific orbital bombardment</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">permanently ground an insolent, elite assassin droid programmed for death</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">shatter the harmful and effective negotiations of two criminal cartels</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">thoroughly scan the resistance to facilitate a future grand maneuver of a surprise Light Side attack</span></li>
 </ul>
                 </div>
         
@@ -1608,26 +1640,26 @@ footer {
                     <h3>🎲 Table 5: Minor Threats & Obstacles</h3>
                     <div class="adventure-prefix">guarded by</div>
 <ul class="adventure-items">
-<li class="adv-item"><span class="adv-num">1.</span> <span class="adv-text">fanatical stormtroopers in white armor indifferent to casualties</span></li>
-<li class="adv-item"><span class="adv-num">2.</span> <span class="adv-text">elite, deadly bounty hunters paid by cartels reluctant with beskar</span></li>
-<li class="adv-item"><span class="adv-num">3.</span> <span class="adv-text">notorious alien smugglers and mercenaries ready to die</span></li>
-<li class="adv-item"><span class="adv-num">4.</span> <span class="adv-text">marine commando troopers specialized in aquatic combat protecting underwater territory</span></li>
-<li class="adv-item"><span class="adv-num">5.</span> <span class="adv-text">gigantic predatory life forms like mutated rancor-like beasts or huge jungle spiders</span></li>
-<li class="adv-item"><span class="adv-num">6.</span> <span class="adv-text">dilapidated but still aggressive packs of combat droids retired from the Republic era</span></li>
-<li class="adv-item"><span class="adv-num">7.</span> <span class="adv-text">software-linked, lethally accurate automated turbolaser defenses</span></li>
-<li class="adv-item"><span class="adv-num">8.</span> <span class="adv-text">muscular, ruthless underworld thugs ticking with brute force and equipped with vibroweapons</span></li>
-<li class="adv-item"><span class="adv-num">9.</span> <span class="adv-text">dark force users employing terror, hunting the force-sensitive with red lightsabers</span></li>
-<li class="adv-item"><span class="adv-num">10.</span> <span class="adv-text">subterranean insectoids moving in a mutated horde destroying all electrical equipment with their saliva</span></li>
-<li class="adv-item"><span class="adv-num">11.</span> <span class="adv-text">fiercely loyal henchmen defending their dictator's wealth to the death against any theft</span></li>
-<li class="adv-item"><span class="adv-num">12.</span> <span class="adv-text">damaged self-defense systems of a ship or tomb reacting defensively with plasma spewed everywhere</span></li>
-<li class="adv-item"><span class="adv-num">13.</span> <span class="adv-text">savages of a non-human race who ritually devour alien intruders appearing unexpectedly in the wilds</span></li>
-<li class="adv-item"><span class="adv-num">14.</span> <span class="adv-text">technology-devouring lizard-hounds from great rocky cliffs with whom pacifism cannot be negotiated</span></li>
-<li class="adv-item"><span class="adv-num">15.</span> <span class="adv-text">trained government intelligence commandos wearing armor that camouflages in ambient light before firing</span></li>
-<li class="adv-item"><span class="adv-num">16.</span> <span class="adv-text">sharpshooting guards embodying the heaviest walls of steel fire, never missing an inch</span></li>
-<li class="adv-item"><span class="adv-num">17.</span> <span class="adv-text">primitive but brutally armed bandits of a local hostile race demanding sacrifices in live fire</span></li>
-<li class="adv-item"><span class="adv-num">18.</span> <span class="adv-text">advanced hidden technical traps ready to release massive clouds of choking gas and swarms of insects from pipes</span></li>
-<li class="adv-item"><span class="adv-num">19.</span> <span class="adv-text">a friendly albeit deceived settlement of natives manipulated by forgery against any intruder</span></li>
-<li class="adv-item"><span class="adv-num">20.</span> <span class="adv-text">a ruthlessly rigorous customs officer cordon destroying any ship trying to bypass landing laws without a bribe</span></li>
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">fanatical stormtroopers in white armor indifferent to casualties</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">elite, deadly bounty hunters paid by cartels reluctant with beskar</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">notorious alien smugglers and mercenaries ready to die</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">marine commando troopers specialized in aquatic combat protecting underwater territory</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">gigantic predatory life forms like mutated rancor-like beasts or huge jungle spiders</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">dilapidated but still aggressive packs of combat droids retired from the Republic era</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">software-linked, lethally accurate automated turbolaser defenses</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">muscular, ruthless underworld thugs ticking with brute force and equipped with vibroweapons</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">dark force users employing terror, hunting the force-sensitive with red lightsabers</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">subterranean insectoids moving in a mutated horde destroying all electrical equipment with their saliva</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">fiercely loyal henchmen defending their dictator's wealth to the death against any theft</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">damaged self-defense systems of a ship or tomb reacting defensively with plasma spewed everywhere</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">savages of a non-human race who ritually devour alien intruders appearing unexpectedly in the wilds</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">technology-devouring lizard-hounds from great rocky cliffs with whom pacifism cannot be negotiated</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">trained government intelligence commandos wearing armor that camouflages in ambient light before firing</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">sharpshooting guards embodying the heaviest walls of steel fire, never missing an inch</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">primitive but brutally armed bandits of a local hostile race demanding sacrifices in live fire</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">advanced hidden technical traps ready to release massive clouds of choking gas and swarms of insects from pipes</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a friendly albeit deceived settlement of natives manipulated by forgery against any intruder</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a ruthlessly rigorous customs officer cordon destroying any ship trying to bypass landing laws without a bribe</span></li>
 </ul>
                 </div>
         
@@ -1636,26 +1668,26 @@ footer {
                     <h3>🎲 Table 6: Major Boss & Antagonist</h3>
                     <div class="adventure-prefix">and</div>
 <ul class="adventure-items">
-<li class="adv-item"><span class="adv-num">1.</span> <span class="adv-text">a sadistic galactic government station commandant who will burn the village if played hard.</span></li>
-<li class="adv-item"><span class="adv-num">2.</span> <span class="adv-text">a bloated and vengeful Warlord of a slug-like trader syndicate coming for our debt.</span></li>
-<li class="adv-item"><span class="adv-num">3.</span> <span class="adv-text">a cunning and agile embodiment of arrogance, a smuggler with powerful, relentless cartel claims.</span></li>
-<li class="adv-item"><span class="adv-num">4.</span> <span class="adv-text">a terrifying adept coveting and using the Dark Side to murderously torture victims.</span></li>
-<li class="adv-item"><span class="adv-num">5.</span> <span class="adv-text">a wandering and unfailing armored Mandalorian locked in his helmet to catch us.</span></li>
-<li class="adv-item"><span class="adv-num">6.</span> <span class="adv-text">a villainous pirate whom our crew left to the stormtroopers a year ago to save ourselves.</span></li>
-<li class="adv-item"><span class="adv-num">7.</span> <span class="adv-text">a non-human engineering magnate lacking basic ethical norms, valuing experiments over life.</span></li>
-<li class="adv-item"><span class="adv-num">8.</span> <span class="adv-text">a cynical colonol of a police unit on the planet with a coldly calculated fury to neutralize everyone.</span></li>
-<li class="adv-item"><span class="adv-num">9.</span> <span class="adv-text">a treacherously rigorous brother of a former force-wielding organization of hate, wearing the pure robes of a pastor-warrior of darkness.</span></li>
-<li class="adv-item"><span class="adv-num">10.</span> <span class="adv-text">the central processor of an armed gunship with a mission to fry all aliens from its cannon barrels as hostile entities from the netherworld.</span></li>
-<li class="adv-item"><span class="adv-num">11.</span> <span class="adv-text">a long-dead lord remaining as an echo and phenomenally powerful dark gust of Force magic protecting his remains from destruction.</span></li>
-<li class="adv-item"><span class="adv-num">12.</span> <span class="adv-text">a dictatorial manager of a commercial resource empire seeing people merely as zeros, striving to squeeze the power of violence from his region.</span></li>
-<li class="adv-item"><span class="adv-num">13.</span> <span class="adv-text">an exceptionally capable peer-companion, a former military or academic guardian who took another escaping path to a smuggling lord of betrayal, shooting us in the back without mercy and conscience with a sniper rifle, this time killing the shadows of former colleagues.</span></li>
-<li class="adv-item"><span class="adv-num">14.</span> <span class="adv-text">a deranged but rock-solid brute warrior of a large alien race endowed with anger to bloody carve up everyone in gladiator armor bound in captured plasma steel.</span></li>
-<li class="adv-item"><span class="adv-num">15.</span> <span class="adv-text">an insolent warlord and mobster with alliance pacts between two governments, highly versed in covering the tracks of a rogue boasting weapons with stolen modules from rebel authority soldiers under his own territory of evil bloody bloodshed over the planet's nobility, a quiet and certain butcher of all who whisper of the betrayals of their fathers without honor.</span></li>
-<li class="adv-item"><span class="adv-num">16.</span> <span class="adv-text">a psychotic but brilliant biogenetic scientist ready to release a deadly plague if we interrupt him.</span></li>
-<li class="adv-item"><span class="adv-num">17.</span> <span class="adv-text">a self-proclaimed King of the Void commanding a bloody pirate flotilla on a destructive colossal flagship stolen from the Republican fleet archives, ready to evaporate our scoundrels from space instantly with its deathly crosshairs, silently looking down upon us, hating us as an absolutist of war.</span></li>
-<li class="adv-item"><span class="adv-num">18.</span> <span class="adv-text">a savage warrior serving as the apex beast of a religious alien sacrificial caste, aiming to claim the heads of our characters as relics of the dark beliefs of his people to earn the elevation of the galaxy's hunts, shooting and endlessly hurling without caring about dying for the frenzy.</span></li>
-<li class="adv-item"><span class="adv-num">19.</span> <span class="adv-text">a corrupt magnate ruler and senator with everyone on his payroll, bribed to avoid losing his seat for mistakes, throwing all available security forces to neutralize the heroes with a political sentence to cover up blood money to maintain positions at the Empire's benefit table and hang us where traces disappear.</span></li>
-<li class="adv-item"><span class="adv-num">20.</span> <span class="adv-text">a bitter, elite, and relentless outcast of enemy-toppling soldiers seeking revenge for wrongs suffered to destroy and hunt in the name of his own private battle, eager to drag us to the grave through his impeccable strikes of armor of hate in a one-on-one clash in the universe of killing with bloody fury in the isolation of the galaxy, always chasing us in the stars without fatigue, relentless blow after blow of a warrior of frenzy and inevitable anger.</span></li>
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a sadistic galactic government station commandant who will burn the village if played hard.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a bloated and vengeful Warlord of a slug-like trader syndicate coming for our debt.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a cunning and agile embodiment of arrogance, a smuggler with powerful, relentless cartel claims.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a terrifying adept coveting and using the Dark Side to murderously torture victims.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a wandering and unfailing armored Mandalorian locked in his helmet to catch us.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a villainous pirate whom our crew left to the stormtroopers a year ago to save ourselves.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a non-human engineering magnate lacking basic ethical norms, valuing experiments over life.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a cynical colonol of a police unit on the planet with a coldly calculated fury to neutralize everyone.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a treacherously rigorous brother of a former force-wielding organization of hate, wearing the pure robes of a pastor-warrior of darkness.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">the central processor of an armed gunship with a mission to fry all aliens from its cannon barrels as hostile entities from the netherworld.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a long-dead lord remaining as an echo and phenomenally powerful dark gust of Force magic protecting his remains from destruction.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a dictatorial manager of a commercial resource empire seeing people merely as zeros, striving to squeeze the power of violence from his region.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">an exceptionally capable peer-companion, a former military or academic guardian who took another escaping path to a smuggling lord of betrayal, shooting us in the back without mercy and conscience with a sniper rifle, this time killing the shadows of former colleagues.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a deranged but rock-solid brute warrior of a large alien race endowed with anger to bloody carve up everyone in gladiator armor bound in captured plasma steel.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">an insolent warlord and mobster with alliance pacts between two governments, highly versed in covering the tracks of a rogue boasting weapons with stolen modules from rebel authority soldiers under his own territory of evil bloody bloodshed over the planet's nobility, a quiet and certain butcher of all who whisper of the betrayals of their fathers without honor.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a psychotic but brilliant biogenetic scientist ready to release a deadly plague if we interrupt him.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a self-proclaimed King of the Void commanding a bloody pirate flotilla on a destructive colossal flagship stolen from the Republican fleet archives, ready to evaporate our scoundrels from space instantly with its deathly crosshairs, silently looking down upon us, hating us as an absolutist of war.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a savage warrior serving as the apex beast of a religious alien sacrificial caste, aiming to claim the heads of our characters as relics of the dark beliefs of his people to earn the elevation of the galaxy's hunts, shooting and endlessly hurling without caring about dying for the frenzy.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a corrupt magnate ruler and senator with everyone on his payroll, bribed to avoid losing his seat for mistakes, throwing all available security forces to neutralize the heroes with a political sentence to cover up blood money to maintain positions at the Empire's benefit table and hang us where traces disappear.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a bitter, elite, and relentless outcast of enemy-toppling soldiers seeking revenge for wrongs suffered to destroy and hunt in the name of his own private battle, eager to drag us to the grave through his impeccable strikes of armor of hate in a one-on-one clash in the universe of killing with bloody fury in the isolation of the galaxy, always chasing us in the stars without fatigue, relentless blow after blow of a warrior of frenzy and inevitable anger.</span></li>
 </ul>
                 </div>
         
@@ -1815,7 +1847,7 @@ footer {
     }
     
     window.generateAdventure = function(lang) {
-        const container = document.getElementById(`adv-tables-${lang}`);
+        const container = document.getElementById(`rng-tables-${lang}`);
         if (!container) return;
         
         const tables = container.querySelectorAll('.adventure-table-card');
@@ -1824,13 +1856,13 @@ footer {
         let parts = [];
         tables.forEach(table => {
             const prefixEl = table.querySelector('.adventure-prefix');
-            const items = table.querySelectorAll('.adv-text');
+            const items = table.querySelectorAll('.rng-text');
             
             const prefix = prefixEl ? prefixEl.textContent.trim() : "";
             
             if (items.length > 0) {
                 const randomText = items[Math.floor(Math.random() * items.length)].textContent.trim();
-                parts.push((prefix ? prefix + " " : "") + `<span class="adv-highlight">${randomText}</span>`);
+                parts.push((prefix ? prefix + " " : "") + `<span class="rng-highlight">${randomText}</span>`);
             } else {
                 parts.push(prefix);
             }
@@ -1860,7 +1892,7 @@ footer {
             s1 = capitalize(s1);
             s2 = capitalize(s2);
             
-            const resultEl = document.getElementById(`adv-result-${lang}`);
+            const resultEl = document.getElementById(`rng-result-${lang}`);
             if (resultEl) {
                 resultEl.innerHTML = `<p>${s1}</p><p>${s2}</p>`;
             }
@@ -1868,7 +1900,7 @@ footer {
     };
 
     availableLangs.forEach(l => {
-        if(document.getElementById(`adv-result-${l}`)) {
+        if(document.getElementById(`rng-result-${l}`)) {
             generateAdventure(l);
         }
     });

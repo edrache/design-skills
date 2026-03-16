@@ -1,0 +1,2615 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earthdawn - Homebrew World</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Cormorant+Garamond:wght@600;700&amp;display=swap" rel="stylesheet">
+    <style>
+    :root {
+    --bg: #111015;
+    --panel: rgba(255, 248, 238, 0.08);
+    --panel-strong: rgba(255, 248, 238, 0.14);
+    --line: rgba(255, 248, 238, 0.16);
+    --text: #f6f0e8;
+    --muted: #cabfb1;
+    --accent: #d29b5c;
+    --accent-strong: #f0c489;
+    --shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+    --transition: 180ms ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "Manrope", sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background:
+        radial-gradient(circle at top left, rgba(210, 155, 92, 0.18), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(128, 62, 46, 0.25), transparent 28%),
+        linear-gradient(180deg, #17141d 0%, #0d0c10 100%);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 90%);
+}
+
+p, li, h1, h2, h3, b, span, div {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.container {
+    width: min(1400px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 32px 0 56px;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 32px;
+    padding: clamp(2rem, 4vw, 3.6rem);
+    border: 1px solid var(--line);
+    border-radius: 32px;
+    background:
+        linear-gradient(135deg, rgba(255, 248, 238, 0.08), rgba(255, 248, 238, 0.02)),
+        rgba(12, 10, 15, 0.72);
+    box-shadow: var(--shadow);
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: auto -10% -35% 50%;
+    width: 60%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(240, 196, 137, 0.35), transparent 60%);
+    filter: blur(18px);
+}
+
+.hero-top,
+.page-toolbar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.page-toolbar {
+    margin-top: 28px;
+}
+
+.eyebrow {
+    margin-bottom: 18px;
+    color: var(--accent-strong);
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    font-size: 0.74rem;
+    font-weight: 800;
+}
+
+.home-link,
+.lang-toggle,
+.stat-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 44px;
+    padding: 12px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition);
+}
+
+.home-link:hover,
+.lang-toggle:hover,
+.stat-badge:hover {
+    transform: translateY(-1px);
+    border-color: rgba(240, 196, 137, 0.45);
+    background: rgba(255, 248, 238, 0.14);
+}
+
+.home-link:focus-visible,
+.lang-toggle:focus-visible,
+#sidebar-toggle:focus-visible,
+.tab:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 2px;
+}
+
+.lang-selector {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.lang-toggle {
+    cursor: pointer;
+}
+
+.lang-toggle.active {
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+    color: #1a1410;
+}
+
+.page-title {
+    position: relative;
+    z-index: 1;
+    margin: 18px 0 0;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.title-emoji {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.title-text {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(3.6rem, 9vw, 7.2rem);
+    line-height: 0.9;
+    font-weight: 700;
+}
+
+.page-summary {
+    position: relative;
+    z-index: 1;
+    width: min(48rem, 100%);
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 1.8;
+}
+
+.page-summary-copy {
+    display: none;
+}
+
+.lang-pl .page-summary-copy.lang-pl,
+.lang-en .page-summary-copy.lang-en,
+.lang-default .page-summary-copy.lang-default {
+    display: block;
+}
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+    transition: grid-template-columns 0.3s ease, gap 0.3s ease;
+}
+
+.main-layout.sidebar-collapsed {
+    grid-template-columns: 76px minmax(0, 1fr);
+}
+
+.tabs-container,
+.card {
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, var(--panel-strong), rgba(255, 248, 238, 0.04));
+    box-shadow: var(--shadow);
+}
+
+.tabs-container {
+    position: sticky;
+    top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: calc(100vh - 48px);
+    padding: 16px;
+    border-radius: 24px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+}
+
+.sidebar-home-link {
+    width: 100%;
+    justify-content: flex-start;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+}
+
+.sidebar-collapsed .tabs-container {
+    padding: 16px 10px;
+}
+
+.sidebar-collapsed .sidebar-home-link {
+    justify-content: center;
+    padding-inline: 0;
+}
+
+.sidebar-collapsed .sidebar-home-link span:last-child {
+    display: none;
+}
+
+#sidebar-toggle {
+    width: 44px;
+    height: 44px;
+    align-self: center;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--panel);
+    color: var(--text);
+    cursor: pointer;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition);
+}
+
+#sidebar-toggle:hover {
+    transform: translateY(-1px);
+    border-color: rgba(240, 196, 137, 0.45);
+    background: rgba(255, 248, 238, 0.14);
+}
+
+.tabs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: opacity 0.25s ease;
+}
+
+.sidebar-collapsed .tabs-list {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tabs-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.9rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    background: transparent;
+    color: var(--muted);
+    text-align: left;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition);
+}
+
+.tab:hover {
+    transform: translateY(-1px);
+    color: var(--text);
+    background: rgba(255, 248, 238, 0.08);
+    border-color: rgba(255, 248, 238, 0.12);
+}
+
+.tab.active {
+    color: #1a1410;
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+    box-shadow: 0 12px 24px rgba(240, 196, 137, 0.18);
+}
+
+.content-area {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    min-width: 0;
+}
+
+.playbook-content {
+    display: none;
+    scroll-margin-top: 2rem;
+    grid-template-columns: minmax(0, 1fr) 350px;
+    gap: 24px;
+    animation: fadeIn 0.35s ease-out;
+}
+
+.lang-pl .playbook-content.lang-pl,
+.lang-en .playbook-content.lang-en,
+.lang-default .playbook-content.lang-default {
+    display: grid;
+}
+
+.tab {
+    display: none;
+}
+
+.lang-pl .tab.lang-pl,
+.lang-en .tab.lang-en,
+.lang-default .tab.lang-default {
+    display: flex;
+}
+
+.main-column,
+.side-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-width: 0;
+}
+
+.card {
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    backdrop-filter: blur(12px);
+}
+
+.card:hover {
+    border-color: rgba(240, 196, 137, 0.45);
+    background: linear-gradient(180deg, rgba(255, 248, 238, 0.18), rgba(255, 248, 238, 0.06));
+    transform: translateY(-3px);
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    line-height: 1;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+h2::before {
+    content: "";
+    width: 4px;
+    height: 1.5rem;
+    background: var(--accent-strong);
+    border-radius: 2px;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--muted);
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    margin-bottom: 0.75rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent-strong);
+    opacity: 0.7;
+}
+
+.stat-badge {
+    margin-right: 0.5rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.look-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.look-row {
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    background: rgba(255, 248, 238, 0.05);
+    border-radius: 12px;
+    border-left: 3px solid var(--accent-strong);
+}
+
+.look-label {
+    font-weight: 800;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    margin-bottom: 0.25rem;
+}
+
+.look-options {
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+.section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent-strong) 0%, transparent 100%);
+    opacity: 0.2;
+    margin: 2rem 0 1rem 0;
+    max-width: 100%;
+}
+
+.move-card {
+    border-left: 4px solid var(--accent-strong);
+}
+
+.move-card b {
+    color: var(--accent-strong);
+}
+
+.gear-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.gear-item {
+    padding: 1rem;
+    background: rgba(255, 248, 238, 0.05);
+    border-radius: 12px;
+    border: 1px solid var(--line);
+}
+
+.optional-moves-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+    gap: 2rem;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    padding: 0 4px;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* Adventure Generator */
+.adventure-generator-card {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(180deg, var(--panel-strong), rgba(255, 248, 238, 0.02));
+    border: 1px solid rgba(240, 196, 137, 0.3);
+    box-shadow: 0 10px 40px rgba(210, 155, 92, 0.08);
+}
+
+.adventure-generator-card h2 {
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.generator-result {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--accent-strong);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 900px;
+    margin-inline: auto;
+    font-family: "Cormorant Garamond", serif;
+}
+
+.generator-result p {
+    color: var(--text);
+    margin: 0;
+}
+
+.generator-result p:first-child {
+    margin-bottom: 0.75rem;
+    color: var(--accent-strong);
+    font-size: 1.6rem;
+}
+
+.rng-highlight {
+    color: var(--text);
+    padding-bottom: 2px;
+    border-bottom: 1px dashed rgba(240, 196, 137, 0.45);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.rng-highlight:hover {
+    color: var(--accent-strong);
+    border-bottom-color: var(--accent-strong);
+}
+
+.generator-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.rng-roll-btn {
+    font-size: 1.05rem;
+    padding: 1rem 2.5rem;
+    border-radius: 999px;
+    letter-spacing: 0.08em;
+}
+
+.adventure-tables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.adventure-table-card {
+    padding: 1.8rem;
+    background: rgba(255, 248, 238, 0.02);
+}
+
+.adventure-table-card h3 {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    color: var(--text);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.5rem;
+}
+
+.adventure-prefix {
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--accent);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.adventure-items {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.adventure-items .rng-item {
+    margin-bottom: 0.5rem;
+    padding-left: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.adventure-items .rng-item::before {
+    content: none;
+}
+
+.rng-num {
+    color: var(--accent);
+    font-weight: 800;
+    width: 2.2ch;
+    flex-shrink: 0;
+    text-align: right;
+    font-size: 0.9rem;
+    margin-top: 0.15rem;
+}
+
+.rng-text {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 1400px) {
+    .playbook-content {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 1100px) {
+    .main-layout,
+    .main-layout.sidebar-collapsed {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .tabs-container {
+        position: sticky;
+        top: 12px;
+        flex-direction: row;
+        align-items: center;
+        max-height: none;
+        padding: 12px;
+        overflow: visible;
+    }
+
+    #sidebar-toggle {
+        display: none;
+    }
+
+    .tabs-list {
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(240, 196, 137, 0.45) transparent;
+    }
+
+    .tabs-list::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .tabs-list::-webkit-scrollbar-thumb {
+        background: rgba(240, 196, 137, 0.35);
+        border-radius: 999px;
+    }
+
+    .tab {
+        width: auto;
+        white-space: nowrap;
+        padding: 0.75rem 1rem;
+    }
+
+    .playbook-content {
+        scroll-margin-top: 5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: min(100% - 20px, 1400px);
+        padding-top: 20px;
+    }
+
+    .hero {
+        padding: 24px;
+        border-radius: 24px;
+    }
+
+    .page-title {
+        gap: 10px;
+    }
+
+    .card {
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+
+    .lang-selector {
+        gap: 0.5rem;
+    }
+
+    .lang-toggle {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.7rem;
+    }
+
+    .page-summary {
+        font-size: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+    </style>
+</head>
+<body class="lang-default">
+    <div class="container">
+        <header class="hero">
+            <p class="eyebrow">Homebrew World Setting</p>
+            <div class="hero-top">
+                <div class="lang-selector"><button class="lang-toggle" data-lang="en" type="button">English</button> <button class="lang-toggle" data-lang="pl" type="button">Polski</button></div>
+            </div>
+            <h1 class="page-title"><span class="title-emoji">🌍</span> <span class="title-text">Earthdawn</span></h1>
+            <p class="page-summary"><span class="page-summary-copy lang-pl">Postapokaliptyczne fantasy o świecie, który przetrwał Plagę Horrorów: kaery otwierają się po wiekach izolacji, dawne imperia wracają do gry, a adepci splatają magię, legendy i długi przeszłości w nowe wyprawy.</span> <span class="page-summary-copy lang-en">Post-apocalyptic fantasy in a world that survived the Scourge of the Horrors: kaers reopen after centuries of isolation, old powers return to the map, and adepts weave magic, legend, and the debts of the past into new expeditions.</span></p>
+            <div class="page-toolbar"><span class="stat-badge">5 playbookow EN</span> <span class="stat-badge">5 playbookow PL</span></div>
+        </header>
+
+        <div class="main-layout">
+            <aside class="tabs-container" id="sidebar">
+                <button id="sidebar-toggle" aria-label="Toggle Sidebar" aria-expanded="true" type="button">☰</button>
+                
+            <a class="home-link sidebar-home-link" href="../../../site/index.html">
+                <span aria-hidden="true">←</span>
+                <span>Wroc do Homebrew Worlds</span>
+            </a>
+        
+                <div class="tabs-list" role="tablist" aria-label="Playbook navigation">
+                    <button class="tab lang-pl" data-tab="pl_playbook_mistrz_miecza" type="button">⚔️ MISTRZ MIECZA</button>
+<button class="tab lang-pl" data-tab="pl_playbook_nekromanta" type="button">💀 NEKROMANTA</button>
+<button class="tab lang-pl" data-tab="pl_playbook_rajdowiec_niebios" type="button">🏴‍☠️ RAJDOWIEC NIEBIOS</button>
+<button class="tab lang-pl" data-tab="pl_playbook_trubadur" type="button">🎶 TRUBADUR</button>
+<button class="tab lang-pl" data-tab="pl_playbook_zwiadowca" type="button">🔭 ZWIADOWCA</button>
+<button class="tab lang-pl" data-tab="pl_optional_moves" type="button">🌟 Opcjonalne Ruchy</button>
+<button class="tab lang-pl" data-tab="pl_adventures" type="button">🗺️ Generator Przygód — Earthdawn</button>
+<button class="tab lang-en" data-tab="en_playbook_nethermancer" type="button">☠️ NETHERMANCER</button>
+<button class="tab lang-en" data-tab="en_playbook_scout" type="button">🔭 SCOUT</button>
+<button class="tab lang-en" data-tab="en_playbook_sky_raider" type="button">🏴‍☠️ SKY RAIDER</button>
+<button class="tab lang-en" data-tab="en_playbook_swordmaster" type="button">🚀 SWORDMASTER</button>
+<button class="tab lang-en" data-tab="en_playbook_troubadour" type="button">🎶 TROUBADOUR</button>
+<button class="tab lang-en" data-tab="en_optional_moves" type="button">🌟 Optional Moves</button>
+<button class="tab lang-en" data-tab="en_adventures" type="button">🗺️ Adventure Generator — Earthdawn</button>
+                </div>
+            </aside>
+
+            <div class="content-area">
+                
+    <div id="pl_playbook_mistrz_miecza" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Klinga Akademii Throalu</b></p>
+<p>Szkoliłeś/-aś się w najlepszej szkole miecza krasnoludziego królestwa, gdzie technikę kataloguje się jak inżynierię, a każda garda ma nazwę w trzech językach. Kiedy studiujesz styl walki przeciwnika przed starciem, zapytaj MG o jedno: jakie przeszedł szkolenie, jaki nawyk go zdradzi albo czego się boi?</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was obserwował/-a mój trening i zrozumiał/-a to, co widział/-a?</li>
+<li>Który/-a z was uważa, że dyscyplina to klatka, a nie dar?</li>
+<li>Którego/-ą z was kiedyś poprawiłem/-am w sposobie trzymania broni?</li>
+<li>Którego/-ą z was uważam za godnego partnera do szermierki?</li>
+</ul>
+<p>---</p>
+<p><b>Wędrowny/-a Pieśniarz/-ka Miecza</b></p>
+<p>Podróżujesz z miasta do zniszczonego miasta, zamieniając popisy i pojedynki na nocleg i legendę. Kiedy wykonujesz pokaz szermierki przed publicznością, rzuć +CHA. Na 10+ wybierz 2. Na 7-9 wybierz 1.</p>
+<ul>
+<li>Oferują schronienie, jedzenie albo informacje za darmo.</li>
+<li>Potencjalny patron, rywal albo kochanek ujawnia się.</li>
+<li>Wieść o twoim kunszcie się rozchodzi; otrzymujesz +1 naprzód z ludźmi, którzy słyszeli o występie.</li>
+</ul>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was widział/-a jeden z moich występów i został/-a poruszony/-a?</li>
+<li>Który/-a z was uważa, że moja sztuka jest błaha w świecie wciąż noszącym blizny Groz?</li>
+<li>O którym/-ej z was chcę skomponować pieśń miecza?</li>
+<li>Który/-a z was nosi ranę, którą zadałem/-am w pojedynku, którego żałuję?</li>
+</ul>
+<p>---</p>
+<p><b>Pojedynkowicz/-ka Upadłego Dworu</b></p>
+<p>Służyłeś/-aś szlacheckiemu rodowi zniszczonemu podczas Plagi albo po niej. Twoja klinga pamięta formy dworu, który już nie istnieje. Kiedy powołujesz się na etykietę dawnych dworów, by zażądać formalnego pojedynku, wyzwania albo próby honoru, twój przeciwnik musi przyjąć albo stracić twarz przed wszystkimi obecnymi.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was zna nazwę rodu, któremu służyłem/-am?</li>
+<li>Który/-a z was próbował/-a mnie przekonać, bym pozwolił/-a przeszłości umrzeć?</li>
+<li>Którego/-ą z was potajemnie chciałbym/-abym, by urodził/-a się w czasach, gdy stary dwór jeszcze istniał?</li>
+<li>Którego/-ą z was wyzwałem/-am, zanim go/ją zrozumiałem/-am?</li>
+</ul>
+<p>---</p>
+<p><b>Naznaczony/-a Nicią Poszukiwacz/-ka</b></p>
+<p>Dążysz do sztuki perfekcyjnego cięcia -- jednego ciosu utkanego magią nici w coś transcendentnego. Utkałeś/-aś nić ze swoim ostrzem. Nazwij je. Raz na sesję, kiedy zadajesz rozstrzygający cios, opisz krótki przebłysk historii nici albo legendy broni. Zaznacz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was poczuł/-a wibrację nici mojego ostrza i był/-a tym zaniepokojony/-a?</li>
+<li>Który/-a z was uważa, że magia nici jest niebezpieczna i arogancka?</li>
+<li>Któremu/-ej z was ufam, by niósł/-a moje ostrze, gdybym padł/-a?</li>
+<li>Który/-a z was był/-a świadkiem chwili, gdy po raz pierwszy utkałem/-am nić?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Riposta</b></p>
+<p>Kiedy parujesz atak wroga i natychmiast kontratakowujesz, rzuć +ZRC. Na 10+ unikasz jego ciosu całkowicie i zadajesz swoje obrażenia. Na 7-9 wymieniacie ciosy -- zadajesz swoje obrażenia, ale otrzymujesz jego.</p>
+<p><b>Manewr</b></p>
+<p>Kiedy używasz wyższej pracy nóg, fintów albo pozycjonowania, by uzyskać przewagę taktyczną w zwarciu, rzuć +ZRC. Na 10+ wybierz 2. Na 7-9 wybierz 1.</p>
+<ul>
+<li>Wypychasz przeciwnika tam, gdzie chcesz -- na krawędź, w róg, w zasięg towarzysza.</li>
+<li>Tworzysz otwarcie; otrzymujesz +1 naprzód do następnego ataku.</li>
+<li>Utrzymujesz nieskazitelną gardę; dostajesz +1 pancerza, dopóki się nie ruszysz albo nie zaatakujesz.</li>
+</ul>
+<p><b>Prowokacja</b></p>
+<p>Kiedy obrażasz, wyśmiewasz albo kwestionujesz umiejętności wroga, by ściągnąć jego uwagę i furię na siebie, rzuć +CHA. Na 10+ skupia się na tobie całkowicie; sojusznicy działający przeciw niemu otrzymują przewagę. Na 7-9 masz jego uwagę, ale rusza na ciebie mocniej niż się spodziewałeś/-aś -- MG powie jak.</p>
+<p><b>Medytacja Ostrza</b></p>
+<p>Kiedy spędzasz spokojną chwilę ze swoim ostrzem -- czyszcząc je, ważąc, rozmawiając z nim -- wybierz jedno: ulecz 1k4 PŻ, usuń dolegliwość związaną ze strachem albo rozpaczą, albo zapytaj MG, co twoje instynkty mówią ci o najbliższym niebezpieczeństwie.</p>
+<p><b>Ocena Pojedynku</b></p>
+<p>Kiedy po raz pierwszy krzyżujesz klinge z nowym przeciwnikiem, możesz zapytać MG o jedno: czy jest lepszy ode mnie, jaki jest jego charakterystyczny ruch albo co poświęci, by wygrać?</p>
+<p><b>Popis</b></p>
+<p>Kiedy wykonujesz olśniewający pokaz szermierki w środku walki -- obracając się, tnąc powietrze albo prezentując perfekcyjną formę -- wybierz jednego sojusznika. Otrzymuje +1 naprzód, zainspirowany/-a. Jeśli Grozy, duchy albo istoty magiczne obserwują, muszą uznać twoje mistrzostwo; MG powie ci, jak zareagują.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>⚔️ # MISTRZ MIECZA</h2><p>*Każdy pojedynek to rozmowa. Zamierzasz mieć ostatnie słowo.*</p>
+<p><b>Kostka Obrażeń:</b> k8</p>
+<p><b>PŻ:</b> 8 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Elf:</b> Laeralith, Thandiel, Ossivane, Caelyndor / Ithilwen, Vaelari, Nyserith, Aelindra</p>
+<p><b>Człowiek:</b> Corvain, Aldren, Joscelin, Renard / Elisse, Maren, Viviana, Seraine</p>
+<p><b>T'skrang:</b> K'rathis, Ssoravel, T'shennok, Vrissal / Lassheek, N'sahri, K'thivess, Shrissala</p>
+<p><b>Windling:</b> Pipp, Flickwing, Zennaro, Briskle / Tessari, Luminae, Wispara, Cintri</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Lud:</b> Elf | Człowiek | T'skrang | Windling | zapytaj stołu</p>
+<p><b>Postawa:</b> zrównoważona jak dobyta klinga | swobodna, dopóki miecz nie opuści pochwy | wyważona i elegancka</p>
+<p><b>Oczy:</b> spokojne, czytające każdy ruch | płonące artystyczną intensywnością | przymrużone i wiedzące</p>
+<p><b>Sylwetka:</b> szczupła i precyzyjna | pełna wdzięku tancerza | drobna, lecz piorunująco szybka</p>
+<p><b>Strój:</b> skóry pojedynkowe z haftowanymi wzorami | powiewne jedwabie na lekkiej kolczudze | wytarte wytworności z lepszych czasów</p>
+<p><b>Znak szczególny:</b> miecz, który ma imię | pojedyncza rękawica na wolnej ręce | blizna noszona jak odznaka honoru</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Pierwsza Krew:</b> Kiedy zadajesz obrażenia wrogowi, który nie został jeszcze raniony w tej walce, zadajesz dodatkowe +1k4 obrażeń.</li>
+<li><b>Wzrok Nici:</b> Wyczuwasz obecność aktywnych nici -- magicznych więzi między Nadawcami Imion a przedmiotami, miejscami albo wzorcami. Nie możesz ich odczytać, jedynie wyczuć.</li>
+<li><b>Perfekcyjna Parta:</b> Raz na walkę możesz całkowicie zniwelować jeden atak wręcz skierowany przeciw tobie. Opisz technikę.</li>
+<li><b>Filozofia Miecza:</b> Kiedy doradzasz komuś w kwestii strachu, straty albo celu, używając lekcji z fechtunku, rzuć +MDR. Na 10+ otrzymuje +1 naprzód, a ty zaznaczasz PD. Na 7-9 lekcja kłuje -- otrzymuje +1 naprzód, ale ma ci to za złe.</li>
+<li><b>Taniec Śmierci:</b> Kiedy walczysz sam/-a z dwoma lub więcej wrogami, dostajesz +1 pancerza, dopóki się ruszasz i nie zatrzymujesz się, by pomagać komukolwiek innemu.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Odszukaj godnego przeciwnika i zmierz się z nim ostrze w ostrze.</li>
+<li>Obroń kogoś, kto nie potrafi się sam obronić, używając jedynie swojego kunsztu.</li>
+<li>Poznaj imię, historię albo legendę broni, techniki albo upadłego mistrza.</li>
+<li>Udowodnij, że sztuka i piękno wciąż mają znaczenie w świecie zeszpeconym przez Grozy.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 9.</p>
+<ul>
+<li>Ostrze związane nicią (`blisko`, `precyzyjne`, 1 slot)</li>
+<li>Sztylet pojedynkowy (`wręcz`, 1 slot)</li>
+<li>Wzmocnione skóry pojedynkowe (1 pancerza, noszone, 1 slot)</li>
+<li>Puklerz (+1 pancerza, 1 slot)</li>
+<li>Osełka i oliwa do ostrza (1 slot)</li>
+<li>Zestaw leczniczy (1 slot)</li>
+<li>Wytworne płaszcz podróżny (1 slot)</li>
+<li>Dziennik form i technik (1 slot)</li>
+<li>Żeton pieśniarza miecza albo łaska patrona (małe)</li>
+<li>Lusterko do sprawdzania postawy i formy (małe)</li>
+<li>Kreda do rysowania kręgów pojedynkowych (małe)</li>
+<li>Bransoletka z nici magicznej (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_nekromanta" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Nekromanta Kaeru</b></p>
+<p>Byłeś/-aś strażnikiem kaeru przed Koszmarami, tym, który testował osłony od wewnątrz. Kiedy badasz zapieczętowane miejsce, osłonę albo magiczną barierę, zapytaj MG jedno: co ją przebiło, co ją trzyma w całości albo co czeka po drugiej stronie.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was żył/-a w kaerze, który chroniłem/-am?</li>
+<li>Który/-a z was widział/-a ślady, jakie Plaga na mnie zostawiła?</li>
+<li>Który/-a z was ufa mojej ocenie Koszmarnego skażenia?</li>
+<li>Który/-a z was wierzy, że moja warta coś we mnie złamała?</li>
+</ul>
+<p>---</p>
+<p><b>Kartograf Astralny</b></p>
+<p>Mapujesz ukryte obszary przestrzeni astralnej, nanosząc skażenia, prądy duchów i kotwice wątków. Kiedy poświęcasz czas na zbadanie astralnego krajobrazu danej lokacji, otrzymujesz +1 naprzód do każdego ruchu związanego z magią, duchami albo Koszmarnym skażeniem w tym obszarze.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was niósł/-a moją astralną mapę i widział/-a, że się sprawdziła?</li>
+<li>Który/-a z was zabłąkał/-a się w miejsce, o którym ostrzegałem/-am, że jest skażone?</li>
+<li>Który/-a z was sądzi, że widzę rzeczy, których tam nie ma?</li>
+<li>Który/-a z was chce, żebym odczytał/-a astralne znaki na czymś, co nosi?</li>
+</ul>
+<p>---</p>
+<p><b>Pośrednik Duchów</b></p>
+<p>Negocjujesz z umarłymi tak, jak inni negocjują na targu. Kiedy oferujesz duchowi coś, czego pragnie -- wypowiedziane imię, spłacony dług, pochowane ciało -- musi uczciwie odpowiedzieć na jedno pytanie albo wykonać jedną drobną przysługę, zanim odejdzie.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was ma zmarłego towarzysza, z którego duchem rozmawiałem/-am?</li>
+<li>Który/-a z was ma dług wobec zmarłych, który pomogłem/-am załatwić?</li>
+<li>Który/-a z was uważa, że układy z duchami prowadzą do Koszmarnego piętna?</li>
+<li>Który/-a z was patrzył/-a, jak płacę cenę, którą uznał/-a za zbyt wysoką?</li>
+</ul>
+<p>---</p>
+<p><b>Tropiciel Koszmarów</b></p>
+<p>Dotknąłeś/-aś Koszmarnego skażenia i odszedłeś/-aś zmieniony/-a. Kiedy po raz pierwszy wyczuwasz Koszmar albo jego twór, MG mówi ci jedną rzecz o jego naturze, jego słabości albo jego głodzie.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was był/-a przy mnie, gdy po raz pierwszy dotknąłem/-am Koszmarnego skażenia?</li>
+<li>Który/-a z was sprawdza mnie pod kątem korupcji, gdy myśli, że nie patrzę?</li>
+<li>Który/-a z was wie, że to, co tropię, również tropi mnie?</li>
+<li>Który/-a z was uśmierciłby mnie, gdybym się przemienił/-a?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Wzrok Astralny</b></p>
+<p>Kiedy otwierasz swoją percepcję na plan astralny, rzuć +INT. Na 10+ MG opisuje stan astralny twojego otoczenia: wątki, skażenia, obecność duchów, magiczne osłony. Na 7-9 widzisz wyraźnie, ale coś w przestrzeni astralnej zauważa, że patrzysz.</p>
+<p><b>Przywołanie Ducha Sprzymierzeńca</b></p>
+<p>Kiedy przywołujesz ducha z zaświatów i wiążesz go służbą, rzuć +INT. Na 10+ pojawia się i służy wiernie przez scenę -- wybierz jego naturę: posłaniec, strażnik albo szpieg. Na 7-9 służy, ale żąda czegoś: wspomnienia, kropli krwi albo przyszłej przysługi.</p>
+<p><b>Język Duchów</b></p>
+<p>Kiedy rozmawiasz ze zmarłymi -- zwłokami, zjawą albo utrzymującą się obecnością -- możesz zadać im dwa pytania. Muszą odpowiedzieć, choć umarli pamiętają niedokładnie i widzą przez pryzmat swoich ostatnich emocji.</p>
+<p><b>Osłona przed Koszmarem</b></p>
+<p>Kiedy wpisujesz ochronne sigile przeciw Koszmarnemu wpływowi na osobę, przedmiot albo próg, rzuć +INT. Na 10+ osłona trzyma mocno -- następne Koszmarne skażenie, próba opętania albo astralna ingerencja wymierzona w chroniony cel nie udaje się. Na 7-9 osłona trzyma, ale pęka: zatrzyma jedną próbę, potem się rozpadnie.</p>
+<p><b>Tkanie Wątków</b></p>
+<p>Kiedy tkasz magiczny wątek między sobą a miejscem, przedmiotem albo chętną osobą, zaznacz połączenie. Dopóki wątek trzyma, wyczuwasz silne emocje, niebezpieczeństwo albo skażenie dotykające drugiego końca, niezależnie od odległości. Możesz utrzymywać wątki równe twojemu INT (minimum 1).</p>
+<p><b>Pocisk Nekromantyczny</b></p>
+<p>Kiedy kierujesz surową energię zaświatów w cel, zadaj swoje obrażenia na `blisko`. Pocisk jest zimny, ciemny i widoczny w przestrzeni astralnej.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>💀 # NEKROMANTA</h2><p>*Umarli mówią swobodnie do tych, którzy znają właściwe pytania. Koszmary też mówią -- ale nauczyłeś się nie odpowiadać.*</p>
+<p><b>Kostka Obrażeń:</b> k4</p>
+<p><b>PŻ:</b> 4 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Człowiek:</b> Karon, Vestil, Nerath, Edric / Sienna, Morwen, Thael, Luccia</p>
+<p><b>Elf:</b> Vaelun, Ithrendal, Morvith, Caelen / Sylivael, Naerith, Ithila, Faelwen</p>
+<p><b>Obsydian:</b> Granthet, Volundr, Basaltrin, Oremead / Stondelith, Quarria, Feldspar, Andesine</p>
+<p><b>T'skrang:</b> Vizsk, Rathaal, K'lessik, Ssoran / T'vasha, Niilsk, Sz'renna, Kalissk</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Lud:</b> Człowiek | Elf | Obsydian | T'skrang | zapytaj stołu</p>
+<p><b>Postawa:</b> niepokojąco nieruchomy/-a | przygarbiony/-a po latach studiów | porusza się, jakby słuchał/-a czegoś niewidzialnego</p>
+<p><b>Oczy:</b> obramowane astralnym zmęczeniem | blade i odległe | migoczące duchowidztwa</p>
+<p><b>Sylwetka:</b> chudy/-a i zapadnięta w policzkach | drobny/-a i precyzyjny/-a | ciężki/-a od żywiołowego bezruchu</p>
+<p><b>Strój:</b> warstwowe szaty ze znakami astralnymi | ciemne skóry poplamione odczynnikami | formalne szaty adepta, postrzępione na brzegach</p>
+<p><b>Znak szczególny:</b> kamienna kotwica duchów | plamy atramentu trupiego na palcach | lekki zapach ozonu i starej kości</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Wypędzenie Niezwiązanego:</b> Kiedy konfrontujesz się z wolnym duchem albo astralną istotą i rozkazujesz jej odejść, rzuć +INT. Na 10+ zostaje wypchnięta za zasłonę. Na 7-9 odchodzi, ale cię zapamiętuje.</li>
+<li><b>Odczyt Przysięgi Krwi:</b> Kiedy smakujesz dobrowolnie oddaną krew, poznajesz jedną prawdę o dawcy: jego najgłębszy lęk, najsilniejszą więź albo to, czy nosi Koszmarne piętno.</li>
+<li><b>Twierdza Astralna:</b> Kiedy wzmacniasz obóz albo schronienie astralnymi osłonami, grupa nie może zostać zaskoczona przez duchy, nieumarłych albo Koszmarne twory podczas odpoczynku.</li>
+<li><b>Głębszy Wzrok:</b> Kiedy używasz <b>Wzroku Astralnego</b>, na 12+ możesz też zapytać MG: co jest tu ukryte, co tu było wcześniej albo jaki wątek łączy to miejsce z innym?</li>
+<li><b>Rozmowa z Koszmarem:</b> Możesz spróbować komunikacji z Koszmarem albo jego tworem. MG powie ci, czego chce. To nie czyni go przyjaznym.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Odkryj prawdę o Koszmarze, duchu albo astralnej tajemnicy.</li>
+<li>Chroń kogoś przed skażeniem, którego jeszcze nie widzi.</li>
+<li>Wykorzystaj lęk, jaki inni mają przed twoją Dyscypliną, by osiągnąć coś bez przemocy.</li>
+<li>Zapłać osobistą cenę, by powstrzymać zaświaty przed wdarciem się do świata żywych.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 7.</p>
+<ul>
+<li>Nekromantyczne ognisko -- kamienna kotwica albo kościana różdżka (`magiczne`, `blisko`, 1 slot)</li>
+<li>Atrament trupi i pióro do sigili (1 slot)</li>
+<li>Pułapka na duchy -- osłoniona kryształowa fiolka (1 slot)</li>
+<li>Kompas astralny -- wirująca igła w zamkniętym szkle (1 slot)</li>
+<li>Szaty adepta, warstwowe i wyszywane sigilami (1 slot)</li>
+<li>Sakwa odczynników -- grobokwiat, popiół Prawdziwych Żywiołów, sproszkowany orichalcum (1 slot)</li>
+<li>Dziennik zaświatów -- obserwacje i astralne szkice (1 slot)</li>
+<li>Kotwica wątku -- pamiątka po kimś, z kim jesteś związany/-a (małe)</li>
+<li>Fiolka farby z krwi (małe)</li>
+<li>Kościane kości do wróżbiarstwa (małe)</li>
+<li>Świeca żałobna (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_rajdowiec_niebios" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Kryształowy Rajdowiec ze Szczytu Zmierzchu</b></p>
+<p>Wyrosłeś/-aś wśród kryształowych rajdowców, gdzie mut jest rodziną, a niebo -- prawem. Kiedy powołujesz się na honor swojego mutu, by zażądać gościnności, przepustki albo rozmowy od innej grupy powietrznej, rzuć +CHA. Na 10+ szanują kodeks i spełniają żądanie. Na 7-9 wymagają daru, pojedynku albo przysługi.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was przeżył/-a rajd, który prowadziłem/-am lub widziałem/-am?</li>
+<li>Który/-a z was dzielił/-a ze mną ogień na pokładzie sterowca pod gwiazdami?</li>
+<li>Którego/-ą z was podejrzewam o lęk wysokości?</li>
+<li>Który/-a z was nosi coś, co kiedyś chciałem/-am zabrać, ale nie zabrałem/-am?</li>
+</ul>
+<p>---</p>
+<p><b>Łamacz Kaerów</b></p>
+<p>Twój mut był jednym z pierwszych, którzy otwierali zapieczętowane kaery po Plądze, robiąc prawo do łupu z tego, co świat zapomniał. Kiedy siłą otwierasz zapieczętowane przejście, zamknięty skarbiec albo zabarykadowane drzwi, otrzymujesz przewagę.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was pochodzi z kaeru, który moi ludzie otworzyli?</li>
+<li>Który/-a z was uważa, że traktuję zmarłych bez należytego szacunku?</li>
+<li>Który/-a z was widział/-a, co nadal może żyć w zapieczętowanym kaerze?</li>
+<li>Który/-a z was zawdzięcza wolność łomom i odwadze mojego mutu?</li>
+</ul>
+<p>---</p>
+<p><b>Zaprzysiężony/-a Burzom Łupieżca</b></p>
+<p>Złożyłeś/-aś przysięgę wiatrowi i burzy, a one odpowiadają. Kiedy walczysz na pokładzie ruszającego się statku, na moście, na ścianie klifu albo gdziekolwiek, gdzie wyje wiatr, otrzymujesz +1 naprzód do pierwszego ataku.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was żeglował/-a ze mną przez burzę?</li>
+<li>Który/-a z was uważa moje śluby burzom za szaleństwo?</li>
+<li>Który/-a z was odciągnął/-ęła mnie od upadku, którego nie powinienem/-nnam był/-a przeżyć?</li>
+<li>Którego/-ą z was uważam za kogoś o sercu rajdowca niebios, czy o tym wiedzą, czy nie?</li>
+</ul>
+<p>---</p>
+<p><b>Wygnaniec Upadłego Mutu</b></p>
+<p>Twój mut został zniszczony -- przez Grozy, zdradę albo therańskie łańcuchy. Nosisz jego imię sam/-a. Za pierwszym razem w każdej sesji, gdy podejmujesz ryzyko, by pomścić, uczcić albo odbudować to, co twój mut stracił, zaznacz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, co zniszczyło mój mut?</li>
+<li>Który/-a z was słyszał/-a, jak wymawiam imiona umarłych, myśląc, że nikt nie słucha?</li>
+<li>Którego/-ą z was chcę uznać za krewnego mutu, choć jeszcze tego nie powiedziałem/-am?</li>
+<li>Który/-a z was boi się, że wciągnę drużynę w moją prywatną wojnę?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Okrzyk Bojowy</b></p>
+<p>Kiedy ryczysz okrzyk wojenny, szarżując do zwarcia, rzuć +SIŁ. Na 10+ wybierz 2. Na 7-9 wybierz 1.</p>
+<ul>
+<li>Twoi wrogowie wzdrygają się, wahają albo rozpierzchają przed szarżą.</li>
+<li>Sojusznik, który cię słyszy, otrzymuje +1 naprzód na swoją następną akcję.</li>
+<li>Pokonujesz dystans błyskawicznie, ignorując przeszkody i teren między tobą a wrogiem.</li>
+</ul>
+<p><b>Tkanie Niebios</b></p>
+<p>Kiedy skaczesz między pokładami sterowców, kołyszesz się na olinowaniu albo przemierzasz niebezpieczną wysokość w walce, rzuć +ZRC. Na 10+ lądujesz dokładnie tam, gdzie chcesz, i możesz natychmiast uderzyć. Na 7-9 docierasz na miejsce, ale wybierz jedno: upuszczasz coś, dostajesz cios po drodze albo zostajesz odsłonięty/-a.</p>
+<p><b>Ognista Krew</b></p>
+<p>Kiedy otrzymujesz obrażenia i zamiast się wzdrygnąć, pozwalasz wściekłości zalać twoje ciało, możesz zadać +1k4 obrażeń przy następnym ataku. Jeśli to zrobisz, MG powie ci, co lekkomyślnego twoja furia również spowodowała.</p>
+<p><b>Cios z Góry</b></p>
+<p>Kiedy atakujesz wroga z góry -- skacząc z masztu, klifu, wierzchowca albo czegokolwiek wyższego od wroga -- twój atak zyskuje `silna` i `brudna`.</p>
+<p><b>Trofeum Zuchwałych</b></p>
+<p>Kiedy zabierasz trofeum z pokonanego wroga na oczach świadków, nazwij czyn. Dopóki nie rozbijesz następnego obozu, otrzymujesz +1 naprzód, gdy działasz z odwagą albo zastraszeniem związanym z tym czynem.</p>
+<p><b>Nić Mutu</b></p>
+<p>Nosisz nić -- magiczną więź -- ze swoim mutem, swoim sterowcem albo cenną bronią przekazywaną z rajdu na rajd. Nazwij ją. Kiedy jesteś od niej oddzielony/-a, zawsze znasz jej kierunek i mniej więcej odległość. Kiedy trzymasz ją i wypowiadasz bojową przysięgę swojego mutu, otrzymujesz +1 naprzód przeciw wrogowi, który skrzywdził twój lud.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🏴‍☠️ # RAJDOWIEC NIEBIOS</h2><p>*Niebo należy do zuchwałych. Bierzesz to, co daje wiatr, i zostawiasz za sobą jedynie grzmot.*</p>
+<p><b>Kostka Obrażeń:</b> k10</p>
+<p><b>PŻ:</b> 10 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Troll:</b> Grakhed, Throsk, Borthan, Kuldrak / Vyshara, Krestol, Durgha, Neelath</p>
+<p><b>Ork:</b> Charrog, Skullak, Gront, Vaghesh / Breeka, Uzhra, Thorva, Narsha</p>
+<p><b>Człowiek:</b> Jarrick, Corwen, Hamund, Stelan / Kyra, Emera, Voss, Aldine</p>
+<p><b>T'skrang:</b> Ssarak, K'theros, V'strin, Rashaal / T'vessa, Shri'kala, N'thira, Kissha</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Lud:</b> Troll | Ork | Człowiek | T'skrang | zapytaj stołu</p>
+<p><b>Postawa:</b> władcza i nieustraszona | dzikie oczy i uśmiech | bliznowata i zahartowana burzą</p>
+<p><b>Oczy:</b> płonące głodem horyzontu | zimne jak wielka wysokość | żarzące się dumą mutu</p>
+<p><b>Sylwetka:</b> masywna i beczkowata | szczupła i zahartowana wiatrem | barczysta z nogami marynarza</p>
+<p><b>Strój:</b> skóry i futra kryształowego rajdowca | uprząż załogi sterowca | pomalowana bojowo skóra i trofea</p>
+<p><b>Znak szczególny:</b> kryształ wbity w czoło | spleciona broda z żetonami łupów | topór abordażowy zawsze w zasięgu ręki</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Mistrz Abordażu:</b> Kiedy prowadzisz szarżę na wrogi statek, budowlę albo fortyfikację, sojusznicy, którzy za tobą podążają, otrzymują +1 naprzód.</li>
+<li><b>Przysięga Krwi:</b> Możesz przelać własną krew, by przypieczętować obietnicę. Jeśli ją dotrzymasz, zaznacz PD, gdy przysięga zostanie spełniona. Jeśli ją złamiesz, dostajesz -1 ciągłe, dopóki nie odpokutujesz.</li>
+<li><b>Furia Burzy:</b> Kiedy walczysz na zewnątrz w wietrze, deszczu albo burzy, twoje ataki zyskują `silna`.</li>
+<li><b>Tropiciel Groz:</b> Kiedy stajesz naprzeciw Grozy albo tworu Grozy, możesz zadać MG jedno pytanie o jej słabość albo lęk, zanim zadziałasz.</li>
+<li><b>Nierozerwalna Więź Mutu:</b> Kiedy sojusznik w zasięgu miałby otrzymać obrażenia, możesz je przyjąć zamiast niego. Jeśli to zrobisz, zadajesz +1k4 obrażeń przy następnym ataku.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Zdobądź łup, chwałę albo terytorium, które inni uznali za nieosiągalne.</li>
+<li>Broń członka swojego mutu albo wybranej rodziny w obliczu przytłaczającej przewagi.</li>
+<li>Staw opór tyranowi, Theraninowi albo komukolwiek, kto chciałby nałożyć kajdany na wolnych.</li>
+<li>Skocz zanim spojrzysz i przeżyj, by się tym chwalić.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 12.</p>
+<ul>
+<li>Topór abordażowy (`blisko`, `brudna`, 2 sloty)</li>
+<li>Kryształowa włócznia rajdowca (`dosięg`, 2 sloty)</li>
+<li>Trollowska koszulka kolcza (1 pancerza, noszone, 2 sloty)</li>
+<li>Okrągła tarcza z herbem mutu (+1 pancerza, 2 sloty)</li>
+<li>Hak z liną (2 sloty)</li>
+<li>Worek łupów i towarów handlowych (1 slot)</li>
+<li>Flaszka ognistego trunku windlingów (1 slot)</li>
+<li>Róg sygnałowy mutu (1 slot)</li>
+<li>Osełka i oliwa do broni (małe)</li>
+<li>Żeton mutu albo odłamek kryształu (małe)</li>
+<li>Sakiewka zaklęć krwi (małe)</li>
+<li>Krzesiwo (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_trubadur" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Kronikarz/-ka Kaeru</b></p>
+<p>Urodziłeś/-aś się pod ziemią, zapamiętując opowieści o Przedtem, by mogły przetrwać. Kiedy przytaczasz utrwaloną wiedzę, by uzupełnić lukę w wiedzy, MG powie ci coś dodatkowego, co pierwotni narratorzy ukryli między wierszami.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wyszedł/-a z tego samego kaeru co ja, albo z sąsiedniego?</li>
+<li>Który/-a z was nosi historię, której jeszcze nie zapisałem/-am?</li>
+<li>Który/-a z was wątpi w historie, które zachowuję?</li>
+<li>Który/-a z was widział/-a, jak płaczę nad opowieścią, która źle się skończyła?</li>
+</ul>
+<p>---</p>
+<p><b>Tkacz/-ka Nici</b></p>
+<p>Wyczuwasz niewidzialne nici wiążące Imiona ze światem. Kiedy badasz przedmiot, miejsce lub osobę o znaczeniu, zapytaj MG: jaka nić została tu zerwana albo jaka nić czeka, by zostać utkaną?</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was ma nić, którą czuję, ale nie umiem jeszcze odczytać?</li>
+<li>Który/-a z was prosił/-a mnie, bym prześledzył/-a wzór czegoś zaginionego?</li>
+<li>Który/-a z was boi się tego, co mogę znaleźć wplecione w ich Imię?</li>
+<li>Który/-a z was poczuł/-a pociągnięcie, gdy tczę nić w pobliżu?</li>
+</ul>
+<p>---</p>
+<p><b>Nomierca Grozy</b></p>
+<p>Nauczyłeś/-aś się, że nazwanie Grozy osłabia ją, a milczenie ją karmi. Za pierwszym razem w każdej sesji, gdy wypowiadasz prawdziwe Imię Grozy, skażonego wpływu albo zakopanego wstydu, zaznacz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was słyszał/-a, jak nazywam coś, co nie powinno być nazwane?</li>
+<li>Który/-a z was widział/-a, jak drżą mi ręce po wypowiedzeniu tego Imienia?</li>
+<li>Który/-a z was uważa, że nazywanie ciemności tylko ją przywołuje?</li>
+<li>Który/-a z was ufa mi, że wiem, kiedy cisza jest bezpieczniejsza?</li>
+</ul>
+<p>---</p>
+<p><b>Wędrowny/-a Śpiewak/-czka</b></p>
+<p>Przemierzasz drogi między kaerami, niosąc wieści, pieśni i pociechę wspólnego głosu. Kiedy przybywasz do osady i występujesz dla ludzi, masz przewagę przy następnej próbie zdobycia informacji, przepustki albo schronienia.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was po raz pierwszy usłyszał/-a mój śpiew przy ognisku na poboczu?</li>
+<li>Który/-a z was zna pieśń, której nie chcę dokończyć?</li>
+<li>Który/-a z was wędrował/-a ze mną najdłużej?</li>
+<li>Który/-a z was uważa, że moje wędrowanie to ucieczka przed czymś?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Utkaj Opowieść</b></p>
+<p>Kiedy opowiadasz historię o bohaterze, miejscu lub czynie, by wzmocnić jego wzorzec, rzuć +CHA. Na 10+ wybierz 2. Na 7-9 wybierz 1.</p>
+<ul>
+<li>Jeden ze słuchaczy jest natchniony: otrzymuje +1 naprzód na swój następny ryzykowny czyn.</li>
+<li>Opowieść ujawnia ukrytą prawdę: MG dzieli się użytecznym szczegółem na temat podmiotu.</li>
+<li>Wzorzec trzyma: Znamię Grozy, skażenie albo rozpacz dotykające podmiotu słabnie w widoczny sposób.</li>
+</ul>
+<p><b>Nazwij Bezimiennego</b></p>
+<p>Kiedy wypowiadasz prawdziwe Imię stworzenia, miejsca albo skażenia Grozy, by odebrać mu moc, rzuć +CHA. Na 10+ wzdryga się, chwieje albo zostaje ujawnione takim, jakim naprawdę jest; otrzymujesz +1 naprzód przeciw niemu. Na 7-9 twoje nazwanie rani je, ale wysiłek cię kosztuje: MG mówi ci, czego ono dowiedziało się o tobie w zamian.</p>
+<p><b>Wzrok Nici</b></p>
+<p>Kiedy badasz osobę, przedmiot albo miejsce pod kątem magicznych nici wiążących je ze światem, rzuć +MDR. Na 10+ zadaj MG 2 z poniższych pytań. Na 7-9 zadaj 1.</p>
+<ul>
+<li>Jaka nić łączy to z czymś większym?</li>
+<li>Jaka nić tutaj została zerwana albo skażona?</li>
+<li>Na jakie Imię to odpowiada?</li>
+</ul>
+<p><b>Wiedza o Pladze</b></p>
+<p>Nosisz historie, które przetrwały Długą Noc. Kiedy sięgasz do swojej wiedzy o kaerze, Grozie, kulturze Imiennodawców albo świecie sprzed Plagi, rzuć +INT. Na 10+ MG mówi ci coś konkretnego i użytecznego. Na 7-9 MG mówi ci coś ogólnego i napomyka, jaka wiedza zaginęła albo została wypaczona.</p>
+<p><b>Krzepiejące Słowo</b></p>
+<p>Kiedy wlewasz odwagę w sojusznika/-czkę, który/-a jest przerażony/-a, ranny/-a albo w rozpaczy, leczy on/-a 1k4 PŻ albo strząsa z siebie strach lub przymus. Możesz to zrobić dla każdego sojusznika tylko raz na scenę.</p>
+<p><b>Przedstawienie Imion</b></p>
+<p>Kiedy cała uwaga skupia się na twoim występie i przywołujesz Imiona obecnych, każdy sojusznik w zasięgu słuchu otrzymuje +1 pancerza przeciw mocom Grozy, magicznemu strachowi i skażeniu, dopóki występ nie dobiegnie końca albo nie zostaniesz uciszony/-a.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🎶 # TRUBADUR</h2><p>*Nosisz imiona, które Plaga chciała pożreć, a gdy wymawiasz je na głos, świat przypomina sobie, czym był.*</p>
+<p><b>Kostka Obrażeń:</b> k6</p>
+<p><b>PŻ:</b> 6 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Elf:</b> Alaethia, Celedyr, Tessael, Yrethiel / Ardinn, Jael'than, Mereliath, Thandril</p>
+<p><b>Człowiek:</b> Hessa, Korina, Myla, Zetha / Aldrik, Dvarim, Jareck, Tomash</p>
+<p><b>T'skrang:</b> K'lalei, Ssrath'ali, V'striia, Zessika / Ch'taal, H'rakan, T'skarro, V'skarr</p>
+<p><b>Windling:</b> Dilli, Larke, Pim, Tassa / Brindl, Flick, Nisk, Zephik</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Naród:</b> Elf | Człowiek | T'skrang | Windling | zapytaj stołu</p>
+<p><b>Postawa:</b> opanowany/-a i nasłuchujący/-a | ożywiony/-a i gestykulujący/-a | cichy/-a, dopóki nie nadejdzie właściwy moment</p>
+<p><b>Oczy:</b> stare ponad wiek | roziskrzone zbieranymi historiami | przymknięte, jakby słysząc muzykę, której nikt inny nie słyszy</p>
+<p><b>Sylwetka:</b> gracja tancerza | podróżnik zniszczony drogą | drobny/-a i zwinnopalcy/-a</p>
+<p><b>Strój:</b> haftowany płaszcz drogowy narzucony na wyblakłe szaty | warstwy w stylu kaeru z nićmi wplecionymi w obszycia | łuskowa kamizelka performera i szarfa</p>
+<p><b>Znak szczególny:</b> głos, który wypełnia każdą salę | palce poplamione atramentem i dziennik imion | pamiątka z każdego kaeru, który otworzyłeś/-aś</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Głos Pasji:</b> Wybierz Pasję (Astendar, Floranuus, Chorrolis itp.). Kiedy odwołujesz się do jej ideałów w opowieści lub mianowaniu, twoje wybory z Utkaj Opowieść dają również +1 stałe na tę scenę każdemu, kto podziela wartości tej Pasji.</li>
+<li><b>Rozplatacz/-ka:</b> Kiedy nazywasz Grozę albo skażenie i wyrzucisz 12+, odskakuje ona całkowicie, tracąc panowanie nad jedną ofiarą, miejscem albo przedmiotem.</li>
+<li><b>Żywa Biblioteka:</b> Raz na sesję oświadcz, że znasz niejasną opowieść dokładnie na temat obecnej sytuacji. MG musi ją włączyć do rozgrywki.</li>
+<li><b>Pieśniarz/-ka Nici:</b> Kiedy tczjesz opowieść dla magicznego przedmiotu, możesz obudzić albo wzmocnić jedną nić; MG mówi ci, co ta nić teraz potrafi.</li>
+<li><b>Opowieść Tarcz:</b> Kiedy opowiadasz historię o wytrwałości podczas odpoczynku, każdy sojusznik, który słucha, leczy dodatkowe 1k6 PŻ.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Ocalić historię, Imię lub tradycję, które w przeciwnym razie przepadłyby.</li>
+<li>Nazwać Grozę, skażenie albo ukrytą prawdę, której inni boją się wypowiedzieć.</li>
+<li>Natchnąć kogoś do odważnego czynu swoimi słowami lub sztuką.</li>
+<li>Odkryć i zapisać coś nowego o świecie po Pladze.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 7.</p>
+<ul>
+<li>Dziennik imion i zestaw atramentów (1 slot)</li>
+<li>Instrument trubadura: lira, bęben lub fletnia z kości (1 slot)</li>
+<li>Płaszcz podróżny, nićmi tkany (1 pancerz, noszony, 1 slot)</li>
+<li>Krótki miecz lub długi nóż (wręcz, 1 slot)</li>
+<li>Sakwa z żetonami nici i czarami wzorców (1 slot)</li>
+<li>Kolekcja map kaerów, fragmentaryczna (1 slot)</li>
+<li>Racje drogowe i zestaw do rozpalania ognia (1 slot)</li>
+<li>Fiolka prawdziwej wody z żywego źródła (małe)</li>
+<li>Świeca z wosku mianowania (małe)</li>
+<li>Pióro wycięte z kości Grozy (małe)</li>
+<li>Ochrona przed Plagą: splot z siedmioma Imionami (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_zwiadowca" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Otwierający Kaer</b></p>
+<p>Byłeś/-aś wśród pierwszych, którzy odpieczętowali kaer i wyszli na zewnątrz po Pladze. Kiedy po raz pierwszy wchodzisz do nowej ruiny, osady albo dzikiego miejsca, zapytaj MG jedno: co się zmieniło od Plagi, co nadal działa zgodnie z przeznaczeniem albo co zostawiło tu swój ślad?</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was był/-a w kaerze, kiedy otworzyłem/-am drzwi?</li>
+<li>Który/-a z was poszedł/-a za mną w światło?</li>
+<li>Który/-a z was nie rozumie, ile kosztowały te pierwsze kroki?</li>
+<li>Który/-a z was widział/-a to, co ja widziałem/-am na zewnątrz, i zdecydował/-a się wrócić?</li>
+</ul>
+<p>---</p>
+<p><b>Czytający Koszmarne Znaki</b></p>
+<p>Nauczyłeś/-aś się czytać ślady, jakie Koszmary zostawiają na ziemi: wykrzywiony wzrost, oszalałe zwierzęta, wypaczony kamień. Kiedy badasz ślad albo okolicę w poszukiwaniu śladów przejścia Koszmarów, MG mówi ci, jak są świeże, jak potężne i w jakim kierunku prowadzą.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Którego/-ą z was odciągnąłem/-am z Koszmarem naznaczonej ścieżki?</li>
+<li>Który/-a z was sądzi, że widzę niebezpieczeństwo tam, gdzie go nie ma?</li>
+<li>Który/-a z was nosi coś, o czym podejrzewam, że nosi Koszmarne piętno?</li>
+<li>Który/-a z was widział/-a, jak zastygnąłem/-am w miejscu, bo znaki były zbyt świeże?</li>
+</ul>
+<p>---</p>
+<p><b>Tkacz Wątków Dzikiej Krainy</b></p>
+<p>Tkasz wątki z samą żywą ziemią -- czytając pogodę ze wzorców korzeni i zagrożenie ze śpiewu ptaków. Kiedy poświęcasz kilka minut na dostrojenie się do naturalnego miejsca, otrzymujesz +1 naprzód do nawigacji, zbierania albo unikania niebezpieczeństwa w tym miejscu.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was ufał/-a mojemu odczytowi ziemi i miał/-a rację?</li>
+<li>Który/-a z was uważa, że magia wątków należy tylko do miast i bibliotek?</li>
+<li>Który/-a z was szedł/-a ze mną, kiedy podążyłem/-am za wątkiem do czegoś niespodziewanego?</li>
+<li>Który/-a z was słyszał/-a, jak mówię do ziemi, i słyszał/-a, że odpowiada?</li>
+</ul>
+<p>---</p>
+<p><b>Przewodnik Ekspedycji</b></p>
+<p>Prowadziłeś/-aś już grupy przez post-Plagowy dziki świat -- nie wszyscy wrócili w całości. Kiedy prowadzisz grupę przez niebezpieczny teren, zawsze dostrzegasz pierwsze zagrożenie, zanim ono dostrzeże was.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was przeżył/-a ekspedycję, którą prowadziłem/-am?</li>
+<li>Który/-a z was wini mnie za kogoś, kto nie wrócił?</li>
+<li>Który/-a z was najął/-ęła mnie mimo mojej reputacji?</li>
+<li>Który/-a z was widział/-a, jak zawracam ze ścieżki i odmawiam wyjaśnienia dlaczego?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Odczytaj Skażenie</b></p>
+<p>Kiedy badasz stworzenie, miejsce albo przedmiot pod kątem Koszmarnego skażenia, rzuć +MDR. Na 10+ MG mówi ci jasno: czy jest skażone, jak głęboko i jaki Koszmar zostawił ślad. Na 7-9 dostajesz silne wrażenie -- skażone albo czyste -- ale szczegóły są niejasne albo niepokojące.</p>
+<p><b>Cichy Przemarsz</b></p>
+<p>Kiedy poruszasz się przez niebezpieczny teren bez wykrycia, rzuć +ZRC. Na 10+ przechodzisz niewidziany/-a i niesłyszany/-a -- wybierz jeden bonus: znajdujesz bezpieczną ścieżkę, którą mogą podążyć inni, dostrzegasz coś ukrytego albo podchodzisz dostatecznie blisko, by obserwować bez ryzyka. Na 7-9 przechodzisz, ale wybierz jeden koszt: zostawiasz ślad, coś wyczuwa twoją obecność, ale nie może cię znaleźć, albo okno bezpieczeństwa jest krótkie.</p>
+<p><b>Badawcze Spojrzenie</b></p>
+<p>Kiedy obserwujesz okolicę z punktu widokowego albo poświęcasz czas na zbadanie ruiny, zapytaj MG dwa z następujących: Gdzie jest niebezpieczeństwo? Jaka jest najbezpieczniejsza droga? Czym było to miejsce przed Plagą? Czy jest tu coś wartościowego albo użytecznego? Co było tu ostatnio?</p>
+<p><b>Zmysł Kaeru</b></p>
+<p>Kiedy wchodzisz do zapieczętowanego albo częściowo otwartego kaeru, starożytnej ruiny albo podziemnego schronienia, rzuć +MDR. Na 10+ twoje instynkty są ostre -- MG mówi ci, czy jest bezpieczne, zamieszkane albo naruszone przez Koszmarny wpływ. Na 7-9 masz przeczucie -- coś jest nie tak albo coś czeka -- ale nie wiesz co.</p>
+<p><b>Uderzenie Zwiadowcy</b></p>
+<p>Kiedy atakujesz z zasadzki albo z pozycji, o której twój cel nie wiedział, zadaj swoje obrażenia i wybierz jedno: pozostajesz ukryty/-a, unieruchamiasz cel w miejscu albo tworzysz otwarcie dla sojusznika.</p>
+<p><b>Życie z Ziemi</b></p>
+<p>Kiedy zbierasz, polujesz albo szukasz schronienia w post-Plagowym dzikim świecie, rzuć +MDR. Na 10+ znajdujesz to, czego potrzebujesz -- jedzenie, wodę, schronienie albo lecznicze zioła -- wystarczająco dla grupy. Na 7-9 znajdujesz dość dla siebie i jednej osoby, albo dość dla wszystkich, ale trwa to dłużej niż oczekiwano.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🔭 # ZWIADOWCA</h2><p>*Byłeś/-aś pierwszym/-ą za drzwiami kaeru, pierwszym/-ą, który/-a oddychał/-a zmienionym powietrzem i stanął/-ęła na ziemi, po której chodziły Koszmary. Wróciłeś/-aś. Nie każdemu się to udaje.*</p>
+<p><b>Kostka Obrażeń:</b> k6</p>
+<p><b>PŻ:</b> 6 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Człowiek:</b> Tarn, Kellis, Brogan, Wulf / Meren, Ashild, Dagna, Lys</p>
+<p><b>Elf:</b> Thenvael, Lirael, Quarion, Daelis / Aelindra, Sylieth, Miraen, Caelith</p>
+<p><b>Krasnolud:</b> Gundrek, Borin, Thorgal, Keldas / Brenna, Hilda, Sigra, Drenna</p>
+<p><b>Windling:</b> Pip, Zik, Thistlebright, Fenn / Lira, Wix, Dawnmote, Kiri</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Lud:</b> Człowiek | Elf | Krasnolud | Windling | zapytaj stołu</p>
+<p><b>Postawa:</b> cichy/-a i czujny/-a | spięty/-a i gotowy/-a do ruchu | spokojny/-a, dopóki nie nadejdzie zagrożenie</p>
+<p><b>Oczy:</b> nieustannie skanujące | zmrużone od słońca i wiatru | spokojne, ale nic im nie umyka</p>
+<p><b>Sylwetka:</b> szczupły/-a i zahartowany/-a pogodą | zwarty/-a i niezmordowany/-a | drobny/-a i nieprawdopodobnie szybki/-a</p>
+<p><b>Strój:</b> podróżnymi plamami pokryte skóry i warstwowe płaszcze | kamuflażowe owijki w kolorach ziemi | lekki zwiadowczy rynsztunek z wieloma kieszeniami</p>
+<p><b>Znak szczególny:</b> nacięty na ostrzu rejestr Koszmarnych znaków | futerał na mapy nigdy nie wypuszczany z ręki | gałązka żywej rośliny ze starego świata</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Weteran Naznaczony Koszmarem:</b> Stanąłeś/-aś twarzą w twarz z Koszmarem i przeżyłeś/-aś. Jesteś odporny/-a na zwykły strach, a kiedy stawiasz czoło Koszmarnemu przerażeniu, dostajesz +1 do oporu.</li>
+<li><b>Wzrok Wątków:</b> Kiedy skupiasz się na magicznym wątku -- swoim albo cudzym -- możesz go prześledzić do jego kotwicy. MG mówi ci kierunek i przybliżony dystans.</li>
+<li><b>Zniknięcie:</b> Kiedy jesteś w naturalnym terenie, możesz po prostu zniknąć. Bez rzutu. Znalezienie ciebie wymaga magii albo nadludzkich zmysłów.</li>
+<li><b>Martwy Rachunek:</b> Nigdy się nie gubisz. Nawet pod ziemią, nawet w astralnej mgle, nawet w Koszmarem wypaczonym terenie -- zawsze wiesz, który kierunek prowadzi do bezpieczeństwa.</li>
+<li><b>Skoordynowana Zasadzka:</b> Kiedy przygotowujesz zasadzkę i twoi sojusznicy podążają za twoim sygnałem, każdy z zasadzki otrzymuje +1 naprzód na swoją pierwszą akcję.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Wejdź pierwszy/-a w niebezpieczne miejsce, żeby inni nie musieli.</li>
+<li>Odkryj zagubiony kaer, ruinę albo osadę i dowiedz się, co się tam stało.</li>
+<li>Zidentyfikuj Koszmarne skażenie, zanim się rozszerzy.</li>
+<li>Przeprowadź kogoś bezpiecznie przez zmieniony świat.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 9.</p>
+<ul>
+<li>Łuk zwiadowczy (`blisko`, `daleko`, 2 sloty)</li>
+<li>Długi nóż (`wręcz`, 1 slot)</li>
+<li>Płaszcz kamuflażowy -- tkany pomniejszą magią wątków (1 slot)</li>
+<li>Futerał kartografa -- mapy, węgiel, czysty welum (1 slot)</li>
+<li>Lina i zestaw wspinaczkowy (1 slot)</li>
+<li>Racje żywnościowe -- suszone zapasy kaeru i zbieranina (1 slot)</li>
+<li>Polowy przewodnik po Koszmarnych znakach -- szkice i ostrzeżenia od poprzednich zwiadowców (1 slot)</li>
+<li>Zestaw ogniowy -- krzesiwo, hubka i proszek sygnałowy (małe)</li>
+<li>Sakwa uzdrowiciela -- mech, maść, czyste bandaże (małe)</li>
+<li>Gwizdek z kości windlinga -- trzy tony, trzy znaczenia (małe)</li>
+<li>Gałązka żywego jesionu -- przypomnienie świata sprzed Plagi (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+<div id="pl_optional_moves" class="playbook-content lang-pl"><div class="optional-moves-container"><div class="card"><h2>📜 # Ruchy Opcjonalne — Earthdawn</h2><p>---</p>
+<p><b>Zejdź do Kaeru</b></p>
+<p>Kiedy wchodzisz do zapieczętowanego kaeru, zapomnianej cytadeli albo ruin zamkniętych od czasów Plagi, rzuć +MDR. Na 10+ wybierz 2. Na 7-9 wybierz 1.</p>
+<ul>
+<li>Odczytujesz pieczęcie i znaki na tyle dobrze, by wiedzieć, co się tu włamało.</li>
+<li>Znajdujesz ślady ocalałych, zapasy albo bezpieczną drogę w głąb.</li>
+<li>Dostrzegasz, gdzie architektura została wykrzywiona przez obecność Horroru, zanim on zauważy ciebie.</li>
+</ul>
+<p>---</p>
+<p><b>Wyczuj Piętno Horroru</b></p>
+<p>Kiedy otwierasz się na plan astralny, aby wykryć skażenie Horroru na istocie, miejscu lub przedmiocie, rzuć +MDR. Na 10+ wyraźnie postrzegasz naturę i głębię korupcji — MG powie ci, jakiego rodzaju jest ten wpływ Horroru i jak daleko się rozprzestrzenił. Na 7-9 wyczuwasz skażenie, ale wybierz jedno: kontakt daje Horrorowi wgląd w ciebie, wizja jest niepełna i MG podaje ci tylko fragment, albo wysiłek zostawia cię wstrząśniętym — bierzesz utrudnienie naprzód.</p>
+<p>---</p>
+<p><b>Upleć Nić</b></p>
+<p>Kiedy próbujesz upleść magiczną nić z magicznym przedmiotem, miejscem mocy albo wzorcem, który przestudiowałeś, rzuć +INT. Na 10+ nić się zawiązuje — odblokowujesz następną zdolność przedmiotu albo uzyskujesz poszukiwany wgląd. Na 7-9 nić się łączy, ale wybierz jedno: tkanie przyciąga niechcianą uwagę z planu astralnego, musisz poświęcić coś osobistego, by zakotwić nić, albo połączenie jest kruche i pęknie, jeśli otrzymasz obrażenia przed następnym odpoczynkiem.</p>
+<p>---</p>
+<p><b>Przejdź przez Skażoną Ziemię</b></p>
+<p>Kiedy drużyna podróżuje przez zdewastowaną dzicz po Pladze — splamione lasy, zawalone szlaki handlowe, skażone rzeczne przejścia albo pustkowia blisko Krwawego Lasu — rzuć +KON. Na 10+ wybierz 2. Na 7-9 wybierz 1.</p>
+<ul>
+<li>Omijacie najgorsze resztki skażenia i zatrutą ziemię.</li>
+<li>Znajdujecie punkt orientacyjny, stary drogowskaz albo schronienie, które wciąż trzyma.</li>
+<li>Dostrzegacie konstrukcję Horroru, patrol trupów kadawerowych albo zasadzkę, zanim się zamknie wokół was.</li>
+</ul>
+<p>---</p>
+<p><b>Negocjuj w Cieniu Imperium</b></p>
+<p>Kiedy masz do czynienia z agentami Thery, rywalizującymi domami kupieckimi albo wpływowymi postaciami, których lojalność jest podzielona między Barsaive a Imperium Therańskie, rzuć +CHA. Na 10+ wybierz 2. Na 7-9 wybierz 1.</p>
+<ul>
+<li>Dowiadujesz się, czego naprawdę chcą pod warstwą polityki.</li>
+<li>Uzyskujesz porozumienie, które nie kosztuje twojej wolności ani honoru.</li>
+<li>Opuszczasz spotkanie, nie dając im przewagi nad tobą ani twoimi sojusznikami.</li>
+</ul></div></div></div>
+
+    <div id="pl_adventures" class="playbook-content lang-pl">
+        <div class="main-column" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2rem;">
+            <div class="card adventure-generator-card">
+                <h2>✨ Generator Przygód — Earthdawn Generator</h2>
+                <div class="generator-result" id="rng-result-pl">
+                    ...
+                </div>
+                <div class="generator-actions">
+                    <button type="button" class="lang-toggle active rng-roll-btn" onclick="generateAdventure('pl')">🎲 Losuj / Roll</button>
+                </div>
+            </div>
+            
+            <div class="adventure-tables-grid" id="rng-tables-pl">
+    
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 1: Akcja i Wygenerowane Miejsce</h3>
+                    <div class="adventure-prefix">Odkrywamy</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">zapieczętowany kaer, który właśnie pękł</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">starożytną therańską wieżę obserwacyjną</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">na wpół zatopioną łódź rzeczną T'skrangów</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">posterunek krwawych elfów na skraju Krwawego Lasu</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">trolli kryształowy statek najeźdźczy, osiadły na mieliźnie i cichy</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">obsidimiański kamień życia, pęknięty i sączący kamień</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">krasnoludzki posterunek handlowy porzucony przed Plagą</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">świątynię Pasji zarośniętą cierniami i grzybami</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">kopalnię nawiedzoną przez Horrory w Górach Throalu</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">zapomnianą bibliotekę pod wioską imieniodawców</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">elementalną kuźnię wciąż płonącą po stuleciach</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">osadę windlingów ukrytą wśród gigantycznych drzew</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">lęgowisko kadawerów</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">wrak statku powietrznego zaplątany w korony drzew</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">skażone źródło wody zaopatrujące kilka wiosek</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">kaer, którego mieszkańcy nigdy nie wyszli</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">karawanę kupiecką skamieniałą w pół drogi</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">opuszczone leże smoka</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">therański kompleks przetwarzania niewolników</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">kamienny krąg, w którym plan astralny przesącza się na wierzch</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 2: Położenie i Geografia</h3>
+                    <div class="adventure-prefix">która leży</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">głęboko w Górach Throalu</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">wzdłuż brzegów Rzeki Węża</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">na skażonym skraju Krwawego Lasu</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">pod ruinami miasta sprzed Plagi</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">na unoszącej się wyspie ziemnej przytwierdzonej starożytnymi łańcuchami</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">w Dżungli Servos, gdzie żadne szlaki nie przetrwały</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">pośród solnisk Szkarłatnego Morza</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">wysoko na ścianie klifu nad Rzeką Zwoju</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">w sieci tuneli lawowych blisko Morza Śmierci</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">poza zasięgiem patroli therańskiego garnizonu</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">tam, gdzie Jałowe Ziemie stykają się z ostatnimi zielonymi wzgórzami</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">w zalanym kanionie wyżłobionym przez wody roztopowe</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">pod wioską imieniodawców, którzy nic o tym nie wiedzą</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">w kryształowej jaskini pulsującej astralną energią</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">na wybrzeżu Morza Aras, szarpanym przez nienaturalne burze</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">na skrzyżowaniu trzech porzuconych szlaków handlowych</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">za pieczęciami, które wciąż migoczą gasnącą magią</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">w trolli sali narad wybudowanej w żywej skale</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">wzdłuż jedynej przełęczy przez Szczyty Zmierzchu</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">tam, gdzie ziemia jest splamiona krwią Horroru, która nigdy nie wysycha</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 3: Cel</h3>
+                    <div class="adventure-prefix">prowadząc do</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">zapieczętowanego kaeru, którego bramy nigdy nie otworzyły się po Pladze.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">porośniętych ruin zapomnianej therańskiej placówki.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">kryształowego gaju wyrosłego wokół snu rannego smoka.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">zatopionych skarbców pod opuszczonym portem handlowym T'skrangów.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">komnaty kamienia życia obsidimanów pękniętej od znaków Horroru.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">ukrytych gniazd wysoko nad windlingowym królestwem w koronach drzew.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">labiryntu krwawych pieczęci pod dworem upadłego rodu.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">podniebnego doku wiszącego cicho nad kanionem burz.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">osmalonej świątyni Pasji, której nikt nie chce nazywać.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">karawanowego szlaku pochłoniętego przez jadowite pnącza dżungli.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">żywiołowego pieca pod ruinami krasnoludzkiej odlewni.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">therańskiego amfiteatru zamienionego przez najeźdźców w zagrodę dla niewolników.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">pogrzebanej biblioteki maga, który mapował ścieżki nici na kościach.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">solniska, nad którym świetlne zjawy krążą wokół nieotwartego kurhanu.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">strzaskanego mostu nad wąwozem nawiedzanym przez duchy powietrza.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">orczego obozu wojennego zbudowanego wokół pomnika sprzed Plagi.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">księżycowych sadzawek, przy których gromadzą się skażone żywiołaki wody.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">górskiego sanktuarium ukrytego w pustej skale i bronionego przez dawne pieczęcie.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">tajnego dworu ducha dżungli związanego starymi paktami.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">pola bitwy napiętnowanego przez Horror, wciąż dudniącego uwięzionymi okrzykami walki.</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 4: Cel Misji</h3>
+                    <div class="adventure-prefix">Jesteśmy tutaj, aby</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">bezpiecznie otworzyć kaer, zanim coś w środku otworzy go pierwsze</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">uwolnić imieniodawców zniewolonych przez therańską ekspedycję</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">zniszczyć kotwicę Horroru, zanim zdoła się w pełni zmaterializować</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">wynegocjować pokój między dwiema społecznościami walczącymi o skąpe zasoby</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">zmapować ruiny, by Throal mógł wysłać właściwą ekspedycję</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">eskortować kwestora Pasji do świętego miejsca przez wrogie terytorium</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">odzyskać magiczny przedmiot, zanim wpadnie w niepowołane ręce</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">zapieczętować astralną szczelinę przyciągającą Horrory do okolicy</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">udowodnić, że miejscowy lord nosi piętno Horroru</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">wyznaczyć szlak handlowy przez terytorium, którego nikt nie przekroczył od Plagi</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">złamać klątwę magii krwi nałożoną na społeczność imieniodawców</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">bronić nowo otwartego kaeru, podczas gdy jego ludzie poznają nowy świat</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">zinfiltrować therańską twierdzę, by uwolnić więźniów</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">wynegocjować z T'skrangami rzeczne przejście dla krasnoludzkich kupców</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">wykonać rytuał, który uspokoi niespokojnych zmarłych</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">wytropić konstrukcję Horroru terroryzującą okolicę</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">dostarczyć ostrzeżenie, zanim spadnie kolejny atak</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">zebrać sojuszników z rozproszonych społeczności do wspólnego oporu</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">odkryć, kto sabotował statek powietrzny i dlaczego</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">dokończyć dzieło adeptów, którzy zginęli, zanim mogli je ukończyć</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 5: Główne Zagrożenie / Przeszkody</h3>
+                    <div class="adventure-prefix">strzeżony przez</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">kadaweryczan szurających przez zawalone korytarze</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">therańskie wojenne golemy wciąż wypełniające starożytne rozkazy</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">zdesperowanych zbieraczy zabijających dla skrawków orichalcum</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">skażone żywiołaki związane z kruszejącymi pieczęciami</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">plemię zdziczałych, którzy zapomnieli swego dziedzictwa imieniodawców</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">konstrukcje Horrorów patrolujące w milczącej formacji</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">kryształowych najeźdźców żądających trybutu za przejście</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">krwawe ciernie i żywą roślinność skrzywioną przez Krwawy Las</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">pułapki i pieczęcie ustawione przez paranoicznych mieszkańców kaeru dawno zmarłych</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">watahę bojowych wilków zwęszonych magią</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">therańskich żołnierzy-niewolników bez własnej woli</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">orcze szturmowce uznające to terytorium za swoje</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">duchy zdradzonych zmarłych, niezdolne odróżnić przyjaciela od wroga</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">roje owadów hodowane w skażonych jamach Horrorów</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">kruszący się labirynt, który się przesuwą, gdy nikt nie patrzy</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">najemników wynajętych przez rywalski dom kupiecki</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">rzecznych piratów T'skrangów blokujących jedyne podejście</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">grzybiaste narośla uwalniające zarodniki szaleństwa</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">ożywione kamienne posągi starsze od Plagi</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">alarm magii krwi przywołujący gorsze rzeczy po wyzwoleniu</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 6: Główny Antagonista</h3>
+                    <div class="adventure-prefix">i</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">Horroru noszącego twarz ukochanego przywódcy kaeru.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">therańskiego magistra, który spali wszystko, by ukryć porażkę Imperium.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">skażonego kwestora Pasji głoszącego skrzywione oddanie.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">smoka rozgrywającego wszystkie strony dla własnych nieodgadnionych celów.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">krwawego elfa-rycerza, który nie potrafi przestać zabijać i nie chce.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">nekromantę, który targował się z Horrorem i wierzy, że wygrał.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">trolliego watażkę budującego armię z rozbitków ocalałych kaerów.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">kadaweryczan-generała z dość sprytu, by poprowadzić oblężenie.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">Horroru, który żerował na tym kaerze przez stulecia i uważa go za dom.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">therańskiego kapitana niewolników, którego statek powietrzny panuje nad niebem.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">obsidimana skażonego przy kamieniu życia, roznoszącego skazę wśród braci.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">windlingowego szpiega, którego lojalność kupiono za therańskie złoto dawno temu.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">ostatniego adepta wymarłej dyscypliny, gotowego zabijać, by chronić jej sekrety.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">ducha zemsty, który zapomniał, czym jest sprawiedliwość.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">orczego watażkę zaprzysiężonego Horrorowi, nie znając jego prawdziwej natury.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">książę kupieckiego, którego magia krwi utrzymuje całe miasto w uległości.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">bezimiennego Horroru, który przemawia wyłącznie przez sny dzieci.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">założyciela kaeru, utrzymywanego przy życiu straszliwymi środkami, wciąż żądającego posłuszeństwa.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">T'skrangi aropagoi, który poświęcił swój niall dla osobistej mocy.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">jednego z naszych towarzyszy, naznaczonego przez Horror w sekrecie jeszcze przed naszym przybyciem.</span></li>
+</ul>
+                </div>
+        
+
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_nethermancer" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Kaer Nethermancer</b></p>
+<p>You were your kaer's watcher against the Horrors, the one who tested the wards from inside. When you examine a sealed place, ward, or magical barrier, ask the GM one: what breached it, what holds it together, or what waits on the other side.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you lived in the kaer I protected?</li>
+<li>Which of you has seen the marks the Scourge left on me?</li>
+<li>Which of you trusts my judgment about Horror corruption?</li>
+<li>Which of you believes my vigil broke something inside me?</li>
+</ul>
+<p>---</p>
+<p><b>Astral Cartographer</b></p>
+<p>You map the hidden terrain of astral space, charting corruption, spirit currents, and thread anchors. When you spend time studying the astral landscape of a location, take +1 forward to any move involving magic, spirits, or Horror-taint in that area.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has carried one of my astral charts and seen it prove true?</li>
+<li>Which of you wandered into a place I warned was corrupted?</li>
+<li>Which of you thinks I see things that are not there?</li>
+<li>Which of you wants me to read the astral marks on something they carry?</li>
+</ul>
+<p>---</p>
+<p><b>Spirit Broker</b></p>
+<p>You negotiate with the dead as others negotiate at market. When you offer a spirit something it wants -- a name spoken, a debt settled, a body buried -- it must answer one question honestly or perform one small service before departing.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has a dead companion whose spirit I have spoken with?</li>
+<li>Which of you owes a debt to the dead that I helped broker?</li>
+<li>Which of you thinks dealing with spirits is a path to Horror-mark?</li>
+<li>Which of you watched me pay a price they thought was too high?</li>
+</ul>
+<p>---</p>
+<p><b>Horror Stalker</b></p>
+<p>You have touched Horror-taint and walked away changed. When you sense a Horror or its construct for the first time, the GM tells you one thing about its nature, its weakness, or its hunger.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you was there when I first touched the Horror-taint?</li>
+<li>Which of you checks me for corruption when they think I am not looking?</li>
+<li>Which of you knows that what I hunt also hunts me?</li>
+<li>Which of you would put me down if I turned?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Astral Sight</b></p>
+<p>When you open your perception to the astral plane, roll +INT. On a 10+, the GM describes the astral condition of your surroundings: threads, corruption, spirit presence, magical wards. On a 7-9, you see clearly, but something in astral space notices you looking.</p>
+<p><b>Summon Ally Spirit</b></p>
+<p>When you call a spirit from the netherworld and bind it to service, roll +INT. On a 10+, it appears and serves faithfully for the scene -- choose its nature: messenger, guardian, or spy. On a 7-9, it serves, but it demands something: a memory, a drop of blood, or a future favor.</p>
+<p><b>Spirit Tongue</b></p>
+<p>When you speak with the dead -- a corpse, a haunt, or a lingering presence -- you may ask them two questions. They must answer, though the dead remember imperfectly and see through the lens of their last emotions.</p>
+<p><b>Horror Ward</b></p>
+<p>When you inscribe protective sigils against Horror influence on a person, object, or threshold, roll +INT. On a 10+, the ward holds strong -- the next Horror-taint, possession attempt, or astral intrusion targeting the warded subject fails. On a 7-9, the ward holds but cracks: it will stop one attempt, then break.</p>
+<p><b>Thread Weaving</b></p>
+<p>When you weave a magical thread between yourself and a place, object, or willing person, mark the connection. While the thread holds, you can sense strong emotions, danger, or corruption affecting the other end, regardless of distance. You can maintain threads equal to your INT (minimum 1).</p>
+<p><b>Nethermantic Bolt</b></p>
+<p>When you channel raw netherworld energy at a target, deal your damage at `near`. The bolt is cold, dark, and visible in astral space.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Banish the Unbound:</b> When you confront a free-roaming spirit or astral entity and command it to depart, roll +INT. On a 10+, it is driven back across the veil. On a 7-9, it goes, but it remembers you.</li>
+<li><b>Blood Oath Reading:</b> When you taste blood willingly given, you learn one truth about the giver: their deepest fear, their strongest bond, or whether they bear Horror-taint.</li>
+<li><b>Astral Fortress:</b> When you fortify a camp or shelter with astral wards, the group cannot be surprised by spirits, undead, or Horror constructs while resting there.</li>
+<li><b>Deeper Sight:</b> When you use <b>Astral Sight</b>, on a 12+ you may also ask the GM: what is hidden here, what was here before, or what thread connects this place to another?</li>
+<li><b>Speak with Horror:</b> You may attempt to communicate with a Horror or its construct. The GM will tell you what it wants. This does not make it friendly.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>☠️ # NETHERMANCER</h2><p>*The dead speak freely to those who know the right questions. The Horrors speak too -- but you have learned not to answer.*</p>
+<p><b>Damage Die:</b> d4</p>
+<p><b>HP:</b> 4 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Human:</b> Karon, Vestil, Nerath, Edric / Sienna, Morwen, Thael, Luccia</p>
+<p><b>Elf:</b> Vaelun, Ithrendal, Morvith, Caelen / Sylivael, Naerith, Ithila, Faelwen</p>
+<p><b>Obsidiman:</b> Granthet, Volundr, Basaltrin, Oremead / Stondelith, Quarria, Feldspar, Andesine</p>
+<p><b>T'skrang:</b> Vizsk, Rathaal, K'lessik, Ssoran / T'vasha, Niilsk, Sz'renna, Kalissk</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>People:</b> Human | Elf | Obsidiman | T'skrang | ask the table</p>
+<p><b>Bearing:</b> unnervingly still | hunched from years of study | moves as if listening to something unseen</p>
+<p><b>Eyes:</b> rimmed with astral fatigue | pale and distant | flickering with spirit-sight</p>
+<p><b>Build:</b> gaunt and hollow-cheeked | slight and precise | heavy with elemental stillness</p>
+<p><b>Clothing:</b> layered robes marked with astral sigils | dark leathers stained with reagents | formal adept vestments, frayed at the edges</p>
+<p><b>Signature:</b> a spirit lodestone | cadaver ink stains on fingers | the faint smell of ozone and old bone</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Uncover the truth about a Horror, spirit, or astral mystery.</li>
+<li>Protect someone from corruption they do not yet see.</li>
+<li>Use the fear others have of your discipline to achieve something without violence.</li>
+<li>Pay a personal cost to keep the netherworld from spilling into the living world.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 7.</p>
+<ul>
+<li>Nethermantic focus -- lodestone or bone wand (magical, near, 1 slot)</li>
+<li>Cadaver ink and quill for sigils (1 slot)</li>
+<li>Spirit trap -- a warded crystal flask (1 slot)</li>
+<li>Astral compass -- a spinning needle in a sealed glass (1 slot)</li>
+<li>Adept robes, layered and sigil-stitched (1 slot)</li>
+<li>Reagent pouch -- gravebloom, ash of True elements, powdered orichalcum (1 slot)</li>
+<li>Netherworld journal -- observations and astral sketches (1 slot)</li>
+<li>Thread anchor token -- a keepsake from someone you are bound to (small)</li>
+<li>Vial of blood paint (small)</li>
+<li>Bone dice for spirit augury (small)</li>
+<li>Mourning candle (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_scout" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Kaer Opener</b></p>
+<p>You were among the first to unseal your kaer and step outside after the Scourge. When you enter a new ruin, settlement, or wild place for the first time, ask the GM one: what has changed since the Scourge, what still works as it was meant to, or what left its mark here?</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you was in the kaer when I opened the door?</li>
+<li>Which of you followed me out into the light?</li>
+<li>Which of you does not understand what those first steps cost?</li>
+<li>Which of you saw what I saw outside and chose to go back in?</li>
+</ul>
+<p>---</p>
+<p><b>Horror-Mark Reader</b></p>
+<p>You have learned to read the signs Horrors leave on the land: twisted growth, maddened animals, warped stone. When you study a trail or area for signs of Horror passage, the GM tells you how recent, how powerful, and in which direction.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you have I pulled back from a Horror-marked path?</li>
+<li>Which of you thinks I see danger where there is none?</li>
+<li>Which of you carries something I suspect bears a Horror-mark?</li>
+<li>Which of you has seen me freeze when the signs were too fresh?</li>
+</ul>
+<p>---</p>
+<p><b>Wilderness Thread Weaver</b></p>
+<p>You weave threads to the living land itself -- reading weather in root patterns and danger in birdsong. When you spend a few minutes attuning to a natural place, take +1 forward to navigate, forage, or avoid danger there.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has trusted my reading of the land and been proven right?</li>
+<li>Which of you thinks thread magic belongs only in cities and libraries?</li>
+<li>Which of you walked with me when I followed a thread to something unexpected?</li>
+<li>Which of you has seen me speak to the land and heard it answer?</li>
+</ul>
+<p>---</p>
+<p><b>Expedition Pathfinder</b></p>
+<p>You have guided groups through post-Scourge wilderness before -- not all of them came back whole. When you lead a group through dangerous terrain, you always spot the first danger before it spots you.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you survived an expedition I led?</li>
+<li>Which of you blames me for someone who did not come back?</li>
+<li>Which of you hired me despite my reputation?</li>
+<li>Which of you has seen me turn back from a path and refuse to explain why?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Read the Corruption</b></p>
+<p>When you study a creature, place, or object for signs of Horror-taint, roll +WIS. On a 10+, the GM tells you clearly: is it tainted, how deeply, and what kind of Horror left the mark. On a 7-9, you get a strong impression -- tainted or clean -- but the details are unclear or unsettling.</p>
+<p><b>Silent Passage</b></p>
+<p>When you move through dangerous terrain without being detected, roll +DEX. On a 10+, you pass unseen and unheard -- choose one bonus: you find a safe path others can follow, you spot something hidden, or you get close enough to observe without risk. On a 7-9, you pass through, but choose one cost: you leave a trail, something senses you but cannot find you, or the safe window is brief.</p>
+<p><b>Scouring Eye</b></p>
+<p>When you survey an area from a vantage point or spend time studying a ruin, ask the GM two of the following: Where is the danger? What is the safest way through? What was this place before the Scourge? Is there something valuable or useful here? What has been here recently?</p>
+<p><b>Kaer Sense</b></p>
+<p>When you enter a sealed or partially opened kaer, ancient ruin, or underground shelter, roll +WIS. On a 10+, your instincts are sharp -- the GM tells you whether it is safe, occupied, or compromised by Horror influence. On a 7-9, you get a feeling -- something is wrong, or something is waiting -- but not what.</p>
+<p><b>Pathfinder's Strike</b></p>
+<p>When you attack from ambush or from a position your target did not know you occupied, deal your damage and choose one: you remain hidden, you pin them in place, or you create an opening for an ally.</p>
+<p><b>Live Off the Land</b></p>
+<p>When you forage, hunt, or find shelter in the post-Scourge wilderness, roll +WIS. On a 10+, you find what you need -- food, water, shelter, or medicinal herbs -- enough for the group. On a 7-9, you find enough for yourself and one other, or enough for all but it takes longer than expected.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Horror-Scarred Veteran:</b> You have faced a Horror directly and survived. You are immune to mundane fear, and when you face Horror-spawned terror, take +1 to resist.</li>
+<li><b>Thread Sight:</b> When you focus on a magical thread -- yours or another's -- you can trace it to its anchor. The GM tells you the direction and approximate distance.</li>
+<li><b>Vanish:</b> When you are in natural terrain, you can simply disappear. No roll needed. Finding you requires magic or superhuman senses.</li>
+<li><b>Dead Reckoning:</b> You never get lost. Even underground, even in astral fog, even in Horror-twisted terrain, you always know which direction leads to safety.</li>
+<li><b>Coordinated Ambush:</b> When you set up an ambush and your allies follow your signal, everyone in the ambush takes +1 forward on their first action.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🔭 # SCOUT</h2><p>*You were the first out of the kaer, the first to breathe changed air and step on soil the Horrors had walked. You came back. Not everyone does.*</p>
+<p><b>Damage Die:</b> d6</p>
+<p><b>HP:</b> 6 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Human:</b> Tarn, Kellis, Brogan, Wulf / Meren, Ashild, Dagna, Lys</p>
+<p><b>Elf:</b> Thenvael, Lirael, Quarion, Daelis / Aelindra, Sylieth, Miraen, Caelith</p>
+<p><b>Dwarf:</b> Gundrek, Borin, Thorgal, Keldas / Brenna, Hilda, Sigra, Drenna</p>
+<p><b>Windling:</b> Pip, Zik, Thistlebright, Fenn / Lira, Wix, Dawnmote, Kiri</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>People:</b> Human | Elf | Dwarf | Windling | ask the table</p>
+<p><b>Bearing:</b> quiet and watchful | coiled and ready to move | relaxed until danger comes</p>
+<p><b>Eyes:</b> constantly scanning | narrowed against sun and wind | calm but missing nothing</p>
+<p><b>Build:</b> lean and weather-hardened | compact and tireless | small and impossibly quick</p>
+<p><b>Clothing:</b> travel-stained leathers and layered cloaks | camouflaged wraps and earth tones | light scout harness with many pockets</p>
+<p><b>Signature:</b> Horror-mark tally carved into a blade | a map case never out of reach | a sprig of living plant from the old world</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Be the first to enter a dangerous place so others do not have to.</li>
+<li>Discover a lost kaer, ruin, or settlement and learn what happened there.</li>
+<li>Identify Horror corruption before it spreads.</li>
+<li>Guide someone safely through the changed world.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 9.</p>
+<ul>
+<li>Scout bow (near, far, 2 slots)</li>
+<li>Long knife (hand, 1 slot)</li>
+<li>Camouflage cloak -- woven with minor thread magic (1 slot)</li>
+<li>Wayfinder's map case -- charts, charcoal, blank vellum (1 slot)</li>
+<li>Rope and climbing kit (1 slot)</li>
+<li>Trail rations -- dried kaer provisions and foraged supplements (1 slot)</li>
+<li>Horror-mark field guide -- sketches and warnings from previous scouts (1 slot)</li>
+<li>Fire kit -- flint, tinder, and signal powder (small)</li>
+<li>Healer's pouch -- moss, salve, clean bandages (small)</li>
+<li>Whistle carved from windling bone -- three notes, three meanings (small)</li>
+<li>Sprig of living ashwood -- a reminder of the world before (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_sky_raider" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Crystal Raider of the Twilight Peaks</b></p>
+<p>You were raised among the crystal raiders, where the moot is family, and the sky is law. When you invoke the honor of your moot to demand hospitality, passage, or parley from another aerial group, roll +CHA. On a 10+, they respect the code and oblige. On a 7-9, they demand a gift, a contest, or a favor first.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you survived a raid I led or witnessed?</li>
+<li>Which of you has shared a fire with me on an airship deck under the stars?</li>
+<li>Which of you do I suspect is afraid of heights?</li>
+<li>Which of you carries something I once wanted to take but chose not to?</li>
+</ul>
+<p>---</p>
+<p><b>Kaer-Breaker</b></p>
+<p>Your moot was among the first to pry open sealed kaers after the Scourge, claiming salvage rights on what the world forgot. When you force open a sealed passage, locked vault, or barricaded door, take advantage.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you came from a kaer my people opened?</li>
+<li>Which of you thinks I treat the dead without enough respect?</li>
+<li>Which of you has seen what can still be living inside a sealed kaer?</li>
+<li>Which of you owes their freedom to my moot's crowbars and courage?</li>
+</ul>
+<p>---</p>
+<p><b>Storm-Sworn Reaver</b></p>
+<p>You pledged yourself to the wind and storm, and it answers in kind. When you fight on the deck of a moving vessel, on a bridge, on a cliff-face, or anywhere the wind howls, take +1 forward to your first attack.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has sailed with me through a tempest?</li>
+<li>Which of you thinks my vows to the storm are madness?</li>
+<li>Which of you pulled me back from a fall I should not have survived?</li>
+<li>Which of you do I believe has the heart of a sky raider, whether they know it or not?</li>
+</ul>
+<p>---</p>
+<p><b>Exile of a Fallen Moot</b></p>
+<p>Your moot was destroyed -- by Horrors, treachery, or Theran chains. You carry its name alone now. The first time each session you take a risk to avenge, honor, or rebuild what your moot lost, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows what destroyed my moot?</li>
+<li>Which of you has heard me speak the names of the dead when I think no one listens?</li>
+<li>Which of you do I want to claim as moot-kin, though I haven't said so?</li>
+<li>Which of you fears I will drag the group into my private war?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Battle Shout</b></p>
+<p>When you roar a war cry as you charge into melee, roll +STR. On a 10+, choose 2. On a 7-9, choose 1.</p>
+<ul>
+<li>Your enemies flinch, hesitate, or scatter before your charge.</li>
+<li>An ally who hears you takes +1 forward on their next action.</li>
+<li>You close the distance instantly, ignoring obstacles or terrain between you and your foe.</li>
+</ul>
+<p><b>Sky Weaving</b></p>
+<p>When you leap between airship decks, swing from rigging, or traverse a precarious height in combat, roll +DEX. On a 10+, you land exactly where you want and may strike immediately. On a 7-9, you get there but choose one: you drop something, you take a blow on the way, or you end up exposed.</p>
+<p><b>Fireblood</b></p>
+<p>When you take damage and let rage flood through you instead of flinching, you may deal +1d4 damage on your next attack. If you do, the GM will tell you what reckless thing your fury also causes.</p>
+<p><b>Down Strike</b></p>
+<p>When you attack a foe from above -- leaping from a mast, a cliff, a mount, or anything higher than your enemy -- your attack gains `forceful` and `messy`.</p>
+<p><b>Trophy of the Bold</b></p>
+<p>When you claim a trophy from a defeated foe in front of witnesses, name the deed. Until you next make camp, you take +1 forward when acting with boldness or intimidation related to that deed.</p>
+<p><b>Thread of the Moot</b></p>
+<p>You carry a thread -- a magical bond -- to your moot, your airship, or a treasured weapon passed down through raids. Name it. When you are separated from it, you always know its direction and roughly how far away it is. When you hold it and speak your moot's battle-oath, take +1 forward against a foe that has wronged your people.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Boarding Master:</b> When you lead a charge onto an enemy vessel, structure, or fortification, allies who follow you take +1 forward.</li>
+<li><b>Blood Oath:</b> You may shed your own blood to seal a promise. If you keep it, mark XP when the oath is fulfilled. If you break it, take -1 ongoing until you atone.</li>
+<li><b>Storm's Fury:</b> When you fight outdoors in wind, rain, or storm, your attacks gain `forceful`.</li>
+<li><b>Horror Stalker:</b> When you face a Horror or Horror-construct, you may ask the GM one question about its weakness or fear before you act.</li>
+<li><b>Unbreakable Moot-Bond:</b> When an ally within reach would take damage, you may take it instead. If you do, deal +1d4 damage on your next attack.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🏴‍☠️ # SKY RAIDER</h2><p>*The sky belongs to the bold. You take what the wind offers and leave nothing but thunder behind.*</p>
+<p><b>Damage Die:</b> d10</p>
+<p><b>HP:</b> 10 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Troll:</b> Grakhed, Throsk, Borthan, Kuldrak / Vyshara, Krestol, Durgha, Neelath</p>
+<p><b>Ork:</b> Charrog, Skullak, Gront, Vaghesh / Breeka, Uzhra, Thorva, Narsha</p>
+<p><b>Human:</b> Jarrick, Corwen, Hamund, Stelan / Kyra, Emera, Voss, Aldine</p>
+<p><b>T'skrang:</b> Ssarak, K'theros, V'strin, Rashaal / T'vessa, Shri'kala, N'thira, Kissha</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>People:</b> Troll | Ork | Human | T'skrang | ask the table</p>
+<p><b>Bearing:</b> commanding and fearless | wild-eyed and grinning | scarred and storm-weathered</p>
+<p><b>Eyes:</b> bright with hunger for the horizon | cold as high altitude | burning with moot-pride</p>
+<p><b>Build:</b> massive and barrel-chested | lean and wind-hardened | broad-shouldered with sky-legs</p>
+<p><b>Clothing:</b> crystal raider leathers and furs | airship crew harness | war-painted hide and trophies</p>
+<p><b>Signature:</b> a crystal riveted to the brow | braided beard weighted with plunder-tokens | a boarding axe never out of reach</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Claim plunder, glory, or territory that others said was unreachable.</li>
+<li>Defend a member of your moot or chosen family against overwhelming odds.</li>
+<li>Defy a tyrant, a Theran, or anyone who would put chains on the free.</li>
+<li>Leap before you look and survive to boast about it.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 12.</p>
+<ul>
+<li>Boarding axe (close, messy, 2 slots)</li>
+<li>Crystal-tipped raider spear (reach, 2 slots)</li>
+<li>Troll-forged chain shirt (1 armor, worn, 2 slots)</li>
+<li>Round shield with moot sigil (+1 armor, 2 slots)</li>
+<li>Grappling hook and rope (2 slots)</li>
+<li>Sack of plunder and trade goods (1 slot)</li>
+<li>Windling-brewed firebrew flask (1 slot)</li>
+<li>Signal horn of the moot (1 slot)</li>
+<li>Whetstone and weapon oil (small)</li>
+<li>Moot token or crystal shard (small)</li>
+<li>Pouch of blood charms (small)</li>
+<li>Flint and tinder (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_swordmaster" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Academy Blade of Throal</b></p>
+<p>You trained in the dwarven kingdom's finest sword-school, where technique is catalogued like engineering and every stance has a name in three languages. When you study an opponent's fighting style before engaging, ask the GM one: what training have they had, what habit will betray them, or what are they afraid of?</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has watched me practice and understood what you saw?</li>
+<li>Which of you thinks discipline is a cage rather than a gift?</li>
+<li>Which of you did I once correct on how to hold a weapon?</li>
+<li>Which of you do I consider a worthy sparring partner?</li>
+</ul>
+<p>---</p>
+<p><b>Wandering Blade-Singer</b></p>
+<p>You travel from town to ruined town, trading performances and duels for lodging and legend. When you perform a display of swordsmanship before an audience, roll +CHA. On a 10+, choose 2. On a 7-9, choose 1.</p>
+<ul>
+<li>They offer shelter, food, or information freely.</li>
+<li>A potential patron, rival, or lover reveals themselves.</li>
+<li>Word of your skill spreads; take +1 forward with people who heard of the performance.</li>
+</ul>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you saw one of my performances and was moved by it?</li>
+<li>Which of you thinks my art is frivolous in a world still scarred by Horrors?</li>
+<li>Which of you do I want to compose a blade-song about?</li>
+<li>Which of you carries a wound I gave in a duel I regret?</li>
+</ul>
+<p>---</p>
+<p><b>Duellist of a Fallen Court</b></p>
+<p>You served a noble house that was destroyed during or after the Scourge. Your blade remembers the forms of a court that no longer exists. When you invoke the etiquette of the old courts to demand a formal duel, challenge, or contest of honor, your opponent must accept or lose face before all present.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows the name of the house I served?</li>
+<li>Which of you has tried to convince me to let the past die?</li>
+<li>Which of you do I secretly wish had been born in time to see the old court?</li>
+<li>Which of you did I challenge before I understood them?</li>
+</ul>
+<p>---</p>
+<p><b>Thread-Marked Seeker</b></p>
+<p>You pursue the art of the perfect strike -- a single blow woven with thread magic into something transcendent. You have woven a thread to your blade. Name it. Once per session, when you land a decisive blow, describe a brief flash of the thread's history or the weapon's legend. Mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has felt the hum of my blade's thread and been unsettled?</li>
+<li>Which of you believes thread magic is dangerous and arrogant?</li>
+<li>Which of you do I trust to carry my blade if I fall?</li>
+<li>Which of you witnessed the moment I first wove the thread?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Riposte</b></p>
+<p>When you parry an enemy's attack and immediately counter-strike, roll +DEX. On a 10+, you avoid their blow entirely and deal your damage. On a 7-9, you trade blows -- deal your damage but take theirs as well.</p>
+<p><b>Maneuver</b></p>
+<p>When you use superior footwork, feints, or positioning to gain tactical advantage in melee, roll +DEX. On a 10+, choose 2. On a 7-9, choose 1.</p>
+<ul>
+<li>You force your opponent where you want them -- a ledge, a corner, a companion's reach.</li>
+<li>You create an opening; take +1 forward on your next attack.</li>
+<li>You keep your guard flawless; take +1 armor until you move or attack.</li>
+</ul>
+<p><b>Taunt</b></p>
+<p>When you insult, mock, or challenge a foe's skill to draw their attention and fury onto yourself, roll +CHA. On a 10+, they focus on you completely; allies acting against them take advantage. On a 7-9, you have their attention, but they come at you harder than expected -- the GM will say how.</p>
+<p><b>Blade Meditation</b></p>
+<p>When you spend a quiet moment with your blade -- cleaning it, balancing it, speaking to it -- choose one: heal 1d4 HP, clear a debility related to fear or despair, or ask the GM what your instincts tell you about the nearest danger.</p>
+<p><b>Assess the Duel</b></p>
+<p>When you cross blades with a new opponent for the first time, you may ask the GM one: are they better than me, what is their signature move, or what will they sacrifice to win?</p>
+<p><b>Flourish</b></p>
+<p>When you perform a dazzling display of bladework in the middle of combat -- spinning, cutting the air, or executing a perfect form -- choose one ally. They take +1 forward, inspired. If Horrors, spirits, or magical beings are watching, they must acknowledge your artistry; the GM will tell you how they react.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>First Blood:</b> When you deal damage to a foe who has not yet been wounded in this fight, deal +1d4 damage.</li>
+<li><b>Thread Sight:</b> You can sense the presence of active threads -- magical bonds between Namegivers and items, places, or patterns. You cannot read them, only feel them.</li>
+<li><b>Perfect Parry:</b> Once per fight, you may completely negate one melee attack against you. Describe the technique.</li>
+<li><b>Sword's Philosophy:</b> When you counsel someone about fear, loss, or purpose using a lesson from bladework, roll +WIS. On a 10+, they take +1 forward and you mark XP. On a 7-9, the lesson stings -- they take +1 forward but resent you for it.</li>
+<li><b>Dance of Death:</b> When you fight two or more foes alone, take +1 armor as long as you keep moving and do not stop to help anyone else.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🚀 # SWORDMASTER</h2><p>*Every duel is a conversation. You intend to have the last word.*</p>
+<p><b>Damage Die:</b> d8</p>
+<p><b>HP:</b> 8 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Elf:</b> Laeralith, Thandiel, Ossivane, Caelyndor / Ithilwen, Vaelari, Nyserith, Aelindra</p>
+<p><b>Human:</b> Corvain, Aldren, Joscelin, Renard / Elisse, Maren, Viviana, Seraine</p>
+<p><b>T'skrang:</b> K'rathis, Ssoravel, T'shennok, Vrissal / Lassheek, N'sahri, K'thivess, Shrissala</p>
+<p><b>Windling:</b> Pipp, Flickwing, Zennaro, Briskle / Tessari, Luminae, Wispara, Cintri</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>People:</b> Elf | Human | T'skrang | Windling | ask the table</p>
+<p><b>Bearing:</b> poised like a drawn blade | casual until the sword clears the sheath | measured and elegant</p>
+<p><b>Eyes:</b> calm and reading every movement | bright with artistic intensity | hooded and knowing</p>
+<p><b>Build:</b> lean and precise | graceful as a dancer | small but devastatingly quick</p>
+<p><b>Clothing:</b> dueling leathers with embroidered patterns | flowing silks over light mail | threadbare finery from a better time</p>
+<p><b>Signature:</b> a blade with a name | a single glove on the off-hand | a scar worn like a badge of honor</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Seek out a worthy opponent and face them blade-to-blade.</li>
+<li>Protect someone who cannot defend themselves using only your skill.</li>
+<li>Learn the name, history, or legend of a weapon, technique, or fallen master.</li>
+<li>Demonstrate that art and beauty still matter in a world scarred by Horrors.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 9.</p>
+<ul>
+<li>Thread-bonded blade (close, precise, 1 slot)</li>
+<li>Dueling dagger (hand, 1 slot)</li>
+<li>Reinforced dueling leathers (1 armor, worn, 1 slot)</li>
+<li>Buckler (+1 armor, 1 slot)</li>
+<li>Whetstone and blade oil (1 slot)</li>
+<li>Healer's kit (1 slot)</li>
+<li>Fine traveling cloak (1 slot)</li>
+<li>Journal of forms and techniques (1 slot)</li>
+<li>Blade-singer's token or patron's favor (small)</li>
+<li>Mirror for checking stance and form (small)</li>
+<li>Chalk for marking dueling circles (small)</li>
+<li>Thread-woven cord bracelet (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_troubadour" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Kaer Chronicler</b></p>
+<p>You were born underground, memorizing the tales of Before so they would survive. When you recite established lore to fill a gap in knowledge, the GM will tell you something extra that the original tellers hid between the lines.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you emerged from the same kaer as me, or one nearby?</li>
+<li>Which of you carries a story I have not yet recorded?</li>
+<li>Which of you doubts the histories I preserve?</li>
+<li>Which of you has seen me weep over a tale that ended badly?</li>
+</ul>
+<p>---</p>
+<p><b>Thread Weaver</b></p>
+<p>You sense the invisible threads that bind Names to the world. When you study an item, place, or person of significance, ask the GM: what thread was broken here, or what thread is waiting to be woven?</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has a thread I can feel but cannot yet read?</li>
+<li>Which of you has asked me to trace the pattern of something lost?</li>
+<li>Which of you fears what I might find woven into their Name?</li>
+<li>Which of you has felt the pull when I weave a thread nearby?</li>
+</ul>
+<p>---</p>
+<p><b>Horror Namer</b></p>
+<p>You learned that naming a Horror weakens it, and silence feeds it. The first time each session you speak the true Name of a Horror, a corrupt influence, or a buried shame, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has heard me name something that should not be named?</li>
+<li>Which of you saw my hands shake after I spoke that Name?</li>
+<li>Which of you thinks naming the darkness only calls it closer?</li>
+<li>Which of you trusts me to know when silence is safer?</li>
+</ul>
+<p>---</p>
+<p><b>Wandering Songsmith</b></p>
+<p>You walk the roads between kaers carrying news, songs, and the comfort of shared voice. When you arrive in a settlement and perform for the people, take advantage on your next attempt to get information, passage, or shelter.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you first heard me sing by a roadside fire?</li>
+<li>Which of you knows the song I refuse to finish?</li>
+<li>Which of you has traveled the farthest with me already?</li>
+<li>Which of you thinks my wandering is running from something?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Weave Tale</b></p>
+<p>When you tell a tale of a hero, a place, or a deed to strengthen its pattern, roll +CHA. On a 10+, choose 2. On a 7-9, choose 1.</p>
+<ul>
+<li>One listener is inspired; they take +1 forward on their next dangerous act.</li>
+<li>The tale reveals a hidden truth: the GM shares a useful detail about the subject.</li>
+<li>The pattern holds: the Horror mark, corruption, or despair touching the subject weakens visibly.</li>
+</ul>
+<p><b>Name the Nameless</b></p>
+<p>When you speak the true Name of a creature, place, or Horror-taint to strip its power, roll +CHA. On a 10+, it flinches, falters, or is revealed for what it truly is; take +1 forward against it. On a 7-9, your naming wounds it, but the effort costs you: the GM tells you what it learned about you in return.</p>
+<p><b>Thread Sight</b></p>
+<p>When you study a person, object, or place for the magical threads that bind it to the world, roll +WIS. On a 10+, ask the GM 2 of the following. On a 7-9, ask 1.</p>
+<ul>
+<li>What thread connects this to something greater?</li>
+<li>What thread here has been severed or corrupted?</li>
+<li>What Name does this answer to?</li>
+</ul>
+<p><b>Lore of the Scourge</b></p>
+<p>You carry the histories that survived the Long Night. When you consult your knowledge about a kaer, a Horror, a Namegiver culture, or the world before the Scourge, roll +INT. On a 10+, the GM tells you something specific and useful. On a 7-9, the GM tells you something general, and hints at what lore has been lost or twisted.</p>
+<p><b>Heartening Word</b></p>
+<p>When you speak courage into an ally who is afraid, wounded, or despairing, they heal 1d4 HP or shake off a fear or compulsion. You can only do this for each ally once per scene.</p>
+<p><b>Performance of Naming</b></p>
+<p>When all attention is on your performance and you invoke the Names of those present, each ally in earshot gains +1 armor against Horror powers, magical fear, and corruption until the performance ends or you are silenced.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Voice of the Passion:</b> Choose a Passion (Astendar, Floranuus, Chorrolis, etc.). When you invoke its ideals in a tale or naming, your Weave Tale choices also grant +1 ongoing for that scene to anyone who shares that Passion's values.</li>
+<li><b>Unraveler:</b> When you Name a Horror or corruption and roll a 12+, it recoils entirely, losing its hold on one victim, place, or object.</li>
+<li><b>Living Library:</b> Once per session, declare that you know an obscure tale about the exact situation at hand. The GM must incorporate it.</li>
+<li><b>Thread Singer:</b> When you Weave Tale for a magical item, you may awaken or strengthen one thread; the GM tells you what it can now do.</li>
+<li><b>Tale of Shields:</b> When you perform a tale of endurance during a rest, each ally who listens heals an additional 1d6 HP.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🎶 # TROUBADOUR</h2><p>*You carry the names the Scourge tried to devour, and when you speak them aloud the world remembers what it was.*</p>
+<p><b>Damage Die:</b> d6</p>
+<p><b>HP:</b> 6 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Elf:</b> Alaethia, Celedyr, Tessael, Yrethiel / Ardinn, Jael'than, Mereliath, Thandril</p>
+<p><b>Human:</b> Hessa, Korina, Myla, Zetha / Aldrik, Dvarim, Jareck, Tomash</p>
+<p><b>T'skrang:</b> K'lalei, Ssrath'ali, V'striia, Zessika / Ch'taal, H'rakan, T'skarro, V'skarr</p>
+<p><b>Windling:</b> Dilli, Larke, Pim, Tassa / Brindl, Flick, Nisk, Zephik</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>People:</b> Elf | Human | T'skrang | Windling | ask the table</p>
+<p><b>Bearing:</b> poised and listening | animated and gesturing | quiet until the moment comes</p>
+<p><b>Eyes:</b> old beyond your years | bright with gathering stories | half-closed as if hearing music no one else can</p>
+<p><b>Build:</b> dancer's grace | road-weathered traveler | small and quick-fingered</p>
+<p><b>Clothing:</b> embroidered road cloak over faded finery | kaer-style layers with thread-woven hems | scaled performer's vest and sash</p>
+<p><b>Signature:</b> a voice that fills any hall | ink-stained fingers and a naming journal | a token from every kaer you have opened</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Preserve a story, Name, or tradition that would otherwise be lost.</li>
+<li>Name a Horror, a corruption, or a hidden truth others are afraid to speak.</li>
+<li>Inspire someone to act with courage through your words or art.</li>
+<li>Discover and record something new about the world after the Scourge.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 7.</p>
+<ul>
+<li>Naming journal and ink set (1 slot)</li>
+<li>Troubadour's instrument: lyre, drum, or bone flute (1 slot)</li>
+<li>Traveler's cloak, thread-woven (1 armor, worn, 1 slot)</li>
+<li>Short sword or long knife (hand, 1 slot)</li>
+<li>Pouch of thread tokens and pattern charms (1 slot)</li>
+<li>Kaer map collection, fragmentary (1 slot)</li>
+<li>Road rations and firemaking kit (1 slot)</li>
+<li>Vial of true water from a living spring (small)</li>
+<li>Candle of naming wax (small)</li>
+<li>Quill carved from Horror bone (small)</li>
+<li>Charm against the Scourge: a braided thread with seven Names (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+<div id="en_optional_moves" class="playbook-content lang-en"><div class="optional-moves-container"><div class="card"><h2>🌟 # Optional Moves — Earthdawn</h2><p>---</p>
+<p><b>Delve into the Kaer</b></p>
+<p>When you enter a sealed kaer, forgotten citadel, or ruin that has been closed since the Scourge, roll +WIS. On a 10+, choose 2. On a 7-9, choose 1.</p>
+<ul>
+<li>You read the wards and markings well enough to know what broke in.</li>
+<li>You find signs of survivors, supplies, or a safe route deeper.</li>
+<li>You notice where the architecture has been twisted by a Horror's presence before it notices you.</li>
+</ul>
+<p>---</p>
+<p><b>Sense the Horror Mark</b></p>
+<p>When you open yourself to the astral plane to detect Horror taint on a creature, place, or object, roll +WIS. On a 10+, you perceive the nature and depth of the corruption clearly — the GM will tell you what kind of Horror influence this is and how far it has spread. On a 7-9, you sense the taint but choose one: the contact gives the Horror a glimpse of you in return, the vision is incomplete and the GM gives you only a fragment, or the effort leaves you shaken — take disadvantage forward.</p>
+<p>---</p>
+<p><b>Weave a Thread</b></p>
+<p>When you attempt to weave a magical thread to a thread item, a place of power, or a pattern you have studied, roll +INT. On a 10+, the thread takes hold — you unlock the item's next ability or gain the insight you sought. On a 7-9, the thread connects, but choose one: the weaving draws unwanted attention from the astral, you must sacrifice something personal to anchor the thread, or the connection is fragile and will snap if you take harm before your next rest.</p>
+<p>---</p>
+<p><b>Brave the Poisoned Land</b></p>
+<p>When the group travels through desolate post-Scourge wilderness — blighted forests, collapsed trade roads, corrupted river passages, or the wastes near the Blood Wood — roll +CON. On a 10+, choose 2. On a 7-9, choose 1.</p>
+<ul>
+<li>You avoid the worst of the lingering corruption and tainted ground.</li>
+<li>You find a landmark, old trail marker, or shelter that still holds.</li>
+<li>You spot a Horror construct, cadaver man patrol, or ambush before it closes on you.</li>
+</ul>
+<p>---</p>
+<p><b>Negotiate Under the Empire's Shadow</b></p>
+<p>When you deal with Theran agents, rival merchant houses, or powerful figures whose loyalty is divided between Barsaive and the Theran Empire, roll +CHA. On a 10+, choose 2. On a 7-9, choose 1.</p>
+<ul>
+<li>You learn what they truly want beneath the politics.</li>
+<li>You secure an agreement that does not cost your freedom or honor.</li>
+<li>You leave the encounter without giving them leverage over you or your allies.</li>
+</ul></div></div></div>
+
+    <div id="en_adventures" class="playbook-content lang-en">
+        <div class="main-column" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2rem;">
+            <div class="card adventure-generator-card">
+                <h2>✨ Adventure Generator — Earthdawn Generator</h2>
+                <div class="generator-result" id="rng-result-en">
+                    ...
+                </div>
+                <div class="generator-actions">
+                    <button type="button" class="lang-toggle active rng-roll-btn" onclick="generateAdventure('en')">🎲 Losuj / Roll</button>
+                </div>
+            </div>
+            
+            <div class="adventure-tables-grid" id="rng-tables-en">
+    
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 1: Action & Location</h3>
+                    <div class="adventure-prefix">We discover</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a sealed kaer that has just cracked open</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">an ancient Theran observation tower</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a half-sunken T'skrang riverboat</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a blood elf outpost at the edge of the Blood Wood</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a troll crystal raider skyship, grounded and silent</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">an obsidimen liferock, cracked and weeping stone</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a dwarven trade outpost abandoned before the Scourge</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a Passion temple overgrown with thorns and fungus</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a Horror-haunted mine in the Throal Mountains</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a forgotten library beneath a namegiver village</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">an elemental forge still burning after centuries</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a windling settlement hidden in giant trees</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a cadaver man breeding ground</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">an airship wreck tangled in the canopy</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">a corrupted water source feeding several villages</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a kaer whose inhabitants never emerged</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a merchant caravan petrified mid-journey</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a dragon's abandoned lair</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a Theran slave-processing compound</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a stone circle where the astral plane bleeds through</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 2: Placement & Geography</h3>
+                    <div class="adventure-prefix">which lies</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">deep within the Throal Mountains</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">along the banks of the Serpent River</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">at the blighted edge of the Blood Wood</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">beneath the ruins of a pre-Scourge city</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">on a floating earthen island tethered by ancient chains</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">in the Servos Jungle where no trails survive</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">amid the Scarlet Sea salt flats</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">high on a cliff face above the Coil River</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">inside a network of lava tubes near Death's Sea</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">beyond the Theran garrison's patrol range</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">where the Badlands meet the last green hills</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">in a flooded canyon carved by meltwater</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">beneath a namegiver village that knows nothing of it</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">within a crystal cavern humming with astral energy</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">on the Aras Sea coast battered by unnatural storms</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">at the crossroads of three abandoned trade routes</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">behind wards that still flicker with dying magic</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">inside a troll moot hall built into living rock</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">along the only pass through the Twilight Peaks</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">where the ground is stained by Horror blood that never dries</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 3: Target</h3>
+                    <div class="adventure-prefix">leading to</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a sealed kaer whose gates never reopened after the Scourge.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">the overgrown ruins of a forgotten Theran outpost.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a crystal grove grown around a wounded dragon's dream.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">the drowned vaults beneath an abandoned T'skrang trade port.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">an obsidimen liferock chamber split by Horror marks.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">the hidden aeries above a windling kingdom in the canopy.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a blood ward maze beneath a fallen noble's manor.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a sky dock hanging silent over a canyon of storms.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">the ash-blackened temple of a Passion no one names aloud.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a caravan road swallowed by poisonous jungle vines.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">the elemental furnace below a ruined dwarven foundry.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a Theran amphitheater turned into a slave pen by raiders.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">the buried library of a wizard who mapped thread paths in bone.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a salt flat where ghost lights circle an unopened barrow.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">the shattered bridge spanning a gorge haunted by air spirits.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">an ork war camp built around a pre-Scourge monument.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">the moonlit pools where corrupted water elementals gather.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a hollow mountain shrine guarded by old stone wards.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">the hidden court of a jungle spirit bound by old bargains.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a Horror-scarred battlefield still ringing with trapped battle cries.</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 4: Purpose & Mission</h3>
+                    <div class="adventure-prefix">We are here to</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">open the kaer safely before something inside opens it first</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">rescue namegivers enslaved by a Theran expedition</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">destroy a Horror's anchor before it can fully manifest</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">broker peace between two communities fighting over scarce resources</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">map the ruins so Throal can send a proper expedition</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">escort a Passion's questor to a sacred site through hostile territory</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">recover a thread item before it falls into the wrong hands</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">seal the astral rift that is drawing Horrors to the area</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">prove that the local lord has been Horror-marked</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">establish a trade route through territory no one has crossed since the Scourge</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">break a blood magic curse laid upon a namegiver community</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">defend a newly opened kaer while its people learn the new world</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">infiltrate a Theran stronghold to free prisoners</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">negotiate a T'skrang river passage for a dwarven merchant guild</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">perform the ritual that will lay restless dead to peace</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">hunt a Horror construct terrorizing the countryside</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">deliver a warning before the next attack falls</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">gather allies from scattered communities for a common stand</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">uncover which faction sabotaged the airship and why</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">finish the work of adepts who died before they could complete it</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 5: Minor Threats & Obstacles</h3>
+                    <div class="adventure-prefix">guarded by</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">cadaver men shambling through collapsed corridors</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">Theran war golems still following ancient orders</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">desperate scavengers who kill for scraps of orichalcum</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">corrupted elementals bound to crumbling wards</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a tribe of ferals who have forgotten their namegiver heritage</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">Horror constructs patrolling in silent formation</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">crystal raiders demanding tribute for passage</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">blood thorns and living vegetation twisted by the Blood Wood</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">traps and wards set by paranoid kaer dwellers long dead</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a pack of war wolves drawn by the scent of magic</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">Theran slave soldiers with no will of their own</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">ork scorcher raiders claiming the territory as theirs</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">spirits of the betrayed dead who cannot tell friend from foe</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">insect swarms bred in Horror-tainted flesh pits</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">a crumbling labyrinth that shifts when no one watches</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">mercenaries hired by a rival merchant house</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">T'skrang river pirates blockading the only approach</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">fungal growths that release spores of madness</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">animated stone guardians older than the Scourge</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a blood magic alarm that summons worse things when triggered</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 6: Major Boss & Antagonist</h3>
+                    <div class="adventure-prefix">and</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a Horror that wears the face of the kaer's beloved leader.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a Theran magister who will burn everything to hide the Empire's failure.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a corrupted questor of a Passion, preaching twisted devotion.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a dragon playing all sides for its own inscrutable purpose.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a blood elf knight who cannot stop killing and does not want to.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a nethermancer who bargained with a Horror and believes they won.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a troll warlord building an army from broken kaer survivors.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a cadaver man general with enough cunning to lead a siege.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">the Horror that fed on this kaer for centuries and considers it home.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a Theran slaver captain whose airship commands the sky above.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">an obsidiman corrupted at the liferock, spreading taint through the brotherhood.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a windling spy whose loyalty was purchased by the Theran Empire long ago.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">the last adept of a dead discipline, willing to kill to preserve its secrets.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a spirit of vengeance that has forgotten what justice means.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">an ork warlord sworn to a Horror without knowing its true nature.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a merchant prince whose blood magic keeps an entire city compliant.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a nameless Horror that speaks only through the dreams of children.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">the founder of the kaer, kept alive by terrible means, demanding obedience still.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a T'skrang aropagoi who has sacrificed their niall for personal power.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">one of our own companions, Horror-marked in secret since before we arrived.</span></li>
+</ul>
+                </div>
+        
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+
+        <footer>
+            <span>Wygenerowano automatycznie • Homebrew World Web Presenter</span>
+            <span>Earthdawn • katalog playbookow</span>
+        </footer>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.playbook-content');
+    const langToggles = document.querySelectorAll('.lang-toggle');
+    const body = document.body;
+    const html = document.documentElement;
+
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const mainLayout = document.querySelector('.main-layout');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function getVisibleTabs(lang) {
+        return Array.from(tabs).filter((tab) => tab.classList.contains(`lang-${lang}`));
+    }
+
+    function syncAriaStates(activeTabId) {
+        tabs.forEach((tab) => {
+            const isActive = tab.getAttribute('data-tab') === activeTabId;
+            tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            tab.setAttribute('tabindex', isActive ? '0' : '-1');
+        });
+    }
+
+    if (sidebarToggle && mainLayout) {
+        if (localStorage.getItem('sidebar-collapsed') === 'true') {
+            mainLayout.classList.add('sidebar-collapsed');
+            sidebarToggle.innerText = '⮕';
+            sidebarToggle.setAttribute('aria-expanded', 'false');
+        } else {
+            sidebarToggle.setAttribute('aria-expanded', 'true');
+        }
+
+        sidebarToggle.addEventListener('click', () => {
+            const isCollapsed = mainLayout.classList.toggle('sidebar-collapsed');
+            sidebarToggle.innerText = isCollapsed ? '⮕' : '☰';
+            sidebarToggle.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
+            localStorage.setItem('sidebar-collapsed', isCollapsed);
+        });
+    }
+
+    function switchTab(tabId) {
+        tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-tab') === tabId));
+        syncAriaStates(tabId);
+
+        const target = document.getElementById(tabId);
+        if (target) {
+            target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+            const url = new URL(window.location);
+            url.hash = tabId;
+            window.history.replaceState(null, '', url);
+        }
+    }
+
+    function switchLanguage(lang) {
+        body.classList.forEach((cls) => {
+            if (cls.startsWith('lang-')) body.classList.remove(cls);
+        });
+        body.classList.add(`lang-${lang}`);
+        html.lang = lang === 'default' ? 'pl' : lang;
+
+        langToggles.forEach((btn) => {
+            const isActive = btn.getAttribute('data-lang') === lang;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        const visibleTabs = getVisibleTabs(lang);
+        const nextTab = visibleTabs[0];
+        if (nextTab) {
+            const nextTabId = nextTab.getAttribute('data-tab');
+            tabs.forEach((tab) => tab.classList.toggle('active', tab === nextTab));
+            syncAriaStates(nextTabId);
+        }
+
+        window.scrollTo(0, 0);
+    }
+
+    tabs.forEach((tab) => {
+        tab.setAttribute('role', 'tab');
+        tab.addEventListener('click', () => {
+            switchTab(tab.getAttribute('data-tab'));
+        });
+    });
+
+    langToggles.forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+            switchLanguage(toggle.getAttribute('data-lang'));
+        });
+    });
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-tab') === id));
+                syncAriaStates(id);
+            }
+        });
+    }, observerOptions);
+
+    contents.forEach((section) => observer.observe(section));
+
+    const initialHash = window.location.hash.substring(1);
+    const availableLangs = Array.from(langToggles).map((t) => t.getAttribute('data-lang'));
+    
+    let preferredLang = 'default';
+    if (initialHash && availableLangs.includes(initialHash.split('_')[0])) {
+        preferredLang = initialHash.split('_')[0];
+    } else if (availableLangs.includes('en')) {
+        preferredLang = 'en';
+    } else if (availableLangs.length > 0) {
+        preferredLang = availableLangs[0];
+    } else if (document.querySelector('.tab.lang-default')) {
+        preferredLang = 'default';
+    }
+
+    switchLanguage(preferredLang);
+    
+    if (initialHash) {
+        setTimeout(() => {
+            const target = document.getElementById(initialHash);
+            if (target) {
+                switchTab(initialHash);
+                target.scrollIntoView({ behavior: 'auto' });
+            }
+        }, 100);
+    } else {
+        const initialVisibleTab = getVisibleTabs(preferredLang)[0];
+        if (initialVisibleTab) {
+            syncAriaStates(initialVisibleTab.getAttribute('data-tab'));
+        }
+        window.scrollTo(0, 0);
+    }
+    
+    window.generateAdventure = function(lang) {
+        const container = document.getElementById(`rng-tables-${lang}`);
+        if (!container) return;
+        
+        const tables = container.querySelectorAll('.adventure-table-card');
+        if (tables.length < 6) return;
+        
+        let parts = [];
+        tables.forEach(table => {
+            const prefixEl = table.querySelector('.adventure-prefix');
+            const items = table.querySelectorAll('.rng-text');
+            
+            const prefix = prefixEl ? prefixEl.textContent.trim() : "";
+            
+            if (items.length > 0) {
+                const randomText = items[Math.floor(Math.random() * items.length)].textContent.trim();
+                parts.push((prefix ? prefix + " " : "") + `<span class="rng-highlight">${randomText}</span>`);
+            } else {
+                parts.push(prefix);
+            }
+        });
+        
+        if (parts.length >= 6) {
+            const sentence1 = parts[0] + " " + parts[1] + " " + parts[2];
+            const sentence2 = parts[3] + " " + parts[4] + " " + parts[5];
+            
+            let s1 = sentence1.replace(/\s+/g, ' ').replace(/\s+\./g, '.');
+            if(!s1.endsWith('.')) s1 += '.';
+            let s2 = sentence2.replace(/\s+/g, ' ').replace(/\s+\./g, '.');
+            if(!s2.endsWith('.')) s2 += '.';
+
+            const capitalize = (str) => {
+                let inTag = false;
+                for (let i = 0; i < str.length; i++) {
+                    if (str[i] === '<') inTag = true;
+                    else if (str[i] === '>') inTag = false;
+                    else if (!inTag && /[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/.test(str[i])) {
+                        return str.substring(0, i) + str[i].toUpperCase() + str.substring(i + 1);
+                    }
+                }
+                return str;
+            };
+
+            s1 = capitalize(s1);
+            s2 = capitalize(s2);
+            
+            const resultEl = document.getElementById(`rng-result-${lang}`);
+            if (resultEl) {
+                resultEl.innerHTML = `<p>${s1}</p><p>${s2}</p>`;
+            }
+        }
+    };
+
+    availableLangs.forEach(l => {
+        if(document.getElementById(`rng-result-${l}`)) {
+            generateAdventure(l);
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

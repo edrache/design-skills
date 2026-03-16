@@ -46,28 +46,28 @@
 19. blisko skrzyżowania diabelskiego paktu
 20. w zapadlisku po starym pożarze
 
-### Tabela 3: Cel i Pożądany Obiekt
-**szukając**
-1. zaginionej płyty bluesowego mistrza.
-2. ukrytego dziennika spalonego szeryfa.
-3. legendarnej gitary, która kradnie dusze.
-4. paktu, który może zmyć nasze grzechy.
-5. zakopanego skarbu bezwzględnych bimbrowników.
-6. świętego krzyża dawnego kaznodziei.
-7. dowodów niewinności zbiegłego brata.
-8. klucza do zardzewiałych kajdan z przeszłości.
-9. butelki wywaru, który pozwala widzieć demony.
-10. fałszywych papierów do ucieczki na północ.
-11. łez niewinnie skazanego człowieka.
-12. kości dawno zamordowanego muzyka.
-13. amuletu chroniącego przed ogarem piekielnym.
-14. listu od ukochanej zabitej przed laty.
-15. zemsty, która nie przyniesie ulgi.
-16. srebrnej laski czarnoksiężnika Hoodoo.
-17. krwi kogoś, kto nigdy nie zgrzeszył.
-18. nut piosenki, która sprowadza ciemność.
-19. starej strzelby odziedziczonej po dziadku.
-20. bezpiecznego schronienia przed nocą.
+### Tabela 3: Cel
+**prowadząc do**
+1. polany na rozstajach, gdzie diabeł wciąż dobija targów po północy.
+2. zalanej piwnicy kościoła pełnej szepczącej wody.
+3. tylnego pokoju speluny z deskami po masakrze.
+4. kaplicy na polu trzciny cukrowej spalonej od środka.
+5. wyspy-cmentarza pochłoniętej przez wodę, której żaden przewoźnik nie nazwie.
+6. podziemi biura szeryfa zamurowanych w pośpiechu.
+7. ganku wdowy, która nigdy nie przestała śpiewać w blasku księżyca.
+8. dołu na terenie farmy więziennej, gdzie łańcuchy wciąż ciągną się po błocie.
+9. ukrytej bimbrowni pod sadem dawnego kaznodziei.
+10. kolejowego tunelu, w którym stare pieśni pracy rozbrzmiewają bez głosów.
+11. cyprysowej kotliny zajętej przez psy o oczach jak latarnie.
+12. zielarskiej chaty zapadniętej głęboko w trzcinach bagna.
+13. sali balowej plantatorskiego dworu opuszczonego po nocy sądu.
+14. sceny przydrożnej speluny, gdzie żaden muzyk nie przeżywa ostatniej zwrotki.
+15. zapadliska za namiotem przebudzenia splamionego starą krwią.
+16. korony wału prowadzącej prosto do zaginionej osady.
+17. zimnego strychu, gdzie tłum linczujący zostawił szaty i liny.
+18. jaskini bimbrowników o ścianach rozświetlanych błękitnym ogniem.
+19. nadrzecznej chaty, do której po zmroku wciąż pukają umarli.
+20. ukrytego schronienia wyciętego w najstarszej części bagna.
 
 ### Tabela 4: Cel Misji
 **Jesteśmy tutaj, aby**

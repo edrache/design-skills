@@ -198,6 +198,16 @@ p, li, h1, h2, h3, b, span, div {
     line-height: 1.8;
 }
 
+.page-summary-copy {
+    display: none;
+}
+
+.lang-pl .page-summary-copy.lang-pl,
+.lang-en .page-summary-copy.lang-en,
+.lang-default .page-summary-copy.lang-default {
+    display: block;
+}
+
 .main-layout {
     display: grid;
     grid-template-columns: 280px minmax(0, 1fr);
@@ -230,8 +240,25 @@ p, li, h1, h2, h3, b, span, div {
     backdrop-filter: blur(12px);
 }
 
+.sidebar-home-link {
+    width: 100%;
+    justify-content: flex-start;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+}
+
 .sidebar-collapsed .tabs-container {
     padding: 16px 10px;
+}
+
+.sidebar-collapsed .sidebar-home-link {
+    justify-content: center;
+    padding-inline: 0;
+}
+
+.sidebar-collapsed .sidebar-home-link span:last-child {
+    display: none;
 }
 
 #sidebar-toggle {
@@ -728,22 +755,27 @@ footer {
         <header class="hero">
             <p class="eyebrow">Homebrew World Setting</p>
             <div class="hero-top">
-                
                 <div class="lang-selector"><button class="lang-toggle" data-lang="en" type="button">English</button> <button class="lang-toggle" data-lang="pl" type="button">Polski</button></div>
             </div>
             <h1 class="page-title"><span class="title-emoji">🌍</span> <span class="title-text">Diablo 2</span></h1>
-            <p class="page-summary">Materiały do gry Homebrew World ułożone w tej samej bibliotece wizualnej co strona główna: ciepła paleta, szklane panele i czytelny katalog playbooków.</p>
-            <div class="page-toolbar"><span class="stat-badge">5 playbookow EN</span> <span class="stat-badge">5 playbookow PL</span> <span class="stat-badge">Ruchy opcjonalne i szybka nawigacja</span></div>
+            <p class="page-summary"><span class="page-summary-copy lang-pl">Mroczne fantasy o pielgrzymce przez skażone sanktuarium, gdzie demony, kulty i upadła wiara pustoszą miasta, a bohaterowie schodzą do krypt, pustkowi i piekielnych ruin, by zatrzymać narastające Zło.</span> <span class="page-summary-copy lang-en">Dark fantasy about a pilgrimage across a corrupted Sanctuary, where demons, cults, and fallen faith ravage towns, and heroes descend into crypts, wastelands, and hellish ruins to stop the rising Evil.</span></p>
+            <div class="page-toolbar"><span class="stat-badge">5 playbookow EN</span> <span class="stat-badge">5 playbookow PL</span></div>
         </header>
 
         <div class="main-layout">
             <aside class="tabs-container" id="sidebar">
                 <button id="sidebar-toggle" aria-label="Toggle Sidebar" aria-expanded="true" type="button">☰</button>
+                
+            <a class="home-link sidebar-home-link" href="../index.html">
+                <span aria-hidden="true">←</span>
+                <span>Wroc do Homebrew Worlds</span>
+            </a>
+        
                 <div class="tabs-list" role="tablist" aria-label="Playbook navigation">
                     <button class="tab lang-pl" data-tab="pl_playbook_amazonka_lowczyni" type="button">👤 AMAZONKA ŁOWCZYNI</button>
 <button class="tab lang-pl" data-tab="pl_playbook_czarodziejka" type="button">👤 CZARODZIEJKA</button>
 <button class="tab lang-pl" data-tab="pl_playbook_druid" type="button">🌿 DRUID</button>
-<button class="tab lang-pl" data-tab="pl_playbook_nekromanta" type="button">👤 NEKROMANTA</button>
+<button class="tab lang-pl" data-tab="pl_playbook_nekromanta" type="button">💀 NEKROMANTA</button>
 <button class="tab lang-pl" data-tab="pl_playbook_paladyn" type="button">🛡️ PALADYN</button>
 <button class="tab lang-pl" data-tab="pl_optional_moves" type="button">🌟 Opcjonalne Ruchy</button>
 <button class="tab lang-pl" data-tab="pl_adventures" type="button">🗺️ Generator Przygód — Diablo 2</button>
@@ -1169,7 +1201,7 @@ footer {
 <p>---</p></div>
         </div>
         <div class="side-column">
-            <div class="card"><h2>📜 # NEKROMANTA</h2><p>*Mówisz ze śmiercią wprost, a śmierć odpowiada, bo wie, że nie żartujesz.*</p>
+            <div class="card"><h2>💀 # NEKROMANTA</h2><p>*Mówisz ze śmiercią wprost, a śmierć odpowiada, bo wie, że nie żartujesz.*</p>
 <p><b>Kostka Obrażeń:</b> k6</p>
 <p><b>PŻ:</b> 7 + KON</p>
 <p>---</p></div>
@@ -1445,29 +1477,29 @@ footer {
         
 
                 <div class="card adventure-table-card">
-                    <h3>🎲 Tabela 3: Cel i Pożądany Obiekt</h3>
-                    <div class="adventure-prefix">szukając</div>
+                    <h3>🎲 Tabela 3: Cel</h3>
+                    <div class="adventure-prefix">prowadząc do</div>
 <ul class="adventure-items">
-<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">odłamka kamienia dusz.</span></li>
-<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">zaginionego dziennika Horadrimów.</span></li>
-<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">ocalałego, który widział przejście Wielkiego Zła.</span></li>
-<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">lekarstwa na rozchodzące się opętanie.</span></li>
-<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">relikwii zdolnej uświęcić zmarłych.</span></li>
-<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">klucza do demonicznego więzienia.</span></li>
-<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">dowodu spisku w łonie Kościoła.</span></li>
-<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">mapy do ukrytego grobowca pana grzechu.</span></li>
-<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">anielskiej broni uznanej za zniszczoną.</span></li>
-<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">prawdziwego imienia miejscowej grozy.</span></li>
-<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">więźnia przeznaczonego na ofiarę.</span></li>
-<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">artefaktu skradzionego przez kultystów.</span></li>
-<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">sposobu zamknięcia szczeliny do Piekła przed świtem.</span></li>
-<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">kości świętego.</span></li>
-<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">druidycznej pieczęci, która wciąż może utrzymać granicę.</span></li>
-<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">kupca, który sprzedał przeklęty bożek.</span></li>
-<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">sztandaru utraconego w ostatniej krucjacie.</span></li>
-<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">ciała kogoś, kto nie może powstać ponownie.</span></li>
-<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">skrytki czarnorynkowych eliksirów i zwojów.</span></li>
-<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">bezpiecznego szlaku dla uchodźców.</span></li>
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">zatopionego skarbca pod starą katedrą.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">dołu zarazy zapieczętowanego pod ruinami Tristram.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">roztrzaskanego sanktuarium upadłego archanioła.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">demonicznego więzienia pogrzebanego pod pustynią.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">ukrytego archiwum Horadrimów za fałszywą ścianą krypty.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">górskiej przełęczy, gdzie o zmierzchu maszerują umarli.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">kaplicy relikwiarnej osmolonej piekielnym ogniem.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">zapomnianego grobowca pod ruinami dawnej posiadłości.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">krwawego ołtarza w samym sercu labiryntu kultu.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">ossuarium, gdzie modlitwy wciąż dźwięczą w łańcuchach.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">przeklętego wzgórza szubienic za ostatnim gospodarstwem.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">katakumb otwieranych nocą od środka.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">opuszczonej wieży strażniczej górującej nad skażonymi polami.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">jaskiniowego sanktuarium zajętego przez watahy koźlich demonów.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">zamarzniętej hali pogrzebowej barbarzyńskiego króla.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">gościńca grobów pochłoniętego przez popiół i ciernie.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">zbezczeszczonego ogrodu klasztornego skrywającego zapieczętowaną kryptę.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">tunelu dla uchodźców biegnącego pod linią oblężenia.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">zalanych piwnic miasteczka pożartego przez zgniliznę.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">pękniętej komnaty Kamienia Świata, o której nie powinny pamiętać żadne mapy.</span></li>
 </ul>
                 </div>
         
@@ -2247,29 +2279,29 @@ footer {
         
 
                 <div class="card adventure-table-card">
-                    <h3>🎲 Table 3: Goal & Target</h3>
-                    <div class="adventure-prefix">searching for</div>
+                    <h3>🎲 Table 3: Target</h3>
+                    <div class="adventure-prefix">leading to</div>
 <ul class="adventure-items">
-<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">the shard of a soulstone.</span></li>
-<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a lost Horadric journal.</span></li>
-<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a survivor who saw the Prime Evil pass.</span></li>
-<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">the cure for a spreading possession.</span></li>
-<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a relic that can sanctify the dead.</span></li>
-<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">the key to a demon-forged prison.</span></li>
-<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">proof of a church conspiracy.</span></li>
-<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a map to the hidden tomb of a lord of sin.</span></li>
-<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">an angelic weapon long thought broken.</span></li>
-<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">the true name of a local terror.</span></li>
-<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a prisoner taken for sacrifice.</span></li>
-<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">an artifact stolen by cultists.</span></li>
-<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a way to close a hell-rift before dawn.</span></li>
-<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">the bones of a saint.</span></li>
-<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">a druidic seal that can still hold.</span></li>
-<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">the merchant who sold the cursed idol.</span></li>
-<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a banner lost in the last crusade.</span></li>
-<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">the body of someone who must not rise again.</span></li>
-<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a cache of black market potions and scrolls.</span></li>
-<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a safe road for refugees to follow.</span></li>
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">the drowned vault beneath the old cathedral.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a plague pit sealed under Tristram's ruins.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">the shattered sanctum of a fallen archangel.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a demon-forged prison buried below the desert.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">the hidden Horadric archive behind a false crypt wall.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a mountain pass where the dead march at dusk.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">the reliquary chapel blackened by hellfire.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a forgotten tomb beneath a lord's ruined estate.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">the blood altar at the center of a cult maze.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">an ossuary where prayers still echo in chains.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">the cursed gallows hill beyond the last farm.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a catacomb opened from the inside during the night.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">the abandoned watchtower overlooking corrupted fields.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a cavern shrine claimed by goat-demon warbands.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">the frozen burial hall of a barbarian king.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a grave road swallowed by ash and thorns.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">the desecrated monastery garden hiding a sealed crypt.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a refugee tunnel running beneath the siege lines.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">the drowned cellars of a town consumed by rot.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a cracked worldstone chamber no map should still remember.</span></li>
 </ul>
                 </div>
         

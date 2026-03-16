@@ -46,28 +46,28 @@
 19. w ruinach pochłoniętych przez cierń i pnącza
 20. na skrzyżowaniu trzech przeklętych dróg
 
-### Tabela 3: Cel i Pożądany Obiekt
-**szukając**
-1. odłamka kamienia dusz.
-2. zaginionego dziennika Horadrimów.
-3. ocalałego, który widział przejście Wielkiego Zła.
-4. lekarstwa na rozchodzące się opętanie.
-5. relikwii zdolnej uświęcić zmarłych.
-6. klucza do demonicznego więzienia.
-7. dowodu spisku w łonie Kościoła.
-8. mapy do ukrytego grobowca pana grzechu.
-9. anielskiej broni uznanej za zniszczoną.
-10. prawdziwego imienia miejscowej grozy.
-11. więźnia przeznaczonego na ofiarę.
-12. artefaktu skradzionego przez kultystów.
-13. sposobu zamknięcia szczeliny do Piekła przed świtem.
-14. kości świętego.
-15. druidycznej pieczęci, która wciąż może utrzymać granicę.
-16. kupca, który sprzedał przeklęty bożek.
-17. sztandaru utraconego w ostatniej krucjacie.
-18. ciała kogoś, kto nie może powstać ponownie.
-19. skrytki czarnorynkowych eliksirów i zwojów.
-20. bezpiecznego szlaku dla uchodźców.
+### Tabela 3: Cel
+**prowadząc do**
+1. zatopionego skarbca pod starą katedrą.
+2. dołu zarazy zapieczętowanego pod ruinami Tristram.
+3. roztrzaskanego sanktuarium upadłego archanioła.
+4. demonicznego więzienia pogrzebanego pod pustynią.
+5. ukrytego archiwum Horadrimów za fałszywą ścianą krypty.
+6. górskiej przełęczy, gdzie o zmierzchu maszerują umarli.
+7. kaplicy relikwiarnej osmolonej piekielnym ogniem.
+8. zapomnianego grobowca pod ruinami dawnej posiadłości.
+9. krwawego ołtarza w samym sercu labiryntu kultu.
+10. ossuarium, gdzie modlitwy wciąż dźwięczą w łańcuchach.
+11. przeklętego wzgórza szubienic za ostatnim gospodarstwem.
+12. katakumb otwieranych nocą od środka.
+13. opuszczonej wieży strażniczej górującej nad skażonymi polami.
+14. jaskiniowego sanktuarium zajętego przez watahy koźlich demonów.
+15. zamarzniętej hali pogrzebowej barbarzyńskiego króla.
+16. gościńca grobów pochłoniętego przez popiół i ciernie.
+17. zbezczeszczonego ogrodu klasztornego skrywającego zapieczętowaną kryptę.
+18. tunelu dla uchodźców biegnącego pod linią oblężenia.
+19. zalanych piwnic miasteczka pożartego przez zgniliznę.
+20. pękniętej komnaty Kamienia Świata, o której nie powinny pamiętać żadne mapy.
 
 ### Tabela 4: Cel Misji
 **Jesteśmy tutaj, aby**

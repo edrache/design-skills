@@ -6,18 +6,19 @@
     <title>Sinners - Homebrew World</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Cormorant+Garamond:wght@600;700&amp;display=swap" rel="stylesheet">
     <style>
     :root {
-    --bg-color: #0d0f14;
-    --card-bg: rgba(25, 29, 39, 0.7);
-    --accent-color: #6366f1;
-    --accent-hover: #818cf8;
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --border-color: rgba(255, 255, 255, 0.1);
-    --glass-blur: blur(12px);
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --bg: #111015;
+    --panel: rgba(255, 248, 238, 0.08);
+    --panel-strong: rgba(255, 248, 238, 0.14);
+    --line: rgba(255, 248, 238, 0.16);
+    --text: #f6f0e8;
+    --muted: #cabfb1;
+    --accent: #d29b5c;
+    --accent-strong: #f0c489;
+    --shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+    --transition: 180ms ease;
 }
 
 * {
@@ -26,200 +27,265 @@
     padding: 0;
 }
 
-body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-primary);
-    line-height: 1.6;
-    overflow-x: hidden;
-    background-image: 
-        radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.1) 0, transparent 50%),
-        radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.1) 0, transparent 50%);
-    min-height: 100vh;
-}
-
 html {
     scroll-behavior: smooth;
 }
 
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "Manrope", sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background:
+        radial-gradient(circle at top left, rgba(210, 155, 92, 0.18), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(128, 62, 46, 0.25), transparent 28%),
+        linear-gradient(180deg, #17141d 0%, #0d0c10 100%);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 90%);
+}
+
 p, li, h1, h2, h3, b, span, div {
     overflow-wrap: break-word;
-    word-wrap: break-word;
+    word-break: break-word;
 }
 
 .container {
-    width: 100%;
-    max-width: 1400px;
+    width: min(1400px, calc(100% - 32px));
     margin: 0 auto;
-    padding: 2rem;
-    overflow-x: hidden;
+    padding: 32px 0 56px;
 }
 
-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    animation: fadeInDown 1s ease-out;
+.hero {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 32px;
+    padding: clamp(2rem, 4vw, 3.6rem);
+    border: 1px solid var(--line);
+    border-radius: 32px;
+    background:
+        linear-gradient(135deg, rgba(255, 248, 238, 0.08), rgba(255, 248, 238, 0.02)),
+        rgba(12, 10, 15, 0.72);
+    box-shadow: var(--shadow);
+    animation: fadeInDown 0.8s ease-out;
 }
 
-.home-link {
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: auto -10% -35% 50%;
+    width: 60%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(240, 196, 137, 0.35), transparent 60%);
+    filter: blur(18px);
+}
+
+.hero-top,
+.page-toolbar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.page-toolbar {
+    margin-top: 28px;
+}
+
+.eyebrow {
+    margin-bottom: 18px;
+    color: var(--accent-strong);
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    font-size: 0.74rem;
+    font-weight: 800;
+}
+
+.home-link,
+.lang-toggle,
+.stat-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 1.5rem;
-    padding: 0.7rem 1rem;
-    border-radius: 999px;
-    border: 1px solid var(--border-color);
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-primary);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 700;
-    transition: var(--transition);
-}
-
-.home-link:hover {
-    background: rgba(255, 255, 255, 0.12);
-    transform: translateY(-1px);
-}
-
-header h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.6rem;
+    min-height: 44px;
+    padding: 12px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition);
+}
+
+.home-link:hover,
+.lang-toggle:hover,
+.stat-badge:hover {
+    transform: translateY(-1px);
+    border-color: rgba(240, 196, 137, 0.45);
+    background: rgba(255, 248, 238, 0.14);
+}
+
+.home-link:focus-visible,
+.lang-toggle:focus-visible,
+#sidebar-toggle:focus-visible,
+.tab:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 2px;
+}
+
+.lang-selector {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.lang-toggle {
+    cursor: pointer;
+}
+
+.lang-toggle.active {
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+    color: #1a1410;
+}
+
+.page-title {
+    position: relative;
+    z-index: 1;
+    margin: 18px 0 0;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
     flex-wrap: wrap;
 }
 
 .title-emoji {
-    font-weight: 400;
-    -webkit-text-fill-color: initial;
-    background: none;
+    font-size: clamp(1.4rem, 3vw, 2rem);
 }
 
 .title-text {
-    background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-header p {
-    color: var(--text-secondary);
-    font-size: 1.2rem;
-    padding: 0 1rem;
-}
-
-/* Language Selector */
-.lang-selector {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.lang-toggle {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(3.6rem, 9vw, 7.2rem);
+    line-height: 0.9;
     font-weight: 700;
-    cursor: pointer;
-    transition: var(--transition);
-    letter-spacing: 0.05em;
 }
 
-.lang-toggle:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-primary);
+.page-summary {
+    position: relative;
+    z-index: 1;
+    width: min(48rem, 100%);
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 1.8;
 }
 
-.lang-toggle.active {
-    background: var(--accent-color);
-    color: white;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+.page-summary-copy {
+    display: none;
 }
 
-/* Sidebar Layout */
+.lang-pl .page-summary-copy.lang-pl,
+.lang-en .page-summary-copy.lang-en,
+.lang-default .page-summary-copy.lang-default {
+    display: block;
+}
+
 .main-layout {
     display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 3rem;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 24px;
     align-items: start;
-    transition: grid-template-columns 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: grid-template-columns 0.3s ease, gap 0.3s ease;
 }
 
 .main-layout.sidebar-collapsed {
-    grid-template-columns: 60px 1fr;
-    gap: 2rem;
+    grid-template-columns: 76px minmax(0, 1fr);
 }
 
-@media (max-width: 1100px) {
-    .main-layout {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .main-layout.sidebar-collapsed {
-        grid-template-columns: 1fr;
-    }
+.tabs-container,
+.card {
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, var(--panel-strong), rgba(255, 248, 238, 0.04));
+    box-shadow: var(--shadow);
 }
 
-/* Sidebar Container */
 .tabs-container {
-    padding: 1rem;
-    background: var(--card-bg);
-    backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
     position: sticky;
-    top: 2rem;
-    max-height: calc(100vh - 4rem);
+    top: 24px;
     display: flex;
     flex-direction: column;
+    gap: 12px;
+    max-height: calc(100vh - 48px);
+    padding: 16px;
+    border-radius: 24px;
     overflow: hidden;
-    transition: var(--transition);
+    backdrop-filter: blur(12px);
+}
+
+.sidebar-home-link {
+    width: 100%;
+    justify-content: flex-start;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: 0.9rem;
 }
 
 .sidebar-collapsed .tabs-container {
-    padding: 1rem 0.5rem;
+    padding: 16px 10px;
+}
+
+.sidebar-collapsed .sidebar-home-link {
+    justify-content: center;
+    padding-inline: 0;
+}
+
+.sidebar-collapsed .sidebar-home-link span:last-child {
+    display: none;
 }
 
 #sidebar-toggle {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
-    padding: 0.5rem;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-bottom: 1rem;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
+    width: 44px;
+    height: 44px;
     align-self: center;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--panel);
+    color: var(--text);
+    cursor: pointer;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition);
 }
 
 #sidebar-toggle:hover {
-    background: var(--accent-color);
-    border-color: var(--accent-color);
+    transform: translateY(-1px);
+    border-color: rgba(240, 196, 137, 0.45);
+    background: rgba(255, 248, 238, 0.14);
 }
 
 .tabs-list {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 8px;
     overflow-y: auto;
     overflow-x: hidden;
-    transition: opacity 0.3s;
+    transition: opacity 0.25s ease;
 }
 
 .sidebar-collapsed .tabs-list {
@@ -227,187 +293,127 @@ header p {
     pointer-events: none;
 }
 
-@media (max-width: 1100px) {
-    .tabs-container {
-        position: sticky;
-        top: 0;
-        flex-direction: row;
-        align-items: center;
-        padding: 0.75rem;
-        margin: 0 -1rem 2rem -1rem;
-        border-radius: 0;
-        z-index: 100;
-        background: rgba(13, 15, 20, 0.9);
-        backdrop-filter: blur(20px);
-        max-height: none;
-        overflow: visible;
-    }
-    
-    #sidebar-toggle {
-        display: none; /* Hidden on mobile horizontal menu */
-    }
-
-    .tabs-list {
-        flex-direction: row;
-        overflow-x: auto;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        width: 100%;
-        scrollbar-width: none;
-    }
-    
-    .tabs-list::-webkit-scrollbar { display: none; }
-
-    .tab {
-        white-space: nowrap;
-        padding: 0.6rem 1rem;
-        font-size: 0.85rem;
-    }
-    
-    .playbook-content {
-        scroll-margin-top: 5rem;
-    }
-}
-
 .tabs-container::-webkit-scrollbar {
     width: 4px;
 }
 
 .tab {
-    padding: 0.75rem 1.25rem;
-    border-radius: 12px;
-    cursor: pointer;
-    text-align: left;
-    transition: var(--transition);
-    border: none;
-    background: transparent;
-    color: var(--text-secondary);
-    font-weight: 600;
-    font-size: 0.9rem;
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.9rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    background: transparent;
+    color: var(--muted);
+    text-align: left;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition), color var(--transition);
 }
 
 .tab:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-1px);
+    color: var(--text);
+    background: rgba(255, 248, 238, 0.08);
+    border-color: rgba(255, 248, 238, 0.12);
 }
 
 .tab.active {
-    background: var(--accent-color);
-    color: white;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    color: #1a1410;
+    background: var(--accent-strong);
+    border-color: var(--accent-strong);
+    box-shadow: 0 12px 24px rgba(240, 196, 137, 0.18);
 }
 
-/* Content Area */
 .content-area {
     display: flex;
     flex-direction: column;
     gap: 4rem;
-}
-
-.playbook-content {
-    display: none; /* Controlled by language class */
-    scroll-margin-top: 2rem;
-    grid-template-columns: 1fr 350px;
-    gap: 2rem;
-    animation: fadeIn 0.5s ease-out;
-}
-
-.lang-pl .playbook-content.lang-pl { display: grid; }
-.lang-en .playbook-content.lang-en { display: grid; }
-.lang-default .playbook-content.lang-default { display: grid; }
-
-@media (max-width: 600px) {
-    .container {
-        padding: 1rem;
-    }
-
-    header h1 {
-        font-size: 2.2rem;
-    }
-
-    header p {
-        font-size: 1rem;
-    }
-
-    .card {
-        padding: 1.5rem;
-        border-radius: 16px;
-    }
-
-    .lang-selector {
-        gap: 0.5rem;
-    }
-
-    .lang-toggle {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.7rem;
-    }
-}
-@media (max-width: 1400px) {
-    .playbook-content {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Language Visibility for Tabs */
-.tab { display: none; }
-.lang-pl .tab.lang-pl { display: flex; }
-.lang-en .tab.lang-en { display: flex; }
-.lang-default .tab.lang-default { display: flex; }
-
-.main-column, .side-column {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    min-width: 0; /* Important for grid wrapping */
-}
-
-/* Sections & Cards */
-.card {
-    background: var(--card-bg);
-    backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 2.5rem;
-    transition: var(--transition);
-    width: 100%;
     min-width: 0;
 }
 
+.playbook-content {
+    display: none;
+    scroll-margin-top: 2rem;
+    grid-template-columns: minmax(0, 1fr) 350px;
+    gap: 24px;
+    animation: fadeIn 0.35s ease-out;
+}
+
+.lang-pl .playbook-content.lang-pl,
+.lang-en .playbook-content.lang-en,
+.lang-default .playbook-content.lang-default {
+    display: grid;
+}
+
+.tab {
+    display: none;
+}
+
+.lang-pl .tab.lang-pl,
+.lang-en .tab.lang-en,
+.lang-default .tab.lang-default {
+    display: flex;
+}
+
+.main-column,
+.side-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-width: 0;
+}
+
+.card {
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: transform var(--transition), border-color var(--transition), background var(--transition);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    backdrop-filter: blur(12px);
+}
+
 .card:hover {
-    border-color: rgba(99, 102, 241, 0.4);
-    transform: translateY(-2px);
+    border-color: rgba(240, 196, 137, 0.45);
+    background: linear-gradient(180deg, rgba(255, 248, 238, 0.18), rgba(255, 248, 238, 0.06));
+    transform: translateY(-3px);
 }
 
 h2 {
-    font-size: 1.5rem;
-    color: var(--accent-color);
     margin-bottom: 1.5rem;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    line-height: 1;
+    color: var(--text);
     display: flex;
     align-items: center;
     gap: 0.75rem;
 }
 
 h2::before {
-    content: '';
+    content: "";
     width: 4px;
     height: 1.5rem;
-    background: var(--accent-color);
+    background: var(--accent-strong);
     border-radius: 2px;
 }
 
 h3 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
-    color: #fff;
+    color: var(--text);
 }
 
 p {
     margin-bottom: 1rem;
-    color: var(--text-secondary);
+    color: var(--muted);
 }
 
 ul {
@@ -421,27 +427,17 @@ li {
 }
 
 li::before {
-    content: '→';
+    content: "→";
     position: absolute;
     left: 0;
-    color: var(--accent-color);
+    color: var(--accent-strong);
     opacity: 0.7;
 }
 
-/* Stats Badges */
 .stat-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.25rem 0.75rem;
-    background: rgba(99, 102, 241, 0.15);
-    border: 1px solid rgba(99, 102, 241, 0.3);
-    border-radius: 8px;
-    color: var(--accent-color);
-    font-weight: 700;
     margin-right: 0.5rem;
 }
 
-/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -452,7 +448,6 @@ li::before {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Specific Sections */
 .look-list {
     display: flex;
     flex-direction: column;
@@ -462,37 +457,38 @@ li::before {
 .look-row {
     margin-bottom: 0.75rem;
     padding: 1rem;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 248, 238, 0.05);
     border-radius: 12px;
-    border-left: 3px solid var(--accent-color);
+    border-left: 3px solid var(--accent-strong);
 }
 
 .look-label {
     font-weight: 800;
     font-size: 0.8rem;
     text-transform: uppercase;
-    color: var(--accent-color);
+    color: var(--accent-strong);
     margin-bottom: 0.25rem;
 }
 
 .look-options {
-    color: var(--text-primary);
+    color: var(--text);
     font-size: 0.95rem;
 }
 
 .section-divider {
     height: 1px;
-    background: linear-gradient(90deg, var(--accent-color) 0%, transparent 100%);
+    background: linear-gradient(90deg, var(--accent-strong) 0%, transparent 100%);
     opacity: 0.2;
     margin: 2rem 0 1rem 0;
+    max-width: 100%;
 }
 
 .move-card {
-    border-left: 4px solid var(--accent-color);
+    border-left: 4px solid var(--accent-strong);
 }
 
 .move-card b {
-    color: var(--accent-hover);
+    color: var(--accent-strong);
 }
 
 .gear-grid {
@@ -503,53 +499,293 @@ li::before {
 
 .gear-item {
     padding: 1rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 248, 238, 0.05);
     border-radius: 12px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--line);
 }
 
-/* Optional Moves Styling */
 .optional-moves-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
     gap: 2rem;
 }
 
 footer {
-    text-align: center;
-    padding: 4rem 0;
-    color: var(--text-secondary);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    padding: 0 4px;
+    color: var(--muted);
     font-size: 0.9rem;
-    border-top: 1px solid var(--border-color);
+}
+
+/* Adventure Generator */
+.adventure-generator-card {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(180deg, var(--panel-strong), rgba(255, 248, 238, 0.02));
+    border: 1px solid rgba(240, 196, 137, 0.3);
+    box-shadow: 0 10px 40px rgba(210, 155, 92, 0.08);
+}
+
+.adventure-generator-card h2 {
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.generator-result {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--accent-strong);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 900px;
+    margin-inline: auto;
+    font-family: "Cormorant Garamond", serif;
+}
+
+.generator-result p {
+    color: var(--text);
+    margin: 0;
+}
+
+.generator-result p:first-child {
+    margin-bottom: 0.75rem;
+    color: var(--accent-strong);
+    font-size: 1.6rem;
+}
+
+.rng-highlight {
+    color: var(--text);
+    padding-bottom: 2px;
+    border-bottom: 1px dashed rgba(240, 196, 137, 0.45);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.rng-highlight:hover {
+    color: var(--accent-strong);
+    border-bottom-color: var(--accent-strong);
+}
+
+.generator-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.rng-roll-btn {
+    font-size: 1.05rem;
+    padding: 1rem 2.5rem;
+    border-radius: 999px;
+    letter-spacing: 0.08em;
+}
+
+.adventure-tables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.adventure-table-card {
+    padding: 1.8rem;
+    background: rgba(255, 248, 238, 0.02);
+}
+
+.adventure-table-card h3 {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    color: var(--text);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.5rem;
+}
+
+.adventure-prefix {
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--accent);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.adventure-items {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.adventure-items .rng-item {
+    margin-bottom: 0.5rem;
+    padding-left: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.adventure-items .rng-item::before {
+    content: none;
+}
+
+.rng-num {
+    color: var(--accent);
+    font-weight: 800;
+    width: 2.2ch;
+    flex-shrink: 0;
+    text-align: right;
+    font-size: 0.9rem;
+    margin-top: 0.15rem;
+}
+
+.rng-text {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 1400px) {
+    .playbook-content {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 1100px) {
+    .main-layout,
+    .main-layout.sidebar-collapsed {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .tabs-container {
+        position: sticky;
+        top: 12px;
+        flex-direction: row;
+        align-items: center;
+        max-height: none;
+        padding: 12px;
+        overflow: visible;
+    }
+
+    #sidebar-toggle {
+        display: none;
+    }
+
+    .tabs-list {
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(240, 196, 137, 0.45) transparent;
+    }
+
+    .tabs-list::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .tabs-list::-webkit-scrollbar-thumb {
+        background: rgba(240, 196, 137, 0.35);
+        border-radius: 999px;
+    }
+
+    .tab {
+        width: auto;
+        white-space: nowrap;
+        padding: 0.75rem 1rem;
+    }
+
+    .playbook-content {
+        scroll-margin-top: 5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: min(100% - 20px, 1400px);
+        padding-top: 20px;
+    }
+
+    .hero {
+        padding: 24px;
+        border-radius: 24px;
+    }
+
+    .page-title {
+        gap: 10px;
+    }
+
+    .card {
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+
+    .lang-selector {
+        gap: 0.5rem;
+    }
+
+    .lang-toggle {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.7rem;
+    }
+
+    .page-summary {
+        font-size: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
 }
 
     </style>
 </head>
 <body class="lang-default">
     <div class="container">
-        <header>
-            
-            <div class="lang-selector"><button class="lang-toggle" data-lang="en">ENGLISH</button> <button class="lang-toggle" data-lang="pl">POLSKI</button></div>
-            <h1><span class="title-emoji">🌍</span> <span class="title-text">Sinners</span></h1>
-            <p>Materiały do gry Homebrew World</p>
+        <header class="hero">
+            <p class="eyebrow">Homebrew World Setting</p>
+            <div class="hero-top">
+                <div class="lang-selector"><button class="lang-toggle" data-lang="en" type="button">English</button> <button class="lang-toggle" data-lang="pl" type="button">Polski</button></div>
+            </div>
+            <h1 class="page-title"><span class="title-emoji">🌍</span> <span class="title-text">Sinners</span></h1>
+            <p class="page-summary"><span class="page-summary-copy lang-pl">Gotycki southern horror zanurzony w bagnach, bluesie i przemocy starego Południa, gdzie grzech, Hoodoo, duchy i diabelskie pakty mieszają się z rasową przemocą, biedą i nocnymi polowaniami.</span> <span class="page-summary-copy lang-en">A gothic Southern horror steeped in swamps, blues, and the violence of the old South, where sin, Hoodoo, ghosts, and devil bargains mix with racial terror, poverty, and hunts that begin after dark.</span></p>
+            <div class="page-toolbar"><span class="stat-badge">5 playbookow EN</span> <span class="stat-badge">5 playbookow PL</span></div>
         </header>
 
         <div class="main-layout">
             <aside class="tabs-container" id="sidebar">
-                <button id="sidebar-toggle" aria-label="Toggle Sidebar">☰</button>
-                <div class="tabs-list">
-                    <button class="tab lang-pl" data-tab="pl_playbook_korzeniarka">🌿 KORZENIARKA</button>
-<button class="tab lang-pl" data-tab="pl_playbook_organizator">💼 ORGANIZATOR</button>
-<button class="tab lang-pl" data-tab="pl_playbook_piosenkarz">🎵 PIOSENKARZ</button>
-<button class="tab lang-pl" data-tab="pl_playbook_straznik_ognia">👤 STRAŻNIK OGNIA</button>
-<button class="tab lang-pl" data-tab="pl_playbook_twardziel">🛡️ TWARDZIEL</button>
-<button class="tab lang-pl" data-tab="pl_optional_moves">🌟 Opcjonalne Ruchy</button>
-<button class="tab lang-en" data-tab="en_playbook_crooner">🎵 THE CROONER</button>
-<button class="tab lang-en" data-tab="en_playbook_firekeeper">🔥 THE FIREKEEPER</button>
-<button class="tab lang-en" data-tab="en_playbook_heavy">🛡️ THE HEAVY</button>
-<button class="tab lang-en" data-tab="en_playbook_operator">🔧 THE OPERATOR</button>
-<button class="tab lang-en" data-tab="en_playbook_rootworker">🌿 THE ROOTWORKER</button>
-<button class="tab lang-en" data-tab="en_optional_moves">🌟 Optional Moves</button>
+                <button id="sidebar-toggle" aria-label="Toggle Sidebar" aria-expanded="true" type="button">☰</button>
+                
+            <a class="home-link sidebar-home-link" href="../../../site/index.html">
+                <span aria-hidden="true">←</span>
+                <span>Wroc do Homebrew Worlds</span>
+            </a>
+        
+                <div class="tabs-list" role="tablist" aria-label="Playbook navigation">
+                    <button class="tab lang-pl" data-tab="pl_playbook_korzeniarka" type="button">🌿 KORZENIARKA</button>
+<button class="tab lang-pl" data-tab="pl_playbook_organizator" type="button">💼 ORGANIZATOR</button>
+<button class="tab lang-pl" data-tab="pl_playbook_piosenkarz" type="button">🎵 PIOSENKARZ</button>
+<button class="tab lang-pl" data-tab="pl_playbook_straznik_ognia" type="button">👤 STRAŻNIK OGNIA</button>
+<button class="tab lang-pl" data-tab="pl_playbook_twardziel" type="button">🛡️ TWARDZIEL</button>
+<button class="tab lang-pl" data-tab="pl_optional_moves" type="button">🌟 Opcjonalne Ruchy</button>
+<button class="tab lang-pl" data-tab="pl_adventures" type="button">🗺️ Generator Przygód — Sinners</button>
+<button class="tab lang-en" data-tab="en_playbook_crooner" type="button">🎵 THE CROONER</button>
+<button class="tab lang-en" data-tab="en_playbook_firekeeper" type="button">🔥 THE FIREKEEPER</button>
+<button class="tab lang-en" data-tab="en_playbook_heavy" type="button">🛡️ THE HEAVY</button>
+<button class="tab lang-en" data-tab="en_playbook_operator" type="button">🔧 THE OPERATOR</button>
+<button class="tab lang-en" data-tab="en_playbook_rootworker" type="button">🌿 THE ROOTWORKER</button>
+<button class="tab lang-en" data-tab="en_optional_moves" type="button">🌟 Optional Moves</button>
+<button class="tab lang-en" data-tab="en_adventures" type="button">🗺️ Adventure Generator — Sinners</button>
                 </div>
             </aside>
 
@@ -1169,6 +1405,194 @@ footer {
 <li>Dostrzegacie zagrożenie, zanim się zamknie wokół was.</li>
 </ul></div></div></div>
 
+    <div id="pl_adventures" class="playbook-content lang-pl">
+        <div class="main-column" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2rem;">
+            <div class="card adventure-generator-card">
+                <h2>✨ Generator Przygód — Sinners Generator</h2>
+                <div class="generator-result" id="rng-result-pl">
+                    ...
+                </div>
+                <div class="generator-actions">
+                    <button type="button" class="lang-toggle active rng-roll-btn" onclick="generateAdventure('pl')">🎲 Losuj / Roll</button>
+                </div>
+            </div>
+            
+            <div class="adventure-tables-grid" id="rng-tables-pl">
+    
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 1: Akcja i Wygenerowane Miejsce</h3>
+                    <div class="adventure-prefix">Odkrywamy</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">zrujnowany juke joint</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">nawiedzony dom na plantacji</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">opuszczoną stację benzynową</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">zapomniane skrzyżowanie dróg</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">tonącą w bagnie wioskę</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">spaloną do cienia stodołę</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">zawalony pod ciężarem ołowiu kościół</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">zakamarek starego cmentarza</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">dawno ukryty tabor wędrowny</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">wyłączony z użytku dworzec kolejowy</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">spróchniałe więzienie na mokradłach</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">zakurzony gabinet starego szeryfa</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">ukryty magazyn bimbrowników</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">obóz wędrownych kaznodziejów</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">stary wóz pełen obcych instrumentów</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">zagubioną ścieżkę do ciemnego lasu</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">pochłonięty przez rzekę dom gier</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">wiatę pełną wygłodniałych psów</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">splamioną krwią podłogę młyna</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">duszny pokój taniego motelu</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 2: Położenie i Geografia</h3>
+                    <div class="adventure-prefix">która leży</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">na obrzeżach mglistego bagna</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">tuż przy spienionych wodach Missisipi</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">w sercu mrocznych lasów Luizjany</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">na końcu wyludnionej międzystanowej</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">w zakazanym miasteczku dla czarnych</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">na polu wyschniętej bawełny</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">głęboko w rozlewiskach rzeki</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">w cieniu olbrzymiego, sczerniałego dębu</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">niedaleko wyblakłych torów kolejowych</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">w opuszczonej samotni przy granicy hrabstwa</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">pośród zatrutych studni</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">ukryta przed wzrokiem pożeraczy grzechów</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">za niebezpiecznymi moczarami</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">w miejscu, gdzie nie dociera światło księżyca</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">tuż przy starym, spróchniałym moście</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">na ziemi należącej do okrutnego właściciela ziemskiego</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">naprzeciwko wrogiego posterunku policji</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">za bagnistą barierą z korzeni namorzynów</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">blisko skrzyżowania diabelskiego paktu</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">w zapadlisku po starym pożarze</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 3: Cel</h3>
+                    <div class="adventure-prefix">prowadząc do</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">polany na rozstajach, gdzie diabeł wciąż dobija targów po północy.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">zalanej piwnicy kościoła pełnej szepczącej wody.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">tylnego pokoju speluny z deskami po masakrze.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">kaplicy na polu trzciny cukrowej spalonej od środka.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">wyspy-cmentarza pochłoniętej przez wodę, której żaden przewoźnik nie nazwie.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">podziemi biura szeryfa zamurowanych w pośpiechu.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">ganku wdowy, która nigdy nie przestała śpiewać w blasku księżyca.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">dołu na terenie farmy więziennej, gdzie łańcuchy wciąż ciągną się po błocie.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">ukrytej bimbrowni pod sadem dawnego kaznodziei.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">kolejowego tunelu, w którym stare pieśni pracy rozbrzmiewają bez głosów.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">cyprysowej kotliny zajętej przez psy o oczach jak latarnie.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">zielarskiej chaty zapadniętej głęboko w trzcinach bagna.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">sali balowej plantatorskiego dworu opuszczonego po nocy sądu.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">sceny przydrożnej speluny, gdzie żaden muzyk nie przeżywa ostatniej zwrotki.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">zapadliska za namiotem przebudzenia splamionego starą krwią.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">korony wału prowadzącej prosto do zaginionej osady.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">zimnego strychu, gdzie tłum linczujący zostawił szaty i liny.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">jaskini bimbrowników o ścianach rozświetlanych błękitnym ogniem.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">nadrzecznej chaty, do której po zmroku wciąż pukają umarli.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">ukrytego schronienia wyciętego w najstarszej części bagna.</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 4: Cel Misji</h3>
+                    <div class="adventure-prefix">Jesteśmy tutaj, aby</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">wyrównać stare rachunki</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">uwolnić niesłusznie pojmanego</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">odprawić rytuał odpędzający złe duchy</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">spalić do gołej ziemi miejsce dawnego koszmaru</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">oddać dług zaciągnięty na rozstajach</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">zebrać rzadkie zioła rosnące tylko w cieniu śmierci</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">przekonać lokalnego barona do ustępstw</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">odnaleźć lekarstwo na zgniłą duszę</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">ochronić miejscowych przed nocnym gniewem</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">zakończyć nienaturalną suszę nękającą pola</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">złożyć ślubowanie krwi</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">zamknąć portal z którego wycieka zło</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">zaśpiewać pieśń wolności</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">pogrzebać wreszcie kogoś, kto wstał z martwych</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">zatuszować krwawe ślady</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">odebrać to, co nam się prawnie należy</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">uciec przed pościgiem łowców głów</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">zdobyć przychylność miejscowego szeryfa</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">udowodnić, że magia Hoodoo to nie tylko mity</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">przerwać klątwę rzuconą na muzyka</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 5: Główne Zagrożenie / Przeszkody</h3>
+                    <div class="adventure-prefix">strzeżony przez</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">sfanatyzowany tłum rolników</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">sfosylizowanych, bagnistych nieumarłych</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">gang bezwzględnych przemytników</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">milicję skorumpowanego burmistrza</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">potężne, zgłodniałe aligatory</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">hordę piekielnych ogarów</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">duchy ofiar linczu</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">klątwy niewidzialnego kapłana voodoo</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">zmroczone, żądne krwi kruki</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">upiornych śpiewaków bluesa</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">czarnoksiężników ukrytych w cieniach</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">zmutowanych włóczęgów</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">zdradliwych nadzorców z farmy więziennej</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">watahy wilków kontrolowanych przez ciemność</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">zaklęte pnącza kudzu, które dławią tych, którzy podejdą za blisko</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">chmarę opętanych szarańczy</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">krwawe widma Ku Klux Klanu</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">ożywione kukły ze zniszczonych plonów</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">szalonego poborcę podatkowego i jego strzelców</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">roje zabójczych os na usługach czarnoksiężnika</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 6: Główny Antagonista</h3>
+                    <div class="adventure-prefix">i</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">bezlitosnego sędziego hrabstwa.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">demona z rozstajnych dróg.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">potężnego kapłanaciemnych sił.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">przeklętego muzyka pragnącego naszej krwi.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">bimbrowniczego magnata bez serca.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">łowcę niewolników, który nigdy nie umarł w pełni.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">starą wiedźmę, której ukradliśmy amulet.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">opętanego kaznodzieję żądającego absolutnego posłuszeństwa.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">zdradzieckiego przyjaciela z czasów prohibicji.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">właściciela plantacji o morderczych zamiarach.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">wielkiego bestię mokradeł, potęgę głębin.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">oszusta, który gra życiem bywalców juke jointu.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">martwego stróża prawa łaknącego potępienia wszystkich winnych.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">wcielonego cienia naszego, popełnionego kiedyś w gniewie grzechu.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">diabła we własnej, pociągającej ludzkiej osobie.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">szalonego barda szerzącego plagę nieszczęść swoim śpiewem.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">matronę trzymającą wszystkich w garści długów i krwi.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">bezwzględnego łowcę głów na usługach pana ciemności.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">ducha nienawiści podsycającego waśnie i gniew miasteczka.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">kogoś z dawnych lat, kogo celowo pozostawiliśmy na śmierć.</span></li>
+</ul>
+                </div>
+        
+
+            </div>
+        </div>
+    </div>
+    
+
     <div id="en_playbook_crooner" class="playbook-content lang-en">
         <div class="main-column">
             <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
@@ -1782,11 +2206,200 @@ footer {
 <li>Nobody important learns your names.</li>
 <li>You spot the danger before it closes.</li>
 </ul></div></div></div>
+
+    <div id="en_adventures" class="playbook-content lang-en">
+        <div class="main-column" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2rem;">
+            <div class="card adventure-generator-card">
+                <h2>✨ Adventure Generator — Sinners Generator</h2>
+                <div class="generator-result" id="rng-result-en">
+                    ...
+                </div>
+                <div class="generator-actions">
+                    <button type="button" class="lang-toggle active rng-roll-btn" onclick="generateAdventure('en')">🎲 Losuj / Roll</button>
+                </div>
+            </div>
+            
+            <div class="adventure-tables-grid" id="rng-tables-en">
+    
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 1: Action & Location</h3>
+                    <div class="adventure-prefix">We discover</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a ruined juke joint</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a haunted plantation house</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">an abandoned gas station</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a forgotten crossroads</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a village sinking into the swamp</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a barn burnt to ashes</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a church collapsed beneath a hail of lead</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a hidden corner of an old cemetery</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a long-hidden traveling circus camp</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a decommissioned railway station</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a rotting prison in the wetlands</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">the dusty office of a murdered sheriff</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a hidden moonshiners' warehouse</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a camp of wandering preachers</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">an old wagon full of strange instruments</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a lost path into the deep dark woods</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a gambling den swallowed by the river</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a shelter full of starving hounds</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">the blood-stained floor of a mill</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a stifling room in a cheap motel</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 2: Placement & Geography</h3>
+                    <div class="adventure-prefix">which lies</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">on the outskirts of a foggy marsh</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">right by the foaming waters of the Mississippi</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">in the heart of Louisiana's dark forests</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">at the end of a deserted interstate highway</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">in a forbidden sundown town</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">on a dried-up cotton field</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">deep in the river's backwaters</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">in the shadow of a massive, blackened oak</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">near faded train tracks</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">in an abandoned hermitage by the county line</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">amidst poisoned wells</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">hidden from the sight of sin-eaters</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">beyond treacherous mire</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">where the moonlight never reaches</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">right by an old, crumbling bridge</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">on land owned by a cruel landlord</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">across from a hostile police station</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">behind a swampy barrier of mangrove roots</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">close to a devil's pact crossroads</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">in a sinkhole left by an old fire</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 3: Target</h3>
+                    <div class="adventure-prefix">leading to</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">the crossroads clearing where the devil still bargains after midnight.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a flood-swallowed church cellar full of whispering water.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">the back room of a juke joint boarded up after a massacre.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a cane field chapel burned black from the inside.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">the drowned graveyard island no ferryman will name.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a sheriff's office basement bricked over in a hurry.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">the moonlit porch of a widow who never stopped singing.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a prison farm pit where chains still drag through the mud.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">the hidden stillhouse under the preacher's orchard.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a railroad tunnel where old work songs echo without voices.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">the cypress hollow claimed by lantern-eyed hounds.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a medicine shack sunk deep in the marsh reeds.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">the ballroom of a plantation house abandoned after judgment night.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a roadhouse stage where no musician survives the last verse.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">the sinkhole behind a revival tent stained with old blood.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">the levee path leading straight to a vanished settlement.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">the cold attic where a lynch mob left its robes and ropes.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a moonshine cave lit by blue fire from the walls.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">the riverbank shack where the dead still knock after dusk.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a hidden refuge cut into the oldest part of the swamp.</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 4: Purpose & Mission</h3>
+                    <div class="adventure-prefix">We are here to</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">settle old scores</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">free someone unjustly captured</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">perform a ritual banishing evil spirits</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">burn a place of past nightmares to the ground</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">repay a debt made at the crossroads</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">gather rare herbs that only grow in death's shadow</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">force the local baron to make concessions</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">find a cure for a rotting soul</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">protect the locals from the night's wrath</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">end an unnatural drought plaguing the fields</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">make a blood oath</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">close a portal leaking evil</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">sing a song of freedom</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">finally bury someone who has risen from the dead</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">cover up bloody tracks</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">reclaim what is rightfully ours</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">escape the pursuit of bounty hunters</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">gain the favor of the local sheriff</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">prove that Hoodoo magic is more than just myth</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">break the curse cast upon a musician</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 5: Minor Threats & Obstacles</h3>
+                    <div class="adventure-prefix">guarded by</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a fanatic mob of farmers</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">fossilized, swampy undead</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a gang of ruthless smugglers</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a corrupt mayor's militia</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">massive, starved alligators</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a horde of hellhounds</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">the ghosts of lynching victims</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">the curses of an unseen voodoo priest</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">shadow-tainted, bloodthirsty crows</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">phantom blues singers</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">warlocks hidden in the shadows</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">mutated vagabonds</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">treacherous overseers from a prison farm</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">packs of wolves controlled by darkness</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">enchanted kudzu vines that choke those who approach</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a swarm of possessed locusts</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">bloody specters of the Ku Klux Klan</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">animated scarecrows from ruined crops</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a mad tax collector and his gunmen</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">swarms of killer wasps serving a sorcerer</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 6: Major Boss & Antagonist</h3>
+                    <div class="adventure-prefix">and</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a merciless county judge.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a demon from the crossroads.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a powerful priest of dark forces.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a cursed musician thirsting for our blood.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a heartless moonshine magnate.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a slave catcher who never truly died.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">an old witch whose amulet we stole.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a possessed preacher demanding absolute obedience.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a treacherous friend from the prohibition era.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a plantation owner with murderous intent.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">the great beast of the wetlands, power of the deep.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a swindler gambling with the lives of juke joint patrons.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a dead lawman hungry for the damnation of all the guilty.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">the incarnate shadow of a sin we committed in anger.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">the Devil in his own tantalizing human form.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a mad bard spreading a plague of misfortune with his song.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a matron holding everyone in her grip of debts and blood.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a ruthless bounty hunter serving the lord of darkness.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">the spirit of hatred fueling the town's feuds and anger.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">someone from our past we deliberately left to die.</span></li>
+</ul>
+                </div>
+        
+
+            </div>
+        </div>
+    </div>
+    
             </div>
         </div>
 
         <footer>
-            <p>Wygenerowano automatycznie • Homebrew World Web Presenter</p>
+            <span>Wygenerowano automatycznie • Homebrew World Web Presenter</span>
+            <span>Sinners • katalog playbookow</span>
         </footer>
     </div>
 
@@ -1796,35 +2409,48 @@ footer {
     const contents = document.querySelectorAll('.playbook-content');
     const langToggles = document.querySelectorAll('.lang-toggle');
     const body = document.body;
+    const html = document.documentElement;
 
     const sidebarToggle = document.getElementById('sidebar-toggle');
     const mainLayout = document.querySelector('.main-layout');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Sidebar Toggle Logic
+    function getVisibleTabs(lang) {
+        return Array.from(tabs).filter((tab) => tab.classList.contains(`lang-${lang}`));
+    }
+
+    function syncAriaStates(activeTabId) {
+        tabs.forEach((tab) => {
+            const isActive = tab.getAttribute('data-tab') === activeTabId;
+            tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            tab.setAttribute('tabindex', isActive ? '0' : '-1');
+        });
+    }
+
     if (sidebarToggle && mainLayout) {
-        // Load saved state
         if (localStorage.getItem('sidebar-collapsed') === 'true') {
             mainLayout.classList.add('sidebar-collapsed');
             sidebarToggle.innerText = '⮕';
+            sidebarToggle.setAttribute('aria-expanded', 'false');
+        } else {
+            sidebarToggle.setAttribute('aria-expanded', 'true');
         }
 
         sidebarToggle.addEventListener('click', () => {
             const isCollapsed = mainLayout.classList.toggle('sidebar-collapsed');
             sidebarToggle.innerText = isCollapsed ? '⮕' : '☰';
+            sidebarToggle.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
             localStorage.setItem('sidebar-collapsed', isCollapsed);
         });
     }
 
     function switchTab(tabId) {
-        // Highlight active tab in menu
-        tabs.forEach(t => t.classList.toggle('active', t.getAttribute('data-tab') === tabId));
-        
-        // Scroll to the content if it's a manual click
+        tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-tab') === tabId));
+        syncAriaStates(tabId);
+
         const target = document.getElementById(tabId);
         if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-            
-            // Update URL without jumping
+            target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
             const url = new URL(window.location);
             url.hash = tabId;
             window.history.replaceState(null, '', url);
@@ -1832,32 +2458,42 @@ footer {
     }
 
     function switchLanguage(lang) {
-        body.classList.forEach(cls => {
+        body.classList.forEach((cls) => {
             if (cls.startsWith('lang-')) body.classList.remove(cls);
         });
         body.classList.add(`lang-${lang}`);
+        html.lang = lang === 'default' ? 'pl' : lang;
 
-        langToggles.forEach(btn => {
-            btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        langToggles.forEach((btn) => {
+            const isActive = btn.getAttribute('data-lang') === lang;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         });
 
-        // Ensure we are at top when switching languages
+        const visibleTabs = getVisibleTabs(lang);
+        const nextTab = visibleTabs[0];
+        if (nextTab) {
+            const nextTabId = nextTab.getAttribute('data-tab');
+            tabs.forEach((tab) => tab.classList.toggle('active', tab === nextTab));
+            syncAriaStates(nextTabId);
+        }
+
         window.scrollTo(0, 0);
     }
 
-    tabs.forEach(tab => {
+    tabs.forEach((tab) => {
+        tab.setAttribute('role', 'tab');
         tab.addEventListener('click', () => {
             switchTab(tab.getAttribute('data-tab'));
         });
     });
 
-    langToggles.forEach(toggle => {
+    langToggles.forEach((toggle) => {
         toggle.addEventListener('click', () => {
             switchLanguage(toggle.getAttribute('data-lang'));
         });
     });
 
-    // Tracking active section on scroll
     const observerOptions = {
         root: null,
         rootMargin: '-20% 0px -70% 0px',
@@ -1865,24 +2501,19 @@ footer {
     };
 
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 const id = entry.target.id;
-                tabs.forEach(t => t.classList.toggle('active', t.getAttribute('data-tab') === id));
-                
-                // Optional: Update URL on scroll
-                // const url = new URL(window.location);
-                // url.hash = id;
-                // window.history.replaceState(null, '', url);
+                tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-tab') === id));
+                syncAriaStates(id);
             }
         });
     }, observerOptions);
 
-    contents.forEach(section => observer.observe(section));
+    contents.forEach((section) => observer.observe(section));
 
-    // Initial state
     const initialHash = window.location.hash.substring(1);
-    const availableLangs = Array.from(langToggles).map(t => t.getAttribute('data-lang'));
+    const availableLangs = Array.from(langToggles).map((t) => t.getAttribute('data-lang'));
     
     let preferredLang = 'default';
     if (initialHash && availableLangs.includes(initialHash.split('_')[0])) {
@@ -1898,14 +2529,79 @@ footer {
     switchLanguage(preferredLang);
     
     if (initialHash) {
-        // Minor delay to let smooth scroll work after language-based layout renders
         setTimeout(() => {
             const target = document.getElementById(initialHash);
-            if (target) target.scrollIntoView({ behavior: 'auto' });
+            if (target) {
+                switchTab(initialHash);
+                target.scrollIntoView({ behavior: 'auto' });
+            }
         }, 100);
     } else {
+        const initialVisibleTab = getVisibleTabs(preferredLang)[0];
+        if (initialVisibleTab) {
+            syncAriaStates(initialVisibleTab.getAttribute('data-tab'));
+        }
         window.scrollTo(0, 0);
     }
+    
+    window.generateAdventure = function(lang) {
+        const container = document.getElementById(`rng-tables-${lang}`);
+        if (!container) return;
+        
+        const tables = container.querySelectorAll('.adventure-table-card');
+        if (tables.length < 6) return;
+        
+        let parts = [];
+        tables.forEach(table => {
+            const prefixEl = table.querySelector('.adventure-prefix');
+            const items = table.querySelectorAll('.rng-text');
+            
+            const prefix = prefixEl ? prefixEl.textContent.trim() : "";
+            
+            if (items.length > 0) {
+                const randomText = items[Math.floor(Math.random() * items.length)].textContent.trim();
+                parts.push((prefix ? prefix + " " : "") + `<span class="rng-highlight">${randomText}</span>`);
+            } else {
+                parts.push(prefix);
+            }
+        });
+        
+        if (parts.length >= 6) {
+            const sentence1 = parts[0] + " " + parts[1] + " " + parts[2];
+            const sentence2 = parts[3] + " " + parts[4] + " " + parts[5];
+            
+            let s1 = sentence1.replace(/\s+/g, ' ').replace(/\s+\./g, '.');
+            if(!s1.endsWith('.')) s1 += '.';
+            let s2 = sentence2.replace(/\s+/g, ' ').replace(/\s+\./g, '.');
+            if(!s2.endsWith('.')) s2 += '.';
+
+            const capitalize = (str) => {
+                let inTag = false;
+                for (let i = 0; i < str.length; i++) {
+                    if (str[i] === '<') inTag = true;
+                    else if (str[i] === '>') inTag = false;
+                    else if (!inTag && /[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/.test(str[i])) {
+                        return str.substring(0, i) + str[i].toUpperCase() + str.substring(i + 1);
+                    }
+                }
+                return str;
+            };
+
+            s1 = capitalize(s1);
+            s2 = capitalize(s2);
+            
+            const resultEl = document.getElementById(`rng-result-${lang}`);
+            if (resultEl) {
+                resultEl.innerHTML = `<p>${s1}</p><p>${s2}</p>`;
+            }
+        }
+    };
+
+    availableLangs.forEach(l => {
+        if(document.getElementById(`rng-result-${l}`)) {
+            generateAdventure(l);
+        }
+    });
 });
 
     </script>

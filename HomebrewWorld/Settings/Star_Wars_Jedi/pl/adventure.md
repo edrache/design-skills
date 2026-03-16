@@ -46,28 +46,28 @@
 19. w układzie gwiezdnym wyrwanym z oficjalnych map archiwów
 20. na świętych ziemiach prastarych obrońców światła strzeżonych dawniej przed złem
 
-### Tabela 3: Cel i Pożądany Obiekt
-**szukając**
-1. zaginionego, mądrego Mistrza Jedi przemycającego wiedzę.
-2. potężnego reliktu, który zakłóca spokój Mocy w sektorze.
-3. legendarnego miecza świetlnego pierwszych obrońców Pokoju.
-4. zapisów i formuł ujawniających słabość rosnącego kultu Sithów.
-5. rzadkich kryształów kyber o niezwykłym rezonansie do nowego oręża.
-6. uwięzionej duszy Padawana odciąganej w strone Ciemnej Strony.
-7. starożytnej inkantacji zdolnej do uleczenia rozszarpanej wojną planety.
-8. nienaruszonego skarbca wiedzy o Mocy Żywej ukrytego przed mrokiem.
-9. klucza do bram pradawnego więzienia wiążącego niespotykane nigdy już później zło.
-10. naturalnego antidotum uodparniającego tkanki na mrok uszkadzający połączenie z Mocą.
-11. wielkiego antycznego proroctwa ostrzegającego przed narastającym od wieków chaosem.
-12. zakrzywionej czasoprzestrzenią wizji przyszłości skompresowanej w zagubionym amulecie.
-13. uśpionego pierwotnego strumienia czyściutkiej energii Jasnej Strony Mocy Zjednoczonej.
-14. złodzieja i heretyka wykorzystującego sithowską alchemię do budowy hybryd bestii.
-15. starożytnego archiwum chroniącego całą prawdę o prapoczątkach schizmy z wrogami.
-16. zniszczonego filaru, który podtrzymuje energetycznie połączenie duchowe z wszechświatem.
-17. w pełni funkcjonalnego holokronu pełnego wiedzy w formie nauk bojowych wielkiego mistrza.
-18. fragmentów starodawnej gwiezdnej mapy kierującej ku dawno nieodkrytej na nowo bezpiecznej przystani Ciemnej i Jasnej strony sił w harmonijnym lewym nurcie ukrytych światów .
-19. ścieżki i ostatecznej prawomocnej harmonii dla sterroryzowanej splotem cierpienia plemiennej wioski niewinnych.
-20. kluczowej wiedzy zakonu pozwalającej skutecznie i ostatecznie stawić czoła odradzającemu mrocznemu zagrożeniu i obronić tych co pozostają wrażliwi.
+### Tabela 3: Cel
+**prowadząc do**
+1. księżycowej enklawy, gdzie wygnani Jedi pełnią cichy wartę.
+2. roztrzaskanej groty kyber pulsującej pod świętym urwiskiem.
+3. tarasów medytacyjnych świątyni wymazanej z map Zakonu.
+4. ukrytego skarbca archiwów pod miastem pielgrzymów.
+5. ruin sanktuarium strażników rozszczepionych błyskawicą Sithów.
+6. lewitującego klasztoru dryfującego nad burzami gazowego olbrzyma.
+7. kryształowych katakumb pod zapomnianą akademią padawanów.
+8. oazy-sanktuarium ukrytej w wydmach martwego świata.
+9. więziennego sanktuarium zbudowanego wokół pradawnej rany Ciemnej Strony.
+10. zarośniętego dziedzińca, gdzie upadła rada sądziła zdrajców.
+11. węzła Mocy pogrzebanego pod korzeniami ogromnego leśnego księżyca.
+12. białych solnisk, na których o zmierzchu gromadzą się wizje.
+13. zapieczętowanego obserwatorium ustawionego względem najstarszych gwiazd.
+14. lustrzanych sal zakonu uzdrowicieli zagubionego w wojnie domowej.
+15. lodowego klasztoru wyciętego w ścianie polarnego kanionu.
+16. mostowego sanktuarium nad przepaścią pełną szepczących ech.
+17. statku-sanktuarium ukrytego w pierścieniu rozbitych księżyców.
+18. ogrodu grobowego nosicieli mieczy świetlnych pochłoniętego przez pnącza.
+19. pustelni na klifie górującym nad doliną okaleczoną wojną.
+20. promiennej komnaty w samym sercu uśpionego mechanicznego świata.
 
 ### Tabela 4: Cel Misji
 **Jesteśmy tutaj, aby**

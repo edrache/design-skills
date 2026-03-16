@@ -198,6 +198,16 @@ p, li, h1, h2, h3, b, span, div {
     line-height: 1.8;
 }
 
+.page-summary-copy {
+    display: none;
+}
+
+.lang-pl .page-summary-copy.lang-pl,
+.lang-en .page-summary-copy.lang-en,
+.lang-default .page-summary-copy.lang-default {
+    display: block;
+}
+
 .main-layout {
     display: grid;
     grid-template-columns: 280px minmax(0, 1fr);
@@ -230,8 +240,25 @@ p, li, h1, h2, h3, b, span, div {
     backdrop-filter: blur(12px);
 }
 
+.sidebar-home-link {
+    width: 100%;
+    justify-content: flex-start;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+}
+
 .sidebar-collapsed .tabs-container {
     padding: 16px 10px;
+}
+
+.sidebar-collapsed .sidebar-home-link {
+    justify-content: center;
+    padding-inline: 0;
+}
+
+.sidebar-collapsed .sidebar-home-link span:last-child {
+    display: none;
 }
 
 #sidebar-toggle {
@@ -728,17 +755,22 @@ footer {
         <header class="hero">
             <p class="eyebrow">Homebrew World Setting</p>
             <div class="hero-top">
-                
                 <div class="lang-selector"><button class="lang-toggle" data-lang="en" type="button">English</button></div>
             </div>
             <h1 class="page-title"><span class="title-emoji">🌍</span> <span class="title-text">Star Wars</span></h1>
-            <p class="page-summary">Materiały do gry Homebrew World ułożone w tej samej bibliotece wizualnej co strona główna: ciepła paleta, szklane panele i czytelny katalog playbooków.</p>
-            <div class="page-toolbar"><span class="stat-badge">5 playbookow</span> <span class="stat-badge">Ruchy opcjonalne i szybka nawigacja</span></div>
+            <p class="page-summary"><span class="page-summary-copy lang-en">Adventure science fantasy about smugglers, rebels, droids, and Imperial agents on the edges of a galaxy full of blockades, war ruins, secret bases, and desperate hyperspace jumps.</span></p>
+            <div class="page-toolbar"><span class="stat-badge">5 playbookow</span></div>
         </header>
 
         <div class="main-layout">
             <aside class="tabs-container" id="sidebar">
                 <button id="sidebar-toggle" aria-label="Toggle Sidebar" aria-expanded="true" type="button">☰</button>
+                
+            <a class="home-link sidebar-home-link" href="../index.html">
+                <span aria-hidden="true">←</span>
+                <span>Wroc do Homebrew Worlds</span>
+            </a>
+        
                 <div class="tabs-list" role="tablist" aria-label="Playbook navigation">
                     <button class="tab lang-en" data-tab="en_playbook_bounty_hunter" type="button">🏹 Łowca Nagród</button>
 <button class="tab lang-en" data-tab="en_playbook_jedi_adept" type="button">✨ Adept Jedi</button>
@@ -1549,29 +1581,29 @@ footer {
         
 
                 <div class="card adventure-table-card">
-                    <h3>🎲 Table 3: Goal & Target</h3>
-                    <div class="adventure-prefix">searching for</div>
+                    <h3>🎲 Table 3: Target</h3>
+                    <div class="adventure-prefix">leading to</div>
 <ul class="adventure-items">
-<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">emergency disks protecting the encoded plans of a battlestation.</span></li>
-<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a highly sought-after stolen shipment of precious coaxium.</span></li>
-<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a miraculously surviving archive with Jedi data, like an old holocron.</span></li>
-<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a powerful, military hyper-radio relay of the Rebel Alliance.</span></li>
-<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">magnificent, now-illegal crystals for energy weapon technology.</span></li>
-<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a physical key in the form of a code cylinder held by a Moff.</span></li>
-<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">old reserves and stockpiles of laser weaponry from the Clone Wars.</span></li>
-<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a talented shield engineering deserter fleeing the army.</span></li>
-<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">hidden credits in a vault secured by Hutt armed guards.</span></li>
-<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a few advanced memory cores for cybernetic implants.</span></li>
-<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">drives with recordings of brutal crimes by stationed garrison officers.</span></li>
-<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a navicomputer untouched for decades in a highly sought-after freighter.</span></li>
-<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">an unapproved formula for a powerful biopreparation, from which its creator is fleeing.</span></li>
-<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a legendary warrior or Master hiding from the Inquisition.</span></li>
-<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">an old Mandalorian weapon adorned with unique beskar ores.</span></li>
-<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a broken reactor with a boiling, stolen prototype.</span></li>
-<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">the only working deflector shield saving a defenseless local station from a gang's wrath.</span></li>
-<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">the priceless coordinates of a hidden cell or haven for surviving refugees.</span></li>
-<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">an old protocol droid or astromech model possessing forbidden maps.</span></li>
-<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a mind-destroying implant programmed by command for a selected politician.</span></li>
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">an abandoned service dock hidden beneath an Imperial city.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a prison moon cut out of every active nav chart.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a Jedi temple carved into the wall of a storm canyon.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a Rebel hideout masked inside the wreck of a freighter.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a research lab drifting through a belt of debris.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a Hutt vault dug beneath a combat arena.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a relay station hanging among the spires of an ice world.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">an underground droid city buried below the desert.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">an orbital graveyard of cruisers bound inside a minefield.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a former Separatist fortress now occupied by pirates.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a Force monastery hidden among black swamps.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a drilling platform balancing over a sea of lava.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a mining colony locked under total quarantine.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a smuggler hangar carved into the heart of an asteroid.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">a syndicate palace rising above toxic canals.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a destroyer wreck embedded in jungle for generations.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a secret Inquisitor prison beneath a glacier summit.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a hidden refugee sanctuary in the core of a nebula.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a customs tower controlling the sector's only safe landing zone.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a ruined clone shipyard being swallowed by the sands of Tatooine.</span></li>
 </ul>
                 </div>
         

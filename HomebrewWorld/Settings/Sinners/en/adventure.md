@@ -46,28 +46,28 @@
 19. close to a devil's pact crossroads
 20. in a sinkhole left by an old fire
 
-### Table 3: Goal & Target
-**searching for**
-1. a lost record by a blues master.
-2. the hidden diary of a burned sheriff.
-3. a legendary guitar that steals souls.
-4. a pact that can wash away our sins.
-5. the buried treasure of ruthless bootleggers.
-6. the holy cross of an old preacher.
-7. proof of an escaped brother's innocence.
-8. the key to rusted shackles from the past.
-9. a bottle of brew that lets you see demons.
-10. forged papers to escape up North.
-11. the tears of an innocent executed man.
-12. the bones of a long-murdered musician.
-13. an amulet protecting against the hellhound.
-14. a letter from a lover killed years ago.
-15. revenge that will bring no relief.
-16. the silver cane of a Hoodoo warlock.
-17. the blood of someone who has never sinned.
-18. sheet music for a song that brings darkness.
-19. an old shotgun inherited from a grandfather.
-20. a safe sanctuary against the coming night.
+### Table 3: Target
+**leading to**
+1. the crossroads clearing where the devil still bargains after midnight.
+2. a flood-swallowed church cellar full of whispering water.
+3. the back room of a juke joint boarded up after a massacre.
+4. a cane field chapel burned black from the inside.
+5. the drowned graveyard island no ferryman will name.
+6. a sheriff's office basement bricked over in a hurry.
+7. the moonlit porch of a widow who never stopped singing.
+8. a prison farm pit where chains still drag through the mud.
+9. the hidden stillhouse under the preacher's orchard.
+10. a railroad tunnel where old work songs echo without voices.
+11. the cypress hollow claimed by lantern-eyed hounds.
+12. a medicine shack sunk deep in the marsh reeds.
+13. the ballroom of a plantation house abandoned after judgment night.
+14. a roadhouse stage where no musician survives the last verse.
+15. the sinkhole behind a revival tent stained with old blood.
+16. the levee path leading straight to a vanished settlement.
+17. the cold attic where a lynch mob left its robes and ropes.
+18. a moonshine cave lit by blue fire from the walls.
+19. the riverbank shack where the dead still knock after dusk.
+20. a hidden refuge cut into the oldest part of the swamp.
 
 ### Table 4: Purpose & Mission
 **We are here to**

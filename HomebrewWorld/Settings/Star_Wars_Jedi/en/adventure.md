@@ -46,28 +46,28 @@
 19. in a star system torn from the official archives' maps
 20. on the sacred lands of ancient defenders of light, formerly guarded against evil
 
-### Table 3: Goal & Target
-**searching for**
-1. a lost, wise Jedi Master smuggling knowledge.
-2. a powerful relic that disrupts the peace of the Force in the sector.
-3. a legendary lightsaber of the first defenders of Peace.
-4. records and formulas revealing the weakness of a growing Sith cult.
-5. rare kyber crystals with extraordinary resonance for a new weapon.
-6. the trapped soul of a Padawan being pulled toward the Dark Side.
-7. an ancient incantation capable of healing a war-torn planet.
-8. an untouched vault of Living Force knowledge hidden from the dark.
-9. the key to the gates of an ancient prison binding an unprecedented evil.
-10. a natural antidote immunizing tissues against the darkness damaging Force connection.
-11. a great antique prophecy warning of chaos building for centuries.
-12. a time-warped vision of the future compressed in a lost amulet.
-13. a dormant primal stream of pure energy of the Light Side of the Unifying Force.
-14. a thief and heretic using Sith alchemy to build hybrid beasts.
-15. an ancient archive protecting the whole truth about the origins of the schism with enemies.
-16. a destroyed pillar that energetically supports the spiritual connection with the universe.
-17. a fully functional holocron full of knowledge in the form of a great master's martial teachings.
-18. fragments of an ancient star map pointing strictly to a long-undiscovered haven of the Dark and Light sides of the force in a harmonious left current of hidden worlds.
-19. a path and ultimate righteous harmony for an innocent tribal village terrorized by a knot of suffering.
-20. crucial knowledge of the order allowing one to effectively and finally face a resurgent dark threat and defend those who remain sensitive.
+### Table 3: Target
+**leading to**
+1. a moonlit enclave where exiled Jedi keep silent watch.
+2. a shattered kyber cavern pulsing beneath a sacred cliff.
+3. the meditation terraces of a temple erased from the Order's maps.
+4. a hidden archive vault beneath a city of pilgrims.
+5. the ruins of a guardian shrine split by Sith lightning.
+6. a floating monastery drifting above the storms of a gas giant.
+7. the crystal catacombs below a forgotten padawan academy.
+8. an oasis sanctuary hidden in the dunes of a dead world.
+9. a prison sanctuary built around an ancient dark-side wound.
+10. the overgrown court where a fallen council once judged traitors.
+11. a force nexus buried under the roots of a giant forest moon.
+12. the white salt flats where visions gather at dusk.
+13. a sealed observatory aligned to the oldest stars.
+14. the mirrored halls of a healer order lost in civil war.
+15. an ice monastery cut into the face of a polar canyon.
+16. the bridge shrine spanning a void full of whispering echoes.
+17. a sanctuary ship hidden inside a ring of shattered moons.
+18. the burial garden of saber-bearers consumed by vines.
+19. a cliffside hermitage overlooking a valley scarred by war.
+20. the radiant chamber at the heart of a sleeping world-engine.
 
 ### Table 4: Purpose & Mission
 **We are here to**

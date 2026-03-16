@@ -1,5 +1,6 @@
 import glob
 import html as html_lib
+import json
 import os
 import re
 import sys
@@ -24,7 +25,12 @@ EMOJI_MAP = {
     'crooner': '🎵', 'piosenkarz': '🎵',
     'operator': '🔧', 'organizator': '💼',
     'heavy': '🛡️', 'twardziel': '🛡️',
-    'necromancer': '💀',
+    'necromancer': '💀', 'nekromanta': '💀',
+    'nethermancer': '☠️',
+    'sky raider': '🏴‍☠️', 'rajdowiec': '🏴‍☠️',
+    'swordmaster': '⚔️', 'mistrz miecza': '⚔️',
+    'scout': '🔭', 'zwiadowca': '🔭',
+    'troubadour': '🎶', 'trubadur': '🎶',
     'knight': '🛡️',
     'rebel': '🚩',
     'optional': '🌟',
@@ -36,6 +42,17 @@ EMOJI_MAP = {
     'starting': '🏁',
     'advance': '📈'
 }
+
+def load_setting_summaries():
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    skill_dir = os.path.dirname(script_dir)
+    summaries_path = os.path.join(skill_dir, 'references', 'setting_summaries.json')
+    if not os.path.exists(summaries_path):
+        return {}
+    with open(summaries_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+SETTING_SUMMARIES = load_setting_summaries()
 
 def get_emoji(text, default='📜'):
     text = text.lower()
@@ -52,6 +69,35 @@ def clean_content(content):
 def format_item(item):
     item = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', item)
     return item
+
+def get_setting_summary(setting_name, lang):
+    summary = SETTING_SUMMARIES.get(setting_name, {})
+    if lang in summary:
+        return summary[lang]
+    if lang == 'default':
+        return f'Materialy Homebrew World osadzone w settingu {setting_name.replace("_", " ")}.'
+    return f'Homebrew World materials set in {setting_name.replace("_", " ")}.'
+
+def build_summary_html(setting_name, langs):
+    if langs == ['default']:
+        default_summary = html_lib.escape(get_setting_summary(setting_name, 'default'))
+        return f'<p class="page-summary"><span class="page-summary-copy lang-default">{default_summary}</span></p>'
+
+    ordered_langs = [lang for lang in ['pl', 'en'] if lang in langs] + [lang for lang in langs if lang not in ['pl', 'en']]
+    copies = []
+    for lang in ordered_langs:
+        summary = html_lib.escape(get_setting_summary(setting_name, lang))
+        copies.append(f'<span class="page-summary-copy lang-{lang}">{summary}</span>')
+    return f'<p class="page-summary">{" ".join(copies)}</p>'
+
+def infer_home_href(source_dir, output_dir):
+    source_abs = os.path.abspath(source_dir)
+    output_abs = os.path.abspath(output_dir)
+    homebrew_root = os.path.dirname(os.path.dirname(source_abs))
+    site_index = os.path.join(homebrew_root, 'site', 'index.html')
+    if not os.path.exists(site_index):
+        return None
+    return os.path.relpath(site_index, output_abs)
 
 def parse_markdown_to_cards(content):
     sections = re.split(r'^##\s+', content, flags=re.MULTILINE)
@@ -301,14 +347,16 @@ def generate_site(source_dir, output_dir, home_href=None):
     elif content_counts:
         only_lang = next(iter(content_counts))
         toolbar_bits.append(f'<span class="stat-badge">{content_counts[only_lang]} playbookow</span>')
-    if any("optional_moves" in tid for tabs in all_tabs.values() for tid, _ in tabs):
-        toolbar_bits.append('<span class="stat-badge">Ruchy opcjonalne i szybka nawigacja</span>')
     toolbar_html = f'<div class="page-toolbar">{" ".join(toolbar_bits)}</div>' if toolbar_bits else ""
+    summary_html = build_summary_html(setting_name, langs)
+
+    if home_href is None:
+        home_href = infer_home_href(source_dir, output_dir)
 
     home_link_html = ""
     if home_href:
         home_link_html = f'''
-            <a class="home-link" href="{html_lib.escape(home_href, quote=True)}">
+            <a class="home-link sidebar-home-link" href="{html_lib.escape(home_href, quote=True)}">
                 <span aria-hidden="true">←</span>
                 <span>Wroc do Homebrew Worlds</span>
             </a>
@@ -332,17 +380,17 @@ def generate_site(source_dir, output_dir, home_href=None):
         <header class="hero">
             <p class="eyebrow">Homebrew World Setting</p>
             <div class="hero-top">
-                {home_link_html}
                 {lang_selector_html}
             </div>
             <h1 class="page-title">{title_display}</h1>
-            <p class="page-summary">Materiały do gry Homebrew World ułożone w tej samej bibliotece wizualnej co strona główna: ciepła paleta, szklane panele i czytelny katalog playbooków.</p>
+            {summary_html}
             {toolbar_html}
         </header>
 
         <div class="main-layout">
             <aside class="tabs-container" id="sidebar">
                 <button id="sidebar-toggle" aria-label="Toggle Sidebar" aria-expanded="true" type="button">☰</button>
+                {home_link_html}
                 <div class="tabs-list" role="tablist" aria-label="Playbook navigation">
                     {tab_buttons}
                 </div>

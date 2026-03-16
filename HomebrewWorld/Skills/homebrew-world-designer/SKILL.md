@@ -85,7 +85,7 @@ The sentence fragments and options must match the structure found in `AdventureG
 First Sentence (Tables 1-3):
 - **Table 1: Action & Location** (Begins with: "Odkrywamy..." / "We discover...") - 20 options.
 - **Table 2: Placement & Geography** (Continues with: "która leży..." / "which lies...") - 20 options.
-- **Table 3: Goal & Target** (Ends with: "szukając..." / "searching for...") - 20 options.
+- **Table 3: Target** (Ends with: "prowadząc do..." / "leading to...") - 20 options. Every option in this table must be a place, not an object, person, clue, or abstract goal.
 
 Second Sentence (Tables 4-6):
 - **Table 4: Purpose & Mission** (Begins with: "Jesteśmy tutaj, aby..." / "We are here to...") - 20 options.
@@ -146,6 +146,6 @@ When generating `Optional Moves`, use this same design principle: recurring situ
 
 ### Adventure Generator Pattern
 From the provided `AdventureGenerator.pdf`, the recurring pattern for adventure generation relies on combining options from multiple tables to form two sentences.
-Sentence 1: `Odkrywamy` [1-20] `która leży` [1-20] `szukając` [1-20].
+Sentence 1: `Odkrywamy` [1-20] `która leży` [1-20] `prowadząc do` [1-20].
 Sentence 2: `Jesteśmy tutaj, aby` [1-20] `strzeżony przez` [1-20] `i` [1-20].
-The exact wording of the Polish prefixes ("Odkrywamy", "która leży", "szukając", "Jesteśmy tutaj, aby", "strzeżony przez", "i") should be retained exactly as the table headers, while the 20 options inside each table must be entirely customized to the prompt's setting.
+The exact wording of the Polish prefixes ("Odkrywamy", "która leży", "prowadząc do", "Jesteśmy tutaj, aby", "strzeżony przez", "i") should be retained exactly as the table headers, while the 20 options inside each table must be entirely customized to the prompt's setting.

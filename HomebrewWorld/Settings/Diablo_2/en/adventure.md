@@ -46,28 +46,28 @@
 19. inside ruins swallowed by thorn and vine
 20. at the crossing of three cursed paths
 
-### Table 3: Goal & Target
-**searching for**
-1. the shard of a soulstone.
-2. a lost Horadric journal.
-3. a survivor who saw the Prime Evil pass.
-4. the cure for a spreading possession.
-5. a relic that can sanctify the dead.
-6. the key to a demon-forged prison.
-7. proof of a church conspiracy.
-8. a map to the hidden tomb of a lord of sin.
-9. an angelic weapon long thought broken.
-10. the true name of a local terror.
-11. a prisoner taken for sacrifice.
-12. an artifact stolen by cultists.
-13. a way to close a hell-rift before dawn.
-14. the bones of a saint.
-15. a druidic seal that can still hold.
-16. the merchant who sold the cursed idol.
-17. a banner lost in the last crusade.
-18. the body of someone who must not rise again.
-19. a cache of black market potions and scrolls.
-20. a safe road for refugees to follow.
+### Table 3: Target
+**leading to**
+1. the drowned vault beneath the old cathedral.
+2. a plague pit sealed under Tristram's ruins.
+3. the shattered sanctum of a fallen archangel.
+4. a demon-forged prison buried below the desert.
+5. the hidden Horadric archive behind a false crypt wall.
+6. a mountain pass where the dead march at dusk.
+7. the reliquary chapel blackened by hellfire.
+8. a forgotten tomb beneath a lord's ruined estate.
+9. the blood altar at the center of a cult maze.
+10. an ossuary where prayers still echo in chains.
+11. the cursed gallows hill beyond the last farm.
+12. a catacomb opened from the inside during the night.
+13. the abandoned watchtower overlooking corrupted fields.
+14. a cavern shrine claimed by goat-demon warbands.
+15. the frozen burial hall of a barbarian king.
+16. a grave road swallowed by ash and thorns.
+17. the desecrated monastery garden hiding a sealed crypt.
+18. a refugee tunnel running beneath the siege lines.
+19. the drowned cellars of a town consumed by rot.
+20. a cracked worldstone chamber no map should still remember.
 
 ### Table 4: Purpose & Mission
 **We are here to**
