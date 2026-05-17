@@ -497,9 +497,10 @@ var UI = {
   doProposal: function() {
     var rel = Game.state.ending.proposalRelationship || 0;
     var roll = Game.roll2D6() + rel;
-    Game.state.ending.proposalRoll = roll;
+    var capped = Math.min(roll, 12);
+    Game.state.ending.proposalRoll = capped;
     Game.save();
-    var text = Game.getResult("proposal", roll);
+    var text = Game.getResult("proposal", capped);
     var el = document.getElementById("result-proposal");
     if (el) el.innerHTML = '<span class="result-value">' + text + ' (' + roll + ')</span>' +
       '<button class="btn-reroll" onclick="UI.doProposal()">' + t("btn.reroll") + '</button>';
