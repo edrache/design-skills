@@ -406,8 +406,209 @@ var UI = {
     }};
     group.appendChild(UI.makeRollRow("topic", null, UI.rollConfig["topic"].rollFn));
   },
-  renderEnding: function() {},
-  renderSummary: function() {},
+  renderEnding: function() {
+    var group = document.getElementById("rolls-ending");
+    var lang = Game.state.language;
+    group.innerHTML = "";
+
+    // Dostawa (2D6 + bonus)
+    var deliveryRow = document.createElement("div");
+    deliveryRow.className = "roll-row";
+    deliveryRow.innerHTML =
+      '<span class="roll-label">' + (TABLES.delivery.label[lang] || TABLES.delivery.label.en) + ' (2D6+' + Game.state.improvementBonus + ')</span>' +
+      '<div id="result-delivery">' +
+        '<button class="btn-roll" onclick="UI.doDelivery()">' + t("btn.roll") + '</button>' +
+      '</div>';
+    group.appendChild(deliveryRow);
+
+    // Co kochają w grze (1D6)
+    UI.rollConfig["whatTheyLove"] = { statePath: "ending.whatTheyLove", rollFn: function() {
+      UI.updateResult("whatTheyLove", Game.rollDie(6), "ending.whatTheyLove");
+    }};
+    group.appendChild(UI.makeRollRow("whatTheyLove", "ending.whatTheyLove", UI.rollConfig["whatTheyLove"].rollFn));
+
+    // Propozycja (2D6 + relacja)
+    var proposalSection = document.createElement("div");
+    proposalSection.innerHTML =
+      '<div class="roll-row" style="flex-direction:column;align-items:flex-start;gap:8px">' +
+        '<span class="roll-label">' + (TABLES.proposal.label[lang] || TABLES.proposal.label.en) + '</span>' +
+        '<select class="relationship-select" id="relationship-select" onchange="Game.state.ending.proposalRelationship=parseInt(this.value);Game.save();">' +
+          '<option value="0">' + t("ending.relationship.cordial") + '</option>' +
+          '<option value="1">' + t("ending.relationship.kind") + '</option>' +
+          '<option value="2">' + t("ending.relationship.excellent") + '</option>' +
+          '<option value="3">' + t("ending.relationship.special") + '</option>' +
+        '</select>' +
+        '<div id="result-proposal">' +
+          '<button class="btn-roll" onclick="UI.doProposal()">' + t("btn.roll") + '</button>' +
+        '</div>' +
+      '</div>';
+    group.appendChild(proposalSection);
+
+    // Ważne Wydarzenie (wiek)
+    var eventSection = document.createElement("div");
+    eventSection.innerHTML =
+      '<div class="roll-row" style="flex-direction:column;align-items:flex-start;gap:8px">' +
+        '<span class="roll-label">' + (TABLES.importantEvent.label[lang] || TABLES.importantEvent.label.en) + '</span>' +
+        '<div style="display:flex;align-items:center;gap:8px">' +
+          '<span>' + t("ending.age.label") + '</span>' +
+          '<input type="number" class="age-input" id="age-input" min="16" max="100" value="' + Game.state.characterAge + '"' +
+            ' onchange="Game.state.characterAge=parseInt(this.value)||16;Game.save();">' +
+        '</div>' +
+        '<div id="result-importantEvent">' +
+          '<button class="btn-roll" onclick="UI.doEvent()">' + t("btn.roll") + '</button>' +
+        '</div>' +
+      '</div>';
+    group.appendChild(eventSection);
+
+    // Przywróć istniejące wyniki
+    if (Game.state.ending.deliveryRoll) {
+      var text = Game.getResult("delivery", Game.state.ending.deliveryRoll);
+      document.getElementById("result-delivery").innerHTML =
+        '<span class="result-value">' + text + '</span>' +
+        '<button class="btn-reroll" onclick="UI.doDelivery()">' + t("btn.reroll") + '</button>';
+    }
+    if (Game.state.ending.proposalRoll) {
+      var pt = Game.getResult("proposal", Game.state.ending.proposalRoll);
+      document.getElementById("result-proposal").innerHTML =
+        '<span class="result-value">' + pt + '</span>' +
+        '<button class="btn-reroll" onclick="UI.doProposal()">' + t("btn.reroll") + '</button>';
+    }
+    if (Game.state.ending.event) {
+      var ev = TABLES.importantEvent[lang] ? TABLES.importantEvent[lang][Game.state.ending.event] : TABLES.importantEvent.en[Game.state.ending.event];
+      if (!ev) ev = TABLES.importantEvent.en[Game.state.ending.event] || "?";
+      document.getElementById("result-importantEvent").innerHTML =
+        '<span class="result-value">' + ev + '</span>' +
+        '<button class="btn-reroll" onclick="UI.doEvent()">' + t("btn.reroll") + '</button>';
+    }
+  },
+
+  doDelivery: function() {
+    var roll = Game.roll2D6() + Game.state.improvementBonus;
+    var capped = Math.min(roll, 12);
+    Game.state.ending.deliveryRoll = capped;
+    Game.save();
+    var text = Game.getResult("delivery", capped);
+    var el = document.getElementById("result-delivery");
+    if (el) el.innerHTML = '<span class="result-value">' + text + ' (' + roll + ')</span>' +
+      '<button class="btn-reroll" onclick="UI.doDelivery()">' + t("btn.reroll") + '</button>';
+    UI.renderSummaryIfVisible();
+  },
+
+  doProposal: function() {
+    var rel = Game.state.ending.proposalRelationship || 0;
+    var roll = Game.roll2D6() + rel;
+    Game.state.ending.proposalRoll = roll;
+    Game.save();
+    var text = Game.getResult("proposal", roll);
+    var el = document.getElementById("result-proposal");
+    if (el) el.innerHTML = '<span class="result-value">' + text + ' (' + roll + ')</span>' +
+      '<button class="btn-reroll" onclick="UI.doProposal()">' + t("btn.reroll") + '</button>';
+    UI.renderSummaryIfVisible();
+  },
+
+  doEvent: function() {
+    var age = Game.state.characterAge || 16;
+    var tableKey = age >= 80 ? 80 : age;
+    Game.state.ending.event = tableKey;
+    Game.save();
+    var lang = Game.state.language;
+    var data = TABLES.importantEvent[lang] || TABLES.importantEvent.en;
+    var text = data[tableKey] || data[80] || "?";
+    var el = document.getElementById("result-importantEvent");
+    if (el) el.innerHTML = '<span class="result-value">' + text + '</span>' +
+      '<button class="btn-reroll" onclick="UI.doEvent()">' + t("btn.reroll") + '</button>';
+    UI.renderSummaryIfVisible();
+  },
+
+  renderSummary: function() {
+    var s = Game.state;
+    var lang = s.language;
+    var container = document.getElementById("summary-content");
+
+    function val(tableKey, rollValue) {
+      if (rollValue == null) return "—";
+      return Game.getResult(tableKey, rollValue);
+    }
+
+    var html = "";
+
+    // Patron
+    html += '<div class="summary-section">';
+    html += '<div class="summary-section-title">' + t("summary.patron") + '</div>';
+    html += '<div class="summary-value">';
+    html += [
+      val("appearance", s.patron.appearance),
+      val("personality", s.patron.personality),
+      val("nameInitials", s.patron.nameInitials),
+      val("ancestry", s.patron.ancestry),
+      val("talent", s.patron.talent)
+    ].join(" · ");
+    if (s.patron.theme1 || s.patron.theme2) {
+      html += "<br>" + val("ttrpgThemes", s.patron.theme1) + " / " + val("ttrpgThemes", s.patron.theme2);
+    }
+    html += '</div></div>';
+
+    // Krajobraz
+    html += '<div class="summary-section">';
+    html += '<div class="summary-section-title">' + t("summary.landscape") + '</div>';
+    html += '<div class="summary-value">';
+    html += [
+      val("season", s.landscape.season),
+      val("region", s.landscape.region),
+      val("terrain", s.landscape.terrain),
+      val("weather", s.landscape.weather),
+      val("patronHouse", s.landscape.house),
+      val("regionKnownFor", s.landscape.knownFor)
+    ].join(" · ");
+    html += '</div></div>';
+
+    // System + bonus
+    if (s.morningSystem) {
+      html += '<div class="summary-section">';
+      html += '<div class="summary-section-title">' + t("summary.system") + '</div>';
+      html += '<div class="summary-value">' + val("system", s.morningSystem) + ' · ' + t("summary.bonus") + ': +' + s.improvementBonus + '</div>';
+      html += '</div>';
+    }
+
+    // Dni (aktywności + noc)
+    if (s._act1 || s._act2) {
+      html += '<div class="summary-section">';
+      html += '<div class="summary-section-title">' + t("summary.day") + ' ' + s.day + '</div>';
+      if (s._actChosen) {
+        var chosenRoll = s._actChosen === 1 ? s._act1 : s._act2;
+        html += '<div class="summary-value">' + t("summary.afternoon") + ': ' + val("activities", chosenRoll) + '</div>';
+      }
+      html += '</div>';
+    }
+
+    // Zakończenie
+    if (s.ending.deliveryRoll) {
+      html += '<div class="summary-section">';
+      html += '<div class="summary-section-title">' + t("summary.ending") + '</div>';
+      html += '<div class="summary-value">' + val("delivery", s.ending.deliveryRoll) + '</div>';
+      if (s.ending.whatTheyLove) html += '<div class="summary-value">' + val("whatTheyLove", s.ending.whatTheyLove) + '</div>';
+      if (s.ending.event) {
+        var data = TABLES.importantEvent[lang] || TABLES.importantEvent.en;
+        html += '<div class="summary-value">' + (data[s.ending.event] || "?") + '</div>';
+      }
+      html += '</div>';
+    }
+
+    if (html === "") html = '<div class="summary-empty">' + t("summary.empty") + '</div>';
+    container.innerHTML = html;
+  },
+
+  copySummary: function() {
+    var text = document.getElementById("summary-content").innerText;
+    navigator.clipboard.writeText(text).catch(function() {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    });
+  },
 
   // ===== INIT =====
   init: function() {
