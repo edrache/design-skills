@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lonely Patrons</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAGŁÓWEK -->
+  <header id="app-header">
+    <span class="header-title">Lonely Patrons</span>
+    <div class="lang-toggle">
+      <button id="btn-lang-en" class="lang-btn" onclick="UI.setLanguage('en')">EN</button>
+      <span>|</span>
+      <button id="btn-lang-pl" class="lang-btn" onclick="UI.setLanguage('pl')">PL</button>
+    </div>
+    <button id="btn-new-session" onclick="UI.confirmNewSession()">
+      <span data-i18n="btn.newSession">Nowa sesja</span>
+    </button>
+  </header>
+
+  <!-- GŁÓWNA ZAWARTOŚĆ ZAKŁADEK -->
+  <main id="tab-content">
+
+    <!-- TAB: PRZYBYCIE -->
+    <section id="tab-arrival" class="tab-panel">
+      <div class="section-header">
+        <h2 data-i18n="section.landscape">Krajobraz</h2>
+      </div>
+      <div id="rolls-landscape" class="rolls-group"></div>
+
+      <div class="section-header">
+        <h2 data-i18n="section.patron">Patron</h2>
+      </div>
+      <div id="rolls-patron" class="rolls-group"></div>
+    </section>
+
+    <!-- TAB: DZIEŃ -->
+    <section id="tab-day" class="tab-panel hidden">
+      <div class="subtabs">
+        <button class="subtab-btn active" data-subtab="morning" onclick="UI.showSubtab('morning')">
+          <span data-i18n="subtab.morning">Rano</span>
+        </button>
+        <button class="subtab-btn" data-subtab="afternoon" onclick="UI.showSubtab('afternoon')">
+          <span data-i18n="subtab.afternoon">Popołudnie</span>
+        </button>
+        <button class="subtab-btn" data-subtab="night" onclick="UI.showSubtab('night')">
+          <span data-i18n="subtab.night">Noc</span>
+        </button>
+      </div>
+
+      <!-- Rano -->
+      <div id="subtab-morning" class="subtab-panel">
+        <div id="wp-tracker"></div>
+        <div id="rolls-morning" class="rolls-group"></div>
+        <div id="improvement-section"></div>
+        <button class="btn-secondary" onclick="UI.newDay()">
+          <span data-i18n="btn.newDay">Nowy dzień →</span>
+        </button>
+      </div>
+
+      <!-- Popołudnie -->
+      <div id="subtab-afternoon" class="subtab-panel hidden">
+        <div id="rolls-afternoon" class="rolls-group"></div>
+      </div>
+
+      <!-- Noc -->
+      <div id="subtab-night" class="subtab-panel hidden">
+        <div id="rolls-night" class="rolls-group"></div>
+      </div>
+    </section>
+
+    <!-- TAB: ZAKOŃCZENIE -->
+    <section id="tab-ending" class="tab-panel hidden">
+      <div id="rolls-ending" class="rolls-group"></div>
+    </section>
+
+    <!-- TAB: PODSUMOWANIE -->
+    <section id="tab-summary" class="tab-panel hidden">
+      <div id="summary-content"></div>
+      <button class="btn-secondary" onclick="UI.copySummary()">
+        <span data-i18n="btn.copy">📋 Kopiuj</span>
+      </button>
+    </section>
+
+  </main>
+
+  <!-- DOLNA NAWIGACJA -->
+  <nav id="bottom-nav">
+    <button class="nav-btn active" data-tab="arrival" onclick="UI.showTab('arrival')">
+      <span class="nav-icon">🏕</span>
+      <span class="nav-label" data-i18n="tab.arrival">Przybycie</span>
+    </button>
+    <button class="nav-btn" data-tab="day" onclick="UI.showTab('day')">
+      <span class="nav-icon">☀</span>
+      <span class="nav-label" id="day-tab-label">Dzień 1</span>
+    </button>
+    <button class="nav-btn" data-tab="ending" onclick="UI.showTab('ending')">
+      <span class="nav-icon">🌙</span>
+      <span class="nav-label" data-i18n="tab.ending">Zakończenie</span>
+    </button>
+    <button class="nav-btn" data-tab="summary" onclick="UI.showTab('summary')">
+      <span class="nav-icon">📋</span>
+      <span class="nav-label" data-i18n="tab.summary">Podsumowanie</span>
+    </button>
+  </nav>
+
+  <!-- FLOATING: PRZYMIOTNIK -->
+  <button id="btn-adj-float" onclick="UI.openAdjectiveOverlay()">
+    <span data-i18n="btn.adjective">🎲</span>
+  </button>
+
+  <!-- OVERLAY: PRZYMIOTNIK -->
+  <div id="adj-overlay" class="overlay hidden">
+    <div class="overlay-card">
+      <div class="overlay-title" data-i18n="adj.title">Przymiotnik</div>
+      <div id="adj-result" class="overlay-result">—</div>
+      <div id="adj-number" class="overlay-number"></div>
+      <div class="overlay-actions">
+        <button onclick="UI.rollAdjective()" data-i18n="adj.new">↺ Nowy</button>
+        <button onclick="UI.closeAdjectiveOverlay()" data-i18n="adj.close">✕ Zamknij</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/tables.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
