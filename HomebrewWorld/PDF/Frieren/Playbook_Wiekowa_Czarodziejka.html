@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WIEKOWA CZARODZIEJKA</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 8mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      color: #000;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-size: 9px;
+      line-height: 1.2;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      padding: 0;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      gap: 4mm;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+    }
+
+    .page-header {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 4mm;
+      align-items: end;
+      border-bottom: 1px solid #000;
+      padding-bottom: 2.5mm;
+    }
+
+    .title-wrap h1 {
+      margin: 0 0 1mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 10px;
+      color: #222;
+      font-style: italic;
+    }
+
+    .meta-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1mm;
+      text-align: right;
+    }
+
+    .meta-line {
+      margin: 0;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+      align-items: start;
+      min-height: 0;
+      flex: 1;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 3mm;
+      min-height: 0;
+    }
+
+    .card {
+      border: 1px solid #000;
+      border-radius: 3mm;
+      background: #fff;
+      padding: 3mm;
+      break-inside: avoid;
+    }
+
+    .card h2 {
+      margin: 0 0 2mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #000;
+    }
+
+    .card h3,
+    .entry-title {
+      margin: 1.5mm 0 1mm;
+      font-size: 10px;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #000;
+    }
+
+    p {
+      margin: 0 0 1.2mm;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 4mm;
+    }
+
+    li {
+      margin: 0 0 1mm;
+    }
+
+    code {
+      font-family: Menlo, Monaco, monospace;
+      font-size: 0.95em;
+    }
+
+    .section-background {
+      padding: 2.5mm;
+    }
+
+    .section-note {
+      margin: 0 0 2mm;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .background-entry {
+      border-top: 1px solid #999;
+      padding-top: 2mm;
+      margin-top: 2mm;
+    }
+
+    .background-entry:first-of-type {
+      border-top: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .background-entry h3 {
+      margin-top: 0;
+    }
+
+    .questions-intro {
+      margin-top: 1mm;
+      font-size: 8.4px;
+      color: #333;
+      font-style: italic;
+    }
+
+    .question-list {
+      column-count: 2;
+      column-gap: 4mm;
+    }
+
+    .bullet-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6mm;
+    }
+
+    .compact-list {
+      gap: 0.3mm;
+    }
+
+    .page-two-grid {
+      grid-template-columns: 1.1fr 1fr 0.95fr;
+      gap: 3mm;
+    }
+
+    .page-two-grid .card {
+      padding: 2.5mm;
+    }
+
+    .page-two-grid .card h2 {
+      font-size: 12px;
+      margin-bottom: 1.5mm;
+    }
+
+    .page-two-grid p,
+    .page-two-grid li {
+      font-size: 8.2px;
+      line-height: 1.15;
+    }
+
+    .page-two-grid .card h3,
+    .page-two-grid .entry-title {
+      font-size: 9px;
+      margin: 1.2mm 0 0.8mm;
+    }
+
+    .page-two-grid .section-gear p,
+    .page-two-grid .section-gear li {
+      font-size: 7.6px;
+      line-height: 1.08;
+    }
+
+    .page-two-grid .section-gear .bullet-list {
+      column-count: 2;
+      column-gap: 3mm;
+      display: block;
+      padding-left: 3mm;
+    }
+
+    .page-two-grid .section-gear .bullet-list li {
+      break-inside: avoid;
+      margin-bottom: 0.6mm;
+    }
+
+    .sheet-tip {
+      margin-bottom: 2mm;
+      color: #222;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5mm;
+      margin-bottom: 2mm;
+    }
+
+    .stat-box,
+    .track-box,
+    .debility-box {
+      border: 1px solid #000;
+      border-radius: 2mm;
+      background: #fff;
+    }
+
+    .stat-box {
+      min-height: 14mm;
+      padding: 1.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stat-name,
+    .track-label {
+      font-size: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #000;
+    }
+
+    .stat-value {
+      display: block;
+      border-bottom: 1px solid #000;
+      min-height: 6mm;
+    }
+
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5mm;
+      margin-bottom: 2mm;
+    }
+
+    .track-box {
+      min-height: 11mm;
+      padding: 1.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .track-value {
+      display: block;
+      min-height: 4mm;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .debility-grid {
+      display: grid;
+      gap: 1.2mm;
+    }
+
+    .debility-box {
+      padding: 1.6mm 2mm;
+      font-size: 8.4px;
+      line-height: 1.15;
+    }
+
+    .debility-box span {
+      color: #222;
+    }
+
+    .sheet-notes {
+      margin-top: 2mm;
+    }
+
+    .slot-boxes {
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      color: #333;
+      margin-left: 1.5px;
+    }
+
+    .slot-small {
+      font-size: 7.5px;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="page">
+      <header class="page-header">
+        <div class="title-wrap">
+          <h1>WIEKOWA CZARODZIEJKA</h1>
+          <p class="lead">Przeżyłaś wystarczająco długo, by pochować wszystkich, którzy cię kiedykolwiek znali. Nie byłaś obojętna — po prostu nie zdawałaś sobie sprawy, jak szybko odchodzą. Nadal się uczysz być obecna.</p>
+        </div>
+        <div class="meta-stack">
+          <p class="meta-line">Homebrew World</p>
+          <p class="meta-line">Frieren</p>
+        </div>
+      </header>
+      <div class="page-grid">
+        <div class="column">
+          <section class="card section-name"><h2>Imię</h2><p>Wybierz imię:</p>
+<p><strong>Elf:</strong> Silvane, Tessra, Eulalie, Vorn / Caelith, Merrath, Solven, Astryn</p>
+<p><strong>Stary człowiek:</strong> Agata, Mildred, Kornelia, Vess / Roland, Magnus, Aldric, Bastian</p>
+<p><strong>Wędrowiec z Północy:</strong> Inga, Sigrid, Marta, Hulda / Wendel, Arno, Klaus, Bertold</p>
+<p><strong>Bezimienni:</strong> Ash, Pale, Ember, Wander / Dusk, Kestrel, Mire, Veil</p></section>
+          <section class="card section-look"><h2>Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><strong>Pochodzenie:</strong> pradawny elf | człowiek, który znalazł zaklęcie przedłużające życie | wędrowiec bez rasy i domu | zapytaj stołu</p>
+<p><strong>Wiek:</strong> wygląda młodo, jest starożytna | bezwiekowa i niepokojąca | wyrzeźbiona przez stulecia, nie lata</p>
+<p><strong>Oczy:</strong> odległe, katalogujące świat | nagle ciepłe, kiedy coś ją zainteresuje | zawsze mierzące, ile komuś zostało</p>
+<p><strong>Sylwetka:</strong> drobna i niespieszna | nieruchoma i precyzyjna | pełna gracji, bez jednego zbędnego gestu</p>
+<p><strong>Strój:</strong> warstwowe podróżne szaty naprawiane od stuleci | prosta odzież cerowana tysiąc razy | uczony płaszcz z arcańskimi notatkami w podszewce</p>
+<p><strong>Znak szczególny:</strong> grimoire zawsze w dłoni | nawyk mówienia zbyt wolno | blady uśmiech, który pojawia się z opóźnieniem</p></section>
+        </div>
+        <div class="column">
+          <section class="card section-background"><h2>Tło</h2><div class="section-note">Wybierz jedno.</div>
+<article class="background-entry"><h3>Pustelniczka Lasu</h3><p>Zamknęłaś się po stracie i spędziłaś zbyt wiele lat bez ruchu do przodu. Kiedy wychodzisz z dobrowolnego bezruchu, by działać dla kogoś innego, zyskujesz +1 naprzód.</p><p class="questions-intro">Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p><ul class="question-list"><li>Który/-a z was znalazł/-a mnie w odosobnieniu i przekonał/-a do wyjścia?</li><li>Który/-a z was wie, na co czekałam w tym lesie?</li><li>Który/-a z was widział/-a, jak opłakuję coś, czego nie potrafię wyjaśnić?</li><li>Który/-a z was przypomina mi kogoś, kogo już straciłam?</li></ul></article>
+<article class="background-entry"><h3>Uczennica Legendy</h3><p>Wielki mag szkolił cię, zanim odszedł. Jego metody żyją w twoich rękach. Kiedy używasz techniki lub filozofii, którą ci przekazał, i opisujesz to głośno, zyskujesz +1 naprzód.</p><p class="questions-intro">Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p><ul class="question-list"><li>Który/-a z was słyszał/-a o moim mistrzu z reputacji?</li><li>Który/-a z was zadał/-a mi pytanie, które on by zadał?</li><li>Który/-a z was zauważył/-a, że robię coś, czego mnie nauczył?</li><li>Którą z was chciałabym mu kiedyś przedstawić — gdyby jeszcze żył?</li></ul></article>
+<article class="background-entry"><h3>Tłumicielka Many</h3><p>Nauczyłaś się dawno temu ukrywać swoją prawdziwą moc. Wrogowie regularnie cię nie doceniają. Kiedy po raz pierwszy w starciu ujawniasz pełną manę, zyskujesz +1 naprzód, a twój wróg ma utrudnienie na następne działanie.</p><p class="questions-intro">Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p><ul class="question-list"><li>Który/-a z was wyczuł/-a, że coś jest nie tak, zanim się ujawniłam?</li><li>Który/-a z was widział/-a, jak pokonuję coś znacznie silniejszego, niż wyglądałam?</li><li>Który/-a z was poczuł/-a niepokój, gdy odkrył/-a moje prawdziwe możliwości?</li><li>Który/-a z was ufa mi bardziej, teraz że wiesz, co ukrywałam?</li></ul></article>
+<article class="background-entry"><h3>Strażniczka Pomników</h3><p>Dbasz o znaki i pomniki tych, którzy byli przed tobą — bohaterów, przyjaciół, zapomnianych. Kiedy wracasz w miejsce związane z kimś, kogo straciłaś, zapytaj MG o jedno: co tam zrobili lub co czuli. MG odpowiada szczerze.</p><p>---</p><p class="questions-intro">Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p><ul class="question-list"><li>Który/-a z was zauważył/-a, że zatrzymałam się przy pomniku bez słowa wyjaśnienia?</li><li>Który/-a z was zna imię kogoś, o którego statuę dbam?</li><li>Który/-a z was przypomniał/-a mi, choć trochę, jednego ze zmarłych?</li><li>Który/-a z was chciałabym, żeby go pamiętano — gdyby coś mi się przydarzyło?</li></ul></article></section>
+        </div>
+      </div>
+    </section>
+    <section class="page">
+      <header class="page-header">
+        <div class="title-wrap">
+          <h1>WIEKOWA CZARODZIEJKA</h1>
+          <p class="lead">Skrót zasad i opcji postaci do gry przy stole.</p>
+        </div>
+        <div class="meta-stack">
+          <p class="meta-line">Homebrew World</p>
+          <p class="meta-line">Frieren</p>
+        </div>
+      </header>
+      <div class="page-grid page-two-grid">
+        <div class="column">
+          <section class="card section-starting_moves"><h2>Ruchy Startowe</h2><h3 class="entry-title">Świat Wizualizacji</h3>
+<p>Magia jest tak silna, jak to, co potrafisz naprawdę wyobrazić sobie w umyśle. Kiedy rzucasz przygotowane zaklęcie, rzuć +INT. Na 10+: działa zgodnie z zamysłem. Na 7-9: działa, ale wybierz jedno: trwa dłużej niż oczekiwano, przyciąga niechcianą uwagę lub kosztuje cię coś drobnego.</p>
+<h3 class="entry-title">Żywy Grimoire</h3>
+<p>Przez długie życie studiowałaś wiele dziedzin magii. Nazwij jeden rodzaj zaklęć (pogoda, iluzja, ogień, wiązanie, transformacja itp.) — studiowałaś go. Możesz zapytać MG, jak zaklęcie z tej kategorii mogłoby pomóc w bieżącej sytuacji. MG odpowiada szczerze.</p>
+<h3 class="entry-title">Stara Przewaga</h3>
+<p>Kiedy masz do czynienia z czymś starym — ruiną, demonem, zapomnianym zaklęciem, zakopanymi instytucjami — masz przewagę na rzuty, by to zrozumieć lub wejść z tym w interakcję.</p>
+<h3 class="entry-title">Tłumienie Many</h3>
+<p>Twoja prawdziwa moc jest ukryta. Wrogowie nie znają twojej siły, dopóki jej nie ujawnisz. Po raz pierwszy gdy zdecydujesz się działać przeciw komuś, kto cię niedocenił, zyskujesz +1 naprzód.</p>
+<h3 class="entry-title">Cierpliwa Obserwacja</h3>
+<p>Kiedy spędzasz czas spokojnie obserwując stworzenie, osobę lub zjawisko magiczne przed działaniem, zapytaj MG o jeden temat: słabość, motywację lub metodę. MG odpowiada szczerze.</p>
+<h3 class="entry-title">Pożyczone Chwile</h3>
+<p>Pierwszym razem w każdej sesji, gdy widzisz, jak śmiertelnik robi coś bezinteresownego lub odważnego, zaznacz PD.</p></section>
+        </div>
+        <div class="column">
+          <section class="card section-advances"><h2>Awanse</h2><ul class="bullet-list">
+<li><strong>Pradawny Grimoire:</strong> Zdobywasz dostęp do jednego niezwykłego zaklęcia z zaginionej epoki magii. Opisz, co robi; MG zatwierdza.</li>
+<li><strong>Wybuch Many:</strong> Raz na starcie ujawnij pełną manę — wszyscy wrogowie w zasięgu wzroku wahają się, a ty zyskujesz +1 naprzód.</li>
+<li><strong>Długa Pamięć:</strong> Kiedy coś przywołuje odległą przeszłość, możesz zadać jedno dodatkowe pytanie o bieżącą sytuację.</li>
+<li><strong>Ucz Działaniem:</strong> Kiedy pokazujesz coś sojusznikowi zamiast tłumaczyć słowami, zyskuje +1 naprzód na następną próbę.</li>
+<li><strong>Ciężar Lat:</strong> Raz na sesję, kiedy dźwigasz żal za kimś, kto odszedł zanim ktokolwiek inny go znał, zaznacz PD.</li>
+<li><strong>Ulepszony Atrybut:</strong> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><strong>Wybitny Atrybut</strong> <em>(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)</em>: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul></section>
+          <section class="card section-drives"><h2>Dążenia</h2><ul class="bullet-list">
+<li>Zbierz zaklęcie, którego nigdy wcześniej nie widziałaś.</li>
+<li>Bądź świadkiem, jak śmiertelnik najlepiej wykorzystuje czas, który mu pozostał.</li>
+<li>Działaj w związku z żalem, który dźwigasz zbyt długo.</li>
+<li>Wpuść kogoś blisko, choć na chwilę.</li>
+</ul></section>
+        </div>
+        <div class="column">
+          
+    <section class="card sheet-card">
+      <h2>Arkusz Postaci</h2>
+      <p class="sheet-tip">Rozdziel: <strong>+2, +1, +1, +0, +0, -1</strong>.</p>
+      <div class="stat-grid"><div class="stat-box"><span class="stat-name">SIŁ</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">ZRC</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">KON</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">INT</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">MDR</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">CHA</span><span class="stat-value"></span></div></div>
+      <div class="track-grid">
+        <div class="track-box"><span class="track-label">PŻ</span><span class="track-value">6 + KON</span></div>
+        <div class="track-box"><span class="track-label">Obrażenia</span><span class="track-value">k6</span></div>
+        <div class="track-box"><span class="track-label">Pancerz</span><span class="track-value"></span></div>
+        <div class="track-box"><span class="track-label">XP</span><span class="track-value">□□□□□</span></div>
+        <div class="track-box"><span class="track-label">Udźwig</span><span class="track-value">9</span></div>
+      </div>
+      <div class="debility-grid">
+        <div class="debility-box">□ Osłabiony <span>(SIŁ, ZRC)</span></div>
+        <div class="debility-box">□ Otępiały <span>(INT, MDR)</span></div>
+        <div class="debility-box">□ Przybity <span>(KON, CHA)</span></div>
+      </div>
+      <div class="sheet-notes">
+      <h3 class="entry-title">Ściąga</h3>
+      <ul class="bullet-list compact-list">
+        <li>Zaznacz XP przy wyniku <strong>6-</strong> oraz gdy coś każe ci to zrobić.</li>
+        <li>Wydaj <strong>1 XP</strong>, aby dodać <strong>+1</strong> do rzutu po rzucie.</li>
+        <li>Wydaj <strong>5 XP</strong>, aby wybrać awans.</li>
+        <li><strong>PŻ</strong> odzyskujesz przez odpoczynek, leczenie i ruchy postaci.</li>
+        <li><strong>Pancerz</strong> zmniejsza otrzymywane obrażenia zgodnie z fikcją.</li>
+      </ul>
+      </div>
+    </section>
+    
+          <section class="card section-gear"><h2>Ekwipunek</h2><p>Udźwig 9.</p>
+<ul class="bullet-list">
+<li>Grimoire, sfatygowany i gęsto pokryty notatkami (<span class="slot-boxes">□□</span>)</li>
+<li>Podróżne szaty (<span class="slot-boxes">□</span>)</li>
+<li>Pióro, atrament i czyste strony do zapisywania zaklęć (<span class="slot-boxes">□</span>)</li>
+<li>Mała żelazna latarnia (<span class="slot-boxes">□</span>)</li>
+<li>Prowiant z odległej krainy (<span class="slot-boxes">□</span>)</li>
+<li>Sztylet (wręcz, <span class="slot-boxes">□</span>)</li>
+<li>Stary list, wciąż niedostarczony <span class="slot-small">małe</span></li>
+<li>Zasuszony kwiat z zapomnianego ogrodu <span class="slot-small">małe</span></li>
+<li>Fragment mapy o niepewnym wieku <span class="slot-small">małe</span></li>
+<li>Szczęśliwy talizman po kimś dawno zmarłym <span class="slot-small">małe</span></li>
+</ul></section>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

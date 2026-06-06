@@ -11,6 +11,7 @@ SECTION_LABELS = {
     "wygląd": "look",
     "look": "look",
     "tło": "background",
+    "przeszłość": "background",
     "background": "background",
     "ruchy startowe": "starting_moves",
     "starting moves": "starting_moves",
@@ -85,7 +86,19 @@ def compact_text(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
-def render_lines_as_blocks(body: str) -> str:
+def render_slot_boxes(item_text: str) -> str:
+    """Replace N slot/sloty/slotów with □ boxes and (małe) with a tag."""
+    def slots_to_boxes(m):
+        count = int(m.group(1))
+        boxes = "□" * count
+        return f'<span class="slot-boxes">{boxes}</span>'
+
+    text = re.sub(r"(\d+)\s+slot[a-zó]*", slots_to_boxes, item_text)
+    text = re.sub(r"\(małe\)", '<span class="slot-small">małe</span>', text)
+    return text
+
+
+def render_lines_as_blocks(body: str, gear: bool = False) -> str:
     chunks = []
     list_open = False
 
@@ -108,7 +121,10 @@ def render_lines_as_blocks(body: str) -> str:
                 chunks.append('<ul class="bullet-list">')
                 list_open = True
             item = re.sub(r"^[-*]\s+", "", line)
-            chunks.append(f"<li>{inline_markup(compact_text(item))}</li>")
+            item_html = inline_markup(compact_text(item))
+            if gear:
+                item_html = render_slot_boxes(item_html)
+            chunks.append(f"<li>{item_html}</li>")
             continue
 
         if list_open:
@@ -180,6 +196,8 @@ def render_section(section_key: str, section: dict) -> str:
 
     if section_key == "background":
         content = render_backgrounds(body)
+    elif section_key == "gear":
+        content = render_lines_as_blocks(body, gear=True)
     else:
         content = render_lines_as_blocks(body)
 
@@ -187,7 +205,7 @@ def render_section(section_key: str, section: dict) -> str:
 
 
 def render_character_sheet(intro: str, sections: dict) -> str:
-    hp_value = extract_meta_value(intro, "PŻ") or "?"
+    hp_value = extract_meta_value(intro, "PW") or extract_meta_value(intro, "PŻ") or "?"
     damage_value = extract_meta_value(intro, "Kostka Obrażeń") or "?"
     load_value = extract_load(sections.get("gear", {}).get("body", "")) or "?"
 
@@ -228,7 +246,7 @@ def render_character_sheet(intro: str, sections: dict) -> str:
     """
 
 
-def build_html(playbook_title: str, intro: str, sections: dict, setting_name: str) -> str:
+def build_html(playbook_title: str, intro: str, sections: dict, setting_name: str, layout: str = "landscape") -> str:
     lead_html = ""
     intro_lines = [line.strip() for line in intro.splitlines() if line.strip() and line.strip() != "---"]
     for line in intro_lines:
@@ -236,8 +254,16 @@ def build_html(playbook_title: str, intro: str, sections: dict, setting_name: st
             lead_html = f'<p class="lead">{inline_markup(line[1:-1].strip())}</p>'
             break
 
-    page_one_keys = ["name", "look", "background"]
-    page_two_keys = ["starting_moves", "advances", "drives", "gear"]
+    if layout not in {"landscape", "portrait"}:
+        raise ValueError(f"Unsupported layout: {layout}")
+
+    page_one_grid_class = "page-grid"
+    page_two_grid_class = "page-grid page-two-grid"
+    body_class = f"layout-{layout}"
+
+    if layout == "portrait":
+        page_one_grid_class = "page-grid portrait-page-one-grid"
+        page_two_grid_class = "page-grid portrait-page-two-grid"
 
     return f"""<!doctype html>
 <html lang="pl">
@@ -247,7 +273,7 @@ def build_html(playbook_title: str, intro: str, sections: dict, setting_name: st
   <title>{html.escape(playbook_title)}</title>
   <style>
     @page {{
-      size: A4 landscape;
+      size: A4 {"portrait" if layout == "portrait" else "landscape"};
       margin: 8mm;
     }}
 
@@ -268,6 +294,11 @@ def build_html(playbook_title: str, intro: str, sections: dict, setting_name: st
     body {{
       font-size: 9px;
       line-height: 1.2;
+    }}
+
+    body.layout-portrait {{
+      font-size: 10px;
+      line-height: 1.24;
     }}
 
     .page {{
@@ -558,9 +589,169 @@ def build_html(playbook_title: str, intro: str, sections: dict, setting_name: st
     .sheet-notes {{
       margin-top: 2mm;
     }}
+
+    .slot-boxes {{
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      color: #333;
+      margin-left: 1.5px;
+    }}
+
+    .slot-small {{
+      font-size: 7.5px;
+      color: #555;
+      font-style: italic;
+    }}
+
+    .layout-portrait .page {{
+      gap: 3mm;
+    }}
+
+    .layout-portrait .page-header {{
+      grid-template-columns: 1fr;
+      gap: 1.6mm;
+      align-items: start;
+      padding-bottom: 2mm;
+    }}
+
+    .layout-portrait .meta-stack {{
+      text-align: left;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 2mm 4mm;
+    }}
+
+    .layout-portrait .title-wrap h1 {{
+      font-size: 23px;
+    }}
+
+    .layout-portrait .lead,
+    .layout-portrait .meta-line {{
+      font-size: 9.4px;
+    }}
+
+    .layout-portrait .portrait-page-one-grid {{
+      display: flex;
+      flex-direction: column;
+      gap: 3mm;
+      flex: 1;
+      min-height: 0;
+    }}
+
+    .layout-portrait .portrait-page-two-grid {{
+      grid-template-columns: 1fr 1fr;
+      gap: 3mm;
+      align-items: start;
+    }}
+
+    .layout-portrait .portrait-page-two-grid > .column:last-child {{
+      gap: 2.4mm;
+    }}
+
+    .layout-portrait .card {{
+      padding: 2.6mm;
+      border-radius: 2.6mm;
+    }}
+
+    .layout-portrait .card h2 {{
+      font-size: 12px;
+      margin-bottom: 1.5mm;
+    }}
+
+    .layout-portrait .card h3,
+    .layout-portrait .entry-title {{
+      font-size: 9px;
+      margin: 1.1mm 0 0.8mm;
+    }}
+
+    .layout-portrait p,
+    .layout-portrait li {{
+      font-size: 8.55px;
+      line-height: 1.18;
+    }}
+
+    .layout-portrait .question-list {{
+      column-count: 1;
+    }}
+
+    .layout-portrait .section-background {{
+      padding: 2.6mm;
+    }}
+
+    .layout-portrait .section-starting_moves p,
+    .layout-portrait .section-starting_moves li,
+    .layout-portrait .section-advances p,
+    .layout-portrait .section-advances li,
+    .layout-portrait .section-drives p,
+    .layout-portrait .section-drives li,
+    .layout-portrait .section-gear p,
+    .layout-portrait .section-gear li {{
+      font-size: 7.95px;
+      line-height: 1.14;
+    }}
+
+    .layout-portrait .sheet-card {{
+      padding-bottom: 2.2mm;
+    }}
+
+    .layout-portrait .sheet-tip {{
+      margin-bottom: 1.6mm;
+      font-size: 8.2px;
+    }}
+
+    .layout-portrait .stat-grid {{
+      gap: 1.2mm;
+      margin-bottom: 1.5mm;
+    }}
+
+    .layout-portrait .stat-box {{
+      min-height: 12mm;
+      padding: 1.2mm;
+    }}
+
+    .layout-portrait .track-grid {{
+      gap: 1.2mm;
+      margin-bottom: 1.5mm;
+    }}
+
+    .layout-portrait .track-box {{
+      min-height: 9.5mm;
+      padding: 1.2mm;
+    }}
+
+    .layout-portrait .track-value {{
+      min-height: 3.5mm;
+      font-size: 9px;
+    }}
+
+    .layout-portrait .debility-box {{
+      padding: 1.3mm 1.8mm;
+      font-size: 7.9px;
+    }}
+
+    .layout-portrait .sheet-notes {{
+      margin-top: 1.5mm;
+    }}
+
+    .layout-portrait .sheet-notes li {{
+      font-size: 7.55px;
+      margin-bottom: 0.5mm;
+    }}
+
+    .layout-portrait .section-gear .bullet-list {{
+      column-count: 2;
+      column-gap: 3mm;
+      display: block;
+      padding-left: 3mm;
+    }}
+
+    .layout-portrait .section-gear .bullet-list li {{
+      break-inside: avoid;
+      margin-bottom: 0.55mm;
+    }}
   </style>
 </head>
-<body>
+<body class="{body_class}">
   <main>
     <section class="page">
       <header class="page-header">
@@ -573,7 +764,7 @@ def build_html(playbook_title: str, intro: str, sections: dict, setting_name: st
           <p class="meta-line">{inline_markup(setting_name)}</p>
         </div>
       </header>
-      <div class="page-grid">
+      <div class="{page_one_grid_class}">
         <div class="column">
           {render_section("name", sections["name"]) if "name" in sections else ""}
           {render_section("look", sections["look"]) if "look" in sections else ""}
@@ -594,7 +785,7 @@ def build_html(playbook_title: str, intro: str, sections: dict, setting_name: st
           <p class="meta-line">{inline_markup(setting_name)}</p>
         </div>
       </header>
-      <div class="page-grid page-two-grid">
+      <div class="{page_two_grid_class}">
         <div class="column">
           {render_section("starting_moves", sections["starting_moves"]) if "starting_moves" in sections else ""}
         </div>
@@ -618,6 +809,12 @@ def main():
     parser = argparse.ArgumentParser(description="Render a compact two-page HTML sheet from a Homebrew World playbook.")
     parser.add_argument("input_path", help="Path to Playbook_*.md")
     parser.add_argument("--output-dir", default=None, help="Directory for generated HTML")
+    parser.add_argument(
+        "--layout",
+        choices=["landscape", "portrait"],
+        default="landscape",
+        help="Page orientation/layout variant for the generated sheet.",
+    )
     args = parser.parse_args()
 
     input_path = Path(args.input_path).resolve()
@@ -627,7 +824,7 @@ def main():
     markdown_text = input_path.read_text(encoding="utf-8")
     playbook_title, intro, sections = parse_sections(markdown_text)
     setting_name = infer_setting_name(input_path)
-    html_text = build_html(playbook_title, intro, sections, setting_name)
+    html_text = build_html(playbook_title, intro, sections, setting_name, layout=args.layout)
 
     output_dir = Path(args.output_dir).resolve() if args.output_dir else input_path.parent / "playbook_sheet"
     output_dir.mkdir(parents=True, exist_ok=True)

@@ -18,5 +18,29 @@
   "Star_Wars_Jedi": {
     "pl": "Mityczna odmiana Gwiezdnych wojen skupiona na Jedi, świątyniach, wizjach i ranach Mocy, gdzie adepci Jasnej Strony mierzą się z dziedzictwem Zakonu, pokusą Ciemności i starożytnymi miejscami mocy.",
     "en": "A mythic Star Wars variant centered on Jedi, temples, visions, and wounds in the Force, where adepts of the Light confront the legacy of the Order, the pull of the Dark, and ancient places of power."
+  },
+  "Star_Trek_TNG": {
+    "pl": "Eksploracyjne science fiction o załodze w duchu The Next Generation: dyplomacja, pierwszy kontakt, anomalie, etyka Gwiezdnej Floty i kryzysy na pokładzie Enterprise spotykają się tu z nauką, dowodzeniem i nieznanym kosmosem.",
+    "en": "Exploratory science fiction in the spirit of The Next Generation: diplomacy, first contact, anomalies, Starfleet ethics, and crises aboard the Enterprise meet science, command, and the unknown reaches of space."
+  },
+  "Frieren": {
+    "pl": "Post-epickie fantasy o świecie po klęsce Demon Kinga: Frieren i jej towarzysze przemierzają kontynent ku Aureole, gdzie czas płynie inaczej dla elfów niż dla ludzi, a każda podróż to lekcja o żałobie, stagnacji i wartości chwil, które mijają zbyt szybko.",
+    "en": "Post-epic fantasy set in a world after the Demon King's defeat: Frieren and her companions travel north toward Aureole, where time flows differently for elves than for mortals, and every journey is a lesson in grief, stagnation, and the weight of moments that pass too quickly."
+  },
+  "The_Studio": {
+    "pl": "Satyryczny dramat o Hollywood w stanie wiecznego kryzysu: dyrektorzy Continental Studios — kinefilzy, tytani branży, fixerzy i ambitni asystenci — balansują między sztuką a korporacyjnym absurdem, pit-chując projekty których nigdy nie powinni zatwierdzać i ratując te, które nie mają prawa powstać.",
+    "en": "A satirical drama set in a Hollywood perpetually on the brink: the executives of Continental Studios — cinephiles, industry titans, fixers, and relentless strivers — navigate the impossible gap between great cinema and corporate survival, greenlighting projects that should never exist and saving the ones that do."
+  },
+  "Dolmenwood-Humans": {
+    "pl": "Mroczne baśniowe fantasy osadzone w Dolmenwood — tajemniczym lesie pełnym wróżek, nieumarłych, kultów i feudalnych intryg — gdzie zwykli ludzie: bardowie, rycerze, magowie, tropiciele i złodzieje wyruszają na wyprawy pełne zagrożeń, dziwności i ambigwalnej moralności.",
+    "en": "Dark fairy-tale fantasy set in Dolmenwood — a mysterious forest full of fairies, undead, cults, and feudal intrigue — where ordinary humans: bards, knights, magicians, hunters, and thieves venture into expeditions full of peril, strangeness, and moral ambiguity."
+  },
+  "Dolmenwood": {
+    "pl": "Mroczne baśniowe fantasy osadzone w Dolmenwood — tajemniczym lesie pełnym wróżek, nieumarłych, kultów i feudalnych intryg — gdzie bardowie, rycerze, magowie, tropiciele i złodzieje wyruszają w mroczne wyprawy pełne zagrożeń i dziwności.",
+    "en": "Dark fairy-tale fantasy set in Dolmenwood — a mysterious forest full of fairies, undead, cults, and feudal intrigue — where bards, knights, magicians, hunters, and thieves venture into dark expeditions full of peril and strangeness."
+  },
+  "Warhammer": {
+    "pl": "Mroczne fantasy w Starym Świecie, gdzie Imperium trwa między najazdami Chaosu, podziemnymi warren Skavenów i wewnętrzną korupcją. Łowcy czarownic, Zabójcy Trolli, Strażnicy Dróg, Czarodzieje Kolegium i Łotrzy walczą o przetrwanie w klimacie rodem z pesymistycznej Europy XVI wieku.",
+    "en": "Dark fantasy set in the Old World, where the Empire endures between Chaos incursions, Skaven warrens beneath every city, and rot from within. Witch Hunters, Trollslayers, Road Wardens, College Wizards, and Rogues struggle to survive in a world of grim 16th-century horror and desperate heroism."
   }
 }

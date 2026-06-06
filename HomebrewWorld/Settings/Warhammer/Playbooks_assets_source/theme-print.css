@@ -1,0 +1,38 @@
+body {
+  --font-body: "Helvetica Neue", Arial, sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
+  --color-bg: #f7f7f5;
+  --color-text: #111;
+  --color-text-soft: #333;
+  --color-accent: #111;
+  --hero-border: #222;
+  --hero-bg: #fff;
+  --hero-shadow: none;
+  --action-border: #555;
+  --action-bg: #fff;
+  --theme-active-bg: #111;
+  --theme-active-text: #fff;
+  --card-border: #222;
+  --card-bg: #fff;
+  --card-shadow: none;
+  --card-accent: linear-gradient(90deg, #111, #777);
+  --divider-color: #c9c9c9;
+}
+
+html { background: #ecece8; }
+body::before, .page-hero::after { display: none; }
+
+@page {
+  size: A4 portrait;
+  margin: 10mm;
+}
+
+@media print {
+  html, body { background: #fff !important; }
+  body { font-size: 10pt; line-height: 1.4; }
+  .app-shell { width: 100%; max-width: none; padding: 0; }
+  .page-hero { padding: 0 0 6mm; border: 0; border-radius: 0; box-shadow: none; }
+  .page-toolbar, .pager, .theme-switcher, .back-link, .source-link, .index-card__actions { display: none !important; }
+  .content-grid { grid-template-columns: 1fr; gap: 4mm; }
+  .section-card, .index-card, .meta-chip { box-shadow: none; break-inside: avoid; }
+}

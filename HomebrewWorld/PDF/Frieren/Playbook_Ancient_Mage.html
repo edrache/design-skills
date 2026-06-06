@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>THE ANCIENT MAGE</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 8mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      color: #000;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-size: 9px;
+      line-height: 1.2;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      padding: 0;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      gap: 4mm;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+    }
+
+    .page-header {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 4mm;
+      align-items: end;
+      border-bottom: 1px solid #000;
+      padding-bottom: 2.5mm;
+    }
+
+    .title-wrap h1 {
+      margin: 0 0 1mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 10px;
+      color: #222;
+      font-style: italic;
+    }
+
+    .meta-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1mm;
+      text-align: right;
+    }
+
+    .meta-line {
+      margin: 0;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+      align-items: start;
+      min-height: 0;
+      flex: 1;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 3mm;
+      min-height: 0;
+    }
+
+    .card {
+      border: 1px solid #000;
+      border-radius: 3mm;
+      background: #fff;
+      padding: 3mm;
+      break-inside: avoid;
+    }
+
+    .card h2 {
+      margin: 0 0 2mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #000;
+    }
+
+    .card h3,
+    .entry-title {
+      margin: 1.5mm 0 1mm;
+      font-size: 10px;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #000;
+    }
+
+    p {
+      margin: 0 0 1.2mm;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 4mm;
+    }
+
+    li {
+      margin: 0 0 1mm;
+    }
+
+    code {
+      font-family: Menlo, Monaco, monospace;
+      font-size: 0.95em;
+    }
+
+    .section-background {
+      padding: 2.5mm;
+    }
+
+    .section-note {
+      margin: 0 0 2mm;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .background-entry {
+      border-top: 1px solid #999;
+      padding-top: 2mm;
+      margin-top: 2mm;
+    }
+
+    .background-entry:first-of-type {
+      border-top: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .background-entry h3 {
+      margin-top: 0;
+    }
+
+    .questions-intro {
+      margin-top: 1mm;
+      font-size: 8.4px;
+      color: #333;
+      font-style: italic;
+    }
+
+    .question-list {
+      column-count: 2;
+      column-gap: 4mm;
+    }
+
+    .bullet-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6mm;
+    }
+
+    .compact-list {
+      gap: 0.3mm;
+    }
+
+    .page-two-grid {
+      grid-template-columns: 1.1fr 1fr 0.95fr;
+      gap: 3mm;
+    }
+
+    .page-two-grid .card {
+      padding: 2.5mm;
+    }
+
+    .page-two-grid .card h2 {
+      font-size: 12px;
+      margin-bottom: 1.5mm;
+    }
+
+    .page-two-grid p,
+    .page-two-grid li {
+      font-size: 8.2px;
+      line-height: 1.15;
+    }
+
+    .page-two-grid .card h3,
+    .page-two-grid .entry-title {
+      font-size: 9px;
+      margin: 1.2mm 0 0.8mm;
+    }
+
+    .page-two-grid .section-gear p,
+    .page-two-grid .section-gear li {
+      font-size: 7.6px;
+      line-height: 1.08;
+    }
+
+    .page-two-grid .section-gear .bullet-list {
+      column-count: 2;
+      column-gap: 3mm;
+      display: block;
+      padding-left: 3mm;
+    }
+
+    .page-two-grid .section-gear .bullet-list li {
+      break-inside: avoid;
+      margin-bottom: 0.6mm;
+    }
+
+    .sheet-tip {
+      margin-bottom: 2mm;
+      color: #222;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5mm;
+      margin-bottom: 2mm;
+    }
+
+    .stat-box,
+    .track-box,
+    .debility-box {
+      border: 1px solid #000;
+      border-radius: 2mm;
+      background: #fff;
+    }
+
+    .stat-box {
+      min-height: 14mm;
+      padding: 1.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stat-name,
+    .track-label {
+      font-size: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #000;
+    }
+
+    .stat-value {
+      display: block;
+      border-bottom: 1px solid #000;
+      min-height: 6mm;
+    }
+
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5mm;
+      margin-bottom: 2mm;
+    }
+
+    .track-box {
+      min-height: 11mm;
+      padding: 1.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .track-value {
+      display: block;
+      min-height: 4mm;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .debility-grid {
+      display: grid;
+      gap: 1.2mm;
+    }
+
+    .debility-box {
+      padding: 1.6mm 2mm;
+      font-size: 8.4px;
+      line-height: 1.15;
+    }
+
+    .debility-box span {
+      color: #222;
+    }
+
+    .sheet-notes {
+      margin-top: 2mm;
+    }
+
+    .slot-boxes {
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      color: #333;
+      margin-left: 1.5px;
+    }
+
+    .slot-small {
+      font-size: 7.5px;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="page">
+      <header class="page-header">
+        <div class="title-wrap">
+          <h1>THE ANCIENT MAGE</h1>
+          <p class="lead">You have lived long enough to bury everyone who ever knew you. You weren't distant — you just didn't realize how fast they were going. You are still learning to pay attention.</p>
+        </div>
+        <div class="meta-stack">
+          <p class="meta-line">Homebrew World</p>
+          <p class="meta-line">Frieren</p>
+        </div>
+      </header>
+      <div class="page-grid">
+        <div class="column">
+          <section class="card section-name"><h2>Name</h2><p>Pick a name:</p>
+<p><strong>Elf:</strong> Silvane, Tessra, Eulalie, Vorn / Caelith, Merrath, Solven, Astryn</p>
+<p><strong>Ancient Human:</strong> Agatha, Mildred, Cornelius, Vess / Roland, Magnus, Aldric, Bastian</p>
+<p><strong>Northern Wanderer:</strong> Inga, Sigrid, Marta, Hulde / Wendel, Arno, Klaus, Bertold</p>
+<p><strong>Nameless Traveler:</strong> Ash, Pale, Ember, Wander / Dusk, Kestrel, Mire, Veil</p></section>
+          <section class="card section-look"><h2>Look</h2><p>Pick one from each row:</p>
+<p><strong>Heritage:</strong> ancient elf | human who found a life-extension spell | wanderer without a home race | ask the table</p>
+<p><strong>Age:</strong> looks young, is ancient | ageless and unsettling | weathered by centuries, not years</p>
+<p><strong>Eyes:</strong> distant and cataloguing | suddenly warm when interested | always measuring how long someone has left</p>
+<p><strong>Build:</strong> slight and unhurried | still and precise | graceful with no wasted motion</p>
+<p><strong>Clothing:</strong> traveler's robes layered over centuries | simple garb repaired a thousand times | scholar's coat with arcane notation stitched in</p>
+<p><strong>Signature:</strong> a grimoire always at hand | the habit of speaking too slowly | a faint smile that arrives late</p></section>
+        </div>
+        <div class="column">
+          <section class="card section-background"><h2>Background</h2><div class="section-note">Pick one.</div>
+<article class="background-entry"><h3>Forest Hermit</h3><p>You isolated yourself after a loss and spent too many years going nowhere. When you emerge from self-imposed stillness to act on someone else's behalf, take +1 forward.</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you found me in isolation and convinced me to leave?</li><li>Which of you knows what I was waiting for in that forest?</li><li>Which of you has seen me grieve in a way I could not explain?</li><li>Which of you reminds me of someone I have already lost?</li></ul></article>
+<article class="background-entry"><h3>Pupil of a Legend</h3><p>A great mage trained you before they passed. Their methods live in your hands. When you use a technique or philosophy your mentor taught you and describe it aloud, take +1 forward.</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you has heard of my mentor by reputation?</li><li>Which of you asked me something my mentor would have asked?</li><li>Which of you noticed me doing something I learned from them?</li><li>Which of you would I most want to introduce to my mentor — if only they were still here?</li></ul></article>
+<article class="background-entry"><h3>Mana Suppressor</h3><p>You learned long ago to hide your true power. Enemies routinely underestimate you. When you reveal your full mana for the first time in a conflict, take +1 forward and your enemy takes disadvantage on their next action.</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you sensed something off about me before I revealed myself?</li><li>Which of you has seen me strike down something much stronger than I appeared?</li><li>Which of you was unsettled when you discovered my true capacity?</li><li>Which of you trusts me more, now that you know what I've been hiding?</li></ul></article>
+<article class="background-entry"><h3>Keeper of Statues</h3><p>You maintain the markers and monuments of those who came before — heroes, friends, the forgotten. When you return to a place associated with someone you've lost, ask the GM one question about what they did or felt here. The GM answers honestly.</p><p>---</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you noticed me pausing at a memorial without explaining why?</li><li>Which of you knows the name of someone whose statue I tend?</li><li>Which of you reminded me, in some small way, of one of the dead?</li><li>Which of you would I want remembered — if something happened to me?</li></ul></article></section>
+        </div>
+      </div>
+    </section>
+    <section class="page">
+      <header class="page-header">
+        <div class="title-wrap">
+          <h1>THE ANCIENT MAGE</h1>
+          <p class="lead">Skrót zasad i opcji postaci do gry przy stole.</p>
+        </div>
+        <div class="meta-stack">
+          <p class="meta-line">Homebrew World</p>
+          <p class="meta-line">Frieren</p>
+        </div>
+      </header>
+      <div class="page-grid page-two-grid">
+        <div class="column">
+          <section class="card section-starting_moves"><h2>Starting Moves</h2><h3 class="entry-title">World of Visualization</h3>
+<p>Magic is only as strong as what you can genuinely imagine. When you cast a spell you have prepared, roll +INT. On a 10+, it works as intended. On a 7-9, it works but choose one: it takes longer than expected, draws unwanted attention, or costs something small.</p>
+<h3 class="entry-title">Living Grimoire</h3>
+<p>You have studied many categories of magic over your long life. Name a type of spell (weather, illusion, fire, binding, transformation, etc.) — you have studied it. You can ask the GM one question about how a spell in that category could help the current situation. The GM answers honestly.</p>
+<h3 class="entry-title">Ancient Advantage</h3>
+<p>When you face something old — a ruin, a demon, a forgotten spell, a buried institution — you have advantage on rolls to understand or interact with it.</p>
+<h3 class="entry-title">Mana Suppression</h3>
+<p>Your true power is hidden. Enemies cannot gauge your strength until you reveal it. The first time you act decisively against something that underestimated you in a scene, take +1 forward.</p>
+<h3 class="entry-title">Patient Study</h3>
+<p>When you spend time quietly observing a creature, person, or magical phenomenon before acting, ask the GM one question about its weakness, motivation, or method. The GM answers honestly.</p>
+<h3 class="entry-title">Borrowed Time</h3>
+<p>The first time each session you watch someone mortal do something selfless or brave, mark XP.</p></section>
+        </div>
+        <div class="column">
+          <section class="card section-advances"><h2>Advances</h2><ul class="bullet-list">
+<li><strong>Ancient Grimoire:</strong> Gain access to one unusual spell from a lost magical era. Describe what it does; the GM approves.</li>
+<li><strong>Mana Flare:</strong> Once per conflict, reveal your full mana — all enemies in sight hesitate, and you take +1 forward.</li>
+<li><strong>Long Memory:</strong> When something reminds you of the distant past, you may ask one additional question about the current situation.</li>
+<li><strong>Teach by Doing:</strong> When you model something for an ally rather than explain it, they take +1 forward to their next attempt.</li>
+<li><strong>The Weight of Years:</strong> Once per session, when you carry grief for someone who died long before anyone else knew them, mark XP.</li>
+<li><strong>Improved Stat:</strong> Increase one of your stats by +1, to a max of +2.</li>
+<li><strong>Superior Stat</strong> <em>(Requires: Improved Stat, at least one other advance)</em>: Increase one of your stats by +1, to a max of +3.</li>
+</ul></section>
+          <section class="card section-drives"><h2>Drives</h2><ul class="bullet-list">
+<li>Collect a spell you have never seen before.</li>
+<li>Witness a mortal make the most of the time they have.</li>
+<li>Act on a regret you have been carrying for too long.</li>
+<li>Let someone in, even briefly.</li>
+</ul></section>
+        </div>
+        <div class="column">
+          
+    <section class="card sheet-card">
+      <h2>Arkusz Postaci</h2>
+      <p class="sheet-tip">Rozdziel: <strong>+2, +1, +1, +0, +0, -1</strong>.</p>
+      <div class="stat-grid"><div class="stat-box"><span class="stat-name">SIŁ</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">ZRC</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">KON</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">INT</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">MDR</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">CHA</span><span class="stat-value"></span></div></div>
+      <div class="track-grid">
+        <div class="track-box"><span class="track-label">PŻ</span><span class="track-value">?</span></div>
+        <div class="track-box"><span class="track-label">Obrażenia</span><span class="track-value">?</span></div>
+        <div class="track-box"><span class="track-label">Pancerz</span><span class="track-value"></span></div>
+        <div class="track-box"><span class="track-label">XP</span><span class="track-value">□□□□□</span></div>
+        <div class="track-box"><span class="track-label">Udźwig</span><span class="track-value">?</span></div>
+      </div>
+      <div class="debility-grid">
+        <div class="debility-box">□ Osłabiony <span>(SIŁ, ZRC)</span></div>
+        <div class="debility-box">□ Otępiały <span>(INT, MDR)</span></div>
+        <div class="debility-box">□ Przybity <span>(KON, CHA)</span></div>
+      </div>
+      <div class="sheet-notes">
+      <h3 class="entry-title">Ściąga</h3>
+      <ul class="bullet-list compact-list">
+        <li>Zaznacz XP przy wyniku <strong>6-</strong> oraz gdy coś każe ci to zrobić.</li>
+        <li>Wydaj <strong>1 XP</strong>, aby dodać <strong>+1</strong> do rzutu po rzucie.</li>
+        <li>Wydaj <strong>5 XP</strong>, aby wybrać awans.</li>
+        <li><strong>PŻ</strong> odzyskujesz przez odpoczynek, leczenie i ruchy postaci.</li>
+        <li><strong>Pancerz</strong> zmniejsza otrzymywane obrażenia zgodnie z fikcją.</li>
+      </ul>
+      </div>
+    </section>
+    
+          <section class="card section-gear"><h2>Gear</h2><p>Load 9.</p>
+<ul class="bullet-list">
+<li>Grimoire, worn and heavily annotated (<span class="slot-boxes">□□</span>)</li>
+<li>Traveler's robes (<span class="slot-boxes">□</span>)</li>
+<li>Quill, ink, and blank pages (<span class="slot-boxes">□</span>)</li>
+<li>Small iron lantern (<span class="slot-boxes">□</span>)</li>
+<li>Provisions from a distant region (<span class="slot-boxes">□</span>)</li>
+<li>Dagger (hand, <span class="slot-boxes">□</span>)</li>
+<li>Old letter, still undelivered (small)</li>
+<li>Dried flower from a forgotten garden (small)</li>
+<li>Map fragment of uncertain age (small)</li>
+<li>Lucky token from someone long dead (small)</li>
+</ul></section>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

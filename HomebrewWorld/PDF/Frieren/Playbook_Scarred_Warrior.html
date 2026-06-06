@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>THE SCARRED WARRIOR</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 8mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      color: #000;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-size: 9px;
+      line-height: 1.2;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      padding: 0;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      gap: 4mm;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+    }
+
+    .page-header {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 4mm;
+      align-items: end;
+      border-bottom: 1px solid #000;
+      padding-bottom: 2.5mm;
+    }
+
+    .title-wrap h1 {
+      margin: 0 0 1mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 10px;
+      color: #222;
+      font-style: italic;
+    }
+
+    .meta-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1mm;
+      text-align: right;
+    }
+
+    .meta-line {
+      margin: 0;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+      align-items: start;
+      min-height: 0;
+      flex: 1;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 3mm;
+      min-height: 0;
+    }
+
+    .card {
+      border: 1px solid #000;
+      border-radius: 3mm;
+      background: #fff;
+      padding: 3mm;
+      break-inside: avoid;
+    }
+
+    .card h2 {
+      margin: 0 0 2mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #000;
+    }
+
+    .card h3,
+    .entry-title {
+      margin: 1.5mm 0 1mm;
+      font-size: 10px;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #000;
+    }
+
+    p {
+      margin: 0 0 1.2mm;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 4mm;
+    }
+
+    li {
+      margin: 0 0 1mm;
+    }
+
+    code {
+      font-family: Menlo, Monaco, monospace;
+      font-size: 0.95em;
+    }
+
+    .section-background {
+      padding: 2.5mm;
+    }
+
+    .section-note {
+      margin: 0 0 2mm;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .background-entry {
+      border-top: 1px solid #999;
+      padding-top: 2mm;
+      margin-top: 2mm;
+    }
+
+    .background-entry:first-of-type {
+      border-top: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .background-entry h3 {
+      margin-top: 0;
+    }
+
+    .questions-intro {
+      margin-top: 1mm;
+      font-size: 8.4px;
+      color: #333;
+      font-style: italic;
+    }
+
+    .question-list {
+      column-count: 2;
+      column-gap: 4mm;
+    }
+
+    .bullet-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6mm;
+    }
+
+    .compact-list {
+      gap: 0.3mm;
+    }
+
+    .page-two-grid {
+      grid-template-columns: 1.1fr 1fr 0.95fr;
+      gap: 3mm;
+    }
+
+    .page-two-grid .card {
+      padding: 2.5mm;
+    }
+
+    .page-two-grid .card h2 {
+      font-size: 12px;
+      margin-bottom: 1.5mm;
+    }
+
+    .page-two-grid p,
+    .page-two-grid li {
+      font-size: 8.2px;
+      line-height: 1.15;
+    }
+
+    .page-two-grid .card h3,
+    .page-two-grid .entry-title {
+      font-size: 9px;
+      margin: 1.2mm 0 0.8mm;
+    }
+
+    .page-two-grid .section-gear p,
+    .page-two-grid .section-gear li {
+      font-size: 7.6px;
+      line-height: 1.08;
+    }
+
+    .page-two-grid .section-gear .bullet-list {
+      column-count: 2;
+      column-gap: 3mm;
+      display: block;
+      padding-left: 3mm;
+    }
+
+    .page-two-grid .section-gear .bullet-list li {
+      break-inside: avoid;
+      margin-bottom: 0.6mm;
+    }
+
+    .sheet-tip {
+      margin-bottom: 2mm;
+      color: #222;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5mm;
+      margin-bottom: 2mm;
+    }
+
+    .stat-box,
+    .track-box,
+    .debility-box {
+      border: 1px solid #000;
+      border-radius: 2mm;
+      background: #fff;
+    }
+
+    .stat-box {
+      min-height: 14mm;
+      padding: 1.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stat-name,
+    .track-label {
+      font-size: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #000;
+    }
+
+    .stat-value {
+      display: block;
+      border-bottom: 1px solid #000;
+      min-height: 6mm;
+    }
+
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5mm;
+      margin-bottom: 2mm;
+    }
+
+    .track-box {
+      min-height: 11mm;
+      padding: 1.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .track-value {
+      display: block;
+      min-height: 4mm;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .debility-grid {
+      display: grid;
+      gap: 1.2mm;
+    }
+
+    .debility-box {
+      padding: 1.6mm 2mm;
+      font-size: 8.4px;
+      line-height: 1.15;
+    }
+
+    .debility-box span {
+      color: #222;
+    }
+
+    .sheet-notes {
+      margin-top: 2mm;
+    }
+
+    .slot-boxes {
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      color: #333;
+      margin-left: 1.5px;
+    }
+
+    .slot-small {
+      font-size: 7.5px;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="page">
+      <header class="page-header">
+        <div class="title-wrap">
+          <h1>THE SCARRED WARRIOR</h1>
+          <p class="lead">You are stronger than you know. That's been the problem. You've spent years telling yourself you're not ready, not enough, not worth it — but the people you care about don't have time for your doubts.</p>
+        </div>
+        <div class="meta-stack">
+          <p class="meta-line">Homebrew World</p>
+          <p class="meta-line">Frieren</p>
+        </div>
+      </header>
+      <div class="page-grid">
+        <div class="column">
+          <section class="card section-name"><h2>Name</h2><p>Pick a name:</p>
+<p><strong>Northern Village:</strong> Rika, Marte, Solvei, Inge / Valdur, Gerrik, Halvar, Bjarne</p>
+<p><strong>Southern Frontier:</strong> Calla, Mirela, Desta, Seraf / Tobias, Cormac, Erasmo, Levin</p>
+<p><strong>Homeland Survivor:</strong> Lotta, Petra, Nessa, Elva / Gerwin, Konrad, Roas, Emrik</p>
+<p><strong>Wanderer's Name:</strong> Scar, Flint, Thorn, Ash / Grit, Edge, Iron, Forge</p></section>
+          <section class="card section-look"><h2>Look</h2><p>Pick one from each row:</p>
+<p><strong>Heritage:</strong> northern villager | southern frontier settler | survivor of a destroyed homeland | ask the table</p>
+<p><strong>Age:</strong> young, still growing into strength | stocky and seasoned | old scars on a young face</p>
+<p><strong>Eyes:</strong> quick and fearful beneath the confidence | burning with something unresolved | honest to a fault</p>
+<p><strong>Build:</strong> imposing and unassuming about it | compact and enormously strong | built like someone who never stopped working</p>
+<p><strong>Clothing:</strong> practical travel clothes, heavily worn | inherited warrior gear that barely fits | mismatched kit assembled from necessity</p>
+<p><strong>Signature:</strong> a scar whose story they won't tell | a weapon held like they're not sure they deserve it | silence that stretches too long</p></section>
+        </div>
+        <div class="column">
+          <section class="card section-background"><h2>Background</h2><div class="section-note">Pick one.</div>
+<article class="background-entry"><h3>Survivor's Guilt</h3><p>Your home is gone. You lived because someone else didn't. When you fight to protect someone who cannot protect themselves, take +1 forward.</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you knows what I ran from?</li><li>Which of you has seen me freeze when I should have acted?</li><li>Which of you reminds me of someone who didn't survive?</li><li>Which of you believes I'm worth something, for reasons I don't yet understand?</li></ul></article>
+<article class="background-entry"><h3>Master's Shadow</h3><p>A warrior believed in you more than you believed in yourself. They're not here anymore. When you fight in a way that would make your mentor proud, mark XP.</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you knew my master, or knows their name?</li><li>Which of you has asked me something my master once asked me?</li><li>Which of you noticed me imitating someone who isn't here?</li><li>Which of you I would most want to bring back stories to?</li></ul></article>
+<article class="background-entry"><h3>Dragon Slayer</h3><p>You once did something impossible when everyone needed you to. The village knows the story. You don't feel like the person they tell it about. Once per session, when you face something overwhelming and push through anyway, mark XP.</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you has heard a version of the story about me?</li><li>Which of you didn't believe it until you saw me fight?</li><li>Which of you knows what I thought about just before I survived?</li><li>Which of you looks at me the same way, whether or not the story is true?</li></ul></article>
+<article class="background-entry"><h3>Stagnant Village</h3><p>You stayed in one place too long — comfortable, safe, hollow. When you leave behind comfort or safety to keep moving toward something uncertain, mark XP.</p><p>---</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you pulled me out of the life I was sleepwalking through?</li><li>Which of you asked me the question I had been avoiding?</li><li>Which of you I worry would be better off without my past following them?</li><li>Which of you reminds me that moving forward is worth the cost?</li></ul></article></section>
+        </div>
+      </div>
+    </section>
+    <section class="page">
+      <header class="page-header">
+        <div class="title-wrap">
+          <h1>THE SCARRED WARRIOR</h1>
+          <p class="lead">Skrót zasad i opcji postaci do gry przy stole.</p>
+        </div>
+        <div class="meta-stack">
+          <p class="meta-line">Homebrew World</p>
+          <p class="meta-line">Frieren</p>
+        </div>
+      </header>
+      <div class="page-grid page-two-grid">
+        <div class="column">
+          <section class="card section-starting_moves"><h2>Starting Moves</h2><h3 class="entry-title">Overwhelming Strength</h3>
+<p>When you use raw physical power — lift, break, throw, or strike — you have advantage.</p>
+<h3 class="entry-title">Absorb the Blow</h3>
+<p>When you take a hit meant for someone nearby, reduce the damage to yourself by 1d6 and they take none.</p>
+<h3 class="entry-title">Imposter's Fire</h3>
+<p>When you fight while doubting yourself out loud — the GM hears it — take +1 forward.</p>
+<h3 class="entry-title">Fear is a Sharpener</h3>
+<p>When you fight something that genuinely terrifies you, deal +1d6 damage on a 10+.</p>
+<h3 class="entry-title">I Can Keep Up</h3>
+<p>When an ally is more experienced or skilled than you, take +1 forward when working directly alongside them.</p>
+<h3 class="entry-title">Stubborn Body</h3>
+<p>When you would be incapacitated, you may keep acting at 1 HP until the end of the scene.</p></section>
+        </div>
+        <div class="column">
+          <section class="card section-advances"><h2>Advances</h2><ul class="bullet-list">
+<li><strong>Titan Effort:</strong> Once per session, automatically succeed on a feat of raw physical strength, no roll required.</li>
+<li><strong>My People Don't Run:</strong> You never take disadvantage from fear-based effects.</li>
+<li><strong>Crushing Blow:</strong> Your damage die becomes d12 when you attack something that has injured an ally.</li>
+<li><strong>Remembered Story:</strong> Once per session, tell an ally a story of a warrior from your past. They mark XP.</li>
+<li><strong>Legacy Warrior:</strong> When you dedicate a kill to someone from your past and name them aloud, take +1 forward for the rest of the scene.</li>
+<li><strong>Improved Stat:</strong> Increase one of your stats by +1, to a max of +2.</li>
+<li><strong>Superior Stat</strong> <em>(Requires: Improved Stat, at least one other advance)</em>: Increase one of your stats by +1, to a max of +3.</li>
+</ul></section>
+          <section class="card section-drives"><h2>Drives</h2><ul class="bullet-list">
+<li>Kill something your mentor told stories about.</li>
+<li>Protect someone who has given up on protecting themselves.</li>
+<li>Tell a story worth bringing back to someone who matters.</li>
+<li>Admit out loud that you're afraid — and fight anyway.</li>
+</ul></section>
+        </div>
+        <div class="column">
+          
+    <section class="card sheet-card">
+      <h2>Arkusz Postaci</h2>
+      <p class="sheet-tip">Rozdziel: <strong>+2, +1, +1, +0, +0, -1</strong>.</p>
+      <div class="stat-grid"><div class="stat-box"><span class="stat-name">SIŁ</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">ZRC</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">KON</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">INT</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">MDR</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">CHA</span><span class="stat-value"></span></div></div>
+      <div class="track-grid">
+        <div class="track-box"><span class="track-label">PŻ</span><span class="track-value">?</span></div>
+        <div class="track-box"><span class="track-label">Obrażenia</span><span class="track-value">?</span></div>
+        <div class="track-box"><span class="track-label">Pancerz</span><span class="track-value"></span></div>
+        <div class="track-box"><span class="track-label">XP</span><span class="track-value">□□□□□</span></div>
+        <div class="track-box"><span class="track-label">Udźwig</span><span class="track-value">?</span></div>
+      </div>
+      <div class="debility-grid">
+        <div class="debility-box">□ Osłabiony <span>(SIŁ, ZRC)</span></div>
+        <div class="debility-box">□ Otępiały <span>(INT, MDR)</span></div>
+        <div class="debility-box">□ Przybity <span>(KON, CHA)</span></div>
+      </div>
+      <div class="sheet-notes">
+      <h3 class="entry-title">Ściąga</h3>
+      <ul class="bullet-list compact-list">
+        <li>Zaznacz XP przy wyniku <strong>6-</strong> oraz gdy coś każe ci to zrobić.</li>
+        <li>Wydaj <strong>1 XP</strong>, aby dodać <strong>+1</strong> do rzutu po rzucie.</li>
+        <li>Wydaj <strong>5 XP</strong>, aby wybrać awans.</li>
+        <li><strong>PŻ</strong> odzyskujesz przez odpoczynek, leczenie i ruchy postaci.</li>
+        <li><strong>Pancerz</strong> zmniejsza otrzymywane obrażenia zgodnie z fikcją.</li>
+      </ul>
+      </div>
+    </section>
+    
+          <section class="card section-gear"><h2>Gear</h2><p>Load 10.</p>
+<ul class="bullet-list">
+<li>Handaxe, sword, or warhammer (close, <span class="slot-boxes">□</span>)</li>
+<li>Heavy armor (<span class="slot-boxes">□□</span>, 1 armor)</li>
+<li>Travel pack (<span class="slot-boxes">□</span>)</li>
+<li>Whetstone and repair kit (<span class="slot-boxes">□</span>)</li>
+<li>Waterskin (<span class="slot-boxes">□</span>)</li>
+<li>Rations for two days (<span class="slot-boxes">□</span>)</li>
+<li>Rope, 15 ft (<span class="slot-boxes">□</span>)</li>
+<li>Silver coin from your old home (small)</li>
+<li>Torn piece of cloth you keep and don't explain (small)</li>
+<li>Chalk or charcoal for marking trails (small)</li>
+<li>Gift from your mentor, mostly useless (small)</li>
+</ul></section>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

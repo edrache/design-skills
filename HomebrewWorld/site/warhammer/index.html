@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warhammer - Homebrew World</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Cormorant+Garamond:wght@600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="lang-default">
+    <div class="container">
+        <header class="hero">
+            <p class="eyebrow">Homebrew World Setting</p>
+            <div class="hero-top">
+                <div class="lang-selector"><button class="lang-toggle" data-lang="en" type="button">English</button> <button class="lang-toggle" data-lang="pl" type="button">Polski</button></div>
+                <div class="pdf-downloads"><a class="toolbar-chip" href="playbooks_pl.pdf" download>Pobierz PDF PL</a> <a class="toolbar-chip" href="playbooks_en.pdf" download>Download PDF EN</a></div>
+            </div>
+            <h1 class="page-title"><span class="title-emoji">🌍</span> <span class="title-text">Warhammer</span></h1>
+            <p class="page-summary"><span class="page-summary-copy lang-pl">Mroczne fantasy w Starym Świecie, gdzie Imperium trwa między najazdami Chaosu, podziemnymi warren Skavenów i wewnętrzną korupcją. Łowcy czarownic, Zabójcy Trolli, Strażnicy Dróg, Czarodzieje Kolegium i Łotrzy walczą o przetrwanie w klimacie rodem z pesymistycznej Europy XVI wieku.</span> <span class="page-summary-copy lang-en">Dark fantasy set in the Old World, where the Empire endures between Chaos incursions, Skaven warrens beneath every city, and rot from within. Witch Hunters, Trollslayers, Road Wardens, College Wizards, and Rogues struggle to survive in a world of grim 16th-century horror and desperate heroism.</span></p>
+            <div class="page-toolbar"><span class="stat-badge">5 playbookow EN</span> <span class="stat-badge">5 playbookow PL</span></div>
+        </header>
+
+        <div class="main-layout">
+            <aside class="tabs-container" id="sidebar">
+                <button id="sidebar-toggle" aria-label="Toggle Sidebar" aria-expanded="true" type="button">☰</button>
+                
+            <a class="home-link sidebar-home-link" href="../index.html">
+                <span aria-hidden="true">←</span>
+                <span>Wroc do Homebrew Worlds</span>
+            </a>
+        
+                <div class="tabs-list" role="tablist" aria-label="Playbook navigation">
+                    <button class="tab lang-pl" data-tab="pl_playbook_czarodziej" type="button">👤 CZARODZIEJ</button>
+<button class="tab lang-pl" data-tab="pl_playbook_lotr" type="button">🗡️ ŁOTR</button>
+<button class="tab lang-pl" data-tab="pl_playbook_lowca_czarownic" type="button">🏹 ŁOWCA CZAROWNIC</button>
+<button class="tab lang-pl" data-tab="pl_playbook_straznik_drog" type="button">👤 STRAŻNIK DRÓG</button>
+<button class="tab lang-pl" data-tab="pl_playbook_zabojca_trolli" type="button">👤 ZABÓJCA TROLLI</button>
+<button class="tab lang-pl" data-tab="pl_optional_moves" type="button">🌟 Opcjonalne Ruchy</button>
+<button class="tab lang-pl" data-tab="pl_adventures" type="button">🗺️ Generator Przygód — Warhammer Fantasy</button>
+<button class="tab lang-en" data-tab="en_playbook_road_warden" type="button">👤 ROAD WARDEN</button>
+<button class="tab lang-en" data-tab="en_playbook_rogue" type="button">👤 ROGUE</button>
+<button class="tab lang-en" data-tab="en_playbook_trollslayer" type="button">👤 TROLLSLAYER</button>
+<button class="tab lang-en" data-tab="en_playbook_witch_hunter" type="button">👤 WITCH HUNTER</button>
+<button class="tab lang-en" data-tab="en_playbook_wizard" type="button">👤 WIZARD</button>
+<button class="tab lang-en" data-tab="en_optional_moves" type="button">🌟 Optional Moves</button>
+<button class="tab lang-en" data-tab="en_adventures" type="button">🗺️ Adventure Generator — Warhammer Fantasy</button>
+                </div>
+            </aside>
+
+            <div class="content-area">
+                
+    <div id="pl_playbook_czarodziej" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Absolwent Jasnego Zakonu</b></p>
+<p>Byłeś szkolony w Jasnym Kolegium — ogień, Aqshy, Czerwony Wiatr. Gdy przyywołujesz ogień lub żar przeciwko celowi, twoje zaklęcia podpalają cel przy trafieniu, zadając ciągłe obrażenia od ognia, dopóki płomień nie zostanie ugaszony. Nie możesz rzucać magii lodu ani śmierci bez ryzyka Opacznego Rzutu.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was widziała, co dzieje się, gdy tracę kontrolę?</li>
+<li>Która z was wie, co zostawiłem w Altdorfie?</li>
+<li>Która z was boi się ognia z powodów niemających nic wspólnego ze mną?</li>
+<li>Którą z was raz wystawiłem na próbę ogniem i zdała test?</li>
+</ul>
+<p>---</p>
+<p><b>Niebiański Nawigator</b></p>
+<p>Byłeś szkolony w Niebiańskim Kolegium — gwiazdy, Azyr, Błękitny Wiatr. Gdy studiujesz nocne niebo, mapę gwiezdną lub wzorce regionu, rzuć +INT. Na 10+ MG mówi ci jedną rzecz o tym, co nadchodzi w tym obszarze — zagrożenie, punkt zwrotny lub okazję — której nikt inny by nie wiedział. Na 7-9 masz wrażenie, ale nie pewność.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Którą z was widziałem w swoich obliczeniach, zanim się osobiście spotkaliśmy?</li>
+<li>Która z was nie powinna tu być, i jeszcze nie zdecydowałem, czy to powiedzieć?</li>
+<li>Która z was nie chce wiedzieć, co zobaczyłem o jej przyszłości?</li>
+<li>Która z was zmieniła coś, co uważałem za ustalone?</li>
+</ul>
+<p>---</p>
+<p><b>Zielony Druid</b></p>
+<p>Byłeś szkolony w Zielonym Kolegium — życie, Ghyran, Zielony Wiatr. Gdy dotykasz kogoś rannego i poświęcasz chwilę na cichy skupienie, odzyskuje 1k8 PZ. Gdy jesteś w naturalnym terenie — lasach, polach, nad rzekami — czujesz Zielony Wiatr silnie i bierzesz +1 do wszystkich ruchów.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was przyszła do mnie, gdy uzdrowiciele wyczerpali swoje możliwości?</li>
+<li>Która z was uważa, że to, co robię, to tylko wiejska czarownica z dyplomem?</li>
+<li>Którą z was widziałem uszkodzoną w sposób, którego mój Wiatr nie dosięgnie?</li>
+<li>Która z was ostrzega mnie Zielony Wiatr i jeszcze nie zdecydowałem, co to oznacza?</li>
+</ul>
+<p>---</p>
+<p><b>Szary Uczony</b></p>
+<p>Byłeś szkolony w Szarym Kolegium — cienie, Ulgu, Szary Wiatr. Gdy jesteś w cieniu, mgle lub ciemności, możesz poruszać się niezauważony — bez rzutu, chyba że wchodzi w grę magia. Gdy odczytujesz osobę pod kątem ukrytych zamiarów, rzuć +INT. Na 10+ nie może ukryć przed tobą niczego samymi słowami.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Którą z was śledziłem bez jej wiedzy, zanim się formalnie poznaliśmy?</li>
+<li>Która z was wie, że nie zawsze jestem tam, gdzie się wydaje?</li>
+<li>Która z was mówiła swobodnie w pokoju, który uważała za pusty?</li>
+<li>Która z was widziała, jak wyłaniam się z cienia, i wciąż się do tego nie przyzwyczaiła?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Kanałowanie Wiatru</b></p>
+<p>Gdy czerpiesz z Wiatru Magii, by rzucić zaklęcie, rzuć +INT. Na 10+ zaklęcie działa zgodnie z zamysłem. Na 7-9 zaklęcie działa, ale MG wybiera jedno: efekt jest osłabiony, ograniczony w zasięgu lub przyciągasz niebezpieczną uwagę czegoś, co wyczuwa magię.</p>
+<p><b>Ostrzeżenie o Opacznym Rzucie</b></p>
+<p>Gdy przekraczasz swoje wyszkolenie — rzucasz zaklęcie dwa razy z rzędu, korzystasz z zakazanej kombinacji lub sięgasz po Wiatr, który nie jest twój — rzuć +INT. Na 7-9 Opaczny Rzut jest drobny. Na 6- coś idzie nie tak, czego nikt obecny nie ucieszy.</p>
+<p><b>Wiedza Magiczna</b></p>
+<p>Gdy studiujesz magiczny przedmiot, stworzenie lub zjawisko i konsultujesz swoje wykształcenie, rzuć +INT. Na 10+ zadaj trzy pytania o to ze standardowej listy. Na 7-9 zadaj jedno, a MG może w zamian coś od ciebie zażądać.</p>
+<p><b>Ochronna Runa</b></p>
+<p>Gdy poświęcasz kilka minut na wyrytowanie runy na miejscu, osobie lub przedmiocie, staje się ona odporna na jeden typ zagrożenia, który określisz: ogień, zimno, skażenie Chaosem, nieumarłość lub podobne. Runa trwa, dopóki nie zostanie wywołana lub rozwiązana.</p>
+<p><b>Odczyt Wiatrów</b></p>
+<p>Możesz wyczuć, gdy w pobliżu rzucono zaklęcie, nawet jeśli tego nie obserwowałeś. MG zawsze powie ci, gdy w miejscu są magiczne pozostałości i jakiego rodzaju moc wchodziła w grę.</p>
+<p><b>Sieć Uczonych</b></p>
+<p>W każdym imperialnym mieście z Kolegium możesz znaleźć kolegu czarodzieja. Rzuć +INT, gdy nawiązujesz kontakt. Na 10+ pomagają swobodnie. Na 7-9 pomagają, ale są niuanse — akademicka polityka, dawne długi lub niewygodne pytanie, które chcą mieć odpowiedź.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # CZARODZIEJ</h2><p>*Poszedłeś do Kolegium. Nauczyłeś się widzieć Wiatry Magii i pozwoliłeś jednemu z nich przez siebie przepływać. Wiesz, co szeptali inni w twoim Kolegium: taka wiedza zmienia ludzi. Po prostu jeszcze nie wiedziałeś, w którą stronę.*</p>
+<p><b>Kostka Obrażeń:</b> k4</p>
+<p><b>PŻ:</b> 4 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Człowiek (Altdorf):</b> Albrecht, Friedrich, Gotthard, Theophil / Annalise, Gertrude, Sofie, Wilhelmina</p>
+<p><b>Wysoki Elf (Mistrz Wiedzy):</b> Archandel, Faerindel, Ilmaris, Thalandril / Aelitha, Caelindra, Lirethiel, Silriel</p>
+<p><b>Człowiek (Kislev):</b> Boris, Dmitri, Igor, Vasily / Anya, Katja, Nadia, Zoya</p>
+<p><b>Człowiek (z Południa):</b> Calvino, Marco, Rinaldo, Umberto / Catarina, Livia, Petra, Viola</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednej opcji z każdego wiersza:</p>
+<p><b>Rasa:</b> Człowiek z Imperium | Wysoki Elf-Mistrz Wiedzy | Kislevska Czarownica Lodu | Południowy Uczony | zapytaj przy stole</p>
+<p><b>Postawa:</b> rozproszony przez rzeczy, których nikt inny nie widzi | precyzyjny i opanowany | płonący pewnością siebie | noszący wyczerpanie jak płaszcz</p>
+<p><b>Oczy:</b> śledzące Wiatr nawet podczas rozmowy | rozjarzone kolorem, którego nikt inny nie widzi | oszkliwione obliczeniami | od czasu do czasu gdzieś indziej</p>
+<p><b>Sylwetka:</b> szczupła jak u uczonego | przygarbiona pod ciężkimi szatami | wysoka i formalnie wyprostowana | miękka i zaskakująco szybka</p>
+<p><b>Strój:</b> szaty Kolegium w kolorze twojego Wiatru | podróżne ubranie pod formalną szatą wierzchnią | osmalone i połatane w sposób, którego nie tłumaczysz | celowo szara, by nie zwracać uwagi</p>
+<p><b>Znak szczególny:</b> przedmiot koncentracji, którego nikt inny nie może dotykać | palce poplamione atramentem, które nigdy do końca nie schodzą | futerał na składniki zaklęć noszony jako naszyjnik | ledwo wyczuwalny zapach twojego Wiatru wokół ciebie</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Opanowany Wiatr:</b> Twoja sygnaturowa magia Wiatru nie ryzykuje już Opacznego Rzutu przy wyniku 7-9.</li>
+<li><b>Przeciwzaklęcie:</b> Gdy identyfikujesz trwający efekt magiczny, możesz próbować go rozwiązać, rzucając +INT. Na 10+ kończy się. Na 7-9 słabnie, ale nie bez odrzutu.</li>
+<li><b>Wyższa Runa:</b> Twoje runy mogą teraz chronić przed wieloma typami zagrożeń jednocześnie.</li>
+<li><b>Magiczny Wzrok:</b> Zawsze widzisz aktywne efekty magiczne, zaklęte przedmioty i skażenie Chaosem bez rzutu, nawet w ciemności.</li>
+<li><b>Ujście Mocy:</b> Raz na scenę możesz wzmocnić zaklęcie bez ryzyka Opacznego Rzutu, wydając 1k6 PZ.</li>
+<li><b>Poprawiona Cecha:</b> Zwiększ jedną ze swoich cech o +1, maksymalnie do +2.</li>
+<li><b>Wyższa Cecha</b> *(Wymaga: Poprawionej Cechy i przynajmniej jednego innego Awansu)*: Zwiększ jedną ze swoich cech o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Użyj magii, by rozwiązać problem, którego siła nie dosięgnie.</li>
+<li>Zrozum coś zakazanego, co powinno pozostać zakazane.</li>
+<li>Chroń otaczających cię ludzi przed ceną twojej mocy.</li>
+<li>Utrzymaj Wiatry w równowadze, gdy ktoś inny je rozdziera.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 8.</p>
+<ul>
+<li>Różdżka lub laska czarodzieja — skupienie twojego Wiatru (bliski, magiczny, 2 sloty)</li>
+<li>Szaty Kolegium — w kolorze twojego Wiatru (1 slot)</li>
+<li>Księga zaklęć — w połowie pełna, jeden narożnik uszkodzony przez wodę (1 slot)</li>
+<li>Futerał na składniki — zioła, sole, proszki, kilka kości (1 slot)</li>
+<li>Księga referencyjna — Teoria Kolegialna, gęsto opatrzona marginesami (1 slot)</li>
+<li>Tubus na zwoje — dwa puste, jeden z zaklęciem (mały)</li>
+<li>Wosk i pieczęć twojego Kolegium (mały)</li>
+<li>Podarunek od twojego mistrza, którego jeszcze nie wiesz, jak używać (mały)</li>
+<li>Lecznicza brandy — pomaga na bóle głowy po Opacznym Rzucie (mały)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_lotr" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Złodziej Gildii</b></p>
+<p>Byłeś szkolony przez złodziejską gildię — wybierz miasto. Znasz znaki, hasła i protokoły. Gdy wchodzisz do osady, możesz znaleźć lokalny kontakt gildii bez rzutu. Dają ci pracę, dostęp do kryjówek i informacje o lokalnych celach — za działkę.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was ma przy sobie coś, co już wyceniłem podczas rozmowy?</li>
+<li>Która z was zna tę samą gildię co ja, ale z drugiej strony?</li>
+<li>Która z was już zauważyła, że coś wziąłem?</li>
+<li>Która z was jest winna tym samym ludziom co ja?</li>
+</ul>
+<p>---</p>
+<p><b>Uliczny Informator</b></p>
+<p>Masz kontakty wśród zapomnianych przez miasto: żebraków, robotników portowych, czyścicieli kanałów, dzieci ulicy. Gdy pytasz o kogoś lub coś w osadzie, rzuć +CHA. Na 10+ twoja sieć dostarcza dokładnych informacji za darmo. Na 7-9 informacja jest prawdziwa, ale niepełna, albo kontakt potrzebuje najpierw przysługi.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was prosiła mnie o informacje i nie pytała, skąd je mam?</li>
+<li>Która z was zna kogoś, kto mnie zna, i o tym nie wie?</li>
+<li>Którą z was proszono mnie o śledzenie, i jak dotąd odmawiałem?</li>
+<li>Która z was zna część tego miasta, której nigdy nie udało mi się zmapować?</li>
+</ul>
+<p>---</p>
+<p><b>Paser i Handlarz</b></p>
+<p>Wiesz, jak poruszają się towary. Gdy chcesz sprzedać coś — skradzionego, niezwykłego lub prawnie wątpliwego — rzuć +CHA. Na 10+ znajdujesz kupca, otrzymujesz uczciwą cenę i nikt nie zadaje kłopotliwych pytań. Na 7-9 kupca się znajdzie, ale chce znać jego pochodzenie albo proponuje znacznie poniżej wartości.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was sprzedała mi coś, nie wiedząc, ile jest warte?</li>
+<li>Która z was ma przy sobie coś, co rozpoznaję z listy zleceń?</li>
+<li>Dla której z was pracuję teraz, bez jej wiedzy?</li>
+<li>Która z was ufa mojej wycenie bardziej niż własnemu osądowi?</li>
+</ul>
+<p>---</p>
+<p><b>Zbiegły Dłużnik</b></p>
+<p>Ktoś ważny chce od ciebie czegoś — pieniędzy, przysługi lub informacji — i jesteś w biegu. Gdy jesteś w osadzie, możesz wyczuć, gdy ktoś związany z twoim długiem jest w pobliżu, bez rzutu. Zawsze wiesz, kiedy wyjść, zanim cię zobaczą.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was znała mnie, zanim miałem ten problem?</li>
+<li>Która z was zna kształt sprawy, nie znając szczegółów?</li>
+<li>Która z was kryła mnie przynajmniej raz?</li>
+<li>Która z was martwi mnie tym, że może zostać użyta przeciwko mnie?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Kieszonkowiec</b></p>
+<p>Gdy próbujesz zabrać coś komuś bez jego wiedzy, rzuć +ZRE. Na 10+ masz to i nie wie. Na 7-9 masz to, ale wybierz jedno: zauważa, że coś jest nie tak, obserwuje cię teraz, albo będziesz musiał szybko się ulotnić.</p>
+<p><b>Ciemny Zaułek</b></p>
+<p>Gdy atakujesz z ukrycia lub z bliskiej odległości bez ostrzeżenia, rzuć +ZRE. Na 10+ zadaj swoje obrażenia i pozostajesz ukryty lub możesz uciec przed odwetem. Na 7-9 zadajesz obrażenia, ale jesteś odsłonięty.</p>
+<p><b>Odczytaj Cel</b></p>
+<p>Gdy obserwujesz kogoś i oceniasz, co jest wart — finansowo, informacyjnie lub jako dźwignia — rzuć +MDS. Na 10+ zadaj dwa pytania: Co ceni najbardziej? Co ukrywa? Co skłoniłoby go do współpracy? Jaka jest jego słabość? Na 7-9 zadaj jedno.</p>
+<p><b>Wtopić się w Tłum</b></p>
+<p>Gdy przyjmujesz przebranie, rolę lub fałszywą tożsamość, rzuć +CHA. Na 10+ jesteś przekonujący na czas sceny, chyba że zrobisz coś, by to zepsuć. Na 7-9 jesteś przekonujący, dopóki ktoś nie przyjrzy się bliżej lub nie zada niewłaściwego pytania.</p>
+<p><b>Znajomość Miasta</b></p>
+<p>W każdym mieście lub dużym miasteczku, które wcześniej odwiedziłeś, zawsze wiesz, gdzie znaleźć: czarny rynek, pasera, kryjówkę lub skorumpowanego urzędnika. Bez rzutu.</p>
+<p><b>Drugie Wyjście</b></p>
+<p>Gdy wchodzisz do budynku, pokoju lub zamkniętej przestrzeni, zapytaj MG: gdzie jest inne wyjście? Powie ci. Zawsze tam jest.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🗡️ # ŁOTR</h2><p>*Nie każdy, kto radzi sobie w Imperium, robi to czysto. Gildie chcą swojej działki. Prawo ugina się przed bogatymi. Doki, zaułki, podziemne przejścia między dzielnicami magazynowymi — znasz to wszystko. Żyłeś tym. A wiedza jest warta więcej, niż ludzie myślą.*</p>
+<p><b>Kostka Obrażeń:</b> k6</p>
+<p><b>PŻ:</b> 6 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Człowiek (Marienburg):</b> Caspar, Dirk, Fleiss, Gerrit / Anka, Britta, Fenna, Liesel</p>
+<p><b>Człowiek (Altdorf):</b> Jak, Merten, Pike, Wulf / Dora, Marga, Nessa, Rika</p>
+<p><b>Niziołek:</b> Burrow, Finch, Goss, Snatch / Cally, Dulcie, Pip, Wren</p>
+<p><b>Elf (Cienia):</b> Arandel, Cavan, Silvan, Ythis / Aeris, Lireth, Sable, Thael</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednej opcji z każdego wiersza:</p>
+<p><b>Rasa:</b> Człowiek z Marienburga | Człowiek z Altdorfu | Niziołek | Elf Cienia | zapytaj przy stole</p>
+<p><b>Postawa:</b> rozluźniony, dopóki nie zależy | zawsze nieznacznie w ruchu | obserwujący i nieobserwowany | szczerze nieuczciwy</p>
+<p><b>Oczy:</b> rejestrujące wyjścia | szacujące wartość wszystkiego | czytające pomieszczenie | już gdzieś indziej</p>
+<p><b>Sylwetka:</b> zwarta i szybka | szczupła i umiała znikać | mała i prawie niewidoczna | żylasta i cierpliwa</p>
+<p><b>Strój:</b> robotnicze warstwy skrywające zbyt wiele kieszeni | szanowne ubranie kupca, trochę nie to | uniforma gildii, której nie powinieneś mieć | nic, co celowo nie przyciąga wzroku</p>
+<p><b>Znak szczególny:</b> wytrychy noszone jako bransoletka | nóż podarowany przez kogoś, kogo okradłeś | lista kontaktów w kodzie, który tylko ty znasz | siniak w miejscu, które coś znaczy</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Mistrz Kieszonkowca:</b> Nigdy nie rzucasz na Kieszonkowca w tłumie lub gdy cel jest rozproszony.</li>
+<li><b>Gildia Mi Jest Winna:</b> Raz na sesję skorzystaj z przysługi organizacji przestępczej. Dostarczają siłę, informacje, przejście lub rozproszenie — nic, co kosztuje ich życie.</li>
+<li><b>Praca Nożem:</b> Gdy zadajesz obrażenia małą bronią (sztylet, nóż, ukryte ostrze), zadaj +1k4 obrażeń.</li>
+<li><b>Artysta Konów:</b> Gdy świadomie kłamiesz i rzucasz +CHA, wynik 7+ zawsze wyciąga cię z natychmiastowych kłopotów. Długoterminowe konsekwencje MG sam wymyśli.</li>
+<li><b>Miejski Drapieżnik:</b> Gdy śledzisz kogoś przez miasto, nigdy go nie tracisz, chyba że wchodzi w grę magia.</li>
+<li><b>Poprawiona Cecha:</b> Zwiększ jedną ze swoich cech o +1, maksymalnie do +2.</li>
+<li><b>Wyższa Cecha</b> *(Wymaga: Poprawionej Cechy i przynajmniej jednego innego Awansu)*: Zwiększ jedną ze swoich cech o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Dostać zapłatę więcej, niż robota była warta.</li>
+<li>Znaleźć coś, co daje ci dźwignię nad kimś potężnym.</li>
+<li>Wyjść z sytuacji, z której wyjść nie powinno się dać.</li>
+<li>Dla odmiany ochronić kogoś małego przed kimś dużym.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 9.</p>
+<ul>
+<li>Krótki miecz (bliski, 1 slot)</li>
+<li>Noże do rzucania ×3 (rzucany, 1 slot)</li>
+<li>Wytrychy — zestaw profesjonalny (1 slot)</li>
+<li>Ciemny podróżny płaszcz — kaptur, głębokie kieszenie (1 slot)</li>
+<li>Sakwa z monetami — nie wszystkie twoje (mały)</li>
+<li>Sfałszowane dokumenty — jeden komplet, dobra jakość (mały)</li>
+<li>Ukryty nóż w cholewce (mały)</li>
+<li>Klucz do miejsca, w którym nigdy nie byłeś (mały)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_lowca_czarownic" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Templariusz Sigmara</b></p>
+<p>Nosisz sygnowany w Altdorfie sigmaryczny nakaz autorytetu. Gdy formalnie powołujesz się na swoje uprawnienia wobec imperialnych obywateli, urzędników lub żołnierzy, nie mogą oni odmówić ci pomocy, informacji ani dostępu — choć mogą zwlekać, mylić tropy lub cicho ostrzegać twoich celów.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was widziała, jak spalam kogoś, kto na to zasłużył?</li>
+<li>Która z was uważa, że przynajmniej raz przekroczyłem granicę?</li>
+<li>Która z was wie, czego szukam na tej drodze?</li>
+<li>Która z was pomogła mi kiedyś i nigdy nie zapytała, co znalazłem?</li>
+</ul>
+<p>---</p>
+<p><b>Cień Inkwizytora</b></p>
+<p>Byłeś szkolony, by wydobywać prawdę od tych, którzy jej nie chcą oddać. Gdy przesłuchujesz więźnia lub badasz kogoś pod kątem oznak skażenia, rzuć +MDS. Na 10+ dowiadujesz się, czego potrzebujesz, i możesz sam zdecydować, czy badany pozostanie współpracujący. Na 7-9 poznajesz prawdę, ale w procesie coś zostaje uszkodzone — dowód, relacja, godność niewinnej osoby.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was zna kogoś, kogo wcześniej przesłuchiwałem?</li>
+<li>Która z was siedziała po drugiej stronie moich metod?</li>
+<li>Która z was uważa, że czerpię zbyt wielką satysfakcję z tej pracy?</li>
+<li>Która z was bardziej ufa moim wynikom niż mojemu osądowi?</li>
+</ul>
+<p>---</p>
+<p><b>Łowca Heretyków</b></p>
+<p>Skatalogowałeś znaki, pieczęcie i rytuały każdego kultu Chaosu działającego w Imperium. Gdy badasz miejsce zbrodni, zwłoki lub dziwne zdarzenie pod kątem działalności kultowej, MG mówi ci: który kult, co robili i co zostawili po sobie.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was zabiła kultystę, zanim zdążyłem go znaleźć?</li>
+<li>Która z was ma przy sobie coś, co widziałem wcześniej w rękach kultu?</li>
+<li>Która z was wie, że już jestem na tropie?</li>
+<li>Która z was została przez kogoś takiego jak ja pomylona z kultystą?</li>
+</ul>
+<p>---</p>
+<p><b>Ocalały ze Skażenia</b></p>
+<p>Ktoś bliski ci uległ Chaosowi i zrobiłeś to, co trzeba było zrobić. Jesteś odporny na strach i obrzydzenie, które inni czują w obliczu mutacji i skażenia Chaosem — widziałeś już najgorszy jego przejaw na twarzy, którą kochałeś. Gdy działasz, by chronić innych przed skażeniem Chaosem, ponosząc za to osobisty koszt, zaznacz PD.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was wie, co straciłem?</li>
+<li>Która z was też kogoś straciła i wybrała inną drogę?</li>
+<li>Która z was widziała, jak się zawahałem, gdy to miało znaczenie?</li>
+<li>Która z was obserwuje mnie w poszukiwaniu oznak, że skażenie dosięgło i mnie?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Zmysł Czarownicy</b></p>
+<p>Gdy badasz osobę, miejsce lub przedmiot pod kątem oznak skażenia Chaosem, rzuć +MDS. Na 10+ MG mówi ci wyraźnie: czy jest skażone, jak głęboko i jaka moc pozostawiła swój ślad. Na 7-9 masz silne wrażenie — skażone lub czyste — ale szczegóły są niepełne lub głęboko niepokojące.</p>
+<p><b>Spowiedź</b></p>
+<p>Gdy konfrontujesz kogoś z dowodem jego grzechu i żądasz prawdy, rzuć +CHA. Na 10+ mówi ci to, czego potrzebujesz. Na 7-9 mówi coś prawdziwego — ale nie wszystko, a teraz cię boi się lub nienawidzi za samo pytanie.</p>
+<p><b>Ostrze Stosu</b></p>
+<p>Gdy atakujesz potwierdzonego sługę Chaosu — kultystę, mutanta, nosiciela demona lub skażenia — zadaj swoje obrażenia i weź +1 do przodu przeciw niemu do końca sceny.</p>
+<p><b>Niezłomna Wola</b></p>
+<p>Gdy stawiasz czoło magicznemu przymusowi, demonicznej grozie lub psychicznemu atakowi zrodzonemu z Chaosu, weź +1 do oporu. Na 12+ jesteś odporny na to konkretne źródło do końca starcia.</p>
+<p><b>Odczytaj Tłum</b></p>
+<p>Gdy obserwujesz zgromadzenie ludzi pod kątem ukrytej winy, lojalności lub działalności kultowej, rzuć +MDS. Na 10+ wybierz dwie kwestie: kto się boi, kto kłamie, kto jest przywódcą lub kto cię obserwuje. Na 7-9 wybierz jedną.</p>
+<p><b>Srebro i Ogień</b></p>
+<p>Twoja broń zadaje pełne obrażenia demonom, nieumarłym i stworzeniom skażonym Chaosem, bez względu na posiadane przez nie pospolite osłony.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🏹 # ŁOWCA CZAROWNIC</h2><p>*Widziałeś, co Chaos robi z ludźmi. Patrzyłeś, jak niewinni płakali podczas przesłuchań, a winni uśmiechali się na stosie. Nosisz ze sobą ich imiona — każde z nich.*</p>
+<p><b>Kostka Obrażeń:</b> k6</p>
+<p><b>PŻ:</b> 6 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Człowiek (Reikland):</b> Johann, Ruprecht, Klaus, Konrad / Elise, Marta, Hildegard, Greta</p>
+<p><b>Człowiek (Middenland):</b> Ulric, Brand, Harkon, Veit / Sigrid, Freya, Edda, Runa</p>
+<p><b>Niziołek:</b> Pip, Jasper, Merric, Toby / Rosie, Lily, Dot, Bree</p>
+<p><b>Krasnolud:</b> Gundrun, Borek, Thordal, Keldek / Brenna, Hilda, Dagni, Sigra</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednej opcji z każdego wiersza:</p>
+<p><b>Rasa:</b> Człowiek z Reiklandu | Człowiek z Middenlandu | Niziołek | Krasnolud | zapytaj przy stole</p>
+<p><b>Postawa:</b> zimna i czujna | wściekła, lecz opanowana | pobożna sztywność | wydrążona przez lata roboty</p>
+<p><b>Oczy:</b> kogoś, kto widział za dużo | szukające grzechu w każdej twarzy | spokój przed wyrokiem | płonące czymś, co nie jest ukojeniem</p>
+<p><b>Sylwetka:</b> szczupła i zahartowana przez drogi | szerokobarkowa pod ciężkim płaszczem | drobna, ale niezniszczalna | przygarbiona pod niewidzialnym ciężarem</p>
+<p><b>Strój:</b> długi czarny płaszcz i szerokoskrzydły kapelusz | wytarte szaty podróżne skrywające zbroję | formalne szaty z herbem Zakonu | coś praktycznego i celowo szarego</p>
+<p><b>Znak szczególny:</b> egzemplarz Malleus wytarty do miękkości | zbiór zapieczętowanych zeznań | wypalone piętno na dłoni z wczesnego rytuału inicjacji | lista imion, która wciąż się wydłuża</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Płonące Przekonanie:</b> Gdy zadajesz obrażenia słudze Chaosu, możesz dodać swój modyfikator MDS do obrażeń.</li>
+<li><b>Sieć Informatorów:</b> W każdej imperialnej osadzie możesz poświęcić czas na kontakt z lokalnymi informatorami. Znają jeden sekret o możnych, skorumpowanych lub ukrytych.</li>
+<li><b>Wiedza Inkwizytora:</b> Gdy używasz Spowiedzi na kimś, kto jest fizycznie unieruchomiony, zawsze poznajesz pełną prawdę bez rzutu — lecz MG może sprawić, że konsekwencje będą cię śledzić.</li>
+<li><b>Ochronna Pieczęć:</b> Nosisz lub nosisz przy sobie sigil pobłogosławiony przez sigmarycznego kapłana. Demony i przywołane istoty mają -1 w akcjach przeciwko tobie.</li>
+<li><b>Bez Litości:</b> Gdy zabijasz potwierdzonego sługę Chaosu, możesz natychmiast wykonać darmowy atak przeciwko drugiemu celowi w zasięgu.</li>
+<li><b>Poprawiona Cecha:</b> Zwiększ jedną ze swoich cech o +1, maksymalnie do +2.</li>
+<li><b>Wyższa Cecha</b> *(Wymaga: Poprawionej Cechy i przynajmniej jednego innego Awansu)*: Zwiększ jedną ze swoich cech o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Zdemaskuj kult, zanim dokończy swój rytuał.</li>
+<li>Spal coś, czemu nie powinno było pozwolić żyć.</li>
+<li>Chroń niewinnych przed zagrożeniem, którego nie widzą.</li>
+<li>Zmierz się z własną zdolnością do grzechu i wybierz trudniejszą drogę.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 10.</p>
+<ul>
+<li>Pobłogosławiony miecz długi — posrebrzane ostrze (bliski, 1 slot)</li>
+<li>Ciężki pistolet (bliski, przeładowanie, 2 sloty)</li>
+<li>Płaszcz Łowcy Czarownic — ciężki, insygnia Zakonu (1 slot)</li>
+<li>Malleus Maleficarum — egzemplarz terenowy z adnotacjami (1 slot)</li>
+<li>Kajdany — żelazne, z wyrytymi pieczęciami (1 slot)</li>
+<li>Torba dowodów — zapieczętowane dokumenty, zeznania, znaki kultów (1 slot)</li>
+<li>Pochodnia i olej (1 slot)</li>
+<li>Pobłogosławiony srebrny medalion Sigmara (mały)</li>
+<li>Fiolki ze święconą wodą ×2 (mały)</li>
+<li>Lista imion — większość skreślona (mały)</li>
+<li>Zapieczętowane zeznanie kogoś, o kim wciąż myślisz (mały)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_straznik_drog" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Weteran Patrolu</b></p>
+<p>Jeździsz tym odcinkiem drogi od lat. Gdy zbliżasz się do jakiejkolwiek osady, karczmy, drogi ze ślubnym czy skrzyżowania w Imperium, zapytaj MG: kto ostatnio tędy przechodził, jakie jest teraz lokalne zagrożenie, albo kto obserwuje to miejsce.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Którą z was wcześniej zatrzymywałem i przesłuchiwałem?</li>
+<li>Która z was ma informacje, których szukam od dawna?</li>
+<li>Która z was podróżuje tymi drogami częściej niż powinna?</li>
+<li>Która z was zna kogoś, kogo wciąż szukam?</li>
+</ul>
+<p>---</p>
+<p><b>Ocalały z Drogi</b></p>
+<p>Wyszedłeś cało z zasadzki, najazdu Zwierzoludzi lub czegoś jeszcze gorszego — i wiesz teraz, czego wymaga przetrwanie. Gdy jesteś atakowany z zasadzki lub wpadasz w pułapkę, nigdy nie jesteś zaskoczony. Działasz w pierwszej rundzie niezależnie od okoliczności.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was była tam, gdy to się stało?</li>
+<li>Która z was zna tę historię i nigdy jej nie poruszała?</li>
+<li>Która z was wciąż popełnia błąd, który tamtego dnia popełniłem?</li>
+<li>Której z was ufałbym, by miała moje plecy, gdyby to się powtórzyło?</li>
+</ul>
+<p>---</p>
+<p><b>Sieć Bandytów</b></p>
+<p>Pielęgnujesz informatorów wśród kryminalnych elementów na drogach — byłych banitów, operatorów punktów opłat, którzy przymykają oko, przydrożnych karczmarzów o elastycznej lojalności. Gdy szukasz informacji o przestępczej działalności na drodze, rzuć +CHA. Na 10+ masz tu kontakt i mówi swobodnie. Na 7-9 masz kontakt, ale najpierw czegoś chce.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was jest na liście, którą trzymam pod płaszczem?</li>
+<li>Która z was skorzystała z jednego z moich kontaktów do własnych celów?</li>
+<li>Która z was uważa, że moje metody są zbyt pobłażliwe?</li>
+<li>Którą z was wypuściłem kiedyś z ostrzeżeniem?</li>
+</ul>
+<p>---</p>
+<p><b>Tropiciel Bestii</b></p>
+<p>Nauczyłeś się odczytywać to, co schodzi z lasów — Zwierzoludzi, mutantów, skażoną przez Chaos dziką zwierzynę — ze śladów, które zostawiają na ziemi. Gdy badasz trop, padlinę lub niepokojące miejsce pod kątem oznak aktywności stworzeń, MG mówi ci: co to zrobiło, ile ich było, jak dawno i w którym kierunku poszły.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was szła za mną w ciemność i przeżyła?</li>
+<li>Która z was ufa mojemu odczytaniu terenu, nawet gdy tego nie tłumaczę?</li>
+<li>Która z was widziała, jak gubię trop, i wie, że szukam go od tamtej pory?</li>
+<li>Która z was nosi przy sobie coś, co wzięła z lasu, ale nie sądzę, żeby to tam znalazła?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Znam Drogę</b></p>
+<p>Gdy podróżujesz między dwiema osadami na drodze, którą patrolowałeś, docierasz bez incydentów, chyba że sam zdecydujesz się zbadać coś po drodze. Znasz drogi, skróty i miejsca, gdzie czają się zagrożenia.</p>
+<p><b>Uderzenie Patrolowe</b></p>
+<p>Gdy atakujesz bronią patrolową — mieczem, lancą, kuszą — z końskiego grzbietu lub z przygotowanej pozycji, zadaj swoje obrażenia i dodaj +1k4, jeśli twój cel nie wiedział o twojej obecności.</p>
+<p><b>Imperialny Nakaz</b></p>
+<p>Gdy powołujesz się na swoje uprawnienia Strażnika Dróg, by zatrzymać, przeszukać lub zatrzymać kogoś na drogach imperialnych, rzuć +CHA. Na 10+ podporządkowują się bez problemów. Na 7-9 podporządkowują się, ale są wrogo nastawieni, zwlekają lub już ukryli to, czego szukasz.</p>
+<p><b>Twarde Mile</b></p>
+<p>Nie gubisz się na imperialnych drogach, nawet w ciemności, gęstej mgle lub po zasadzce. Gdy prowadzisz grupę przez trudne warunki drogowe, docierają bezpiecznie.</p>
+<p><b>Odczytaj Zagrożenie</b></p>
+<p>Gdy obserwujesz grupę ludzi na drodze i oceniasz ich pod kątem niebezpieczeństwa, rzuć +MDS. Na 10+ zadaj trzy pytania ze standardowej listy. Na 7-9 zadaj jedno.</p>
+<p><b>Schronienie w Dziczy</b></p>
+<p>Gdy rozbijasz obóz poza szlakiem w dzikich przestrzeniach Imperium, rzuć +MDS. Na 10+ znajdujesz bezpieczne miejsce i twoja grupa odpoczywa jak w karczmie. Na 7-9 miejsce jest bezpieczne, ale coś tam na zewnątrz wie, że tu jesteście.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # STRAŻNIK DRÓG</h2><p>*Drogi same się nie strzegą. Między osadami Imperium staje się cieńsze — tu bandyci stawiają punkty poboru opłat, stąd mutanci schodzą z wzgórz, a coś z lasu łapało bydło i powoli sięga wyżej. Wiesz, co tam żyje. Mimo to tam idziesz.*</p>
+<p><b>Kostka Obrażeń:</b> k8</p>
+<p><b>PŻ:</b> 8 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Człowiek (Reikland):</b> Aldric, Brennan, Curt, Dirk / Hanna, Isolde, Lena, Marte</p>
+<p><b>Człowiek (Averland):</b> Lukas, Oswin, Reiker, Volf / Berta, Gerta, Milla, Petra</p>
+<p><b>Niziołek:</b> Barley, Guff, Smit, Tuck / Daisy, Nelly, Prudie, Wynn</p>
+<p><b>Elf:</b> Aethis, Celeban, Daelan, Faerin / Aislin, Caelith, Liriel, Sable</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednej opcji z każdego wiersza:</p>
+<p><b>Rasa:</b> Człowiek z Reiklandu | Człowiek z Averlandu | Niziołek | Leśny Elf | zapytaj przy stole</p>
+<p><b>Postawa:</b> spokojny i niełatwy do zaskoczenia | czujny po tysiącu złych nocy | przyjazny, dopóki nie udowodnisz inaczej | tak zmęczony, jak można się spodziewać</p>
+<p><b>Oczy:</b> nieustannie skanujące linię drzew | już obliczające drogi ucieczki | życzliwe, ale nigdy w pełni wypoczęte | już zmapowane wszystkie twarze w tej karczmie</p>
+<p><b>Sylwetka:</b> zahartowana przez warunki i praktyczna | wysmukła, zbudowana do długich godzin w siodle | przysadzista i twardo stąpająca | szczupła, lecz wytrzymała</p>
+<p><b>Strój:</b> powyblakłe barwy imperialnego patrolu | podróżne skóry bez insygniów | łatana mundurka z osobistymi dodatkami | cokolwiek było czyste i nie przyciągało wzroku</p>
+<p><b>Znak szczególny:</b> wykarbiowany miecz patrolowy z za wieloma nacięciami | mapy dróg pokryte osobistymi notatkami | kolekcja listów gończych | wytarty medalion imperialnego nakazu</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Mistrzostwo Walki Konnej:</b> Walcząc z końskiego grzbietu, twoja kostka obrażeń poprawia się o jeden stopień, a koń działa w twojej inicjatywie.</li>
+<li><b>Sieć Dróg:</b> Masz kontakty w każdej większej karczmie pocztowej między dwoma miastami według twojego wyboru. Nakarmią cię, schronią i przekażą wiadomości za darmo.</li>
+<li><b>Wiedza o Banitach:</b> Znasz twarze, nawyki i terytoria wszystkich aktywnych grup bandytów w jednym regionie. MG zawsze ci powie, czy rozpoznajesz przestępcę.</li>
+<li><b>Pierwszy Reagujący:</b> Gdy docierasz na miejsce przemocy lub chaosu i przejmujesz dowodzenie, wszyscy obecni BN traktują twoje rozkazy jako legalną władzę.</li>
+<li><b>Ufortyfikowana Pozycja:</b> Gdy masz czas na przygotowanie pozycji obronnej, ty i twoi sojusznicy zyskujecie +1 do pancerza podczas jej obrony.</li>
+<li><b>Poprawiona Cecha:</b> Zwiększ jedną ze swoich cech o +1, maksymalnie do +2.</li>
+<li><b>Wyższa Cecha</b> *(Wymaga: Poprawionej Cechy i przynajmniej jednego innego Awansu)*: Zwiększ jedną ze swoich cech o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Utrzymuj bezpieczną drogę, z której inni zrezygnowali.</li>
+<li>Znajdź to, co poluje na podróżników, i skończ z tym.</li>
+<li>Chroń kogoś, kto nie może sobie pozwolić na ochronę.</li>
+<li>Odkryj, dla kogo tak naprawdę pracują bandyci.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 10.</p>
+<ul>
+<li>Miecz patrolowy (bliski, 1 slot)</li>
+<li>Kusza (bliski, daleki, 2 sloty)</li>
+<li>Płaszcz Strażnika Dróg — woskowany, imperialnych barw (1 slot)</li>
+<li>Sakwy z żywnością na drogę (1 slot)</li>
+<li>Lina (1 slot)</li>
+<li>Kolekcja listów gończych — złożone, część stara (1 slot)</li>
+<li>Apteczka pierwszej pomocy — bandaże, maść, drewno do szyn (1 slot)</li>
+<li>Imperialny medalion nakazu — brązowy, porysowany (mały)</li>
+<li>Gwoździe podkowiaste i narzędzia (mały)</li>
+<li>Monety na opłaty i łapówki (mały)</li>
+<li>List ostatniej szansy, zapieczętowany (mały)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_zabojca_trolli" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Łamacz Przysięgi</b></p>
+<p>Złamałeś śluby złożone przed przodkami. Szczegóły należą tylko do ciebie. Liczy się to, że wstydu nie można cofnąć, tak jak i ciebie. Gdy rzucasz się do walki z stworzeniem większym lub bardziej niebezpiecznym od siebie i odnosisz ranę, zaznacz PD.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was wie, co zrobiłem?</li>
+<li>Która z was zapytała i usłyszała, żeby pilnowała własnego nosa?</li>
+<li>Która z was uważa, że na jej miejscu zachowałaby się lepiej?</li>
+<li>Która z was widziała, jak prawie ginę, i wyraźnie odetchnęła z ulgą, że tak się nie stało?</li>
+</ul>
+<p>---</p>
+<p><b>Zabójca Bliskich</b></p>
+<p>Twój wstyd jest gorszy niż u większości. Nie mówisz o tym. Gdy walczysz u boku sojusznika, który jest w prawdziwym niebezpieczeństwie — nieprzytomny, w przewadze liczebnej lub o krok od śmierci — możesz stanąć między nim a zagrożeniem bez rzutu. Przyjmujesz uderzenie. Bez pytań. Bez wahania.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was wie wystarczająco dużo, by nigdy nie pytać?</li>
+<li>Która z was uratowała mi życie, nie rozumiejąc, dlaczego to tylko pogarsza sprawę?</li>
+<li>Która z was traktuje mnie z litością, którą uważam za nie do zniesienia?</li>
+<li>Która z was spojrzała mi w oczy i nic nie powiedziała, i szanuję ją za to?</li>
+</ul>
+<p>---</p>
+<p><b>Aspirant Zabójcy Smoków</b></p>
+<p>Zabiłeś już rzeczy, których większość adeptów nie przeżywa: trolle, olbrzymy, demony skromnej potęgi. Gdy wskazujesz stworzenie jako swój następny godny koniec — większy, groźniejszy lub bardziej niebezpieczny niż cokolwiek, z czym dotąd walczyłeś — weź +1 do przodu na wszystkie ruchy przeciwko niemu do końca sesji.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was obserwowała, jak wybieram cel, i wiedziała, że nie ma siły mnie powstrzymać?</li>
+<li>Która z was uważa, że znajdę godną śmierć przed końcem tej wyprawy?</li>
+<li>Która z was cicho ma nadzieję, że tak się nie stanie?</li>
+<li>Która z was zabiła coś u mego boku i wie, że oboje czuliśmy się dziwnie, odchodząc żywi?</li>
+</ul>
+<p>---</p>
+<p><b>Starszy Zabójca</b></p>
+<p>Kroczyłeś tą drogą na tyle długo, że młodsi Zabójcy słyszeli o tobie. Twoje imię ma wagę w karczmach Zabójców. Gdy wchodzisz do loży Zabójców lub ogłaszasz swoje czyny innym krasnoludowi, traktują cię jako coś pomiędzy legendą a ostrzeżeniem. Zapytaj MG, co wiedzą o tobie w tym miejscu.</p>
+<p>Gdy przedstawiasz się pozostałym Postaciom Graczy, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Która z was słyszała moje imię w innym miejscu, zanim się spotkaliśmy?</li>
+<li>Która z was uważa mnie za przestrogę, a nie inspirację?</li>
+<li>Która z was zastanawia się, dlaczego wciąż żyję po tak długim czasie?</li>
+<li>Która z was jest powodem, dla którego jeszcze tu jestem, wiedziała czy nie?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Śmiertelne Pragnienie</b></p>
+<p>Gdy rzucasz się do walki w przewadze liczebnej wroga lub przeciwko stworzeniu większemu od siebie, zadaj swoje obrażenia i weź +1 do pancerza przeciwko pierwszemu uderzeniu, które cię dosięgnie. Nie możesz uciec z tej walki bez hańby.</p>
+<p><b>Urodzony do Kończenia</b></p>
+<p>Gdy zadajesz cios śmiertelny stworzeniu o znacznym rozmiarze lub mocy, natychmiast odzyskujesz 1k6 PZ.</p>
+<p><b>Nosiciel Urazy</b></p>
+<p>Gdy coś lub ktoś wyrządzi krzywdę tobie lub twoim towarzyszom, nazwij to. Zadajesz +1k6 obrażeń temu stworzeniu lub osobie do końca sesji. Możesz mieć tylko jedną aktywną Urazę na raz.</p>
+<p><b>Niezniszczalny</b></p>
+<p>Gdy miałbyś zostać ogłuszony lub zabity jednym ciosem, rzuć +KON. Na 10+ przyjmujesz obrażenia, ale zostajesz na nogach — ledwo. Na 7-9 padasz, ale nie giniesz; możesz działać jeszcze jeden raz, zanim stracisz przytomność.</p>
+<p><b>Stare Blizny</b></p>
+<p>Twoje ciało jest mapą każdej walki, którą przeżyłeś. Gdy ktoś próbuje cię zastraszyć lub zmanipulować groźbami uszkodzenia ciała, nie działa to. Wcale.</p>
+<p><b>Zabójca Trolli</b></p>
+<p>Wiesz dokładnie, jak działają trolle. Gdy walczysz z trollem, kamiennym trollem, rzecznym trollem lub podobnym stworzeniem regenerującym, twoje ataki zawsze uniemożliwiają regenerację i zadajesz +1k4 obrażeń przy trafieniu.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # ZABÓJCA TROLLI</h2><p>*Zrobiłeś coś, czego nie można cofnąć. Złożyłeś Przysięgę, ogoliłeś głowę i ufarbowałeś to, co zostało, a teraz szukasz śmierci godnej wstydu, który nosisz. Czegoś dużego. Czegoś, co zabierze cię ze sobą.*</p>
+<p><b>Kostka Obrażeń:</b> k10</p>
+<p><b>PŻ:</b> 8 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Krasnolud (tylko krasnoludowie):</b> Gotrek, Ungrim, Borin, Drengi / Helga, Dagni, Berta, Skarla</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednej opcji z każdego wiersza:</p>
+<p><b>Rasa:</b> Krasnolud — nie ma innego wyboru dla Zabójcy</p>
+<p><b>Postawa:</b> wrzaskliwy i pełen życia | cicho wściekły | osobliwie spokojny wobec wszystkiego | rozmawiający ze śmiercią jak z dłużnikiem</p>
+<p><b>Oczy:</b> rozświetlone radością kończenia | puste i nieobecne | szukające czegoś godnego | płaczące, nie wiedząc o tym</p>
+<p><b>Sylwetka:</b> niski i niemożliwie szeroki | zęzły jak stara lina | pokryty bliznami od czubka głowy do butów | wibrujący ledwo powstrzymywaną przemocą</p>
+<p><b>Czub:</b> pomarańczowy czub jest świeżo naoliwiony | pomarańczowy czub jest nadpalony na brzegach | w pomarańczowym czubie coś jest wplecione, o czym się nie mówi | czub wygląda starzej niż powinien</p>
+<p><b>Znaki:</b> tatuaże pokrywają każdą widoczną powierzchnię | tylko blizna przysięgi, prosta i głęboka | wystarczająco żelaznych kółek, by przygnębić słabszą istotę | znak klanu wypalony i nierozpoznawalny</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Sława Zabójcy Demonów:</b> Gdy wchodzisz do walki z demoniczną istotą, wszystkie pozostałe stworzenia Chaosu w okolicy muszą rzucić lub uciec.</li>
+<li><b>Nic Do Stracenia:</b> Raz na sesję, gdy miałbyś zginąć, nie giniesz. MG decyduje o koszcie — złamana kość, utracony ekwipunek, straszna rana — ale żyjesz. Tym razem.</li>
+<li><b>Miażdżący Cios:</b> Raz na starcie, gdy trafisz bronią do walki wręcz, możesz zadać maksymalne obrażenia zamiast rzucać.</li>
+<li><b>Wytrzymaj:</b> Gdy jesteś zatruty, chory lub w inny sposób fizycznie nękany, traktuj stan jako o jeden stopień łagodniejszy, niż jest.</li>
+<li><b>Magnetyzm Godnej Śmierci:</b> Na początku każdej sesji ogłoś jeden typ stworzenia jako swojego nemezis. MG zapewni, że ten typ pojawi się gdzieś w tej sesji.</li>
+<li><b>Poprawiona Cecha:</b> Zwiększ jedną ze swoich cech o +1, maksymalnie do +2.</li>
+<li><b>Wyższa Cecha</b> *(Wymaga: Poprawionej Cechy i przynajmniej jednego innego Awansu)*: Zwiększ jedną ze swoich cech o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Zginąć walcząc z czymś, co zasługuje, by cię zabić.</li>
+<li>Chronić kogoś, kto nie może się bronić, choć nie powinieneś się przejmować.</li>
+<li>Znaleźć coś wystarczająco duże, godne Przysięgi.</li>
+<li>Czcić Przysięgę nigdy, przenigdy nie uciekając.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 8.</p>
+<ul>
+<li>Wielka siekiera (bliski, zasięg, niebezpieczny, 2 sloty)</li>
+<li>Siekierka ×2 (bliski, rzucany, 1 slot)</li>
+<li>Brak zbroi — blizny i goła klatka piersiowa w każdą pogodę (0 slotów)</li>
+<li>Zestaw Zabójcy — wosk, grzebień, którego nigdy nie używasz, i pomarańczowa farba (mały)</li>
+<li>Kamień urazy — mały kamyk z wygrawerowaną twoją winą (mały)</li>
+<li>List, którego nigdy nie wysłałeś (mały)</li>
+<li>Fajka i tytoń (mały)</li>
+</ul></div>
+        </div>
+    </div>
+    
+<div id="pl_optional_moves" class="playbook-content lang-pl"><div class="optional-moves-container"><div class="card"><h2>🚀 # Opcjonalne Ruchy — Warhammer Fantasy</h2><p><b>Oprzyj się Skażeniu</b></p>
+<p>Gdy jesteś wystawiony na skażenie Chaosem — przez kontakt, nieudaną ochronną runę lub przedłużony czas w pobliżu demona lub mutanta — rzuć +KON. Na 10+ opierasz się bez śladu. Na 7-9 opierasz się, ale nosisz w sobie jego drobny ślad: mały znak, natrętną myśl lub szczegół, który MG cicho notuje. Na 6- skażenie zapuszcza korzenie; MG opisuje, co się zmienia i kiedy to będzie miało znaczenie.</p>
+<p><b>Przeprzyj Się przez Tłum</b></p>
+<p>Gdy poruszasz się przez miasto w pośpiechu — gonisz, uciekasz lub próbujesz dotrzeć do kogoś, zanim zniknie — rzuć +ZRE. Na 10+ doganiasz cel lub gubisz pościg, twoim wyborem, bez żadnego kosztu. Na 7-9 zyskujesz na odległości, ale wybierz jedno: kogoś potrącasz, gubisz coś w biegu lub kończysz w nieoczekiwanym miejscu.</p>
+<p><b>Przekupstwo lub Groźba</b></p>
+<p>Gdy starasz się uzyskać współpracę od urzędnika, strażnika, członka gildii lub biurokraty, który nie ma powodu ci pomagać, rzuć +CHA. Na 10+ współpracują w pełni za rozsądną cenę lub wiarygodną groźbę. Na 7-9 współpracują, ale koszt jest wyższy, niż oczekiwano, albo współpraca jest częściowa — i zapamiętują twoją twarz.</p>
+<p><b>Przebyj Terytorium Chaosu</b></p>
+<p>Gdy podróżujesz przez ziemię dotkniętą Chaosem — skaźony las, drogi w rękach mutantów, wypalone skraje najazdu Norsmanów — rzuć +KON. Na 10+ przechodzisz bez szwanku i dowiadujesz się czegoś o stanie skażenia w tym miejscu. Na 7-9 przechodzisz, ale podróż coś kosztuje: zapasy, morale lub ranę, która jest trudniejsza do wyjaśnienia, niż wygląda.</p>
+<p><b>Odkryj, co Imperium Zakopuje</b></p>
+<p>Gdy grzebiesz w historii miejsca, rodziny, instytucji lub zdarzenia i pytasz, kto był naprawdę odpowiedzialny, rzuć +INT. Na 10+ znajdujesz. MG mówi ci, gdzie jest zakopany dokument, ukryty świadek lub stłumiony dowód — i kto nie chciałby, żebyś to znalazł. Na 7-9 znajdujesz nić, która gdzieś prowadzi, ale jej pociągnięcie będzie kosztować czas, ryzyko lub należną przysługę.</p></div></div></div>
+
+    <div id="pl_adventures" class="playbook-content lang-pl">
+        <div class="main-column" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2rem;">
+            <div class="card adventure-generator-card">
+                <h2>✨ Generator Przygód — Warhammer Fantasy Generator</h2>
+                <div class="generator-result" id="rng-result-pl">
+                    ...
+                </div>
+                <div class="generator-actions">
+                    <button type="button" class="lang-toggle active rng-roll-btn" onclick="generateAdventure('pl')">🎲 Losuj / Roll</button>
+                </div>
+            </div>
+            
+            <div class="adventure-tables-grid" id="rng-tables-pl">
+    
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 1: Akcja i Lokacja</h3>
+                    <div class="adventure-prefix">Odkrywamy</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">karczmę pocztową, która trzy tygodnie temu przestała wysyłać cotygodniowe raporty</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">wieś, której cała ludność w jedną noc przeszła na stronę Chaosu</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">imperialną wieżę wartowniczą, opuszczoną w pośpiechu, bez widocznych obrońców</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">kopalnię pod krasnoludim warownią, otwartą przez coś, co krasnoludami nie było</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">wejście do warren Skavenów pod najnowszym budynkiem w dzielnicy handlowej</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">mob flagellantów przemierzający kraj w całkowitym milczeniu</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">sanktuarium boga, którego nikt w okolicy nie rozpoznaje</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">posiadłość szlachecką zaplombowaną od wewnątrz, z wciąż palącymi się lampami</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">ukrytą drukarnię produkującą wywrotowe religijne pamflety</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">barkę rzeczną przewożącą ładunek, który przemieszcza się, gdy nikt nie patrzy</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">obóz zbrojnych Chaosu o pół dnia jazdy od najbliższej miejskiej bramy</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">elficki kamień drogi, który zaczął pulsować w złym kolorze</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">wędrowny cyrk, który pojawia się w miastach dzień przed tym, jak zaczynają się morderstwa</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">zbiorową mogiłę za wsią, wykopaną przez samych mieszkańców</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">tajne spotkanie łowców czarownic, którzy nie zachowują się jak łowcy czarownic</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">drogę, na której każdy podróżny z ostatniego miesiąca zniknął bez śladu</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">posłańca Czarnej Arki, który nie wie, że jego wiadomość jest już nieaktualna</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">kaplicę Graala w środku Reiklandu, która nie ma tam czego szukać</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">nietkniętą wieżę alchemika pośrodku spustoszonego regionu</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">list z pieczęcią Wielkiego Teogonisty, który nigdy nie miał zostać znaleziony</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 2: Miejsce i Geografia</h3>
+                    <div class="adventure-prefix">która leży</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">na skraju Lasu Reiku, gdzie droga urywa się bez ostrzeżenia</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">w murach miasta, które zamknęło bramy przed wszystkimi podróżnikami</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">pod krasnoludim sanktuarium przodków opuszczonym podczas ostatniej wojny</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">wzdłuż Reiku, gdzie prąd od tygodnia płynie nie tak jak powinien</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">u stóp Szarych Gór, na spornym terytorium granicznym</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">pośrodku Moot, który nigdy dotąd nie był miejscem kłopotów</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">na skrzyżowaniu, które nie istnieje na żadnej aktualnej mapie imperialnej</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">pod najstarszą dzielnicą miasta, dostępną tylko przez kanały</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">nad wsią, która stoi od dwustu lat, a nikt jej nie zna</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">między dwiema posiadłościami drobnej szlachty, pozostającymi w cichej wojnie od dekady</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">przy wejściu do systemu jaskiń z przedimperialną masonerią</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">wewnątrz sigmarycznej świątyni, która nie otworzyła drzwi od dwóch tygodni</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">wzdłuż odcinka drogi, gdzie wszystkie karczmy pocztowe zamknęły się w tym samym miesiącu</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">na szczycie wzgórza, na które miejscowym dzieciom zakazano się wspinać</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">w Ostlandzie, gdzie najazdy Norsmanów są ostatnio częstsze niż zwykle</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">pod placem targowym, który każdej wiosny zalewa woda, choć nie powinien</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">przy brodzie rzecznym, gdzie budka pobiercy opłat jest pusta od kilku dni</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">w zamkniętym archiwum Imperialnego Pałacu Akt w Altdorfie</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">na barce zacumowanej przy nabrzeżu, z którego nie korzysta żaden legalny handel</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">w środku Averheim, w budynku, co do którego wszyscy zgadzają się, że zawsze tam stał</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 3: Cel</h3>
+                    <div class="adventure-prefix">prowadząc do</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">opuszczonej dolnej dzielnicy miasta, zapieczętowanej po zarazie, która oficjalnie nigdy się nie wydarzyła.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">skarbca pod sigmaricką świątynią, który istniał trzy wieki przed samą świątynią.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">ukrytego kolegium nielicencjonowanej magii działającego w opuszczonej dzielnicy kanałowej.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">spalonej posiadłości łowcy czarownic, którego sprawa nigdy nie została oficjalnie zamknięta.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">komnaty pod krasnoludim warownią, gdzie piwo kwaśnieje z powodów, o których nikt nie chce mówić.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">hodowlanej jamy Skavenów, która przez pięćdziesiąt lat zaopatrywała lokalną populację szczurów.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">zrujnowanej twierdzy Chaosu na granicy, którą Imperium od wewnątrz po cichu odbudowuje.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">kamienia stada Zwierzoludzi w centrum lasu, który rośnie szybciej niż lasy powinny.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">prywatnego archiwum zmarłego Elektora, którego dokumenty powinny były zostać zniszczone.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">podziemnej rzeki łączącej trzy odrębne organizacje przestępcze.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">sanktuarium wewnętrznego kultu Chaosu ukrytego pod legalnym kantorem kupca.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">posiadłości szlacheckiej rodziny, której słudzy nigdy nie wychodzą, a goście nigdy nie wracają.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">zawalonej sekcji kanałów Altdorfu, gdzie coś pobiera opłaty w ciemności.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">kislevskiego obozu uchodźców, który rośnie od miesięcy i nigdy nie maleje.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">ruin wioski, której oficjalnie nikt nie przyznaje, że kiedykolwiek istniała.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">elfickiej enklawy, która z odległości przeszła do zupełnej nieosiągalności.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">sanktuarium Nurgle'a ukrytego w hospicjum, które ostatnio odniosło wielkie sukcesy.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">drukarni prowadzonej przez sympatyków Chaosu wewnątrz murów dużego miasta.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">ukrytego doku pod miastem, gdzie pewne statki rozładowują się przed oficjalną kontrolą.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">imperialnego garnizonu, który przez sześć miesięcy wysyła rutynowe raporty bez ofiar, patroli ani próśb o zaopatrzenie.</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 4: Cel i Misja</h3>
+                    <div class="adventure-prefix">Jesteśmy tutaj, aby</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">znaleźć źródło skażenia przed następnym posiedzeniem rady Elektorów</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">wydobyć więźnia, który wie coś, czego wiedzieć nie powinien</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">dostarczyć zapieczętowany rozkaz, który nie może być otwarty przed dotarciem na miejsce</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">potwierdzić, że kult został zniszczony, a nie tylko przycichł</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">chronić świadka, aż będzie mógł zeznawać przed kimś z władzą do działania</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">odnaleźć zaginionego łowcę czarownic, którego ostatni raport wymienił osoby wciąż u władzy</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">zniszczyć kamień stada, zanim Zwierzoludzie dokończą rytuał o ciemności księżyca</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">odzyskać Runowy Miecz zabrany z sejfów Elektora w minionym tygodniu</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">wynegocjować przejście przez terytorium warlorda, zanim armia będzie musiała go użyć</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">spalić dokumenty, zanim przeczytają je niewłaściwi ludzie</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">zbadać wioskę, zanim Imperium przyśle żołnierzy i pogorszy sprawę</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">dowiedzieć się, kto ze straży miejskiej pracuje dla drugiej strony</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">wydostąć ostatniego ocalałego kapłana, zanim kult wróci dokończyć robotę</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">zidentyfikować, która szlachecka rodzina finansuje zbrojnych Chaosu, zanim zdąży temu zaprzeczyć</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">oczyścić drogę dla kolumny zaopatrzeniowej, której nie można opóźnić</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">znaleźć filoktyr Nekromanty przed świtem, kiedy może do niego powrócić</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">przekonać Krasnoludów, że Imperium nie sankcjonowało tego, co wydarzyło się przy twierdzy</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">uciszyć pamflety, zanim wywołają zamieszki, które Łowcy Czarownic wykorzystają</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">dotrzeć do odizolowanego majątku i przywieźć z powrotem kogokolwiek, kto jeszcze żyje</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">zamknąć bramę, zanim coś dokończy ją otwierać od drugiej strony</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 5: Drobne Zagrożenia i Przeszkody</h3>
+                    <div class="adventure-prefix">strzeżony przez</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">kultystów Chaosu, którzy wyglądają dokładnie jak robotnicy portowi, którymi byli do niedawna</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">szarego seba Skavenów, który wie o naszym przybyciu i od kilku dni się przygotowuje</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">imperialnych żołnierzy posiadających legalne rozkazy zatrzymania dokładnie tego, co robimy</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">Zwierzoludzi, którzy kontrolują las między tu a tam i są aktywni nocami</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">skorumpowanego łowcę czarownic, który każe nas aresztować, zanim zdążymy się wytłumaczyć</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">najemników pracujących dla domu kupieckiego, który woli, żebyśmy nie dotarli</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">mob flagellantów przekonany, że jesteśmy agentami Chaosu</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">wampira, który kontroluje jedną trzecią straży miejskiej metodami, których nikt nie chce weryfikować</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">rzekę, która wzbiera szybciej niż wskazują mapy</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">gildyjną blokadę obsadzoną przez ludzi, którzy wiedzą dokładnie, kto nas wysłał</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">tłum obywateli, którym powiedziano, że to my jesteśmy problemem</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">Zielonoskóre, które zeszły z wzgórz podczas zamieszania, które sami wywołaliśmy gdzie indziej</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">pomiot Chaosu skromnych rozmiarów, ale znacznego entuzjazmu</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">imperialną biurokrację wymagającą trzech dodatkowych formularzy przed udzieleniem dostępu</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">nocne gobliny drążące tunele pod fundamentami wszędzie, gdzie musimy dotrzeć</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">prywatną gwardię szlachcica z rozkazem zadawania pytań później, jeśli w ogóle</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">mutantów-uchodźców ukrywających się w ruinach, którzy byli zdesperowani wystarczająco długo, by być niebezpiecznymi</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">Szarego Czarodzieja śledzącego ten sam trop, który nie jest pewien, po czyjej jesteśmy stronie</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">lokalną organizację przestępczą, która już dostała zapłatę, by nas spowolnić</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">związanego demona zamkniętego w jedynych drzwiach, które mają znaczenie, z kluczem zagubionym w czasie</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 6: Główny Boss i Antagonista</h3>
+                    <div class="adventure-prefix">i</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">Chaos Sorcerer, który od jedenastu lat podszywa się pod imperialnego magistratu.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">Wampir-Hrabia, który traktuje lokalną szlachtę jak zarządzany zasób.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">Warlord Skavenów, którego plan działa równie dobrze niezależnie od tego, czy go powstrzymamy.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">łowca czarownic, który znalazł prawdziwe dowody korupcji, zrezygnował z jej powstrzymania i zaczął ją wykorzystywać.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">Najwyższy Kapłan Sigmara, którego wiara jest szczera, ale metody to coś zupełnie innego.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">Demon Tzeentcha, który jest w środku tej sytuacji dłużej niż ktokolwiek żywy.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">przywódca kultu Nurgle'a, który naprawdę uważa, że uzdrawia świat.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">warlord Chaosu z Północy, który nie przyszedł po podbój, lecz po coś konkretnego.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">Szary Czarodziej, który manipulował wydarzeniami ku rezultatowi, którego nikt inny jeszcze nie widzi.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">sam Elektor, który wie o wszystkim, czemu tu zapobiegamy, i świadomie zdecydował się nie działać.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">niziołkowy boss podziemia, który kontroluje wystarczająco dużo miejskiego zaopatrzenia w żywność, by rozwiązania prawne były bardzo powolne.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">starożytny krasnoludzkiego-chaosu artifex, który od trzydziestu lat sprzedaje broń obu stronom.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">Wielki Bray-Szaman Zwierzoludzi wołający stado z głębi Lasu Reiku.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">Templariusz Sigmara, który oczyszcza niewinnych, bo to szybsze niż znajdowanie winnych.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">Bretonnijski Rycerz, który przyszedł pomóc, po cichu uległ skażeniu i działa tak od tygodni.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">kupiec-książę finansujący chaos, ponieważ stabilność jest niekorzystna dla pewnego rodzaju interesów.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">dziecko dotknięte Chaosem, które nie wie, czym jest i nie przeżyje dowiedzenia się.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">Nekromanta o znacznej subtelności, który przygotowuje się od trzydziestu lat.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">Krasnolud-Runelord, którego uraza wobec miasta jest wystarczająco stara, by ją wywołać, i wystarczająco uzasadniona, by ją usprawiedliwić.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">jeden z naszych własnych towarzyszy, skażony od zanim się poznaliśmy, odgrywający rolę w czymś, czego nie rozumiemy w pełni.</span></li>
+</ul>
+                </div>
+        
+
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_road_warden" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Veteran Patrol</b></p>
+<p>You have ridden this stretch of road for years. When you approach any settlement, inn, toll road, or crossroads in the Empire, ask the GM one: who has passed through recently, what is the local danger right now, or who is watching this place.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you have I stopped and questioned before?</li>
+<li>Which of you has information I have been trying to find?</li>
+<li>Which of you travels these roads more than they should?</li>
+<li>Which of you knows someone I am still looking for?</li>
+</ul>
+<p>---</p>
+<p><b>Survivor of the Road</b></p>
+<p>You have walked away from an ambush, a Beastman raid, or worse — and you know now what survival requires. When you are ambushed or caught in a trap, you are never surprised. You act in the first round regardless.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you was there when it happened?</li>
+<li>Which of you knows the story and has never brought it up?</li>
+<li>Which of you is still making the mistake I made that day?</li>
+<li>Which of you I'd trust to have my back if it happened again?</li>
+</ul>
+<p>---</p>
+<p><b>Bandit Network</b></p>
+<p>You have cultivated informants among the criminal elements of the roads — former outlaws, toll-point operators who look the other way, roadside innkeepers with flexible loyalties. When you look for information on criminal activity along a road, roll +CHA. On a 10+, you have a contact here and they talk freely. On a 7-9, you have a contact but they want something first.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you is on a list I keep inside my coat?</li>
+<li>Which of you has used one of my contacts for their own ends?</li>
+<li>Which of you thinks my methods are too permissive?</li>
+<li>Which of you have I let go with a warning once?</li>
+</ul>
+<p>---</p>
+<p><b>Beast Tracker</b></p>
+<p>You have learned to read what comes down from the forests — Beastmen, mutants, Chaos-touched wildlife — from the marks they leave on the land. When you study a trail, carcass, or disturbed site for signs of creature activity, the GM tells you: what made it, how many, how recently, and which direction they went.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has followed me into the dark and lived?</li>
+<li>Which of you trusts my read of the land even when I don't explain it?</li>
+<li>Which of you has seen me lose a trail and knows I have been looking ever since?</li>
+<li>Which of you carries something that came from the forest that I don't think was found there?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Know the Road</b></p>
+<p>When you travel between two settlements on a road you have patrolled, you arrive without incident unless you choose to investigate something along the way. You know the roads, the shortcuts, and where the dangers sit.</p>
+<p><b>Patrol Strike</b></p>
+<p>When you attack with a road weapon — sword, lance, crossbow — from horseback or from a prepared position, deal your damage and add +1d4 if your target did not know you were there.</p>
+<p><b>Imperial Warrant</b></p>
+<p>When you invoke your authority as a Road Warden to stop, search, or detain someone on imperial roads, roll +CHA. On a 10+, they comply without trouble. On a 7-9, they comply but are hostile, slow, or have already hidden what you're looking for.</p>
+<p><b>Hard Miles</b></p>
+<p>You do not get lost on imperial roads, even in darkness, heavy fog, or after an ambush. When you guide a group through road travel under difficult conditions, they arrive safely.</p>
+<p><b>Read the Threat</b></p>
+<p>When you observe a group of people on the road and assess them for danger, roll +WIS. On a 10+, ask three questions from the standard list. On a 7-9, ask one.</p>
+<p><b>Wilderness Shelter</b></p>
+<p>When you make camp off-road in the Empire's wild spaces, roll +WIS. On a 10+, you find a safe site and your group recovers as if resting at an inn. On a 7-9, the site is safe but something out there knows you are here.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Mounted Combat Mastery:</b> When fighting from horseback, your damage die improves by one step, and your horse acts on your initiative.</li>
+<li><b>Road Network:</b> You have contacts at every major coaching inn between two cities of your choice. They will feed you, shelter you, and pass messages for free.</li>
+<li><b>Outlaw Knowledge:</b> You know the faces, habits, and territories of every active bandit group in one region. The GM will always tell you if you recognize a criminal.</li>
+<li><b>First Responder:</b> When you arrive at a scene of violence or chaos and take charge, all NPCs present treat your orders as legitimate authority.</li>
+<li><b>Fortified Position:</b> When you have time to prepare a defensive position, you and your allies gain +1 armor while defending it.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # ROAD WARDEN</h2><p>*The roads don't guard themselves. Between settlements is where the Empire thins out — where bandits set up toll-points, where mutants come down from the hills, where something from the forest has been taking livestock and is working its way up in ambition. You know what lives out there. You're still going out there anyway.*</p>
+<p><b>Damage Die:</b> d8</p>
+<p><b>HP:</b> 8 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Human (Reikland):</b> Aldric, Brennan, Curt, Dirk / Hanna, Isolde, Lena, Marte</p>
+<p><b>Human (Averland):</b> Lukas, Oswin, Reiker, Volf / Berta, Gerta, Milla, Petra</p>
+<p><b>Halfling:</b> Barley, Guff, Smit, Tuck / Daisy, Nelly, Prudie, Wynn</p>
+<p><b>Elf:</b> Aethis, Celeban, Daelan, Faerin / Aislin, Caelith, Liriel, Sable</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>People:</b> Reiklander Human | Averlander Human | Halfling | Wood Elf | ask the table</p>
+<p><b>Bearing:</b> calm and unshockable | wary from a thousand bad nights | friendly until proven wrong | exactly as tired as you'd expect</p>
+<p><b>Eyes:</b> always scanning the tree line | already calculating exits | kind but never fully at rest | mapped every face in this inn already</p>
+<p><b>Build:</b> weather-hardened and practical | rangy and built for long hours in the saddle | stocky and planted | thin but enduring</p>
+<p><b>Clothing:</b> Empire patrol colors, faded | traveling leathers with no insignia | patched uniform with personal additions | whatever was clean and didn't draw attention</p>
+<p><b>Signature:</b> a notched patrol sword with too many notches | road maps covered in personal notes | a wanted poster collection | a battered imperial warrant medallion</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Keep a road safe that someone else gave up on.</li>
+<li>Find what is preying on travelers and end it.</li>
+<li>Protect someone who cannot afford protection.</li>
+<li>Discover what the bandits are actually working for.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 10.</p>
+<ul>
+<li>Patrol sword (close, 1 slot)</li>
+<li>Crossbow (near, far, 2 slots)</li>
+<li>Road Warden's coat — oilskin, Empire colors (1 slot)</li>
+<li>Saddlebags with road rations (1 slot)</li>
+<li>Rope (1 slot)</li>
+<li>Wanted poster collection — folded, some old (1 slot)</li>
+<li>First aid kit — bandages, salve, splinting wood (1 slot)</li>
+<li>Imperial warrant medallion — bronze, scratched (small)</li>
+<li>Horseshoe nails and tools (small)</li>
+<li>Coin for tolls and bribes (small)</li>
+<li>A letter of last resort, sealed (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_rogue" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Guild Thief</b></p>
+<p>You were trained by a thieves' guild — pick a city. You know the signs, passwords, and protocols. When you enter a settlement, you can find the local guild contact without rolling. They will give you work, safe house access, and information about local marks — for a cut.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has something I already appraised while we were talking?</li>
+<li>Which of you knows the same guild I do, but from the other side?</li>
+<li>Which of you has already noticed I took something?</li>
+<li>Which of you owes the same people I owe?</li>
+</ul>
+<p>---</p>
+<p><b>Street Informant</b></p>
+<p>You have contacts among the city's forgotten: beggars, dock workers, sewer cleaners, street children. When you ask around about someone or something in a settlement, roll +CHA. On a 10+, your network delivers accurate information freely. On a 7-9, the information is real but partial, or the contact needs a favor first.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has asked me for information before and didn't ask where I got it?</li>
+<li>Which of you knows someone who knows me, and doesn't know it?</li>
+<li>Which of you have I been asked to report on, and have declined so far?</li>
+<li>Which of you knows a part of this city I have never been able to map?</li>
+</ul>
+<p>---</p>
+<p><b>Fence and Dealer</b></p>
+<p>You know how goods move. When you want to sell something — stolen, unusual, or legally ambiguous — roll +CHA. On a 10+, you find a buyer, get fair value, and no awkward questions are asked. On a 7-9, you find a buyer, but they want to know its provenance, or they offer significantly below value.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has sold me something without knowing what it was worth?</li>
+<li>Which of you is carrying something I recognize from a job list?</li>
+<li>Which of you am I currently working for, without them knowing?</li>
+<li>Which of you trusts my appraisal more than their own judgment?</li>
+</ul>
+<p>---</p>
+<p><b>Escaped Debtor</b></p>
+<p>Someone important wants something from you — money, a favor, or information — and you are running. When you are in a settlement, you can sense when someone connected to your debt is near, without rolling. You always know when to leave before they see you.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knew me before I had this problem?</li>
+<li>Which of you knows the shape of it without knowing the details?</li>
+<li>Which of you has covered for me at least once?</li>
+<li>Which of you do I worry will be used against me?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Pickpocket</b></p>
+<p>When you attempt to take something from someone without them noticing, roll +DEX. On a 10+, you have it and they don't know. On a 7-9, you have it, but choose one: they notice something's wrong, they're watching you now, or you'll need to move quickly.</p>
+<p><b>Dark Alley</b></p>
+<p>When you attack from hiding or close range without warning, roll +DEX. On a 10+, deal your damage and you remain hidden or can flee before retaliation. On a 7-9, deal your damage but you are exposed.</p>
+<p><b>Read the Mark</b></p>
+<p>When you observe someone and assess what they're worth — financially, informationally, or as leverage — roll +WIS. On a 10+, ask two: What do they value most? What are they hiding? What would make them cooperate? What is their weakness? On a 7-9, ask one.</p>
+<p><b>Blending In</b></p>
+<p>When you adopt a disguise, role, or false identity, roll +CHA. On a 10+, you are convincing for the scene unless you do something to break it. On a 7-9, you're convincing until someone looks closely or asks the wrong question.</p>
+<p><b>Citywise</b></p>
+<p>In any city or large town you have visited before, you always know where to find: a black market, a fence, a safe house, or a corrupt official. No roll needed.</p>
+<p><b>Second Exit</b></p>
+<p>When you enter a building, room, or enclosed space, ask the GM: where's the other way out? They tell you. It's always there.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Master Pickpocket:</b> You never roll for Pickpocket in crowds or when the mark is distracted.</li>
+<li><b>The Guild Owes Me:</b> Once per session, call in a favor from a criminal organization. They provide muscle, information, passage, or a distraction — nothing that gets them killed.</li>
+<li><b>Knife Work:</b> When you deal damage with a small weapon (dagger, knife, hidden blade), deal +1d4 damage.</li>
+<li><b>Con Artist:</b> When you tell a deliberate lie and roll +CHA, a 7+ always gets you out of immediate trouble. The long-term consequences are the GM's to invent.</li>
+<li><b>Urban Predator:</b> When you track a person through a city, you never lose them unless magic is involved.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # ROGUE</h2><p>*Not everyone who makes it in the Empire does it clean. The guilds want their cut. The law bends for the wealthy. The docks, the alleys, the underground passages between warehouse districts — you know all of it. You've lived it. And knowing it is worth more than people think.*</p>
+<p><b>Damage Die:</b> d6</p>
+<p><b>HP:</b> 6 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Human (Marienburg):</b> Caspar, Dirk, Fleiss, Gerrit / Anka, Britta, Fenna, Liesel</p>
+<p><b>Human (Altdorf):</b> Jak, Merten, Pike, Wulf / Dora, Marga, Nessa, Rika</p>
+<p><b>Halfling:</b> Burrow, Finch, Goss, Snatch / Cally, Dulcie, Pip, Wren</p>
+<p><b>Elf (Shadow):</b> Arandel, Cavan, Silvan, Ythis / Aeris, Lireth, Sable, Thael</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>People:</b> Marienburger Human | Altdorfer Human | Halfling | Shadow Elf | ask the table</p>
+<p><b>Bearing:</b> relaxed until it matters | always moving slightly | watching and not being watched | affably dishonest</p>
+<p><b>Eyes:</b> clocking exits | adding up the value of everything | reading the room | already somewhere else</p>
+<p><b>Build:</b> compact and quick | lean and good at disappearing | small and nearly invisible | wiry and patient</p>
+<p><b>Clothing:</b> dock worker's layers hiding too many pockets | respectable merchant's clothing, very slightly wrong | guild uniform you're not supposed to have | nothing that stands out on purpose</p>
+<p><b>Signature:</b> lockpicks worn on a bracelet | a knife gifted by someone you robbed | a list of contacts in a code only you use | a bruise in a place that means something</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Get paid more than the job was worth.</li>
+<li>Find something that gives you leverage over someone powerful.</li>
+<li>Get out of a situation that should have been impossible to escape.</li>
+<li>Protect someone small from someone large, for a change.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 9.</p>
+<ul>
+<li>Short sword (close, 1 slot)</li>
+<li>Throwing daggers ×3 (thrown, 1 slot)</li>
+<li>Lockpicks — professional set (1 slot)</li>
+<li>Dark traveling cloak — hood, deep pockets (1 slot)</li>
+<li>Coin purse — not all of it yours (small)</li>
+<li>Forged documents — one set, good quality (small)</li>
+<li>Hidden knife in boot (small)</li>
+<li>A key to somewhere you have never been (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_trollslayer" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Oathbreaker</b></p>
+<p>You broke a vow you made before your ancestors. The specifics are yours alone. What matters is: the shame cannot be unmade, and neither can you. When you charge into combat against a creature bigger or more dangerous than yourself and sustain a wound in doing so, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows what I did?</li>
+<li>Which of you asked and was told to mind their own?</li>
+<li>Which of you thinks you could have done better in my place?</li>
+<li>Which of you has seen me almost die and seemed relieved I didn't?</li>
+</ul>
+<p>---</p>
+<p><b>Kinslayer</b></p>
+<p>Your shame is worse than most. You do not speak of it. When you fight alongside an ally who is in true danger — unconscious, outnumbered, or about to die — you may throw yourself between them and the harm without a roll. You take the hit. No questions. No hesitation.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows enough to never ask?</li>
+<li>Which of you saved my life without understanding why that makes things worse?</li>
+<li>Which of you treats me with a pity I find intolerable?</li>
+<li>Which of you looked me in the eye and said nothing, and I respected that?</li>
+</ul>
+<p>---</p>
+<p><b>Dragonslayer Aspirant</b></p>
+<p>You have already killed things most adepts never survive: trolls, giants, daemons of modest power. When you identify a creature as your next worthy death — bigger, badder, or more dangerous than anything you have faced before — take +1 forward on all moves against it for the rest of the session.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has watched me pick my target and known there was no stopping me?</li>
+<li>Which of you thinks I will find my worthy death before this journey ends?</li>
+<li>Which of you is quietly hoping I don't?</li>
+<li>Which of you has killed something alongside me and knows it felt wrong that we both walked away?</li>
+</ul>
+<p>---</p>
+<p><b>Elder Slayer</b></p>
+<p>You have been walking this road long enough that younger Slayers have heard of you. Your name carries weight in Slayer lodges. When you walk into a Slayer lodge or announce your deeds to other dwarfs, they treat you as something between legend and warning. Ask the GM what they know of you here.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has heard my name somewhere else before we met?</li>
+<li>Which of you thinks I am a cautionary tale rather than an inspiration?</li>
+<li>Which of you wonders why I am still alive after this long?</li>
+<li>Which of you is the reason I'm still here, whether they know it or not?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Death Wish</b></p>
+<p>When you charge into combat outnumbered or against a creature larger than yourself, deal your damage and take +1 armor against the first attack that hits you. You may not flee from this fight without dishonor.</p>
+<p><b>Born to End Things</b></p>
+<p>When you deal the killing blow to a creature of significant size or power, immediately recover 1d6 HP.</p>
+<p><b>Grudge Bearer</b></p>
+<p>When something or someone wrongs you or your companions, name it. You deal +1d6 damage against that creature or person for the rest of the session. You may only carry one active Grudge at a time.</p>
+<p><b>Unbreakable</b></p>
+<p>When you would be knocked unconscious or killed by a single blow, roll +CON. On a 10+, you take the damage but stay standing — barely. On a 7-9, you go down but do not die; you may act one final time before losing consciousness.</p>
+<p><b>Old Scars</b></p>
+<p>Your body is a map of every fight you have survived. When someone tries to intimidate or manipulate you through threats of bodily harm, it does not work. At all.</p>
+<p><b>Troll Killer</b></p>
+<p>You know exactly how trolls work. When you fight a troll, stone troll, river troll, or similar regenerating creature, your attacks always prevent regeneration, and you deal +1d4 damage on a hit.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Daemon Slayer Reputation:</b> When you enter combat against a daemonic entity, all other Chaos creatures in the area must roll or flee.</li>
+<li><b>Nothing Left to Lose:</b> Once per session, when you would die, you don't. The GM decides the cost — broken bone, lost gear, a terrible wound — but you live. This time.</li>
+<li><b>Massive Blow:</b> Once per combat, when you hit with a melee weapon, you may choose to deal maximum damage instead of rolling.</li>
+<li><b>Endure:</b> When you are poisoned, diseased, or otherwise physically afflicted, treat the condition as one severity lower than it is.</li>
+<li><b>Worthy Death Magnetism:</b> At the start of each session, declare one creature type as your nemesis. The GM will ensure that creature type appears at some point this session.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # TROLLSLAYER</h2><p>*You have done something that cannot be undone. You swore the Oath, shaved your head and dyed what remains, and now you seek a death worthy of the shame you carry. Something big. Something that takes you with it.*</p>
+<p><b>Damage Die:</b> d10</p>
+<p><b>HP:</b> 8 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Dwarf (only):</b> Gotrek, Ungrim, Borin, Drengi / Helga, Dagni, Berta, Skarla</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>People:</b> Dwarf — there is no other ancestry for a Slayer</p>
+<p><b>Bearing:</b> bellowing and alive | quietly furious | oddly calm about all of it | talking to death like it owes you a favor</p>
+<p><b>Eyes:</b> bright with the joy of ending | flat and far away | searching for something worthy | weeping without knowing it</p>
+<p><b>Build:</b> short and impossibly broad | knotted like old rope | scarred from crown to boot | vibrating with barely contained violence</p>
+<p><b>Crest:</b> the orange crest is freshly waxed | the orange crest is scorched at the edges | the orange crest has something braided into it you don't talk about | the crest is older than it looks</p>
+<p><b>Marks:</b> tattoos cover every visible surface | only the oath-scar, plain and deep | enough iron rings to weigh down a lesser being | a clan-sigil burned over, unrecognizable now</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Die fighting something that deserves to kill you.</li>
+<li>Protect someone who cannot protect themselves, even though you're not supposed to care.</li>
+<li>Find something big enough to be worthy of the Oath.</li>
+<li>Honor the Oath by never, ever running.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 8.</p>
+<ul>
+<li>Great axe (close, reach, messy, 2 slots)</li>
+<li>Hand axe ×2 (close, thrown, 1 slot)</li>
+<li>No armor — scars and a bare chest in all weather (0 slots)</li>
+<li>Slayer's kit — wax, a comb you never use, and the orange dye (small)</li>
+<li>A grudge-stone — a small rock with your failing carved into it (small)</li>
+<li>A letter you never sent (small)</li>
+<li>Pipe and leaf (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_witch_hunter" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Templar of Sigmar</b></p>
+<p>You carry a Sigmarite writ of authority signed in Altdorf. When you formally invoke your authority to imperial citizens, officials, or soldiers, they cannot legally refuse your demands for aid, information, or access — though they may delay, misdirect, or quietly warn your targets.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has seen me burn someone who deserved it?</li>
+<li>Which of you thinks I have gone too far at least once?</li>
+<li>Which of you knows what I am looking for on this road?</li>
+<li>Which of you helped me once and never asked what I found?</li>
+</ul>
+<p>---</p>
+<p><b>Confessor's Shadow</b></p>
+<p>You were trained to extract truth from those who do not wish to give it. When you interrogate a prisoner or examine someone for signs of corruption, roll +WIS. On a 10+, you learn what you need to know, and you may choose whether the subject remains cooperative afterward. On a 7-9, you learn the truth, but something — evidence, a relationship, an innocent's dignity — is damaged in the process.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows someone I have questioned before?</li>
+<li>Which of you has sat on the other side of my methods?</li>
+<li>Which of you thinks I take too much satisfaction in this work?</li>
+<li>Which of you trusts my judgment less than my results?</li>
+</ul>
+<p>---</p>
+<p><b>Heretic Hunter</b></p>
+<p>You have catalogued the signs, sigils, and rituals of every Chaos cult operating in the Empire. When you examine a crime scene, a body, or a strange event for evidence of cult activity, the GM tells you: which cult, what they were doing, and what they left behind.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has killed a cultist before I could find them?</li>
+<li>Which of you has something in their possession I have seen in cult hands before?</li>
+<li>Which of you knows I am already on a trail?</li>
+<li>Which of you has been mistaken for a cultist by someone like me?</li>
+</ul>
+<p>---</p>
+<p><b>Survivor of Corruption</b></p>
+<p>Someone close to you fell to Chaos, and you did what had to be done. You are immune to the fear and revulsion others feel when confronting mutation and Chaos taint — you have already seen the worst of it on a face you loved. When you act to protect others from Chaos taint at personal cost, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows what I lost?</li>
+<li>Which of you lost someone too, and chose a different path?</li>
+<li>Which of you has seen me hesitate when it mattered?</li>
+<li>Which of you is watching me for signs that the taint found me too?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Witch Sense</b></p>
+<p>When you study a person, place, or object for signs of Chaos corruption, roll +WIS. On a 10+, the GM tells you clearly: is it tainted, how deeply, and what power left the mark. On a 7-9, you get a strong impression — tainted or clean — but the details are incomplete or deeply unsettling.</p>
+<p><b>Confess</b></p>
+<p>When you confront someone with evidence of their sin and demand the truth, roll +CHA. On a 10+, they tell you what you need to know. On a 7-9, they tell you something true — but not everything, and they now fear or hate you for asking.</p>
+<p><b>Pyre's Edge</b></p>
+<p>When you attack a confirmed servant of Chaos — a cultist, mutant, daemonhost, or corruption-bearer — deal your damage and take +1 forward against them for the rest of the scene.</p>
+<p><b>Unbreakable Will</b></p>
+<p>When you face magical compulsion, daemonic terror, or Chaos-spawned psychological assault, take +1 to resist. On a 12+, you are immune to that specific source for the remainder of the encounter.</p>
+<p><b>Read a Crowd</b></p>
+<p>When you observe a gathering of people for hidden guilt, loyalty, or cult activity, roll +WIS. On a 10+, pick two: who is afraid, who is lying, who is a leader, or who is marking you. On a 7-9, pick one.</p>
+<p><b>Silver and Fire</b></p>
+<p>Your weapons deal full damage to daemons, the undead, and Chaos-tainted creatures regardless of mundane defenses they might possess.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Burning Conviction:</b> When you deal damage to a servant of Chaos, you may add your WIS modifier to the damage.</li>
+<li><b>Network of Informants:</b> In any imperial settlement, you can spend time to make contact with local informants. They know one secret about the powerful, the corrupt, or the hidden.</li>
+<li><b>Torturer's Knowledge:</b> When you use Confess on someone who is physically restrained, you always get the full truth, no roll needed — but the GM may have consequences follow you.</li>
+<li><b>Daemon-Ward:</b> You carry or wear a sigil blessed by a Sigmarite priest. Daemons and summoned entities suffer -1 ongoing against you.</li>
+<li><b>No Mercy:</b> When you kill a confirmed servant of Chaos, you may immediately make a free attack against a second target in reach.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # WITCH HUNTER</h2><p>*You have seen what Chaos does to men. You have watched the innocent weep as they confessed, and the guilty smile as they burned. You carry their names with you — every one.*</p>
+<p><b>Damage Die:</b> d6</p>
+<p><b>HP:</b> 6 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Human (Reikland):</b> Johann, Ruprecht, Klaus, Konrad / Elise, Marta, Hildegard, Greta</p>
+<p><b>Human (Middenland):</b> Ulric, Brand, Harkon, Veit / Sigrid, Freya, Edda, Runa</p>
+<p><b>Halfling:</b> Pip, Jasper, Merric, Toby / Rosie, Lily, Dot, Bree</p>
+<p><b>Dwarf:</b> Gundrun, Borek, Thordal, Keldek / Brenna, Hilda, Dagni, Sigra</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>People:</b> Imperial Human | Middenlander | Halfling | Dwarf | ask the table</p>
+<p><b>Bearing:</b> cold and watchful | furious but controlled | piously rigid | hollowed out by the work</p>
+<p><b>Eyes:</b> like a man who has seen too much | searching every face for sin | calm before a verdict | lit from within by something that isn't comfort</p>
+<p><b>Build:</b> lean and road-hardened | broad-shouldered under a heavy coat | slight but unbreakable | stooped under invisible weight</p>
+<p><b>Clothing:</b> long black coat and wide-brimmed hat | travel-worn vestments hiding armor | formal robes with the hammer sigil | something practical and conspicuously plain</p>
+<p><b>Signature:</b> a copy of the Malleus worn to softness | a collection of sealed confessions | a branded palm from an early test of faith | a list of names that grows longer</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Expose a cult before it can complete its ritual.</li>
+<li>Burn something that should not have been allowed to live.</li>
+<li>Protect the innocent from a threat they cannot see.</li>
+<li>Face your own potential for sin and choose the harder path.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 10.</p>
+<ul>
+<li>Blessed longsword — silver-edged (close, 1 slot)</li>
+<li>Heavy pistol (near, reload, 2 slots)</li>
+<li>Witch Hunter's coat — heavy, insignia of the Order (1 slot)</li>
+<li>Malleus Maleficarum — annotated field copy (1 slot)</li>
+<li>Manacles — iron, lined with sigils (1 slot)</li>
+<li>Evidence satchel — sealed documents, confessions, cult markings (1 slot)</li>
+<li>Torch and oil (1 slot)</li>
+<li>Blessed silver medallion of Sigmar (small)</li>
+<li>Vials of holy water ×2 (small)</li>
+<li>A list of names — most are crossed out (small)</li>
+<li>A sealed confession from someone you still think about (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_wizard" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Bright Order Alumnus</b></p>
+<p>You were trained in the Bright College — Fire, Aqshy, the Red Wind. When you call fire or heat against a target, your spells set things alight on a hit, dealing ongoing burn damage until the fire is extinguished. You cannot cast Ice or Death magic without risk of Miscast.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has seen what happens when I lose control?</li>
+<li>Which of you knows what I left behind in Altdorf?</li>
+<li>Which of you is afraid of fire for reasons that have nothing to do with me?</li>
+<li>Which of you did I test with flame once, and they passed?</li>
+</ul>
+<p>---</p>
+<p><b>Celestial Wayfinder</b></p>
+<p>You were trained in the Celestial College — Stars, Azyr, the Blue Wind. When you study the night sky, a star chart, or the patterns of a region, roll +INT. On a 10+, the GM tells you one thing about what is coming in this area — a threat, a turning point, or an opportunity — that no one else would know. On a 7-9, you get an impression but not certainty.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you have I seen in my charts before I met them in person?</li>
+<li>Which of you is not supposed to be here, and I haven't decided whether to say so?</li>
+<li>Which of you does not want to know what I saw about their future?</li>
+<li>Which of you has changed something I thought was fixed?</li>
+</ul>
+<p>---</p>
+<p><b>Jade Druid</b></p>
+<p>You were trained in the Jade College — Life, Ghyran, the Green Wind. When you touch someone who is injured and spend a few minutes in quiet focus, they recover 1d8 HP. When you are in natural terrain — forests, fields, rivers — you feel the Green Wind strongly and take +1 to all moves.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you came to me when the healers were out of answers?</li>
+<li>Which of you thinks what I do is just hedge witchery with a College degree?</li>
+<li>Which of you have I seen damaged in a way that my Wind cannot reach?</li>
+<li>Which of you does the Green Wind warn me about, and I haven't decided what that means yet?</li>
+</ul>
+<p>---</p>
+<p><b>Grey Scholar</b></p>
+<p>You were trained in the Grey College — Shadows, Ulgu, the Grey Wind. When you are in shadow, fog, or darkness, you can move without being detected — no roll needed unless magic is involved. When you read a person for hidden intent, roll +INT. On a 10+, they cannot hide anything from you with words alone.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you did I follow without them knowing, before we formally met?</li>
+<li>Which of you knows I am not always where I appear to be?</li>
+<li>Which of you has spoken freely in a room they thought was empty?</li>
+<li>Which of you has seen me step out of a shadow and is still not used to it?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Channel the Wind</b></p>
+<p>When you draw on your Wind of Magic to cast a spell, roll +INT. On a 10+, the spell works as intended. On a 7-9, the spell works but the GM chooses one: the effect is weakened, it is reduced in scope, or you draw dangerous attention from something that senses magic.</p>
+<p><b>Miscast Warning</b></p>
+<p>When you push your magic beyond your training — casting twice in quick succession, using a forbidden combination, or reaching for a Wind not your own — roll +INT. On a 7-9, the miscast is minor. On a 6-, something goes wrong that no one present will enjoy.</p>
+<p><b>Arcane Knowledge</b></p>
+<p>When you study a magical item, creature, or phenomenon and consult your training, roll +INT. On a 10+, ask three questions about it from the standard list. On a 7-9, ask one, and the GM may ask something of you in return.</p>
+<p><b>Ward</b></p>
+<p>When you spend a few minutes inscribing a ward on a location, person, or object, it becomes resistant to one type of harm you specify: fire, cold, Chaos taint, undeath, or similar. The ward lasts until it is triggered or dispelled.</p>
+<p><b>Read the Winds</b></p>
+<p>You can sense when magic has been cast nearby, even if you did not witness it. The GM will always tell you when magical residue is present and roughly what kind of power was involved.</p>
+<p><b>Scholarly Network</b></p>
+<p>In any Imperial city with a College presence, you can find a fellow wizard. Roll +INT when you reach out. On a 10+, they help freely. On a 7-9, they help but there are strings — academic politics, past debts, or an uncomfortable question they want answered first.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Mastered Wind:</b> Your signature Wind magic no longer risks Miscast on a 7-9 result.</li>
+<li><b>Counterspell:</b> When you identify an ongoing magical effect, you may attempt to dispel it by rolling +INT. On a 10+, it ends. On a 7-9, it fades but not without a backlash.</li>
+<li><b>Greater Ward:</b> Your wards can now protect against multiple damage types simultaneously.</li>
+<li><b>Arcane Sight:</b> You can always see active magical effects, enchanted items, and Chaos taint without rolling, even in darkness.</li>
+<li><b>Power Tap:</b> Once per scene, you may enhance a spell without risk of Miscast by spending 1d6 HP.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # WIZARD</h2><p>*You went to the College. You learned to see the Winds of Magic and let one of them move through you. You know what the others at your College whispered: this kind of knowledge changes people. You just didn't know yet in which direction.*</p>
+<p><b>Damage Die:</b> d4</p>
+<p><b>HP:</b> 4 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Human (Altdorf):</b> Albrecht, Friedrich, Gotthard, Theophil / Annalise, Gertrude, Sofie, Wilhelmina</p>
+<p><b>High Elf (Loremaster):</b> Archandel, Faerindel, Ilmaris, Thalandril / Aelitha, Caelindra, Lirethiel, Silriel</p>
+<p><b>Human (Kislev):</b> Boris, Dmitri, Igor, Vasily / Anya, Katja, Nadia, Zoya</p>
+<p><b>Human (Southern):</b> Calvino, Marco, Rinaldo, Umberto / Catarina, Livia, Petra, Viola</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>People:</b> Imperial Human | High Elf Loremaster | Kislevite Ice Witch | Southern Academic | ask the table</p>
+<p><b>Bearing:</b> distracted by things no one else can see | precise and controlled | burning with certainty | wearing exhaustion like a coat</p>
+<p><b>Eyes:</b> tracking the Wind even as you speak | lit from a color no one else sees | glazed with calculation | occasionally somewhere else entirely</p>
+<p><b>Build:</b> scholar-lean | hunched under heavy robes | tall and formally composed | soft and startlingly quick</p>
+<p><b>Clothing:</b> College robes in your Wind's color | travelling clothes under a formal over-robe | charred and patched in ways you don't explain | deliberately plain to avoid attention</p>
+<p><b>Signature:</b> a focus item no one else can touch without your permission | ink-stained fingers that never fully wash | a spell component case worn as a necklace | the faint smell of your Wind lingering around you always</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Use magic to solve a problem that brute force cannot reach.</li>
+<li>Understand something forbidden that should stay forbidden.</li>
+<li>Protect the people around you from the cost of your power.</li>
+<li>Keep the Winds in balance when someone else is tearing them apart.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 8.</p>
+<ul>
+<li>Wizard's staff — focus for your Wind (close, magical, 2 slots)</li>
+<li>College robes — your Wind's color (1 slot)</li>
+<li>Spellbook — half-full, water-damaged on one corner (1 slot)</li>
+<li>Spell component case — herbs, salts, powders, a few bones (1 slot)</li>
+<li>Reference tome — Collegiate theory, dense margins (1 slot)</li>
+<li>Scroll case — two blank, one inscribed (small)</li>
+<li>Wax and seal of your College (small)</li>
+<li>A gift from your master you don't know how to use yet (small)</li>
+<li>Medicinal brandy — it helps with Miscast headaches (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+<div id="en_optional_moves" class="playbook-content lang-en"><div class="optional-moves-container"><div class="card"><h2>🚀 # Optional Moves — Warhammer Fantasy</h2><p><b>Resist the Taint</b></p>
+<p>When you are exposed to Chaos corruption — through contact, a failed ward, or prolonged time near a daemon or mutant — roll +CON. On a 10+, you resist it cleanly. On a 7-9, you resist, but you carry a trace of it: a small mark, an intrusive thought, or a detail the GM notes quietly. On a 6-, the corruption takes hold; the GM describes what changes and when it will matter.</p>
+<p><b>Navigate the Crowd</b></p>
+<p>When you move through a city in haste — chasing, fleeing, or trying to reach someone before they vanish — roll +DEX. On a 10+, you gain on your target or lose your pursuer, your choice, at no cost. On a 7-9, you gain ground but choose one: you knock someone over, lose something in the chase, or end up somewhere unexpected.</p>
+<p><b>Bribe or Threaten</b></p>
+<p>When you try to get cooperation from an official, guard, guild member, or bureaucrat who has no reason to help you, roll +CHA. On a 10+, they cooperate fully for a reasonable price or credible threat. On a 7-9, they cooperate, but the cost is higher than expected or the cooperation is partial — and they remember your face.</p>
+<p><b>Push Through Chaos Territory</b></p>
+<p>When you travel through land touched by Chaos — corrupted forest, mutant-held roads, the burned edge of a Northman raid — roll +CON. On a 10+, you pass through intact and learn something about the state of the corruption here. On a 7-9, you pass through but the journey costs something: supplies, morale, or a wound that is harder to explain than it looks.</p>
+<p><b>Find What the Empire Buries</b></p>
+<p>When you dig into the history of a location, family, institution, or event and ask who was really responsible, roll +INT. On a 10+, you find it. The GM tells you where the buried record, hidden witness, or suppressed evidence is — and who would not want you to have found it. On a 7-9, you find a thread that leads somewhere, but following it will cost time, risk, or a favor owed.</p></div></div></div>
+
+    <div id="en_adventures" class="playbook-content lang-en">
+        <div class="main-column" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2rem;">
+            <div class="card adventure-generator-card">
+                <h2>✨ Adventure Generator — Warhammer Fantasy Generator</h2>
+                <div class="generator-result" id="rng-result-en">
+                    ...
+                </div>
+                <div class="generator-actions">
+                    <button type="button" class="lang-toggle active rng-roll-btn" onclick="generateAdventure('en')">🎲 Losuj / Roll</button>
+                </div>
+            </div>
+            
+            <div class="adventure-tables-grid" id="rng-tables-en">
+    
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 1: Action & Location</h3>
+                    <div class="adventure-prefix">We discover</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a coaching inn that stopped sending its weekly report three weeks ago</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a village whose entire population converted to Chaos overnight</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">an imperial watchtower, unmanned, with signs of a rapid evacuation</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a mine beneath a Dwarf hold, reopened by something that wasn't the Dwarfs</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a Skaven warren entrance beneath a merchant district's newest building</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a flagellant mob moving through the countryside in total silence</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a shrine to a god nobody in the area recognizes</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a noble's estate sealed from the inside, with lights still burning</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a hidden print shop producing seditious religious pamphlets</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a river barge carrying cargo that shifts when no one is watching</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a Chaos warband camp only half a day's ride from the nearest city gate</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">an Elven waystone that has begun pulsing with the wrong color</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a traveling circus that appears in towns a day before the killings start</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a mass grave outside a village, dug by the villagers themselves</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">a secret meeting of witch hunters who are not acting like witch hunters</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a road where every traveler in the last month has vanished without trace</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a Black Ark messenger who does not know his message is already out of date</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a Grail chapel in the middle of Reikland that has no business being there</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">an alchemist's tower intact in the middle of a devastated region</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a letter bearing the Grand Theogonist's seal that was never meant to be found</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 2: Placement & Geography</h3>
+                    <div class="adventure-prefix">which lies</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">at the edge of the Reikwald, where the road ends without warning</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">inside the walls of a city that has closed its gates to all travelers</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">beneath a Dwarf ancestor shrine abandoned during the last war</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">along the Reik, where the current has been running wrong for a week</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">at the foot of the Grey Mountains in disputed border territory</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">in the middle of the Moot, which has never been a place for trouble before</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">at a crossroads that appears on no current imperial map</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">beneath the oldest district of a city, accessible only through the sewers</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">above a village that has been there for two hundred years and nobody knows it</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">between two minor noble estates that have been quietly at war for a decade</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">at the mouth of a cave system marked with pre-Imperial stonework</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">inside a Sigmarite temple that has not opened its doors in a fortnight</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">along a stretch of road where the coaching inns all closed in the same month</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">at the top of a hill that local children are forbidden from climbing</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">in the Ostland, where the Norscan raids have been more frequent than usual</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">beneath a market square that floods every spring and shouldn't</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">at a river ford where the toll collector's booth has been empty for days</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">inside a locked archive in the Imperial Palace of Records in Altdorf</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">on a barge moored at a wharf no legitimate trade uses</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">in the middle of Averheim, in a building everyone agrees has always been there</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 3: Target</h3>
+                    <div class="adventure-prefix">leading to</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">the abandoned lower district of a city that was sealed after a plague that officially never happened.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a vault beneath a Sigmarite temple that predates the temple by three centuries.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a hidden college of unsanctioned magic operating in an abandoned canal district.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">the burned-out estate of a witch hunter whose case was never officially closed.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a chamber beneath a Dwarf hold where the ale has been going stale for a reason.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a Skaven breeding pit that has been supplying the local rat population for fifty years.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a ruined Chaos fortress on the border that the Empire has been slowly rebuilding from the inside.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a Beastmen herdstone at the center of a forest that has been growing faster than forests should.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">the private archive of a dead Elector Count whose papers should have been destroyed.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">an underground river connecting three separate criminal organizations.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a Chaos cult's inner sanctum hidden beneath a legitimate merchant's counting house.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">the estate of a noble family whose servants never leave and whose guests never come back.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a collapsed section of the Altdorf sewers where something has been collecting tolls in the dark.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a Kislevite refugee camp that has been growing for months and never quite getting smaller.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">the ruins of a village nobody officially admits ever existed.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">an Elven enclave that has gone from aloof to completely unreachable.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a Nurgle shrine hidden inside a hospice that has recently become very successful.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a printing house run by Chaos sympathizers inside the walls of a major city.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a hidden dock beneath the city where certain ships unload before official inspection.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">an imperial garrison that has been sending routine reports for six months without casualties, patrols, or requests for resupply.</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 4: Purpose & Mission</h3>
+                    <div class="adventure-prefix">We are here to</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">find the source of the corruption before the next Elector Count's council meeting</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">extract a prisoner who knows something they should not have found out</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">deliver a sealed order that must not be read before it arrives</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">confirm that the cult has been destroyed and not just gone quiet</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">protect a witness until they can testify before someone with authority to act</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">locate a missing witch hunter whose last report named people still in power</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">destroy the herdstone before the Beastmen complete the ritual at dark of moon</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">retrieve the Runefang taken from the Elector Count's vaults last week</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">negotiate passage through a warlord's territory before the army needs to use it</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">burn the records before the wrong people can read them</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">investigate the village before the Empire sends soldiers and makes everything worse</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">find out who in the city watch is working for the other side</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">get the last surviving priest out before the cult returns to finish the job</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">identify which noble family is funding the Chaos warband before they can deny it</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">clear the road for a supply column that cannot be delayed</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">find the Necromancer's phylactery before dawn, when they can return to it</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">convince the Dwarfs that the Empire did not sanction what happened at the hold</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">silence the pamphlets before they cause a riot the witch hunters will exploit</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">reach the isolated farmstead and bring back whoever is still alive</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">close the gate before something finishes opening it from the other side</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 5: Minor Threats & Obstacles</h3>
+                    <div class="adventure-prefix">guarded by</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">Chaos cultists who look entirely like the dock workers they were until recently</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a Skaven grey seer who knows we're coming and has been preparing for days</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">imperial soldiers with legitimate orders to stop exactly what we're doing</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">Beastmen who hold the forest between here and there and have been active at night</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a corrupt witch hunter who will have us arrested before we can explain ourselves</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">hired swords working for a merchant house that prefers we don't arrive</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a flagellant mob convinced that we are agents of Chaos</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a vampire who controls a third of the city guard through means no one wants to verify</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">the river, which has been rising faster than the charts show it should</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a guild blockade staffed by people who know exactly who sent us</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a mob of citizens who have been told we're the problem</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">Greenskins who came down from the hills during the distraction we caused elsewhere</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a Chaos spawn of modest size but considerable enthusiasm</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">an imperial bureaucracy that requires three additional forms before access is permitted</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">night goblins tunneling beneath the foundations of everywhere we need to go</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a noble's private guard with orders to ask questions later, if at all</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">mutant refugees hiding in the ruins who have been desperate long enough to be dangerous</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a Grey Wizard following the same trail who isn't sure whose side we're on yet</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">the local criminal organization, already paid to slow us down</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a bound daemon locked into the only door that matters, with the key lost to time</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 6: Major Boss & Antagonist</h3>
+                    <div class="adventure-prefix">and</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a Chaos Sorcerer who has been posing as an Imperial magistrate for eleven years.</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a Vampire Count who considers the local nobility to be a managed resource.</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a Skaven Warlord whose plan works equally well whether we stop it or not.</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a witch hunter who found real evidence of corruption, gave up stopping it, and started using it.</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a High Priest of Sigmar whose faith is genuine and whose methods are something else entirely.</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a Daemon of Tzeentch that has been inside this situation longer than anyone alive.</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a Nurgle cult leader who genuinely believes they are healing the world.</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a Chaos warlord from the North who is not here for conquest but for something specific.</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a Grey Wizard who has been manipulating events toward an outcome no one else can see yet.</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">the Elector Count himself, who knows everything we are here to prevent and chose not to act.</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a Halfling crimelord who controls enough of the city's food supply to make legal solutions very slow.</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">an ancient Chaos Dwarf artifex who has been selling weapons to both sides for thirty years.</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a Beastmen Great Bray-Shaman calling a herd from the depths of the Reikwald.</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a Templar of Sigmar who has been purging the innocent because that is faster than finding the guilty.</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">a Bretonnian Knight who came to help, was corrupted quietly, and has been at this for weeks.</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a merchant prince who is funding the chaos because stability is bad for a certain kind of business.</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a Chaos-touched child who does not know what they are and will not survive learning.</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a Necromancer of considerable subtlety who has been preparing for thirty years.</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a Dwarf Runelord whose grudge against the city is old enough to have caused this and legitimate enough to justify it.</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">one of our own companions, tainted since before we met, playing a role in something we do not fully understand.</span></li>
+</ul>
+                </div>
+        
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+
+        <footer>
+            <span>Wygenerowano automatycznie • Homebrew World Web Presenter</span>
+            <span>Warhammer • katalog playbookow</span>
+        </footer>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.playbook-content');
+    const langToggles = document.querySelectorAll('.lang-toggle');
+    const body = document.body;
+    const html = document.documentElement;
+
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const mainLayout = document.querySelector('.main-layout');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function getVisibleTabs(lang) {
+        return Array.from(tabs).filter((tab) => tab.classList.contains(`lang-${lang}`));
+    }
+
+    function syncAriaStates(activeTabId) {
+        tabs.forEach((tab) => {
+            const isActive = tab.getAttribute('data-tab') === activeTabId;
+            tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            tab.setAttribute('tabindex', isActive ? '0' : '-1');
+        });
+    }
+
+    if (sidebarToggle && mainLayout) {
+        if (localStorage.getItem('sidebar-collapsed') === 'true') {
+            mainLayout.classList.add('sidebar-collapsed');
+            sidebarToggle.innerText = '⮕';
+            sidebarToggle.setAttribute('aria-expanded', 'false');
+        } else {
+            sidebarToggle.setAttribute('aria-expanded', 'true');
+        }
+
+        sidebarToggle.addEventListener('click', () => {
+            const isCollapsed = mainLayout.classList.toggle('sidebar-collapsed');
+            sidebarToggle.innerText = isCollapsed ? '⮕' : '☰';
+            sidebarToggle.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
+            localStorage.setItem('sidebar-collapsed', isCollapsed);
+        });
+    }
+
+    function switchTab(tabId) {
+        tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-tab') === tabId));
+        syncAriaStates(tabId);
+
+        const target = document.getElementById(tabId);
+        if (target) {
+            target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+            const url = new URL(window.location);
+            url.hash = tabId;
+            window.history.replaceState(null, '', url);
+        }
+    }
+
+    function switchLanguage(lang) {
+        body.classList.forEach((cls) => {
+            if (cls.startsWith('lang-')) body.classList.remove(cls);
+        });
+        body.classList.add(`lang-${lang}`);
+        html.lang = lang === 'default' ? 'pl' : lang;
+
+        langToggles.forEach((btn) => {
+            const isActive = btn.getAttribute('data-lang') === lang;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        const visibleTabs = getVisibleTabs(lang);
+        const nextTab = visibleTabs[0];
+        if (nextTab) {
+            const nextTabId = nextTab.getAttribute('data-tab');
+            tabs.forEach((tab) => tab.classList.toggle('active', tab === nextTab));
+            syncAriaStates(nextTabId);
+        }
+
+        window.scrollTo(0, 0);
+    }
+
+    tabs.forEach((tab) => {
+        tab.setAttribute('role', 'tab');
+        tab.addEventListener('click', () => {
+            switchTab(tab.getAttribute('data-tab'));
+        });
+    });
+
+    langToggles.forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+            switchLanguage(toggle.getAttribute('data-lang'));
+        });
+    });
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-tab') === id));
+                syncAriaStates(id);
+            }
+        });
+    }, observerOptions);
+
+    contents.forEach((section) => observer.observe(section));
+
+    const initialHash = window.location.hash.substring(1);
+    const availableLangs = Array.from(langToggles).map((t) => t.getAttribute('data-lang'));
+    
+    let preferredLang = 'default';
+    if (initialHash && availableLangs.includes(initialHash.split('_')[0])) {
+        preferredLang = initialHash.split('_')[0];
+    } else if (availableLangs.includes('en')) {
+        preferredLang = 'en';
+    } else if (availableLangs.length > 0) {
+        preferredLang = availableLangs[0];
+    } else if (document.querySelector('.tab.lang-default')) {
+        preferredLang = 'default';
+    }
+
+    switchLanguage(preferredLang);
+    
+    if (initialHash) {
+        setTimeout(() => {
+            const target = document.getElementById(initialHash);
+            if (target) {
+                switchTab(initialHash);
+                target.scrollIntoView({ behavior: 'auto' });
+            }
+        }, 100);
+    } else {
+        const initialVisibleTab = getVisibleTabs(preferredLang)[0];
+        if (initialVisibleTab) {
+            syncAriaStates(initialVisibleTab.getAttribute('data-tab'));
+        }
+        window.scrollTo(0, 0);
+    }
+    
+    window.generateAdventure = function(lang) {
+        const container = document.getElementById(`rng-tables-${lang}`);
+        if (!container) return;
+        
+        const tables = container.querySelectorAll('.adventure-table-card');
+        if (tables.length < 6) return;
+        
+        let parts = [];
+        tables.forEach(table => {
+            const prefixEl = table.querySelector('.adventure-prefix');
+            const items = table.querySelectorAll('.rng-text');
+            
+            const prefix = prefixEl ? prefixEl.textContent.trim() : "";
+            
+            if (items.length > 0) {
+                const randomText = items[Math.floor(Math.random() * items.length)].textContent.trim();
+                parts.push((prefix ? prefix + " " : "") + `<span class="rng-highlight">${randomText}</span>`);
+            } else {
+                parts.push(prefix);
+            }
+        });
+        
+        if (parts.length >= 6) {
+            const sentence1 = parts[0] + " " + parts[1] + " " + parts[2];
+            const sentence2 = parts[3] + " " + parts[4] + " " + parts[5];
+            
+            let s1 = sentence1.replace(/\s+/g, ' ').replace(/\s+\./g, '.');
+            if(!s1.endsWith('.')) s1 += '.';
+            let s2 = sentence2.replace(/\s+/g, ' ').replace(/\s+\./g, '.');
+            if(!s2.endsWith('.')) s2 += '.';
+
+            const capitalize = (str) => {
+                let inTag = false;
+                for (let i = 0; i < str.length; i++) {
+                    if (str[i] === '<') inTag = true;
+                    else if (str[i] === '>') inTag = false;
+                    else if (!inTag && /[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/.test(str[i])) {
+                        return str.substring(0, i) + str[i].toUpperCase() + str.substring(i + 1);
+                    }
+                }
+                return str;
+            };
+
+            s1 = capitalize(s1);
+            s2 = capitalize(s2);
+            
+            const resultEl = document.getElementById(`rng-result-${lang}`);
+            if (resultEl) {
+                resultEl.innerHTML = `<p>${s1}</p><p>${s2}</p>`;
+            }
+        }
+    };
+
+    availableLangs.forEach(l => {
+        if(document.getElementById(`rng-result-${l}`)) {
+            generateAdventure(l);
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

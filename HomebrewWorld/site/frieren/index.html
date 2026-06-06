@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frieren - Homebrew World</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Cormorant+Garamond:wght@600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="lang-default">
+    <div class="container">
+        <header class="hero">
+            <p class="eyebrow">Homebrew World Setting</p>
+            <div class="hero-top">
+                <div class="lang-selector"><button class="lang-toggle" data-lang="en" type="button">English</button> <button class="lang-toggle" data-lang="pl" type="button">Polski</button></div>
+                <div class="pdf-downloads"><a class="toolbar-chip" href="playbooks_pl.pdf" download>Pobierz PDF PL</a> <a class="toolbar-chip" href="playbooks_en.pdf" download>Download PDF EN</a></div>
+            </div>
+            <h1 class="page-title"><span class="title-emoji">🌍</span> <span class="title-text">Frieren</span></h1>
+            <p class="page-summary"><span class="page-summary-copy lang-pl">Post-epickie fantasy o świecie po klęsce Demon Kinga: Frieren i jej towarzysze przemierzają kontynent ku Aureole, gdzie czas płynie inaczej dla elfów niż dla ludzi, a każda podróż to lekcja o żałobie, stagnacji i wartości chwil, które mijają zbyt szybko.</span> <span class="page-summary-copy lang-en">Post-epic fantasy set in a world after the Demon King&#x27;s defeat: Frieren and her companions travel north toward Aureole, where time flows differently for elves than for mortals, and every journey is a lesson in grief, stagnation, and the weight of moments that pass too quickly.</span></p>
+            <div class="page-toolbar"><span class="stat-badge">5 playbookow EN</span> <span class="stat-badge">5 playbookow PL</span></div>
+        </header>
+
+        <div class="main-layout">
+            <aside class="tabs-container" id="sidebar">
+                <button id="sidebar-toggle" aria-label="Toggle Sidebar" aria-expanded="true" type="button">☰</button>
+                
+            <a class="home-link sidebar-home-link" href="../index.html">
+                <span aria-hidden="true">←</span>
+                <span>Wroc do Homebrew Worlds</span>
+            </a>
+        
+                <div class="tabs-list" role="tablist" aria-label="Playbook navigation">
+                    <button class="tab lang-pl" data-tab="pl_playbook_adeptka" type="button">✨ ADEPTKA</button>
+<button class="tab lang-pl" data-tab="pl_playbook_naznaczony_wojownik" type="button">⚔️ NAZNACZONY WOJOWNIK</button>
+<button class="tab lang-pl" data-tab="pl_playbook_oddany_kaplan" type="button">🙏 ODDANY KAPŁAN</button>
+<button class="tab lang-pl" data-tab="pl_playbook_wiekowa_czarodziejka" type="button">👤 WIEKOWA CZARODZIEJKA</button>
+<button class="tab lang-pl" data-tab="pl_playbook_zelazny_weteran" type="button">👤 ŻELAZNY WETERAN</button>
+<button class="tab lang-pl" data-tab="pl_optional_moves" type="button">🌟 Opcjonalne Ruchy</button>
+<button class="tab lang-pl" data-tab="pl_adventures" type="button">🗺️ Generator Przygód — Frieren: Beyond Journey's End</button>
+<button class="tab lang-en" data-tab="en_playbook_ancient_mage" type="button">🧙 THE ANCIENT MAGE</button>
+<button class="tab lang-en" data-tab="en_playbook_devoted_priest" type="button">👤 THE DEVOTED PRIEST</button>
+<button class="tab lang-en" data-tab="en_playbook_iron_elder" type="button">👤 THE IRON ELDER</button>
+<button class="tab lang-en" data-tab="en_playbook_prodigy" type="button">👤 THE PRODIGY</button>
+<button class="tab lang-en" data-tab="en_playbook_scarred_warrior" type="button">👤 THE SCARRED WARRIOR</button>
+<button class="tab lang-en" data-tab="en_optional_moves" type="button">🌟 Optional Moves</button>
+<button class="tab lang-en" data-tab="en_adventures" type="button">🗺️ Adventure Generator — Frieren: Beyond Journey's End</button>
+                </div>
+            </aside>
+
+            <div class="content-area">
+                
+    <div id="pl_playbook_adeptka" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Dług Sieroty</b></p>
+<p>Twój opiekun poświęcił dla ciebie resztę swoich lat. To znaczyło więcej, niż kiedykolwiek ci powiedziano. Kiedy honorujesz jego dziedzictwo przez działanie — kończysz to, co zaczął, chronisz, kogo kochał — zaznaczasz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, co zostało poświęcone dla mnie?</li>
+<li>Który/-a z was widział/-a, jak zatrzymuję się na myśl o kimś, kogo straciłam?</li>
+<li>Który/-a z was przypomina mi, kim mam się stać?</li>
+<li>Który/-a z was, obawiam się, rozczarowuję — tak jak bałam się rozczarować jego?</li>
+</ul>
+<p>---</p>
+<p><b>Pragmatyczna Uczennica</b></p>
+<p>Nauczyłaś się, że efektywność liczy się bardziej niż elegancja. Kiedy rozwiązujesz problem zwykłym lub pospolitym zaklęciem, tam gdzie inni używają czegoś bardziej złożonego, zyskujesz +1 naprzód.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was nie docenił/-a, co potrafi zwykła magia?</li>
+<li>Który/-a z was pytał/-a mnie, czemu nie używam czegoś bardziej imponującego?</li>
+<li>Który/-a z was, jak się okazuje, zawdzięcza mi rozwiązanie problemu, którego nawet nie zauważył/-a?</li>
+<li>Który/-a z was jest najtrudniejszy/-a do odczytania?</li>
+</ul>
+<p>---</p>
+<p><b>Cień Prodigy</b></p>
+<p>Był/-a ktoś zdolniejszy/-a — albo bardziej słynny/-a — i żyłaś w jego cieniu. Kiedy przekraczasz oczekiwania, które ktoś miał wobec ciebie, zaznaczasz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was oczekiwał/-a po mnie mniej, niż ja oczekiwałam od siebie?</li>
+<li>Który/-a z was dostrzegł/-a, do czego jestem zdolna, zanim ja to zobaczyłam?</li>
+<li>Który/-a z was porównał/-a mnie do kogoś i uznał/-a, że wypadłam gorzej?</li>
+<li>Który/-a z was w końcu się myli — i jeszcze o tym nie wie?</li>
+</ul>
+<p>---</p>
+<p><b>Rygorystyczne Ćwiczenia</b></p>
+<p>Ćwiczyłaś ciężej, niż ktokolwiek wymagał. Powtarzalność to nie słabość — to precyzja. Kiedy używasz zaklęcia lub techniki, z którą osiągnęłaś już sukces w tej sesji, zyskujesz +1 naprzód.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was widział/-a, jak ćwiczę kiedy nikt nie patrzy?</li>
+<li>Który/-a z was powiedział/-a mi, że pracuję za ciężko?</li>
+<li>Który/-a z was nieoczekiwanie zostałam przez mnie wyprzedzona, bez że żadne z nas chciało to zrobić rywalizacją?</li>
+<li>Który/-a z was sprawia, że chcę przestać ćwiczyć i być po prostu obecna?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Nieugięty Atak</b></p>
+<p>Opanowałaś zwykłą magię ofensywną do poziomu, który zaskakuje weteranów. Kiedy używasz wyuczonego zaklęcia ataku, rzuć +INT. Na 10+: zadajesz 1k8+1 obrażeń. Na 7-9: zadajesz 1k6 obrażeń.</p>
+<p><b>Błyskawiczne Rzucanie</b></p>
+<p>Rzucasz szybciej, niż większość magów jest w stanie śledzić. Kiedy działasz przed wrogiem w starciu, zyskujesz +1 naprzód.</p>
+<p><b>Emocjonalna Kontrola</b></p>
+<p>Kiedy coś mogłoby zaburzyć twoją koncentrację, rzuć +MĄD. Na 10+: zachowujesz skupienie bez kary. Na 7-9: zachowujesz skupienie, ale zakłócenie cię coś kosztuje.</p>
+<p><b>Metoda Mentora</b></p>
+<p>Kiedy używasz techniki lub zasady, której nauczył cię mentor, i opisujesz jak, zyskujesz +1 naprzód.</p>
+<p><b>Cicha Obserwacja</b></p>
+<p>Kiedy obserwujesz, jak przeciwnik używa magii, zanim go zaatakujesz, zapytaj MG o jedno: jego podejście, ograniczenia lub słabości. MG odpowiada szczerze.</p>
+<p><b>Pierwsze Uderzenie</b></p>
+<p>Kiedy otwierasz starcie atakiem, zanim ktokolwiek spodziewa się agresji, zadajesz +1k6 obrażeń.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>✨ # ADEPTKA</h2><p>*Nie potrzebujesz pradawnej mądrości ani wrodzonego geniuszu. Potrzebujesz dyscypliny, czasu i gotowości do cięższej pracy niż wszyscy się po tobie spodziewają. Twoja magia nie jest spektakularna. Nie musi być — musi po prostu działać.*</p>
+<p><b>Kostka Obrażeń:</b> k6</p>
+<p><b>PŻ:</b> 6 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Sierota wojenna:</b> Mira, Alix, Venn, Suri / Talis, Ren, Caern, Dorin</p>
+<p><b>Uczeń/Uczennica:</b> Clara, Lotte, Elsa, Hanna / Emil, Jonas, Rolf, Kurt</p>
+<p><b>Zdolne dziecko chłopskie:</b> Brita, Dala, Sanna, Turid / Arvi, Stel, Oswin, Brand</p>
+<p><b>Wychowany/-a na Północy:</b> Sigrid, Edda, Ragna, Marte / Gunnar, Leif, Bjorn, Eirik</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> sierota wojenna wzięta pod opiekę przez mentora | zdolne dziecko chłopskie, które uczyło się za ciężko | uczeń/-nica z Północy wychowany/-a w chłodzie | zapytaj stołu</p>
+<p><b>Wiek:</b> młody/-a, wygląda jeszcze młodziej | tuż po progu dorosłości | nastolatek/-tka z zachowaniem kogoś starszego</p>
+<p><b>Oczy:</b> skupione i precyzyjne | na chwilę ciepłe, potem znowu do pracy | cicho obserwujące wszystko</p>
+<p><b>Sylwetka:</b> staranna i opanowana | szybka i ekonomiczna | celowo nierzucająca się w oczy</p>
+<p><b>Strój:</b> szaty uczennicy, nienagannie utrzymane | podróżny ekwipunek dobrany czysto funkcjonalnie | warstwowe ubrania na zimę</p>
+<p><b>Znak szczególny:</b> liczenie oddechów przed rzuceniem zaklęcia | cięte komentarze w złym momencie | postawa, która nigdy nie odpuszcza</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Opanowana Forma:</b> Twoja kostka obrażeń staje się k10.</li>
+<li><b>Oślepiająca Szybkość:</b> Raz na sesję rzucasz zaklęcie, zanim ktokolwiek może przerwać lub zareagować.</li>
+<li><b>Efektywny Grimoire:</b> Zapamiętałaś każde zaklęcie, jakie znasz. Nie potrzebujesz już książki, by je rzucić.</li>
+<li><b>Spokój Pod Ostrzałem:</b> Masz przewagę na rzuty koncentracji kiedy jesteś ranna.</li>
+<li><b>Przerosłam Mistrza:</b> Raz na sesję, gdy przekraczasz oczekiwanie, jakie twój mentor miał wobec ciebie, zaznaczasz PD i zyskujesz +1 naprzód na resztę sceny.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Opanuj zaklęcie, którego nikt się po tobie nie spodziewał.</li>
+<li>Wykonaj zadanie perfekcyjnie, bez żadnej straty.</li>
+<li>Chroń kogoś, kto polega na tobie bez zastrzeżeń.</li>
+<li>Przyznaj — tylko sobie — że podobała ci się ta podróż.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 9.</p>
+<ul>
+<li>Podróżny fokus magiczny — różdżka, laska lub katalizator (1 slot)</li>
+<li>Szaty uczennicy (1 slot)</li>
+<li>Opatrzony notatkami grimoire (2 sloty)</li>
+<li>Bukłak (1 slot)</li>
+<li>Racje polowe na 3 dni (1 slot)</li>
+<li>Termos z gorącą herbatą (małe)</li>
+<li>Zestaw naprawczy dla narzędzi magicznych (małe)</li>
+<li>List od opiekuna, prawie wyuczony na pamięć (małe)</li>
+<li>Zasuszony kwiat z czyjś ogrodu (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_naznaczony_wojownik" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Poczucie Winy Ocalałego</b></p>
+<p>Twój dom już nie istnieje. Przeżyłeś/-aś, bo ktoś inny nie. Kiedy walczysz, by chronić kogoś, kto nie jest w stanie bronić się sam, zyskujesz +1 naprzód.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, od czego uciekłem/-am?</li>
+<li>Który/-a z was widział/-a, jak zamarłem/-am, gdy powinienem/-nam działać?</li>
+<li>Który/-a z was przypomina mi kogoś, kto nie przeżył?</li>
+<li>Który/-a z was wierzy, że jestem coś wart/-a — z powodów, których jeszcze nie rozumiem?</li>
+</ul>
+<p>---</p>
+<p><b>Cień Mistrza</b></p>
+<p>Wojownik wierzył w ciebie bardziej, niż ty wierzyłeś/-aś w siebie. Już go nie ma. Kiedy walczysz w sposób, który by go usatysfakcjonował, zaznacz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was znał/-a mojego mistrza lub zna jego imię?</li>
+<li>Który/-a z was zadał/-a mi pytanie, które on by zadał?</li>
+<li>Który/-a z was zauważył/-a, że naśladuję kogoś, kto już nie żyje?</li>
+<li>Któremu/-ej z was najbardziej chciałbym/-abym przywieźć opowieści?</li>
+</ul>
+<p>---</p>
+<p><b>Pogromca Smoka</b></p>
+<p>Kiedy wszyscy potrzebowali, żebyś zrobił/-a coś niemożliwego — zrobiłeś/-aś to. Wioska zna tę historię. Ty nie czujesz się jak osoba, o której ją opowiadają. Raz na sesję, gdy stawiasz czoła czemuś przytłaczającemu i mimo wszystko parasz do przodu, zaznacz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was słyszał/-a jakąś wersję historii o mnie?</li>
+<li>Który/-a z was nie uwierzył/-a, dopóki nie widział/-a mnie w walce?</li>
+<li>Który/-a z was wie, o czym myślałem/-am tuż przed tym, jak przeżyłem/-am?</li>
+<li>Który/-a z was patrzy na mnie tak samo, niezależnie od tego, czy historia jest prawdą?</li>
+</ul>
+<p>---</p>
+<p><b>Stagnacja Wioski</b></p>
+<p>Zostałeś/-aś w miejscu zbyt długo — wygodnie, bezpiecznie, pusto. Kiedy porzucasz komfort lub bezpieczeństwo, by iść dalej ku czemuś niepewnemu, zaznacz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wyciągnął/-a mnie z życia, które przesypiałem/-am na jawie?</li>
+<li>Który/-a z was zadał/-a mi pytanie, którego unikałem/-am?</li>
+<li>Który/-a z was, jak się obawiam, miałby/-aby się lepiej beze mnie i mojej przeszłości?</li>
+<li>Który/-a z was przypomina mi, że ruszanie naprzód jest tego warte?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Miażdżąca Siła</b></p>
+<p>Kiedy używasz surowej siły fizycznej — podnosisz, łamiesz, rzucasz lub uderzasz — masz przewagę.</p>
+<p><b>Przyjmij Cios</b></p>
+<p>Kiedy przyjmujesz cios przeznaczony dla kogoś w pobliżu, zmniejszasz zadane sobie obrażenia o 1k6, a sojusznik nie otrzymuje żadnych.</p>
+<p><b>Ogień Fałszywego Skromka</b></p>
+<p>Kiedy walczysz, głośno wątpiąc w siebie — MG słyszy to — zyskujesz +1 naprzód.</p>
+<p><b>Strach Wyostrza</b></p>
+<p>Kiedy walczysz z czymś, co cię naprawdę przeraża, zadajesz +1k6 obrażeń na 10+.</p>
+<p><b>Dotrzymam Kroku</b></p>
+<p>Kiedy sojusznik jest bardziej doświadczony lub uzdolniony od ciebie, zyskujesz +1 naprzód podczas bezpośredniej współpracy z nim.</p>
+<p><b>Uparte Ciało</b></p>
+<p>Kiedy miałbyś/-abyś zostać obezwładniony/-a, możesz kontynuować działanie przy 1 PŻ do końca sceny.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>⚔️ # NAZNACZONY WOJOWNIK</h2><p>*Jesteś silniejszy/-a, niż wiesz. To był problem. Przez lata wmawiano ci, że nie jesteś gotowy/-a, że nie wystarczasz, że jesteś nikim — ale ludzie, na których ci zależy, nie mają czasu na twoje wątpliwości.*</p>
+<p><b>Kostka Obrażeń:</b> k10</p>
+<p><b>PŻ:</b> 10 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Północna wioska:</b> Rika, Marte, Solvei, Inge / Valdur, Gerrik, Halvar, Bjarne</p>
+<p><b>Południowe pogranicze:</b> Calla, Mirela, Desta, Seraf / Tobias, Cormac, Erasmo, Levin</p>
+<p><b>Ocalały/-a ze zniszczonego domu:</b> Lotta, Petra, Nessa, Elva / Gerwin, Konrad, Roas, Emrik</p>
+<p><b>Imię wędrowca:</b> Bliznę, Krzemień, Cierń, Popiół / Grunt, Ostrze, Żelazo, Kuźnia</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> mieszkaniec/-ka północnej wioski | osadnik/-czka południowego pogranicza | ocalały/-a ze zniszczonego domu | zapytaj stołu</p>
+<p><b>Wiek:</b> młody/-a, wciąż rośnie w siłę | krępy/-a i zahartowany/-a | stare blizny na młodej twarzy</p>
+<p><b>Oczy:</b> szybkie i pełne strachu ukrytego za pewnością siebie | pełne czegoś nierozwiązanego | szczere do bólu</p>
+<p><b>Sylwetka:</b> imponująca i obojętna na to | zwarta i potężna ponad miarę | zbudowana jak ktoś, kto nigdy nie przestał pracować</p>
+<p><b>Strój:</b> praktyczne podróżne ubrania, mocno zniszczone | odziedziczony ekwipunek wojownika, ledwo pasujący | doraźnie złożony zestaw z konieczności</p>
+<p><b>Znak szczególny:</b> blizna, której historii nie opowiada | broń trzymana jakby nie był/-a jej pewien/-na | cisza, która trwa zbyt długo</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Nadludzki Wysiłek:</b> Raz na sesję automatycznie udaje ci się wyczyn czystej siły fizycznej — bez rzutu.</li>
+<li><b>Mój Lud Nie Ucieka:</b> Nigdy nie masz utrudnienia z powodu efektów opartych na strachu.</li>
+<li><b>Miażdżący Cios:</b> Twoja kostka obrażeń staje się k12, gdy atakujesz coś, co zraniło sojusznika.</li>
+<li><b>Zapamiętana Historia:</b> Raz na sesję opowiedz sojusznikowi historię wojownika z przeszłości. Zaznacza PD.</li>
+<li><b>Wojownik Dziedzictwa:</b> Kiedy poświęcasz zabójstwo komuś z przeszłości i głośno wymieniasz jego imię, zyskujesz +1 naprzód na resztę sceny.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Zabij coś, o czym twój mistrz opowiadał legendy.</li>
+<li>Chroń kogoś, kto porzucił ochronę siebie samego.</li>
+<li>Opowiedz historię wartą przyniesienia komuś ważnemu.</li>
+<li>Przyznaj głośno, że się boisz — i walcz mimo to.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 10.</p>
+<ul>
+<li>Topór, miecz lub bojowy młot (bliski zasięg, 1 slot)</li>
+<li>Ciężka zbroja (2 sloty, 1 pancerz)</li>
+<li>Plecak podróżny (1 slot)</li>
+<li>Osełka i zestaw do napraw (1 slot)</li>
+<li>Bukłak (1 slot)</li>
+<li>Racje na dwa dni (1 slot)</li>
+<li>Lina, 5 metrów (1 slot)</li>
+<li>Srebrna moneta ze starego domu (małe)</li>
+<li>Strzęp materiału, który trzymasz i nic nie tłumaczysz (małe)</li>
+<li>Kreda lub węgiel do oznaczania szlaków (małe)</li>
+<li>Prezent od mistrza, praktycznie bezużyteczny (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_oddany_kaplan" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Lęk przed Śmiercią</b></p>
+<p>Przyznałeś/-aś kiedyś sobie w ciemności, że boisz się śmierci. To zmieniło to, jak działasz. Kiedy pomagasz komuś innemu stawić czoła własnej śmiertelności z odwagą, zaznacz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, że się boję — nawet jeśli tego nie mówię?</li>
+<li>Który/-a z was widział/-a jak mierzy się ze śmiercią spokojniej niż ja byłbym/-abym w stanie?</li>
+<li>Który/-a z was zaoferował/-a mi taki rodzaj pociechy, jakiego ja udzielam innym?</li>
+<li>Który/-a z was trzyma mnie przy uczciwości wobec siebie w kwestii czasu, który marnuję?</li>
+</ul>
+<p>---</p>
+<p><b>Adoptowane Dziecko</b></p>
+<p>Wychowałeś/-aś kogoś, kto cię przeżyje. O to chodziło. Raz na sesję, kiedy ktoś, na kim ci zależy, jest w niebezpieczeństwie i działasz bez wahania, zyskujesz +1 naprzód.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was przypomina mi osobę, którą wychowałem/-am?</li>
+<li>Który/-a z was widział/-a, jak patrzę na kogoś wzrokiem rodzica?</li>
+<li>Który/-a z was wie, z czego zrezygnowałem/-am, by opiekować się kimś innym?</li>
+<li>Który/-a z was, mam nadzieję, zaopiekuje się nim/-ą po mnie?</li>
+</ul>
+<p>---</p>
+<p><b>Korzenie w Wiosce</b></p>
+<p>Zostawiłeś/-aś wygodę i przynależność za sobą — miejsce, parafię, życie, które było skromniejsze, ale łatwiejsze. Kiedy wybierasz trudniejszą drogę zamiast łatwiejszej, zaznacz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was był/-a powodem, dla którego wyjechałem/-am?</li>
+<li>Który/-a z was myśli, że zostałem/-am z odwagi, a nie z niepokoju?</li>
+<li>Który/-a z was wie, jak blisko byłem/-am do powrotu?</li>
+<li>Który/-a z was, obawiam się, zostanie w tyle gdy reszta z nas ruszy dalej?</li>
+</ul>
+<p>---</p>
+<p><b>Ostatni Obrzęd</b></p>
+<p>Siedziałeś/-aś z wieloma ludźmi przy końcu. Wiesz, czego potrzebują umierający. Kiedy oferujesz komuś pocieszenie wobec śmierci, zapytaj MG o jedno: czego naprawdę potrzebuje usłyszeć. MG odpowiada szczerze.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was pozwolił/-a mi usiąść ze swoim żalem?</li>
+<li>Który/-a z was pytał/-a mnie, jak wygląda śmierć?</li>
+<li>Który/-a z was, obawiam się, spotkam za wcześnie w takiej chwili?</li>
+<li>Który/-a z was powstrzymuje mnie od rezygnowania z tych, którym jeszcze mogę pomóc?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Łaska Bogini</b></p>
+<p>Kiedy leczysz kogoś, rzuć +MĄD. Na 10+: usuń przywarę lub przywróć 1k8 PŻ. Na 7-9: przywróć 1k6 PŻ.</p>
+<p><b>Odporność na Klątwy</b></p>
+<p>Kapłani noszą naturalną tarczę przed magicznym przymusem. Kiedy opierasz się klątwie, magicznemu strachowi lub urokowi, zyskujesz +1 naprzód.</p>
+<p><b>Ostatnie Chwile</b></p>
+<p>Kiedy ktoś umiera lub spada do 0 PŻ, twoja magia lecznicza ma przewagę.</p>
+<p><b>Dziedzictwo Czynów</b></p>
+<p>Kiedy działasz, by twój pozytywny wpływ przeżył cię — przez ucznia, zapis, ostatni dar, dotrzymane przyrzeczenie — zaznacz PD.</p>
+<p><b>Święte Światło</b></p>
+<p>Możesz wytworzyć miękkie ciepłe światło z dłoni lub świętego symbolu. Używane przeciw nieumarłym lub demonom: mają utrudnienie przeciw tobie.</p>
+<p><b>Prawdziwy Dorosły</b></p>
+<p>Kiedy radzisz komuś, jak wyjść ze stagnacji, strachu lub żalu, zyskuje +1 naprzód. Jeśli działa na twoją radę w tej sesji, ty zaznaczasz PD.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🙏 # ODDANY KAPŁAN</h2><p>*Bogini w końcu cię przywita. Ale nie teraz. Zostało jeszcze tyle wartych rzeczy do zrobienia z tym, co ci zostało — i nie odejdziesz cicho.*</p>
+<p><b>Kostka Obrażeń:</b> k6</p>
+<p><b>PŻ:</b> 8 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Wyświęcony/-a przez kościół:</b> Agnes, Beatrix, Hildur, Maren / Ewald, Anselm, Caspar, Dietmar</p>
+<p><b>Wiejski/-a kleryk:</b> Sofie, Willa, Nanna, Inga / Wendel, Lorenz, Tobias, Franz</p>
+<p><b>Wędrowny/-a minister:</b> Isolde, Carla, Vesta, Pallas / Remis, Saul, Coel, Marcian</p>
+<p><b>Nawrócony/-a grzesznik:</b> Delia, Sadie, Cress, Vera / Fletch, Oskar, Remy, Leif</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> wyświęcony/-a kler | wiejski/-a uzdrowiciel/-ka, który/-a wyruszył/-a w drogę | wędrowny minister odległej diecezji | zapytaj stołu</p>
+<p><b>Wiek:</b> młody/-a, ale zużyty/-a przez duchowy ciężar | w średnim wieku, bez pośpiechu | stary/-a i poruszający/-a się jakby spłacił/-a jakiś dług</p>
+<p><b>Oczy:</b> życzliwe i zmęczone | ostre za łagodnością | mierzące, ile życia zostało w pomieszczeniu</p>
+<p><b>Sylwetka:</b> wygodna i powolna | chuda pod miękkimi ubraniami | lekko przygarbiona, ale tylko trochę</p>
+<p><b>Strój:</b> kapłańskie szaty, zabrudzone w podróży | warstwowe podróżne ubrania ze świętymi symbolami | zwykłe ubrania z ukrytą relikwią</p>
+<p><b>Znak szczególny:</b> flasza, po którą sięga gdy nikt nie patrzy | nawyk oferowania więcej niż powinien/-na | sposób w jaki patrzy na umierających</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Mocniejsze Błogosławieństwo:</b> Twoje leczenie usuwa jeden stan oprócz przywrócenia PŻ.</li>
+<li><b>Przeciw Nocy:</b> Raz na sesję, odpędź lub opóźnij jednego nieumarłego bez rzutu.</li>
+<li><b>Pożyczone Lata:</b> Przez dotyk możesz przejąć przywarę lub stan innej postaci, przenosząc je na siebie.</li>
+<li><b>Dobre Życie:</b> Kiedy dzielisz posiłek, napój lub prostą chwilę spokoju z sojusznikiem, leczy 1k6 PŻ, a ty zaznaczasz PD.</li>
+<li><b>Długi Wpływ:</b> Kiedy ktoś, komu kiedyś pomogłeś/-aś, wraca, by teraz pomóc tobie, ma przewagę na pierwsze działanie.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Upewnij się, że coś dobrego przeżyje ciebie.</li>
+<li>Dotrzyj do kogoś uwięzionego we własnej stagnacji.</li>
+<li>Wypij z kimś dziś, kto może już jutro nie być.</li>
+<li>Zrób coś bohaterskiego i pozwól komuś innemu wziąć za to chwałę.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 9.</p>
+<ul>
+<li>Okłady lecznicze, 3 użycia (1 slot)</li>
+<li>Święty symbol lub relikwia (1 slot)</li>
+<li>Podróżne szaty kapłańskie (1 slot)</li>
+<li>Mała modlitewna księga (1 slot)</li>
+<li>Flasza spirytualiów (1 slot)</li>
+<li>Kij pielgrzymi (zasięg, 1 slot)</li>
+<li>Monety dla biednych, ciągle się kończą (1 slot)</li>
+<li>List od kogoś, kogo nie udało się uratować (małe)</li>
+<li>Ziołowy środek zrobiony dla konkretnej osoby (małe)</li>
+<li>Tani pierścionek, wygładzony do gładkości (małe)</li>
+<li>Zmięty rysunek od dziecka (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_wiekowa_czarodziejka" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Pustelniczka Lasu</b></p>
+<p>Zamknęłaś się po stracie i spędziłaś zbyt wiele lat bez ruchu do przodu. Kiedy wychodzisz z dobrowolnego bezruchu, by działać dla kogoś innego, zyskujesz +1 naprzód.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was znalazł/-a mnie w odosobnieniu i przekonał/-a do wyjścia?</li>
+<li>Który/-a z was wie, na co czekałam w tym lesie?</li>
+<li>Który/-a z was widział/-a, jak opłakuję coś, czego nie potrafię wyjaśnić?</li>
+<li>Który/-a z was przypomina mi kogoś, kogo już straciłam?</li>
+</ul>
+<p>---</p>
+<p><b>Uczennica Legendy</b></p>
+<p>Wielki mag szkolił cię, zanim odszedł. Jego metody żyją w twoich rękach. Kiedy używasz techniki lub filozofii, którą ci przekazał, i opisujesz to głośno, zyskujesz +1 naprzód.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was słyszał/-a o moim mistrzu z reputacji?</li>
+<li>Który/-a z was zadał/-a mi pytanie, które on by zadał?</li>
+<li>Który/-a z was zauważył/-a, że robię coś, czego mnie nauczył?</li>
+<li>Którą z was chciałabym mu kiedyś przedstawić — gdyby jeszcze żył?</li>
+</ul>
+<p>---</p>
+<p><b>Tłumicielka Many</b></p>
+<p>Nauczyłaś się dawno temu ukrywać swoją prawdziwą moc. Wrogowie regularnie cię nie doceniają. Kiedy po raz pierwszy w starciu ujawniasz pełną manę, zyskujesz +1 naprzód, a twój wróg ma utrudnienie na następne działanie.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wyczuł/-a, że coś jest nie tak, zanim się ujawniłam?</li>
+<li>Który/-a z was widział/-a, jak pokonuję coś znacznie silniejszego, niż wyglądałam?</li>
+<li>Który/-a z was poczuł/-a niepokój, gdy odkrył/-a moje prawdziwe możliwości?</li>
+<li>Który/-a z was ufa mi bardziej, teraz że wiesz, co ukrywałam?</li>
+</ul>
+<p>---</p>
+<p><b>Strażniczka Pomników</b></p>
+<p>Dbasz o znaki i pomniki tych, którzy byli przed tobą — bohaterów, przyjaciół, zapomnianych. Kiedy wracasz w miejsce związane z kimś, kogo straciłaś, zapytaj MG o jedno: co tam zrobili lub co czuli. MG odpowiada szczerze.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was zauważył/-a, że zatrzymałam się przy pomniku bez słowa wyjaśnienia?</li>
+<li>Który/-a z was zna imię kogoś, o którego statuę dbam?</li>
+<li>Który/-a z was przypomniał/-a mi, choć trochę, jednego ze zmarłych?</li>
+<li>Który/-a z was chciałabym, żeby go pamiętano — gdyby coś mi się przydarzyło?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Świat Wizualizacji</b></p>
+<p>Magia jest tak silna, jak to, co potrafisz naprawdę wyobrazić sobie w umyśle. Kiedy rzucasz przygotowane zaklęcie, rzuć +INT. Na 10+: działa zgodnie z zamysłem. Na 7-9: działa, ale wybierz jedno: trwa dłużej niż oczekiwano, przyciąga niechcianą uwagę lub kosztuje cię coś drobnego.</p>
+<p><b>Żywy Grimoire</b></p>
+<p>Przez długie życie studiowałaś wiele dziedzin magii. Nazwij jeden rodzaj zaklęć (pogoda, iluzja, ogień, wiązanie, transformacja itp.) — studiowałaś go. Możesz zapytać MG, jak zaklęcie z tej kategorii mogłoby pomóc w bieżącej sytuacji. MG odpowiada szczerze.</p>
+<p><b>Stara Przewaga</b></p>
+<p>Kiedy masz do czynienia z czymś starym — ruiną, demonem, zapomnianym zaklęciem, zakopanymi instytucjami — masz przewagę na rzuty, by to zrozumieć lub wejść z tym w interakcję.</p>
+<p><b>Tłumienie Many</b></p>
+<p>Twoja prawdziwa moc jest ukryta. Wrogowie nie znają twojej siły, dopóki jej nie ujawnisz. Po raz pierwszy gdy zdecydujesz się działać przeciw komuś, kto cię niedocenił, zyskujesz +1 naprzód.</p>
+<p><b>Cierpliwa Obserwacja</b></p>
+<p>Kiedy spędzasz czas spokojnie obserwując stworzenie, osobę lub zjawisko magiczne przed działaniem, zapytaj MG o jeden temat: słabość, motywację lub metodę. MG odpowiada szczerze.</p>
+<p><b>Pożyczone Chwile</b></p>
+<p>Pierwszym razem w każdej sesji, gdy widzisz, jak śmiertelnik robi coś bezinteresownego lub odważnego, zaznacz PD.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # WIEKOWA CZARODZIEJKA</h2><p>*Przeżyłaś wystarczająco długo, by pochować wszystkich, którzy cię kiedykolwiek znali. Nie byłaś obojętna — po prostu nie zdawałaś sobie sprawy, jak szybko odchodzą. Nadal się uczysz być obecna.*</p>
+<p><b>Kostka Obrażeń:</b> k6</p>
+<p><b>PŻ:</b> 6 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Elf:</b> Silvane, Tessra, Eulalie, Vorn / Caelith, Merrath, Solven, Astryn</p>
+<p><b>Stary człowiek:</b> Agata, Mildred, Kornelia, Vess / Roland, Magnus, Aldric, Bastian</p>
+<p><b>Wędrowiec z Północy:</b> Inga, Sigrid, Marta, Hulda / Wendel, Arno, Klaus, Bertold</p>
+<p><b>Bezimienni:</b> Ash, Pale, Ember, Wander / Dusk, Kestrel, Mire, Veil</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> pradawny elf | człowiek, który znalazł zaklęcie przedłużające życie | wędrowiec bez rasy i domu | zapytaj stołu</p>
+<p><b>Wiek:</b> wygląda młodo, jest starożytna | bezwiekowa i niepokojąca | wyrzeźbiona przez stulecia, nie lata</p>
+<p><b>Oczy:</b> odległe, katalogujące świat | nagle ciepłe, kiedy coś ją zainteresuje | zawsze mierzące, ile komuś zostało</p>
+<p><b>Sylwetka:</b> drobna i niespieszna | nieruchoma i precyzyjna | pełna gracji, bez jednego zbędnego gestu</p>
+<p><b>Strój:</b> warstwowe podróżne szaty naprawiane od stuleci | prosta odzież cerowana tysiąc razy | uczony płaszcz z arcańskimi notatkami w podszewce</p>
+<p><b>Znak szczególny:</b> grimoire zawsze w dłoni | nawyk mówienia zbyt wolno | blady uśmiech, który pojawia się z opóźnieniem</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Pradawny Grimoire:</b> Zdobywasz dostęp do jednego niezwykłego zaklęcia z zaginionej epoki magii. Opisz, co robi; MG zatwierdza.</li>
+<li><b>Wybuch Many:</b> Raz na starcie ujawnij pełną manę — wszyscy wrogowie w zasięgu wzroku wahają się, a ty zyskujesz +1 naprzód.</li>
+<li><b>Długa Pamięć:</b> Kiedy coś przywołuje odległą przeszłość, możesz zadać jedno dodatkowe pytanie o bieżącą sytuację.</li>
+<li><b>Ucz Działaniem:</b> Kiedy pokazujesz coś sojusznikowi zamiast tłumaczyć słowami, zyskuje +1 naprzód na następną próbę.</li>
+<li><b>Ciężar Lat:</b> Raz na sesję, kiedy dźwigasz żal za kimś, kto odszedł zanim ktokolwiek inny go znał, zaznacz PD.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Zbierz zaklęcie, którego nigdy wcześniej nie widziałaś.</li>
+<li>Bądź świadkiem, jak śmiertelnik najlepiej wykorzystuje czas, który mu pozostał.</li>
+<li>Działaj w związku z żalem, który dźwigasz zbyt długo.</li>
+<li>Wpuść kogoś blisko, choć na chwilę.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 9.</p>
+<ul>
+<li>Grimoire, sfatygowany i gęsto pokryty notatkami (2 sloty)</li>
+<li>Podróżne szaty (1 slot)</li>
+<li>Pióro, atrament i czyste strony do zapisywania zaklęć (1 slot)</li>
+<li>Mała żelazna latarnia (1 slot)</li>
+<li>Prowiant z odległej krainy (1 slot)</li>
+<li>Sztylet (wręcz, 1 slot)</li>
+<li>Stary list, wciąż niedostarczony (małe)</li>
+<li>Zasuszony kwiat z zapomnianego ogrodu (małe)</li>
+<li>Fragment mapy o niepewnym wieku (małe)</li>
+<li>Szczęśliwy talizman po kimś dawno zmarłym (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_zelazny_weteran" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Jedyny Ocalały</b></p>
+<p>Wszyscy, którzy szkolili się razem z tobą, odeszli. Nosisz ich metody, ich opowieści, ich niedokończone sprawy. Kiedy walczysz, by ocalić to, co zbudowali, zaznaczasz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was pytał/-a mnie o kogoś, z kim kiedyś walczyłem/-am?</li>
+<li>Który/-a z was boję się przeżyć?</li>
+<li>Który/-a z was walczy w sposób, który mi ich przywołuje?</li>
+<li>Który/-a z was powierzyłbym/-abym niesienie tego dalej, gdybym nie mógł/-a?</li>
+</ul>
+<p>---</p>
+<p><b>Przestraszony Uczeń</b></p>
+<p>Kiedyś szkoliłeś/-aś kogoś, widziałeś/-aś jak staje się potężny, i to cię przestraszyło. Możliwe, że źle sobie z tym poradziłeś/-aś. Kiedy uczciwie i bez zastrzeżeń uznasz siłę innej osoby, zaznaczasz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was już oceniłem/-am i nic nie powiedziałem/-am?</li>
+<li>Który/-a z was wziąłbym/-abym jako ucznia/-icę, gdybym był/-a młodszy/-a?</li>
+<li>Który/-a z was przypomina mi błąd, który popełniłem/-am wobec kogoś, kogo szkoliłem/-am?</li>
+<li>Który/-a z was obawiam się, że już zawiodłem/-am, nawet o tym nie wiedząc?</li>
+</ul>
+<p>---</p>
+<p><b>Świadomy Wybór</b></p>
+<p>Wybrałeś/-aś aktywność, kiedy spokój byłby łatwiejszy. Kiedy wybierasz trudniejszą drogę zamiast odpoczynku, wycofania lub cichego końca, zyskujesz +1 naprzód.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was pytał/-a mnie, czemu nadal to robię w swoim wieku?</li>
+<li>Który/-a z was zrozumiał/-a bez pytania?</li>
+<li>Który/-a z was jest częściowo powodem, dla którego tu jestem?</li>
+<li>Który/-a z was, mam nadzieję, wciąż mnie potrzebuje — bo ja potrzebuję być potrzebny/-a?</li>
+</ul>
+<p>---</p>
+<p><b>Żelazna Reputacja</b></p>
+<p>Opowieści o twojej przeszłości wyprzedzają cię. Czasem są prawdziwe. Kiedy ktoś w scenie wie, kim jesteś, ma utrudnienie na działania przeciw tobie.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was słyszał/-a moje imię, zanim się spotkaliśmy?</li>
+<li>Który/-a z was był/-a zaskoczony/-a, że wciąż żyję?</li>
+<li>Który/-a z was widzi przepaść między historią a człowiekiem?</li>
+<li>Który/-a z was, jak sądzę, mógłby/-aby prześcignąć wszystko, co mówią o mnie opowieści?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Nadnaturalna Wytrzymałość</b></p>
+<p>Twoje ciało pochłania obrażenia, które zniszczyłyby innych. Kiedy otrzymujesz obrażenia, zmniejszasz je o 1 (minimum 1).</p>
+<p><b>Żelazne Podstawy</b></p>
+<p>Kiedy wbijasz się w ziemię i odmawiasz ruszenia, wrogowie mają utrudnienie na próby powalenia cię, odepchnięcia lub przerwania koncentracji.</p>
+<p><b>Niech Próbują</b></p>
+<p>Kiedy wróg atakuje cię i chybia, zadajesz mu obrażenia równe swojej kostce bez rzutu.</p>
+<p><b>Wciąż Stojący</b></p>
+<p>Kiedy spadasz poniżej połowy PŻ, zadajesz +1k6 obrażeń do końca starcia.</p>
+<p><b>Pewne Dłonie</b></p>
+<p>Kiedy pomagasz sojusznikowi w walce, ma przewagę na następny rzut.</p>
+<p><b>Stare Lekcje</b></p>
+<p>Kiedy mówisz młodszej postaci coś istotnego z przeszłości — metodę, wspomnienie, gorzką prawdę — zyskuje +1 naprzód.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # ŻELAZNY WETERAN</h2><p>*Twoje ciało powinno było się złamać już lata temu. Towarzysze odeszli. Świat poszedł dalej bez pytania o zgodę. Ty tu jeszcze jesteś, wciąż w ruchu — bo ktoś młodszy tego potrzebuje.*</p>
+<p><b>Kostka Obrażeń:</b> k8</p>
+<p><b>PŻ:</b> 12 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Krasnolud:</b> Dorri, Thira, Binna, Arna / Gromr, Halvek, Durren, Aldrek</p>
+<p><b>Stary ludzki wojownik:</b> Grisel, Maud, Sigrid, Thorva / Oldric, Brennan, Gareth, Haakon</p>
+<p><b>Pradawny elf:</b> Calael, Vorrith, Mern, Syla / Caelith, Doran, Arith, Geln</p>
+<p><b>Zapomniany weteran:</b> Kamień, Kurhan, Krzemień, Popiół / Żwir, Pika, Rdza, Dębina</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> pradawny krasnolud, ostatni z pokolenia wojowników | stary ludzki weteran, który odmówił przejścia na emeryturę | starszy elf, który wybrał ścieżkę wojownika | zapytaj stołu</p>
+<p><b>Wiek:</b> wystarczająco stary, by to wszystko już widzieć | fizycznie starożytny, wciąż imponujący | wiek widać tylko w oczach</p>
+<p><b>Oczy:</b> spokojne i mierzące | życzliwe, z głębokim podtonem żalu | stabilne i obecne</p>
+<p><b>Sylwetka:</b> masywna i wytrącona przez czas | gruba jak żelazo, wciąż nosząca stare rany | ogromna w sposób, który czyta się jako spokój</p>
+<p><b>Strój:</b> naprawiana zbroja wyglansowana do połysku | ciężkie zwykłe ubrania odporne na wszystko | warstwowy zestaw wojownika bez ceremonii</p>
+<p><b>Znak szczególny:</b> blizny, które stały się częścią twarzy | ruchy, które nic nie marnują | słucha więcej niż mówi</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Nieporuszony:</b> Raz na sesję przeżywasz cios, który zabiłby kogokolwiek innego. Pozostajesz przy 1 PŻ.</li>
+<li><b>Ostatni Mur:</b> Kiedy przyjmujesz cios przeznaczony dla sojusznika, obrażenia dla niego spadają do 0.</li>
+<li><b>Legendarna Przeszłość:</b> Kiedy opisujesz coś z przeszłości, czego nikt w pomieszczeniu nigdy nie widział, zaznaczasz PD.</li>
+<li><b>Żelazny Mentor:</b> Kiedy postać używa czegoś, czego ją nauczyłeś/-aś, i udaje jej się, ty zaznaczasz PD.</li>
+<li><b>Jeszcze Nie:</b> Raz na sesję, kiedy miałeś/-aś umrzeć — nie umierasz. Zostajesz przy 1 PŻ.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Chroń kogoś, z kim świat nie skończył jeszcze swojej pracy.</li>
+<li>Opowiedz historię wartą zapamiętania.</li>
+<li>Ruszaj dalej — odpoczynek poczeka.</li>
+<li>Daj komuś uznanie, którego sam/-a nigdy nie dostałeś/-aś.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 10.</p>
+<ul>
+<li>Wielki topór, bojowy młot lub żelazny kij (zasięg, potężna, 2 sloty)</li>
+<li>Ciężka wzmocniona zbroja (2 sloty, 2 pancerze)</li>
+<li>Żelazna flasza (1 slot)</li>
+<li>Bandaże i opatrunki polowe (1 slot)</li>
+<li>Racje dla dwojga (1 slot)</li>
+<li>Sfatygowana osełka (małe)</li>
+<li>Talizman po poległym towarzyszu (małe)</li>
+<li>Stary balsam na rany, jedno użycie (małe)</li>
+<li>Garść żwiru lub kamieni z domu (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+<div id="pl_optional_moves" class="playbook-content lang-pl"><div class="optional-moves-container"><div class="card"><h2>📜 # Opcjonalne Ruchy — Frieren: Beyond Journey's End</h2></div> <div class="card"><h2>📜 Opcjonalne Ruchy</h2><p><b>Odczyt Many</b></p>
+<p>Kiedy uważnie obserwujesz, jak ktoś rzuca zaklęcie, tłumi moc lub walczy używając techniki magicznej, rzuć +INT. Na 10+: zadaj MG dwa pytania z poniższej listy. Na 7-9: zadaj jedno:</p>
+<ul>
+<li>Jak naprawdę potężna jest ta magia?</li>
+<li>Co próbuje ukryć?</li>
+<li>Jakiego rodzaju zaklęcia przygotowuje?</li>
+<li>Czego nie chciałaby, żebym wiedział/-a o jej ograniczeniach?</li>
+</ul>
+<p>---</p>
+<p><b>Wyścig z Czasem</b></p>
+<p>Kiedy przezwyciężasz słabnące zdrowie, wyczerpanie lub szybko zamykające się okno, by dokończyć coś ważnego, rzuć +KON. Na 10+: kończysz na czas i zaznaczasz PD. Na 7-9: wybierz jedno: kończysz, ale dostajesz przywarę, albo nie całkiem kończysz, ale trzymasz się wystarczająco długo, by ktoś inny mógł to dokończyć.</p>
+<p>---</p>
+<p><b>Wyciąganie Kogoś z Zastoju</b></p>
+<p>Kiedy konfrontujesz osobę uwięzioną w stagnacji, rezygnacji lub strachu i dajesz jej konkretny powód, by ruszyła naprzód, rzuć +CHA. Na 10+: coś w niej się porusza — działa na to i zaznacza PD. Na 7-9: słyszy cię, ale coś jeszcze ją trzyma. Powiedz MG co to jest.</p>
+<p>---</p>
+<p><b>Starożytna Ziemia</b></p>
+<p>Kiedy podróżujesz przez miejsce dotknięte starą magią, dawno martwymi bohaterami lub dawną katastrofą, rzuć +MĄD. Na 10+: MG daje ci dwie prawdziwe informacje o tym, co się tu wydarzyło. Na 7-9: dowiadujesz się jednej prawdziwej rzeczy — ale coś tu zauważa twoją obecność.</p>
+<p>---</p>
+<p><b>Zostaw Coś Po Sobie</b></p>
+<p>Kiedy zapewniasz, że osoba, czyn lub wspomnienie przeżyje ciebie — przez ucznia, pomnik, pisemny zapis lub ostateczny czyn poniesiony kosztem — zaznaczasz PD. Jeśli to, co zostawiasz, jest związane z kimś, kto już odszedł, zaznaczasz PD jeszcze raz.</p></div></div></div>
+
+    <div id="pl_adventures" class="playbook-content lang-pl">
+        <div class="main-column" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2rem;">
+            <div class="card adventure-generator-card">
+                <h2>✨ Generator Przygód — Frieren: Beyond Journey's End Generator</h2>
+                <div class="generator-result" id="rng-result-pl">
+                    ...
+                </div>
+                <div class="generator-actions">
+                    <button type="button" class="lang-toggle active rng-roll-btn" onclick="generateAdventure('pl')">🎲 Losuj / Roll</button>
+                </div>
+            </div>
+            
+            <div class="adventure-tables-grid" id="rng-tables-pl">
+    
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 1: Akcja i Lokacja</h3>
+                    <div class="adventure-prefix">Odkrywamy</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">zapieczętowany grobowiec wyryty w języku, którego żaden żyjący uczony nie zna</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">rozpadającą się wieżę maga, wciąż ciepłą od resztek many</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">czynny obóz demonów udający spokojną wioskę</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">pradawny grimoire zapieczętowany zaklęciem żywiącym się żalem</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">ruinę oznaczoną herbem oryginalnej drużyny bohatera</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">posąg bez napisu — ktoś celowo go usunął</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">wioskę, w której wszyscy czekają na coś, czego nie potrafią nazwać</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">kości maga, który zginął próbując dotrzeć gdzieś na północ</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">szczelinę w polu many lasu, która rośnie z każdą nocą</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">opuszczone laboratorium, którego ostatni eksperyment wciąż działa</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">most zapieczętowany klątwą demona sprzed pięćdziesięciu lat</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">pole bitwy pokryte kwiatami, kwitnącymi tylko nad starą krwią</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">zaklęcie wyryte w kamieniu, które nie miało nigdy zostać odkryte</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">świątynię zbudowaną przez nie-żywą rękę, niedawno odwiedzoną</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">strefę tłumienia many o nieznanym pochodzeniu i celu</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">ostatnią strażnicę cywilizacji, która zginęła przed Demon Kingiem</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">podziemny korytarz starszy niż jakikolwiek zapis o kontynencie</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">jezioro pokazujące wizje — ale tylko z przeszłości, nigdy przyszłości</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">bibliotekę, z której książki powoli i cicho znikają</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">miejsce legendarnego pojedynku, wciąż trzeszczące od resztkowej magii</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 2: Położenie i Geografia</h3>
+                    <div class="adventure-prefix">która leży</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">na skraju północnego płaskowyżu, za miejscem gdzie mapy są już rzetelne</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">pod korzeniami lasu, w który nikt nie wchodził od dekad</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">wewnątrz wioski, w której pora roku nigdy się nie zmienia</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">na skrzyżowaniu dwóch dróg, których nikt już nie używa</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">wewnątrz góry, do której magowie odmawiają wchodzić i nic nie tłumaczą</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">na granicy terytorium demonów, za zawaloną bramą</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">wzdłuż szlaku, którym kiedyś szła oryginalna drużyna bohatera</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">tam gdzie rzeka powinna być, ale wyschła za jednego pokolenia</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">u podnóża klifu pokrytego starymi rzeźbami, których nikt nie przetłumaczył</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">wewnątrz ruin miasta zniszczonego w wojnie i nigdy nieodbudowanego</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">pod lodowcem, który topi się szybciej niż powinien</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">w dziupli drzewa, które jest wystarczająco stare, by pamiętać zmianę świata</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">w centrum krateru o magicznym pochodzeniu, niezaznaczonego na żadnej mapie</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">za bramą zapieczętowaną od czasów panowania Demon Kinga</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">wewnątrz miasta, które zostało ocalone, ale nigdy nie wróciło do siebie</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">głęboko wewnątrz lasu, który opiera się wszelkiemu kartografowaniu</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">w ruinach tego, co kiedyś było szkołą dla magów</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">w miejscu, które każda mapa zaznacza inaczej</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">za północną przełęczą, o której podobno wiedzą tylko umarli</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">tam gdzie światło Aureole widać w najjaśniejsze noce</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 3: Cel</h3>
+                    <div class="adventure-prefix">prowadząc do</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">Aureole, krainy gdzie spoczywają dusze</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">fortecy demonów, która przetrwała upadek Demon Kinga</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">ruin pierwszej wieży Flamme</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">wioski, która czekała na powrót kogoś</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">przełęczy strzeżonej przez coś starszego niż panowanie Demon Kinga</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">miejsca spoczynku bohatera, którego nikt nie pamięta</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">regionu poza jurysdykcją Kontynentalnego Stowarzyszenia Magów</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">miasta, które handluje tajemnicami i starymi zaklęciami</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">sanktuarium magów odciętego od świata zewnętrznego od stulecia</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">miejsca ostatniej bitwy zapomnianej wojny, którą historia przekazała fałszywie</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">sali, gdzie zapisano pierwszego demona mówiącego ludzkim językiem</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">lasu, który pamięta każdego, kto kiedykolwiek przez niego przechodził</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">miejsca nieobecnego na żadnej mapie, ale obecnego w każdej starej legendzie</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">doliny, gdzie drużyna bohatera ćwiczyła przed swoją wyprawą</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">bramy na ziemie za północnym kontynentem</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">ruin kościoła pochłoniętego przez coś, co ruszyło pod nim</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">twierdzy, która padła demonom gdy pomoc nie nadeszła na czas</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">klifu na krańcu świata z widokiem na otwarte morze</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">wioski zbudowanej na grobie czegoś ogromnego i starego</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">miejsca, które Frieren odwiedziła raz i od tamtej pory milczy na jego temat</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 4: Cel Misji</h3>
+                    <div class="adventure-prefix">Jesteśmy tutaj, aby</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">odzyskać grimoire przeklętych zaklęć, zanim zrobi to ktoś inny</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">zapieczętować demona, który nigdy nie został do końca pokonany, tylko uwięziony</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">znaleźć miejsce spoczynku towarzysza, który zginął samotnie i daleko</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">zniszczyć kryształ many podtrzymujący klątwę starego pola bitwy</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">chronić wioskę przed demonem, który wraca jak w zegarku co sezon</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">odkryć prawdziwą historię bohatera, który stał się mitem</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">dostarczyć wiadomość przeznaczoną dla kogoś, kto już nie żyje</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">zbadać, dlaczego magowie w tym regionie tracą zdolność wizualizacji</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">znaleźć kwiat kwitnący tylko w ruinach dotkniętych potężną magią</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">odzyskać relikwię, którą umierający kapłan chce odzyskać przed końcem</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">zweryfikować, czy pokój w tym regionie jest prawdziwy, czy demonicznym podstępem</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">przetłumaczyć stary tekst, zanim całkowicie się rozpadnie</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">odkryć, kto po cichu niszczy posągi bohatera</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">przeżyć wystarczająco długo, by zamieć minęła i dotrzeć na drugą stronę</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">wypełnić obietnicę złożoną komuś, kto nie może nas już do niej przymuszać</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">dotrzeć do konkretnego miejsca, zanim ścieżka zamknie się na kolejne stulecie</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">dowiedzieć się, dlaczego demony gromadzą się na terytorium, które opuściły po wojnie</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">pomóc magowi, który stracił zdolność rzucania zaklęć, na nowo ją odnaleźć</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">złamać klątwę, która przeżyła wszystkich, którzy ją rzucili</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">zanieść ostatnią wiadomość od kogoś, kto wie, że umiera</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 5: Drobne Zagrożenia i Przeszkody</h3>
+                    <div class="adventure-prefix">strzeżony przez</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">demona, który przebrał się za pogrążonego w żałobie ludzkiego ocalałego</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">pole many, które neutralizuje całą magię w swoim zasięgu</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">starożytnego strażnika zbudowanego zanim istniał jakikolwiek aktualny język</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">klątwę, która sprawia że ofiary wierzą, że już nie żyją</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">maga, który stracił rozum po dekadach samotnych studiów</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">grupę demonów używających dawnych taktyk drużyny bohatera przeciw przygodnikom</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">barierę, przez którą przejść może tylko ktoś, kto naprawdę stawił czoła strachowi</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">zachowaną świadomość martwego arcymaga, wciąż obserwującą</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">stworzenie, które czeka tutaj dłużej niż Demon King istniał</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">pole iluzji pokazujące każdej osobie jej najbardziej nieznośne wspomnienie</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">dowódcę demonów, który zna technikę tłumienia many Frieren</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">pułapkę zastawioną przez armię Demon Kinga, nigdy nie rozbrojoną</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">maga, który nie pozwoli nikomu dotknąć tego, co przysiągł chronić</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">rój konstruktów zasilanych maną skradzioną żywym</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">próbę, której oryginalna drużyna bohatera nie zdała trzy razy zanim przeszła</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">troje demonów, którzy kłócą się o to, kto z nich was zabije</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">zapieczętowane drzwi, które można otworzyć tylko za pomocą prawdziwej żałoby</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">demona, który używa języka smutku jako broni</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">miejsce, które zabiera fragment pamięci każdemu, kto do niego wchodzi</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">pradawnego wojownika, który przepuści tylko kogoś, kogo uzna za wartego przejścia</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 6: Główny Boss i Antagonista</h3>
+                    <div class="adventure-prefix">i</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">Aura the Guillotine, powrócona i cierpliwa</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">Wyższy Demon planujący od stuleci</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">skorrumpowany mag, który żył zbyt długo i zapomniał, dlaczego zaczął</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">demon, który nauczył się symulować żal i stał się przez to czymś gorszym</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">generał armii Demon Kinga, nigdy nieodnaleziony po zakończeniu wojny</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">pradawny elf, który wybrał służbę Demon Kingowi i wciąż chodzi wolny</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">demon polujący konkretnie na ostatnich żyjących członków jakiejś drużyny bohatera</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">istota starsza od Demon Kinga, która obserwowała wszystko</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">mag przemieniony w demona przez zakazany rytuał, którego nie może odwrócić</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">demon, który opanował tłumienie many i od dekad ukrywa się w zwykłym widoku</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">były bohater, który zawarł pakt kosztujący go wszystko poza życiem</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">ostatni ocalały porucznik wewnętrznego kręgu Demon Kinga</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">demon tak wyrafinowanej specjalizacji magicznej, że nikt nie jest w stanie wizualizować obrony</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">to, co niemal zabiło Frieren sześćset lat temu</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">demon kolekcjonujący żale umierających jako walutę i moc</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">demon-klątwa wyhodowany by przeżyć drużynę bohatera i dokończyć to, co zaczęła wojna</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">pradawna związana istota, która rośnie w siłę w miarę jak jej więzienie próchnieje</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">demon, który zapamiętał i odwrócił każde zaklęcie z grimoire Flamme</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">władca demoniego miasta, który postrzega ludzkość jako chwilową infestację</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">demon, który zabił drużynę bohatera w innej linii czasu i zastanawia się nad tą</span></li>
+</ul>
+                </div>
+        
+
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_ancient_mage" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Forest Hermit</b></p>
+<p>You isolated yourself after a loss and spent too many years going nowhere. When you emerge from self-imposed stillness to act on someone else's behalf, take +1 forward.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you found me in isolation and convinced me to leave?</li>
+<li>Which of you knows what I was waiting for in that forest?</li>
+<li>Which of you has seen me grieve in a way I could not explain?</li>
+<li>Which of you reminds me of someone I have already lost?</li>
+</ul>
+<p>---</p>
+<p><b>Pupil of a Legend</b></p>
+<p>A great mage trained you before they passed. Their methods live in your hands. When you use a technique or philosophy your mentor taught you and describe it aloud, take +1 forward.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has heard of my mentor by reputation?</li>
+<li>Which of you asked me something my mentor would have asked?</li>
+<li>Which of you noticed me doing something I learned from them?</li>
+<li>Which of you would I most want to introduce to my mentor — if only they were still here?</li>
+</ul>
+<p>---</p>
+<p><b>Mana Suppressor</b></p>
+<p>You learned long ago to hide your true power. Enemies routinely underestimate you. When you reveal your full mana for the first time in a conflict, take +1 forward and your enemy takes disadvantage on their next action.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you sensed something off about me before I revealed myself?</li>
+<li>Which of you has seen me strike down something much stronger than I appeared?</li>
+<li>Which of you was unsettled when you discovered my true capacity?</li>
+<li>Which of you trusts me more, now that you know what I've been hiding?</li>
+</ul>
+<p>---</p>
+<p><b>Keeper of Statues</b></p>
+<p>You maintain the markers and monuments of those who came before — heroes, friends, the forgotten. When you return to a place associated with someone you've lost, ask the GM one question about what they did or felt here. The GM answers honestly.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you noticed me pausing at a memorial without explaining why?</li>
+<li>Which of you knows the name of someone whose statue I tend?</li>
+<li>Which of you reminded me, in some small way, of one of the dead?</li>
+<li>Which of you would I want remembered — if something happened to me?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>World of Visualization</b></p>
+<p>Magic is only as strong as what you can genuinely imagine. When you cast a spell you have prepared, roll +INT. On a 10+, it works as intended. On a 7-9, it works but choose one: it takes longer than expected, draws unwanted attention, or costs something small.</p>
+<p><b>Living Grimoire</b></p>
+<p>You have studied many categories of magic over your long life. Name a type of spell (weather, illusion, fire, binding, transformation, etc.) — you have studied it. You can ask the GM one question about how a spell in that category could help the current situation. The GM answers honestly.</p>
+<p><b>Ancient Advantage</b></p>
+<p>When you face something old — a ruin, a demon, a forgotten spell, a buried institution — you have advantage on rolls to understand or interact with it.</p>
+<p><b>Mana Suppression</b></p>
+<p>Your true power is hidden. Enemies cannot gauge your strength until you reveal it. The first time you act decisively against something that underestimated you in a scene, take +1 forward.</p>
+<p><b>Patient Study</b></p>
+<p>When you spend time quietly observing a creature, person, or magical phenomenon before acting, ask the GM one question about its weakness, motivation, or method. The GM answers honestly.</p>
+<p><b>Borrowed Time</b></p>
+<p>The first time each session you watch someone mortal do something selfless or brave, mark XP.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Ancient Grimoire:</b> Gain access to one unusual spell from a lost magical era. Describe what it does; the GM approves.</li>
+<li><b>Mana Flare:</b> Once per conflict, reveal your full mana — all enemies in sight hesitate, and you take +1 forward.</li>
+<li><b>Long Memory:</b> When something reminds you of the distant past, you may ask one additional question about the current situation.</li>
+<li><b>Teach by Doing:</b> When you model something for an ally rather than explain it, they take +1 forward to their next attempt.</li>
+<li><b>The Weight of Years:</b> Once per session, when you carry grief for someone who died long before anyone else knew them, mark XP.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🧙 # THE ANCIENT MAGE</h2><p>*You have lived long enough to bury everyone who ever knew you. You weren't distant — you just didn't realize how fast they were going. You are still learning to pay attention.*</p>
+<p><b>Damage Die:</b> d6</p>
+<p><b>HP:</b> 6 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Elf:</b> Silvane, Tessra, Eulalie, Vorn / Caelith, Merrath, Solven, Astryn</p>
+<p><b>Ancient Human:</b> Agatha, Mildred, Cornelius, Vess / Roland, Magnus, Aldric, Bastian</p>
+<p><b>Northern Wanderer:</b> Inga, Sigrid, Marta, Hulde / Wendel, Arno, Klaus, Bertold</p>
+<p><b>Nameless Traveler:</b> Ash, Pale, Ember, Wander / Dusk, Kestrel, Mire, Veil</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Heritage:</b> ancient elf | human who found a life-extension spell | wanderer without a home race | ask the table</p>
+<p><b>Age:</b> looks young, is ancient | ageless and unsettling | weathered by centuries, not years</p>
+<p><b>Eyes:</b> distant and cataloguing | suddenly warm when interested | always measuring how long someone has left</p>
+<p><b>Build:</b> slight and unhurried | still and precise | graceful with no wasted motion</p>
+<p><b>Clothing:</b> traveler's robes layered over centuries | simple garb repaired a thousand times | scholar's coat with arcane notation stitched in</p>
+<p><b>Signature:</b> a grimoire always at hand | the habit of speaking too slowly | a faint smile that arrives late</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Collect a spell you have never seen before.</li>
+<li>Witness a mortal make the most of the time they have.</li>
+<li>Act on a regret you have been carrying for too long.</li>
+<li>Let someone in, even briefly.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 9.</p>
+<ul>
+<li>Grimoire, worn and heavily annotated (2 slots)</li>
+<li>Traveler's robes (1 slot)</li>
+<li>Quill, ink, and blank pages (1 slot)</li>
+<li>Small iron lantern (1 slot)</li>
+<li>Provisions from a distant region (1 slot)</li>
+<li>Dagger (hand, 1 slot)</li>
+<li>Old letter, still undelivered (small)</li>
+<li>Dried flower from a forgotten garden (small)</li>
+<li>Map fragment of uncertain age (small)</li>
+<li>Lucky token from someone long dead (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_devoted_priest" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Death Anxiety</b></p>
+<p>You once admitted to yourself, in the dark, that you are afraid to die. It changed how you act. When you help someone else face their own mortality with courage, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows that I'm afraid, even if I don't say it?</li>
+<li>Which of you I've seen face death more calmly than I could manage?</li>
+<li>Which of you has offered me the kind of comfort I've offered others?</li>
+<li>Which of you keeps me honest about how much time I'm wasting?</li>
+</ul>
+<p>---</p>
+<p><b>Adopted Child</b></p>
+<p>You raised someone who will outlive you. That was the point. Once per session, when someone you care for is in danger and you act without hesitation, take +1 forward.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you reminds me of the person I raised?</li>
+<li>Which of you has seen me look at someone the way a parent looks?</li>
+<li>Which of you knows what I gave up to take care of someone else?</li>
+<li>Which of you I hope will look after them after I'm gone?</li>
+</ul>
+<p>---</p>
+<p><b>Village Roots</b></p>
+<p>You left comfort and belonging behind — a place, a congregation, a life that was smaller but easier. When you choose the harder path over the easier one, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you was the reason I left?</li>
+<li>Which of you thinks I stayed gone out of courage, not restlessness?</li>
+<li>Which of you knows how close I came to going back?</li>
+<li>Which of you I worry will stay behind when the rest of us keep moving?</li>
+</ul>
+<p>---</p>
+<p><b>Last Rites</b></p>
+<p>You have sat with many people at the end. You know what the dying need. When you offer genuine comfort to someone facing death, ask the GM one question about what they truly need to hear. The GM answers honestly.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has let me sit with their grief?</li>
+<li>Which of you has asked me what dying feels like?</li>
+<li>Which of you I worry I'll be sitting with too soon?</li>
+<li>Which of you keeps me from giving up on the ones I can still help?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Goddess's Grace</b></p>
+<p>When you heal someone, roll +WIS. On a 10+, remove a debility or restore 1d8 HP. On a 7-9, restore 1d6 HP.</p>
+<p><b>Curse Resistance</b></p>
+<p>Priests carry a natural shield against magical compulsion. When you resist a curse, magical fear, or enchantment, take +1 forward.</p>
+<p><b>Final Hours</b></p>
+<p>When someone is dying or reduced to 0 HP, your healing magic has advantage.</p>
+<p><b>Legacy Work</b></p>
+<p>When you act to ensure your positive impact survives you — through a student, a written record, a final gift, a promise kept — mark XP.</p>
+<p><b>Holy Light</b></p>
+<p>You can produce soft warm light from your hands or holy symbol. When used against the undead or demons, they take disadvantage against you.</p>
+<p><b>Proper Adult</b></p>
+<p>When you counsel another character through their stagnation, fear, or grief, they take +1 forward. If they act on your counsel this session, you mark XP.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Stronger Blessing:</b> Your healing removes one condition in addition to restoring HP.</li>
+<li><b>Against the Night:</b> Once per session, banish or delay one undead creature without a roll.</li>
+<li><b>Borrowed Years:</b> By touch, you can take on another character's debility or condition, transferring it to yourself.</li>
+<li><b>The Good Life:</b> When you share a meal, a drink, or simple comfort with an ally, they heal 1d6 HP and you mark XP.</li>
+<li><b>Long Influence:</b> When someone you've helped in the past returns to help you, they have advantage on their first action.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # THE DEVOTED PRIEST</h2><p>*The goddess will welcome you eventually. But not yet. There are still things worth doing with what time remains — and you are not going quietly.*</p>
+<p><b>Damage Die:</b> d6</p>
+<p><b>HP:</b> 8 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Church Ordained:</b> Agnes, Beatrix, Hildur, Maren / Ewald, Anselm, Caspar, Dietmar</p>
+<p><b>Village Cleric:</b> Sofie, Willa, Nanna, Inga / Wendel, Lorenz, Tobias, Franz</p>
+<p><b>Wandering Minister:</b> Isolde, Carla, Vesta, Pallas / Remis, Saul, Coel, Marcian</p>
+<p><b>Reformed Sinner:</b> Delia, Sadie, Cress, Vera / Fletch, Oskar, Remy, Leif</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Heritage:</b> ordained clergy | village healer turned wanderer | traveling minister of a distant diocese | ask the table</p>
+<p><b>Age:</b> young but worn by spiritual burden | middle-aged and unhurried | old and moving like they've settled some debt</p>
+<p><b>Eyes:</b> kind and tired | sharp beneath the gentleness | measuring how much life remains in a room</p>
+<p><b>Build:</b> comfortable and slow-moving | wiry beneath soft clothes | stooped, but only slightly</p>
+<p><b>Clothing:</b> priest's vestments, travel-stained | layered traveling clothes with holy symbols | plain clothes with a hidden relic</p>
+<p><b>Signature:</b> a flask they reach for when no one's looking | a habit of offering more than they should | the way they look at the dying</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Ensure something good survives you.</li>
+<li>Reach someone trapped in their own stagnation.</li>
+<li>Drink with someone tonight who may be gone tomorrow.</li>
+<li>Do something heroic and let someone else take the credit.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 9.</p>
+<ul>
+<li>Healing poultices, 3 uses (1 slot)</li>
+<li>Holy symbol or relic (1 slot)</li>
+<li>Travelling vestments (1 slot)</li>
+<li>Small prayerbook (1 slot)</li>
+<li>Flask of spirits (1 slot)</li>
+<li>Walking staff (reach, 1 slot)</li>
+<li>Coin for the poor, always running out (1 slot)</li>
+<li>Letter from someone they failed to save (small)</li>
+<li>Herbal remedy made for someone specific (small)</li>
+<li>Cheap ring, worn smooth (small)</li>
+<li>Crumbled drawing from a child (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_iron_elder" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Sole Survivor</b></p>
+<p>Everyone who trained alongside you is gone. You carry their methods, their stories, their unfinished business. When you fight to preserve what they built, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has asked me about someone I used to fight beside?</li>
+<li>Which of you I worry about outliving?</li>
+<li>Which of you fights in a way that reminds me of someone I've lost?</li>
+<li>Which of you I'd trust to carry this forward, if I can't?</li>
+</ul>
+<p>---</p>
+<p><b>Feared Disciple</b></p>
+<p>You once trained someone, saw how powerful they were becoming, and it frightened you. You may have handled it poorly. When you acknowledge another person's strength honestly and without qualification, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you I've already assessed and not said a word about?</li>
+<li>Which of you I would take on as a disciple, if I were younger?</li>
+<li>Which of you reminds me of a mistake I made with someone I trained?</li>
+<li>Which of you I worry I've already let down, without knowing it?</li>
+</ul>
+<p>---</p>
+<p><b>Deliberate Choice</b></p>
+<p>You chose to stay active when staying still would have been easier. When you choose the harder path instead of rest, retirement, or quiet endings, take +1 forward.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you asked me why I'm still doing this at my age?</li>
+<li>Which of you understood without asking?</li>
+<li>Which of you I'm here partly because of?</li>
+<li>Which of you I hope still needs me — because I need to be needed?</li>
+</ul>
+<p>---</p>
+<p><b>Iron Reputation</b></p>
+<p>Stories about your past precede you. Sometimes they're accurate. When someone in the scene knows who you are, they take disadvantage to act against you.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you had heard my name before we met?</li>
+<li>Which of you was surprised I was still alive?</li>
+<li>Which of you has seen the gap between the story and the person?</li>
+<li>Which of you I think could surpass anything the stories say about me?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Unnatural Durability</b></p>
+<p>Your body absorbs damage that would destroy others. When you take damage, reduce it by 1 (minimum 1).</p>
+<p><b>Iron Foundation</b></p>
+<p>When you plant your feet and refuse to be moved, enemies have disadvantage on attempts to knock you down, push you back, or break your concentration.</p>
+<p><b>Let Them Try</b></p>
+<p>When an enemy attacks you and misses, deal your damage die in return without rolling.</p>
+<p><b>Still Standing</b></p>
+<p>When you are reduced below half HP, deal +1d6 damage until the end of the conflict.</p>
+<p><b>Steady Hands</b></p>
+<p>When you assist an ally in combat, they have advantage on their next roll.</p>
+<p><b>Old Lessons</b></p>
+<p>When you tell a younger character something relevant from your past — a method, a memory, a hard truth — they take +1 forward.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Immovable:</b> Once per session, survive a hit that would have killed anyone else. You remain at 1 HP.</li>
+<li><b>The Last Wall:</b> When you take a hit meant for an ally, reduce the damage to them to 0.</li>
+<li><b>Legendary Past:</b> When you describe something from your past that no one in the room has ever witnessed, mark XP.</li>
+<li><b>Iron Mentor:</b> When a character uses something you taught them and succeeds, you mark XP.</li>
+<li><b>Not Yet:</b> Once per session, when you would die, you don't. You survive at 1 HP.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # THE IRON ELDER</h2><p>*Your body should have broken years ago. Your comrades are gone. The world has moved on without asking your permission. You are still here, still moving — because someone younger needs you to.*</p>
+<p><b>Damage Die:</b> d8</p>
+<p><b>HP:</b> 12 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Dwarf:</b> Dorri, Thira, Binna, Arna / Gromr, Halvek, Durren, Aldrek</p>
+<p><b>Old Warrior Human:</b> Grisel, Maud, Sigrid, Thorva / Oldric, Brennan, Gareth, Haakon</p>
+<p><b>Ancient Elf:</b> Calael, Vorrith, Mern, Syla / Caelith, Doran, Arith, Geln</p>
+<p><b>Forgotten Veteran:</b> Stone, Barrow, Flint, Ash / Gravel, Pike, Rust, Timber</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Heritage:</b> ancient dwarf, last of a warrior generation | old human veteran who refused retirement | elder elf who chose a warrior's life | ask the table</p>
+<p><b>Age:</b> old enough to have seen all of this before | physically ancient, still imposing | age shows only in the eyes</p>
+<p><b>Eyes:</b> unhurried and measuring | kind, with a deep undertow of grief | steady and present</p>
+<p><b>Build:</b> massive and weathered | thick as iron, still carrying old wounds | hulking in a way that reads as calm</p>
+<p><b>Clothing:</b> repaired armor worn to a shine | plain heavy clothes that resist everything | layered warrior's kit with no ceremony</p>
+<p><b>Signature:</b> scars that have become part of the face | movements that waste nothing | listening more than speaking</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Protect someone the world has not yet finished with.</li>
+<li>Tell a story worth remembering.</li>
+<li>Keep moving — rest is for later.</li>
+<li>Give someone the acknowledgment you were never given.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 10.</p>
+<ul>
+<li>Great axe, warhammer, or iron-shod staff (reach, forceful, 2 slots)</li>
+<li>Heavy reinforced armor (2 slots, 2 armor)</li>
+<li>Iron flask (1 slot)</li>
+<li>Bandages and field dressings (1 slot)</li>
+<li>Rations for two (1 slot)</li>
+<li>Worn whetstone (small)</li>
+<li>Token from a fallen comrade (small)</li>
+<li>Old wound salve, one use (small)</li>
+<li>Handful of gravel or stones from home (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_prodigy" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Orphan's Debt</b></p>
+<p>Your guardian gave their remaining years for you. That matters more than they ever let on. When you honor their legacy through action — completing what they started, protecting who they loved — mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows what was sacrificed for me?</li>
+<li>Which of you has seen me pause at the thought of someone I've lost?</li>
+<li>Which of you reminds me of what I'm supposed to become?</li>
+<li>Which of you I worry I'm disappointing, the way I feared disappointing them?</li>
+</ul>
+<p>---</p>
+<p><b>Pragmatic Apprentice</b></p>
+<p>You learned that efficiency matters more than elegance. When you solve a problem with a common or ordinary spell that others are using something more complex for, take +1 forward.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has underestimated what ordinary magic can do?</li>
+<li>Which of you asked me why I don't use something more impressive?</li>
+<li>Which of you I've already quietly solved a problem for, without them noticing?</li>
+<li>Which of you I find genuinely difficult to read?</li>
+</ul>
+<p>---</p>
+<p><b>Prodigy's Shadow</b></p>
+<p>There was someone more gifted — or more celebrated — and you lived in their shadow. When you surpass an expectation someone held for you, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you expected less of me than I expected of myself?</li>
+<li>Which of you saw what I was capable of before I did?</li>
+<li>Which of you has compared me to someone else and thought I came up short?</li>
+<li>Which of you I will prove wrong, eventually?</li>
+</ul>
+<p>---</p>
+<p><b>Strict Practice</b></p>
+<p>You have trained harder than anyone required. Repetition is not weakness — it is precision. When you use a spell or technique you've already used successfully this session, take +1 forward.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has seen me practice when no one was watching?</li>
+<li>Which of you told me I was working too hard?</li>
+<li>Which of you I've outpaced without either of us meaning to make it a competition?</li>
+<li>Which of you makes me want to stop practicing and just be present?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Relentless Offense</b></p>
+<p>You have mastered ordinary offensive magic to a level that surprises veterans. When you use your trained attack spell, roll +INT. On a 10+, deal 1d8+1 damage. On a 7-9, deal 1d6 damage.</p>
+<p><b>Efficient Casting</b></p>
+<p>You cast faster than most mages can track. When you act before your enemy in a conflict, take +1 forward.</p>
+<p><b>Emotional Control</b></p>
+<p>When something would break your concentration, roll +WIS. On a 10+, you hold focus and suffer no penalty. On a 7-9, you hold focus but the distraction costs you something.</p>
+<p><b>Mentor's Method</b></p>
+<p>When you use a technique or principle your mentor taught you and describe how, take +1 forward.</p>
+<p><b>Quiet Observation</b></p>
+<p>When you watch an opponent use magic before engaging them, ask the GM one question about their approach, limits, or weaknesses. The GM answers honestly.</p>
+<p><b>First Strike</b></p>
+<p>When you open a conflict by attacking before anyone expects aggression, deal +1d6 damage.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Mastered Form:</b> Your damage die becomes d10.</li>
+<li><b>Blinding Speed:</b> Once per session, cast a spell before anyone can interrupt or react.</li>
+<li><b>Efficient Grimoire:</b> You have memorized every spell you know. You no longer need a book to cast them.</li>
+<li><b>Composure Under Fire:</b> You have advantage on concentration rolls when injured.</li>
+<li><b>Surpass the Master:</b> Once per session, when you exceed an expectation your mentor set for you, mark XP and take +1 forward for the rest of the scene.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # THE PRODIGY</h2><p>*You don't need ancient wisdom or innate genius. You need discipline, time, and the willingness to work harder than everyone expects you to. Your magic isn't spectacular. It doesn't need to be — it just needs to work.*</p>
+<p><b>Damage Die:</b> d6</p>
+<p><b>HP:</b> 6 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>War Orphan:</b> Mira, Alix, Venn, Suri / Talis, Ren, Caern, Dorin</p>
+<p><b>Apprentice:</b> Clara, Lotte, Elsa, Hanna / Emil, Jonas, Rolf, Kurt</p>
+<p><b>Gifted Commoner:</b> Brita, Dala, Sanna, Turid / Arvi, Stel, Oswin, Brand</p>
+<p><b>Northern Bred:</b> Sigrid, Edda, Ragna, Marte / Gunnar, Leif, Bjorn, Eirik</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Heritage:</b> war orphan taken in by a mentor | gifted commoner who studied too hard | northern apprentice with a cold upbringing | ask the table</p>
+<p><b>Age:</b> young, looks even younger | just past the cusp of adulthood | a teenager with an older manner</p>
+<p><b>Eyes:</b> focused and precise | briefly warm, then back to work | quietly observing everything</p>
+<p><b>Build:</b> neat and controlled | quick and economic | deliberately unremarkable</p>
+<p><b>Clothing:</b> apprentice's robes, impeccably maintained | travelling gear chosen for practicality | layered cold-weather garments</p>
+<p><b>Signature:</b> counting breaths before casting | scathing commentary at the wrong moment | posture that doesn't relax</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Master a spell no one expected you to learn.</li>
+<li>Complete a task perfectly with nothing wasted.</li>
+<li>Protect someone who relies on you without question.</li>
+<li>Admit — only to yourself — that you enjoyed the journey.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 9.</p>
+<ul>
+<li>Travelling spell focus — rod, wand, or catalyst (1 slot)</li>
+<li>Apprentice's robes (1 slot)</li>
+<li>Annotated grimoire (2 slots)</li>
+<li>Waterskin (1 slot)</li>
+<li>Field rations, 3 days (1 slot)</li>
+<li>Canteen of hot tea (small)</li>
+<li>Repair kit for magical tools (small)</li>
+<li>Letter from your guardian, nearly memorized (small)</li>
+<li>Pressed flower from someone's garden (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_scarred_warrior" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Survivor's Guilt</b></p>
+<p>Your home is gone. You lived because someone else didn't. When you fight to protect someone who cannot protect themselves, take +1 forward.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows what I ran from?</li>
+<li>Which of you has seen me freeze when I should have acted?</li>
+<li>Which of you reminds me of someone who didn't survive?</li>
+<li>Which of you believes I'm worth something, for reasons I don't yet understand?</li>
+</ul>
+<p>---</p>
+<p><b>Master's Shadow</b></p>
+<p>A warrior believed in you more than you believed in yourself. They're not here anymore. When you fight in a way that would make your mentor proud, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knew my master, or knows their name?</li>
+<li>Which of you has asked me something my master once asked me?</li>
+<li>Which of you noticed me imitating someone who isn't here?</li>
+<li>Which of you I would most want to bring back stories to?</li>
+</ul>
+<p>---</p>
+<p><b>Dragon Slayer</b></p>
+<p>You once did something impossible when everyone needed you to. The village knows the story. You don't feel like the person they tell it about. Once per session, when you face something overwhelming and push through anyway, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has heard a version of the story about me?</li>
+<li>Which of you didn't believe it until you saw me fight?</li>
+<li>Which of you knows what I thought about just before I survived?</li>
+<li>Which of you looks at me the same way, whether or not the story is true?</li>
+</ul>
+<p>---</p>
+<p><b>Stagnant Village</b></p>
+<p>You stayed in one place too long — comfortable, safe, hollow. When you leave behind comfort or safety to keep moving toward something uncertain, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you pulled me out of the life I was sleepwalking through?</li>
+<li>Which of you asked me the question I had been avoiding?</li>
+<li>Which of you I worry would be better off without my past following them?</li>
+<li>Which of you reminds me that moving forward is worth the cost?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Overwhelming Strength</b></p>
+<p>When you use raw physical power — lift, break, throw, or strike — you have advantage.</p>
+<p><b>Absorb the Blow</b></p>
+<p>When you take a hit meant for someone nearby, reduce the damage to yourself by 1d6 and they take none.</p>
+<p><b>Imposter's Fire</b></p>
+<p>When you fight while doubting yourself out loud — the GM hears it — take +1 forward.</p>
+<p><b>Fear is a Sharpener</b></p>
+<p>When you fight something that genuinely terrifies you, deal +1d6 damage on a 10+.</p>
+<p><b>I Can Keep Up</b></p>
+<p>When an ally is more experienced or skilled than you, take +1 forward when working directly alongside them.</p>
+<p><b>Stubborn Body</b></p>
+<p>When you would be incapacitated, you may keep acting at 1 HP until the end of the scene.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Titan Effort:</b> Once per session, automatically succeed on a feat of raw physical strength, no roll required.</li>
+<li><b>My People Don't Run:</b> You never take disadvantage from fear-based effects.</li>
+<li><b>Crushing Blow:</b> Your damage die becomes d12 when you attack something that has injured an ally.</li>
+<li><b>Remembered Story:</b> Once per session, tell an ally a story of a warrior from your past. They mark XP.</li>
+<li><b>Legacy Warrior:</b> When you dedicate a kill to someone from your past and name them aloud, take +1 forward for the rest of the scene.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # THE SCARRED WARRIOR</h2><p>*You are stronger than you know. That's been the problem. You've spent years telling yourself you're not ready, not enough, not worth it — but the people you care about don't have time for your doubts.*</p>
+<p><b>Damage Die:</b> d10</p>
+<p><b>HP:</b> 10 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Northern Village:</b> Rika, Marte, Solvei, Inge / Valdur, Gerrik, Halvar, Bjarne</p>
+<p><b>Southern Frontier:</b> Calla, Mirela, Desta, Seraf / Tobias, Cormac, Erasmo, Levin</p>
+<p><b>Homeland Survivor:</b> Lotta, Petra, Nessa, Elva / Gerwin, Konrad, Roas, Emrik</p>
+<p><b>Wanderer's Name:</b> Scar, Flint, Thorn, Ash / Grit, Edge, Iron, Forge</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Heritage:</b> northern villager | southern frontier settler | survivor of a destroyed homeland | ask the table</p>
+<p><b>Age:</b> young, still growing into strength | stocky and seasoned | old scars on a young face</p>
+<p><b>Eyes:</b> quick and fearful beneath the confidence | burning with something unresolved | honest to a fault</p>
+<p><b>Build:</b> imposing and unassuming about it | compact and enormously strong | built like someone who never stopped working</p>
+<p><b>Clothing:</b> practical travel clothes, heavily worn | inherited warrior gear that barely fits | mismatched kit assembled from necessity</p>
+<p><b>Signature:</b> a scar whose story they won't tell | a weapon held like they're not sure they deserve it | silence that stretches too long</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Kill something your mentor told stories about.</li>
+<li>Protect someone who has given up on protecting themselves.</li>
+<li>Tell a story worth bringing back to someone who matters.</li>
+<li>Admit out loud that you're afraid — and fight anyway.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 10.</p>
+<ul>
+<li>Handaxe, sword, or warhammer (close, 1 slot)</li>
+<li>Heavy armor (2 slots, 1 armor)</li>
+<li>Travel pack (1 slot)</li>
+<li>Whetstone and repair kit (1 slot)</li>
+<li>Waterskin (1 slot)</li>
+<li>Rations for two days (1 slot)</li>
+<li>Rope, 15 ft (1 slot)</li>
+<li>Silver coin from your old home (small)</li>
+<li>Torn piece of cloth you keep and don't explain (small)</li>
+<li>Chalk or charcoal for marking trails (small)</li>
+<li>Gift from your mentor, mostly useless (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+<div id="en_optional_moves" class="playbook-content lang-en"><div class="optional-moves-container"><div class="card"><h2>🌟 # Optional Moves — Frieren: Beyond Journey's End</h2></div> <div class="card"><h2>🌟 Optional Moves</h2><p><b>Reading the Mana</b></p>
+<p>When you carefully observe someone cast magic, suppress their power, or fight using a magical technique, roll +INT. On a 10+, ask the GM two questions from the list below. On a 7-9, ask one:</p>
+<ul>
+<li>How powerful are they really?</li>
+<li>What are they trying to hide?</li>
+<li>What type of magic are they preparing?</li>
+<li>What would they not want me to know about their limits?</li>
+</ul>
+<p>---</p>
+<p><b>Against the Clock</b></p>
+<p>When you push through failing health, exhaustion, or rapidly closing time to complete something vital, roll +CON. On a 10+, you finish in time and mark XP. On a 7-9, choose one: you finish but take a debility, or you don't quite finish but hold on long enough for someone else to.</p>
+<p>---</p>
+<p><b>Pulling Someone Back</b></p>
+<p>When you confront a person trapped in stagnation, resignation, or fear and offer them a concrete reason to move forward, roll +CHA. On a 10+, something in them shifts — they act on it and mark XP. On a 7-9, they hear you, but something still holds them. Tell the GM what it is.</p>
+<p>---</p>
+<p><b>Ancient Ground</b></p>
+<p>When you travel through a place touched by old magic, long-dead heroes, or past catastrophe, roll +WIS. On a 10+, the GM gives you two true pieces of information about what happened here. On a 7-9, you learn one true thing — but something here takes notice of you.</p>
+<p>---</p>
+<p><b>Leave Something Behind</b></p>
+<p>When you ensure that a person, deed, or memory will outlive you — through a student, a monument, a written record, or a final act carried out at cost — mark XP. If what you leave is connected to someone already gone, mark XP again.</p></div></div></div>
+
+    <div id="en_adventures" class="playbook-content lang-en">
+        <div class="main-column" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2rem;">
+            <div class="card adventure-generator-card">
+                <h2>✨ Adventure Generator — Frieren: Beyond Journey's End Generator</h2>
+                <div class="generator-result" id="rng-result-en">
+                    ...
+                </div>
+                <div class="generator-actions">
+                    <button type="button" class="lang-toggle active rng-roll-btn" onclick="generateAdventure('en')">🎲 Losuj / Roll</button>
+                </div>
+            </div>
+            
+            <div class="adventure-tables-grid" id="rng-tables-en">
+    
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 1: Action & Location</h3>
+                    <div class="adventure-prefix">We discover</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a sealed tomb engraved in a language no living scholar reads</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a crumbling mage's tower, still warm with residual mana</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">an active demon encampment disguised as a peaceful village</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">an ancient grimoire sealed by a spell that feeds on regret</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a ruin marked with the crest of the original hero's party</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a statue missing its inscription — someone removed it deliberately</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a village where everyone has been waiting, for reasons they can't name</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">the bones of a mage who died trying to reach somewhere north</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a rift in the forest's mana field that grows larger each night</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">an abandoned workshop whose last experiment is still running</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a bridge sealed with a demon's curse from fifty years ago</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a battlefield carpeted in flowers that bloom only over old blood</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a spell inscribed in stone that was never meant to be found</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a shrine built by no living hand, recently tended</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">a mana suppression zone of unknown origin and purpose</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">the last outpost of a civilization that died before the Demon King</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">an underground passage older than any record of the continent</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a lake that shows visions — but only of the past, never the future</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a library whose books are slowly and silently disappearing</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">the site of a legendary duel, still crackling with residual magic</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 2: Placement & Geography</h3>
+                    <div class="adventure-prefix">which lies</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">at the edge of the northern plateau, past where maps are reliable</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">beneath the roots of a forest that hasn't been entered in decades</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">within a village where the season never seems to change</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">at the crossing of two roads that no one uses anymore</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">inside a mountain that mages refuse to enter and will not explain</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">at the border of demon-held territory, past a collapsed gate</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">along the path the original hero's party once walked</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">where a river should be but has been dry for a generation</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">at the base of a cliff covered in old carvings no one has translated</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">inside the shell of a town destroyed in the war, never rebuilt</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">under a glacier that has been melting faster than it should</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">in the hollow of a tree old enough to have watched the world change</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">at the center of a crater of magical origin, unmarked on any map</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">beyond a gate sealed since the Demon King's era</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">inside a city that was saved but has never recovered from the saving</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">deep within a forest that resists being charted</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">in the remains of what was once a school for mages</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">at a location all maps record differently</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">beyond the northern pass that only the dead are said to know</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">at the place where Aureole's light is visible on the clearest nights</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 3: Target</h3>
+                    <div class="adventure-prefix">leading to</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">Aureole, the land where souls rest</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a demon fortress that survived the fall of the Demon King</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">the ruins of Flamme's first tower</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a village that has been waiting for someone to return</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a pass guarded by something older than the Demon King's reign</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">the resting place of a hero no one remembers</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a region outside the Continental Mages' jurisdiction</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a city that trades in secrets and old spells</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a mages' sanctuary sealed off from the outside world for a century</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">the site of the final battle of a war that history got wrong</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">the hall where the first demon to speak a human language was recorded</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a forest that remembers everyone who has ever passed through it</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a place on no map but in every old legend of the continent</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">the valley where the hero's party trained before their journey</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">the gate to lands beyond the northern continent</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">the ruins of a church swallowed by something that moved underneath it</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a stronghold that fell to demons when no help came in time</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a cliff at the edge of the world, overlooking open sea</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a village built on the grave of something enormous and old</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a location Frieren visited once and has not spoken about since</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 4: Purpose & Mission</h3>
+                    <div class="adventure-prefix">We are here to</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">retrieve a grimoire of cursed spells before someone else does</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">seal a demon who was never fully defeated, only contained</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">find the resting place of a companion who died alone and far away</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">destroy a mana crystal sustaining an old battlefield curse</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">protect a village from a demon that returns like clockwork each season</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">uncover the true history of a hero who has been turned into a myth</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">deliver a message intended for someone who is already dead</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">investigate why mages in this region are losing their ability to visualize</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">find a flower that blooms only in ruins touched by powerful magic</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">recover a relic a dying priest wants returned before the end</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">verify whether the peace in this region is genuine or a demon deception</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">translate an ancient text before it disintegrates entirely</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">discover who has been quietly destroying the hero's statues</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">survive long enough for the blizzard to pass and reach the other side</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">fulfill a promise made to someone who can no longer hold us to it</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">reach a specific location before the path closes for another century</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">find out why demons are gathering in territory they abandoned after the war</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">help a mage who has lost their ability to cast find it again</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">break a curse that has outlasted everyone who cast it</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">carry a final message from someone who knows they are dying</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 5: Minor Threats & Obstacles</h3>
+                    <div class="adventure-prefix">guarded by</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a demon that has disguised itself as a grieving human survivor</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a mana field that neutralizes all magic within it</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">an ancient guardian built before any current language existed</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a curse that makes its victims believe they are already dead</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a mage who lost their mind from decades of solitary study</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a pack of demons using the hero's party's old tactics against adventurers</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a barrier only someone who has truly faced their fear can cross</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">the preserved consciousness of a dead archmage, still watching</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a creature that has been waiting here for longer than the Demon King existed</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a field of illusions that shows each person their most unbearable memory</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a demon commander who knows Frieren's mana suppression technique</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a trap set by the Demon King's army that was never disarmed</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a mage who refuses to let anyone near what they have sworn to protect</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a swarm of constructs powered by mana stolen from the living</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">a trial the original hero's party failed three times before passing</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">three demons currently arguing about who gets to kill the intruders</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a sealed door that can only be opened by someone who has mourned</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a demon who uses the language of grief as a weapon</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a place that takes a fragment of memory from everyone who enters</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">an ancient warrior who will only let through someone they judge worthy</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 6: Major Boss & Antagonist</h3>
+                    <div class="adventure-prefix">and</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">Aura the Guillotine, returned and patient</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a Greater Demon who has been planning for centuries</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a corrupted mage who has lived too long and forgotten why they started</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a demon who learned to simulate grief and became something worse for it</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a general of the Demon King's army, never found after the war's end</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">an ancient elf who chose to serve the Demon King and still walks free</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a demon specifically hunting the last surviving members of a hero's party</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a being older than the Demon King who has been watching everything</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a mage turned demon through a forbidden ritual they cannot reverse</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a demon who mastered mana suppression and has been hiding in plain sight for decades</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a former hero who made a bargain that cost them everything but their life</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">the last surviving lieutenant of the Demon King's inner circle</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a demon of such refined magical specialization that no one can visualize a defense</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">the thing that nearly killed Frieren six hundred years ago</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">a demon who collects the regrets of the dying as currency and power</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a curse-demon bred to outlast the hero's party and finish what the war started</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">an ancient bound entity that grows stronger as its prison decays</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a demon who has memorized and inverted every spell in Flamme's grimoire</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a demon city-ruler who views humanity as a brief infestation</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a demon who killed the hero's party in another timeline and is wondering about this one</span></li>
+</ul>
+                </div>
+        
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+
+        <footer>
+            <span>Wygenerowano automatycznie • Homebrew World Web Presenter</span>
+            <span>Frieren • katalog playbookow</span>
+        </footer>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.playbook-content');
+    const langToggles = document.querySelectorAll('.lang-toggle');
+    const body = document.body;
+    const html = document.documentElement;
+
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const mainLayout = document.querySelector('.main-layout');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function getVisibleTabs(lang) {
+        return Array.from(tabs).filter((tab) => tab.classList.contains(`lang-${lang}`));
+    }
+
+    function syncAriaStates(activeTabId) {
+        tabs.forEach((tab) => {
+            const isActive = tab.getAttribute('data-tab') === activeTabId;
+            tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            tab.setAttribute('tabindex', isActive ? '0' : '-1');
+        });
+    }
+
+    if (sidebarToggle && mainLayout) {
+        if (localStorage.getItem('sidebar-collapsed') === 'true') {
+            mainLayout.classList.add('sidebar-collapsed');
+            sidebarToggle.innerText = '⮕';
+            sidebarToggle.setAttribute('aria-expanded', 'false');
+        } else {
+            sidebarToggle.setAttribute('aria-expanded', 'true');
+        }
+
+        sidebarToggle.addEventListener('click', () => {
+            const isCollapsed = mainLayout.classList.toggle('sidebar-collapsed');
+            sidebarToggle.innerText = isCollapsed ? '⮕' : '☰';
+            sidebarToggle.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
+            localStorage.setItem('sidebar-collapsed', isCollapsed);
+        });
+    }
+
+    function switchTab(tabId) {
+        tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-tab') === tabId));
+        syncAriaStates(tabId);
+
+        const target = document.getElementById(tabId);
+        if (target) {
+            target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+            const url = new URL(window.location);
+            url.hash = tabId;
+            window.history.replaceState(null, '', url);
+        }
+    }
+
+    function switchLanguage(lang) {
+        body.classList.forEach((cls) => {
+            if (cls.startsWith('lang-')) body.classList.remove(cls);
+        });
+        body.classList.add(`lang-${lang}`);
+        html.lang = lang === 'default' ? 'pl' : lang;
+
+        langToggles.forEach((btn) => {
+            const isActive = btn.getAttribute('data-lang') === lang;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        const visibleTabs = getVisibleTabs(lang);
+        const nextTab = visibleTabs[0];
+        if (nextTab) {
+            const nextTabId = nextTab.getAttribute('data-tab');
+            tabs.forEach((tab) => tab.classList.toggle('active', tab === nextTab));
+            syncAriaStates(nextTabId);
+        }
+
+        window.scrollTo(0, 0);
+    }
+
+    tabs.forEach((tab) => {
+        tab.setAttribute('role', 'tab');
+        tab.addEventListener('click', () => {
+            switchTab(tab.getAttribute('data-tab'));
+        });
+    });
+
+    langToggles.forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+            switchLanguage(toggle.getAttribute('data-lang'));
+        });
+    });
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-tab') === id));
+                syncAriaStates(id);
+            }
+        });
+    }, observerOptions);
+
+    contents.forEach((section) => observer.observe(section));
+
+    const initialHash = window.location.hash.substring(1);
+    const availableLangs = Array.from(langToggles).map((t) => t.getAttribute('data-lang'));
+    
+    let preferredLang = 'default';
+    if (initialHash && availableLangs.includes(initialHash.split('_')[0])) {
+        preferredLang = initialHash.split('_')[0];
+    } else if (availableLangs.includes('en')) {
+        preferredLang = 'en';
+    } else if (availableLangs.length > 0) {
+        preferredLang = availableLangs[0];
+    } else if (document.querySelector('.tab.lang-default')) {
+        preferredLang = 'default';
+    }
+
+    switchLanguage(preferredLang);
+    
+    if (initialHash) {
+        setTimeout(() => {
+            const target = document.getElementById(initialHash);
+            if (target) {
+                switchTab(initialHash);
+                target.scrollIntoView({ behavior: 'auto' });
+            }
+        }, 100);
+    } else {
+        const initialVisibleTab = getVisibleTabs(preferredLang)[0];
+        if (initialVisibleTab) {
+            syncAriaStates(initialVisibleTab.getAttribute('data-tab'));
+        }
+        window.scrollTo(0, 0);
+    }
+    
+    window.generateAdventure = function(lang) {
+        const container = document.getElementById(`rng-tables-${lang}`);
+        if (!container) return;
+        
+        const tables = container.querySelectorAll('.adventure-table-card');
+        if (tables.length < 6) return;
+        
+        let parts = [];
+        tables.forEach(table => {
+            const prefixEl = table.querySelector('.adventure-prefix');
+            const items = table.querySelectorAll('.rng-text');
+            
+            const prefix = prefixEl ? prefixEl.textContent.trim() : "";
+            
+            if (items.length > 0) {
+                const randomText = items[Math.floor(Math.random() * items.length)].textContent.trim();
+                parts.push((prefix ? prefix + " " : "") + `<span class="rng-highlight">${randomText}</span>`);
+            } else {
+                parts.push(prefix);
+            }
+        });
+        
+        if (parts.length >= 6) {
+            const sentence1 = parts[0] + " " + parts[1] + " " + parts[2];
+            const sentence2 = parts[3] + " " + parts[4] + " " + parts[5];
+            
+            let s1 = sentence1.replace(/\s+/g, ' ').replace(/\s+\./g, '.');
+            if(!s1.endsWith('.')) s1 += '.';
+            let s2 = sentence2.replace(/\s+/g, ' ').replace(/\s+\./g, '.');
+            if(!s2.endsWith('.')) s2 += '.';
+
+            const capitalize = (str) => {
+                let inTag = false;
+                for (let i = 0; i < str.length; i++) {
+                    if (str[i] === '<') inTag = true;
+                    else if (str[i] === '>') inTag = false;
+                    else if (!inTag && /[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/.test(str[i])) {
+                        return str.substring(0, i) + str[i].toUpperCase() + str.substring(i + 1);
+                    }
+                }
+                return str;
+            };
+
+            s1 = capitalize(s1);
+            s2 = capitalize(s2);
+            
+            const resultEl = document.getElementById(`rng-result-${lang}`);
+            if (resultEl) {
+                resultEl.innerHTML = `<p>${s1}</p><p>${s2}</p>`;
+            }
+        }
+    };
+
+    availableLangs.forEach(l => {
+        if(document.getElementById(`rng-result-${l}`)) {
+            generateAdventure(l);
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

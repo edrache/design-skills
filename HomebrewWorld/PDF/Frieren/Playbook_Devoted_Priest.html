@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>THE DEVOTED PRIEST</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 8mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      color: #000;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-size: 9px;
+      line-height: 1.2;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      padding: 0;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      gap: 4mm;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+    }
+
+    .page-header {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 4mm;
+      align-items: end;
+      border-bottom: 1px solid #000;
+      padding-bottom: 2.5mm;
+    }
+
+    .title-wrap h1 {
+      margin: 0 0 1mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 10px;
+      color: #222;
+      font-style: italic;
+    }
+
+    .meta-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1mm;
+      text-align: right;
+    }
+
+    .meta-line {
+      margin: 0;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+      align-items: start;
+      min-height: 0;
+      flex: 1;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 3mm;
+      min-height: 0;
+    }
+
+    .card {
+      border: 1px solid #000;
+      border-radius: 3mm;
+      background: #fff;
+      padding: 3mm;
+      break-inside: avoid;
+    }
+
+    .card h2 {
+      margin: 0 0 2mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #000;
+    }
+
+    .card h3,
+    .entry-title {
+      margin: 1.5mm 0 1mm;
+      font-size: 10px;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #000;
+    }
+
+    p {
+      margin: 0 0 1.2mm;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 4mm;
+    }
+
+    li {
+      margin: 0 0 1mm;
+    }
+
+    code {
+      font-family: Menlo, Monaco, monospace;
+      font-size: 0.95em;
+    }
+
+    .section-background {
+      padding: 2.5mm;
+    }
+
+    .section-note {
+      margin: 0 0 2mm;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .background-entry {
+      border-top: 1px solid #999;
+      padding-top: 2mm;
+      margin-top: 2mm;
+    }
+
+    .background-entry:first-of-type {
+      border-top: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .background-entry h3 {
+      margin-top: 0;
+    }
+
+    .questions-intro {
+      margin-top: 1mm;
+      font-size: 8.4px;
+      color: #333;
+      font-style: italic;
+    }
+
+    .question-list {
+      column-count: 2;
+      column-gap: 4mm;
+    }
+
+    .bullet-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6mm;
+    }
+
+    .compact-list {
+      gap: 0.3mm;
+    }
+
+    .page-two-grid {
+      grid-template-columns: 1.1fr 1fr 0.95fr;
+      gap: 3mm;
+    }
+
+    .page-two-grid .card {
+      padding: 2.5mm;
+    }
+
+    .page-two-grid .card h2 {
+      font-size: 12px;
+      margin-bottom: 1.5mm;
+    }
+
+    .page-two-grid p,
+    .page-two-grid li {
+      font-size: 8.2px;
+      line-height: 1.15;
+    }
+
+    .page-two-grid .card h3,
+    .page-two-grid .entry-title {
+      font-size: 9px;
+      margin: 1.2mm 0 0.8mm;
+    }
+
+    .page-two-grid .section-gear p,
+    .page-two-grid .section-gear li {
+      font-size: 7.6px;
+      line-height: 1.08;
+    }
+
+    .page-two-grid .section-gear .bullet-list {
+      column-count: 2;
+      column-gap: 3mm;
+      display: block;
+      padding-left: 3mm;
+    }
+
+    .page-two-grid .section-gear .bullet-list li {
+      break-inside: avoid;
+      margin-bottom: 0.6mm;
+    }
+
+    .sheet-tip {
+      margin-bottom: 2mm;
+      color: #222;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5mm;
+      margin-bottom: 2mm;
+    }
+
+    .stat-box,
+    .track-box,
+    .debility-box {
+      border: 1px solid #000;
+      border-radius: 2mm;
+      background: #fff;
+    }
+
+    .stat-box {
+      min-height: 14mm;
+      padding: 1.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stat-name,
+    .track-label {
+      font-size: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #000;
+    }
+
+    .stat-value {
+      display: block;
+      border-bottom: 1px solid #000;
+      min-height: 6mm;
+    }
+
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5mm;
+      margin-bottom: 2mm;
+    }
+
+    .track-box {
+      min-height: 11mm;
+      padding: 1.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .track-value {
+      display: block;
+      min-height: 4mm;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .debility-grid {
+      display: grid;
+      gap: 1.2mm;
+    }
+
+    .debility-box {
+      padding: 1.6mm 2mm;
+      font-size: 8.4px;
+      line-height: 1.15;
+    }
+
+    .debility-box span {
+      color: #222;
+    }
+
+    .sheet-notes {
+      margin-top: 2mm;
+    }
+
+    .slot-boxes {
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      color: #333;
+      margin-left: 1.5px;
+    }
+
+    .slot-small {
+      font-size: 7.5px;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="page">
+      <header class="page-header">
+        <div class="title-wrap">
+          <h1>THE DEVOTED PRIEST</h1>
+          <p class="lead">The goddess will welcome you eventually. But not yet. There are still things worth doing with what time remains — and you are not going quietly.</p>
+        </div>
+        <div class="meta-stack">
+          <p class="meta-line">Homebrew World</p>
+          <p class="meta-line">Frieren</p>
+        </div>
+      </header>
+      <div class="page-grid">
+        <div class="column">
+          <section class="card section-name"><h2>Name</h2><p>Pick a name:</p>
+<p><strong>Church Ordained:</strong> Agnes, Beatrix, Hildur, Maren / Ewald, Anselm, Caspar, Dietmar</p>
+<p><strong>Village Cleric:</strong> Sofie, Willa, Nanna, Inga / Wendel, Lorenz, Tobias, Franz</p>
+<p><strong>Wandering Minister:</strong> Isolde, Carla, Vesta, Pallas / Remis, Saul, Coel, Marcian</p>
+<p><strong>Reformed Sinner:</strong> Delia, Sadie, Cress, Vera / Fletch, Oskar, Remy, Leif</p></section>
+          <section class="card section-look"><h2>Look</h2><p>Pick one from each row:</p>
+<p><strong>Heritage:</strong> ordained clergy | village healer turned wanderer | traveling minister of a distant diocese | ask the table</p>
+<p><strong>Age:</strong> young but worn by spiritual burden | middle-aged and unhurried | old and moving like they've settled some debt</p>
+<p><strong>Eyes:</strong> kind and tired | sharp beneath the gentleness | measuring how much life remains in a room</p>
+<p><strong>Build:</strong> comfortable and slow-moving | wiry beneath soft clothes | stooped, but only slightly</p>
+<p><strong>Clothing:</strong> priest's vestments, travel-stained | layered traveling clothes with holy symbols | plain clothes with a hidden relic</p>
+<p><strong>Signature:</strong> a flask they reach for when no one's looking | a habit of offering more than they should | the way they look at the dying</p></section>
+        </div>
+        <div class="column">
+          <section class="card section-background"><h2>Background</h2><div class="section-note">Pick one.</div>
+<article class="background-entry"><h3>Death Anxiety</h3><p>You once admitted to yourself, in the dark, that you are afraid to die. It changed how you act. When you help someone else face their own mortality with courage, mark XP.</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you knows that I'm afraid, even if I don't say it?</li><li>Which of you I've seen face death more calmly than I could manage?</li><li>Which of you has offered me the kind of comfort I've offered others?</li><li>Which of you keeps me honest about how much time I'm wasting?</li></ul></article>
+<article class="background-entry"><h3>Adopted Child</h3><p>You raised someone who will outlive you. That was the point. Once per session, when someone you care for is in danger and you act without hesitation, take +1 forward.</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you reminds me of the person I raised?</li><li>Which of you has seen me look at someone the way a parent looks?</li><li>Which of you knows what I gave up to take care of someone else?</li><li>Which of you I hope will look after them after I'm gone?</li></ul></article>
+<article class="background-entry"><h3>Village Roots</h3><p>You left comfort and belonging behind — a place, a congregation, a life that was smaller but easier. When you choose the harder path over the easier one, mark XP.</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you was the reason I left?</li><li>Which of you thinks I stayed gone out of courage, not restlessness?</li><li>Which of you knows how close I came to going back?</li><li>Which of you I worry will stay behind when the rest of us keep moving?</li></ul></article>
+<article class="background-entry"><h3>Last Rites</h3><p>You have sat with many people at the end. You know what the dying need. When you offer genuine comfort to someone facing death, ask the GM one question about what they truly need to hear. The GM answers honestly.</p><p>---</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you has let me sit with their grief?</li><li>Which of you has asked me what dying feels like?</li><li>Which of you I worry I'll be sitting with too soon?</li><li>Which of you keeps me from giving up on the ones I can still help?</li></ul></article></section>
+        </div>
+      </div>
+    </section>
+    <section class="page">
+      <header class="page-header">
+        <div class="title-wrap">
+          <h1>THE DEVOTED PRIEST</h1>
+          <p class="lead">Skrót zasad i opcji postaci do gry przy stole.</p>
+        </div>
+        <div class="meta-stack">
+          <p class="meta-line">Homebrew World</p>
+          <p class="meta-line">Frieren</p>
+        </div>
+      </header>
+      <div class="page-grid page-two-grid">
+        <div class="column">
+          <section class="card section-starting_moves"><h2>Starting Moves</h2><h3 class="entry-title">Goddess's Grace</h3>
+<p>When you heal someone, roll +WIS. On a 10+, remove a debility or restore 1d8 HP. On a 7-9, restore 1d6 HP.</p>
+<h3 class="entry-title">Curse Resistance</h3>
+<p>Priests carry a natural shield against magical compulsion. When you resist a curse, magical fear, or enchantment, take +1 forward.</p>
+<h3 class="entry-title">Final Hours</h3>
+<p>When someone is dying or reduced to 0 HP, your healing magic has advantage.</p>
+<h3 class="entry-title">Legacy Work</h3>
+<p>When you act to ensure your positive impact survives you — through a student, a written record, a final gift, a promise kept — mark XP.</p>
+<h3 class="entry-title">Holy Light</h3>
+<p>You can produce soft warm light from your hands or holy symbol. When used against the undead or demons, they take disadvantage against you.</p>
+<h3 class="entry-title">Proper Adult</h3>
+<p>When you counsel another character through their stagnation, fear, or grief, they take +1 forward. If they act on your counsel this session, you mark XP.</p></section>
+        </div>
+        <div class="column">
+          <section class="card section-advances"><h2>Advances</h2><ul class="bullet-list">
+<li><strong>Stronger Blessing:</strong> Your healing removes one condition in addition to restoring HP.</li>
+<li><strong>Against the Night:</strong> Once per session, banish or delay one undead creature without a roll.</li>
+<li><strong>Borrowed Years:</strong> By touch, you can take on another character's debility or condition, transferring it to yourself.</li>
+<li><strong>The Good Life:</strong> When you share a meal, a drink, or simple comfort with an ally, they heal 1d6 HP and you mark XP.</li>
+<li><strong>Long Influence:</strong> When someone you've helped in the past returns to help you, they have advantage on their first action.</li>
+<li><strong>Improved Stat:</strong> Increase one of your stats by +1, to a max of +2.</li>
+<li><strong>Superior Stat</strong> <em>(Requires: Improved Stat, at least one other advance)</em>: Increase one of your stats by +1, to a max of +3.</li>
+</ul></section>
+          <section class="card section-drives"><h2>Drives</h2><ul class="bullet-list">
+<li>Ensure something good survives you.</li>
+<li>Reach someone trapped in their own stagnation.</li>
+<li>Drink with someone tonight who may be gone tomorrow.</li>
+<li>Do something heroic and let someone else take the credit.</li>
+</ul></section>
+        </div>
+        <div class="column">
+          
+    <section class="card sheet-card">
+      <h2>Arkusz Postaci</h2>
+      <p class="sheet-tip">Rozdziel: <strong>+2, +1, +1, +0, +0, -1</strong>.</p>
+      <div class="stat-grid"><div class="stat-box"><span class="stat-name">SIŁ</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">ZRC</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">KON</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">INT</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">MDR</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">CHA</span><span class="stat-value"></span></div></div>
+      <div class="track-grid">
+        <div class="track-box"><span class="track-label">PŻ</span><span class="track-value">?</span></div>
+        <div class="track-box"><span class="track-label">Obrażenia</span><span class="track-value">?</span></div>
+        <div class="track-box"><span class="track-label">Pancerz</span><span class="track-value"></span></div>
+        <div class="track-box"><span class="track-label">XP</span><span class="track-value">□□□□□</span></div>
+        <div class="track-box"><span class="track-label">Udźwig</span><span class="track-value">?</span></div>
+      </div>
+      <div class="debility-grid">
+        <div class="debility-box">□ Osłabiony <span>(SIŁ, ZRC)</span></div>
+        <div class="debility-box">□ Otępiały <span>(INT, MDR)</span></div>
+        <div class="debility-box">□ Przybity <span>(KON, CHA)</span></div>
+      </div>
+      <div class="sheet-notes">
+      <h3 class="entry-title">Ściąga</h3>
+      <ul class="bullet-list compact-list">
+        <li>Zaznacz XP przy wyniku <strong>6-</strong> oraz gdy coś każe ci to zrobić.</li>
+        <li>Wydaj <strong>1 XP</strong>, aby dodać <strong>+1</strong> do rzutu po rzucie.</li>
+        <li>Wydaj <strong>5 XP</strong>, aby wybrać awans.</li>
+        <li><strong>PŻ</strong> odzyskujesz przez odpoczynek, leczenie i ruchy postaci.</li>
+        <li><strong>Pancerz</strong> zmniejsza otrzymywane obrażenia zgodnie z fikcją.</li>
+      </ul>
+      </div>
+    </section>
+    
+          <section class="card section-gear"><h2>Gear</h2><p>Load 9.</p>
+<ul class="bullet-list">
+<li>Healing poultices, 3 uses (<span class="slot-boxes">□</span>)</li>
+<li>Holy symbol or relic (<span class="slot-boxes">□</span>)</li>
+<li>Travelling vestments (<span class="slot-boxes">□</span>)</li>
+<li>Small prayerbook (<span class="slot-boxes">□</span>)</li>
+<li>Flask of spirits (<span class="slot-boxes">□</span>)</li>
+<li>Walking staff (reach, <span class="slot-boxes">□</span>)</li>
+<li>Coin for the poor, always running out (<span class="slot-boxes">□</span>)</li>
+<li>Letter from someone they failed to save (small)</li>
+<li>Herbal remedy made for someone specific (small)</li>
+<li>Cheap ring, worn smooth (small)</li>
+<li>Crumbled drawing from a child (small)</li>
+</ul></section>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

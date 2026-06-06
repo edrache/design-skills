@@ -1,0 +1,58 @@
+body {
+  --font-body: "Avenir Next", "Segoe UI", "Trebuchet MS", sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --color-bg:
+    linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,.12)),
+    linear-gradient(180deg, oklch(0.95 0.025 78), oklch(0.91 0.03 72));
+  --color-text: oklch(0.24 0.03 35);
+  --color-text-soft: oklch(0.42 0.03 35);
+  --color-accent: oklch(0.55 0.17 30);
+  --hero-border: color-mix(in srgb, oklch(0.78 0.03 60) 85%, white);
+  --hero-bg:
+    linear-gradient(135deg, rgba(255,255,255,.86), rgba(251,245,236,.94)),
+    oklch(0.985 0.01 95);
+  --hero-shadow: 0 20px 60px rgba(74,44,28,.12);
+  --action-border: color-mix(in srgb, oklch(0.78 0.03 60) 90%, white);
+  --action-bg: color-mix(in srgb, oklch(0.965 0.015 90) 78%, white);
+  --theme-active-bg: oklch(0.55 0.17 30);
+  --theme-active-text: oklch(0.98 0.01 85);
+  --card-border: color-mix(in srgb, oklch(0.78 0.03 60) 88%, white);
+  --card-bg:
+    linear-gradient(180deg, rgba(255,255,255,.92), rgba(248,243,234,.9)),
+    oklch(0.985 0.01 95);
+  --card-shadow: 0 12px 30px rgba(64,41,25,.08);
+  --card-accent: linear-gradient(90deg, oklch(0.56 0.17 30), color-mix(in srgb, oklch(0.56 0.17 30) 35%, white));
+  --divider-color: color-mix(in srgb, oklch(0.78 0.03 60) 65%, transparent);
+}
+
+html {
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, oklch(0.82 0.06 35) 80%, white) 0%, transparent 38%),
+    linear-gradient(180deg, oklch(0.95 0.025 78), oklch(0.91 0.03 72));
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .16;
+  background-image:
+    linear-gradient(to right, rgba(90,55,40,.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(90,55,40,.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(180deg, black 0%, transparent 100%);
+}
+
+.page-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -6% -24% auto;
+  width: clamp(180px, 26vw, 420px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, oklch(0.82 0.06 35) 70%, white) 0%, transparent 72%);
+  z-index: 0;
+}
+
+.page-hero > * { position: relative; z-index: 1; }

@@ -1,0 +1,370 @@
+body {
+  --font-body: "Courier Prime", "Courier New", Courier, monospace;
+  --font-display: "Courier Prime", "Courier New", Courier, monospace;
+  --color-bg: #fff;
+  --color-text: #000;
+  --color-text-soft: #2f2f2f;
+  --color-accent: #000;
+  --hero-border: #000;
+  --hero-bg: #fff;
+  --hero-shadow: none;
+  --action-border: #555;
+  --action-bg: #fff;
+  --theme-active-bg: #111;
+  --theme-active-text: #fff;
+  --card-border: #c7c7c7;
+  --card-bg: #fff;
+  --card-shadow: none;
+  --card-accent: none;
+  --divider-color: #c7c7c7;
+}
+
+html { background: #e8e8e4; }
+body::before, .page-hero::after { display: none; }
+
+@page {
+  size: A4 portrait;
+  margin: 8mm 9mm;
+}
+
+@media print {
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: 7.15pt;
+    line-height: 1.24;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── layout ── */
+  .app-shell {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+  }
+
+  /* ── hide navigation & decoration ── */
+  .page-toolbar,
+  .pager,
+  .theme-switcher,
+  .back-link,
+  .source-link,
+  .index-card__actions,
+  .index-card__eyebrow,
+  .meta-grid,
+  .section-card::before,
+  .index-card::before { display: none !important; }
+
+  /* ── page hero ── */
+  .page-hero {
+    padding: 0 0 2mm;
+    margin-bottom: 3mm;
+    border: 0;
+    border-bottom: 1pt solid #000;
+    border-radius: 0;
+    box-shadow: none;
+    background: none;
+    overflow: visible;
+    break-after: avoid;
+  }
+
+  .hero-copy {
+    display: block !important;
+    margin-top: 0;
+  }
+
+  .hero-copy > * { margin: 0 0 0.7mm; }
+  .hero-copy > *:last-child { margin-bottom: 0; }
+
+  h1 {
+    font-size: 12.5pt;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 0.98;
+  }
+
+  .eyebrow {
+    font-size: 5.8pt;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .lead {
+    font-size: 6.9pt;
+    color: #2f2f2f;
+    margin: 0;
+    line-height: 1.24;
+  }
+
+  .hero-note {
+    font-size: 6.6pt;
+    border-left: 0.8pt solid #999;
+    padding-left: 1.5mm;
+    margin: 0;
+  }
+
+  /* ── content grid: 2 columns ── */
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    column-gap: 5.5mm;
+    margin-top: 0;
+  }
+
+  /* ── section card: flat — no box, no padding ── */
+  .section-card {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent !important;
+    overflow: visible;
+    margin-bottom: 2.6mm;
+    break-inside: avoid;
+  }
+
+  .section-card--wide {
+    grid-column: 1 / -1;
+  }
+
+  /* ── section heading: underline only ── */
+  .section-card > h2 {
+    font-size: 6.8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    margin: 0 0 1mm;
+    padding-bottom: 0.8mm;
+    border-bottom: 0.8pt solid #000;
+    line-height: 1.2;
+  }
+
+  /* ── section body: block flow, no grid gap ── */
+  .section-body {
+    display: block !important;
+    gap: 0 !important;
+  }
+
+  .section-body > * {
+    margin-top: 0;
+    margin-bottom: 0.7mm;
+  }
+
+  .section-body > *:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── intro paragraph ── */
+  .section-body > p:first-child {
+    font-size: 6.35pt;
+    color: #555;
+    margin-bottom: 1mm;
+  }
+
+  /* ── sub-headings ── */
+  .section-card h3 {
+    font-size: 6.5pt;
+    font-weight: 700;
+    margin: 1.6mm 0 0.35mm;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  .section-body > h3:first-child {
+    margin-top: 0;
+  }
+
+  /* ── body paragraphs ── */
+  .section-card p {
+    font-size: 6.65pt;
+    line-height: 1.24;
+    margin: 0 0 0.55mm;
+  }
+
+  /* ── fact rows: label + value in one line ── */
+  .fact-row {
+    display: flex;
+    gap: 1.8mm;
+    padding-bottom: 0.45mm;
+    margin-bottom: 0.45mm;
+    border-bottom: 0.3pt solid #d5d5d5;
+    line-height: 1.18;
+  }
+
+  .fact-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .fact-label {
+    font-size: 5.7pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #444;
+    letter-spacing: .15em;
+    flex-shrink: 0;
+    width: 16mm;
+  }
+
+  .fact-value {
+    font-size: 6.3pt;
+    color: #111;
+    line-height: 1.18;
+  }
+
+  /* ── bullet lists ── */
+  .bullet-list {
+    display: block !important;
+    font-size: 6.55pt;
+    line-height: 1.22;
+    padding-left: 3mm;
+    margin: 0;
+    list-style: disc;
+  }
+
+  .bullet-list li {
+    margin-left: 0;
+    margin-bottom: 0.35mm;
+  }
+
+  /* ── section divider ── */
+  .section-divider {
+    height: 0.3pt;
+    background: #bbb;
+    margin: 1.2mm 0;
+  }
+
+  /* ═══════════════════════════════════════════
+     INDEX PAGE — class groups and index cards
+  ══════════════════════════════════════════ */
+
+  /* ── class group list ── */
+  .class-group-list {
+    display: grid;
+    gap: 4mm;
+  }
+
+  .class-group {
+    display: block;
+  }
+
+  .class-group__header {
+    display: flex;
+    align-items: baseline;
+    gap: 3mm;
+    padding: 0 0 1.2mm;
+    margin-bottom: 1.8mm;
+    border: 0;
+    border-bottom: 0.8pt solid #000;
+    border-radius: 0;
+    box-shadow: none;
+    background: none;
+    break-after: avoid;
+  }
+
+  .class-group__eyebrow { display: none; }
+
+  .class-group__header h2 {
+    font-size: 8.4pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    margin: 0;
+  }
+
+  .class-group__count {
+    font-size: 6.2pt;
+    color: #666;
+    font-weight: 400;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  /* ── index grid: 3 columns ── */
+  .index-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    border-top: 0.5pt solid #ccc;
+  }
+
+  /* ── individual card: compact row ── */
+  .index-card {
+    padding: 1.6mm 2mm;
+    border: 0;
+    border-bottom: 0.5pt solid #ddd;
+    border-right: 0.5pt solid #ddd;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent !important;
+    break-inside: avoid;
+    display: block;
+  }
+
+  .index-card:nth-child(3n) {
+    border-right: 0;
+  }
+
+  .index-card h2 {
+    font-size: 6.8pt;
+    font-weight: 700;
+    letter-spacing: .12em;
+    margin: 0 0 0.5mm;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .index-card h2 a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .index-card__lead {
+    font-size: 6.2pt;
+    line-height: 1.18;
+    color: #333;
+    margin: 0 0 0.6mm;
+  }
+
+  /* ── meta stats ── */
+  .index-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 2.5mm;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .index-meta__item {
+    display: flex;
+    gap: 1mm;
+    font-size: 5.8pt;
+    color: #555;
+  }
+
+  .index-meta__item:nth-child(1),
+  .index-meta__item:nth-child(2) { display: none !important; }
+
+  .index-meta__item span { color: #888; }
+  .index-meta__item strong { color: #222; font-weight: 700; }
+
+  .meta-chip__value,
+  .index-card h2,
+  .section-card > h2,
+  .section-card h3,
+  .fact-label,
+  .class-group__header h2 {
+    font-family: var(--font-display);
+  }
+}

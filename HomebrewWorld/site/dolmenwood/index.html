@@ -1,0 +1,2259 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolmenwood - Homebrew World</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Cormorant+Garamond:wght@600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="lang-default">
+    <div class="container">
+        <header class="hero">
+            <p class="eyebrow">Homebrew World Setting</p>
+            <div class="hero-top">
+                <div class="lang-selector"><button class="lang-toggle" data-lang="en" type="button">English</button> <button class="lang-toggle" data-lang="pl" type="button">Polski</button></div>
+                <div class="pdf-downloads"><a class="toolbar-chip" href="playbooks_pl.pdf" download>Pobierz PDF PL</a> <a class="toolbar-chip" href="playbooks_en.pdf" download>Download PDF EN</a></div>
+            </div>
+            <h1 class="page-title"><span class="title-emoji">🌍</span> <span class="title-text">Dolmenwood</span></h1>
+            <p class="page-summary"><span class="page-summary-copy lang-pl">Mroczne baśniowe fantasy osadzone w Dolmenwood — tajemniczym lesie pełnym wróżek, nieumarłych, kultów i feudalnych intryg — gdzie bardowie, rycerze, magowie, tropiciele i złodzieje wyruszają w mroczne wyprawy pełne zagrożeń i dziwności.</span> <span class="page-summary-copy lang-en">Dark fairy-tale fantasy set in Dolmenwood — a mysterious forest full of fairies, undead, cults, and feudal intrigue — where bards, knights, magicians, hunters, and thieves venture into dark expeditions full of peril and strangeness.</span></p>
+            <div class="page-toolbar"><span class="stat-badge">7 playbookow EN</span> <span class="stat-badge">7 playbookow PL</span></div>
+        </header>
+
+        <div class="main-layout">
+            <aside class="tabs-container" id="sidebar">
+                <button id="sidebar-toggle" aria-label="Toggle Sidebar" aria-expanded="true" type="button">☰</button>
+                
+            <a class="home-link sidebar-home-link" href="../index.html">
+                <span aria-hidden="true">←</span>
+                <span>Wroc do Homebrew Worlds</span>
+            </a>
+        
+                <div class="tabs-list" role="tablist" aria-label="Playbook navigation">
+                    <button class="tab lang-pl" data-tab="pl_playbook_bard" type="button">🎵 BARD</button>
+<button class="tab lang-pl" data-tab="pl_playbook_kleryk" type="button">👤 KLERYK</button>
+<button class="tab lang-pl" data-tab="pl_playbook_lowca" type="button">🏹 ŁOWCA</button>
+<button class="tab lang-pl" data-tab="pl_playbook_magik" type="button">🧙 MAGIK</button>
+<button class="tab lang-pl" data-tab="pl_playbook_mnich" type="button">👤 MNICH</button>
+<button class="tab lang-pl" data-tab="pl_playbook_rycerz" type="button">👤 RYCERZ</button>
+<button class="tab lang-pl" data-tab="pl_playbook_zlodziej" type="button">🗡️ ZŁODZIEJ</button>
+<button class="tab lang-pl" data-tab="pl_optional_moves" type="button">🌟 Opcjonalne Ruchy</button>
+<button class="tab lang-pl" data-tab="pl_adventures" type="button">🗺️ Generator Przygód — Dolmenwood</button>
+<button class="tab lang-en" data-tab="en_playbook_bard" type="button">🎵 THE BARD</button>
+<button class="tab lang-en" data-tab="en_playbook_cleric" type="button">🙏 THE CLERIC</button>
+<button class="tab lang-en" data-tab="en_playbook_friar" type="button">👤 THE FRIAR</button>
+<button class="tab lang-en" data-tab="en_playbook_hunter" type="button">👤 THE HUNTER</button>
+<button class="tab lang-en" data-tab="en_playbook_knight" type="button">🛡️ THE KNIGHT</button>
+<button class="tab lang-en" data-tab="en_playbook_magician" type="button">🧙 THE MAGICIAN</button>
+<button class="tab lang-en" data-tab="en_playbook_thief" type="button">🗡️ THE THIEF</button>
+<button class="tab lang-en" data-tab="en_optional_moves" type="button">🌟 Optional Moves</button>
+<button class="tab lang-en" data-tab="en_adventures" type="button">🗺️ Adventure Generator — Dolmenwood</button>
+                </div>
+            </aside>
+
+            <div class="content-area">
+                
+    <div id="pl_playbook_bard" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Dworski Performer</b></p>
+<p>Znasz wielkie rody — ich barwy, urazy, próżności. Występowałeś/-aś przynajmniej dla jednego z nich. Wiesz, co chcą usłyszeć i czego udają, że nie słyszą.</p>
+<p>Kiedy poruszasz się w polityce szlacheckiej, etykiecie dworskiej lub zgromadzeniu dostojników, zyskujesz +1 naprzód.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was widział/-a mnie przy stole szlacheckim?</li>
+<li>Który/-a z was wie, do którego rodu już nie jestem mile widziany/-a?</li>
+<li>Który/-a z was ostrzegł/-a mnie, zanim powiedziałem/-am coś niebezpiecznego?</li>
+<li>Który/-a z was nie wie o mojej historii z szlachtą?</li>
+</ul>
+<p>---</p>
+<p><b>Kolekcjoner Folkloru</b></p>
+<p>Podróżujesz przez Dolmenwood zbierając stare opowieści — te opowiadane przy zimowych ogniskach, te, przy których ludzie milkną, gdy wchodzą obcy. Słyszałeś/-aś wersje opowieści, które inni uważali za utracone.</p>
+<p>Kiedy czerpiesz z folkloru, by zrozumieć stworzenie, miejsce lub wydarzenie, zapytaj MG o jedno. MG odpowiada szczerze.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was opowiedział/-a mi historię, której wcześniej nie słyszałem/-am?</li>
+<li>Który/-a z was uważa, że to co zbieram jest bardziej niebezpieczne, niż mi się wydaje?</li>
+<li>Który/-a z was widział/-a, jak rozpoznaję coś w realnym świecie z opowieści, którą znałem/-am?</li>
+<li>Który/-a z was dał/-a mi najdziwniejszy fragment folkloru, jaki słyszałem/-am?</li>
+</ul>
+<p>---</p>
+<p><b>Ocalały/-a z Bajki</b></p>
+<p>Coś ci się przydarzyło w Lesie, o czym większość ludzi słyszy tylko w opowieściach. Wyszedłeś/-aś z tego. Nie zawsze wiesz dlaczego.</p>
+<p>Kiedy rozpoznajesz, że bieżąca sytuacja podąża schematem bajki, powiedz MG, jaki wzorzec dostrzegasz. Jeśli masz rację, zyskujesz +1 naprzód i zaznaczasz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, co mi się przydarzyło w Lesie?</li>
+<li>Który/-a z was widział/-a, jak zastygnę w bezruchu, gdy coś wydaje się znajome?</li>
+<li>Który/-a z was uważa, że nie wyszedłem/-am z tego tak dobrze, jak wyglądam?</li>
+<li>Któremu/-ej z was opowiedziałbym/-ałabym całą historię, gdybym kiedyś to zrobił/-a?</li>
+</ul>
+<p>---</p>
+<p><b>Przestroga</b></p>
+<p>Twój najsławniejszy występ spowodował problem. Byłeś/-aś tam. Od tamtej pory jesteś ostrożniejszy/-a — albo próbujesz.</p>
+<p>Kiedy powstrzymujesz się zamiast działać impulsywnie, zyskujesz +1 naprzód do następnej rzeczy, którą zrobisz.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was zna historię tego, co zrobiłem/-am?</li>
+<li>Który/-a z was nigdy nie pytał/-a, i jestem za to wdzięczny/-a?</li>
+<li>Który/-a z was przyłapał/-a mnie prawie robiącego/-ą to samo co wtedy?</li>
+<li>Którego/-ą z was najbardziej boję się zawieść?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Przeciwczar</b></p>
+<p>Kiedy opierasz się fejerycznej magii, zaczarowaniu lub nadprzyrodzonemu przymusowi, rzuć +CHA. Na 10+: nie jesteś dotknięty/-a i możesz działać swobodnie. Na 7-9: opierasz się na razie — ale efekt trwa i MG mówi, ile będzie cię kosztowało pozostanie wolnym/-ą.</p>
+<p><b>Urzekający Występ</b></p>
+<p>Kiedy grasz — muzykę, opowieść lub poezję — dla publiczności, rzuć +CHA. Na 10+: wybierz dwa: są poruszeni, opuszczają gardę, coś sobie przypominają, mówią ci coś, czego inaczej by nie powiedzieli. Na 7-9: wybierz jedno.</p>
+<p><b>Folklor</b></p>
+<p>Masz rozległą wiedzę o legendach, stworzeniach i historii Dolmenwood. Kiedy czerpiesz z tej wiedzy o stworzeniu, miejscu, frakcji lub wydarzeniu, zapytaj MG o jedno szczere pytanie.</p>
+<p><b>Odczytywanie Starych Pism</b></p>
+<p>Czytasz archaiczne formy Woldish, stare teksty liturgiczne i runy na ruinach i stojących kamieniach. Kiedy badasz inskrypcję, MG mówi ci, co mówi — i może powiedzieć więcej.</p>
+<p><b>Czytanie Sali</b></p>
+<p>Kiedy uważnie obserwujesz sytuację towarzyską przed działaniem, zapytaj MG o jedno: kto tu sprawuje prawdziwą władzę? Czego ktoś chce, a nie powiedział? Gdzie jest napięcie, które może to rozsadzić?</p>
+<p><b>Opowieść Trwa</b></p>
+<p>Pierwszy raz w każdej sesji, gdy coś idzie źle i towarzysz jest bliski poddania się, możesz zaproponować historię, która to ujmuje inaczej. Zyskuje +1 naprzód, a ty zaznaczasz PD.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🎵 # BARD</h2><p>*Znasz opowieści, które trzymają ludzi przy życiu w ciemności. Wiesz, kiedy zaczyna się nowa.*</p>
+<p><b>Kostka Obrażeń:</b> k6</p>
+<p><b>PŻ:</b> 6 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Dworskie:</b> Silvaine, Aldric, Meredith, Corslyn / Evrett, Beatrix, Tamsin, Rowan</p>
+<p><b>Drogowe:</b> Pip, Wren, Gorse, Holly / Reed, Sparrow, Latch, Flint</p>
+<p><b>Sceniczne:</b> Jasnyłuk, Złotyjęzyk, Kruk, Nocny Strażnik / Cichydzwon, Popielny Las, Czystakrew, Włóczęga</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> kształcony/-a na dworze szlacheckim | samouk z drogi | uczeń/-nica wędrownego śpiewaka | odziedziczył/-a rzemiosło po rodzinie</p>
+<p><b>Sylwetka:</b> lekki/-a i szybki/-a | spokojny/-a i uważny/-a, występujący/-a tylko gdy potrzeba | ekspresyjny/-a i barwny/-a | powolny/-a, zachowujący/-a wszystko na właściwy moment</p>
+<p><b>Oczy:</b> zawsze czytające otoczenie | roziskrzone, gdy zaczyna się dobra opowieść | rejestrujące wszystko na później | życzliwe dla ludzi, twardsze dla idei</p>
+<p><b>Strój:</b> strój wędrownego performera, sfatygowany i ujmujący | bogate tkaniny lekko podniszczone | praktyczne warstwy z kolorowym detalem | prosty strój, który jakoś przyciąga wzrok</p>
+<p><b>Znak szczególny:</b> strunowy instrument zawsze w zasięgu | nawyk nucenia przy myśleniu | notatnik pełen zasłyszanych dialogów i półzapomnianych pieśni | długi szal lub płaszcz używany dla dramatyzmu</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Ballada o Lesie:</b> Skomponuj pieśń o prawdziwym wydarzeniu z kampanii. Dopóki ta pieśń jest znana, sojusznicy, którzy ją słyszą, zyskują +1 naprzód do działań odzwierciedlających jej temat.</li>
+<li><b>Język Feji:</b> Nauczyłeś/-aś się tyle z języka feji, by znać podstawowe uprzejmości i rozpoznawać glamoury, gdy je słyszysz.</li>
+<li><b>Znany/-a z Imienia:</b> Wybierz szlachecki ród lub potężną frakcję w Dolmenwood — jesteś tam znany/-a, pozytywnie. Używaj tego, gdy ma to znaczenie.</li>
+<li><b>Rozbrajający Urok:</b> Kiedy robisz na kimś dobre pierwsze wrażenie, nie są w stanie ci skrzywdzić, dopóki im ku temu powodu nie dasz.</li>
+<li><b>Żywe Archiwum:</b> Raz na sesję przypomnij sobie fragment folkloru, który bezpośrednio odnosi się do bieżącego problemu. MG mówi ci jedną prawdziwą rzecz, którą przypomniałeś/-aś sobie w odpowiednim momencie.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Naucz się opowieści, którą uważano za utraconą na zawsze.</li>
+<li>Wystąp przed kimś, kto ma moc zmienić to, co wydarzy się dalej.</li>
+<li>Rozpoznaj schemat bajki, gdy trwa — i zmień zakończenie.</li>
+<li>Powiedz trudną prawdę przez opowieść, gdy powiedzenie jej wprost by nie zadziałało.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 8.</p>
+<ul>
+<li>Instrument strunowy, dobrze ograny (2 sloty)</li>
+<li>Krótki miecz lub nóż (bliski zasięg, 1 slot)</li>
+<li>Podróżny strój z wyróżniającym detalem (1 slot)</li>
+<li>Notatnik z pieśniami, opowieściami i obserwacjami (1 slot)</li>
+<li>Prowiant (1 slot)</li>
+<li>Bukłak (1 slot)</li>
+<li>List polecający od szlacheckiego dworu — którego status może już nie być aktualny (małe)</li>
+<li>Pieśń, której nikomu nie zagrałeś/-aś (małe)</li>
+<li>Trzy monety z trzech różnych miejsc, w których byłeś/-aś (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_kleryk" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Sługa Zakonu Świętego Faxisa</b></p>
+<p>Odpowiadasz bezpośrednio przed inkwizytorskim ramieniem biskupa Sanguine'a — tropiąc okultyzm gdziekolwiek go znajdziesz. Znasz twarze Zakapturzonych Mężczyzn albo się ich uczysz.</p>
+<p>Kiedy jawnie działasz przeciw agentom Drune, Zimnego Księcia lub dworu Nag-Lorda, zyskujesz +1 naprzód.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was widział/-a, jak waham się przed czymś, co miałem/-am zniszczyć?</li>
+<li>Który/-a z was wie coś o mojej misji, czego nie powiedziałem/-am moim przełożonym?</li>
+<li>Który/-a z was ufam bardziej niż Zakonowi — i dlaczego?</li>
+<li>Który/-a z was przyszło mi obserwować?</li>
+</ul>
+<p>---</p>
+<p><b>Strażnik Zaginionej Kapliczki</b></p>
+<p>Kapliczka w głębokim Lesie była pod twoją opieką. Coś ją odebrało — powódź, ogień, Drune lub coś gorszego. Nie przestałeś/-aś jej szukać.</p>
+<p>Kiedy odzyskujesz relikwię, kapliczkę lub święty przedmiot dla Kościoła, zaznacz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was pomagał/-a mi szukać tego, co straciłem/-am?</li>
+<li>Który/-a z was wie, co się stało przy kapliczce — choćby nie powiedział/-a tego głośno?</li>
+<li>Który/-a z was też stracił/-a coś, czego jeszcze nie odzyskał/-a?</li>
+<li>Który/-a z was wątpi, że kiedykolwiek to znajdę?</li>
+</ul>
+<p>---</p>
+<p><b>Upadły/-a w Niełasce</b></p>
+<p>Przekroczyłeś/-aś granicę. Odpokutowałeś/-aś, znów służysz w Prawie — ale pamiętasz, jak smakował upadek.</p>
+<p>Kiedy stoisz przed kimś, kto stoi na krawędzi hańby, zyskujesz +1 naprzód, by mu pomóc lub przeszkodzić.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, co zrobiłem/-am?</li>
+<li>Który/-a z was nigdy mnie za to nie osądzał/-a?</li>
+<li>Który/-a z was stoi blisko tej samej krawędzi, przy której ja kiedyś stałem/-am?</li>
+<li>Który/-a z was przyłapał/-a mnie na czymś, co przyrzekłem/-am już nigdy nie robić?</li>
+</ul>
+<p>---</p>
+<p><b>Wyświęcony/-a w Polu</b></p>
+<p>Nigdy nie szkolono cię w seminarium. Umierający kapłan wyświęcił cię w bagnie i kazał działać dalej. Od tamtej pory działasz.</p>
+<p>Kiedy poświęcasz przestrzeń — prowizoryczny ołtarz, pierś konającego, zrujnowaną kapliczkę — MG daje ci jedną prawdziwą informację o tym, co się tu wydarzyło.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was był/-a tam, gdy zostałem/-am wyświęcony/-a?</li>
+<li>Który/-a z was uważa, że nie jestem prawdziwym klerykiem?</li>
+<li>Który/-a z was widział/-a, jak odprawiam rytuał, który nie powinien zadziałać — a zadziałał?</li>
+<li>Kogo z was pochowałem/-am?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Święte Śluby</b></p>
+<p>Jesteś Praworządny/-a lub Neutralny/-a. Jeśli działasz wbrew ślubom lub staniesz się Chaotyczny/-a, tracisz możliwość użycia *Modlitwy o Łaskę* dopóki nie wykonasz aktu pokuty. MG mówi ci, czego to wymaga.</p>
+<p><b>Modlitwa o Łaskę</b></p>
+<p>Kiedy modlisz się w imię świętego przed podjęciem działania, rzuć +MĄD. Na 10+: MG udziela szczerej odpowiedzi na jedno pytanie o sytuację i zyskujesz +1 naprzód. Na 7-9: zyskujesz +1 naprzód, ale MG czegoś od ciebie żąda w zamian.</p>
+<p><b>Odwrócenie Nieczystych</b></p>
+<p>Kiedy z autorytetem świętym konfrontujesz nieumarłego, demona lub istotę Chaosu, rzuć +MĄD. Na 10+: ucieka, zostaje zniszczona lub nie może się do ciebie zbliżyć. Na 7-9: waha się — ty i twoi sojusznicy możecie działać, zanim ona to zrobi.</p>
+<p><b>Święty Wojownik</b></p>
+<p>Jesteś wyszkolony/-a w broni i zbroi. Kiedy walczysz w obronie niewinnych lub w bezpośredniej służbie Kościoła, zyskujesz +1 naprzód.</p>
+<p><b>Pamięć Świętych</b></p>
+<p>Znasz czyny, relikwie i kapliczki świętych Kościoła Pluritine. Kiedy identyfikujesz relikwię lub kapliczkę świętego, zapytaj MG o jedno: historię, moc lub lokalizację. MG odpowiada szczerze.</p>
+<p><b>Nieść Światło</b></p>
+<p>Kiedy sojusznik załamałby się pod ciężarem strachu, żalu lub rozpaczy, możesz dać mu swoją pewność. Zyskuje +1 naprzód. Ty zaznaczasz PD.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # KLERYK</h2><p>*Służysz Bogu z mieczem w jednej ręce i modlitwą w drugiej. Kościół potrzebuje wojowników, którzy nie cofną się przed ciemnością.*</p>
+<p><b>Kostka Obrażeń:</b> k6</p>
+<p><b>PŻ:</b> 6 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Z Zakonu:</b> Edmund, Aldric, Małgorzata, Sybilla / Crestian, Aelwin, Fenwith, Dorith</p>
+<p><b>Z Południa:</b> Baric, Lucen, Sera, Maeve / Holt, Wendric, Aleth, Corvine</p>
+<p><b>Zdobyte w Służbie:</b> Brat Kamień, Siostra Cierń, Niezłomany/-a, Ojciec Popiół</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> wychowany/-a w seminarium | nawrócony/-a w polu walki | szkolony/-a przez wędrowny zakon | urodzony/-a w pobożnej rodzinie</p>
+<p><b>Sylwetka:</b> barczysty/-a i rozważny/-a | szczupły/-a i czujny/-a | naznaczony/-a bliznami z bitew stoczonych w imię Boga | spokojny/-a i skupiony/-a</p>
+<p><b>Oczy:</b> wypatrujące grzechu | pełne cichej pewności | nawiedzony/-a przez to, co widziały, a wciąż wierzą | trwałe jak zapalone świece</p>
+<p><b>Strój:</b> kościelna płyta, sfatygowana, ale zadbana | okryta kampanijną zbroją z wyrytymi symbolami świętych | ciężkie szaty over kolczugi | czysty/-a i precyzyjny/-a bez względu na błoto</p>
+<p><b>Znak szczególny:</b> medalion Chapes świętego Clewyd zawsze przy sobie | kostki szorstkie od modlitwy i walki | blizna przez gardło od czegoś, co prawie zadziałało | dziennik polowy świadczonych grzechów i obserwowanych herezji</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Święty Zakon:</b> Wybierz patrona świętego. Raz na sesję, przywołaj jego konkretną moc — opisaną między tobą a MG.</li>
+<li><b>Pobłogosławiona Broń:</b> Twoja broń nosi znak świętego. Liczy się jako święta przeciwko nieumarłym i istotom Chaosu.</li>
+<li><b>Egzorcyzm:</b> Kiedy odprawiasz egzorcyzm na osobie lub miejscu, rzuć +MĄD. Na 10+: skażenie zostaje wypędzone. Na 7-9: jest osłabione — ale teraz cię pamięta.</li>
+<li><b>Niezachwiany/-a:</b> Jesteś odporny/-a na magiczny strach i przymus pochodzące od Chaosu lub Feji.</li>
+<li><b>Słowo Sądu:</b> Raz na starcie, wypowiedz święte potępienie. Wszyscy wrogowie, którzy je słyszą, mają utrudnienie na następne działanie.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Odzyskaj zaginioną kapliczkę i zwróć ją Kościołowi.</li>
+<li>Stań między niewinnym a czymś, co chce go skazić.</li>
+<li>Zmierz się z członkiem Drune lub dworu Nag-Lorda i wyjdź z tego zwycięsko.</li>
+<li>Działaj z prawdziwej wiary, nie z obowiązku — w chwili, gdy cię to coś kosztuje.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 10.</p>
+<ul>
+<li>Kolczuga lub płyta, sfatygowana i pokryta modlitwami (2 sloty)</li>
+<li>Długi miecz lub buława (bliski zasięg, 1 slot)</li>
+<li>Tarcza ze świętym symbolem (1 slot)</li>
+<li>Medalion Chapes z patronem (małe)</li>
+<li>Bukłak pobłogosławiony przy kapliczce (1 slot)</li>
+<li>Dziennik polowy świadczonych grzechów i herezji (1 slot)</li>
+<li>Prowiant na drogę (1 slot)</li>
+<li>Ogarek świecy i krzesiwo (małe)</li>
+<li>Mapa znanych kapliczek w Lesie — wiele skreślonych (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_lowca" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Tropiciel Krzyworogów</b></p>
+<p>Znasz krzyworogi Nag-Lorda — skazionych breggle — lepiej niż większość: ich ślady, wzorce, skażoną wściekłość. Tropisz je w północnych kresach, zanim ktokolwiek inny pomyślał, żeby się martwić.</p>
+<p>Kiedy tropisz lub polokujesz na krzyworogi lub stworzenia noszące skażenie Nag-Lorda, zyskujesz +1 naprzód.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was był/-a ze mną w północnym Lesie?</li>
+<li>Który/-a z was wciąż nie rozumie, jak bardzo robi się źle na północy?</li>
+<li>Który/-a z was stracił/-a kogoś z powodu tego, co tropię?</li>
+<li>Który/-a z was ufa mojemu odczytaniu tego, co porusza się przez ten obszar?</li>
+</ul>
+<p>---</p>
+<p><b>Łowca Nagród Szlacheckich Rodów</b></p>
+<p>Wykonujesz kontrakty — potwory, przestępcy, zaginieni, rzeczy, które lordowie chcą znaleźć lub powstrzymać. Znasz wielkie rody, ich terytoria i co płacą.</p>
+<p>Kiedy przyjmujesz kontrakt od szlacheckiego rodu i go realizujesz, zyskujesz +1 naprzód do wszystkich ruchów podejmowanych w bezpośredniej służbie tego kontraktu.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was poszedł/-a ze mną na wcześniejszy kontrakt?</li>
+<li>Który/-a z was wie, który ród ma stałą ofertę na coś, do czego jeszcze nie jestem gotowy/-a?</li>
+<li>Który/-a z was jest powodem, że raz odmówiłem/-am kontraktu?</li>
+<li>Który/-a z was był/-a celem — i nie wie, że to mnie zapytano?</li>
+</ul>
+<p>---</p>
+<p><b>Związany/-a ze Zwierzęciem</b></p>
+<p>Twój towarzysz znalazł ciebie, nie odwrotnie. Był ranny, lub zagubiony, lub wystarczająco stary, żeby wybierać. Jesteście razem wystarczająco długo, że więź jest głęboka i bezsłowna.</p>
+<p>Kiedy twój towarzysz działa w twoim imieniu bez instrukcji, MG mówi ci, co wyczuł, czego ty nie zauważyłeś/-aś.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was widział/-a mojego towarzysza robiącego coś, co kazało mu zastanowić się, co rozumieją zwierzęta?</li>
+<li>Który/-a z was zna imię mojego towarzysza?</li>
+<li>Do którego/-ej z was mój towarzysz się zbliżył/-a bez mojej zachęty?</li>
+<li>Któremu/-ej z was mój towarzysz wyraźnie nie ufa — i czy miał/-a rację?</li>
+</ul>
+<p>---</p>
+<p><b>Powracający/-a Pustelnik/-ica Lasu</b></p>
+<p>Długo mieszkałeś/-aś sam/-a w głębokim Lesie. Wiesz o nim rzeczy, których nie wiedzą ludzie mieszkający blisko. Wróciłeś/-aś z powodu, który ma dla ciebie znaczenie.</p>
+<p>Kiedy czerpiesz z wiedzy zdobytej podczas samotnego czasu w głębokim Lesie, zapytaj MG o jedno: teren, stworzenia lub ukryte rzeczy na obszarze. MG odpowiada szczerze.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was znalazł/-a mnie w Lesie, lub był/-a tam gdy wyszedłem/-am?</li>
+<li>Który/-a z was wie, co wysłało mnie do lasu na początku?</li>
+<li>Który/-a z was widział/-a, jak patrzę na coś tam, jakby coś było nie tak — i nic nie mówię?</li>
+<li>Dla kogo z was zostałem/-am?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Towarzysz Zwierzęcy</b></p>
+<p>Masz wiernego towarzysza zwierzęcego — dużego psa, jastrzębia, dzikiego kota, wytrenowaną wronę lub coś innego uzgodnionego z MG. Nazwij go i opisz. Kiedy działasz w porozumieniu z towarzyszem, zyskujesz +1 naprzód. Jeśli twój towarzysz jest ranny, nie możesz uzyskać +1 z żadnego ruchu dopóki nie wyzdrowieje. Jeśli twój towarzysz zginie, zaznacz Ułomność i nie nadawaj nowego imienia, dopóki nie opłakałeś/-aś straty.</p>
+<p><b>Tropienie</b></p>
+<p>Kiedy podążasz śladem — stworzenia, osoby lub zdarzenia — rzuć +MĄD. Na 10+: podążasz sprawnie i dowiadujesz się czegoś o tym, co zostawiło ślad. Na 7-9: podążasz, ale ślad jest trudniejszy do odczytania lub zwierzyna wie, że jest śledzona.</p>
+<p><b>Czujność</b></p>
+<p>Nigdy nie jesteś zaskoczony/-a. Kiedy MG by wezwał do sprawdzianu przeciw zasadzce lub nagłemu zagrożeniu, możesz działać jako pierwszy/-a.</p>
+<p><b>Strzelec Wyborowy</b></p>
+<p>Kiedy oddajesz strzał z pozycji przewagi lub po chwili celowania, zyskujesz +1 naprzód.</p>
+<p><b>Nawigacja</b></p>
+<p>Nie możesz zgubić się w Lesie. Kiedy drużyna grozi się zgubić, ty znajdujesz drogę. Wchodząc na nowy obszar, zapytaj MG o jedno: Jakie jest tu najpoważniejsze zagrożenie? Co regularnie tu przechodzi? Gdzie ktoś by poszedł, żeby nie zostać znalezionym?</p>
+<p><b>Cierpliwy Łowca</b></p>
+<p>Kiedy spędzasz czas spokojnie obserwując stworzenie, lokalizację lub osobę przed działaniem, zapytaj MG o jedno: jaka jest ich słabość, rutyna lub podatność? MG odpowiada szczerze.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🏹 # ŁOWCA</h2><p>*Znasz ten Las. Wiesz, co przez niego przechodzi. Wiesz, co weszło i nie wróciło.*</p>
+<p><b>Kostka Obrażeń:</b> k8</p>
+<p><b>PŻ:</b> 8 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Pospolite:</b> Aldric, Wulfric, Maren, Sanna / Bram, Cob, Elsie, Holt</p>
+<p><b>Leśne:</b> Paproć, Ash, Cierń, Rowan / Szary/-a, Bagno, Brzoza, Silvan</p>
+<p><b>Zarobione:</b> Dalekiwzrok, Cichastopa, Żelaznyłuk, Bezślady / Błotochodnik, Spokojna Ręka, Zimny Trzask, Strażnik Zmroku</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> wychowany/-a na skraju lasu przez rodzinę łowców | szkolony/-a jako łowca nagród dla szlacheckich rodów | uczył/-a się sam/-a, przez stratę | były/-a żołnierz, który/-a wybrał/-a drzewa zamiast drogi</p>
+<p><b>Sylwetka:</b> szczupły/-a i cierpliwy/-a | żylasty/-a i nisko przy ziemi | nieruchomy/-a gdy coś się nie porusza, potem bardzo szybki/-a | rozważny/-a we wszystkim</p>
+<p><b>Oczy:</b> zawsze sprawdzające odległość | czytające teren, nie twarze | skanujące to, czego nie powinno być | spokojne w sposób wynikający z wielokrotnego przeżycia strachu</p>
+<p><b>Strój:</b> praktyczna odzież leśna, ziemistych kolorów i bezgłośna | wytarte przez las warstwy, nic nie połyskuje | myśliwskie skóry naznaczone tym, co się tropiło | miks funkcji i osobistej historii — trofea, amulety, naprawy</p>
+<p><b>Znak szczególny:</b> towarzysz zwierzęcy zawsze w pobliżu | nawyk kucania do czytania śladów tam, gdzie inni po prostu przechodzą | łuk lub kusza utrzymywane w perfekcyjnym stanie | kołczan z nacięciami za każde ważne polowanie</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Zmysły Więzi:</b> Twój towarzysz może przekazać, co wyczuł. Raz na sesję zapytaj MG o jedno: co twój towarzysz obserwował pod twoją nieobecność.</li>
+<li><b>Śmiertelny Strzał:</b> Kiedy oddajesz strzał z ukrycia przeciw celowi, który nie wie o twoim istnieniu, twoje obrażenia ignorują zbroję.</li>
+<li><b>Medycyna Leśna:</b> Kiedy leczysz rany używając naturalnych zasobów Lasu, efekt odpowiada profesjonalnemu leczeniu.</li>
+<li><b>Wiedza o Potworach:</b> Wybierz typ stworzenia pospolitego w Dolmenwood — krzyworogi, nieumarli, stworzenia feji, grzybowe potwory. Masz na nich ekspertyzę. Kiedy działasz przeciw nim, zyskujesz +1 naprzód.</li>
+<li><b>Zniknięcie:</b> Możesz zniknąć w Lesie na żądanie. Kiedy jesteś ścigany/-a, rzuć +MĄD. Na 10+: ścigający całkowicie cię tracą. Na 7-9: tracisz ich tymczasowo — mogą ponownie podchwycić ślad.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Upoluj coś, czego nikt inny nie był w stanie wytropić.</li>
+<li>Obroń głęboki Las przed czymś, co do niego nie należy.</li>
+<li>Zrozum, co twój towarzysz wie, a ty nie.</li>
+<li>Idź w miejsce Lasu, którego należy unikać — i wróć.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 9.</p>
+<ul>
+<li>Myśliwskie skóry (1 slot)</li>
+<li>Łuk długi i 20 strzał lub kusza i 20 bełtów (2 sloty)</li>
+<li>Nóż myśliwski (wręcz, 1 slot)</li>
+<li>Siekierka (bliski zasięg, 1 slot)</li>
+<li>Lina, 10 metrów (1 slot)</li>
+<li>Polowy worek z lekarstwami (1 slot)</li>
+<li>Towarzysz zwierzęcy (przy boku, nie liczony)</li>
+<li>Prowiant na długi odcinek drogi (1 slot)</li>
+<li>Mapa Lasu z własnymi uzupełnieniami staranną ręką (małe)</li>
+<li>Trofeum po czymś, co upolowałeś/-aś i co miało znaczenie (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_magik" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Bliski Drune</b></p>
+<p>Byłeś/-aś wystarczająco blisko Zakapturzonych Mężczyzn, by sięczegoś nauczyć. Czy ukradłeś/-aś to, wymieniłeś/-aś, czy potem uciekałeś/-aś — to inna sprawa.</p>
+<p>Kiedy używasz wiedzy zdobytej od Drune lub o nich, zyskujesz +1 naprzód i mówisz MG, ile cię to kosztowało.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, co wziąłem/-ęłam od Drune?</li>
+<li>Który/-a z was pomógł/-ła mi uciec potem?</li>
+<li>Który/-a z was uważa, że powinienem/-am był/-a zostawić to w spokoju?</li>
+<li>Który/-a z was nie wie o tym — i chciałbym/-ałabym, żeby tak zostało?</li>
+</ul>
+<p>---</p>
+<p><b>Uczeń/-nica Martwego Mistrza</b></p>
+<p>Twój mentor zginął lub zniknął, zanim skończył twoje kształcenie. Jego metody żyją w twoich rękach. Jego tajemnice są wciąż gdzieś zakopane.</p>
+<p>Kiedy używasz techniki lub podejścia, którego nauczył cię mistrz, opisz to głośno i zyskaj +1 naprzód.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was znał/-a mojego mistrza — lub znał/-a jego reputację?</li>
+<li>Który/-a z was był/-a tam, gdy dowiedziałem/-am się, że odszedł/-a?</li>
+<li>Który/-a z was widział/-a, jak robię coś, czego mógłbym/-ałabym się nauczyć tylko od kogoś niebezpiecznego?</li>
+<li>Który/-a z was szukam razem czegoś, co mój mistrz zostawił?</li>
+</ul>
+<p>---</p>
+<p><b>Kolekcjoner Zakazanych Ksiąg</b></p>
+<p>Zdobyłeś/-aś teksty, które Kościół pali, a Drune hoarding. Bardzo uważasz na to, kto o tym wie.</p>
+<p>Kiedy konsultujesz swoją kolekcję i pytasz MG o coś arcańskiego, okultystycznego lub historycznego, MG odpowiada szczerze.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was widział/-a, co trzymam w plecaku?</li>
+<li>Który/-a z was pożyczył/-a coś z mojej kolekcji i nie zwrócił/-a?</li>
+<li>Który/-a z was doniosłby/-aby na mnie Kościołowi, gdyby wiedział/-a, co mam?</li>
+<li>Który/-a z was poprosił/-a mnie kiedyś o spalenie konkretnej książki — a ja tego nie zrobiłem/-am?</li>
+</ul>
+<p>---</p>
+<p><b>Czytający/-a Linie Ley</b></p>
+<p>Czujesz arcańskie prądy Lasu — linie ley, kamienie, miejsca gdzie świat jest cieńszy niż powinien. Drune zabiłoby za twoją wrażliwość. Masz nadzieję, że się nie dowiedzą.</p>
+<p>Kiedy wchodzisz na nowy obszar, możesz zapytać MG, czy jest tu arcańskie znaczenie — linia ley, stojący kamień, drzwi fei, miejsce mocy. MG odpowiada szczerze.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was zauważył/-a, że zastygłem/-am w bezruchu wchodząc na ten obszar?</li>
+<li>Który/-a z was widział/-a, jak dotykam stojącego kamienia i szybko cofam rękę?</li>
+<li>Który/-a z was wie, że wyczuwam działania Drune — i nie powiedział/-a o tym nikomu?</li>
+<li>Który/-a z was poszedł/-a za mną, gdy sam/-a odszedłem/-am coś zbadać?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Rzucanie Zaklęć</b></p>
+<p>Kiedy rzucasz przygotowane i zwizualizowane zaklęcie, rzuć +INT. Na 10+: działa zgodnie z zamysłem. Na 7-9: działa, ale wybierz jedno: trwa dłużej niż oczekiwano | przyciąga niechcianą uwagę | kosztuje cię coś drobnego, ale realnego.</p>
+<p><b>Tajemna Wiedza</b></p>
+<p>Kiedy badasz coś arcańskiego — zaklęcie, przedmiot, efekt magiczny, przestrzeń rytualną — zapytaj MG o jedno pytanie na ten temat. MG odpowiada szczerze.</p>
+<p><b>Wykrywanie Magii</b></p>
+<p>Zawsze wyczuwasz obecność aktywnej magii w pobliżu. Kiedy skupiasz się celowo, MG mówi ci naturę magii i jej źródło.</p>
+<p><b>Skarbiec Wiedzy</b></p>
+<p>Nazwij dziedzinę arcańskich studiów (demonologia, runy fei, teoria linii ley, krysztalmancja itp.) — studiowałeś/-aś ją. Raz na temat, zapytaj MG, jak twoja wiedza ma zastosowanie w bieżącej sytuacji. MG odpowiada szczerze.</p>
+<p><b>Przedmioty Eldryckie</b></p>
+<p>Umiesz identyfikować i używać arcańskich przedmiotów. Kiedy próbujesz użyć magicznego przedmiotu o nieznanej funkcji, rzuć +INT zamiast rzucać w ciemno.</p>
+<p><b>Cena Mocy</b></p>
+<p>Kiedy coś idzie bardzo źle z twoją magią, zaznacz PD.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🧙 # MAGIK</h2><p>*Czytałeś/-aś książki, które miały zostać spalone. Zamierzasz przeczytać więcej.*</p>
+<p><b>Kostka Obrażeń:</b> k4</p>
+<p><b>PŻ:</b> 4 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Uczeni:</b> Oswin, Pereth, Valmere, Circe / Aldith, Telvane, Morvain, Cassid</p>
+<p><b>Samoucy:</b> Dym, Wren, Inkwell, Pale / Crisp, Vane, Dusk, Flint</p>
+<p><b>Zapożyczone:</b> Morrigan, Caelith, Sunderway, Grex / Tavis, Elward, Mirrick, Ash</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> szkolony/-a przez mistrza, który zniknął | samouk z kradzionych tekstów | inicjowany/-a w tajemnej tradycji, która już nie istnieje | znalazł/-a grimoire za młodu i nigdy nie podniósł/-a wzroku</p>
+<p><b>Sylwetka:</b> szczupły/-a i precyzyjny/-a | pochylony/-a nad notatkami | spokojny/-a i kalkulujący/-a | zawsze w ruchu, zawsze po coś sięgający/-a</p>
+<p><b>Oczy:</b> katalogujące wszystko | roziskrzone, gdy pojawi się coś rzadkiego | odległe, już trzy kroki do przodu | ostrożne w sposób sugerujący dawną katastrofę</p>
+<p><b>Strój:</b> pobrudzone atramentem szaty na praktycznych warstwach | podróżny płaszcz z arcańską notacją w podszewce | zwyczajny strój kryjący kilka ukrytych kieszeni | wytarte akademickie okrycie</p>
+<p><b>Znak szczególny:</b> grimoire zawsze w zasięgu ręki | palce lekko poruszające się przy myśleniu | zapach ozonu i starego pergaminu | nawyk zatrzymywania się przed mówieniem, by sprawdzić, czy ktoś słucha</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Nowe Zaklęcie:</b> Naucz się jednego nowego przygotowanego zaklęcia swojego opisu — uzgodnij zakres z MG.</li>
+<li><b>Dostęp do Linii Ley:</b> W pobliżu stojącego kamienia lub węzła linii ley, rzuć jedno zaklęcie bez kosztu.</li>
+<li><b>Fragment Drune:</b> Zdobyłeś/-aś fragment wiedzy Drune. Działa. Może też zostać zauważony/-a.</li>
+<li><b>Analityczny Umysł:</b> Kiedy obserwujesz efekt magiczny lub zdolność stworzenia, możesz zapytać MG o jego słabość. MG odpowiada szczerze.</li>
+<li><b>Arcańskie Rezerwy:</b> Raz na sesję, rzuć zaklęcie, które normalnie by cię wyczerpało, bez ponoszenia tego kosztu.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Zdobądź zaklęcie lub tekst, którego nikt inny nie ma.</li>
+<li>Dowiedz się czegoś, co Drune ukrywa przed wszystkimi.</li>
+<li>Rzuć coś, czego nigdy nie próbowałeś/-aś, w pełnej świadomości ryzyka.</li>
+<li>Znajdź to, co twój mistrz zostawił niedokończone — i to dokończ.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 7.</p>
+<ul>
+<li>Grimoire, gęsto pokryty notatkami (2 sloty)</li>
+<li>Sztylet (wręcz, 1 slot)</li>
+<li>Podróżny płaszcz z ukrytymi kieszeniami (1 slot)</li>
+<li>Pióro, atrament i czyste strony (1 slot)</li>
+<li>Mała żelazna latarnia (1 slot)</li>
+<li>Prowiant (1 slot)</li>
+<li>Drugi, mniejszy tekst — coś, czego jeszcze nie skończyłeś/-aś tłumaczyć (małe)</li>
+<li>Zapieczętowany list od mistrza, którego nie otworzyłeś/-aś (małe)</li>
+<li>Kreda do oznaczania linii ley i przestrzeni rytualnych (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_mnich" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Wędrowny Kaznodzieja</b></p>
+<p>Podróżujesz przez Las, głosząc Słowo Boże tym w odizolowanych przysiółkach i na samotnych rozdrożach. Witano cię i odpychano, czasem przy tych samych drzwiach.</p>
+<p>Kiedy troszczysz się o ludzi skromnego stanu — rolników, drwali, odizolowanych — i nic w zamian nie żądasz, zaznacz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was widział/-a, jak odpędzono mnie od bramy wsi?</li>
+<li>Który/-a z was poszedł/-a za mną, gdy odchodziłem/-am od osady, która czegoś potrzebowała, a ja nie mogłem/-am dać?</li>
+<li>Który/-a z was słuchał/-a, jak głoszę, choćby raz?</li>
+<li>Który/-a z was uważa, że Kościół, któremu służę, nie jest tym, w co wierzę?</li>
+</ul>
+<p>---</p>
+<p><b>Zielarz Głębokiego Lasu</b></p>
+<p>Nauczyłeś/-aś się, co rośnie w Dolmenwood — lecznicze grzyby, dziwne mchy, zioła, które leczą, i te, które zabijają przy złym użyciu. Część twojej wiedzy pochodzi ze źródeł, których Kościół by nie pochwalił.</p>
+<p>Kiedy szukasz w Lesie, rzuć +MĄD. Na 10+: znajdujesz to, czego szukasz, i coś użytecznego, czego nie szukałeś/-aś. Na 7-9: znajdujesz, czego potrzebujesz, ale zajmuje to czas lub zabiera cię gdzieś, gdzie wolałbyś/-ałabyś nie być.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was skorzystał/-a z mojej wiedzy o tym, co tu rośnie?</li>
+<li>Który/-a z was widział/-a dziwniejsze części mojej kolekcji?</li>
+<li>Który/-a z was wie, że uczę się niekiedy od wiedźm, choć nigdy bym tego nie przyznał/-a?</li>
+<li>Który/-a z was obserwował/-a mnie wahającego/-ą się przed użyciem czegoś, o czym wiedziałem/-am, że zadziała?</li>
+</ul>
+<p>---</p>
+<p><b>Pielgrzym Kapliczek</b></p>
+<p>Wędrujące od kapliczki do kapliczki przez cały Las — niektóre zagubione, niektóre znalezione, niektóre takie, które inni nie nazwaliby kapliczkami. Zbierasz modlitwy jak inni zbierają monety.</p>
+<p>Kiedy modlisz się przy kapliczce — nawet zrujnowanej lub prowizorycznej — MG daje ci jedną prawdziwą informację o okolicznym terenie.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was szedł/-a ze mną przez odcinek pielgrzymki?</li>
+<li>Który/-a z was znalazł/-a kapliczkę i powiedział/-a mi o tym, zanim powiedział/-a komukolwiek innemu?</li>
+<li>Który/-a z was uważa, że moja pielgrzymka jest pretekstem, żeby gdzieś dotrzeć?</li>
+<li>Który/-a z was siedział/-a cicho, gdy się modliłem/-am, nie pytając dlaczego?</li>
+</ul>
+<p>---</p>
+<p><b>Pokutnik/-ica</b></p>
+<p>Coś zrobiłeś/-aś. Kościół wie co to było. Odbywasz pokutę tutaj w Lesie, czyniąc dobro, gdziekolwiek możesz, w nadziei że pewnego dnia dług zostanie spłacony.</p>
+<p>Kiedy wykonujesz akt szczerej bezinteresownej pomocy z osobistym kosztem, zaznacz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, co zrobiłem/-am?</li>
+<li>Który/-a z was nigdy o tym nie wspomniał/-a?</li>
+<li>Który/-a z was podejrzewam, że też odpokutowuje coś?</li>
+<li>Któremu/-ej z was pomogłem/-am wystarczająco dużo, że zaczynam myśleć, że to coś znaczy?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Ręce Uzdrowiciela</b></p>
+<p>Kiedy opiekujesz się ranną osobą ziołami, modlitwą lub starannością, rzuć +MĄD. Na 10+: wraca do sił na tyle, ile bezpiecznie możliwe, i zyskuje +1 naprzód. Na 7-9: wraca do sił, ale leczenie cię czegoś kosztuje — zapasy, czas lub cenę nazwaną przez MG.</p>
+<p><b>Wiedza Ziołowa</b></p>
+<p>Wiesz, co rośnie w Dolmenwood. Kiedy szukasz ziół lub grzybów, zawsze coś znajdziesz. Kiedy identyfikujesz roślinę lub grzyba, zapytaj MG o jedno: właściwości. MG odpowiada szczerze.</p>
+<p><b>Drobna Magia Święta</b></p>
+<p>Raz dziennie możesz wezwać błogosławieństwo świętego. Opisz potrzebę i świętego. Rzuć +MĄD. Na 10+: efekt pojawia się bez zakłóceń. Na 7-9: pojawia się, ale z komplikacją nazwaną przez MG.</p>
+<p><b>Odwrócenie Nieczystych</b></p>
+<p>Kiedy konfrontujesz nieumarłe stworzenie lub ducha modlitwą i przekonaniem, rzuć +MĄD. Na 10+: nie może się do ciebie zbliżyć i wycofuje się. Na 7-9: waha się wystarczająco długo, byś mógł/-a działać.</p>
+<p><b>Droga Ewangelii</b></p>
+<p>Kiedy mówisz szczerze z kimś potrzebującym — nie głosząc, po prostu mówiąc — rzuć +CHA. Na 10+: otwiera się, i możesz zapytać MG o jedno: co wie lub co niesie. Na 7-9: miękknie, ale jest jeszcze coś, czego ci nie powie.</p>
+<p><b>Zaufana Obecność</b></p>
+<p>Ludzie ci mówią rzeczy. Zwykli ludzie, przestraszeni rolnicy, nawet ci, którzy nie ufają Kościołowi — łatwiej im mówić z tobą niż z innymi. Kiedy słuchasz bez osądzania, zaznacz PD.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # MNICH</h2><p>*Nie nosisz broni. Tylko wiarę, dwie dobre ręce i wiedzę o tym, co rośnie w głębokim Lesie.*</p>
+<p><b>Kostka Obrażeń:</b> k4</p>
+<p><b>PŻ:</b> 4 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Imiona Kościelne:</b> Brat Ancel, Siostra Maren, Brat Godwin, Siostra Petry</p>
+<p><b>Imiona Własne:</b> Wulfric, Elsa, Torin, Sanna / Addo, Mira, Cob, Fenn</p>
+<p><b>Przydomki Drogi:</b> Szary/-a, Błotna Stopa, Łój, Słone Bagna / Spokojne Ręce, Cierniojagoda, Lekka Sakwa</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> wykształcony/-a w seminarium, ale wyruszył/-a w wędrówkę | wyświęcony/-a po boskim doświadczeniu | w drodze od zanim złożył/-a formalne śluby | nawrócony/-a późno, wciąż uczący/-a się modlitw</p>
+<p><b>Sylwetka:</b> szczupły/-a i zahartowany/-a przez drogę | cichy/-a i niepozorny/-a | spokojny/-a i szeroki/-a, porusza się powoli z rozmysłem | drobny/-a ze zręcznymi rękami do opatrywania ran</p>
+<p><b>Oczy:</b> otwarte, zapraszające do spowiedzi | smutne w sposób, o którym nie mówi | szukające znaków Boga we wszystkim | spokojne w kryzysie</p>
+<p><b>Strój:</b> proste ciemne szaty, sfatygowane i często błotniste | grubotkany habit z zawieszką świętego | warstwowe podróżne odzienie z drewnianym żetonem modlitewnym | prosta wełna, zawsze lekko pachnąca ziołami</p>
+<p><b>Znak szczególny:</b> duży plecak z ziołami i lekarstwami | nawyk pytania jak się ktoś czuje i naprawdę słuchania odpowiedzi | mała rzeźbiona figurka świętego wygładzona od dotykania | zawsze wiedzący/-a, gdzie jest najbliższe źródło wody</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Błogosławieństwo Świętego:</b> Wybierz patrona świętego. Naucz się jednej potężnej modlitwy specyficznej dla jego domeny — opisz ją z MG.</li>
+<li><b>Leśna Medycyna:</b> Kiedy leczysz rany w terenie używając znalezionych materiałów, efekt jest tak dobry jak u wyszkolonego chirurga.</li>
+<li><b>Konsekracja:</b> Możesz konsekrować prowizoryczną kapliczkę w dowolnym miejscu. Dopóki jesteś w jej granicach, sojusznicy nie mogą być celem nieumarłych.</li>
+<li><b>Długa Droga:</b> Nigdy nie gubisz się w Lesie. Zawsze znasz drogę do najbliższej osady.</li>
+<li><b>Nieuzbrojony/-a i Spokojny/-a:</b> Nikt nigdy nie może zaatakować cię jako pierwszego/-ej w starciu — wrogowie nie widzą w tobie zagrożenia, dopóki nie działasz.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Uzdrów kogoś, kto nie wierzył, że może zostać uzdrowiony.</li>
+<li>Znajdź zaginioną kapliczkę i przywróć ją do użytku.</li>
+<li>Daj coś, czego potrzebujesz, komuś kto potrzebuje tego bardziej.</li>
+<li>Działaj z współczucia, nie z obowiązku — w chwili, gdy różnica ma znaczenie.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 8.</p>
+<ul>
+<li>Proste podróżne szaty (1 slot)</li>
+<li>Kij (zasięg, 1 slot)</li>
+<li>Woreczek ziół, dobrze zaopatrzony (2 sloty)</li>
+<li>Bandaże i zestaw polowy (1 slot)</li>
+<li>Rzeźbiona figurka świętego (małe)</li>
+<li>Bukłak (1 slot)</li>
+<li>Prowiant, skromny (1 slot)</li>
+<li>Świeca z wosku pszczelego (małe)</li>
+<li>Ręcznie rysowana mapa kapliczek — z notatkami, które wciąż stoją (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_rycerz" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Przysiężny Domu Harrowmoor</b></p>
+<p>Ród lady Harrowmoor jest stateczny, wojowniczy i stoi wobec naporu krzyworogów Nag-Lorda z północy. Służysz jej zbroją i dyscypliną.</p>
+<p>Kiedy działasz bezpośrednio w obronie ziem lub ludzi Domu Harrowmoor, zyskujesz +1 naprzód.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wystarczająco dobrze zna ziemie Harrowmoor, by wiedzieć, co jest stawką?</li>
+<li>Który/-a z was walczył/-a u mego boku w północnym Lesie?</li>
+<li>Który/-a z was uważa, że zagrożenie krzyworogów jest gorsze, niż moja pani sądzi?</li>
+<li>Który/-a z was widział/-a, jak otrzymuję rozkazy, z którymi się nie zgadzam, i mimo to je wykonuję?</li>
+</ul>
+<p>---</p>
+<p><b>Przysiężny Domu Guillefer</b></p>
+<p>Dom Guillefer jest śniący i wyniosły, dzieląc rządy między członkami rodziny rotacyjnie. Służysz rodowi, który czasem zapomina, że istniejesz — co daje ci niezwykłą swobodę.</p>
+<p>Kiedy działasz bez wyraźnych rozkazów i to się udaje, zaznacz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was widział/-a, jak działam bez rozkazów — i uszło mi to płazem?</li>
+<li>Który/-a z was wie, któremu Guillefer aktualnie jestem zaprzysiężony/-a?</li>
+<li>Któremu/-ej z was ufam bardziej niż mojemu aktualnemu lordowi?</li>
+<li>Który/-a z was był/-a tam, gdy ostatnio słyszałem/-am od mojego pana — i wie, jak dawno to było?</li>
+</ul>
+<p>---</p>
+<p><b>Błędny Rycerz</b></p>
+<p>Nie służysz teraz żadnemu konkretnemu rodowi. Nosisz swój kodeks bez lorda — wędrując, robiąc to, co rycerz robi, czekając na godną sprawę lub godnego pana.</p>
+<p>Kiedy przestrzegasz kodeksu w sytuacji, gdzie nikt tego od ciebie nie wymagał, zyskujesz +1 naprzód i zaznaczasz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, dlaczego już nie służę memu dawnemu panu?</li>
+<li>Który/-a z was widział/-a, jak odmawiam panu oferty służby?</li>
+<li>Któremu/-ej z was naprawdę służę, choć żadne z nas tego nie nazwało?</li>
+<li>Który/-a z was wystawił/-a mój kodeks na próbę i patrzył/-a jak go trzymam?</li>
+</ul>
+<p>---</p>
+<p><b>Zhańbiony/-a i Powracający/-a</b></p>
+<p>Twoje rycerstwo zostało odebrane. Wiesz dlaczego. Odrabiasz je z powrotem — czynami lub znajdując to, co poszło źle, i naprawiając.</p>
+<p>Kiedy działasz w sposób, który przywraca twoją cześć w oczach kogoś, kto był świadkiem twojej hańby, zaznacz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, co zrobiłem/-am?</li>
+<li>Który/-a z was nigdy nie użył/-a tego przeciwko mnie?</li>
+<li>Który/-a z was widział/-a mnie lepszego/-ą niż opowieść o moim upadku?</li>
+<li>Który/-a z was chciałbym/-ałabym, żeby był/-a świadkiem, gdy odzyskam to, co straciłem/-am?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Zaprzysiężony Wasal</b></p>
+<p>Nazwij swojego pana — szlachecki ród, lorda lub zaprzysiężoną sprawę. Kiedy działasz w bezpośredniej służbie interesów pana, zyskujesz +1 naprzód. Jeśli kiedykolwiek zdradzisz pana, tracisz ten ruch dopóki nie wykonasz aktu odkupienia w jego imię.</p>
+<p><b>Opancerzony i Gotowy</b></p>
+<p>Jesteś wyszkolony/-a we wszelkiej broni i ciężkiej zbroi. Kiedy trwasz w miejscu w walce chroniąc innego, nic cię nie ruszy ani nie złamie — chyba że przytłoczą cię liczebnie.</p>
+<p><b>Pogromca Potworów</b></p>
+<p>Kiedy stajesz wobec istoty Chaosu, nieumarłego lub nadprzyrodzonego drapieżnika, zyskujesz +1 naprzód na pierwszy rzut przeciw niemu.</p>
+<p><b>Siła Woli</b></p>
+<p>Kiedy opierasz się strachowi, nadprzyrodzonemu przymusowi lub łamaniu nerwów, rzuć +SIŁ. Na 10+: trzymasz się i zyskujesz +1 naprzód. Na 7-9: trzymasz się, ale cię to kosztuje — zaznacz to.</p>
+<p><b>Kodeks Rycerski</b></p>
+<p>Nie używasz broni miotanej. Nie atakujesz nieuzbrojonych ani poddających się. Przedstawiasz się przed walką. Kiedy przestrzegasz kodeksu, choć byłoby łatwiej nie — zaznacz PD.</p>
+<p><b>Konno</b></p>
+<p>Masz konia (lub możesz szybko go zdobyć). Kiedy walczysz konno, twoja kostka obrażeń rośnie o jeden stopień. Twój koń nie jest wydatkiem.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # RYCERZ</h2><p>*Służysz swojemu panu i swemu kodeksowi. Kiedy te dwie rzeczy będą ciągnąć w przeciwnych kierunkach, zmierzysz się z tym momentem, gdy nadejdzie.*</p>
+<p><b>Kostka Obrażeń:</b> k8</p>
+<p><b>PŻ:</b> 8 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Urodzeni w Szlachcie:</b> Aldric, Margrave, Edric, Isolde / Brennan, Theodric, Vayne, Caelen</p>
+<p><b>Wyniesieni Czynami:</b> Silnyłuk, Żelazna Ręka, Czarny Cierń, Falchion / Złoty Tarcz, Szary Płaszcz, Wilcza Bania</p>
+<p><b>Z Tytułem:</b> Sir Edric, Pani Isolde, Lord Marchwell, Lady Aelwin / Sir Gorse, Pani Cierń, Sir Redwell</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> urodzony/-a w szlachcie | wyniesiony/-a ze zwykłego ludu za czyny | młodsze dziecko, które potrzebowało własnej drogi | zaprzysiężony/-a przez umierającego lorda, który nie miał innego wyboru</p>
+<p><b>Sylwetka:</b> opancerzony/-a, deliberatny/-a i onieśmielający/-a | wysoki/-a i pewny/-a siebie | zwarty/-a i sprawny/-a | naznaczony/-a bliznami sugerującymi przeżycie wiele</p>
+<p><b>Oczy:</b> wypatrujące zagrożeń dla tego, co chronią | ważące honor przy każdej wymianie | bezpośrednie i wymagające | cichsze niż zbroja sugeruje</p>
+<p><b>Strój:</b> płyta, ciężka i zadbana | okryta kampanijną zbroją z barwami lorda | kolczuga z symbolem rodu szlacheckiego | zbroja nieskazitelna nawet w terenie</p>
+<p><b>Znak szczególny:</b> lanca lub dwuręczny miecz zawsze w zasięgu | nawyk stawania między innymi a drzwiami | pendant lorda noszony jawnie | formalna grzeczność kogoś, kto nauczył się jej z konieczności</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Sławny/-a:</b> Wybierz szlachecki ród lub potężną frakcję — jesteś tam znany/-a z imienia jako ktoś wartościowy.</li>
+<li><b>Tarcza Niewinnych:</b> Kiedy stajesz między niewinnym a krzywdą, nie odnosisz obrażeń od pierwszego ciosu.</li>
+<li><b>Przysięga Rodu:</b> Twój pan nadaje ci określony tytuł i terytorium. Nazwij je — masz tam obowiązki i zasoby.</li>
+<li><b>Głos Wodza:</b> Kiedy dowodzisz sojusznikami w boju, zyskują +1 naprzód na następne działanie.</li>
+<li><b>Niezłomany/-a:</b> Raz na sesję, gdy miałbyś/-abyś upaść — nie upadasz. Masz 1 PŻ i jesteś przytomny/-a.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Wypełnij obowiązek wobec pana z prawdziwym kosztem dla siebie.</li>
+<li>Pokonaj istotę Chaosu w bezpośredniej walce.</li>
+<li>Działaj honorowo w sytuacji, która pozwoliłaby ci odwrócić wzrok.</li>
+<li>Odkryj, co znaczy być rycerzem, gdy nikt nie patrzy.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 12.</p>
+<ul>
+<li>Płyta lub kolczuga (2 sloty)</li>
+<li>Lanca (zasięg) lub dwuręczny miecz (2 sloty)</li>
+<li>Tarcza z symbolem rodu szlacheckiego (1 slot)</li>
+<li>Destrier lub koń wierzchowy (osobno)</li>
+<li>Pendant lorda lub zaprzysiężona pieczęć (małe)</li>
+<li>Prowiant polowy (1 slot)</li>
+<li>Bukłak (1 slot)</li>
+<li>Glejt od pana — albo list wyjaśniający, dlaczego go nie masz (małe)</li>
+<li>Osełka (małe)</li>
+<li>Gruby rulon koca (1 slot)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="pl_playbook_zlodziej" class="playbook-content lang-pl">
+        <div class="main-column">
+            <div class="card"><h2>📜 Tło</h2><p>Wybierz jedno.</p>
+<p>---</p>
+<p><b>Szabrownik Grobowców Głębokiego Lasu</b></p>
+<p>Żyjesz z tego, co umarli zostawili — w kurhanach, rozpadających się ruinach feji, opuszczonych wykopaliskach, do których nikt inny nie wchodzi. Wiesz o wiele o tym, co tam jest w środku.</p>
+<p>Kiedy wchodzisz do ruiny, grobowca lub opuszczonej budowli, zapytaj MG o jedno: Jakie jest tu prawdziwe zagrożenie? Czym to miejsce pierwotnie było? Gdzie najprawdopodobniej jest najcenniejsza rzecz?</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was był/-a wcześniej w ruinie ze mną?</li>
+<li>Który/-a z was raz odwiódł/-a mnie od otwierania czegoś, czego nie powinienem/-nam?</li>
+<li>Który/-a z was wie, jak dostałem/-am tę konkretną bliznę?</li>
+<li>Któremu/-ej z was dałem/-am udział, choć nie musiałem/-am?</li>
+</ul>
+<p>---</p>
+<p><b>Agent Dreg</b></p>
+<p>Wyrosłeś/-aś w Dreg — mieście portowym, handlu rzecznym, szarej ekonomii Madame Shantywood. Wiesz, jak działa spód rzeczy i kto rządzi czym.</p>
+<p>Kiedy masz do czynienia z elementami przestępczymi, handlarzami rzecznymi, przemytnikami lub nieformalną ekonomią Dolmenwood, zyskujesz +1 naprzód.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was zna imię Madame Shantywood?</li>
+<li>Który/-a z was wyciągnął/-ęła mnie z Dreg, gdy ostatnio poszło źle?</li>
+<li>Który/-a z was pracował/-a dla tych samych ludzi co ja?</li>
+<li>Który/-a z was nie wie, czym jestem — i chciałbym/-abym, żeby tak zostało?</li>
+</ul>
+<p>---</p>
+<p><b>Artysta Przekrętu</b></p>
+<p>Sprzedałeś/-aś fałszywe relikwie wierzącym, fałszywe mapy desperatom, wymyśliłeś/-aś pełne tożsamości na jeden wieczór. To za tobą. Głównie.</p>
+<p>Kiedy utrzymujesz fałszywą tożsamość lub oszustwo przez ponad godzinę bez wpadki, zaznacz PD.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was oszukałem/-am w przeszłości?</li>
+<li>Który/-a z was zna moje prawdziwe imię?</li>
+<li>Który/-a z was przyłapał/-a mnie na kłamstwie i nic nie powiedział/-a?</li>
+<li>Wobec którego/-ej z was nie staram się kłamać?</li>
+</ul>
+<p>---</p>
+<p><b>Zbieg z Gildii</b></p>
+<p>Byłeś/-aś szkolony/-a przez gildie — jak się poruszać, jak sprawdzać teren, jak zniknąć. Potem coś się stało i jesteś sam/-a. Gildia może, ale nie musi cię szukać.</p>
+<p>Kiedy używasz technik wyraźnie wyuczonych w formalnym szkoleniu, zyskujesz +1 naprzód i mówisz MG, co to ujawnia o twojej przeszłości.</p>
+<p>Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p>
+<ul>
+<li>Który/-a z was wie, że byłem/-am szkolony/-a przez gildię?</li>
+<li>Który/-a z was nie wie — i aktywnie to ukrywałem/-am?</li>
+<li>Który/-a z was był/-a tam, gdy odszedłem/-am od nich?</li>
+<li>Który/-a z was wie, czy nadal mnie szukają?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ruchy Startowe</h2><p><b>Cios w Plecy</b></p>
+<p>Kiedy atakujesz z ukrycia lub gdy cel nie wie, że jest w niebezpieczeństwie, rzuć +ZRĘ. Na 10+: zadajesz obrażenia i wybierz jedno: pozostajesz ukryty/-a | tworzysz otwarcie dla sojusznika | nie mogą wszcząć alarmu. Na 7-9: zadajesz obrażenia, ale zostajesz odsłonięty/-a.</p>
+<p><b>Otwieranie Zamków</b></p>
+<p>Kiedy wybierasz zamek, rozbrojesz pułapkę lub omijasz fizyczną barierę, rzuć +ZRĘ. Na 10+: radzisz sobie sprawnie i szybko. Na 7-9: dajesz radę, ale wybierz jedno: trwa dłużej niż oczekiwano | coś niewidocznego zostaje wyzwolone | zostawiasz ślady.</p>
+<p><b>Ruch Cienia</b></p>
+<p>Kiedy poruszasz się niezauważony przez obszar, rzuć +ZRĘ. Na 10+: przechodzisz bez śladu. Na 7-9: przechodzisz, ale ktoś prawie cię zauważył, albo musiałeś/-aś coś zostawić, żeby przez to przejść.</p>
+<p><b>Odczytywanie Pism</b></p>
+<p>Czytasz kody, szyfry, znaki złodziejskie i stare dokumenty. Kiedy badasz pisemny tekst, zazwyczaj potrafisz wydobyć znaczenie — i to, co ukrywa.</p>
+<p><b>Złoty Język</b></p>
+<p>Kiedy kłamiesz, wprowadzasz w błąd lub szybko mówisz komuś, kto nie ma powodów ci nie ufać, rzuć +CHA. Na 10+: wierzy ci lub robi to, co sugerujesz. Na 7-9: w zasadzie ci wierzy, ale zadaje jedno pytanie, na które musisz odpowiedzieć.</p>
+<p><b>Zawsze na Czatach</b></p>
+<p>Kiedy wchodzisz do nowej przestrzeni, zawsze znasz wyjścia, linie wzroku i — po chwili cichej uwagi — najbardziej prawdopodobne kryjówki zarówno dla ludzi, jak i dla rzeczy.</p>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🗡️ # ZŁODZIEJ</h2><p>*Wiesz, gdzie są drzwi. Wiesz, które z nich nie miały nigdy zostać znalezione.*</p>
+<p><b>Kostka Obrażeń:</b> k6</p>
+<p><b>PŻ:</b> 4 + KON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Imię</h2><p>Wybierz imię:</p>
+<p><b>Używane:</b> Pip, Wren, Łój, Crib / Ash, Hak, Slate, Kuna</p>
+<p><b>Urodzeniowe:</b> Edmund, Nessa, Corvin, Sable / Aldith, Torin, Wex, Prue</p>
+<p><b>Zawodowe:</b> Blada Dłoń, Płotka, Szybkie Palce, Rosiczka / Szary Szczur, Wróbel, Zamkarz, Fitch</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><b>Pochodzenie:</b> urodzony/-a w uliczkach Dreg | szkolony/-a przez gildie, która może już nie istnieć | samouk z konieczności | przyszedł/-a do tego z czegoś bardziej szanowanego</p>
+<p><b>Sylwetka:</b> szczupły/-a i niezauważalny/-a | szybki/-a i nisko przy ziemi | przeciętny/-a pod każdym pomocnym względem | gibki/-a i elastyczny/-a w sposób, który ma znaczenie</p>
+<p><b>Oczy:</b> katalogujące wyjścia | obecne wszędzie, zarejestrowane nigdzie | ciepłe na powierzchni, liczące srebro | obserwujące ręce, nie twarze</p>
+<p><b>Strój:</b> szara podróżna odzież z ukrytymi kieszeniami | ciemne warstwy, wygodne | dobrze ubrany/-a jak na okoliczności | sfatygowany/-a i niezapamiętywalny/-a celowo</p>
+<p><b>Znak szczególny:</b> narzędzia złodziejskie zawsze dostępne | nawyk siedzenia tam, skąd widać drzwi | nigdy nie dotykać niczego bez wiedzy, czym to jest | zawsze znając trzy drogi ucieczki</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Awanse</h2><ul>
+<li><b>Wiedza Trucizniarza:</b> Znasz pospolite trucizny dostępne w Dolmenwood, jak je zdobyć i jak zastosować niepostrzeżenie.</li>
+<li><b>Druga Tożsamość:</b> Masz kompletną fałszywą tożsamość — imię, historię i kontakt, który może ją potwierdzić. Trzyma się dopóki czegoś nie zepsujesz.</li>
+<li><b>Paser:</b> Znasz nabywcę prawie wszystkiego w Dolmenwood. Kiedy masz coś do sprzedania, znajdziesz kupca i dostaniesz uczciwą cenę.</li>
+<li><b>Zniknięcie:</b> Raz na scenę możesz zniknąć z sytuacji — nie magicznie, ale dokładnie. Po prostu cię nie ma, zanim ktokolwiek może cię powstrzymać.</li>
+<li><b>Czytanie Ukrytego:</b> Kiedy uważnie obserwujesz osobę, zapytaj MG, co ukrywa i czego najbardziej pragnie. MG odpowiada szczerze.</li>
+<li><b>Ulepszony Atrybut:</b> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><b>Wybitny Atrybut</b> *(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)*: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Dążenia</h2><ul>
+<li>Weź coś od kogoś, kto na to nie zasługuje.</li>
+<li>Znajdź to, co zakopano w ruinie, którą wszyscy inni pominęli.</li>
+<li>Wyjdź z sytuacji, z której wyjść się nie powinno dało.</li>
+<li>Zostań ufanym/-ą przez kogoś, kto ma dobry powód, by ci nie ufać.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Ekwipunek</h2><p>Udźwig 7.</p>
+<ul>
+<li>Skórzana zbroja (1 slot)</li>
+<li>Krótki miecz i dwa sztylety (1 slot)</li>
+<li>Narzędzia złodziejskie, profesjonalnej jakości (1 slot)</li>
+<li>Ciemna podróżna peleryna (1 slot)</li>
+<li>Lina, 10 metrów (1 slot)</li>
+<li>Prowiant (1 slot)</li>
+<li>Mapa Dreg z pewnymi budynkami zaznaczonymi osobistym kodem (małe)</li>
+<li>Fałszywy list polecający (małe)</li>
+<li>Zamek, który nie otwiera się — pracujesz nad nim od miesięcy (małe)</li>
+<li>Moneta na czarną godzinę, schowana w bucie (małe)</li>
+</ul></div>
+        </div>
+    </div>
+    
+<div id="pl_optional_moves" class="playbook-content lang-pl"><div class="optional-moves-container"><div class="card"><h2>📜 # Opcjonalne Ruchy — Dolmenwood</h2><p><b>W Głąb Ciemnego Lasu</b></p>
+<p>Kiedy zagłębiasz się w Dolmenwood dalej niż kiedykolwiek wcześniej — za ostatni znany punkt orientacyjny, poza krawędź jakiejkolwiek mapy — rzuć +MĄD. Na 10+: znajdujesz to, czego szukałeś/-aś, a Las pozwala ci przejść. Na 7-9: coś znajdujesz, ale Las w zamian zwraca na ciebie uwagę. MG mówi ci, co się zmieniło.</p>
+<p>---</p>
+<p><b>Stojący Kamień</b></p>
+<p>Kiedy kładziesz ręce na stojącym kamieniu i otwierasz się na to, co przez niego przepływa, rzuć +MĄD. Na 10+: zapytaj MG o dwa pytania z poniższej listy i otrzymaj szczere odpowiedzi. Na 7-9: zapytaj o jedno — ale coś w kamieniu zainteresowało się tobą.</p>
+<ul>
+<li>Co niedawno przeszło przez ten obszar, a powinienem/-am o tym wiedzieć?</li>
+<li>Wpływy której frakcji są tu najsilniejsze?</li>
+<li>Co jest ukryte w pobliżu tego miejsca?</li>
+<li>Jaką cenę zapłacono za wzniesienie tego kamienia?</li>
+</ul>
+<p>---</p>
+<p><b>Przeciw Zakapturzonym Mężczyznom</b></p>
+<p>Kiedy działasz bezpośrednio przeciw Drune — sprzeciwiając się ich planom, ingerując w ich prace z liniami ley, kradnąc ich wiedzę — rzuć +INT. Na 10+: udaje ci się i pozostajesz niezidentyfikowany/-a. Na 7-9: udaje ci się, ale Drune teraz wiedzą, że ktoś ingerował. Dowiedzą się kto.</p>
+<p>---</p>
+<p><b>Droga Feji</b></p>
+<p>Kiedy wkraczasz na drogę feji w pełnej wiedzy, czym jest, rzuć +CHA. Na 10+: niesie cię tam, gdzie zamierzasz, bez zdarzenia. Na 7-9: niesie cię tam, gdzie musisz być, ale nie tam, gdzie planowałeś/-aś — i coś na tej drodze widziało, że nią podróżujesz.</p>
+<p>---</p>
+<p><b>Co Pamięta Las</b></p>
+<p>Kiedy nocujesz w głębokim Lesie bez schronienia lub ognia, rzuć +MĄD. Na 10+: otrzymujesz prawdziwą wizję — MG mówi ci coś realnego o Lesie lub siłach, które przez niego krążą. Na 7-9: otrzymujesz wizję, ale jest ona cząstkowa lub niepokojąca. W obu przypadkach zaznaczasz PD.</p></div></div></div>
+
+    <div id="pl_adventures" class="playbook-content lang-pl">
+        <div class="main-column" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2rem;">
+            <div class="card adventure-generator-card">
+                <h2>✨ Generator Przygód — Dolmenwood Generator</h2>
+                <div class="generator-result" id="rng-result-pl">
+                    ...
+                </div>
+                <div class="generator-actions">
+                    <button type="button" class="lang-toggle active rng-roll-btn" onclick="generateAdventure('pl')">🎲 Losuj / Roll</button>
+                </div>
+            </div>
+            
+            <div class="adventure-tables-grid" id="rng-tables-pl">
+    
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 1: Co Odkrywamy</h3>
+                    <div class="adventure-prefix">Odkrywamy</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">kurhan świeżo rozbity od środka</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">stojący kamień, który ktoś celowo oszpecił — runy wydrapane</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">przysiółek, gdzie wszystkie psy zamilkły i nie patrzą w stronę Lasu</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">drzwi feji, wciąż lekko ciepłe, podtrzymane otwarte przez coś, co tu nie należy</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">wejście do siedziby Drune, którego nie mieliśmy znaleźć</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">ruiny kapliczki, która została zburzona niedawno — w ciągu tygodnia</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">obóz krzyworogów dalej na południu, niż kiedykolwiek je widziano</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">opuszczony wóz z zapieczętowanymi kościelnymi relikwiami — bez wyjaśnienia</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">skrawek Lasu, gdzie drzewa umierają w idealnym kręgu</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">dziennik rycerza, który zaginął trzy miesiące temu — znaleziony w rowie</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">mossling sam w grzybowej polanie, otoczony czymś, czego nie potrafi nazwać</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">drogę feji, której nie ma na żadnej mapie, biegnącą prosto w Nagwood</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">zagrodę, skąd rodzina zniknęła w połowie posiłku</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">stojący kamień Drune, wokół którego kręciliśmy się przez godzinę nie zdając sobie sprawy</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">wędrownego mnicha, który nie zatrzymuje się i nie mówi, przed czym ucieka</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">świeżo wykopaną jamę u podstawy Kamienia Lata — precyzyjną, rytualną, niewyjaśnioną</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">odcięte rogi longhorn szlachcica, zostawione na drogowskazie bez wiadomości</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">woodgrue samego i trzeźwego, co nigdy wcześniej się nie zdarzało</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">wrak wozu — kościelne oznaczenia, symbole Drune wydrapane na wierzchu</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">gaj, gdzie każda roślina kwitnie w pełni w środku zimy</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 2: Gdzie To Jest</h3>
+                    <div class="adventure-prefix">które leży</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">na skraju Nagwood, za ostatnią breggle wioską</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">w mglistym bagnie, które pochłania dźwięk</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">wzdłuż drogi feji odchodzącej od Królewskiego Gościńca o północy</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">u stóp stojącego kamienia, który Drune podobno obserwuje</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">między terytoriami dwóch szlacheckich rodów — na pasie, którego nikt oficjalnie nie rości</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">w dolinie, którą lokalne mapy oznaczają tylko jako „nie zatrzymuj się"</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">głęboko w grzybowym lesie, gdzie światło zaczyna być dziwne po południu</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">u podnóża wzgórz pod zrujnowanym Opactwem Świętego Clewyd</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">wzdłuż Rzeki Shub, gdzie woda pachnie czymś innym niż woda</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">na polanie, która nie pojawia się w drzewach z żadnej strony — po prostu się w nią wchodzi</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">na granicy ziem longhorn szlachcica, gdzie wkraczanie ma konsekwencje</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">przez przerwę w kamiennym murze, który nie ma drugiego kamiennego muru w pobliżu</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">w leju, gdzie muzyka feji słyszalna jest na krawędzi słyszalności</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">przy rozdrożu za Lankshorn, pod wiszącą tablicą</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">pod korzeniami drzewa, które nie powinno być tak stare</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">za Kamieniem Lata — w obszarze, który warda utrzymuje ciepłym nawet zimą</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">w systemie jaskiń, który miejscowi nazywają nazwą, której nie chcą wyjaśniać</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">w lesie, gdzie ścieżka za tobą wygląda inaczej niż gdy wchodziłeś/-aś</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">w wypalonej skorupie budynku, którego miejscowi nie chcą nazywać</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">w miejscu, gdzie krzyżują się dwie linie ley — które Drune będzie chciało odzyskać</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 3: Do Czego To Prowadzi</h3>
+                    <div class="adventure-prefix">i prowadzi nas to do</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">agentów Zimnego Księcia, działających cicho wewnątrz Pierścienia Chell</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">zainteresowania Starszego Phanatchara Drune czymś, czego jeszcze nie zidentyfikował</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">szlacheckiego rodu w kryzysie — z zewnątrz lub od środka</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">ukrytego miejsca spotkań wiedźm pod pozornie zwyczajnym wzgórzem</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">Kamienia Lata, który zawodzi — wolniejszego, zimniejszego, niepewnego</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">kościelnej relikwii, którą Kościół uważał za zaginioną, a której chce wiele stron</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">krzyworogów Nag-Lorda przygotowujących coś, co nie jest najazdem</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">stworzenia starszego niż jakakolwiek frakcja aktualnie pretendująca do Dolmenwood</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">szlacheckiej feji, której uwaga jest teraz na drużynie — z nieokreślonych powodów</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">lorda, który potrzebuje czegoś zrobionego, o co nie może prosić swoich rycerzy</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">mnicha, który wie, gdzie jest zagubiona kapliczka — i dlaczego była zagubiona</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">ruiny, która nie jest tak opuszczona, jak wyglądała z zewnątrz</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">rodziny breggle uwięzionej między longhorn szlachtą a czymś gorszym</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">moota woodgrue, który zaraz katastrofalnie się posypie</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">grimalkin, który coś widział w Lesie i będzie handlować tą informacją</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">Drune szukającego czegoś, co stracił — i skłonnego do negocjacji w zamian</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">Zakonu Świętego Faxisa działającego w sposób, którego ich biskup nie autoryzował</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">kupca handlującego czymś, czego drużyna nie będzie mogła zignorować</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">drzwi feji, które teraz otwierają się w złym kierunku</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">umarłych — zmartwychwstałych, zorganizowanych i zmierzających gdzieś</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 4: Po Co Tu Jesteśmy</h3>
+                    <div class="adventure-prefix">Jesteśmy tutaj, aby</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">odzyskać kościelną relikwię, zanim dotrze do niej Drune</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">dowiedzieć się, co stało się z rycerzem, który przestał raportować</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">odpędzić postęp krzyworogów od wioski, która jeszcze o pomoc nie prosiła</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">zanieść wiadomość, która nie powinna być zapisana, komuś, kogo nie można nazwać</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">znaleźć wiedźmę, której Kościół szuka — zanim zrobi to Zakon Świętego Faxisa</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">odkryć, dlaczego Kamień Lata wystygł</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">powstrzymać rytuał Drune, który zamknie linię ley od której ten obszar zależy</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">eskortować kogoś przez Las, kto nie może podróżować bez ochrony</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">wydobyć coś z kurhanu przed najbliższą nowiną</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">znaleźć zaginione dziecko, które trzy dni temu weszło w Las</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">zidentyfikować, kto oszpecił stojący kamień i co próbował zapobiec</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">negocjować między dwoma szlacheckimi rodami, zanim jeden z nich zrobi coś nieodwracalnego</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">zbadać, dlaczego Kościół zamknął odcinek lasu i odmawia wyjaśnień</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">znaleźć i zamknąć drzwi feji, zanim coś przez nie wejdzie, co nie powinno</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">odzyskać dowody, że konkretny szlachcic jest w kontakcie z Zimnym Księciem</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">sprowadzić zbuntowanego mnicha z powrotem do Kościoła — albo dowiedzieć się, dlaczego odszedł/-a</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">wytropić coś przez Las, co porusza się szybciej niż powinno</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">odkryć, co organizuje nieumarłych w tym regionie i to powstrzymać</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">zabrać coś od Drune, co do nich nie należy — bez ich wiedzy</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">przeżyć trzy dni w głębokim Nagwood i wrócić z raportem</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 5: Co Stoi na Drodze</h3>
+                    <div class="adventure-prefix">strzeżone przez</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">oddział krzyworogów prowadzony przez breggle, który jeszcze do końca nie przemienił — na razie</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">Audrune Drune kontrolującego linię ley, przez którą wiedzie ta ścieżka</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">kościelnego inkwizytora, który uważa, że drużyna jest tym, czego szuka</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">grimalkin w formie wilder, który objął to miejsce za terytorium</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">pułapkę feji wbudowaną w drogę, która aktywuje się gdy przechodzisz bez właściwego słowa</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">band woodgrue wynajęty, by robić hałas podczas gdy coś innego porusza się cicho</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">nieumarłego rycerza wciąż w służbie lorda, który umarł sto lat temu</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">stworzenie bagna karmione skażeniem Nag-Lorda</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">kult śmiertelników służących Zimnemu Księciu w zamian za obiecaną ochronę</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">starszego mossling, który nie przepuści nikogo bez odpowiedzi na swoje pytanie</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">upadłą kapliczkę, której ochrony odwróciły się i teraz ranią zamiast pomagać</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">Drune, który przyszedł obserwować i nie pozwoli, żeby go zauważono</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">las, który nauczył się mylić w kierunkach i będzie powtarzał ścieżkę w nieskończoność</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">gniew szlacheckiej feji — coś tu zrobiono, czego nie wybaczyła</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">wiedźmę, która nie jest wrogiem, ale nie może pozwolić by to poszło dalej bez sprawdzenia</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">Zakon Świętego Faxisa, badający to samo z innymi zamiarami</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">stworzenie, które przybrało formę, do której nie ma prawa</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">straż szlachcica z rozkazami czyniącymi ich przeszkodą bez względu na to, kto pyta</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">most nad Rzeką Shub, pod którym coś mieszka — uważne, głodne, stare</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">ciszę — nic się nie porusza, nic nie brzmi, a powietrze jest nie w porządku w sposób, którego nikt nie potrafi określić</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Tabela 6: Co Staje na Końcu</h3>
+                    <div class="adventure-prefix">i na końcu stajemy wobec</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">Starszego Phanatrcha Drune lub jego wybranego przedstawiciela — który wiedział, że przychodzimy</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">agenta Zimnego Księcia w formie, której się nie spodziewaliśmy</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">skażenia Atanuwë, które przybrało kształt — nie krzyworoga, ale czegoś gorszego</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">szlacheckiego lorda, który zawarł układ z czymś, czego jeszcze nie rozumie</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">kościelnego dostojnika, którego sprawiedliwość zradykalizowała się w coś, co nikomu nie służy</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">szlacheckiej feji, której zainteresowanie drużyną nie jest ani wrogie, ani bezpieczne</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">tego, do czego kurhan zbudowano jako więzienie — które powoli się wydostawało</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">wiedźmy, której Gwyrigon zażądał czegoś, czego nie może odmówić</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">rytuału Drune w toku, którego nie można po prostu przerwać bez konsekwencji</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">rycerza, który wybrał hańbę zamiast posłuszeństwa — i znalazł coś wartego wybrania</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">stworzenia z krainy feji, które obserwowało drużynę odkąd ta zauważyła problem</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">lorda, którego prawowite roszczenie i skażone wybory są teraz równie realne</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">mrozu Zimnego Księcia — nie jego agentów, ale jego prawdziwej mocy przeciekającej przez zawodzącą wardę</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">mężczyzny lub kobiety, którzy wiedzą dokładnie, kim jest drużyna i co zrobi dalej</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">dworu Nag-Lorda, uchwyconego z wglądu — nie w walce, ale w sposób oznaczający, że on o nich wie</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">czegoś, co Kościół zakopał pod nazwą, której nikt, jak miano nadzieję, nie sprawdzi</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">grimalkin, który był pięć kroków do przodu przez cały czas</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">ruiny, która nie jest ruiną — coś w niej teraz mieszka, co nauczyło się wyglądać jak architektura</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">człowieka lub kobiety, który nie służy żadnej frakcji i chce czegoś prostego — co czyni ich najniebezpieczniejszą rzeczą tu</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">umarłego — jednego, konkretnego, znajomego — i tego, co próbuje dokończyć</span></li>
+</ul>
+                </div>
+        
+
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_bard" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Court Performer</b></p>
+<p>You know the great houses — their colors, their grudges, their vanities. You've performed for at least one of them. You know what they want to hear and what they pretend not to hear.</p>
+<p>When you navigate noble politics, court etiquette, or a gathering of the highborn, take +1 forward.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has seen me perform at a noble's table?</li>
+<li>Which of you knows which house I'm no longer welcome in?</li>
+<li>Which of you warned me before I said something dangerous?</li>
+<li>Which of you doesn't know about my history with the nobility?</li>
+</ul>
+<p>---</p>
+<p><b>Folklore Collector</b></p>
+<p>You travel Dolmenwood gathering old stories — the ones told around winter fires, the ones people stop telling when strangers are present. You have heard versions of stories that people thought were lost.</p>
+<p>When you draw on folklore to understand a creature, place, or event, ask the GM one question. The GM answers honestly.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you told me a story I'd never heard before?</li>
+<li>Which of you thinks what I collect is more dangerous than I believe?</li>
+<li>Which of you has seen me recognize something in the real world from a story I knew?</li>
+<li>Which of you gave me the strangest piece of folklore you've heard?</li>
+</ul>
+<p>---</p>
+<p><b>Fairy Tale Survivor</b></p>
+<p>Something happened to you in the Wood that most people only hear about in stories. You walked out of it. You don't always know why.</p>
+<p>When you recognize that the current situation follows a fairy tale pattern, tell the GM what you think the pattern is. If you're right, take +1 forward and mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows what happened to me in the Wood?</li>
+<li>Which of you has seen me go very still when something feels familiar?</li>
+<li>Which of you thinks I'm not as recovered from it as I appear?</li>
+<li>Which of you would I tell the whole story to, if I ever did?</li>
+</ul>
+<p>---</p>
+<p><b>Cautionary Tale</b></p>
+<p>Your most famous performance caused a problem. You were there. You've been more careful since — or you're trying to be.</p>
+<p>When you hold back rather than act impulsively, take +1 forward to the next thing you do instead.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows the story of what I did?</li>
+<li>Which of you has never asked, and I'm grateful for it?</li>
+<li>Which of you caught me almost doing the same thing again?</li>
+<li>Which of you am I most afraid to disappoint?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Counter Charm</b></p>
+<p>When you resist fairy magic, enchantment, or supernatural compulsion, roll +CHA. On a 10+, you are unaffected and may act freely. On a 7-9, you resist for now — but the effect lingers, and the GM tells you what it will cost to stay free.</p>
+<p><b>Enchanting Performance</b></p>
+<p>When you perform — music, story, or poetry — for an audience, roll +CHA. On a 10+, choose two: they are moved, they lower their guard, they remember something, they tell you something they wouldn't otherwise. On a 7-9, choose one.</p>
+<p><b>Folklore</b></p>
+<p>You have extensive knowledge of the legends, creatures, and history of Dolmenwood. When you draw on that knowledge about a creature, place, faction, or event, ask the GM one honest question about it.</p>
+<p><b>Decipher Old Script</b></p>
+<p>You can read archaic forms of Woldish, old liturgical texts, and runic inscriptions found in ruins and on standing stones. When you examine an inscription, the GM tells you what it says and may tell you more.</p>
+<p><b>Read the Room</b></p>
+<p>When you carefully observe a social situation before acting, ask the GM one of: who holds the real power here? What does someone want that they haven't said? Where is the tension that could break this apart?</p>
+<p><b>The Story Continues</b></p>
+<p>The first time each session that something goes badly and a companion is about to give up, you may offer a story that puts it in a different frame. They take +1 forward, and you mark XP.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Ballad of the Wood:</b> Compose a song about a real event from the campaign. While that song is known, allies who hear it take +1 forward to acts that mirror its theme.</li>
+<li><b>Fairy Tongue:</b> You have learned enough of the fairy language to speak basic pleasantries and identify glamours when you hear them.</li>
+<li><b>Known by Name:</b> Choose a noble house or powerful faction in Dolmenwood — you are known there, positively. Use this when it matters.</li>
+<li><b>Disarming Charm:</b> When you make a positive first impression on someone, they cannot bring themselves to harm you until you give them a reason.</li>
+<li><b>Living Archive:</b> Once per session, recall a piece of folklore that directly applies to the current problem. The GM tells you one true thing you've remembered at the right moment.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🎵 # THE BARD</h2><p>*You know the stories that keep people alive in the dark. You know when a new one is starting.*</p>
+<p><b>Damage Die:</b> d6</p>
+<p><b>HP:</b> 6 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Court Names:</b> Silvaine, Aldric, Meredith, Corslyn / Evrett, Beatrix, Tamsin, Rowan</p>
+<p><b>Road Names:</b> Pip, Wren, Gorse, Holly / Reed, Sparrow, Latch, Flint</p>
+<p><b>Stage Names:</b> Brightbow, Silvertongue, The Crow, Nightwatch / Lowbell, Ashwood, Trueblood, Rambler</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Origin:</b> trained at a noble court | self-taught on the road | apprentice of a wandering singer | inherited the craft from a family tradition</p>
+<p><b>Build:</b> light and quick | still and watchful, performing only when needed | expressive and vivid | unhurried, conserving everything for the right moment</p>
+<p><b>Eyes:</b> always reading the room | lit up when a good story starts | recording everything for later | kind to people, harder on ideas</p>
+<p><b>Clothing:</b> travelling performer's outfit, worn and charming | rich fabric gone slightly shabby | practical layers with a colorful detail | simple garb that somehow draws the eye</p>
+<p><b>Signature:</b> a stringed instrument, always in reach | the habit of humming while thinking | a notebook crammed with overheard dialogue and half-remembered songs | a long scarf or cloak used for emphasis</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Learn a story that was thought lost forever.</li>
+<li>Perform in front of someone who has the power to change what happens next.</li>
+<li>Recognize a fairy tale pattern while it's happening — and change the ending.</li>
+<li>Tell a hard truth through a story when saying it directly would have failed.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 8.</p>
+<ul>
+<li>Stringed instrument, well-traveled (2 slots)</li>
+<li>Shortsword or knife (close, 1 slot)</li>
+<li>Traveling outfit with a distinctive detail (1 slot)</li>
+<li>Notebook of songs, stories, and observations (1 slot)</li>
+<li>Rations (1 slot)</li>
+<li>Waterskin (1 slot)</li>
+<li>A letter of introduction from a noble court — one that may or may not still be in good standing (small)</li>
+<li>A song you've never performed for anyone (small)</li>
+<li>Three coins from three different places you've been (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_cleric" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Servant of the Order of St Faxis</b></p>
+<p>You answer directly to Bishop Sanguine's inquisitorial arm — rooting out occultism wherever you find it. You know the faces of the Hooded Men, or you're learning them.</p>
+<p>When you act openly against agents of the Drune, the Cold Prince, or the Nag-Lord, take +1 forward.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has seen me hesitate before something I was ordered to destroy?</li>
+<li>Which of you knows something about my mission that I haven't told my superiors?</li>
+<li>Which of you do I trust more than the Order — and why?</li>
+<li>Which of you was I sent to watch?</li>
+</ul>
+<p>---</p>
+<p><b>Keeper of a Lost Shrine</b></p>
+<p>A shrine in the deep Wood was in your care. Something took it from you — flood, fire, Drune, or something worse. You haven't stopped looking.</p>
+<p>When you recover a relic, shrine, or sacred object for the Church, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has helped me search for what I lost?</li>
+<li>Which of you knows what happened at the shrine — even if you haven't said so?</li>
+<li>Which of you lost something they haven't recovered either?</li>
+<li>Which of you doubts I'll ever find it?</li>
+</ul>
+<p>---</p>
+<p><b>Fallen from Grace</b></p>
+<p>You transgressed. You've done your penance, and you walk in Lawful service again — but you remember what the fall felt like.</p>
+<p>When you confront another who stands at the edge of disgrace, take +1 forward to help or hinder them.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows what I did?</li>
+<li>Which of you has never judged me for it?</li>
+<li>Which of you is close to the same edge I once stood on?</li>
+<li>Which of you caught me doing something I promised I'd never do again?</li>
+</ul>
+<p>---</p>
+<p><b>Field Consecrated</b></p>
+<p>You were never trained in a seminary. You were consecrated by a dying priest in a bog and told to carry on. You've been carrying on ever since.</p>
+<p>When you consecrate a space — a makeshift altar, a dying man's chest, a fallen shrine — the GM gives you one true piece of information about what has happened here.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you was there when I was consecrated?</li>
+<li>Which of you thinks I'm not a real Cleric?</li>
+<li>Which of you has seen me perform a rite that shouldn't have worked — but did?</li>
+<li>Which of you have I buried?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Holy Vow</b></p>
+<p>You are Lawful or Neutral. If you act against your vow or become Chaotic, you lose the ability to use *Pray for Grace* until you perform an act of atonement. The GM tells you what that requires.</p>
+<p><b>Pray for Grace</b></p>
+<p>When you pray in the name of a saint before taking action, roll +WIS. On a 10+, the GM gives you an honest answer to one question about the situation, and take +1 forward. On a 7-9, take +1 forward, but the GM asks something of you in return.</p>
+<p><b>Turn the Unholy</b></p>
+<p>When you confront an undead creature, demon, or creature of Chaos with holy authority, roll +WIS. On a 10+, it flees, is destroyed, or cannot approach you. On a 7-9, it hesitates — you and your allies can act before it does.</p>
+<p><b>Holy Warrior</b></p>
+<p>You are trained in arms and armor. When you fight in defense of the innocent or in direct service of the Church, take +1 forward.</p>
+<p><b>Saint's Memory</b></p>
+<p>You know the deeds, relics, and shrines of the saints of the Pluritine Church. When you identify a saint's relic or shrine, ask the GM one question about its history, power, or location. The GM answers honestly.</p>
+<p><b>Carry the Light</b></p>
+<p>When an ally would break under fear, grief, or despair, you may give them your certainty instead. They take +1 forward. You mark XP.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Holy Order:</b> Choose a patron saint. Once per session, invoke their specific power — described between you and the GM.</li>
+<li><b>Blessed Arms:</b> Your weapon carries the saint's mark. It counts as holy against undead and creatures of Chaos.</li>
+<li><b>Exorcism:</b> When you perform a rite of exorcism on a person or place, roll +WIS. On a 10+, the corruption is expelled. On a 7-9, it is weakened — but it remembers you now.</li>
+<li><b>Unwavering:</b> You are immune to magical fear and compulsion that originates from Chaos or Fairy.</li>
+<li><b>Word of Judgement:</b> Once per conflict, speak a holy condemnation. All enemies who hear it take disadvantage on their next action.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🙏 # THE CLERIC</h2><p>*You serve God with sword and prayer. The Church needs warriors willing to walk into the dark.*</p>
+<p><b>Damage Die:</b> d6</p>
+<p><b>HP:</b> 6 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>From the Order:</b> Edmund, Aldric, Margot, Sybil / Crestian, Aelwin, Fenwith, Dorith</p>
+<p><b>From the South:</b> Baric, Lucen, Sera, Maeve / Holt, Wendric, Aleth, Corvine</p>
+<p><b>Earned in Service:</b> Brother Stone, Sister Thorn, The Unbroken, Father Ash</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Origin:</b> raised in the seminary | converted in the field | trained by a wandering order | born to a devout family</p>
+<p><b>Build:</b> broad-shouldered and deliberate | lean and wary | scarred from battles fought in God's name | still and composed</p>
+<p><b>Eyes:</b> searching for sin | full of quiet certainty | haunted by what they've seen and still believe | steady as a lit candle</p>
+<p><b>Clothing:</b> church-issued plate, worn but maintained | campaign-battered armor with holy symbols etched in | heavy robes over chain | clean and precise regardless of the mud</p>
+<p><b>Signature:</b> a Chapes pendant of St Clewyd always at hand | knuckles rough from both prayer and fighting | a scar across the throat from something that almost worked | a field journal of sins witnessed and forgiven</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Recover a lost shrine and return it to the Church.</li>
+<li>Stand between an innocent and something that would corrupt them.</li>
+<li>Confront a member of the Drune or the Nag-Lord's court and prevail.</li>
+<li>Act from genuine faith, not duty, at a moment when it costs you something.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 10.</p>
+<ul>
+<li>Chainmail or plate, worn and prayer-marked (2 slots)</li>
+<li>Longsword or mace (close, 1 slot)</li>
+<li>Shield with a holy symbol (1 slot)</li>
+<li>Chapes pendant of a patron saint (small)</li>
+<li>Waterskin blessed at a shrine (1 slot)</li>
+<li>Field journal of witnessed sins and observed heresies (1 slot)</li>
+<li>Rations for the road (1 slot)</li>
+<li>Candle stub and flint (small)</li>
+<li>A map of known shrines in the Wood — many of them crossed out (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_friar" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Wandering Preacher</b></p>
+<p>You travel the Wood spreading the word of God to those in isolated hamlets and lonely crossroads. You've been welcomed and turned away, sometimes at the same door.</p>
+<p>When you tend to people of little means — farmers, woodcutters, the isolated — and ask nothing in return, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has seen me refused at a village gate?</li>
+<li>Which of you followed me away from a settlement that needed something I couldn't give?</li>
+<li>Which of you has listened to me preach, even once?</li>
+<li>Which of you thinks the Church I serve is not what I believe it to be?</li>
+</ul>
+<p>---</p>
+<p><b>Herbalist of the Deep Wood</b></p>
+<p>You learned what grows in Dolmenwood — the healing fungi, the strange mosses, the herbs that cure and the ones that kill if used wrong. Some of your knowledge came from sources the Church would not approve.</p>
+<p>When you forage in the Wood, roll +WIS. On a 10+, you find what you're looking for and something useful you weren't. On a 7-9, you find what you need, but it takes time or takes you somewhere you'd rather not have gone.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has benefited from my knowledge of what grows here?</li>
+<li>Which of you has seen the stranger parts of my collection?</li>
+<li>Which of you knows I sometimes learn from the witches, even if I'd never say so?</li>
+<li>Which of you has watched me hesitate before using something I knew would work?</li>
+</ul>
+<p>---</p>
+<p><b>Shrine Pilgrim</b></p>
+<p>You walk from shrine to shrine throughout the Wood — some lost, some found, some things others would not call shrines at all. You collect prayers like other people collect coins.</p>
+<p>When you pray at a shrine — even a ruined or informal one — the GM gives you one true piece of information about the surrounding area.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has walked beside me on a pilgrimage leg?</li>
+<li>Which of you found a shrine and told me about it before telling anyone else?</li>
+<li>Which of you thinks my pilgrimage is an excuse to go somewhere?</li>
+<li>Which of you has sat quietly while I prayed, without asking why?</li>
+</ul>
+<p>---</p>
+<p><b>Penitent</b></p>
+<p>You did something. The Church knows what it was. You are walking your penance out here in the Wood, doing good wherever you can, in hope that one day the debt is paid.</p>
+<p>When you perform an act of genuine selfless aid at personal cost, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows what I did?</li>
+<li>Which of you has never once brought it up?</li>
+<li>Which of you do I suspect is also doing penance for something?</li>
+<li>Which of you have I helped enough that I think it's starting to matter?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Healer's Hands</b></p>
+<p>When you tend to an injured person with herbs, prayer, or care, roll +WIS. On a 10+, they recover as much as they safely can and take +1 forward. On a 7-9, they recover, but the healing costs you something — supplies, time, or a price the GM names.</p>
+<p><b>Herbal Knowledge</b></p>
+<p>You know what grows in Dolmenwood. When you forage for herbs or fungi, you always find something useful. When you identify a plant or fungus, ask the GM one question about its properties. The GM answers honestly.</p>
+<p><b>Minor Holy Magic</b></p>
+<p>Once per day, you may call on a saint's blessing. Describe the need and the saint. Roll +WIS. On a 10+, the effect happens cleanly. On a 7-9, it happens, but with a complication the GM names.</p>
+<p><b>Turn the Unholy</b></p>
+<p>When you confront an undead creature or spirit with prayer and conviction, roll +WIS. On a 10+, it cannot approach you and retreats. On a 7-9, it hesitates long enough for you to act.</p>
+<p><b>Gospel Road</b></p>
+<p>When you speak honestly with someone in need — not preaching, just speaking — roll +CHA. On a 10+, they open up, and you may ask the GM one question about what they know or carry. On a 7-9, they soften, but there's still something they won't tell you.</p>
+<p><b>Trusted Presence</b></p>
+<p>People tell you things. Common folk, frightened farmers, even folk who distrust the Church — they find you easier to speak to than most. When you listen without judgment, mark XP.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Saint's Blessing:</b> Choose a patron saint. Learn one powerful prayer specific to their domain — describe it with the GM.</li>
+<li><b>Forest Medicine:</b> When you treat wounds in the field using found materials, the result is as effective as any trained surgeon.</li>
+<li><b>Consecrate:</b> You can consecrate a makeshift shrine in any location. While within its bounds, allies cannot be targeted by the undead.</li>
+<li><b>The Long Road:</b> You are never lost in the Wood. You always know the way to the nearest settlement.</li>
+<li><b>Unarmed and Unbothered:</b> You can never be the first one attacked in an encounter — enemies see no threat in you, until you act.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # THE FRIAR</h2><p>*You carry no weapon. Only faith, two good hands, and a knowledge of what grows in the deep Wood.*</p>
+<p><b>Damage Die:</b> d4</p>
+<p><b>HP:</b> 4 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Church Names:</b> Brother Ancel, Sister Maren, Brother Godwin, Sister Petry</p>
+<p><b>Given Names:</b> Wulfric, Elsa, Torin, Sanna / Addo, Mira, Cob, Fenn</p>
+<p><b>Road Names:</b> Grey, Mudfoot, Tallow, Saltmarsh / Slow Hand, Thornberry, Lightpurse</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Origin:</b> seminary trained but went wandering | self-ordained after a divine experience | travelling since before taking formal vows | converted late, still learning the prayers</p>
+<p><b>Build:</b> wiry and weathered from the road | soft-spoken and slight | broad and calm, moves slowly on purpose | slight with quick hands for tending wounds</p>
+<p><b>Eyes:</b> open and inviting confession | sad in a way they don't talk about | looking for signs of God in everything | steady in a crisis</p>
+<p><b>Clothing:</b> plain dark robes, worn and often muddy | rough spun habit with a saint's pendant | layered travelling clothes with a wooden prayer token | simple wool, always smelling faintly of herbs</p>
+<p><b>Signature:</b> a large pack of herbs and remedies | the habit of asking how people are and meaning it | a small carved saint's figure worn smooth from handling | always knowing where the nearest source of water is</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Heal someone who didn't believe they could be helped.</li>
+<li>Find a lost shrine and restore it to use.</li>
+<li>Give something you need to someone who needs it more.</li>
+<li>Act from compassion rather than duty, at a moment when the difference matters.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 8.</p>
+<ul>
+<li>Rough travelling robes (1 slot)</li>
+<li>Staff (reach, 1 slot)</li>
+<li>Herb pouch, well-stocked (2 slots)</li>
+<li>Bandaging and field medicine kit (1 slot)</li>
+<li>Carved saint's figure (small)</li>
+<li>Water flask (1 slot)</li>
+<li>Rations, plain (1 slot)</li>
+<li>Beeswax candle (small)</li>
+<li>A hand-drawn map of shrines — marked with notes on which are still standing (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_hunter" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Tracker of Crookhorns</b></p>
+<p>You know the Nag-Lord's corrupted breggles better than most — their tracks, their patterns, their corrupted rage. You've been hunting them in the northern reaches before anyone else thought to worry.</p>
+<p>When you track or hunt crookhorns or creatures bearing the Nag-Lord's corruption, take +1 forward.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has been in the northern Wood with me?</li>
+<li>Which of you doesn't understand yet how bad it's getting up there?</li>
+<li>Which of you has lost someone to what I've been hunting?</li>
+<li>Which of you trusts my read on what's moving through this area?</li>
+</ul>
+<p>---</p>
+<p><b>Bounty Hunter of the Noble Houses</b></p>
+<p>You work contracts — monsters, criminals, missing persons, things lords want found or stopped. You know the great houses, their territories, and what they pay for.</p>
+<p>When you take a contract from a noble house and pursue it, take +1 forward to all moves made in direct service of that contract.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you came with me on a previous contract?</li>
+<li>Which of you knows which house has a standing offer on something I'm not ready to collect?</li>
+<li>Which of you is the reason I turned down a contract once?</li>
+<li>Which of you has been a target — and doesn't know I was the one asked?</li>
+</ul>
+<p>---</p>
+<p><b>Animal Bonded</b></p>
+<p>Your companion found you, not the other way around. It was injured, or lost, or old enough to choose. You've been together long enough that the bond is deep and wordless.</p>
+<p>When your companion acts on your behalf without instruction, the GM tells you what it has sensed that you haven't.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has seen my companion do something that made you reconsider what animals understand?</li>
+<li>Which of you knows my companion's name?</li>
+<li>Which of you has my companion warmed to, without my prompting?</li>
+<li>Which of you has my companion made clear they distrust — and have they been right?</li>
+</ul>
+<p>---</p>
+<p><b>Forest Recluse Returning</b></p>
+<p>You lived alone in the deep Wood for a long time. You know things about it that people who live near it don't. You've come back out for a reason, and the reason matters to you.</p>
+<p>When you draw on knowledge gained from solitary time in the deep Wood, ask the GM one question about the terrain, creatures, or hidden things in the area. The GM answers honestly.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you found me in the Wood, or was there when I came back out?</li>
+<li>Which of you knows what sent me into the forest in the first place?</li>
+<li>Which of you has seen me look at something out there like it's not quite right — and say nothing?</li>
+<li>Which of you do I stay for?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Animal Companion</b></p>
+<p>You have a loyal animal companion — a large dog, a hawk, a wildcat, a trained crow, or something else agreed with the GM. Name it and describe it. When you act in concert with your companion, take +1 forward. If your companion is injured, you may not take +1 from any move until they are healed. If your companion dies, mark a Debility and do not name a new one until you've grieved.</p>
+<p><b>Track</b></p>
+<p>When you follow a trail — creature, person, or event — roll +WIS. On a 10+, you follow it cleanly and learn something about what made it. On a 7-9, you follow it, but the trail is harder to read or the quarry knows it's being followed.</p>
+<p><b>Alertness</b></p>
+<p>You are never surprised. When the GM would call for a check against ambush or sudden threat, you may act first.</p>
+<p><b>Marksman</b></p>
+<p>When you make a ranged attack from a position of advantage or after taking a moment to aim, take +1 forward.</p>
+<p><b>Wayfinding</b></p>
+<p>You cannot be lost in the Wood. When the party is in danger of losing their way, you find the path. When entering a new area, ask the GM one of: What is the most significant danger here? What passes through this area regularly? Where would someone go to not be found?</p>
+<p><b>Patient Hunter</b></p>
+<p>When you spend time quietly observing a creature, a location, or a person before acting, ask the GM one question: what is their weakness, routine, or vulnerability? The GM answers honestly.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Bonded Senses:</b> Your companion can relay what it has sensed. Once per session, ask the GM one question about what your companion has observed in your absence.</li>
+<li><b>Lethal Shot:</b> When you make a ranged attack from concealment against a target that doesn't know you're there, your damage ignores armor.</li>
+<li><b>Wilderness Medicine:</b> When you treat wounds using the Wood's natural resources, the effect is equivalent to professional medical treatment.</li>
+<li><b>Monster Lore:</b> Choose a type of creature common to Dolmenwood — crookhorns, undead, fairy creatures, fungi-things. You have expertise on this type. When you act against them, take +1 forward.</li>
+<li><b>Vanishing Act:</b> You can disappear into the Wood at will. When pursued, roll +WIS. On a 10+, pursuers lose you completely. On a 7-9, you lose them temporarily — they may pick up the trail again.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>📜 # THE HUNTER</h2><p>*You know this Wood. You know what moves through it. You know what has gone in and not come back.*</p>
+<p><b>Damage Die:</b> d8</p>
+<p><b>HP:</b> 8 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Common Names:</b> Aldric, Wulfric, Maren, Sanna / Bram, Cob, Elsie, Holt</p>
+<p><b>Forest Names:</b> Bracken, Ash, Thorn, Rowan / Grey, Fen, Birch, Silvan</p>
+<p><b>Earned Names:</b> Longsight, Quietfoot, Ironbow, Trackless / Mudwalker, Stillhand, Coldsnap, Duskwarden</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Origin:</b> raised on the wood's edge by a hunter family | trained as a bounty hunter for the noble houses | learned alone, through loss | former soldier who chose the trees over the road</p>
+<p><b>Build:</b> lean and patient | wiry and low to the ground | still until something moves, then very fast | deliberate in everything</p>
+<p><b>Eyes:</b> always checking the distance | reading terrain, not faces | scanning for what shouldn't be there | calm in a way that comes from having been afraid many times</p>
+<p><b>Clothing:</b> practical wood-wear, earth-toned and worn quiet | forest-weathered layers with nothing that catches | hunting leathers marked by what you've tracked | a mix of function and personal history — trophies, tokens, repairs</p>
+<p><b>Signature:</b> an animal companion always nearby | the habit of crouching to read sign where others just walk past | a longbow or crossbow maintained to exactness | a quiver with notches cut for each significant hunt</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Hunt something no one else has been able to track down.</li>
+<li>Protect the deep Wood from something that doesn't belong in it.</li>
+<li>Understand what your companion knows that you don't.</li>
+<li>Go somewhere in the Wood that should be avoided — and come back.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 9.</p>
+<ul>
+<li>Hunting leathers (1 slot)</li>
+<li>Longbow and 20 arrows, or crossbow and 20 bolts (2 slots)</li>
+<li>Hunting knife (hand, 1 slot)</li>
+<li>Hatchet (close, 1 slot)</li>
+<li>Rope, 30 feet (1 slot)</li>
+<li>Field medicine pouch (1 slot)</li>
+<li>Animal companion (at your side, not counted)</li>
+<li>Rations, enough for a long stretch (1 slot)</li>
+<li>A map of the Wood with your own additions in a careful hand (small)</li>
+<li>Trophy from something you hunted that mattered (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_knight" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Sworn to House Harrowmoor</b></p>
+<p>Lady Harrowmoor's house is steadfast, militant, and facing the encroachment of the Nag-Lord's crookhorns from the north. You serve her with armor and discipline.</p>
+<p>When you act directly in defense of House Harrowmoor's lands or people, take +1 forward.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows the Harrowmoor lands well enough to know what's at stake?</li>
+<li>Which of you has fought beside me in the northern Wood?</li>
+<li>Which of you thinks the crookhorn threat is worse than my liege believes?</li>
+<li>Which of you has seen me receive orders I disagree with and follow them anyway?</li>
+</ul>
+<p>---</p>
+<p><b>Sworn to House Guillefer</b></p>
+<p>The Guillefer house is dreamy and aloof, rotating lordship among family members. You serve a house that sometimes forgets you exist — which gives you unusual latitude.</p>
+<p>When you act without explicit instructions and it succeeds, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has seen me act without orders — and gotten away with it?</li>
+<li>Which of you knows which Guillefer I'm currently sworn to?</li>
+<li>Which of you do I trust more than my current lord?</li>
+<li>Which of you was there when I last heard from my liege, and knows how long ago that was?</li>
+</ul>
+<p>---</p>
+<p><b>Knight Errant</b></p>
+<p>You serve no specific house right now. You carry your code without a lord — wandering, doing what a knight does, waiting for a worthy cause or a worthy master.</p>
+<p>When you uphold your code in a situation where no one required you to, take +1 forward and mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows why I no longer serve my former liege?</li>
+<li>Which of you has seen me refuse a lord's offer of service?</li>
+<li>Which of you do I actually serve, even if neither of us has named it?</li>
+<li>Which of you has tested my code and watched me hold it?</li>
+</ul>
+<p>---</p>
+<p><b>Disgraced and Returning</b></p>
+<p>Your knighthood was stripped. You know why. You are earning it back — through deeds or through finding what went wrong and fixing it.</p>
+<p>When you act in a way that restores your honor in the eyes of someone who witnessed your disgrace, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows what I did?</li>
+<li>Which of you has never once used it against me?</li>
+<li>Which of you has seen me be better than the story of my failure?</li>
+<li>Which of you do I most want to witness when I reclaim what I lost?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Sworn Vassal</b></p>
+<p>Name your liege — a noble house, a lord, or a sworn cause. When you act in direct service of your liege's interests, take +1 forward. If you ever betray your liege, lose this move until you perform an act of redemption in their name.</p>
+<p><b>Armored and Ready</b></p>
+<p>You are trained in all arms and heavy armor. When you stand your ground in combat while protecting another, you cannot be moved or broken unless overwhelmed by superior numbers.</p>
+<p><b>Monster Slayer</b></p>
+<p>When you face a creature of Chaos, an undead, or a supernatural predator, take +1 forward on the first roll you make against it.</p>
+<p><b>Strength of Will</b></p>
+<p>When you resist fear, supernatural compulsion, or a breaking of your nerve, roll +STR. On a 10+, you hold firm and take +1 forward. On a 7-9, you hold, but it costs you — mark it.</p>
+<p><b>Chivalric Code</b></p>
+<p>You do not use missile weapons. You do not strike the unarmed or surrendering. You name yourself before combat. When you uphold your code and it would have been easier not to, mark XP.</p>
+<p><b>Mounted</b></p>
+<p>You have a horse (or can acquire one quickly). When you fight mounted, your damage die increases by one step. Your horse is not expendable.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Renowned:</b> Choose a noble house or powerful faction — you are known by name there as someone of worth.</li>
+<li><b>Shield of the Innocent:</b> When you step between an innocent and harm, you take no damage from the first blow.</li>
+<li><b>Oath of the House:</b> Your liege grants you a specific title and territory. Name it — you have responsibilities and resources there.</li>
+<li><b>Warlord's Voice:</b> When you command allies in battle, they take +1 forward on their next action.</li>
+<li><b>Unbroken:</b> Once per session, when you would fall, you don't. You are at 1 HP and conscious.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🛡️ # THE KNIGHT</h2><p>*You serve your liege and your code. When those two things pull in opposite directions, you will face that moment when it comes.*</p>
+<p><b>Damage Die:</b> d8</p>
+<p><b>HP:</b> 8 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Noble Born:</b> Aldric, Margrave, Edric, Isolde / Brennan, Theodric, Vayne, Caelen</p>
+<p><b>Elevated by Deed:</b> Strongbow, Ironhand, Blackthorn, Falchion / Goldenshield, Greymantle, Wolfsbane</p>
+<p><b>By Title:</b> Sir Edric, Dame Isolde, Lord Marchwell, Lady Aelwin / Sir Gorse, Dame Thorn, Sir Redwell</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Origin:</b> born to the nobility | elevated from common blood by deeds | a younger child who needed their own path | sworn in by a dying lord who had no other choice</p>
+<p><b>Build:</b> armored, deliberate, and imposing | tall and certain | compact and efficient | scarred in ways that suggest surviving a great deal</p>
+<p><b>Eyes:</b> watching for threats to what they protect | weighing honor in every exchange | direct and demanding | quieter than the armor suggests</p>
+<p><b>Clothing:</b> plate armor, heavy and well-maintained | campaign-worn armor with a lord's colors | chainmail bearing a noble house's symbol | armor kept immaculate even in the field</p>
+<p><b>Signature:</b> a lance or two-handed blade always within reach | the habit of standing between others and a door | a lord's pendant worn openly | the formal courtesy of someone who learned it by necessity</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Fulfill a duty to your liege at genuine cost to yourself.</li>
+<li>Defeat a creature of Chaos in direct combat.</li>
+<li>Act with honor in a situation that would have let you look away.</li>
+<li>Find out what it means to be a knight when no one is watching.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 12.</p>
+<ul>
+<li>Plate armor or chainmail (2 slots)</li>
+<li>Lance (reach) or two-handed sword (2 slots)</li>
+<li>Shield with a noble house's symbol (1 slot)</li>
+<li>Destrier or riding horse (held separately)</li>
+<li>Lord's pendant or sworn seal (small)</li>
+<li>Field rations (1 slot)</li>
+<li>Waterskin (1 slot)</li>
+<li>A writ of introduction from your liege — or a letter explaining why you no longer have one (small)</li>
+<li>Whetstone (small)</li>
+<li>Blanket roll, heavy (1 slot)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_magician" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Drune-Adjacent</b></p>
+<p>You've been close enough to the Hooded Men to learn something. Whether you stole it, traded for it, or ran from them afterward is another matter.</p>
+<p>When you use knowledge you acquired from or about the Drune, take +1 forward and tell the GM what it cost you to learn it.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows what I took from the Drune?</li>
+<li>Which of you helped me escape after?</li>
+<li>Which of you thinks I should have left well enough alone?</li>
+<li>Which of you doesn't know about this — and I'd like to keep it that way?</li>
+</ul>
+<p>---</p>
+<p><b>Apprentice of a Dead Master</b></p>
+<p>Your mentor died or disappeared before finishing your education. Their methods live in your hands. Their secrets are still buried somewhere.</p>
+<p>When you use a technique or approach your master taught you, describe it aloud and take +1 forward.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knew my master — or knew of them?</li>
+<li>Which of you was there when I found out they were gone?</li>
+<li>Which of you has seen me do something I could only have learned from someone dangerous?</li>
+<li>Which of you am I looking for something my master left behind?</li>
+</ul>
+<p>---</p>
+<p><b>Collector of Forbidden Books</b></p>
+<p>You have acquired texts that the Church burns and the Drune hoard. You are very careful about who knows this.</p>
+<p>When you consult your collection and ask the GM about something arcane, occult, or historical, the GM answers honestly.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has seen what I keep in my pack?</li>
+<li>Which of you borrowed something from my collection and hasn't returned it?</li>
+<li>Which of you would report me to the Church if they knew what I had?</li>
+<li>Which of you once asked me to burn a specific book — and I didn't?</li>
+</ul>
+<p>---</p>
+<p><b>Ley Line Reader</b></p>
+<p>You can feel the Wood's arcane currents — the ley lines, the stones, the places where the world is thinner than it should be. The Drune would kill for your sensitivity. You're hoping they don't find out.</p>
+<p>When you enter a new area, you may ask the GM if there is arcane significance here — a ley line, a standing stone, a fairy door, a place of power. The GM answers honestly.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you noticed I went very still when we crossed into this area?</li>
+<li>Which of you has seen me touch a standing stone and pull my hand back quickly?</li>
+<li>Which of you knows I can sense the Drune's workings — and hasn't told anyone?</li>
+<li>Which of you followed me when I went off alone to investigate something?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Cast a Spell</b></p>
+<p>When you cast a spell you have prepared and visualized, roll +INT. On a 10+, it works as intended. On a 7-9, it works, but choose one: it takes longer than expected | it draws unwanted attention | it costs something small but real.</p>
+<p><b>Secret Lore</b></p>
+<p>When you examine something arcane — a spell, an object, a magical effect, a ritual space — ask the GM one question about it. The GM answers honestly.</p>
+<p><b>Detect Magic</b></p>
+<p>You can always sense the presence of active magic nearby. When you focus deliberately, the GM tells you the nature of the magic and its source.</p>
+<p><b>Hoard of Knowledge</b></p>
+<p>Name a field of arcane study (demonology, fairy runes, ley line theory, crystalmancy, etc.) — you have studied it. Once per subject, ask the GM one question about how your knowledge applies to the current situation. The GM answers honestly.</p>
+<p><b>Eldritch Items</b></p>
+<p>You know how to identify and use arcane items. When you attempt to use a magic item of unknown function, roll +INT instead of rolling blind.</p>
+<p><b>The Price of Power</b></p>
+<p>When something goes badly wrong with your magic, mark XP.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>New Spell:</b> Learn one new prepared spell of your description — agree the scope with the GM.</li>
+<li><b>Ley Line Tap:</b> When near a standing stone or ley line nexus, cast one spell without cost.</li>
+<li><b>Drune Fragment:</b> You have acquired a piece of Drune knowledge. It works. It may also be noticed.</li>
+<li><b>Analytical Mind:</b> When you observe a magical effect or creature ability, you may ask the GM its weakness. The GM answers honestly.</li>
+<li><b>Arcane Reserves:</b> Once per session, cast a spell that would normally exhaust you without suffering that cost.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🧙 # THE MAGICIAN</h2><p>*You have read books that were meant to be burned. You intend to read more.*</p>
+<p><b>Damage Die:</b> d4</p>
+<p><b>HP:</b> 4 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Scholarly:</b> Oswin, Pereth, Valmere, Circe / Aldith, Telvane, Morvain, Cassid</p>
+<p><b>Self-Taught:</b> Smoke, Wren, Inkwell, Pale / Crisp, Vane, Dusk, Flint</p>
+<p><b>Borrowed:</b> Morrigan, Caelith, Sunderway, Grex / Tavis, Elward, Mirrick, Ash</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Origin:</b> trained by a master before they disappeared | self-taught from stolen texts | initiated into a secret tradition now dead | found a spell book young and never looked up</p>
+<p><b>Build:</b> thin and precise | hunched over notes | still and calculating | always moving, always reaching for something</p>
+<p><b>Eyes:</b> cataloguing everything | bright when something rare appears | distant, already thinking three steps ahead | cautious in a way that suggests past catastrophe</p>
+<p><b>Clothing:</b> ink-stained robes over practical layers | traveling scholar's coat with arcane notation in the lining | plain garb that hides several concealed pockets | weather-worn academic dress</p>
+<p><b>Signature:</b> a spell book always in reach | fingers that move slightly when thinking | a smell of ozone and old parchment | the habit of pausing before speaking to check if someone is listening</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Acquire a spell or text that no one else has.</li>
+<li>Learn something the Drune have hidden from everyone.</li>
+<li>Cast something you've never tried before, in full knowledge of the risk.</li>
+<li>Find what your master left unfinished — and finish it.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 7.</p>
+<ul>
+<li>Spell book, heavily annotated (2 slots)</li>
+<li>Dagger (hand, 1 slot)</li>
+<li>Traveling scholar's coat with hidden pockets (1 slot)</li>
+<li>Quill, ink, and blank pages (1 slot)</li>
+<li>Small iron lantern (1 slot)</li>
+<li>Rations (1 slot)</li>
+<li>A second, smaller text — something you haven't finished translating (small)</li>
+<li>A sealed letter from your master you haven't opened (small)</li>
+<li>Chalk for marking ley lines and ritual spaces (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+
+    <div id="en_playbook_thief" class="playbook-content lang-en">
+        <div class="main-column">
+            <div class="card"><h2>📜 Background</h2><p>Pick one.</p>
+<p>---</p>
+<p><b>Tomb Robber of the Deep Wood</b></p>
+<p>You make your living from what the dead left behind — in the barrow mounds, the crumbling fairy ruins, the abandoned delvings no one else is willing to enter. You've learned a great deal about what's down there.</p>
+<p>When you enter a ruin, tomb, or abandoned structure, ask the GM one of: What is the real danger here? What was this place originally? Where is the most valuable thing likely to be?</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you has been inside a ruin with me before?</li>
+<li>Which of you once talked me out of opening something I shouldn't have?</li>
+<li>Which of you knows how I got this specific scar?</li>
+<li>Which of you have I given a share to when I didn't have to?</li>
+</ul>
+<p>---</p>
+<p><b>Dreg Operative</b></p>
+<p>You came up in Dreg — the port town, the river trade, Madame Shantywood's shadow economy. You know how the underside of things works and who runs what.</p>
+<p>When you deal with criminal elements, river traders, smugglers, or the unofficial economy of Dolmenwood, take +1 forward.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows the name Madame Shantywood?</li>
+<li>Which of you got me out of Dreg the last time things went wrong there?</li>
+<li>Which of you has done work for the same people I have?</li>
+<li>Which of you doesn't know what I am — and I'd like to keep it that way?</li>
+</ul>
+<p>---</p>
+<p><b>Con Artist and Charlatan</b></p>
+<p>You've sold false relics to devout believers, fake maps to desperate explorers, and invented entire identities for single evenings. It's behind you. Mostly.</p>
+<p>When you maintain a false identity or deception for longer than an hour without slipping, mark XP.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you have I deceived in the past?</li>
+<li>Which of you knows my real name?</li>
+<li>Which of you caught me in a lie and said nothing?</li>
+<li>Which of you do I make no effort to deceive?</li>
+</ul>
+<p>---</p>
+<p><b>Guild Dropout</b></p>
+<p>You were trained by a guild — how to move, how to case, how to disappear. Then something happened and you're on your own. The guild may or may not be looking for you.</p>
+<p>When you use techniques clearly learned from formal training, take +1 forward and tell the GM what it reveals about your past.</p>
+<p>When you introduce yourself to the other PCs, ask one or more of the following:</p>
+<ul>
+<li>Which of you knows I was trained by a guild?</li>
+<li>Which of you doesn't know — and I've been actively hiding it?</li>
+<li>Which of you was there when I separated from them?</li>
+<li>Which of you knows whether they're still looking for me?</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>📜 Starting Moves</h2><p><b>Backstab</b></p>
+<p>When you strike from hiding or when your target doesn't know they're in danger, roll +DEX. On a 10+, you deal your damage and choose one: you remain hidden | you create an opening for an ally | they cannot raise an alarm. On a 7-9, you deal your damage, but you're exposed.</p>
+<p><b>Slip the Lock</b></p>
+<p>When you pick a lock, disarm a trap, or bypass a physical barrier, roll +DEX. On a 10+, you handle it cleanly and quickly. On a 7-9, you get it done, but choose one: it takes longer than expected | something is triggered that wasn't visible | you leave evidence behind.</p>
+<p><b>Shadow Movement</b></p>
+<p>When you move unseen through an area, roll +DEX. On a 10+, you pass without trace. On a 7-9, you get through, but someone almost noticed, or you had to leave something behind to do it.</p>
+<p><b>Decipher Script</b></p>
+<p>You can read codes, ciphers, thieves' marks, and old documents. When you examine a written text, you can usually extract the meaning — and what it's hiding.</p>
+<p><b>Silver Tongue</b></p>
+<p>When you lie, misdirect, or fast-talk someone who has no reason to distrust you, roll +CHA. On a 10+, they believe you or do what you suggest. On a 7-9, they mostly believe you, but ask one question you must answer.</p>
+<p><b>Always Watching</b></p>
+<p>When you enter a new space, you always know the exits, the sightlines, and — with a moment of quiet attention — the most likely hiding places for both people and things.</p>
+<p>---</p></div>
+<div class="card"><h2>📈 Advances</h2><ul>
+<li><b>Poison Knowledge:</b> You know the common toxins available in Dolmenwood, how to acquire them, and how to apply them without being noticed.</li>
+<li><b>Second Identity:</b> You have a complete false identity — a name, a story, and a contact who can confirm it. It holds until you do something that breaks it.</li>
+<li><b>Fence:</b> You know a buyer for almost anything in Dolmenwood. When you have something to sell, you can find a buyer and get a fair price.</li>
+<li><b>Vanish:</b> Once per scene, you may disappear from a situation — not magically, but thoroughly. You are simply gone before anyone can stop you.</li>
+<li><b>Read the Hidden:</b> When you observe a person carefully, ask the GM what they're hiding and what they most want. The GM answers honestly.</li>
+<li><b>Improved Stat:</b> Increase one of your stats by +1, to a max of +2.</li>
+<li><b>Superior Stat</b> *(Requires: Improved Stat, at least one other advance)*: Increase one of your stats by +1, to a max of +3.</li>
+</ul>
+<p>---</p></div>
+        </div>
+        <div class="side-column">
+            <div class="card"><h2>🗡️ # THE THIEF</h2><p>*You know where the doors are. You know which ones were never meant to be found.*</p>
+<p><b>Damage Die:</b> d6</p>
+<p><b>HP:</b> 4 + CON</p>
+<p>---</p></div>
+<div class="card"><h2>📜 Name</h2><p>Pick a name:</p>
+<p><b>Used Names:</b> Pip, Wren, Tallow, Crib / Ash, Hook, Slate, Marten</p>
+<p><b>Birth Names:</b> Edmund, Nessa, Corvin, Sable / Aldith, Torin, Wex, Prue</p>
+<p><b>Professional Names:</b> The Pale Hand, Minnow, Quickfingers, Sundew / Greyrat, Sparrow, Locksworth, Fitch</p>
+<p>---</p></div>
+<div class="card"><h2>👤 Look</h2><p>Pick one from each row:</p>
+<p><b>Origin:</b> born in the alleys of Dreg | trained by a guild that may or may not still exist | self-taught from necessity | came to this from something more respectable</p>
+<p><b>Build:</b> slight and unobtrusive | quick and low-center | average in every way that helps | wiry and flexible in ways that matter</p>
+<p><b>Eyes:</b> cataloguing exits | present everywhere, registered nowhere | warm on the surface, counting the silver | watching hands, not faces</p>
+<p><b>Clothing:</b> nondescript travelling clothes with hidden pockets | dark layers, comfortable | well-dressed compared to the situation | worn and forgettable on purpose</p>
+<p><b>Signature:</b> thieves' tools always accessible | the habit of sitting where they can see the door | never touching anything without knowing what it is first | always knowing three ways out</p>
+<p>---</p></div>
+<div class="card"><h2>🎯 Drives</h2><ul>
+<li>Take something from someone who doesn't deserve to have it.</li>
+<li>Find what's buried in a ruin everyone else passed by.</li>
+<li>Get out of a situation that should have been inescapable.</li>
+<li>Be trusted by someone who has good reason not to trust you.</li>
+</ul>
+<p>---</p></div>
+<div class="card"><h2>🎒 Gear</h2><p>Load 7.</p>
+<ul>
+<li>Leather armor (1 slot)</li>
+<li>Shortsword and two daggers (1 slot)</li>
+<li>Thieves' tools, professional quality (1 slot)</li>
+<li>Dark travelling cloak (1 slot)</li>
+<li>Rope, 30 feet (1 slot)</li>
+<li>Rations (1 slot)</li>
+<li>A map of Dreg with certain buildings marked in a personal code (small)</li>
+<li>A false letter of introduction (small)</li>
+<li>A lock that won't open — you've been working on it for months (small)</li>
+<li>Coin for emergencies, hidden in the boot (small)</li>
+</ul></div>
+        </div>
+    </div>
+    
+<div id="en_optional_moves" class="playbook-content lang-en"><div class="optional-moves-container"><div class="card"><h2>🌟 # Optional Moves — Dolmenwood</h2><p><b>Into the Dark Wood</b></p>
+<p>When you press deeper into Dolmenwood than you have gone before — past the last known landmark, off the edge of any map — roll +WIS. On a 10+, you find what you were looking for, and the Wood lets you pass. On a 7-9, you find something, but the Wood takes notice of you in return. The GM tells you what has changed.</p>
+<p>---</p>
+<p><b>Standing Stone</b></p>
+<p>When you lay hands on a standing stone and open yourself to what moves through it, roll +WIS. On a 10+, ask the GM two questions from the list below and receive honest answers. On a 7-9, ask one — but something in the stone takes an interest in you.</p>
+<ul>
+<li>What has passed through this area recently that I should know about?</li>
+<li>What faction's power runs strongest through this stone?</li>
+<li>What is hidden near this location?</li>
+<li>What price was paid to raise this stone?</li>
+</ul>
+<p>---</p>
+<p><b>Against the Hooded Men</b></p>
+<p>When you act directly against the Drune — opposing their plans, interfering with their ley work, stealing their knowledge — roll +INT. On a 10+, you succeed and remain unidentified. On a 7-9, you succeed, but the Drune now know someone interfered. They will find out who.</p>
+<p>---</p>
+<p><b>Fairy Road</b></p>
+<p>When you step onto a fairy road in full knowledge of what it is, roll +CHA. On a 10+, it carries you where you intend without incident. On a 7-9, it carries you where you need to go, but not where you planned — and something on the road saw you travel it.</p>
+<p>---</p>
+<p><b>What the Wood Remembers</b></p>
+<p>When you rest overnight in the deep Wood without shelter or fire, roll +WIS. On a 10+, you receive a true vision — the GM tells you something real about the Wood or the forces moving through it. On a 7-9, you receive a vision, but it is partial or alarming. Either way, mark XP.</p></div></div></div>
+
+    <div id="en_adventures" class="playbook-content lang-en">
+        <div class="main-column" style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 2rem;">
+            <div class="card adventure-generator-card">
+                <h2>✨ Adventure Generator — Dolmenwood Generator</h2>
+                <div class="generator-result" id="rng-result-en">
+                    ...
+                </div>
+                <div class="generator-actions">
+                    <button type="button" class="lang-toggle active rng-roll-btn" onclick="generateAdventure('en')">🎲 Losuj / Roll</button>
+                </div>
+            </div>
+            
+            <div class="adventure-tables-grid" id="rng-tables-en">
+    
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 1: What We Discover</h3>
+                    <div class="adventure-prefix">We discover</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a barrow mound freshly broken open from the inside</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a standing stone that has been deliberately defaced — the runes scratched out</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a hamlet where all the dogs have gone silent and won't look at the Wood</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a fairy door, still faintly warm, wedged open with something that doesn't belong here</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a Drune lodge entrance we weren't supposed to find</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">the ruins of a shrine that was torn down recently — within the week</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">a crookhorn encampment further south than any have been seen before</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">an abandoned cart carrying sealed Church relics with no explanation attached</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a stretch of Wood where the trees are dying in a perfect circle</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">the journal of a knight who went missing three months ago, found in a ditch</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a mossling alone in a fungal glade, surrounded by something it cannot name</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a fairy road that wasn't on any map we've seen, running straight into the Nagwood</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a farmstead where the family has vanished mid-meal</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a Drune standing stone we've been circling without realizing it for an hour</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">a wandering friar who won't stop and won't say what they're running from</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a freshly dug pit at the base of a Summerstone — precise, ritual, unexplained</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">the severed horns of a longhorn noble, left on a road marker with no message</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a woodgrue alone and sober, which has never happened before</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">the wreckage of a cart — Church markings, Drune symbols scratched over them</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a grove where every plant is in full bloom in the dead of winter</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 2: Where It Is</h3>
+                    <div class="adventure-prefix">which lies</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">at the edge of the Nagwood, past the last breggle village</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">in a fog-choked bog that swallows sound</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">along a fairy road that branches off the Kings' Highway at midnight</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">at the foot of a standing stone the Drune are known to watch</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">between two noble houses' territories — in the strip no one officially claims</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">in a valley the local maps note only as "do not linger"</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">deep in the fungal forest, where the light goes wrong after noon</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">at the base of the hills below the ruined Abbey of St Clewyd</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">along the River Shub, where the water smells of something other than water</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">in a clearing that doesn't appear in the trees on any side — you just walk into it</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">on the border of a longhorn noble's land, where trespassing has consequences</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">through the gap in a stone wall that has no other stone wall near it</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">in a dell where the fairy music is audible just at the edge of hearing</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">at the crossroads outside Lankshorn, beneath the hanging sign</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">under the roots of a tree that should not be that old</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">past the Summerstone — in the area the ward keeps warm even in winter</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">in a cave system the locals call by a name they won't explain</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">in a forest where the path behind you looks different than when you entered</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">in the burnt shell of a building that the locals won't name</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">at a site where two ley lines cross — which the Drune will want back</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 3: What It Leads To</h3>
+                    <div class="adventure-prefix">and it leads us to</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">the Cold Prince's agents, working quietly within the Ring of Chell</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">the Drune Elder Phanatarch's interest in something they cannot yet identify</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a noble house in crisis — from outside or from within</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a hidden witch's meeting place beneath an ordinary-looking hill</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a Summerstone that is failing — slower, colder, uncertain</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a Church relic that the Church believed lost and that several parties want</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">the Nag-Lord's crookhorns preparing something that isn't a raid</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a creature older than any faction currently claiming Dolmenwood</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a fairy noble whose attention is now on the party — for reasons unstated</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a lord who needs something done that they cannot ask their knights to do</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a friar who knows where a lost shrine is — and knows why it was lost</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a ruin that is not as abandoned as it appeared from the outside</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a breggle family caught between the longhorn nobility and something worse</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a woodgrue moot about to go catastrophically wrong</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">a grimalkin who has seen something in the Wood and will trade the information</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">a Drune seeking something they've lost — and willing to deal to recover it</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">the Church's Order of St Faxis operating in a way their Bishop didn't authorize</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a merchant trafficking in something the party will not be able to ignore</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a fairy door that now opens in the wrong direction</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">the dead — risen, organized, and going somewhere</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 4: What We're Asked To Do</h3>
+                    <div class="adventure-prefix">We are here to</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">recover a Church relic before the Drune reach it</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">find out what happened to a knight who stopped reporting</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">drive the crookhorn advance back from a village that hasn't asked for help yet</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">carry a message that should not be written down to someone who cannot be named</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">find a witch the Church is hunting — before the Order of St Faxis does</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">discover why a Summerstone has gone cold</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">stop a Drune ritual that will close off a ley line the area depends on</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">escort someone through the Wood who cannot travel without protection</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">retrieve something from a barrow mound before the next new moon</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">find a missing child who walked into the Wood three days ago</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">identify who defaced the standing stone and what they were trying to prevent</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">negotiate between two noble houses before one of them does something irreversible</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">investigate why the Church has sealed off a section of forest and refuses to explain</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">find and close the fairy door before something comes through it that shouldn't</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">recover evidence that a specific noble is in contact with the Cold Prince</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">bring a rogue friar back to the Church — or find out why they left</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">track something across the Wood that moves faster than it should</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">discover what is organizing the undead in this region and stop it</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">take something from the Drune that doesn't belong to them — without them knowing</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">survive three days in the deep Nagwood and come back with a report</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 5: What Stands in the Way</h3>
+                    <div class="adventure-prefix">guarded by</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">a crookhorn warband led by a breggle who hasn't fully turned — yet</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">a Drune Audrune who controls the ley line this path runs along</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">a Church inquisitor who believes the party is what they're looking for</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a grimalkin in wilder form that has claimed this space as territory</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a fairy trap set into the road that activates when you walk past without the right word</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a woodgrue band hired to make noise while something else moves quietly</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">an undead knight still in service to a lord who died a century ago</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a bog creature that has been fed by the Nag-Lord's corruption</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a cult of mortals serving the Cold Prince in exchange for promised protection</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a mossling elder who will not let anyone through without an answer to their question</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a fallen shrine whose protections have inverted and now harm rather than help</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a Drune who has come to observe and will not permit themselves to be seen</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">a wood that has learned to misdirect and will repeat the path indefinitely</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a fairy noble's wrath — something was done here they have not forgiven</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">a witch who is not an enemy but cannot let this go forward unexamined</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">the Order of St Faxis, investigating the same thing with different intentions</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a creature that has taken a form it has no right to wear</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a noble's guard with orders that make them an obstacle regardless of who's asking</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a bridge over the River Shub that something lives under — attentive, hungry, old</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">a silence — nothing moves, nothing sounds, and the air is wrong in a way no one can place</span></li>
+</ul>
+                </div>
+        
+
+                <div class="card adventure-table-card">
+                    <h3>🎲 Table 6: What We Face at the End</h3>
+                    <div class="adventure-prefix">and in the end we face</div>
+<ul class="adventure-items">
+<li class="rng-item"><span class="rng-num">1.</span> <span class="rng-text">the Elder Phanatarch of the Drune, or their chosen representative — who knew we were coming</span></li>
+<li class="rng-item"><span class="rng-num">2.</span> <span class="rng-text">an agent of the Cold Prince in a form that was not expected</span></li>
+<li class="rng-item"><span class="rng-num">3.</span> <span class="rng-text">Atanuwë's corruption given shape — not a crookhorn but something worse</span></li>
+<li class="rng-item"><span class="rng-num">4.</span> <span class="rng-text">a noble lord who has made a bargain with something they don't understand yet</span></li>
+<li class="rng-item"><span class="rng-num">5.</span> <span class="rng-text">a Church official whose righteousness has curdled into something that serves no one</span></li>
+<li class="rng-item"><span class="rng-num">6.</span> <span class="rng-text">a fairy noble whose interest in the party is neither hostile nor safe</span></li>
+<li class="rng-item"><span class="rng-num">7.</span> <span class="rng-text">the thing the barrow mound was built to contain — which has been getting out slowly</span></li>
+<li class="rng-item"><span class="rng-num">8.</span> <span class="rng-text">a witch whose Gwyrigon has asked something of her she cannot refuse</span></li>
+<li class="rng-item"><span class="rng-num">9.</span> <span class="rng-text">a Drune ritual in progress that cannot simply be interrupted without consequence</span></li>
+<li class="rng-item"><span class="rng-num">10.</span> <span class="rng-text">a knight who chose disgrace over obedience — and found something worth choosing instead</span></li>
+<li class="rng-item"><span class="rng-num">11.</span> <span class="rng-text">a creature from Fairy that has been watching the party since before they noticed the problem</span></li>
+<li class="rng-item"><span class="rng-num">12.</span> <span class="rng-text">a lord whose legitimate claim and corrupted choices are now equally real</span></li>
+<li class="rng-item"><span class="rng-num">13.</span> <span class="rng-text">the Cold Prince's frost — not his agents, but his actual power bleeding through a failing ward</span></li>
+<li class="rng-item"><span class="rng-num">14.</span> <span class="rng-text">a man or woman who knows exactly who the party is and what they will do next</span></li>
+<li class="rng-item"><span class="rng-num">15.</span> <span class="rng-text">the Nag-Lord's court, glimpsed — not in battle, but in a way that means it knows about them</span></li>
+<li class="rng-item"><span class="rng-num">16.</span> <span class="rng-text">something the Church buried under a name they hoped no one would look up</span></li>
+<li class="rng-item"><span class="rng-num">17.</span> <span class="rng-text">a grimalkin who has been five steps ahead of the party since the beginning</span></li>
+<li class="rng-item"><span class="rng-num">18.</span> <span class="rng-text">a ruin that is not a ruin — something lives in it now that has learned to look like architecture</span></li>
+<li class="rng-item"><span class="rng-num">19.</span> <span class="rng-text">a human who serves no faction and wants something simple — which makes them the most dangerous thing here</span></li>
+<li class="rng-item"><span class="rng-num">20.</span> <span class="rng-text">the dead — one of them, specific, known — and what they're trying to finish</span></li>
+</ul>
+                </div>
+        
+
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+
+        <footer>
+            <span>Wygenerowano automatycznie • Homebrew World Web Presenter</span>
+            <span>Dolmenwood • katalog playbookow</span>
+        </footer>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.playbook-content');
+    const langToggles = document.querySelectorAll('.lang-toggle');
+    const body = document.body;
+    const html = document.documentElement;
+
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const mainLayout = document.querySelector('.main-layout');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function getVisibleTabs(lang) {
+        return Array.from(tabs).filter((tab) => tab.classList.contains(`lang-${lang}`));
+    }
+
+    function syncAriaStates(activeTabId) {
+        tabs.forEach((tab) => {
+            const isActive = tab.getAttribute('data-tab') === activeTabId;
+            tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            tab.setAttribute('tabindex', isActive ? '0' : '-1');
+        });
+    }
+
+    if (sidebarToggle && mainLayout) {
+        if (localStorage.getItem('sidebar-collapsed') === 'true') {
+            mainLayout.classList.add('sidebar-collapsed');
+            sidebarToggle.innerText = '⮕';
+            sidebarToggle.setAttribute('aria-expanded', 'false');
+        } else {
+            sidebarToggle.setAttribute('aria-expanded', 'true');
+        }
+
+        sidebarToggle.addEventListener('click', () => {
+            const isCollapsed = mainLayout.classList.toggle('sidebar-collapsed');
+            sidebarToggle.innerText = isCollapsed ? '⮕' : '☰';
+            sidebarToggle.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
+            localStorage.setItem('sidebar-collapsed', isCollapsed);
+        });
+    }
+
+    function switchTab(tabId) {
+        tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-tab') === tabId));
+        syncAriaStates(tabId);
+
+        const target = document.getElementById(tabId);
+        if (target) {
+            target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+            const url = new URL(window.location);
+            url.hash = tabId;
+            window.history.replaceState(null, '', url);
+        }
+    }
+
+    function switchLanguage(lang) {
+        body.classList.forEach((cls) => {
+            if (cls.startsWith('lang-')) body.classList.remove(cls);
+        });
+        body.classList.add(`lang-${lang}`);
+        html.lang = lang === 'default' ? 'pl' : lang;
+
+        langToggles.forEach((btn) => {
+            const isActive = btn.getAttribute('data-lang') === lang;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        const visibleTabs = getVisibleTabs(lang);
+        const nextTab = visibleTabs[0];
+        if (nextTab) {
+            const nextTabId = nextTab.getAttribute('data-tab');
+            tabs.forEach((tab) => tab.classList.toggle('active', tab === nextTab));
+            syncAriaStates(nextTabId);
+        }
+
+        window.scrollTo(0, 0);
+    }
+
+    tabs.forEach((tab) => {
+        tab.setAttribute('role', 'tab');
+        tab.addEventListener('click', () => {
+            switchTab(tab.getAttribute('data-tab'));
+        });
+    });
+
+    langToggles.forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+            switchLanguage(toggle.getAttribute('data-lang'));
+        });
+    });
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-tab') === id));
+                syncAriaStates(id);
+            }
+        });
+    }, observerOptions);
+
+    contents.forEach((section) => observer.observe(section));
+
+    const initialHash = window.location.hash.substring(1);
+    const availableLangs = Array.from(langToggles).map((t) => t.getAttribute('data-lang'));
+    
+    let preferredLang = 'default';
+    if (initialHash && availableLangs.includes(initialHash.split('_')[0])) {
+        preferredLang = initialHash.split('_')[0];
+    } else if (availableLangs.includes('en')) {
+        preferredLang = 'en';
+    } else if (availableLangs.length > 0) {
+        preferredLang = availableLangs[0];
+    } else if (document.querySelector('.tab.lang-default')) {
+        preferredLang = 'default';
+    }
+
+    switchLanguage(preferredLang);
+    
+    if (initialHash) {
+        setTimeout(() => {
+            const target = document.getElementById(initialHash);
+            if (target) {
+                switchTab(initialHash);
+                target.scrollIntoView({ behavior: 'auto' });
+            }
+        }, 100);
+    } else {
+        const initialVisibleTab = getVisibleTabs(preferredLang)[0];
+        if (initialVisibleTab) {
+            syncAriaStates(initialVisibleTab.getAttribute('data-tab'));
+        }
+        window.scrollTo(0, 0);
+    }
+    
+    window.generateAdventure = function(lang) {
+        const container = document.getElementById(`rng-tables-${lang}`);
+        if (!container) return;
+        
+        const tables = container.querySelectorAll('.adventure-table-card');
+        if (tables.length < 6) return;
+        
+        let parts = [];
+        tables.forEach(table => {
+            const prefixEl = table.querySelector('.adventure-prefix');
+            const items = table.querySelectorAll('.rng-text');
+            
+            const prefix = prefixEl ? prefixEl.textContent.trim() : "";
+            
+            if (items.length > 0) {
+                const randomText = items[Math.floor(Math.random() * items.length)].textContent.trim();
+                parts.push((prefix ? prefix + " " : "") + `<span class="rng-highlight">${randomText}</span>`);
+            } else {
+                parts.push(prefix);
+            }
+        });
+        
+        if (parts.length >= 6) {
+            const sentence1 = parts[0] + " " + parts[1] + " " + parts[2];
+            const sentence2 = parts[3] + " " + parts[4] + " " + parts[5];
+            
+            let s1 = sentence1.replace(/\s+/g, ' ').replace(/\s+\./g, '.');
+            if(!s1.endsWith('.')) s1 += '.';
+            let s2 = sentence2.replace(/\s+/g, ' ').replace(/\s+\./g, '.');
+            if(!s2.endsWith('.')) s2 += '.';
+
+            const capitalize = (str) => {
+                let inTag = false;
+                for (let i = 0; i < str.length; i++) {
+                    if (str[i] === '<') inTag = true;
+                    else if (str[i] === '>') inTag = false;
+                    else if (!inTag && /[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/.test(str[i])) {
+                        return str.substring(0, i) + str[i].toUpperCase() + str.substring(i + 1);
+                    }
+                }
+                return str;
+            };
+
+            s1 = capitalize(s1);
+            s2 = capitalize(s2);
+            
+            const resultEl = document.getElementById(`rng-result-${lang}`);
+            if (resultEl) {
+                resultEl.innerHTML = `<p>${s1}</p><p>${s2}</p>`;
+            }
+        }
+    };
+
+    availableLangs.forEach(l => {
+        if(document.getElementById(`rng-result-${l}`)) {
+            generateAdventure(l);
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

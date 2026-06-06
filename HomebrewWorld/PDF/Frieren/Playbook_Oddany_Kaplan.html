@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ODDANY KAPŁAN</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 8mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      color: #000;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-size: 9px;
+      line-height: 1.2;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      padding: 0;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      gap: 4mm;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+    }
+
+    .page-header {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 4mm;
+      align-items: end;
+      border-bottom: 1px solid #000;
+      padding-bottom: 2.5mm;
+    }
+
+    .title-wrap h1 {
+      margin: 0 0 1mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 10px;
+      color: #222;
+      font-style: italic;
+    }
+
+    .meta-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1mm;
+      text-align: right;
+    }
+
+    .meta-line {
+      margin: 0;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+      align-items: start;
+      min-height: 0;
+      flex: 1;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 3mm;
+      min-height: 0;
+    }
+
+    .card {
+      border: 1px solid #000;
+      border-radius: 3mm;
+      background: #fff;
+      padding: 3mm;
+      break-inside: avoid;
+    }
+
+    .card h2 {
+      margin: 0 0 2mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #000;
+    }
+
+    .card h3,
+    .entry-title {
+      margin: 1.5mm 0 1mm;
+      font-size: 10px;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #000;
+    }
+
+    p {
+      margin: 0 0 1.2mm;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 4mm;
+    }
+
+    li {
+      margin: 0 0 1mm;
+    }
+
+    code {
+      font-family: Menlo, Monaco, monospace;
+      font-size: 0.95em;
+    }
+
+    .section-background {
+      padding: 2.5mm;
+    }
+
+    .section-note {
+      margin: 0 0 2mm;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .background-entry {
+      border-top: 1px solid #999;
+      padding-top: 2mm;
+      margin-top: 2mm;
+    }
+
+    .background-entry:first-of-type {
+      border-top: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .background-entry h3 {
+      margin-top: 0;
+    }
+
+    .questions-intro {
+      margin-top: 1mm;
+      font-size: 8.4px;
+      color: #333;
+      font-style: italic;
+    }
+
+    .question-list {
+      column-count: 2;
+      column-gap: 4mm;
+    }
+
+    .bullet-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6mm;
+    }
+
+    .compact-list {
+      gap: 0.3mm;
+    }
+
+    .page-two-grid {
+      grid-template-columns: 1.1fr 1fr 0.95fr;
+      gap: 3mm;
+    }
+
+    .page-two-grid .card {
+      padding: 2.5mm;
+    }
+
+    .page-two-grid .card h2 {
+      font-size: 12px;
+      margin-bottom: 1.5mm;
+    }
+
+    .page-two-grid p,
+    .page-two-grid li {
+      font-size: 8.2px;
+      line-height: 1.15;
+    }
+
+    .page-two-grid .card h3,
+    .page-two-grid .entry-title {
+      font-size: 9px;
+      margin: 1.2mm 0 0.8mm;
+    }
+
+    .page-two-grid .section-gear p,
+    .page-two-grid .section-gear li {
+      font-size: 7.6px;
+      line-height: 1.08;
+    }
+
+    .page-two-grid .section-gear .bullet-list {
+      column-count: 2;
+      column-gap: 3mm;
+      display: block;
+      padding-left: 3mm;
+    }
+
+    .page-two-grid .section-gear .bullet-list li {
+      break-inside: avoid;
+      margin-bottom: 0.6mm;
+    }
+
+    .sheet-tip {
+      margin-bottom: 2mm;
+      color: #222;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5mm;
+      margin-bottom: 2mm;
+    }
+
+    .stat-box,
+    .track-box,
+    .debility-box {
+      border: 1px solid #000;
+      border-radius: 2mm;
+      background: #fff;
+    }
+
+    .stat-box {
+      min-height: 14mm;
+      padding: 1.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stat-name,
+    .track-label {
+      font-size: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #000;
+    }
+
+    .stat-value {
+      display: block;
+      border-bottom: 1px solid #000;
+      min-height: 6mm;
+    }
+
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5mm;
+      margin-bottom: 2mm;
+    }
+
+    .track-box {
+      min-height: 11mm;
+      padding: 1.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .track-value {
+      display: block;
+      min-height: 4mm;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .debility-grid {
+      display: grid;
+      gap: 1.2mm;
+    }
+
+    .debility-box {
+      padding: 1.6mm 2mm;
+      font-size: 8.4px;
+      line-height: 1.15;
+    }
+
+    .debility-box span {
+      color: #222;
+    }
+
+    .sheet-notes {
+      margin-top: 2mm;
+    }
+
+    .slot-boxes {
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      color: #333;
+      margin-left: 1.5px;
+    }
+
+    .slot-small {
+      font-size: 7.5px;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="page">
+      <header class="page-header">
+        <div class="title-wrap">
+          <h1>ODDANY KAPŁAN</h1>
+          <p class="lead">Bogini w końcu cię przywita. Ale nie teraz. Zostało jeszcze tyle wartych rzeczy do zrobienia z tym, co ci zostało — i nie odejdziesz cicho.</p>
+        </div>
+        <div class="meta-stack">
+          <p class="meta-line">Homebrew World</p>
+          <p class="meta-line">Frieren</p>
+        </div>
+      </header>
+      <div class="page-grid">
+        <div class="column">
+          <section class="card section-name"><h2>Imię</h2><p>Wybierz imię:</p>
+<p><strong>Wyświęcony/-a przez kościół:</strong> Agnes, Beatrix, Hildur, Maren / Ewald, Anselm, Caspar, Dietmar</p>
+<p><strong>Wiejski/-a kleryk:</strong> Sofie, Willa, Nanna, Inga / Wendel, Lorenz, Tobias, Franz</p>
+<p><strong>Wędrowny/-a minister:</strong> Isolde, Carla, Vesta, Pallas / Remis, Saul, Coel, Marcian</p>
+<p><strong>Nawrócony/-a grzesznik:</strong> Delia, Sadie, Cress, Vera / Fletch, Oskar, Remy, Leif</p></section>
+          <section class="card section-look"><h2>Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><strong>Pochodzenie:</strong> wyświęcony/-a kler | wiejski/-a uzdrowiciel/-ka, który/-a wyruszył/-a w drogę | wędrowny minister odległej diecezji | zapytaj stołu</p>
+<p><strong>Wiek:</strong> młody/-a, ale zużyty/-a przez duchowy ciężar | w średnim wieku, bez pośpiechu | stary/-a i poruszający/-a się jakby spłacił/-a jakiś dług</p>
+<p><strong>Oczy:</strong> życzliwe i zmęczone | ostre za łagodnością | mierzące, ile życia zostało w pomieszczeniu</p>
+<p><strong>Sylwetka:</strong> wygodna i powolna | chuda pod miękkimi ubraniami | lekko przygarbiona, ale tylko trochę</p>
+<p><strong>Strój:</strong> kapłańskie szaty, zabrudzone w podróży | warstwowe podróżne ubrania ze świętymi symbolami | zwykłe ubrania z ukrytą relikwią</p>
+<p><strong>Znak szczególny:</strong> flasza, po którą sięga gdy nikt nie patrzy | nawyk oferowania więcej niż powinien/-na | sposób w jaki patrzy na umierających</p></section>
+        </div>
+        <div class="column">
+          <section class="card section-background"><h2>Tło</h2><div class="section-note">Wybierz jedno.</div>
+<article class="background-entry"><h3>Lęk przed Śmiercią</h3><p>Przyznałeś/-aś kiedyś sobie w ciemności, że boisz się śmierci. To zmieniło to, jak działasz. Kiedy pomagasz komuś innemu stawić czoła własnej śmiertelności z odwagą, zaznacz PD.</p><p class="questions-intro">Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p><ul class="question-list"><li>Który/-a z was wie, że się boję — nawet jeśli tego nie mówię?</li><li>Który/-a z was widział/-a jak mierzy się ze śmiercią spokojniej niż ja byłbym/-abym w stanie?</li><li>Który/-a z was zaoferował/-a mi taki rodzaj pociechy, jakiego ja udzielam innym?</li><li>Który/-a z was trzyma mnie przy uczciwości wobec siebie w kwestii czasu, który marnuję?</li></ul></article>
+<article class="background-entry"><h3>Adoptowane Dziecko</h3><p>Wychowałeś/-aś kogoś, kto cię przeżyje. O to chodziło. Raz na sesję, kiedy ktoś, na kim ci zależy, jest w niebezpieczeństwie i działasz bez wahania, zyskujesz +1 naprzód.</p><p class="questions-intro">Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p><ul class="question-list"><li>Który/-a z was przypomina mi osobę, którą wychowałem/-am?</li><li>Który/-a z was widział/-a, jak patrzę na kogoś wzrokiem rodzica?</li><li>Który/-a z was wie, z czego zrezygnowałem/-am, by opiekować się kimś innym?</li><li>Który/-a z was, mam nadzieję, zaopiekuje się nim/-ą po mnie?</li></ul></article>
+<article class="background-entry"><h3>Korzenie w Wiosce</h3><p>Zostawiłeś/-aś wygodę i przynależność za sobą — miejsce, parafię, życie, które było skromniejsze, ale łatwiejsze. Kiedy wybierasz trudniejszą drogę zamiast łatwiejszej, zaznacz PD.</p><p class="questions-intro">Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p><ul class="question-list"><li>Który/-a z was był/-a powodem, dla którego wyjechałem/-am?</li><li>Który/-a z was myśli, że zostałem/-am z odwagi, a nie z niepokoju?</li><li>Który/-a z was wie, jak blisko byłem/-am do powrotu?</li><li>Który/-a z was, obawiam się, zostanie w tyle gdy reszta z nas ruszy dalej?</li></ul></article>
+<article class="background-entry"><h3>Ostatni Obrzęd</h3><p>Siedziałeś/-aś z wieloma ludźmi przy końcu. Wiesz, czego potrzebują umierający. Kiedy oferujesz komuś pocieszenie wobec śmierci, zapytaj MG o jedno: czego naprawdę potrzebuje usłyszeć. MG odpowiada szczerze.</p><p>---</p><p class="questions-intro">Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p><ul class="question-list"><li>Który/-a z was pozwolił/-a mi usiąść ze swoim żalem?</li><li>Który/-a z was pytał/-a mnie, jak wygląda śmierć?</li><li>Który/-a z was, obawiam się, spotkam za wcześnie w takiej chwili?</li><li>Który/-a z was powstrzymuje mnie od rezygnowania z tych, którym jeszcze mogę pomóc?</li></ul></article></section>
+        </div>
+      </div>
+    </section>
+    <section class="page">
+      <header class="page-header">
+        <div class="title-wrap">
+          <h1>ODDANY KAPŁAN</h1>
+          <p class="lead">Skrót zasad i opcji postaci do gry przy stole.</p>
+        </div>
+        <div class="meta-stack">
+          <p class="meta-line">Homebrew World</p>
+          <p class="meta-line">Frieren</p>
+        </div>
+      </header>
+      <div class="page-grid page-two-grid">
+        <div class="column">
+          <section class="card section-starting_moves"><h2>Ruchy Startowe</h2><h3 class="entry-title">Łaska Bogini</h3>
+<p>Kiedy leczysz kogoś, rzuć +MĄD. Na 10+: usuń przywarę lub przywróć 1k8 PŻ. Na 7-9: przywróć 1k6 PŻ.</p>
+<h3 class="entry-title">Odporność na Klątwy</h3>
+<p>Kapłani noszą naturalną tarczę przed magicznym przymusem. Kiedy opierasz się klątwie, magicznemu strachowi lub urokowi, zyskujesz +1 naprzód.</p>
+<h3 class="entry-title">Ostatnie Chwile</h3>
+<p>Kiedy ktoś umiera lub spada do 0 PŻ, twoja magia lecznicza ma przewagę.</p>
+<h3 class="entry-title">Dziedzictwo Czynów</h3>
+<p>Kiedy działasz, by twój pozytywny wpływ przeżył cię — przez ucznia, zapis, ostatni dar, dotrzymane przyrzeczenie — zaznacz PD.</p>
+<h3 class="entry-title">Święte Światło</h3>
+<p>Możesz wytworzyć miękkie ciepłe światło z dłoni lub świętego symbolu. Używane przeciw nieumarłym lub demonom: mają utrudnienie przeciw tobie.</p>
+<h3 class="entry-title">Prawdziwy Dorosły</h3>
+<p>Kiedy radzisz komuś, jak wyjść ze stagnacji, strachu lub żalu, zyskuje +1 naprzód. Jeśli działa na twoją radę w tej sesji, ty zaznaczasz PD.</p></section>
+        </div>
+        <div class="column">
+          <section class="card section-advances"><h2>Awanse</h2><ul class="bullet-list">
+<li><strong>Mocniejsze Błogosławieństwo:</strong> Twoje leczenie usuwa jeden stan oprócz przywrócenia PŻ.</li>
+<li><strong>Przeciw Nocy:</strong> Raz na sesję, odpędź lub opóźnij jednego nieumarłego bez rzutu.</li>
+<li><strong>Pożyczone Lata:</strong> Przez dotyk możesz przejąć przywarę lub stan innej postaci, przenosząc je na siebie.</li>
+<li><strong>Dobre Życie:</strong> Kiedy dzielisz posiłek, napój lub prostą chwilę spokoju z sojusznikiem, leczy 1k6 PŻ, a ty zaznaczasz PD.</li>
+<li><strong>Długi Wpływ:</strong> Kiedy ktoś, komu kiedyś pomogłeś/-aś, wraca, by teraz pomóc tobie, ma przewagę na pierwsze działanie.</li>
+<li><strong>Ulepszony Atrybut:</strong> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><strong>Wybitny Atrybut</strong> <em>(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)</em>: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul></section>
+          <section class="card section-drives"><h2>Dążenia</h2><ul class="bullet-list">
+<li>Upewnij się, że coś dobrego przeżyje ciebie.</li>
+<li>Dotrzyj do kogoś uwięzionego we własnej stagnacji.</li>
+<li>Wypij z kimś dziś, kto może już jutro nie być.</li>
+<li>Zrób coś bohaterskiego i pozwól komuś innemu wziąć za to chwałę.</li>
+</ul></section>
+        </div>
+        <div class="column">
+          
+    <section class="card sheet-card">
+      <h2>Arkusz Postaci</h2>
+      <p class="sheet-tip">Rozdziel: <strong>+2, +1, +1, +0, +0, -1</strong>.</p>
+      <div class="stat-grid"><div class="stat-box"><span class="stat-name">SIŁ</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">ZRC</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">KON</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">INT</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">MDR</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">CHA</span><span class="stat-value"></span></div></div>
+      <div class="track-grid">
+        <div class="track-box"><span class="track-label">PŻ</span><span class="track-value">8 + KON</span></div>
+        <div class="track-box"><span class="track-label">Obrażenia</span><span class="track-value">k6</span></div>
+        <div class="track-box"><span class="track-label">Pancerz</span><span class="track-value"></span></div>
+        <div class="track-box"><span class="track-label">XP</span><span class="track-value">□□□□□</span></div>
+        <div class="track-box"><span class="track-label">Udźwig</span><span class="track-value">9</span></div>
+      </div>
+      <div class="debility-grid">
+        <div class="debility-box">□ Osłabiony <span>(SIŁ, ZRC)</span></div>
+        <div class="debility-box">□ Otępiały <span>(INT, MDR)</span></div>
+        <div class="debility-box">□ Przybity <span>(KON, CHA)</span></div>
+      </div>
+      <div class="sheet-notes">
+      <h3 class="entry-title">Ściąga</h3>
+      <ul class="bullet-list compact-list">
+        <li>Zaznacz XP przy wyniku <strong>6-</strong> oraz gdy coś każe ci to zrobić.</li>
+        <li>Wydaj <strong>1 XP</strong>, aby dodać <strong>+1</strong> do rzutu po rzucie.</li>
+        <li>Wydaj <strong>5 XP</strong>, aby wybrać awans.</li>
+        <li><strong>PŻ</strong> odzyskujesz przez odpoczynek, leczenie i ruchy postaci.</li>
+        <li><strong>Pancerz</strong> zmniejsza otrzymywane obrażenia zgodnie z fikcją.</li>
+      </ul>
+      </div>
+    </section>
+    
+          <section class="card section-gear"><h2>Ekwipunek</h2><p>Udźwig 9.</p>
+<ul class="bullet-list">
+<li>Okłady lecznicze, 3 użycia (<span class="slot-boxes">□</span>)</li>
+<li>Święty symbol lub relikwia (<span class="slot-boxes">□</span>)</li>
+<li>Podróżne szaty kapłańskie (<span class="slot-boxes">□</span>)</li>
+<li>Mała modlitewna księga (<span class="slot-boxes">□</span>)</li>
+<li>Flasza spirytualiów (<span class="slot-boxes">□</span>)</li>
+<li>Kij pielgrzymi (zasięg, <span class="slot-boxes">□</span>)</li>
+<li>Monety dla biednych, ciągle się kończą (<span class="slot-boxes">□</span>)</li>
+<li>List od kogoś, kogo nie udało się uratować <span class="slot-small">małe</span></li>
+<li>Ziołowy środek zrobiony dla konkretnej osoby <span class="slot-small">małe</span></li>
+<li>Tani pierścionek, wygładzony do gładkości <span class="slot-small">małe</span></li>
+<li>Zmięty rysunek od dziecka <span class="slot-small">małe</span></li>
+</ul></section>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

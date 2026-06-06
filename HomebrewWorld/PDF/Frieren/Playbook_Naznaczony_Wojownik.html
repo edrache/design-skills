@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NAZNACZONY WOJOWNIK</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 8mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      color: #000;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-size: 9px;
+      line-height: 1.2;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      padding: 0;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      gap: 4mm;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+    }
+
+    .page-header {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 4mm;
+      align-items: end;
+      border-bottom: 1px solid #000;
+      padding-bottom: 2.5mm;
+    }
+
+    .title-wrap h1 {
+      margin: 0 0 1mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 10px;
+      color: #222;
+      font-style: italic;
+    }
+
+    .meta-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1mm;
+      text-align: right;
+    }
+
+    .meta-line {
+      margin: 0;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+      align-items: start;
+      min-height: 0;
+      flex: 1;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 3mm;
+      min-height: 0;
+    }
+
+    .card {
+      border: 1px solid #000;
+      border-radius: 3mm;
+      background: #fff;
+      padding: 3mm;
+      break-inside: avoid;
+    }
+
+    .card h2 {
+      margin: 0 0 2mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #000;
+    }
+
+    .card h3,
+    .entry-title {
+      margin: 1.5mm 0 1mm;
+      font-size: 10px;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #000;
+    }
+
+    p {
+      margin: 0 0 1.2mm;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 4mm;
+    }
+
+    li {
+      margin: 0 0 1mm;
+    }
+
+    code {
+      font-family: Menlo, Monaco, monospace;
+      font-size: 0.95em;
+    }
+
+    .section-background {
+      padding: 2.5mm;
+    }
+
+    .section-note {
+      margin: 0 0 2mm;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .background-entry {
+      border-top: 1px solid #999;
+      padding-top: 2mm;
+      margin-top: 2mm;
+    }
+
+    .background-entry:first-of-type {
+      border-top: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .background-entry h3 {
+      margin-top: 0;
+    }
+
+    .questions-intro {
+      margin-top: 1mm;
+      font-size: 8.4px;
+      color: #333;
+      font-style: italic;
+    }
+
+    .question-list {
+      column-count: 2;
+      column-gap: 4mm;
+    }
+
+    .bullet-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6mm;
+    }
+
+    .compact-list {
+      gap: 0.3mm;
+    }
+
+    .page-two-grid {
+      grid-template-columns: 1.1fr 1fr 0.95fr;
+      gap: 3mm;
+    }
+
+    .page-two-grid .card {
+      padding: 2.5mm;
+    }
+
+    .page-two-grid .card h2 {
+      font-size: 12px;
+      margin-bottom: 1.5mm;
+    }
+
+    .page-two-grid p,
+    .page-two-grid li {
+      font-size: 8.2px;
+      line-height: 1.15;
+    }
+
+    .page-two-grid .card h3,
+    .page-two-grid .entry-title {
+      font-size: 9px;
+      margin: 1.2mm 0 0.8mm;
+    }
+
+    .page-two-grid .section-gear p,
+    .page-two-grid .section-gear li {
+      font-size: 7.6px;
+      line-height: 1.08;
+    }
+
+    .page-two-grid .section-gear .bullet-list {
+      column-count: 2;
+      column-gap: 3mm;
+      display: block;
+      padding-left: 3mm;
+    }
+
+    .page-two-grid .section-gear .bullet-list li {
+      break-inside: avoid;
+      margin-bottom: 0.6mm;
+    }
+
+    .sheet-tip {
+      margin-bottom: 2mm;
+      color: #222;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5mm;
+      margin-bottom: 2mm;
+    }
+
+    .stat-box,
+    .track-box,
+    .debility-box {
+      border: 1px solid #000;
+      border-radius: 2mm;
+      background: #fff;
+    }
+
+    .stat-box {
+      min-height: 14mm;
+      padding: 1.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stat-name,
+    .track-label {
+      font-size: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #000;
+    }
+
+    .stat-value {
+      display: block;
+      border-bottom: 1px solid #000;
+      min-height: 6mm;
+    }
+
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5mm;
+      margin-bottom: 2mm;
+    }
+
+    .track-box {
+      min-height: 11mm;
+      padding: 1.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .track-value {
+      display: block;
+      min-height: 4mm;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .debility-grid {
+      display: grid;
+      gap: 1.2mm;
+    }
+
+    .debility-box {
+      padding: 1.6mm 2mm;
+      font-size: 8.4px;
+      line-height: 1.15;
+    }
+
+    .debility-box span {
+      color: #222;
+    }
+
+    .sheet-notes {
+      margin-top: 2mm;
+    }
+
+    .slot-boxes {
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      color: #333;
+      margin-left: 1.5px;
+    }
+
+    .slot-small {
+      font-size: 7.5px;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="page">
+      <header class="page-header">
+        <div class="title-wrap">
+          <h1>NAZNACZONY WOJOWNIK</h1>
+          <p class="lead">Jesteś silniejszy/-a, niż wiesz. To był problem. Przez lata wmawiano ci, że nie jesteś gotowy/-a, że nie wystarczasz, że jesteś nikim — ale ludzie, na których ci zależy, nie mają czasu na twoje wątpliwości.</p>
+        </div>
+        <div class="meta-stack">
+          <p class="meta-line">Homebrew World</p>
+          <p class="meta-line">Frieren</p>
+        </div>
+      </header>
+      <div class="page-grid">
+        <div class="column">
+          <section class="card section-name"><h2>Imię</h2><p>Wybierz imię:</p>
+<p><strong>Północna wioska:</strong> Rika, Marte, Solvei, Inge / Valdur, Gerrik, Halvar, Bjarne</p>
+<p><strong>Południowe pogranicze:</strong> Calla, Mirela, Desta, Seraf / Tobias, Cormac, Erasmo, Levin</p>
+<p><strong>Ocalały/-a ze zniszczonego domu:</strong> Lotta, Petra, Nessa, Elva / Gerwin, Konrad, Roas, Emrik</p>
+<p><strong>Imię wędrowca:</strong> Bliznę, Krzemień, Cierń, Popiół / Grunt, Ostrze, Żelazo, Kuźnia</p></section>
+          <section class="card section-look"><h2>Wygląd</h2><p>Wybierz po jednym z każdego wiersza:</p>
+<p><strong>Pochodzenie:</strong> mieszkaniec/-ka północnej wioski | osadnik/-czka południowego pogranicza | ocalały/-a ze zniszczonego domu | zapytaj stołu</p>
+<p><strong>Wiek:</strong> młody/-a, wciąż rośnie w siłę | krępy/-a i zahartowany/-a | stare blizny na młodej twarzy</p>
+<p><strong>Oczy:</strong> szybkie i pełne strachu ukrytego za pewnością siebie | pełne czegoś nierozwiązanego | szczere do bólu</p>
+<p><strong>Sylwetka:</strong> imponująca i obojętna na to | zwarta i potężna ponad miarę | zbudowana jak ktoś, kto nigdy nie przestał pracować</p>
+<p><strong>Strój:</strong> praktyczne podróżne ubrania, mocno zniszczone | odziedziczony ekwipunek wojownika, ledwo pasujący | doraźnie złożony zestaw z konieczności</p>
+<p><strong>Znak szczególny:</strong> blizna, której historii nie opowiada | broń trzymana jakby nie był/-a jej pewien/-na | cisza, która trwa zbyt długo</p></section>
+        </div>
+        <div class="column">
+          <section class="card section-background"><h2>Tło</h2><div class="section-note">Wybierz jedno.</div>
+<article class="background-entry"><h3>Poczucie Winy Ocalałego</h3><p>Twój dom już nie istnieje. Przeżyłeś/-aś, bo ktoś inny nie. Kiedy walczysz, by chronić kogoś, kto nie jest w stanie bronić się sam, zyskujesz +1 naprzód.</p><p class="questions-intro">Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p><ul class="question-list"><li>Który/-a z was wie, od czego uciekłem/-am?</li><li>Który/-a z was widział/-a, jak zamarłem/-am, gdy powinienem/-nam działać?</li><li>Który/-a z was przypomina mi kogoś, kto nie przeżył?</li><li>Który/-a z was wierzy, że jestem coś wart/-a — z powodów, których jeszcze nie rozumiem?</li></ul></article>
+<article class="background-entry"><h3>Cień Mistrza</h3><p>Wojownik wierzył w ciebie bardziej, niż ty wierzyłeś/-aś w siebie. Już go nie ma. Kiedy walczysz w sposób, który by go usatysfakcjonował, zaznacz PD.</p><p class="questions-intro">Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p><ul class="question-list"><li>Który/-a z was znał/-a mojego mistrza lub zna jego imię?</li><li>Który/-a z was zadał/-a mi pytanie, które on by zadał?</li><li>Który/-a z was zauważył/-a, że naśladuję kogoś, kto już nie żyje?</li><li>Któremu/-ej z was najbardziej chciałbym/-abym przywieźć opowieści?</li></ul></article>
+<article class="background-entry"><h3>Pogromca Smoka</h3><p>Kiedy wszyscy potrzebowali, żebyś zrobił/-a coś niemożliwego — zrobiłeś/-aś to. Wioska zna tę historię. Ty nie czujesz się jak osoba, o której ją opowiadają. Raz na sesję, gdy stawiasz czoła czemuś przytłaczającemu i mimo wszystko parasz do przodu, zaznacz PD.</p><p class="questions-intro">Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p><ul class="question-list"><li>Który/-a z was słyszał/-a jakąś wersję historii o mnie?</li><li>Który/-a z was nie uwierzył/-a, dopóki nie widział/-a mnie w walce?</li><li>Który/-a z was wie, o czym myślałem/-am tuż przed tym, jak przeżyłem/-am?</li><li>Który/-a z was patrzy na mnie tak samo, niezależnie od tego, czy historia jest prawdą?</li></ul></article>
+<article class="background-entry"><h3>Stagnacja Wioski</h3><p>Zostałeś/-aś w miejscu zbyt długo — wygodnie, bezpiecznie, pusto. Kiedy porzucasz komfort lub bezpieczeństwo, by iść dalej ku czemuś niepewnemu, zaznacz PD.</p><p>---</p><p class="questions-intro">Kiedy przedstawiasz się pozostałym BG, zadaj jedno lub więcej z poniższych pytań:</p><ul class="question-list"><li>Który/-a z was wyciągnął/-a mnie z życia, które przesypiałem/-am na jawie?</li><li>Który/-a z was zadał/-a mi pytanie, którego unikałem/-am?</li><li>Który/-a z was, jak się obawiam, miałby/-aby się lepiej beze mnie i mojej przeszłości?</li><li>Który/-a z was przypomina mi, że ruszanie naprzód jest tego warte?</li></ul></article></section>
+        </div>
+      </div>
+    </section>
+    <section class="page">
+      <header class="page-header">
+        <div class="title-wrap">
+          <h1>NAZNACZONY WOJOWNIK</h1>
+          <p class="lead">Skrót zasad i opcji postaci do gry przy stole.</p>
+        </div>
+        <div class="meta-stack">
+          <p class="meta-line">Homebrew World</p>
+          <p class="meta-line">Frieren</p>
+        </div>
+      </header>
+      <div class="page-grid page-two-grid">
+        <div class="column">
+          <section class="card section-starting_moves"><h2>Ruchy Startowe</h2><h3 class="entry-title">Miażdżąca Siła</h3>
+<p>Kiedy używasz surowej siły fizycznej — podnosisz, łamiesz, rzucasz lub uderzasz — masz przewagę.</p>
+<h3 class="entry-title">Przyjmij Cios</h3>
+<p>Kiedy przyjmujesz cios przeznaczony dla kogoś w pobliżu, zmniejszasz zadane sobie obrażenia o 1k6, a sojusznik nie otrzymuje żadnych.</p>
+<h3 class="entry-title">Ogień Fałszywego Skromka</h3>
+<p>Kiedy walczysz, głośno wątpiąc w siebie — MG słyszy to — zyskujesz +1 naprzód.</p>
+<h3 class="entry-title">Strach Wyostrza</h3>
+<p>Kiedy walczysz z czymś, co cię naprawdę przeraża, zadajesz +1k6 obrażeń na 10+.</p>
+<h3 class="entry-title">Dotrzymam Kroku</h3>
+<p>Kiedy sojusznik jest bardziej doświadczony lub uzdolniony od ciebie, zyskujesz +1 naprzód podczas bezpośredniej współpracy z nim.</p>
+<h3 class="entry-title">Uparte Ciało</h3>
+<p>Kiedy miałbyś/-abyś zostać obezwładniony/-a, możesz kontynuować działanie przy 1 PŻ do końca sceny.</p></section>
+        </div>
+        <div class="column">
+          <section class="card section-advances"><h2>Awanse</h2><ul class="bullet-list">
+<li><strong>Nadludzki Wysiłek:</strong> Raz na sesję automatycznie udaje ci się wyczyn czystej siły fizycznej — bez rzutu.</li>
+<li><strong>Mój Lud Nie Ucieka:</strong> Nigdy nie masz utrudnienia z powodu efektów opartych na strachu.</li>
+<li><strong>Miażdżący Cios:</strong> Twoja kostka obrażeń staje się k12, gdy atakujesz coś, co zraniło sojusznika.</li>
+<li><strong>Zapamiętana Historia:</strong> Raz na sesję opowiedz sojusznikowi historię wojownika z przeszłości. Zaznacza PD.</li>
+<li><strong>Wojownik Dziedzictwa:</strong> Kiedy poświęcasz zabójstwo komuś z przeszłości i głośno wymieniasz jego imię, zyskujesz +1 naprzód na resztę sceny.</li>
+<li><strong>Ulepszony Atrybut:</strong> Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +2.</li>
+<li><strong>Wybitny Atrybut</strong> <em>(Wymaga: Ulepszonego Atrybutu i co najmniej jednego innego awansu)</em>: Zwiększ jeden ze swoich atrybutów o +1, maksymalnie do +3.</li>
+</ul></section>
+          <section class="card section-drives"><h2>Dążenia</h2><ul class="bullet-list">
+<li>Zabij coś, o czym twój mistrz opowiadał legendy.</li>
+<li>Chroń kogoś, kto porzucił ochronę siebie samego.</li>
+<li>Opowiedz historię wartą przyniesienia komuś ważnemu.</li>
+<li>Przyznaj głośno, że się boisz — i walcz mimo to.</li>
+</ul></section>
+        </div>
+        <div class="column">
+          
+    <section class="card sheet-card">
+      <h2>Arkusz Postaci</h2>
+      <p class="sheet-tip">Rozdziel: <strong>+2, +1, +1, +0, +0, -1</strong>.</p>
+      <div class="stat-grid"><div class="stat-box"><span class="stat-name">SIŁ</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">ZRC</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">KON</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">INT</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">MDR</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">CHA</span><span class="stat-value"></span></div></div>
+      <div class="track-grid">
+        <div class="track-box"><span class="track-label">PŻ</span><span class="track-value">10 + KON</span></div>
+        <div class="track-box"><span class="track-label">Obrażenia</span><span class="track-value">k10</span></div>
+        <div class="track-box"><span class="track-label">Pancerz</span><span class="track-value"></span></div>
+        <div class="track-box"><span class="track-label">XP</span><span class="track-value">□□□□□</span></div>
+        <div class="track-box"><span class="track-label">Udźwig</span><span class="track-value">10</span></div>
+      </div>
+      <div class="debility-grid">
+        <div class="debility-box">□ Osłabiony <span>(SIŁ, ZRC)</span></div>
+        <div class="debility-box">□ Otępiały <span>(INT, MDR)</span></div>
+        <div class="debility-box">□ Przybity <span>(KON, CHA)</span></div>
+      </div>
+      <div class="sheet-notes">
+      <h3 class="entry-title">Ściąga</h3>
+      <ul class="bullet-list compact-list">
+        <li>Zaznacz XP przy wyniku <strong>6-</strong> oraz gdy coś każe ci to zrobić.</li>
+        <li>Wydaj <strong>1 XP</strong>, aby dodać <strong>+1</strong> do rzutu po rzucie.</li>
+        <li>Wydaj <strong>5 XP</strong>, aby wybrać awans.</li>
+        <li><strong>PŻ</strong> odzyskujesz przez odpoczynek, leczenie i ruchy postaci.</li>
+        <li><strong>Pancerz</strong> zmniejsza otrzymywane obrażenia zgodnie z fikcją.</li>
+      </ul>
+      </div>
+    </section>
+    
+          <section class="card section-gear"><h2>Ekwipunek</h2><p>Udźwig 10.</p>
+<ul class="bullet-list">
+<li>Topór, miecz lub bojowy młot (bliski zasięg, <span class="slot-boxes">□</span>)</li>
+<li>Ciężka zbroja (<span class="slot-boxes">□□</span>, 1 pancerz)</li>
+<li>Plecak podróżny (<span class="slot-boxes">□</span>)</li>
+<li>Osełka i zestaw do napraw (<span class="slot-boxes">□</span>)</li>
+<li>Bukłak (<span class="slot-boxes">□</span>)</li>
+<li>Racje na dwa dni (<span class="slot-boxes">□</span>)</li>
+<li>Lina, 5 metrów (<span class="slot-boxes">□</span>)</li>
+<li>Srebrna moneta ze starego domu <span class="slot-small">małe</span></li>
+<li>Strzęp materiału, który trzymasz i nic nie tłumaczysz <span class="slot-small">małe</span></li>
+<li>Kreda lub węgiel do oznaczania szlaków <span class="slot-small">małe</span></li>
+<li>Prezent od mistrza, praktycznie bezużyteczny <span class="slot-small">małe</span></li>
+</ul></section>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

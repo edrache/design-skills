@@ -24,6 +24,24 @@ This skill publishes the static `HomebrewWorld` website from local setting folde
 5. Refresh the homepage catalog if the set of published settings changed.
 6. Deploy with the repo's current deployment flow after previewing the static output.
 
+## CRITICAL: Deploy Safety Rule
+
+**Always build ALL settings before deploying**, even when only one setting was added or changed.
+
+The deploy script uses rsync with `--delete`, which removes any remote file that doesn't exist locally. Deploying a partial build (e.g. only the new setting) will delete all other settings from the server.
+
+**Correct command:**
+```bash
+python3 execution/publish_homebrew_world.py --deploy --go
+```
+
+**Never do this:**
+```bash
+python3 execution/publish_homebrew_world.py NewSetting --deploy --go
+```
+
+If the full build is too slow and you only need to deploy one setting, rebuild all and deploy all — the build is fast enough and correctness is more important than speed.
+
 ## Notes
 
 - Source folders are discovered in `HomebrewWorld/Settings/`.

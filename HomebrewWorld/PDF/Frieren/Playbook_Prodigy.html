@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>THE PRODIGY</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 8mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      color: #000;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-size: 9px;
+      line-height: 1.2;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      padding: 0;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      gap: 4mm;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+    }
+
+    .page-header {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 4mm;
+      align-items: end;
+      border-bottom: 1px solid #000;
+      padding-bottom: 2.5mm;
+    }
+
+    .title-wrap h1 {
+      margin: 0 0 1mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 10px;
+      color: #222;
+      font-style: italic;
+    }
+
+    .meta-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1mm;
+      text-align: right;
+    }
+
+    .meta-line {
+      margin: 0;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+      align-items: start;
+      min-height: 0;
+      flex: 1;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 3mm;
+      min-height: 0;
+    }
+
+    .card {
+      border: 1px solid #000;
+      border-radius: 3mm;
+      background: #fff;
+      padding: 3mm;
+      break-inside: avoid;
+    }
+
+    .card h2 {
+      margin: 0 0 2mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #000;
+    }
+
+    .card h3,
+    .entry-title {
+      margin: 1.5mm 0 1mm;
+      font-size: 10px;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #000;
+    }
+
+    p {
+      margin: 0 0 1.2mm;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 4mm;
+    }
+
+    li {
+      margin: 0 0 1mm;
+    }
+
+    code {
+      font-family: Menlo, Monaco, monospace;
+      font-size: 0.95em;
+    }
+
+    .section-background {
+      padding: 2.5mm;
+    }
+
+    .section-note {
+      margin: 0 0 2mm;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .background-entry {
+      border-top: 1px solid #999;
+      padding-top: 2mm;
+      margin-top: 2mm;
+    }
+
+    .background-entry:first-of-type {
+      border-top: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .background-entry h3 {
+      margin-top: 0;
+    }
+
+    .questions-intro {
+      margin-top: 1mm;
+      font-size: 8.4px;
+      color: #333;
+      font-style: italic;
+    }
+
+    .question-list {
+      column-count: 2;
+      column-gap: 4mm;
+    }
+
+    .bullet-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6mm;
+    }
+
+    .compact-list {
+      gap: 0.3mm;
+    }
+
+    .page-two-grid {
+      grid-template-columns: 1.1fr 1fr 0.95fr;
+      gap: 3mm;
+    }
+
+    .page-two-grid .card {
+      padding: 2.5mm;
+    }
+
+    .page-two-grid .card h2 {
+      font-size: 12px;
+      margin-bottom: 1.5mm;
+    }
+
+    .page-two-grid p,
+    .page-two-grid li {
+      font-size: 8.2px;
+      line-height: 1.15;
+    }
+
+    .page-two-grid .card h3,
+    .page-two-grid .entry-title {
+      font-size: 9px;
+      margin: 1.2mm 0 0.8mm;
+    }
+
+    .page-two-grid .section-gear p,
+    .page-two-grid .section-gear li {
+      font-size: 7.6px;
+      line-height: 1.08;
+    }
+
+    .page-two-grid .section-gear .bullet-list {
+      column-count: 2;
+      column-gap: 3mm;
+      display: block;
+      padding-left: 3mm;
+    }
+
+    .page-two-grid .section-gear .bullet-list li {
+      break-inside: avoid;
+      margin-bottom: 0.6mm;
+    }
+
+    .sheet-tip {
+      margin-bottom: 2mm;
+      color: #222;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5mm;
+      margin-bottom: 2mm;
+    }
+
+    .stat-box,
+    .track-box,
+    .debility-box {
+      border: 1px solid #000;
+      border-radius: 2mm;
+      background: #fff;
+    }
+
+    .stat-box {
+      min-height: 14mm;
+      padding: 1.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stat-name,
+    .track-label {
+      font-size: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #000;
+    }
+
+    .stat-value {
+      display: block;
+      border-bottom: 1px solid #000;
+      min-height: 6mm;
+    }
+
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5mm;
+      margin-bottom: 2mm;
+    }
+
+    .track-box {
+      min-height: 11mm;
+      padding: 1.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .track-value {
+      display: block;
+      min-height: 4mm;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .debility-grid {
+      display: grid;
+      gap: 1.2mm;
+    }
+
+    .debility-box {
+      padding: 1.6mm 2mm;
+      font-size: 8.4px;
+      line-height: 1.15;
+    }
+
+    .debility-box span {
+      color: #222;
+    }
+
+    .sheet-notes {
+      margin-top: 2mm;
+    }
+
+    .slot-boxes {
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      color: #333;
+      margin-left: 1.5px;
+    }
+
+    .slot-small {
+      font-size: 7.5px;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="page">
+      <header class="page-header">
+        <div class="title-wrap">
+          <h1>THE PRODIGY</h1>
+          <p class="lead">You don't need ancient wisdom or innate genius. You need discipline, time, and the willingness to work harder than everyone expects you to. Your magic isn't spectacular. It doesn't need to be — it just needs to work.</p>
+        </div>
+        <div class="meta-stack">
+          <p class="meta-line">Homebrew World</p>
+          <p class="meta-line">Frieren</p>
+        </div>
+      </header>
+      <div class="page-grid">
+        <div class="column">
+          <section class="card section-name"><h2>Name</h2><p>Pick a name:</p>
+<p><strong>War Orphan:</strong> Mira, Alix, Venn, Suri / Talis, Ren, Caern, Dorin</p>
+<p><strong>Apprentice:</strong> Clara, Lotte, Elsa, Hanna / Emil, Jonas, Rolf, Kurt</p>
+<p><strong>Gifted Commoner:</strong> Brita, Dala, Sanna, Turid / Arvi, Stel, Oswin, Brand</p>
+<p><strong>Northern Bred:</strong> Sigrid, Edda, Ragna, Marte / Gunnar, Leif, Bjorn, Eirik</p></section>
+          <section class="card section-look"><h2>Look</h2><p>Pick one from each row:</p>
+<p><strong>Heritage:</strong> war orphan taken in by a mentor | gifted commoner who studied too hard | northern apprentice with a cold upbringing | ask the table</p>
+<p><strong>Age:</strong> young, looks even younger | just past the cusp of adulthood | a teenager with an older manner</p>
+<p><strong>Eyes:</strong> focused and precise | briefly warm, then back to work | quietly observing everything</p>
+<p><strong>Build:</strong> neat and controlled | quick and economic | deliberately unremarkable</p>
+<p><strong>Clothing:</strong> apprentice's robes, impeccably maintained | travelling gear chosen for practicality | layered cold-weather garments</p>
+<p><strong>Signature:</strong> counting breaths before casting | scathing commentary at the wrong moment | posture that doesn't relax</p></section>
+        </div>
+        <div class="column">
+          <section class="card section-background"><h2>Background</h2><div class="section-note">Pick one.</div>
+<article class="background-entry"><h3>Orphan's Debt</h3><p>Your guardian gave their remaining years for you. That matters more than they ever let on. When you honor their legacy through action — completing what they started, protecting who they loved — mark XP.</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you knows what was sacrificed for me?</li><li>Which of you has seen me pause at the thought of someone I've lost?</li><li>Which of you reminds me of what I'm supposed to become?</li><li>Which of you I worry I'm disappointing, the way I feared disappointing them?</li></ul></article>
+<article class="background-entry"><h3>Pragmatic Apprentice</h3><p>You learned that efficiency matters more than elegance. When you solve a problem with a common or ordinary spell that others are using something more complex for, take +1 forward.</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you has underestimated what ordinary magic can do?</li><li>Which of you asked me why I don't use something more impressive?</li><li>Which of you I've already quietly solved a problem for, without them noticing?</li><li>Which of you I find genuinely difficult to read?</li></ul></article>
+<article class="background-entry"><h3>Prodigy's Shadow</h3><p>There was someone more gifted — or more celebrated — and you lived in their shadow. When you surpass an expectation someone held for you, mark XP.</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you expected less of me than I expected of myself?</li><li>Which of you saw what I was capable of before I did?</li><li>Which of you has compared me to someone else and thought I came up short?</li><li>Which of you I will prove wrong, eventually?</li></ul></article>
+<article class="background-entry"><h3>Strict Practice</h3><p>You have trained harder than anyone required. Repetition is not weakness — it is precision. When you use a spell or technique you've already used successfully this session, take +1 forward.</p><p>---</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you has seen me practice when no one was watching?</li><li>Which of you told me I was working too hard?</li><li>Which of you I've outpaced without either of us meaning to make it a competition?</li><li>Which of you makes me want to stop practicing and just be present?</li></ul></article></section>
+        </div>
+      </div>
+    </section>
+    <section class="page">
+      <header class="page-header">
+        <div class="title-wrap">
+          <h1>THE PRODIGY</h1>
+          <p class="lead">Skrót zasad i opcji postaci do gry przy stole.</p>
+        </div>
+        <div class="meta-stack">
+          <p class="meta-line">Homebrew World</p>
+          <p class="meta-line">Frieren</p>
+        </div>
+      </header>
+      <div class="page-grid page-two-grid">
+        <div class="column">
+          <section class="card section-starting_moves"><h2>Starting Moves</h2><h3 class="entry-title">Relentless Offense</h3>
+<p>You have mastered ordinary offensive magic to a level that surprises veterans. When you use your trained attack spell, roll +INT. On a 10+, deal 1d8+1 damage. On a 7-9, deal 1d6 damage.</p>
+<h3 class="entry-title">Efficient Casting</h3>
+<p>You cast faster than most mages can track. When you act before your enemy in a conflict, take +1 forward.</p>
+<h3 class="entry-title">Emotional Control</h3>
+<p>When something would break your concentration, roll +WIS. On a 10+, you hold focus and suffer no penalty. On a 7-9, you hold focus but the distraction costs you something.</p>
+<h3 class="entry-title">Mentor's Method</h3>
+<p>When you use a technique or principle your mentor taught you and describe how, take +1 forward.</p>
+<h3 class="entry-title">Quiet Observation</h3>
+<p>When you watch an opponent use magic before engaging them, ask the GM one question about their approach, limits, or weaknesses. The GM answers honestly.</p>
+<h3 class="entry-title">First Strike</h3>
+<p>When you open a conflict by attacking before anyone expects aggression, deal +1d6 damage.</p></section>
+        </div>
+        <div class="column">
+          <section class="card section-advances"><h2>Advances</h2><ul class="bullet-list">
+<li><strong>Mastered Form:</strong> Your damage die becomes d10.</li>
+<li><strong>Blinding Speed:</strong> Once per session, cast a spell before anyone can interrupt or react.</li>
+<li><strong>Efficient Grimoire:</strong> You have memorized every spell you know. You no longer need a book to cast them.</li>
+<li><strong>Composure Under Fire:</strong> You have advantage on concentration rolls when injured.</li>
+<li><strong>Surpass the Master:</strong> Once per session, when you exceed an expectation your mentor set for you, mark XP and take +1 forward for the rest of the scene.</li>
+<li><strong>Improved Stat:</strong> Increase one of your stats by +1, to a max of +2.</li>
+<li><strong>Superior Stat</strong> <em>(Requires: Improved Stat, at least one other advance)</em>: Increase one of your stats by +1, to a max of +3.</li>
+</ul></section>
+          <section class="card section-drives"><h2>Drives</h2><ul class="bullet-list">
+<li>Master a spell no one expected you to learn.</li>
+<li>Complete a task perfectly with nothing wasted.</li>
+<li>Protect someone who relies on you without question.</li>
+<li>Admit — only to yourself — that you enjoyed the journey.</li>
+</ul></section>
+        </div>
+        <div class="column">
+          
+    <section class="card sheet-card">
+      <h2>Arkusz Postaci</h2>
+      <p class="sheet-tip">Rozdziel: <strong>+2, +1, +1, +0, +0, -1</strong>.</p>
+      <div class="stat-grid"><div class="stat-box"><span class="stat-name">SIŁ</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">ZRC</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">KON</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">INT</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">MDR</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">CHA</span><span class="stat-value"></span></div></div>
+      <div class="track-grid">
+        <div class="track-box"><span class="track-label">PŻ</span><span class="track-value">?</span></div>
+        <div class="track-box"><span class="track-label">Obrażenia</span><span class="track-value">?</span></div>
+        <div class="track-box"><span class="track-label">Pancerz</span><span class="track-value"></span></div>
+        <div class="track-box"><span class="track-label">XP</span><span class="track-value">□□□□□</span></div>
+        <div class="track-box"><span class="track-label">Udźwig</span><span class="track-value">?</span></div>
+      </div>
+      <div class="debility-grid">
+        <div class="debility-box">□ Osłabiony <span>(SIŁ, ZRC)</span></div>
+        <div class="debility-box">□ Otępiały <span>(INT, MDR)</span></div>
+        <div class="debility-box">□ Przybity <span>(KON, CHA)</span></div>
+      </div>
+      <div class="sheet-notes">
+      <h3 class="entry-title">Ściąga</h3>
+      <ul class="bullet-list compact-list">
+        <li>Zaznacz XP przy wyniku <strong>6-</strong> oraz gdy coś każe ci to zrobić.</li>
+        <li>Wydaj <strong>1 XP</strong>, aby dodać <strong>+1</strong> do rzutu po rzucie.</li>
+        <li>Wydaj <strong>5 XP</strong>, aby wybrać awans.</li>
+        <li><strong>PŻ</strong> odzyskujesz przez odpoczynek, leczenie i ruchy postaci.</li>
+        <li><strong>Pancerz</strong> zmniejsza otrzymywane obrażenia zgodnie z fikcją.</li>
+      </ul>
+      </div>
+    </section>
+    
+          <section class="card section-gear"><h2>Gear</h2><p>Load 9.</p>
+<ul class="bullet-list">
+<li>Travelling spell focus — rod, wand, or catalyst (<span class="slot-boxes">□</span>)</li>
+<li>Apprentice's robes (<span class="slot-boxes">□</span>)</li>
+<li>Annotated grimoire (<span class="slot-boxes">□□</span>)</li>
+<li>Waterskin (<span class="slot-boxes">□</span>)</li>
+<li>Field rations, 3 days (<span class="slot-boxes">□</span>)</li>
+<li>Canteen of hot tea (small)</li>
+<li>Repair kit for magical tools (small)</li>
+<li>Letter from your guardian, nearly memorized (small)</li>
+<li>Pressed flower from someone's garden (small)</li>
+</ul></section>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

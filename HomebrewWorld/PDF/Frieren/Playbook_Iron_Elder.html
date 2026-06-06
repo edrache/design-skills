@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>THE IRON ELDER</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 8mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      color: #000;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-size: 9px;
+      line-height: 1.2;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      padding: 0;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      gap: 4mm;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+    }
+
+    .page-header {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 4mm;
+      align-items: end;
+      border-bottom: 1px solid #000;
+      padding-bottom: 2.5mm;
+    }
+
+    .title-wrap h1 {
+      margin: 0 0 1mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 10px;
+      color: #222;
+      font-style: italic;
+    }
+
+    .meta-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1mm;
+      text-align: right;
+    }
+
+    .meta-line {
+      margin: 0;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+      align-items: start;
+      min-height: 0;
+      flex: 1;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 3mm;
+      min-height: 0;
+    }
+
+    .card {
+      border: 1px solid #000;
+      border-radius: 3mm;
+      background: #fff;
+      padding: 3mm;
+      break-inside: avoid;
+    }
+
+    .card h2 {
+      margin: 0 0 2mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #000;
+    }
+
+    .card h3,
+    .entry-title {
+      margin: 1.5mm 0 1mm;
+      font-size: 10px;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #000;
+    }
+
+    p {
+      margin: 0 0 1.2mm;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 4mm;
+    }
+
+    li {
+      margin: 0 0 1mm;
+    }
+
+    code {
+      font-family: Menlo, Monaco, monospace;
+      font-size: 0.95em;
+    }
+
+    .section-background {
+      padding: 2.5mm;
+    }
+
+    .section-note {
+      margin: 0 0 2mm;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .background-entry {
+      border-top: 1px solid #999;
+      padding-top: 2mm;
+      margin-top: 2mm;
+    }
+
+    .background-entry:first-of-type {
+      border-top: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .background-entry h3 {
+      margin-top: 0;
+    }
+
+    .questions-intro {
+      margin-top: 1mm;
+      font-size: 8.4px;
+      color: #333;
+      font-style: italic;
+    }
+
+    .question-list {
+      column-count: 2;
+      column-gap: 4mm;
+    }
+
+    .bullet-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6mm;
+    }
+
+    .compact-list {
+      gap: 0.3mm;
+    }
+
+    .page-two-grid {
+      grid-template-columns: 1.1fr 1fr 0.95fr;
+      gap: 3mm;
+    }
+
+    .page-two-grid .card {
+      padding: 2.5mm;
+    }
+
+    .page-two-grid .card h2 {
+      font-size: 12px;
+      margin-bottom: 1.5mm;
+    }
+
+    .page-two-grid p,
+    .page-two-grid li {
+      font-size: 8.2px;
+      line-height: 1.15;
+    }
+
+    .page-two-grid .card h3,
+    .page-two-grid .entry-title {
+      font-size: 9px;
+      margin: 1.2mm 0 0.8mm;
+    }
+
+    .page-two-grid .section-gear p,
+    .page-two-grid .section-gear li {
+      font-size: 7.6px;
+      line-height: 1.08;
+    }
+
+    .page-two-grid .section-gear .bullet-list {
+      column-count: 2;
+      column-gap: 3mm;
+      display: block;
+      padding-left: 3mm;
+    }
+
+    .page-two-grid .section-gear .bullet-list li {
+      break-inside: avoid;
+      margin-bottom: 0.6mm;
+    }
+
+    .sheet-tip {
+      margin-bottom: 2mm;
+      color: #222;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5mm;
+      margin-bottom: 2mm;
+    }
+
+    .stat-box,
+    .track-box,
+    .debility-box {
+      border: 1px solid #000;
+      border-radius: 2mm;
+      background: #fff;
+    }
+
+    .stat-box {
+      min-height: 14mm;
+      padding: 1.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stat-name,
+    .track-label {
+      font-size: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #000;
+    }
+
+    .stat-value {
+      display: block;
+      border-bottom: 1px solid #000;
+      min-height: 6mm;
+    }
+
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5mm;
+      margin-bottom: 2mm;
+    }
+
+    .track-box {
+      min-height: 11mm;
+      padding: 1.5mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .track-value {
+      display: block;
+      min-height: 4mm;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .debility-grid {
+      display: grid;
+      gap: 1.2mm;
+    }
+
+    .debility-box {
+      padding: 1.6mm 2mm;
+      font-size: 8.4px;
+      line-height: 1.15;
+    }
+
+    .debility-box span {
+      color: #222;
+    }
+
+    .sheet-notes {
+      margin-top: 2mm;
+    }
+
+    .slot-boxes {
+      font-size: 8px;
+      letter-spacing: 0.5px;
+      color: #333;
+      margin-left: 1.5px;
+    }
+
+    .slot-small {
+      font-size: 7.5px;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="page">
+      <header class="page-header">
+        <div class="title-wrap">
+          <h1>THE IRON ELDER</h1>
+          <p class="lead">Your body should have broken years ago. Your comrades are gone. The world has moved on without asking your permission. You are still here, still moving — because someone younger needs you to.</p>
+        </div>
+        <div class="meta-stack">
+          <p class="meta-line">Homebrew World</p>
+          <p class="meta-line">Frieren</p>
+        </div>
+      </header>
+      <div class="page-grid">
+        <div class="column">
+          <section class="card section-name"><h2>Name</h2><p>Pick a name:</p>
+<p><strong>Dwarf:</strong> Dorri, Thira, Binna, Arna / Gromr, Halvek, Durren, Aldrek</p>
+<p><strong>Old Warrior Human:</strong> Grisel, Maud, Sigrid, Thorva / Oldric, Brennan, Gareth, Haakon</p>
+<p><strong>Ancient Elf:</strong> Calael, Vorrith, Mern, Syla / Caelith, Doran, Arith, Geln</p>
+<p><strong>Forgotten Veteran:</strong> Stone, Barrow, Flint, Ash / Gravel, Pike, Rust, Timber</p></section>
+          <section class="card section-look"><h2>Look</h2><p>Pick one from each row:</p>
+<p><strong>Heritage:</strong> ancient dwarf, last of a warrior generation | old human veteran who refused retirement | elder elf who chose a warrior's life | ask the table</p>
+<p><strong>Age:</strong> old enough to have seen all of this before | physically ancient, still imposing | age shows only in the eyes</p>
+<p><strong>Eyes:</strong> unhurried and measuring | kind, with a deep undertow of grief | steady and present</p>
+<p><strong>Build:</strong> massive and weathered | thick as iron, still carrying old wounds | hulking in a way that reads as calm</p>
+<p><strong>Clothing:</strong> repaired armor worn to a shine | plain heavy clothes that resist everything | layered warrior's kit with no ceremony</p>
+<p><strong>Signature:</strong> scars that have become part of the face | movements that waste nothing | listening more than speaking</p></section>
+        </div>
+        <div class="column">
+          <section class="card section-background"><h2>Background</h2><div class="section-note">Pick one.</div>
+<article class="background-entry"><h3>Sole Survivor</h3><p>Everyone who trained alongside you is gone. You carry their methods, their stories, their unfinished business. When you fight to preserve what they built, mark XP.</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you has asked me about someone I used to fight beside?</li><li>Which of you I worry about outliving?</li><li>Which of you fights in a way that reminds me of someone I've lost?</li><li>Which of you I'd trust to carry this forward, if I can't?</li></ul></article>
+<article class="background-entry"><h3>Feared Disciple</h3><p>You once trained someone, saw how powerful they were becoming, and it frightened you. You may have handled it poorly. When you acknowledge another person's strength honestly and without qualification, mark XP.</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you I've already assessed and not said a word about?</li><li>Which of you I would take on as a disciple, if I were younger?</li><li>Which of you reminds me of a mistake I made with someone I trained?</li><li>Which of you I worry I've already let down, without knowing it?</li></ul></article>
+<article class="background-entry"><h3>Deliberate Choice</h3><p>You chose to stay active when staying still would have been easier. When you choose the harder path instead of rest, retirement, or quiet endings, take +1 forward.</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you asked me why I'm still doing this at my age?</li><li>Which of you understood without asking?</li><li>Which of you I'm here partly because of?</li><li>Which of you I hope still needs me — because I need to be needed?</li></ul></article>
+<article class="background-entry"><h3>Iron Reputation</h3><p>Stories about your past precede you. Sometimes they're accurate. When someone in the scene knows who you are, they take disadvantage to act against you.</p><p>---</p><p class="questions-intro">When you introduce yourself to the other PCs, ask one or more of the following:</p><ul class="question-list"><li>Which of you had heard my name before we met?</li><li>Which of you was surprised I was still alive?</li><li>Which of you has seen the gap between the story and the person?</li><li>Which of you I think could surpass anything the stories say about me?</li></ul></article></section>
+        </div>
+      </div>
+    </section>
+    <section class="page">
+      <header class="page-header">
+        <div class="title-wrap">
+          <h1>THE IRON ELDER</h1>
+          <p class="lead">Skrót zasad i opcji postaci do gry przy stole.</p>
+        </div>
+        <div class="meta-stack">
+          <p class="meta-line">Homebrew World</p>
+          <p class="meta-line">Frieren</p>
+        </div>
+      </header>
+      <div class="page-grid page-two-grid">
+        <div class="column">
+          <section class="card section-starting_moves"><h2>Starting Moves</h2><h3 class="entry-title">Unnatural Durability</h3>
+<p>Your body absorbs damage that would destroy others. When you take damage, reduce it by 1 (minimum 1).</p>
+<h3 class="entry-title">Iron Foundation</h3>
+<p>When you plant your feet and refuse to be moved, enemies have disadvantage on attempts to knock you down, push you back, or break your concentration.</p>
+<h3 class="entry-title">Let Them Try</h3>
+<p>When an enemy attacks you and misses, deal your damage die in return without rolling.</p>
+<h3 class="entry-title">Still Standing</h3>
+<p>When you are reduced below half HP, deal +1d6 damage until the end of the conflict.</p>
+<h3 class="entry-title">Steady Hands</h3>
+<p>When you assist an ally in combat, they have advantage on their next roll.</p>
+<h3 class="entry-title">Old Lessons</h3>
+<p>When you tell a younger character something relevant from your past — a method, a memory, a hard truth — they take +1 forward.</p></section>
+        </div>
+        <div class="column">
+          <section class="card section-advances"><h2>Advances</h2><ul class="bullet-list">
+<li><strong>Immovable:</strong> Once per session, survive a hit that would have killed anyone else. You remain at 1 HP.</li>
+<li><strong>The Last Wall:</strong> When you take a hit meant for an ally, reduce the damage to them to 0.</li>
+<li><strong>Legendary Past:</strong> When you describe something from your past that no one in the room has ever witnessed, mark XP.</li>
+<li><strong>Iron Mentor:</strong> When a character uses something you taught them and succeeds, you mark XP.</li>
+<li><strong>Not Yet:</strong> Once per session, when you would die, you don't. You survive at 1 HP.</li>
+<li><strong>Improved Stat:</strong> Increase one of your stats by +1, to a max of +2.</li>
+<li><strong>Superior Stat</strong> <em>(Requires: Improved Stat, at least one other advance)</em>: Increase one of your stats by +1, to a max of +3.</li>
+</ul></section>
+          <section class="card section-drives"><h2>Drives</h2><ul class="bullet-list">
+<li>Protect someone the world has not yet finished with.</li>
+<li>Tell a story worth remembering.</li>
+<li>Keep moving — rest is for later.</li>
+<li>Give someone the acknowledgment you were never given.</li>
+</ul></section>
+        </div>
+        <div class="column">
+          
+    <section class="card sheet-card">
+      <h2>Arkusz Postaci</h2>
+      <p class="sheet-tip">Rozdziel: <strong>+2, +1, +1, +0, +0, -1</strong>.</p>
+      <div class="stat-grid"><div class="stat-box"><span class="stat-name">SIŁ</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">ZRC</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">KON</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">INT</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">MDR</span><span class="stat-value"></span></div><div class="stat-box"><span class="stat-name">CHA</span><span class="stat-value"></span></div></div>
+      <div class="track-grid">
+        <div class="track-box"><span class="track-label">PŻ</span><span class="track-value">?</span></div>
+        <div class="track-box"><span class="track-label">Obrażenia</span><span class="track-value">?</span></div>
+        <div class="track-box"><span class="track-label">Pancerz</span><span class="track-value"></span></div>
+        <div class="track-box"><span class="track-label">XP</span><span class="track-value">□□□□□</span></div>
+        <div class="track-box"><span class="track-label">Udźwig</span><span class="track-value">?</span></div>
+      </div>
+      <div class="debility-grid">
+        <div class="debility-box">□ Osłabiony <span>(SIŁ, ZRC)</span></div>
+        <div class="debility-box">□ Otępiały <span>(INT, MDR)</span></div>
+        <div class="debility-box">□ Przybity <span>(KON, CHA)</span></div>
+      </div>
+      <div class="sheet-notes">
+      <h3 class="entry-title">Ściąga</h3>
+      <ul class="bullet-list compact-list">
+        <li>Zaznacz XP przy wyniku <strong>6-</strong> oraz gdy coś każe ci to zrobić.</li>
+        <li>Wydaj <strong>1 XP</strong>, aby dodać <strong>+1</strong> do rzutu po rzucie.</li>
+        <li>Wydaj <strong>5 XP</strong>, aby wybrać awans.</li>
+        <li><strong>PŻ</strong> odzyskujesz przez odpoczynek, leczenie i ruchy postaci.</li>
+        <li><strong>Pancerz</strong> zmniejsza otrzymywane obrażenia zgodnie z fikcją.</li>
+      </ul>
+      </div>
+    </section>
+    
+          <section class="card section-gear"><h2>Gear</h2><p>Load 10.</p>
+<ul class="bullet-list">
+<li>Great axe, warhammer, or iron-shod staff (reach, forceful, <span class="slot-boxes">□□</span>)</li>
+<li>Heavy reinforced armor (<span class="slot-boxes">□□</span>, 2 armor)</li>
+<li>Iron flask (<span class="slot-boxes">□</span>)</li>
+<li>Bandages and field dressings (<span class="slot-boxes">□</span>)</li>
+<li>Rations for two (<span class="slot-boxes">□</span>)</li>
+<li>Worn whetstone (small)</li>
+<li>Token from a fallen comrade (small)</li>
+<li>Old wound salve, one use (small)</li>
+<li>Handful of gravel or stones from home (small)</li>
+</ul></section>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

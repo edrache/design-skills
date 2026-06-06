@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Marsz: Psychika kontra Chaos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-block">
+        <p class="eyebrow">Urodzinowy chaos MG</p>
+        <h1>Marsz</h1>
+      </div>
+      <button id="fullscreen-btn" class="ghost-button" type="button" aria-label="Przełącz pełny ekran">Pelny ekran</button>
+    </header>
+
+    <main class="game-layout">
+      <section class="hud-panel">
+        <div class="resource-card sanity" data-resource="sanity">
+          <div class="resource-header">
+            <span class="resource-icon" aria-hidden="true">🧠</span>
+            <div class="resource-copy">
+              <p class="resource-name">Psychika MG</p>
+              <p class="resource-value"><span id="sanity-value">50</span>/100</p>
+            </div>
+          </div>
+          <div class="resource-bar-track">
+            <div id="sanity-bar" class="resource-bar-fill"></div>
+          </div>
+          <div id="sanity-delta" class="resource-delta" aria-live="polite"></div>
+        </div>
+
+        <div class="resource-card engagement" data-resource="engagement">
+          <div class="resource-header">
+            <span class="resource-icon" aria-hidden="true">🎲</span>
+            <div class="resource-copy">
+              <p class="resource-name">Zaangażowanie graczy</p>
+              <p class="resource-value"><span id="engagement-value">50</span>/100</p>
+            </div>
+          </div>
+          <div class="resource-bar-track">
+            <div id="engagement-bar" class="resource-bar-fill"></div>
+          </div>
+          <div id="engagement-delta" class="resource-delta" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="play-area">
+        <div id="start-screen" class="overlay-screen active">
+          <div class="overlay-card hero-intro">
+            <div class="hero-frame">
+              <img src="./assets/hero.png" alt="Portret bohatera Pawla">
+            </div>
+            <p class="eyebrow">Reigns-like swipe game</p>
+            <h2>MG kontra chaos</h2>
+            <p>
+              Przesuwaj karty w lewo lub prawo i wybieraj, jak MG reaguje na coraz bardziej
+              nieprzewidywalne pomysly graczy.
+            </p>
+            <p class="helper-copy">
+              Chodzi o to, żeby przetrwac kolejna decyzje bez utraty resztek psychiki albo publiki.
+            </p>
+            <button id="start-btn" class="primary-button" type="button">Zacznij marsz</button>
+          </div>
+        </div>
+
+        <div id="game-over-screen" class="overlay-screen">
+          <div class="overlay-card">
+            <p class="eyebrow">Koniec sesji</p>
+            <h2 id="game-over-title">Tytul zakonczenia</h2>
+            <p id="game-over-text"></p>
+            <p class="result-stats">Rozegrane karty: <span id="cards-played">0</span></p>
+            <button id="restart-btn" class="primary-button" type="button">Zagraj jeszcze raz</button>
+          </div>
+        </div>
+
+        <div id="feedback-banner" class="feedback-banner" aria-live="polite"></div>
+
+        <div class="deck-stage">
+          <div class="choice-hints-row" aria-hidden="true">
+            <div class="choice-hint left" id="left-choice-hint">
+            <span class="hint-label">Lewo</span>
+            <strong id="left-choice-text">...</strong>
+            </div>
+            <div class="choice-hint right" id="right-choice-hint">
+            <span class="hint-label">Prawo</span>
+            <strong id="right-choice-text">...</strong>
+            </div>
+          </div>
+
+          <article id="card" class="swipe-card" aria-label="Karta sytuacji">
+            <div class="card-image-wrap">
+              <img id="card-image" src="./assets/temp-image.png" alt="Ilustracja karty">
+            </div>
+            <div class="card-content">
+              <p class="card-counter">Karta <span id="card-number">1</span></p>
+              <p id="card-situation" class="card-situation"></p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./cards-data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
