@@ -67,6 +67,7 @@ const refs = {
   cardAgentStage: document.getElementById("card-agent-stage"),
   cardAgentName: document.getElementById("card-agent-name"),
   cardBranchCue: document.getElementById("card-branch-cue"),
+  cardEmotionalCue: document.getElementById("card-emotional-cue"),
   leftChoiceHint: document.getElementById("left-choice-hint"),
   rightChoiceHint: document.getElementById("right-choice-hint"),
   leftChoiceText: document.getElementById("left-choice-text"),
@@ -104,6 +105,13 @@ function shuffleDeck() {
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
+}
+
+function pickRandom(items) {
+  if (!items.length) {
+    return null;
+  }
+  return items[Math.floor(Math.random() * items.length)];
 }
 
 function rollEffectValue(baseValue) {
@@ -177,10 +185,12 @@ function setHints(card) {
 
 function renderCardMeta(card) {
   if (card.isMini) {
-    refs.cardPhase.textContent = `Mini ${card.miniStep}/${card.miniTotal}`;
+    refs.cardPhase.textContent = "Mini karta";
     refs.cardAgentStage.textContent = card.stageLabel;
     refs.cardAgentName.textContent = card.agentLabel;
     refs.cardBranchCue.textContent = card.branchKey === "left" ? "Po wyborze: lewo" : "Po wyborze: prawo";
+    refs.cardEmotionalCue.textContent = card.emotionalCue;
+    refs.cardEmotionalCue.hidden = false;
     refs.cardAgentChip.hidden = false;
     return;
   }
@@ -189,6 +199,8 @@ function renderCardMeta(card) {
   refs.cardAgentStage.textContent = "";
   refs.cardAgentName.textContent = "";
   refs.cardBranchCue.textContent = "";
+  refs.cardEmotionalCue.textContent = "";
+  refs.cardEmotionalCue.hidden = true;
   refs.cardAgentChip.hidden = true;
 }
 
@@ -282,7 +294,8 @@ function finishChoice(choice) {
     state.mainCardsPlayed += 1;
     state.currentIndex += 1;
     const branchBundle = builtMiniBranches.get(card.id);
-    state.activeMiniCards = branchBundle ? [...branchBundle[choice]] : [];
+    const randomMiniCard = branchBundle ? pickRandom(branchBundle[choice]) : null;
+    state.activeMiniCards = randomMiniCard ? [randomMiniCard] : [];
   }
 
   const ending = evaluateEnding();

@@ -2,22 +2,65 @@ const MINI_CARD_AGENTS = [
   {
     id: "pulse",
     label: "Agent Impulsu",
-    stageLabel: "Pierwsza fala",
-    summary: "Sprawdza natychmiastowy efekt decyzji przy stole.",
+    stageLabel: "Pierwsze pekniecie",
+    summary: "Lapie moment, w ktorym decyzja zostawia pierwszy slad na ludziach przy stole.",
+    emotionalCue: "Widzisz po twarzach, ze to nie byla drobnostka.",
   },
   {
     id: "spotlight",
     label: "Agent Stolu",
-    stageLabel: "Reakcja ekipy",
-    summary: "Patrzy, jak pozostali gracze i scena odpowiadaja na ruch MG.",
+    stageLabel: "Spojrzenia przy stole",
+    summary: "Patrzy, kto czuje ulge, kto wstyd, a kto zapamieta ten moment na dluzej.",
+    emotionalCue: "Przy stole robi sie ciszej, bo kazdy czyta te decyzje inaczej.",
   },
   {
     id: "aftershock",
     label: "Agent Następstw",
-    stageLabel: "Drugi rachunek",
-    summary: "Domyka długofalowy koszt albo bonus decyzji.",
+    stageLabel: "To zostaje",
+    summary: "Domyka to, co po decyzji zostaje w relacjach, rytmie i twojej glowie.",
+    emotionalCue: "Najgorsze jest to, ze po scenie cos jeszcze z tego zostaje.",
   },
 ];
+
+function rebalanceMiniEffects(effects) {
+  const next = { ...effects };
+  const samePositive = next.sanity > 0 && next.engagement > 0;
+  const sameNegative = next.sanity < 0 && next.engagement < 0;
+
+  if (samePositive) {
+    if (Math.abs(next.sanity) <= Math.abs(next.engagement)) {
+      next.sanity = -Math.max(1, Math.floor(Math.abs(next.sanity) / 2));
+    } else {
+      next.engagement = -Math.max(1, Math.floor(Math.abs(next.engagement) / 2));
+    }
+  }
+
+  if (sameNegative) {
+    if (Math.abs(next.sanity) <= Math.abs(next.engagement)) {
+      next.sanity = Math.max(1, Math.floor(Math.abs(next.sanity) / 2));
+    } else {
+      next.engagement = Math.max(1, Math.floor(Math.abs(next.engagement) / 2));
+    }
+  }
+
+  return next;
+}
+
+function scaleEffects(effects, factor) {
+  return {
+    sanity: effects.sanity * factor,
+    engagement: effects.engagement * factor,
+  };
+}
+
+function intensifyFeedback(text, stepIndex) {
+  const suffixes = [
+    " Czujesz, ze cos w stole lekko peklo.",
+    " Niby gracie dalej, ale wszyscy juz cos z tego zapamietali.",
+    " To nie konczy sprawy, tylko przenosi jej koszt dalej.",
+  ];
+  return `${text}${suffixes[stepIndex] || ""}`;
+}
 
 function normalizeMiniStep(parentCard, branchKey, stepData, stepIndex) {
   const agent = MINI_CARD_AGENTS[stepIndex];
@@ -45,10 +88,10 @@ function normalizeMiniStep(parentCard, branchKey, stepData, stepIndex) {
     situation,
     left_label: leftLabel,
     right_label: rightLabel,
-    left_feedback: leftFeedback,
-    right_feedback: rightFeedback,
-    left_effects: leftEffects,
-    right_effects: rightEffects,
+    left_feedback: intensifyFeedback(leftFeedback, stepIndex),
+    right_feedback: intensifyFeedback(rightFeedback, stepIndex),
+    left_effects: scaleEffects(rebalanceMiniEffects(leftEffects), 2),
+    right_effects: scaleEffects(rebalanceMiniEffects(rightEffects), 2),
     isMini: true,
     parentId: parentCard.id,
     parentSituation: parentCard.situation,
@@ -59,6 +102,7 @@ function normalizeMiniStep(parentCard, branchKey, stepData, stepIndex) {
     agentLabel: agent.label,
     stageLabel: agent.stageLabel,
     agentSummary: agent.summary,
+    emotionalCue: agent.emotionalCue,
   };
 }
 

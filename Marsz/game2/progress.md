@@ -14,4 +14,7 @@ Original prompt: przygotuj grę wg tej specyfikacji. Jeśli karta nie ma grafiki
 - 2026-06-06: Dodano meta-UI dla mini-kart: etap `Mini 1/3`, agent prowadzacy i oznaczenie, czy konsekwencje wynikaja z wyboru lewego czy prawego.
 - 2026-06-06: Rozdzielono liczniki na glowne karty i wszystkie decyzje oraz dodano obsluge zamykania feedbacku klawiszem `Enter`.
 - 2026-06-06: Przeszedl smoke test lokalny po HTTP + Playwright poza sandboxem; potwierdzono wejscie z karty glownej do pierwszej mini-karty z poprawna grafika i stanem gry.
+- 2026-06-06: Dociążono mini-karty emocjonalnie: agenci dostali mocniejsze cue tekstowe, feedbacki zostaly doprawione kosztem emocjonalnym, a mini-efekty sa automatycznie rebalance'owane tak, by rzadziej dawac czysto "dobre" wybory.
+- 2026-06-06: Zrobiono punktowy rewrite kilku najbardziej oczywistych mini-scen, zeby bardziej opieraly sie o wstyd, tarcie, ulge, koszt relacyjny i niejednoznaczne decyzje.
+- 2026-06-06: Zmieniono flow mini-kart z sekwencji `3 po kolei` na `1 losowa mini-karta` z wybranej galezi lewo/prawo; karta nadal dziedziczy grafike i agenta, ale otwiera sie tylko jeden losowy epizod.
 - TODO: Warto jeszcze zrobic dluzszy przebieg mobilny `main -> 3 mini -> kolejna main -> game over`, zwlaszcza pod katem swipe + przypadkowego zamykania feedbacku po tapie.

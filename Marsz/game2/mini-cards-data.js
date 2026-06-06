@@ -37,7 +37,7 @@ const RAW_MINI_BRANCHES = {
   },
   "zero-notes": {
     left: [
-      ["Po twoim streszczeniu jedna osoba nadal myli wroga z burmistrzem.", "Rysuje szybka sciage", "Licze, ze juz wystarczy", "Wszyscy lapia wspolny grunt.", "Szybciej ruszacie, ale mgla jeszcze zostaje.", { sanity: 2, engagement: 2 }, { sanity: -2, engagement: -1 }],
+      ["Po twoim streszczeniu jedna osoba nadal myli wroga z burmistrzem, a druga patrzy juz z poczuciem winy w stol.", "Rysuje szybka sciage", "Udaje, ze to wystarczy", "Pomagasz im wyjsc z wstydu, ale znow bierzesz to na siebie.", "Rusza sie szybciej, tylko to zawieszenie jeszcze z wami zostaje.", { sanity: 2, engagement: 2 }, { sanity: -2, engagement: -1 }],
       ["Gracze zaczynaja dopowiadac brakujace szczegoly po swojemu.", "Przyjmujesz najlepsze wersje", "Korygujesz fabuly od razu", "Pamiec grupy robi sie wspolna i zywa.", "Porzadek wraca, choc tempo siada.", { sanity: 1, engagement: 3 }, { sanity: 2, engagement: -1 }],
       ["Padal pomysl, by po kazdej sesji jedna osoba pisala recap.", "Wprowadzam dyzur", "Zostaje przy swoim recapcie", "Odpowiedzialnosc rozklada sie po stole.", "Masz kontrole, ale nadal wszystko niesiesz sam.", { sanity: 3, engagement: 1 }, { sanity: -1, engagement: 0 }],
     ],
@@ -74,7 +74,7 @@ const RAW_MINI_BRANCHES = {
   "solo-spotlight": {
     left: [
       ["Gwiazda sceny improwizuje kolejny plan i reszta znow siedzi cicho.", "Wplatam ich w jego plan", "Pozwalam mu dalej prowadzic", "Inni odzyskuja uchwyt bez zrywania rytmu.", "Tempo jest mocne, ale tlo dalej milczy.", { sanity: 1, engagement: 2 }, { sanity: -2, engagement: 1 }],
-      ["Jedna z cichszych osob pisze ci spojrzeniem, ze chcialaby cos zagrac.", "Daje jej pytanie wprost", "Licze, ze sama wejdzie", "Dostaje bezpieczne wejscie do sceny.", "Szansa mija i milknie na dluzej.", { sanity: 2, engagement: 3 }, { sanity: -3, engagement: -2 }],
+      ["Jedna z cichszych osob lapie z toba kontakt wzrokowy, jakby prosila o miejsce, ale nie o litosc.", "Daje jej pytanie wprost", "Licze, ze sama wejdzie", "Dajesz jej oparcie, ryzykujac ze poczuje sie wywolana.", "Chronisz jej autonomie, ale moze zniknac z tej sceny na dobre.", { sanity: 2, engagement: 3 }, { sanity: -3, engagement: -2 }],
       ["Po scenie dominujacy gracz pyta, czy przesadza z iloscia pomyslow.", "Umawiacie limit rund", "Mowisz, ze jest ok", "Jasne ramy pomagaja wszystkim.", "Przywilej zostaje, ale koszt rozlewa sie dalej.", { sanity: 3, engagement: 1 }, { sanity: -3, engagement: -1 }],
     ],
     right: [
@@ -85,7 +85,7 @@ const RAW_MINI_BRANCHES = {
   },
   "rules-unread": {
     left: [
-      ["Po kolejnym tlumaczeniu gracz znow pyta o ten sam zapis dwa starcia pozniej.", "Robie mu sciage", "Licze na pamiec", "Pomoc jest konkretna i odciaza cie pozniej.", "Wracasz do tej samej sciany szybciej niz chcesz.", { sanity: 2, engagement: 1 }, { sanity: -3, engagement: -1 }],
+      ["Po kolejnym tlumaczeniu gracz znow pyta o ten sam zapis dwa starcia pozniej i widzisz, ze sam ma juz dosc tego wlasnego zawieszenia.", "Robie mu sciage", "Licze na pamiec", "Ratujesz go przed kolejnym spaleniem, ale bierzesz na siebie role podporki.", "Dajesz mu szanse samemu udzwignac postac, tylko ryzykujesz kolejny zgrzyt.", { sanity: 2, engagement: 1 }, { sanity: -3, engagement: -1 }],
       ["Reszta stolu zaczyna podpowiadac za ciebie.", "Oddaje im te role", "Prosze o chwile ciszy", "Wspolna pomoc skraca twoj koszt.", "Porzadek wraca, ale tylko ty dzwigasz nauczanie.", { sanity: 2, engagement: 2 }, { sanity: -1, engagement: -1 }],
       ["Po sesji pytasz, co pomoze mu ogarnac postac do nastepnego razu.", "Umawiacie wdrozenie przed gra", "Mowisz: przeczytaj sam", "Masz plan zamiast frustracji.", "Odpowiedzialnosc jest jasna, lecz ryzyko powtorki rosnie.", { sanity: 3, engagement: 1 }, { sanity: 1, engagement: -2 }],
     ],
@@ -103,7 +103,7 @@ const RAW_MINI_BRANCHES = {
     ],
     right: [
       ["Smok nie zna BLIK-a, ale ktos i tak parska smiechem pod nosem.", "Daje smokowi sarkastyczna riposte", "Ide dalej bez mrugniecia", "Scena wraca lagodniej, a smok zyskuje charakter.", "Groza trzyma fason, lecz robi sie bardziej lodowata.", { sanity: 1, engagement: 2 }, { sanity: 2, engagement: -1 }],
-      ["Gracz od dowcipu przeprasza i chce jeszcze raz wejsc w scene.", "Pozwalam mu opisac strach", "Biere inicjatywe i opisuje sam", "Przeprasza dzialaniem, nie tylko slowem.", "Masz kontrole, ale mniej wspoltworzenia.", { sanity: 2, engagement: 2 }, { sanity: 1, engagement: -1 }],
+      ["Gracz od dowcipu przeprasza i chce jeszcze raz wejsc w scene, tylko juz bez swojej zwykłej tarczy.", "Pozwalam mu opisac strach", "Biere inicjatywe i opisuje sam", "Dajesz mu szanse odkupic moment, ryzykujac chwile niezrecznosci.", "Chronisz scene przed dalszym peknieciem, ale odcinasz go od naprawienia tego samemu.", { sanity: 2, engagement: 2 }, { sanity: 1, engagement: -1 }],
       ["Potem grupa pyta, skad ma wiedziec, kiedy zart juz wybija klimat.", "Umawiacie bezpieczne slowo", "Liczycie na wyczucie", "Macie prosty zawor na przyszlosc.", "Spontan zostaje, ale i ryzyko takich wbitek.", { sanity: 3, engagement: 1 }, { sanity: -1, engagement: -1 }],
     ],
   },
@@ -114,7 +114,7 @@ const RAW_MINI_BRANCHES = {
       ["Po sesji pytasz, czy dopisze reszte miedzy spotkaniami.", "Dostaje trzy pytania domowe", "Mowisz: zobaczymy w praniu", "Masz szanse domknac koncept lekko.", "Improwizacja dalej rządzi, wraz z ryzykiem dziur.", { sanity: 3, engagement: 1 }, { sanity: -2, engagement: 0 }],
     ],
     right: [
-      ["Szablon rusza sprawnie, ale gracz boi sie, ze bedzie zbyt generyczny.", "Dajesz mu jeden wlasny twist", "Mowisz, ze dopracuje potem", "Ma poczucie wlasnosci bez utraty startu.", "Jedziecie szybciej, lecz z mniejsza iskra.", { sanity: 2, engagement: 2 }, { sanity: 1, engagement: -1 }],
+      ["Szablon rusza sprawnie, ale gracz usmiecha sie tylko polowa twarzy, jakby juz przepraszal za to, ze nie przyszedl gotowy.", "Dajesz mu jeden wlasny twist", "Mowisz, ze dopracuje potem", "Odzyskuje kawalek siebie, choc tempo placi za to chwile uwagi.", "Chronisz start sesji, ale zostawiasz mu uczucie, ze jeszcze nie wszedl naprawde.", { sanity: 2, engagement: 2 }, { sanity: 1, engagement: -1 }],
       ["Druzyna od razu podlapuje prosty archetyp i latwiej wchodzi w relacje.", "Prosisz ich o wiezi z nim", "Lecicie dalej bez rozpiski", "Nowa postac szybciej zyje w grupie.", "Relacje przyjda pozniej, ale teraz sa plytsze.", { sanity: 2, engagement: 3 }, { sanity: 1, engagement: 0 }],
       ["Po grze gracz dziekuje, bo start byl latwy, lecz chce poglabic postac.", "Umawiacie upgrade przed nastepna sesja", "Mowisz: rozwijaj w trakcie", "Bezpieczny start przeradza sie w plan.", "Jest przestrzen, ale brak terminu grozi rozmyciem.", { sanity: 3, engagement: 1 }, { sanity: 0, engagement: 1 }],
     ],
@@ -150,7 +150,7 @@ const RAW_MINI_BRANCHES = {
       ["Po sesji wiesz juz, ze bez zasad stol zawsze rozjedzie sie na dwa kanaly.", "Ustalam sygnal stop", "Nic nie zmieniam", "Masz prosty bezpiecznik na przyszlosc.", "Problem wraca jako staly balast.", { sanity: 3, engagement: 0 }, { sanity: -3, engagement: -1 }],
     ],
     right: [
-      ["Zwracasz uwage i jedna osoba od razu przeprasza, druga przewraca oczami.", "Miekko tlumacze po co", "Zostawiam samo upomnienie", "Latwiej im przyjac granice bez urazy.", "Przygoda wraca, ale niesmak zostaje dluzszy.", { sanity: 1, engagement: 1 }, { sanity: 2, engagement: -2 }],
+      ["Zwracasz uwage i jedna osoba od razu przeprasza, a druga robi mine, jakby to ona zostala skarcona przy calej klasie.", "Miekko tlumacze po co", "Zostawiam samo upomnienie", "Chronisz scene, probujac nie zawstydzic nikogo bardziej niz trzeba.", "Przygoda wraca szybciej, ale to ukłucie siedzi potem dluzej.", { sanity: 1, engagement: 1 }, { sanity: 2, engagement: -2 }],
       ["Gdy rozmowa cichnie, pytasz pobocznych graczy co robia ich postacie.", "Wlaczam ich do sceny", "Wracam do glownego mowiacego", "Maja powod, by sluchac dalej.", "Cisza wraca, ale uwaga nie trzyma sie wszystkich.", { sanity: 2, engagement: 3 }, { sanity: 1, engagement: -1 }],
       ["Po grze grupa sama proponuje krotkie przerwy na off-topic.", "Wprowadzam je oficjalnie", "Wole spontanicznie", "Rozladowujesz potrzebe gadania poza scenami.", "Mniej ram, ale wieksza szansa na wciecia.", { sanity: 3, engagement: 1 }, { sanity: -1, engagement: -1 }],
     ],
@@ -175,7 +175,7 @@ const RAW_MINI_BRANCHES = {
     ],
     right: [
       ["Czekanie robi z kazdego ospale zombie, zanim jeszcze rzucony zostanie pierwszy test.", "Odpalam luzna rozgrzewke", "Siedzimy i czekamy dalej", "Przynajmniej energia nie spada w pustke.", "Minuty dalej topnieja bez zwrotu.", { sanity: -1, engagement: 2 }, { sanity: -3, engagement: -2 }],
-      ["Spóźnialski wpada zadowolony, bo przeciez wszyscy i tak czekali.", "Mowie o koszcie dla grupy", "Macham reka i gramy", "Jest szansa, ze cos do niego dotrze.", "Uprzejmosc zamienia sie w zla norme.", { sanity: 1, engagement: -1 }, { sanity: -3, engagement: -2 }],
+      ["Spóźnialski wpada zadowolony, bo przeciez wszyscy i tak czekali, a reszta stołu nawet nie udaje juz luzu.", "Mowie o koszcie dla grupy", "Macham reka i gramy", "Mowisz to glosno i ryzykujesz, ze wieczor na chwile stanie na relacji, nie fabule.", "Ratujesz plynność teraz, ale cisza po tej scenie moze byc ciezsza niz sama spoznialskosc.", { sanity: 1, engagement: -1 }, { sanity: -3, engagement: -2 }],
       ["Przy kolejnym ustalaniu terminu punktualni zaczynaja tracic cierpliwosc.", "Ustalam polityke startu", "Licze na samoregulacje", "Chronisz ludzi, ktorzy byli na czas.", "Frustracja powoli zmienia stol w piach.", { sanity: 3, engagement: 0 }, { sanity: -3, engagement: -2 }],
     ],
   },
@@ -186,7 +186,7 @@ const RAW_MINI_BRANCHES = {
       ["Po walce gracz przyznaje, ze utknal, bo jego tury byly za rzadkie.", "Skrotuje kolejke", "Mowie, ze ma byc gotowy", "Problem techniczny robi sie naprawialny.", "Odpowiedzialnosc jest po jego stronie, ale tarcie zostaje.", { sanity: 3, engagement: 1 }, { sanity: 1, engagement: -2 }],
     ],
     right: [
-      ["Pomijasz go po chwili i walka przyspiesza, ale czuje sie publicznie skarzony.", "Po turze wyjasniam krotko czemu", "Zostawiam to bez komentarza", "Tempo zostaje, a on ma szanse zrozumiec zasade.", "Szybko, ale bardziej ostro.", { sanity: 2, engagement: 1 }, { sanity: 2, engagement: -2 }],
+      ["Pomijasz go po chwili i walka przyspiesza, ale w sluchawkach niemal slychac, jak zaciska szczeke.", "Po turze wyjasniam krotko czemu", "Zostawiam to bez komentarza", "Chronisz tempo, ale probujesz nie zostawic po tym samego upokorzenia.", "Przechodzicie dalej bez zatrzymania, tylko ta rysa idzie z wami jeszcze pare tur.", { sanity: 2, engagement: 1 }, { sanity: 2, engagement: -2 }],
       ["Pozostali gracze nagle sa bardziej gotowi na swoje tury.", "Chwale ten rytm", "Po prostu korzystam z poprawy", "Dobra norma dostaje wzmocnienie.", "Jest lepiej teraz, ale mniej swiadomie na przyszlosc.", { sanity: 2, engagement: 2 }, { sanity: 1, engagement: 0 }],
       ["Po starciu pytasz, czy online potrzebuje bardziej klarownej struktury.", "Wprowadzam limit czasu tury", "Zostaje po staremu", "Techniczny kontrakt ratuje kolejne walki.", "Stara forma moze znow wypchnac kogos poza stol.", { sanity: 3, engagement: 1 }, { sanity: -2, engagement: -1 }],
     ],
@@ -212,7 +212,7 @@ const RAW_MINI_BRANCHES = {
     right: [
       ["Prosba o powage zamraza stół na chwile, bo wszyscy czuja jej wagę.", "Dorzuce jedno zdanie wsparcia", "Ide dalej bez osłony", "Granica brzmi ludzko, nie jak reprymenda.", "Scena trzyma sie mocno, ale robi sie chlodniejsza.", { sanity: 1, engagement: 1 }, { sanity: 2, engagement: -1 }],
       ["Zartownis przeprasza i pyta, czy moze powiedziec cos juz serio.", "Tak, oddaje mu moment", "Nie, prowadzę dalej sam", "Naprawia scene własnym ruchem.", "Kontrola wraca, lecz mniej go wlacza.", { sanity: 2, engagement: 2 }, { sanity: 1, engagement: -1 }],
-      ["Po sesji grupa docenia, ze pilnujesz tonu, ale chce tez sygnalow wyjscia awaryjnego.", "Ustalam krotkie sprawdzenie przy ciezkich scenach", "Zostaje przy intuicji", "Masz narzedzie do dramaturgii i bezpieczenstwa.", "Sceny dalej beda mocne, ale bardziej ryzykowne spolecznie.", { sanity: 3, engagement: 1 }, { sanity: -1, engagement: -1 }],
+      ["Po sesji grupa docenia, ze pilnujesz tonu, ale wisi nad tym pytanie, kto następnym razem nie zdazy powiedziec 'za duzo'.", "Ustalam krotkie sprawdzenie przy ciezkich scenach", "Zostaje przy intuicji", "Dajesz sztuce mniej swobody, ale ludziom wiecej gruntu pod nogami.", "Zostawiasz sobie pelna reke rezyserii, tylko ryzykujesz cudzym milczeniem.", { sanity: 3, engagement: 1 }, { sanity: -1, engagement: -1 }],
     ],
   },
   "loot-obsession": {
@@ -246,7 +246,7 @@ const RAW_MINI_BRANCHES = {
       ["Po rozgrzewce sesja rusza znacznie gladziej niz zwykle po przerwie.", "Wprowadzam recap otwierajacy na stale", "Traktuje to jako awaryjny rytual", "Masz sprawdzony zaplon na start.", "Narzędzie jest, ale moze byc stosowane za rzadko.", { sanity: 3, engagement: 1 }, { sanity: 1, engagement: 0 }],
     ],
     right: [
-      ["Startujecie od razu i po minucie pada pytanie: 'czekaj, po co tu jestesmy?'", "Robie mikro-przypomnienie w scenie", "Udaje, ze nie slyszalem", "Korygujesz kurs bez pelnego postoju.", "Dezorientacja rozlewa sie dalej.", { sanity: 1, engagement: 1 }, { sanity: -3, engagement: -2 }],
+      ["Startujecie od razu i po minucie pada pytanie: 'czekaj, po co tu jestesmy?', a to jedno zdanie wbija sie wszystkim pod skore.", "Robie mikro-przypomnienie w scenie", "Udaje, ze nie slyszalem", "Ratujesz flow, ale wszyscy widza juz, ze grunt byl kruchszy niz udawales.", "Nie zatrzymujesz rozpędu, tylko placicie za to wspolnym zagubieniem.", { sanity: 1, engagement: 1 }, { sanity: -3, engagement: -2 }],
       ["Gracze zaczynaja zgadywac motywacje NPC, zupelnie obok faktow.", "Wplatam wskazowke dialogiem", "Niech bledza chwile", "Odnajduja kierunek bez szkolnego recapu.", "Błądzenie zjada czas i pewnosc.", { sanity: 1, engagement: 2 }, { sanity: -2, engagement: -1 }],
       ["Po sesji widac, ze bez jakiejś formy powrotu zawsze gubicie pierwszy kwadrans.", "Ustalam recapy ustne", "Nadal licze na czytanie tekstu", "Dopasowujesz narzedzie do ludzi, nie marzenia.", "Liczysz na cud, ktory juz raz nie przyszedl.", { sanity: 3, engagement: 1 }, { sanity: -2, engagement: -1 }],
     ],
@@ -258,7 +258,7 @@ const RAW_MINI_BRANCHES = {
       ["Po scenie grupa pyta, czy takie starcia maja w ogole zielone swiatlo.", "Umawiacie warunki PvP", "Mowie, ze bywa jak wyjdzie", "Konflikt dostaje bezpieczne ramy.", "Niepewnosc zostaje i wróci w zlym momencie.", { sanity: 3, engagement: 1 }, { sanity: -2, engagement: 0 }],
     ],
     right: [
-      ["Stopujesz prowokacje, ale obaj gracze nadal mają wysokie cisnienie.", "Daje im scene slowna", "Przeskakuje od razu dalej", "Wypuszczasz pare bez łamania kampanii.", "Konflikt przygasa, ale zostaje pod dywanem.", { sanity: 1, engagement: 2 }, { sanity: 2, engagement: -2 }],
+      ["Stopujesz prowokacje, ale obaj gracze nadal maja wysokie cisnienie i kazdy przy stole czuje, ze to jeszcze nie minelo.", "Daje im scene slowna", "Przeskakuje od razu dalej", "Pozwalasz im odzyskac twarz, ryzykujac ze iskra znow zlapie ogien.", "Chronisz kampanie tu i teraz, ale to napiecie idzie z wami pod skore.", { sanity: 1, engagement: 2 }, { sanity: 2, engagement: -2 }],
       ["Reszta stołu oddycha z ulga, bo nie chciala wojny wewnetrznej.", "Pytam ich o wspolny cel", "Wracam do kolejnej sceny", "Druzyna dostaje znow os wspolpracy.", "Kryzys mija, ale mniej wspolnie przepracowany.", { sanity: 2, engagement: 2 }, { sanity: 1, engagement: -1 }],
       ["Po sesji dwaj buntownicy przyznaja, ze chcieli po prostu wiekszego napiecia.", "Dokladam rywali z zewnatrz", "Mowie, ze maja tego nie robic", "Potrzeba konfliktu dostaje lepszy kanał.", "Zakaz jest jasny, ale glod emocji zostaje.", { sanity: 3, engagement: 2 }, { sanity: 1, engagement: -2 }],
     ],
@@ -270,7 +270,7 @@ const RAW_MINI_BRANCHES = {
       ["Po zakonczonej scenie wszyscy sa szczesliwi, ale ty wiesz, ze jutro zaplacisz.", "Umawiam krotszy start nastepnym razem", "Biere to na klate", "Odzyskujesz troche kontroli nad kosztem.", "Heroiczny overrun moze stac sie nawykiem.", { sanity: 2, engagement: 1 }, { sanity: -3, engagement: 1 }],
     ],
     right: [
-      ["Zatrzymujesz sie na cliffhangerze, a stół niemal wyje z frustracji i zachwytu.", "Daje im minutę teorii", "Urwana scena i do domu", "Napiecie ma ujscie, ale nie pożera nocy.", "Hak jest mocny, lecz bardziej brutalny.", { sanity: 1, engagement: 3 }, { sanity: 2, engagement: 1 }],
+      ["Zatrzymujesz sie na cliffhangerze, a stol niemal wyje z frustracji i zachwytu; widzisz, ze czesc ludzi bedzie z tym wracac do domu.", "Daje im minute teorii", "Urwana scena i do domu", "Dajesz im oddech, ale trochę rozszczelniasz ten idealny bol.", "Zostawiasz ostrze wbite do konca, wiedząc ze nie kazdy podziekuje ci za ten wieczor.", { sanity: 1, engagement: 3 }, { sanity: 2, engagement: 1 }],
       ["Na czacie od razu ruszaja spekulacje o finale.", "Podsyłam im jedna zajawke", "Zostawiam cisze", "Podtrzymujesz ogien miedzy sesjami.", "Mniej twojej pracy teraz, ale tez mniej paliwa.", { sanity: 1, engagement: 3 }, { sanity: 2, engagement: 0 }],
       ["Przed kolejnym spotkaniem wszyscy wpadaja juz gotowi do gry.", "Startuje od razu od akcji", "Robie jeszcze recap i rozbieg", "Cliffhanger procentuje natychmiast.", "Zabezpieczasz start, ale rozmywasz czesc impetu.", { sanity: 2, engagement: 3 }, { sanity: 1, engagement: 1 }],
     ],
