@@ -1,7 +1,22 @@
 const cards = window.MARSZ_CARDS || [];
+const miniCardSystem = window.MARSZ_MINI_CARD_SYSTEM || null;
+const rawMiniBranches = window.MARSZ_CARD_BRANCHES || {};
 
 if (!cards.length) {
   throw new Error("Brak danych kart. Upewnij się, że cards-data.js ładuje się przed app.js.");
+}
+
+const cardLookup = new Map(cards.map((card) => [card.id, card]));
+const builtMiniBranches = new Map();
+
+if (miniCardSystem) {
+  cards.forEach((card) => {
+    const branchData = rawMiniBranches[card.id];
+    if (!branchData) {
+      throw new Error(`Brak mini-kart dla karty ${card.id}.`);
+    }
+    builtMiniBranches.set(card.id, miniCardSystem.buildMiniCardsForCard(card, branchData));
+  });
 }
 
 const endings = {
@@ -23,12 +38,14 @@ const state = {
   mode: "start",
   sanity: 50,
   engagement: 50,
+  mainCardsPlayed: 0,
   cardsPlayed: 0,
   currentIndex: 0,
   deck: [],
   feedback: "",
   endingKey: null,
   pendingEndingKey: null,
+  activeMiniCards: [],
   animating: false,
   dragX: 0,
   awaitingFeedbackDismiss: false,
@@ -45,6 +62,11 @@ const refs = {
   cardImage: document.getElementById("card-image"),
   cardSituation: document.getElementById("card-situation"),
   cardNumber: document.getElementById("card-number"),
+  cardPhase: document.getElementById("card-phase"),
+  cardAgentChip: document.getElementById("card-agent-chip"),
+  cardAgentStage: document.getElementById("card-agent-stage"),
+  cardAgentName: document.getElementById("card-agent-name"),
+  cardBranchCue: document.getElementById("card-branch-cue"),
   leftChoiceHint: document.getElementById("left-choice-hint"),
   rightChoiceHint: document.getElementById("right-choice-hint"),
   leftChoiceText: document.getElementById("left-choice-text"),
@@ -59,6 +81,7 @@ const refs = {
   gameOverTitle: document.getElementById("game-over-title"),
   gameOverText: document.getElementById("game-over-text"),
   cardsPlayed: document.getElementById("cards-played"),
+  decisionsPlayed: document.getElementById("decisions-played"),
 };
 
 const drag = {
@@ -102,7 +125,18 @@ function resolveEffects(effects) {
 }
 
 function currentCard() {
+  if (state.activeMiniCards.length) {
+    return state.activeMiniCards[0];
+  }
   return state.deck[state.currentIndex];
+}
+
+function currentMainCard() {
+  const card = currentCard();
+  if (!card) {
+    return null;
+  }
+  return card.isMini ? cardLookup.get(card.parentId) || null : card;
 }
 
 function updateResourceUi() {
@@ -141,6 +175,23 @@ function setHints(card) {
   refs.rightChoiceText.textContent = card.right_label;
 }
 
+function renderCardMeta(card) {
+  if (card.isMini) {
+    refs.cardPhase.textContent = `Mini ${card.miniStep}/${card.miniTotal}`;
+    refs.cardAgentStage.textContent = card.stageLabel;
+    refs.cardAgentName.textContent = card.agentLabel;
+    refs.cardBranchCue.textContent = card.branchKey === "left" ? "Po wyborze: lewo" : "Po wyborze: prawo";
+    refs.cardAgentChip.hidden = false;
+    return;
+  }
+
+  refs.cardPhase.textContent = "Karta glowna";
+  refs.cardAgentStage.textContent = "";
+  refs.cardAgentName.textContent = "";
+  refs.cardBranchCue.textContent = "";
+  refs.cardAgentChip.hidden = true;
+}
+
 function updateChoiceHintOpacity() {
   const ratio = clamp(Math.abs(state.dragX) / SWIPE_THRESHOLD, 0, 1);
   refs.leftChoiceHint.style.opacity = state.dragX < 0 ? String(ratio) : "0";
@@ -175,8 +226,11 @@ function renderCard() {
   const nextCard = currentCard();
   refs.cardImage.src = nextCard.illustration || "./assets/temp-image.png";
   refs.cardSituation.textContent = nextCard.situation;
-  refs.cardNumber.textContent = String((state.cardsPlayed % cards.length) + 1);
+  refs.cardNumber.textContent = nextCard.isMini
+    ? String(state.mainCardsPlayed)
+    : String(state.mainCardsPlayed + 1);
   setHints(nextCard);
+  renderCardMeta(nextCard);
   resetCardPosition();
 }
 
@@ -198,7 +252,8 @@ function presentGameOver(endingKey) {
   state.endingKey = endingKey;
   refs.gameOverTitle.textContent = endings[endingKey].title;
   refs.gameOverText.textContent = endings[endingKey].text;
-  refs.cardsPlayed.textContent = String(state.cardsPlayed);
+  refs.cardsPlayed.textContent = String(state.mainCardsPlayed);
+  refs.decisionsPlayed.textContent = String(state.cardsPlayed);
   refs.gameOverScreen.classList.add("active");
 }
 
@@ -215,20 +270,25 @@ function finishChoice(choice) {
   state.sanity = clamp(state.sanity + resolvedEffects.sanity, 0, 100);
   state.engagement = clamp(state.engagement + resolvedEffects.engagement, 0, 100);
   state.cardsPlayed += 1;
-  state.currentIndex += 1;
 
   updateResourceUi();
   showDelta(refs.sanityDelta, resolvedEffects.sanity);
   showDelta(refs.engagementDelta, resolvedEffects.engagement);
   showFeedback(feedback);
 
-  const ending = evaluateEnding();
-  if (ending) {
-    state.pendingEndingKey = ending;
-    state.awaitingFeedbackDismiss = true;
-    return;
+  if (card.isMini) {
+    state.activeMiniCards.shift();
+  } else {
+    state.mainCardsPlayed += 1;
+    state.currentIndex += 1;
+    const branchBundle = builtMiniBranches.get(card.id);
+    state.activeMiniCards = branchBundle ? [...branchBundle[choice]] : [];
   }
 
+  const ending = evaluateEnding();
+  if (ending && !state.activeMiniCards.length) {
+    state.pendingEndingKey = ending;
+  }
   state.awaitingFeedbackDismiss = true;
 }
 
@@ -293,6 +353,11 @@ function onKeyDown(event) {
     toggleFullscreen();
   }
 
+  if (state.awaitingFeedbackDismiss && (event.key === "Enter" || event.key === " " || event.key === "Spacebar")) {
+    dismissFeedbackAndContinue();
+    return;
+  }
+
   if (state.mode !== "playing") {
     return;
   }
@@ -310,7 +375,7 @@ function dismissFeedbackAndContinue() {
     return;
   }
 
-  if (Date.now() - state.feedbackShownAt < 180) {
+  if (Date.now() - state.feedbackShownAt < 320) {
     return;
   }
 
@@ -348,9 +413,11 @@ function startGame() {
   state.mode = "playing";
   state.sanity = 50;
   state.engagement = 50;
+  state.mainCardsPlayed = 0;
   state.cardsPlayed = 0;
   state.currentIndex = 0;
   state.deck = shuffleDeck();
+  state.activeMiniCards = [];
   state.feedback = "";
   state.endingKey = null;
   state.pendingEndingKey = null;
@@ -378,13 +445,24 @@ window.render_game_to_text = () => JSON.stringify({
   mode: state.mode,
   sanity: state.sanity,
   engagement: state.engagement,
+  mainCardsPlayed: state.mainCardsPlayed,
   cardsPlayed: state.cardsPlayed,
+  mainCard: currentMainCard()
+    ? {
+        id: currentMainCard().id,
+        situation: currentMainCard().situation,
+      }
+    : null,
   currentCard: currentCard()
     ? {
         id: currentCard().id,
         situation: currentCard().situation,
         left: currentCard().left_label,
         right: currentCard().right_label,
+        isMini: Boolean(currentCard().isMini),
+        miniStep: currentCard().miniStep || 0,
+        miniTotal: currentCard().miniTotal || 0,
+        agent: currentCard().agentLabel || null,
       }
     : null,
   dragX: state.dragX,

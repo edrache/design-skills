@@ -15,6 +15,10 @@ __pycache__/
 
 # Generated images
 LARP_cards/images/
+Marsz/game1/assets/*.jpg
+Marsz/game1/assets/*.png
+Marsz/game2/assets/*.jpg
+Marsz/game2/assets/*.png
 
 # Large files
 LARP_cards/karty_cien_nad_zakonem_1x329.pdf

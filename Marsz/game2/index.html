@@ -74,7 +74,8 @@
             <p class="eyebrow">Koniec sesji</p>
             <h2 id="game-over-title">Tytuł zakończenia</h2>
             <p id="game-over-text"></p>
-            <p class="result-stats">Rozegrane karty: <span id="cards-played">0</span></p>
+            <p class="result-stats">Glowne karty: <span id="cards-played">0</span></p>
+            <p class="result-stats">Wszystkie decyzje: <span id="decisions-played">0</span></p>
             <button id="restart-btn" class="primary-button" type="button">Zagraj jeszcze raz</button>
           </div>
         </div>
@@ -98,7 +99,15 @@
               <img id="card-image" src="./assets/temp-image.png" alt="Ilustracja karty">
             </div>
             <div class="card-content">
-              <p class="card-counter">Karta <span id="card-number">1</span></p>
+              <div class="card-meta-row">
+                <p class="card-counter">Karta <span id="card-number">1</span></p>
+                <p id="card-phase" class="card-phase">Karta glowna</p>
+              </div>
+              <div id="card-agent-chip" class="card-agent-chip" hidden>
+                <span id="card-agent-stage" class="card-agent-stage"></span>
+                <strong id="card-agent-name"></strong>
+                <span id="card-branch-cue" class="card-branch-cue"></span>
+              </div>
               <p id="card-situation" class="card-situation"></p>
             </div>
           </article>
@@ -108,6 +117,8 @@
   </div>
 
   <script src="./cards-data.js"></script>
+  <script src="./mini-card-agents.js"></script>
+  <script src="./mini-cards-data.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
