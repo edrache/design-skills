@@ -6,7 +6,6 @@ PRZEMKNIJ SIĘ NA WESELE I OCAL SYNA BOSSA.
 
 Titolo
 
-<!-- image -->
 
 ## WŁOSKIESLUB
 
@@ -38,9 +37,7 @@ Ito Masaki chce pozbyć się ojca i przejąć kontrolę nad Yakuzą, lecz jako S
 
 W tej chwili wszystkie oczy zwrócone są na rodzinę Costantino, a plotki o ich bez końca długach nie cichną. W oczach Ito Masaki Don Costantino jest idealnym celem: to potężny człowiek, pełen dumy, który nigdy nie zniósłby publicznego ośmieszenia.
 
-<!-- image -->
 
-<!-- image -->
 
 ## Misja w Misji
 
@@ -48,13 +45,9 @@ Herosi nie mają żadnego powodu, by pomagać Lucii ocalić Francesca, lecz jeś
 
 Kluczowe jest, by Herosi zdali sobie sprawę z powagi swojej sytuacji i z tego, ile mogą zyskać dzięki tak wpływowemu przyjacielowi jak Lucia Costantino. To zbyt dobra okazja, by ją zmarnować. To ich najlepsza szansa, jeśli pragną zemścić się na Złoczyńcy.
 
-<!-- image -->
 
-<!-- image -->
 
-<!-- image -->
 
-<!-- image -->
 
 ## SCENA 1 - WNĘTRZE. WILLA COSTANTINO - DZIEŃ
 
@@ -80,17 +73,14 @@ Gdy HEROSI są gotowi, czas wyruszyć na Sycylię.
 
 ## Włoska Gościnność
 
-<!-- image -->
 
 Po przywiezieniu do willi prywatnym helikopterem Herosi otrzymali wszelką niezbędną opiekę, by nie pobrudzić pięknej pościeli posiadłości. Każdy może usunąć Warunki Tired, Hurt i Broken.
 
 ## Problemy Costantinów
 
-<!-- image -->
 
 Rodzina Costantino to jedno z najpotężniejszych stowarzyszeń przestępczych na świecie, ale tkwi po uszy w długach. Dzieci i wnuki Bossa żyją w nieokiełznanym przepychu, a ich rozrzutność doprowadziła całą Camorrę do bankructwa. Jedynym wyjściem dla Bossa Costantino jest połączenie swojej rodziny z taką, która ma mniej władzy, lecz znacznie więcej majątku. Aby dowiedzieć się więcej o rodzinie Costantino, przejdź do Rozdziału Szóstego Stone Families W SEKCJI 2: ŚWIAT ZABÓJCÓW.
 
-<!-- image -->
 
 ## Mój Brat Jest Idiotą
 
@@ -118,7 +108,6 @@ Gdy zaczynają dostrzegać światło z góry, a zanurzenie zdaje się nie mieć 
 
 ## Opróżnij Kieszenie
 
-<!-- image -->
 
 Na początku tej Sceny Herosi tracą dostęp do całego swojego ekwipunku i gotówki.
 
@@ -128,13 +117,11 @@ Wszelkie wytresowane psy i inne zwierzęta są również tymczasowo usuwane z gr
 
 ## Nie Mamy Czasu
 
-<!-- image -->
 
 Herosi wyposażeni są w małe butle tlenowe, łatwe do transportu i utylizacji. Ponieważ nie wszyscy są wytrenowanymi nurkami, wydaje się to najmądrzejszym wyborem, ale wiąże się też z pewnym ryzykiem. Herosi mają tylko od 5 do 10 minut, by dotrzeć do celu.
 
 ## Pod Wodą
 
-<!-- image -->
 
 Sekwencja podwodna może zostać łatwo rozwiązana w 4 do 5 Turach rzutów i nie stanowi większego wyzwania dla większości Herosów. Jeśli jednak masz nieco więcej czasu na Sesję, sugeruję, byś przedłużył sekwencję tak bardzo, jak to możliwe, opisując, jak Herosi są zmuszeni przepływać przez ten skalisty tunel, otoczeni wodorostami i starożytnymi posągami.
 
@@ -152,7 +139,6 @@ A jeśli jesteś fanem dodatkowej akcji, z przyjemnością informuję, że sycyl
 
 Po wynurzeniu się z podwodnego tunelu HEROSI znajdują się w piwnicy pod posiadłością rodziny Amato. Otoczeni ogromnymi beczkami i ścianami pokrytymi zakurzonymi butelkami starzejącego się wina, HEROSI dostrzegają drewniany stół z grubą czarną torbą sportową pod spodem, zawierającą cały ich ekwipunek i eleganckie ubrania. Zanim zdążą do niej dotrzeć, słyszą głosy trzech ZBÓJÓW.
 
-<!-- image -->
 
 Spokojnie, mamy czas.
 
@@ -166,25 +152,21 @@ Po wejściu do willi HEROSI nie mają żadnego problemu z pozostaniem niezauważ
 
 ## Przemoczeni do Nitki
 
-<!-- image -->
 
 Wynurzając się po przepłynięciu Morza Sycylijskiego, Herosi są zmęczeni i przemoczeni do suchej nitki. Poświęć trochę czasu, by pozwolić im dostrzec absurdalność swojej sytuacji, gdy zbóje wchodzą do piwnicy. Na pewno nie mogą pokazać się w takim stanie!
 
 ## Już się Spóźniamy
 
-<!-- image -->
 
 Dzwony biją na wiwat — to zły znak. Według Lucii Herosi powinni mieć dość czasu, by wyśledzić zamierzonego zabójcę Francesca, zanim jeszcze ceremonia się rozpocznie. Najwyraźniej wesele zostało przyspieszone — i to z pewnością nie jest zbieg okoliczności.
 
 ## Ubi Maior
 
-<!-- image -->
 
 Don Costantino to człowiek twardych zasad, który nigdy nie śmiałby sprzeciwić się staremu sycylijskiemu księdzu. Ito Masaki naprawdę przewidział każdy szczegół — jego zabójcy zinfiltrowano miejscowy kościół, zastraszyli księdza i zmusili go do przyspieszenia ceremonii. Teraz są przebrani za gości i ministrantów, gotowi do działania.
 
 Jeśli jakiś Heros pojmie, co się dzieje, wyraźnie zasługuje na 1 Adrenalinę.
 
-<!-- image -->
 
 ## Kto Zaprosił Harper?!
 
@@ -192,11 +174,8 @@ Co Harper robi tutaj na Sycylii, na weselu Francesca Costantino? Wydaje się to 
 
 Jeśli Herosi są zmuszeni przyjąć jej podwiezienie, by nie wzbudzać podejrzeń, Harper zadba o to, by zmarnować trochę ich czasu przed dotarciem do kościoła, a gdy już tam dotrą — będzie sugestywnie grozić, że zdradzi ich tożsamość. Aby uniknąć zdrady przez Harper, jeden z Herosów może zaproponować zawarcie z nią blood debt. Aby dowiedzieć się więcej na ten temat, zajrzyj do rozdziału Killer Life W SEKCJI 2: ŚWIAT ZABÓJCÓW.
 
-<!-- image -->
 
-<!-- image -->
 
-<!-- image -->
 
 ## SCENA 5 - WNĘTRZE. KOŚCIÓŁ - DZIEŃ
 
@@ -224,7 +203,6 @@ Jeśli po 5 Turach Akcji HEROSOM nie uda się dosięgnąć ZAMACHOWCA, FRANCESCO
 
 ## Co za Piękny Tłum!
 
-<!-- image -->
 
 Gdy potomkowie dwóch najważniejszych rodzin przestępczych na świecie biorą ślub, całkiem normalne jest, że kościół wypełniony jest zbrodniarzami, zabójcami i gangsterami wszelkiej maści. Poświęć trochę czasu, by opisać ten swojski sycylijski kościółek przepełniony starymi kryminalistami z naoliwionymi włosami oraz surowymi damami machającymi zdobionymi wachlarzami.
 
@@ -232,7 +210,6 @@ Czas poświęcony na malowanie szczegółowego obrazu otoczenia dla twoich HEROS
 
 ## Zabójca w Bieli
 
-<!-- image -->
 
 Ministranci to świeccy ludzie, którzy pomagają katolickiemu księdzu podczas mszy. Zamachowiec wysłany przez Ito Masaki ukradł białą suknię ministranta i zastraszył księdza, by móc zbliżyć się do Francesca bez wzbudzania podejrzeń.
 
@@ -240,7 +217,6 @@ Wszyscy goście weselni wydają się być pobożnymi chrześcijanami, którzy ok
 
 ## Polowanie na Ministranta
 
-<!-- image -->
 
 Oto kilka pomysłów na Rzuty Reakcji podczas polowania:
 
@@ -250,7 +226,6 @@ Oto kilka pomysłów na Rzuty Reakcji podczas polowania:
 
 Jeśli chcesz, by ta sekwencja była jeszcze bardziej emocjonująca, możesz użyć Specjalnych Akcji Unwanted Attention i High Tension ze stron 100 i 101.
 
-<!-- image -->
 
 ## Czy Ta Para Ma Być Złączona?
 
@@ -288,7 +263,6 @@ Jeśli natomiast FRANCESCO został zabity, BOSS odmawia nawet rozmowy z HEROSAMI
 
 ## Mąż i Żona!
 
-<!-- image -->
 
 Ksiądz boi się zabójców Ito Masaki, ale równie mocno boi się Bossa Costantino i nie może się doczekać, aż Herosi zabiją zamachowca, by mógł wreszcie zakończyć ceremonię.
 
@@ -296,7 +270,6 @@ Nawet jeśli Herosi zabiją zamachowca tuż przed ołtarzem, w pełnym widoku go
 
 ## Trujący Najemnicy
 
-<!-- image -->
 
 Najemnicy wysłani tu przez Ito Masaki to śmietanka najlepsza. Jeśli chcesz, by ta walka była jeszcze bardziej pamiętna, możesz przypisać im te Featy i Specjalne Akcje.
 
@@ -316,19 +289,15 @@ A oto kilka pomysłów na Rzuty Reakcji w tej walce:
 
 ## W Łaskach Bossa
 
-<!-- image -->
 
 Jeśli Herosom uda się ocalić Francesca i zdobyć szacunek Bossa, każdy otrzyma 1 Złoto i odzyska status zabójcy, a do tego zyska znaczącą przewagę na początku następnego Shota. W końcu uratowali jego biednego chłopaka!
 
 ## Mamy Wojnę
 
-<!-- image -->
 
 Pod koniec tego Shota Herosi przechodzą prosto do Showdownu, więc powinieneś jak najlepiej podkreślić wagę tego, co się dzieje. Jeśli Francesco nie żyje, Boss trzyma go po raz ostatni w ramionach i przez łzy ogłasza, że nie zazna spokoju, dopóki Yakuza nie zostanie wymazana z powierzchni ziemi. Jeśli Francesco jest cały i zdrowy, Boss wzniesie toast za zgubę Yakuzy ze swoją rodziną, a Herosi zdają sobie sprawę, że cały ich wysiłek na niewiele się zdał.
 
-<!-- image -->
 
-<!-- image -->
 
 ## GRAD OGNIA
 
@@ -336,7 +305,6 @@ URATUJ PRZEWODNICZĄCEGO YAKUZY. POKONAJ PRETORIANÓW. ZABIJ ITO MASAKI.
 
 Titolo
 
-<!-- image -->
 
 ## GRAD OGNIA
 
@@ -391,13 +359,11 @@ Grad Ognia to Shot pełen zwrotów akcji i emocji, zaprojektowany tak, by rozegr
 
 Jeśli jednak musisz lub wolisz podzielić Shot na 2 krótsze Sesje, możesz łatwo zakończyć pierwszą tuż po tym, jak Herosi dotrą do Ito Noriego i pokonają opryszków Złoczyńcy.
 
-<!-- image -->
 
 ## SCENA 1 - ZEWNĘTRZE. WILLA AMATO - DZIEŃ
 
 HEROSI przebywają w pięknych ogrodach posiadłości rodziny Amato na Sycylii, gdy LUCIA pospiesznie do nich podbiega.
 
-<!-- image -->
 
 Ten drań! To wszystko było częścią jego planu...
 
@@ -421,13 +387,11 @@ Podczas gdy pikują ku dywanowi kolorowych świateł, jakim jest Tokio, HEROSI m
 
 ## Nie Widzisz?
 
-<!-- image -->
 
 Mimo wysiłków Herosów Ito Masaki przewidział ten ruch i zdołał wciągnąć swojego ojca, Ito Noriego, do powrotu do Tokio — dokładnie tak, jak chciał. Jeśli jeden z Herosów pojmie plan Złoczyńcy przed wyjaśnieniami Lucii, zasługuje na Adrenalinę, a może nawet na Spotlight.
 
 ## Patrz, Kto Wraca
 
-<!-- image -->
 
 Nawet jeśli Herosi mają odłożone sporo Złota, znalezienie sprzętu dla zabójców w samym środku Sycylii nie jest łatwym zadaniem. Na szczęście jest ktoś, kto może pomóc. Jeśli Herosi są wciąż banitami, jakiś Szczur pomoże im kupić przemycony sprzęt dla zabójców.
 
@@ -435,7 +399,6 @@ Z drugiej strony, jeśli Herosi zostali przyjęci do Camorry lub zawarli pakt z 
 
 ## Pagoda Ito Noriego
 
-<!-- image -->
 
 Twierdza Ito Noriego jest dokładnie taka jak on sam — bastion tradycji stojący w uprzejmym sprzeciwie wobec nadchodzącej nowoczesności.
 
@@ -443,7 +406,6 @@ W swojej pagodzie przewodniczący Yakuzy czuje się bezpieczny i nigdy nie wyobr
 
 ## Jak Wyjdziemy?
 
-<!-- image -->
 
 Jeśli nie można dostać się do pagody przez główne wejście, jak Herosi wyjdą? Lucia nie ma odpowiedzi na to pytanie. Jeśli Herosi są tak dobrzy, jak twierdzą, z pewnością znajdą sposób, by wyjść żywi.
 
@@ -473,23 +435,19 @@ Piąte i czwarte piętro pagody patrolują CZŁONKOWIE YAKUZY lojalni wobec ITO 
 
 Po dotarciu na trzecie piętro HEROSI stają twarzą w twarz z ITO NORIM, siedzącym przy niskim stole w przestronnym pokoju. 7
 
-<!-- image -->
 
 ## Walka po Cichu
 
-<!-- image -->
 
 Jeśli HEROSI są zmuszeni walczyć z najemnikami (Cannon Fodder), zalecam skorzystanie z uproszczonych zasad Brawlu, które znajdziesz w podstawowej książce Outgunned. Brawl pozwoli ci szybko przeprowadzić przepychankę, a także lepiej opisać tę napiętą scenę, w której Herosi muszą po cichu obezwładniać przeciwników i nie pozwolić im wszcząć alarmu.
 
 ## Król Nie Żyje
 
-<!-- image -->
 
 Pijani Yakuza na szóstym piętrze świętują już śmierć Ito Noriego i wstąpienie na tron jego syna. Jeśli Heros uzyska Impossible Success podczas zastraszania lub przesłuchiwania ich, może nawet dowiedzieć się, że herbata Ito Noriego została otruta, i spróbować interweniować, zanim będzie za późno. Impossible Successes to nie codzienność, ale Heros, który ją osiągnie w tym momencie, wyraźnie zasługuje na nagrodę w postaci Spotlightu!
 
 ## Zejście przez Pagodę
 
-<!-- image -->
 
 W zależności od tego, ile masz czasu i czego potrzebujesz, możesz opisać zejście Herosów przez pagodę jako sekwencję wysokiego napięcia bez wielu rzutów lub rozbudować ją, poświęcając uwagę i rzuty każdemu piętrze.
 
@@ -519,31 +477,26 @@ ATAK: 2 KRYTYCZNY
 
 OBRONA: KRYTYCZNY
 
-<!-- image -->
 
 - ITO MASAKI udaje się uciec podczas bitwy, lecz jeśli HEROSI przesłuchają ocałałych YAKUZA, mogą dowiedzieć się, że wycofał się do tokijskiego Belmontu, swojej prywatnej twierdzy. 11
 
 ## Drugie Oblicze Rodziny Ito
 
-<!-- image -->
 
 To pierwszy raz, gdy Herosi spotykają sławnego Ito Noriego — staromodnego człowieka, który zawsze działa i mówi z cichą determinacją. Biegunowe przeciwieństwo swojego porywczego syna. Jeśli masz czas, postaraj się rozbudować tę scenę i pozwól Herosom cieszyć się chwilą spokoju, bo od tej pory Shot będzie wirem śmiertelnych bitew prowadzących do pojedynku ze Złoczyńcą.
 
 ## Japońska Stal
 
-<!-- image -->
 
 Katana Ito Noriego to coś więcej niż kawałek sprzętu dla zabójcy — to nieskończenie piękny miecz ozdobiony w bieli i szkarłacie. Każdy, kto przyjmie ten dar, natychmiast zyskuje Bond „Katana rodziny Ito" i będzie mógł na nią liczyć podczas walki z Ito Masakim. Złoczyńca wpadnie w furię, gdy dowie się, że miecz — jego dziedziczne prawo — trafił w ręce zwykłego zabójcy.
 
 ## ŚMIERTELNA HERBATA
 
-<!-- image -->
 
 Zwykła filiżanka herbaty może być dla Ito Noriego różnicą między życiem a śmiercią i drastycznie zmienić finał tej Kinematycznej Kampanii. Musisz zachować ostrożność w obchodzeniu się z tym szczegółem. Z jednej strony najlepiej jest przynajmniej kilkakrotnie wspomnieć o herbacie podczas rozmowy, by Herosi mogli nabrać podejrzeń. Z drugiej strony nie powinieneś po prostu podawać im rozwiązania. W końcu nic złego w tym, że ta Scena nie ma szczęśliwego zakończenia. Nawet najlepsi popełniają błędy! Pamiętaj, że jeśli poziom Heat osiągnął 8, Herosi przybywają za późno, by uratować Ito Noriego. Wypił już tę herbatę, a jedyną szansą na jego ocalenie jest interwencja, gdy zaczynają się konwulsje.
 
 ## Walka w Pagodzie
 
-<!-- image -->
 
 Członkowie Yakuzy lojalni wobec Ito Masaki to wprawni wojownicy sztuk walki, którzy chętnie oddadzą życie, by utorować Złoczyńcy drogę do władzy. Aby dodać tej walce złożoności, możesz przypisać im te Featy i Specjalne Akcje.
 
@@ -559,9 +512,7 @@ Jeśli Ito Nori wciąż żyje pod koniec bitwy, Herosi mogą powierzyć go kilku
 
 12
 
-<!-- image -->
 
-<!-- image -->
 
 ## SCENA 5 - ZEWNĘTRZE. ULICE TOKIO - NOC
 
@@ -593,7 +544,6 @@ HEROSI muszą stawić czoło dosłownie armii zebranej przez Złoczyńcę, pędz
 
 ## Witajcie w Belmoncie
 
-<!-- image -->
 
 Jeśli Herosi są wystarczająco aroganccy, by jechać prosto do Belmontu, na ich wiatrówce zarobili granat. Upewnij się, że cios ich zaskakuje, a może nawet zaczekaj chwilę, gdy Herosi rozmawiają — tylko po to, by nagle ich przerwać słowami: „coś uderza w waszą przednią szybę, potem wszystko wybucha!".
 
@@ -601,7 +551,6 @@ Z drugiej strony, jeśli jakiś Heros zastanowi się dwa razy przed działaniem 
 
 ## Znowu się Spotykamy, Pretorianie
 
-<!-- image -->
 
 W zaciemnionym Belmoncie, z burzą jako ścieżką dźwiękową, Herosi mierzą się z Pretorianami, którzy wcześniej przepędzili ich podczas „Sędzia i Ława". Ale tym razem są gotowi na walkę. Aby ta walka była bardziej ekscytująca, możesz przypisać im te Featy i Specjalne Akcje.
 
@@ -612,7 +561,6 @@ Podczas tej walki Herosi mogą zabrać noktowizory pokonanym Pretoraianom. Zało
 
 ## Więcej Pretorianów?!
 
-<!-- image -->
 
 Po wszystkich trudach, przez które Herosi przeszli, by pozbyć się Pretorianów, to był dopiero początek. Pretoriańska Elita jest znacznie groźniejsza i wcale nie jest pewne, czy Herosi odniosą zwycięstwo.
 
@@ -623,7 +571,6 @@ Specjalne Akcje: Combat Drugs, Grenade, I Don't Think So!, Pile On, Pincer Maneu
 
 Jeśli Herosi przegrają tę walkę, mogą ocalić się jedynie używając Plan B lub dzięki terminowej interwencji starego przyjaciela. Jeśli Herosi uratowali Grace podczas pierwszego Shota, zabójczyni wkracza do akcji z bronią gotową do strzału i spłaca dług, zajmując się Pretorianami. Z drugiej strony, jeśli Herosi zabili Grace, lecz zawarli sojusz z Harper, to ona przybywa z małą armią starych przyjaciół Wilsona, by zadbać o to, że jej inwestycja pozostaje przy życiu.
 
-<!-- image -->
 
 ## SCENA 7 - WNĘTRZE. PENTHOUSE BELMONTU - NOC
 
@@ -659,7 +606,6 @@ Gdy burza zaczyna ustępować na horyzoncie, świt przepędza ciemność i wszel
 
 ## Zemsta!
 
-<!-- image -->
 
 Na końcu Showdownu Herosi muszą zmierzyć się z Ito Masakim i mają szansę pomścić swojego przyjaciela Wilsona oraz zakończyć tę wojnę między Rodzinami. W zależności od tego, jak potoczyła się historia, możesz opisać Ito Masaki jako przeciwnika tak groźnego, że może walczyć ze wszystkimi Herosami jednocześnie. Z drugiej strony, jeśli jakiś Heros chce lub zasługuje na pojedynek jeden na jeden ze Złoczyńcą, możesz opisać, jak Ito Masaki szybko dołącza do niego kilku równie dobrych samurajów. W takim przypadku możesz nadal używać jednego Wroga — Boss - Template 3 — by reprezentował zarówno Ito Masaki, jak i jego najlepszych samurajów.
 
@@ -676,23 +622,19 @@ A oto kilka pomysłów na Rzuty Reakcji w tej walce:
 
 ## Opatrznościowa Pomoc
 
-<!-- image -->
 
 Jeśli Herosi zostaną pokonani przez Ito Masaki, może nie być już nic do zrobienia... chyba że Herosi oszczędzili życie Grace podczas pierwszego Shota. Dopóki Herosom udało się pokonać Pretorianów bez jej pomocy, Grace może wkroczyć do akcji w chwili ich potrzeby i strzelić w Ito Masaki, gdy wszystko zdaje się stracone, albo ocalić życie Herosa, powstrzymując go przed utratą Grit po dotkliwym ciosie. Tylko ty możesz zdecydować, co będzie sygnałem dla Grace, ale jeśli Herosi znaleźli sposób, by ją oszczędzić, słuszne jest, by karma nagrodziła ich dobry czyn. A tu karma to ty!
 
 ## Koniec
 
-<!-- image -->
 
 Gdy walka dobiegnie końca, ta Kinematyczna Kampania zbliża się do finału. Odwróć stronę, by znaleźć wskazówki, jak ustawić scenę dla pięknego zakończenia, być może takiego, które toruje drogę dla Sequela.
 
 3
 
-<!-- image -->
 
 ## KONIEC
 
-<!-- image -->
 
 ## KONIEC
 
