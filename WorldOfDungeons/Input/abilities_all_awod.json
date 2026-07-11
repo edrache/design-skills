@@ -1,0 +1,1706 @@
+[
+  {
+    "name": "Alchemy",
+    "name_pl": "Alchemia",
+    "description": "You can imbue magic within a potion, salve, or item. You start with three alchemical formulas.",
+    "description_pl": "Możesz wnieść magię do mikstury, maści lub przedmiotu. Zaczynasz z trzema alchemicznymi recepturami.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Affluent",
+    "name_pl": "Zamożność",
+    "description": "When your purse is empty, you can attempt to make purchases with the promise of paying the money back at a later date.",
+    "description_pl": "Gdy twoja sakiewka jest pusta, możesz podjąć próbę dokonania zakupów na obietnicę późniejszej spłaty.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Allure",
+    "name_pl": "Urok",
+    "description": "When you seduce someone, you can make them reveal intimate secrets about themselves despite their better judgment. You can also attract someone's attention with only a glance.",
+    "description_pl": "Gdy uwodujesz kogoś, możesz skłonić go do wyjawienia intymnych sekretów wbrew zdrowemu rozsądkowi. Możesz też przyciągnąć czyjąś uwagę jednym spojrzeniem.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Appraise",
+    "name_pl": "Wycena",
+    "description": "You can tell the approximate value of artwork and trade goods once you've inspected them.",
+    "description_pl": "Po zbadaniu przedmiotu jesteś w stanie określić przybliżoną wartość dzieł sztuki i towarów.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Backstab",
+    "name_pl": "Cios w Plecy",
+    "description": "Add +3 damage to melee attacks when the target is unaware of your presence.",
+    "description_pl": "Dodaj +3 obrażeń do ataków w walce wręcz, gdy cel nie jest świadomy twojej obecności.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Bargain",
+    "name_pl": "Targowanie",
+    "description": "Once per day, you can halve the price of a purchase thanks to the different tradesmen you know, or the guilds you have contacts with.",
+    "description_pl": "Raz dziennie możesz o połowę obniżyć cenę zakupu dzięki znajomościom z kupcami lub gildyjnymi kontaktami.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Berserk",
+    "name_pl": "Berserk",
+    "description": "When you are outnumbered, add +1 to the damage you inflict and +1 armor, but you must make an effort to not immediately resort to violence in heated situations.",
+    "description_pl": "Gdy jesteś w przewadze liczebnej wroga, dodajesz +1 do zadawanych obrażeń i +1 do pancerza, lecz musisz się powstrzymywać, by nie uciekać się do przemocy w napiętych sytuacjach.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Bless",
+    "name_pl": "Błogosławieństwo",
+    "description": "With holy water, you can anoint items so they are considered holy and magical — +3 damage vs. Evil — for a short time.",
+    "description_pl": "Przy pomocy święconej wody możesz poświęcić przedmioty, czyniąc je świętymi i magicznymi — +3 obrażeń przeciwko Złu — na krótki czas.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Brawny",
+    "name_pl": "Krzepki",
+    "description": "+1 melee and thrown weapons damage, can re-roll damage once per attack.",
+    "description_pl": "+1 obrażeń w walce wręcz i bronią miotaną; możesz raz na atak przerzucić obrażenia.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Cloaked",
+    "name_pl": "Zamaskowany",
+    "description": "When you are under the cover of darkness, you get +1 armor.",
+    "description_pl": "Gdy jesteś skryty w mroku, otrzymujesz +1 do pancerza.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Connected",
+    "name_pl": "Wpływowy",
+    "description": "You can attempt to obtain favors from nobles, whether getting a loan, an invitation to a party, or introductions to other important people.",
+    "description_pl": "Możesz podejmować próby uzyskania przysług od szlachty — pożyczki, zaproszenia na przyjęcie lub przedstawień ważnym osobistościom.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Contort",
+    "name_pl": "Akrobata",
+    "description": "You are able to escape from bonds or squeeze into small or tight places.",
+    "description_pl": "Potrafisz uwolnić się z więzów lub wcisnąć w ciasne miejsca.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Cutpurse",
+    "name_pl": "Kieszonkowiec",
+    "description": "When you pick pockets or conceal things on your person, you can do so quickly while running.",
+    "description_pl": "Gdy kradniesz z kieszeni lub ukrywasz przedmioty przy sobie, możesz to robić w biegu.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Cure",
+    "name_pl": "Uzdrowienie",
+    "description": "You can neutralize poisons, remove curses and heal wounds without a touch.",
+    "description_pl": "Możesz neutralizować trucizny, usuwać klątwy i leczyć rany bez dotykania.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Damnation",
+    "name_pl": "Potępienie",
+    "description": "You can attempt to inflict curses or ailments upon others, either with eye contact or through a fetish.",
+    "description_pl": "Możesz próbować zsyłać klątwy lub dolegliwości na innych — poprzez kontakt wzrokowy lub fetysze.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Daring",
+    "name_pl": "Brawura",
+    "description": "Once per day, you can ignore the damage or effects of an environmental hazard.",
+    "description_pl": "Raz dziennie możesz zignorować obrażenia lub skutki zagrożenia środowiskowego.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Diplomat",
+    "name_pl": "Dyplomata",
+    "description": "You can enter negotiations, bargain, or parley, even with the most disagreeable of people, as long as they are intelligent enough to understand you.",
+    "description_pl": "Możesz wchodzić w negocjacje, targować się i pertraktować nawet z najbardziej nieznośnymi rozmówcami, o ile są wystarczająco inteligentni, by cię zrozumieć.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Disguise",
+    "name_pl": "Przebranie",
+    "description": "When you use costumes and makeup, you can attempt to convincingly imitate other people, or ensure your own identity is unrecognizable.",
+    "description_pl": "Używając kostiumów i makijażu, możesz próbować wiarygodnie podszywać się pod inne osoby lub ukryć własną tożsamość.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Divination",
+    "name_pl": "Wróżbiarstwo",
+    "description": "When you gaze into a crystal or a bowl of holy water, you can attempt to see events either far away, in the past, or in the future.",
+    "description_pl": "Wpatrując się w kryształ lub czaszę święconej wody, możesz próbować dostrzec odległe wydarzenia — przeszłe lub przyszłe.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Duelist",
+    "name_pl": "Pojedynkowicz",
+    "description": "You treat any one-handed weapon as Light.",
+    "description_pl": "Traktujesz każdą jednoręczną broń jak Lekką.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Engineer",
+    "name_pl": "Inżynieria",
+    "description": "With the Crafting skill, you can create and repair mechanical devices and firearms.",
+    "description_pl": "Z umiejętnością Rzemiosła możesz tworzyć i naprawiać mechaniczne urządzenia i broń palną.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Expert",
+    "name_pl": "Ekspert",
+    "description": "Once per day, you can turn a Miss into a Partial Success.",
+    "description_pl": "Raz dziennie możesz zamienić Pudło w Częściowy Sukces.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Familiar",
+    "name_pl": "Duch Towarzysz",
+    "description": "You have an animal companion, such as a crow, rat, cat, snake or spider, magically bonded to you. You can see through its eyes, and hear what it hears.",
+    "description_pl": "Masz towarzysza zwierzęcego — kruka, szczura, kota, węża lub pająka — magicznie z tobą związanego. Możesz widzieć jego oczami i słyszeć, co słyszy.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Full-contact magic",
+    "name_pl": "Magia w Kontakcie",
+    "description": "You can channel spells through your fists in melee. If you hit successfully, you can send one Wizardry spell through your fists into your opponent. You remain unharmed, even if that spell affects an area around you.",
+    "description_pl": "Możesz kanalizować zaklęcia przez pięści w walce wręcz. Jeśli trafisz, możesz przepuścić przez dłonie jedno zaklęcie Czarnoksięstwa w przeciwnika. Pozostajesz bezpieczny, nawet gdy zaklęcie obejmuje obszar wokół ciebie.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Gadgetry",
+    "name_pl": "Gadżety",
+    "description": "You try to solve any problem with gadgets you build. Anytime you attempt something risky, you roll +INT. A Miss means the gadget does not what it should (GM's discretion). At Level 3, you design a device that replicates a Sorcery spell three times a day. At Levels 6 and 9, you each get one additional device that replicates another Sorcery spell.",
+    "description_pl": "Każdy problem próbujesz rozwiązać gadżetem własnej roboty. Za każdym razem gdy próbujesz czegoś ryzykownego, rzucasz +INT. Pudło oznacza, że gadżet nie działa jak powinien (wedle uznania MG). Na 3. poziomie projektujesz urządzenie replikujące zaklęcie Czarodziejstwa trzy razy dziennie. Na 6. i 9. poziomie zdobywasz kolejne urządzenia replikujące inne zaklęcia Czarodziejstwa.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Getaway",
+    "name_pl": "Ucieczka",
+    "description": "Once per day, you can automatically flee a location — sprinting, dodging, and ducking to avoid pursuit.",
+    "description_pl": "Raz dziennie możesz automatycznie uciec z miejsca — sprintując, kluczując i unikając pościgu.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Guarded",
+    "name_pl": "Chroniony",
+    "description": "Once per day, you can redirect any attack against you to one of your Hirelings.",
+    "description_pl": "Raz dziennie możesz skierować dowolny atak wymierzony w ciebie na jednego ze swoich Najemników.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Hardy",
+    "name_pl": "Zahartowany",
+    "description": "Add +6 to your hit points.",
+    "description_pl": "Dodaj +6 do punktów wytrzymałości.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Heavy Hands/Feet",
+    "name_pl": "Ciężkie Dłonie/Stopy",
+    "description": "You do 1d6 unarmed damage. On levels 3, 5, 7 and 9, you get an additional +1 damage.",
+    "description_pl": "Zadajesz 1k6 obrażeń bez broni. Na 3., 5., 7. i 9. poziomie otrzymujesz dodatkowe +1 obrażeń.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Hunter",
+    "name_pl": "Łowca",
+    "description": "Add +3 damage to ranged attacks when the target is unaware of your presence.",
+    "description_pl": "Dodaj +3 obrażeń do ataków dystansowych, gdy cel nie jest świadomy twojej obecności.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Illusions",
+    "name_pl": "Iluzje",
+    "description": "You can create illusions to make someone see something that isn't there, or mesmerize them so they believe something that isn't true.",
+    "description_pl": "Możesz tworzyć iluzje sprawiające, że ktoś widzi coś, czego nie ma, lub urzekać go, by wierzył w rzeczy nieprawdziwe.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Inspire",
+    "name_pl": "Natchnienie",
+    "description": "You can attempt to sway public opinion with your song, stories, or rhetoric.",
+    "description_pl": "Możesz próbować kształtować opinię publiczną swoją pieśnią, opowieściami lub retoryką.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Instinct",
+    "name_pl": "Instynkt",
+    "description": "You can re-roll DEX when reacting to dangerous situations.",
+    "description_pl": "Możesz przerzucić ZRĘ w reakcji na niebezpieczne sytuacje.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Linguist",
+    "name_pl": "Lingwista",
+    "description": "You can speak and read all civilized languages.",
+    "description_pl": "Znasz mowę i pismo wszystkich języków cywilizowanych.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Lookout",
+    "name_pl": "Obserwator",
+    "description": "When you take the lead in the city or a dungeon, you always spot your targets before they spot you.",
+    "description_pl": "Gdy prowadzisz w mieście lub lochach, zawsze dostrzegasz cel przed tym, nim cel dostrzeże ciebie.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Lucky",
+    "name_pl": "Szczęście",
+    "description": "Once per day, you can turn any Miss into a Success instead.",
+    "description_pl": "Raz dziennie możesz zamienić dowolne Pudło w Sukces.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Magic-fueled hit points",
+    "name_pl": "Punkty Życia Zasilane Magią",
+    "description": "You have additional hit points (as many as your Power score). For each Wizardry spell you use, you lose 1 or 2 of those additional hit points.",
+    "description_pl": "Masz dodatkowe punkty wytrzymałości (tyle, ile wynosi twój wynik Mocy). Za każde użyte zaklęcie Czarnoksięstwa tracisz 1 lub 2 z tych dodatkowych PW.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Mind Shield",
+    "name_pl": "Tarcza Umysłu",
+    "description": "You are immune against fear, charm and sleep spells.",
+    "description_pl": "Jesteś odporny na zaklęcia strachu, oczarowania i snu.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Opportunist",
+    "name_pl": "Oportunista",
+    "description": "When you and your allies overpower your opponents, you inflict +2 damage.",
+    "description_pl": "Gdy ty i twoi sojusznicy górujesz nad przeciwnikami, zadajesz +2 obrażeń.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Pacify",
+    "name_pl": "Uspokojenie",
+    "description": "You can attempt to pacify or charm (demi)intelligent creatures with your voice.",
+    "description_pl": "Możesz próbować uśmierzyć lub oczarować (pół)inteligentne stworzenia swoim głosem.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Perform",
+    "name_pl": "Występ",
+    "description": "When you entertain a crowd, you can earn d6s per Level each day. However, should any die roll a 1, the audience turns nasty and you won't be allowed to perform for at least a week without having rotten vegetables thrown at you.",
+    "description_pl": "Gdy bawisz tłum, możesz zarabiać k6 za każdy poziom dziennie. Jednak jeśli choć jedna kość wypadnie 1, publiczność staje się wroga i przez co najmniej tydzień nie wpuści cię na scenę bez obrzucania zgniłymi warzywami.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Pet",
+    "name_pl": "Zwierzę",
+    "description": "You have a loyal and effective animal companion.",
+    "description_pl": "Masz lojalnego i skutecznego towarzysza zwierzęcego.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Prestige",
+    "name_pl": "Prestiż",
+    "description": "Everyone knows who you are. Halve the price of any Hirelings, as they seek your employ in order to gain later favors or advantages.",
+    "description_pl": "Wszyscy wiedzą, kim jesteś. Najemnicy kosztują o połowę mniej, bo szukają twojego zatrudnienia dla przyszłych łask i korzyści.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Reflexes",
+    "name_pl": "Refleks",
+    "description": "You always act first, and can react when suddenly surprised.",
+    "description_pl": "Zawsze działasz pierwszy i możesz reagować, gdy zostajesz zaskoczony.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Rockskin",
+    "name_pl": "Kamienna Skóra",
+    "description": "You have rock-hard skin (Armor 2).",
+    "description_pl": "Masz twardą jak kamień skórę (Pancerz 2).",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Rover",
+    "name_pl": "Wędrowiec",
+    "description": "When you run through the wilderness, you do so without leaving obvious tracks or a trail.",
+    "description_pl": "Biegnąc przez pustkowie, nie pozostawiasz wyraźnych śladów ani tropu.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Sailor",
+    "name_pl": "Marynarz",
+    "description": "You can crew a sailing vessel, and never feel ill due to stormy seas.",
+    "description_pl": "Potrafisz obsługiwać żaglowiec i nie cierpisz na chorobę morską nawet w burzę.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Sapper",
+    "name_pl": "Saper",
+    "description": "When using blackpowder explosives or artillery, add +1 die to damage, discarding the lowest result.",
+    "description_pl": "Używając prochu czarnego lub artylerii, dodajesz +1 kość do obrażeń i odrzucasz najniższy wynik.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Schemer",
+    "name_pl": "Intrygant",
+    "description": "When you bribe or blackmail others, you can do so subtly or through third parties, without drawing too much unwanted attention to yourself.",
+    "description_pl": "Gdy przekupujesz lub szantażujesz innych, możesz to robić dyskretnie lub przez pośredników, nie przyciągając niepotrzebnej uwagi.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Scout",
+    "name_pl": "Zwiad",
+    "description": "When you take the lead in the wilderness, you always spot your targets before they spot you.",
+    "description_pl": "Gdy prowadzisz na pustkowiu, zawsze dostrzegasz cel przed tym, nim cel dostrzeże ciebie.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Shifting",
+    "name_pl": "Przemiana",
+    "description": "When drinking the blood of an animal you can attempt to take its form, leaving your possessions behind. However, it is a feat of willpower to revert to your original self, particularly the longer you stay a beast.",
+    "description_pl": "Gdy wypijesz krew zwierzęcia, możesz próbować przybrać jego postać, zostawiając za sobą swój dobytek. Jednak powrót do własnego kształtu wymaga silnej woli — tym bardziej, im dłużej pozostajesz bestią.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Skirmish",
+    "name_pl": "Potyczka",
+    "description": "+1 damage and worn armor counts as one type lighter.",
+    "description_pl": "+1 obrażeń, a noszona zbroja liczy się jako jeden stopień lżejsza.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Slay",
+    "name_pl": "Zabójca",
+    "description": "+2 melee damage.",
+    "description_pl": "+2 obrażeń w walce wręcz.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Sleuth",
+    "name_pl": "Detektyw",
+    "description": "When you search for clues, you can do so quickly and while on the move. You can always tell when someone is lying, though you may not know the cause of their deception.",
+    "description_pl": "Gdy szukasz śladów, robisz to szybko i w ruchu. Zawsze wiesz, gdy ktoś kłamie, choć możesz nie znać przyczyny oszustwa.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Sorcery",
+    "name_pl": "Czarodziejstwo",
+    "description": "You are able to cast spells that, while limited in scope, are much safer than the raw magical power of Wizardry. You start with three spells.",
+    "description_pl": "Możesz rzucać zaklęcia, które — choć ograniczone w zakresie — są znacznie bezpieczniejsze niż surowa moc Czarnoksięstwa. Zaczynasz z trzema zaklęciami.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Strategy",
+    "name_pl": "Strategia",
+    "description": "When you are in combat, you can attempt to predict the movements, positions, and strengths of your enemies.",
+    "description_pl": "W walce możesz próbować przewidzieć ruchy, pozycje i siły wrogów.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Summon",
+    "name_pl": "Przywołanie",
+    "description": "You can call forth demons to seek their counsel...or so you can bind them to serve you. You start with two bound demons that you can call upon.",
+    "description_pl": "Możesz wywoływać demony, by zasięgać ich rady... lub by związać je w służbę. Zaczynasz z dwoma związanymi demonami, na które możesz liczyć.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Surgeon",
+    "name_pl": "Chirurg",
+    "description": "With the Treatment skill, you can try to mix new medicines or bring someone back from the brink of death.",
+    "description_pl": "Używając umiejętności Leczenia, możesz próbować sporządzać nowe leki lub wyrwać kogoś z objęć śmierci.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Talented",
+    "name_pl": "Utalentowany",
+    "description": "Add +1 Skill.",
+    "description_pl": "Dodaj +1 Umiejętność.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Tinker",
+    "name_pl": "Majsterkowicz",
+    "description": "When you pick locks or disable traps, you can do so quickly and unnoticed while in plain sight.",
+    "description_pl": "Gdy wyłamujesz zamki lub rozbrajasz pułapki, robisz to szybko i niezauważenie, nawet na widoku.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Tough",
+    "name_pl": "Twardziel",
+    "description": "Add +1 armor, from being badass.",
+    "description_pl": "Dodaj +1 do pancerza — jesteś zwyczajnie niezniszczalny.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Tracker",
+    "name_pl": "Tropiciel",
+    "description": "When you attempt to identify and follow tracks, you can do so quickly while on the move.",
+    "description_pl": "Gdy próbujesz identyfikować i śledzić tropy, robisz to szybko w ruchu.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Trick",
+    "name_pl": "Sztuczka",
+    "description": "You can attempt to distract or delay your opponent with your antics.",
+    "description_pl": "Możesz próbować rozpraszać lub zwodzić przeciwnika swoimi wybrykami.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Turn",
+    "name_pl": "Odpędzenie",
+    "description": "You can attempt to hold undead at bay with the power of your faith and a holy symbol.",
+    "description_pl": "Możesz próbować powstrzymywać nieumarłych mocą swojej wiary i świętego symbolu.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Vehemence",
+    "name_pl": "Gwałtowność",
+    "description": "When you use damaging magic effects, add +1 die to damage, discarding the lowest result.",
+    "description_pl": "Gdy używasz niszczycielskich efektów magicznych, dodajesz +1 kość do obrażeń i odrzucasz najniższy wynik.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Vision",
+    "name_pl": "Wizja",
+    "description": "Drink holy water to commune with your deity for divine guidance.",
+    "description_pl": "Wypij święconą wodę, by obcować ze swoim bóstwem i otrzymać boskie wskazówki.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Volley",
+    "name_pl": "Salwa",
+    "description": "Add +2 damage to any ranged attack.",
+    "description_pl": "Dodaj +2 obrażeń do każdego ataku dystansowego.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Warded",
+    "name_pl": "Osłonięty",
+    "description": "When you are using magic, your protective wards keep you safe, granting +1 Armor.",
+    "description_pl": "Gdy używasz magii, twoje ochronne zaklęcia ochronią cię, dając +1 do Pancerza.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Wild",
+    "name_pl": "Dzikość",
+    "description": "You can converse with and attempt to command animals.",
+    "description_pl": "Możesz rozmawiać ze zwierzętami i próbować nimi dowodzić.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Wizardry",
+    "name_pl": "Czarnoksięstwo",
+    "description": "You can create magical effects drawn from the raw power of Chaos. Such effects are powerful and wondrous, and not limited in scope like Sorcery. However, the risks of weaving such energies have hazards, both extreme and varied. You start with a Power score equal to your base Hit Dice +WIS.",
+    "description_pl": "Możesz tworzyć magiczne efekty czerpiąc z surowej mocy Chaosu. Efekty te są potężne i cudowne, nieograniczone zakresem jak Czarodziejstwo. Jednakże ryzyko tkania takich energii kryje hazardy — skrajne i różnorodne. Zaczynasz z wynikiem Mocy równym twoim bazowym Kościom Wytrzymałości +MĄD.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "WTF?",
+    "name_pl": "Co u licha?",
+    "description": "You get a bonus to roll against opponents that haven't fought against you. This bonus is lost after the first confrontation.",
+    "description_pl": "Otrzymujesz premię do rzutów przeciwko wrogom, którzy jeszcze z tobą nie walczyli. Premia przepada po pierwszej konfrontacji.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Alchemy",
+    "name_pl": "Alchemia",
+    "description": "You can combine two effects from the \"The user will...\" list into a single formula. The preparation cost doubles, but the result delivers both effects at once. Additionally, you can prepare two separate alchemical items in a single session without needing to double the time.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Affluent",
+    "name_pl": "Zamożność",
+    "description": "Once per session, you can call in a debt — name an NPC who owes you and the GM will make them come through with coin, goods, or a significant favor. They may not be happy about it, but they deliver.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Allure",
+    "name_pl": "Urok",
+    "description": "Those you have previously seduced feel a lingering protectiveness toward you. Once per session, one such NPC will intervene on your behalf at a critical moment without being asked.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Appraise",
+    "name_pl": "Wycena",
+    "description": "Your eye extends to the magical. When you examine a magical item, the GM must reveal one of its properties or powers to you.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Backstab",
+    "name_pl": "Cios w Plecy",
+    "description": "When you Backstab and deal damage, you also choose one: the target is silenced, the target drops what they are holding, or you immediately melt back into the shadows before they can react.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Bargain",
+    "name_pl": "Targowanie",
+    "description": "Every successful Bargain doubles as an information exchange. When you close a deal, you may ask the merchant one question about local happenings, rare goods, or notable people nearby.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Berserk",
+    "name_pl": "Berserk",
+    "description": "When your HP drops to half or below while Berserk, your damage bonus increases to +2. Enemies who witness your frenzy must pause before engaging you.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Bless",
+    "name_pl": "Błogosławieństwo",
+    "description": "You can Bless a person instead of an object. A blessed person gains +1 armor against Evil and immunity to fear from undead for the rest of the day.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Brawny",
+    "name_pl": "Krzepki",
+    "description": "When you roll maximum damage on a melee or thrown attack, the target is knocked prone or loses their next action recovering.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Cloaked",
+    "name_pl": "Zamaskowany",
+    "description": "While in darkness, you move silently without a roll, as long as you take no aggressive action. Enemies cannot target you with ranged attacks unless they have supernatural senses.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Connected",
+    "name_pl": "Wpływowy",
+    "description": "Your network extends into criminal, mercantile, and underworld circles. Once per session, call on a non-noble contact for a significant favor.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Contort",
+    "name_pl": "Akrobata",
+    "description": "You cannot be held, pinned, or grappled by anything short of magical restraints. You can squeeze through any gap your head fits through.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Cutpurse",
+    "name_pl": "Kieszonkowiec",
+    "description": "When you successfully pick a pocket, you gain a mental catalogue of everything the target is carrying — not just what you took.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Cure",
+    "name_pl": "Uzdrowienie",
+    "description": "Your Cure now works at range — up to a room away. Once per day, you can attempt to Cure a magical disease or terminal illness.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Damnation",
+    "name_pl": "Potępienie",
+    "description": "Your curses are tenacious. Targets who attempt to remove your curse must overcome your WIS score in addition to normal removal methods.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Daring",
+    "name_pl": "Brawura",
+    "description": "Your Daring now covers magical hazards and supernatural effects. When you succeed at something others declared impossible, one ally who witnessed it gains a bonus to their next roll.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Diplomat",
+    "name_pl": "Dyplomata",
+    "description": "Agreements you broker hold firm — NPCs won't renege unless significantly provoked. You can negotiate with creatures who don't share your language through gesture and tone.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Disguise",
+    "name_pl": "Przebranie",
+    "description": "You can maintain a disguise indefinitely without effort. You can alter your voice convincingly enough to fool people who know the person you're imitating.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Divination",
+    "name_pl": "Wróżbiarstwo",
+    "description": "Once per day, without any prop, you may ask the GM one yes/no question about the immediate future (within the next hour). The answer is honest, if sometimes cryptic.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Duelist",
+    "name_pl": "Pojedynkowicz",
+    "description": "When wielding a Light weapon with your off-hand empty, add +1 to attack rolls. When an enemy misses you, you may immediately strike back for half damage.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Engineer",
+    "name_pl": "Inżynieria",
+    "description": "You can jury-rig a working mechanical device from scrap in minutes. Once per session, a device you built functions as an improvised explosive (d6+2 damage, small area).",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Expert",
+    "name_pl": "Ekspert",
+    "description": "You can use Expert twice per day. When you invoke it, a compelling explanation may earn an additional narrative benefit.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Familiar",
+    "name_pl": "Duch Towarzysz",
+    "description": "You can speak through your Familiar's mouth. If your Familiar is killed, you can bond with a new one after a day of ritual.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Full-contact magic",
+    "name_pl": "Magia w Kontakcie",
+    "description": "You can hold a charged spell in your hand for up to one minute, delivering it to the next creature you touch.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Gadgetry",
+    "name_pl": "Gadżety",
+    "description": "Your gadgets have two charges before breaking down. Your daily-use Sorcery-replicating devices may be used one additional time per day.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Getaway",
+    "name_pl": "Ucieczka",
+    "description": "When you use Getaway, you can bring one willing ally with you. You always know the fastest exit from any location you've been in for more than a minute.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Guarded",
+    "name_pl": "Chroniony",
+    "description": "Redirected Hirelings take half damage. You can use Guarded twice per day.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Hardy",
+    "name_pl": "Zahartowany",
+    "description": "Gain an additional +4 HP (total +10 from Hardy). When reduced to 0 HP, roll +CON — on a 7+, you drop to 1 HP instead.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Heavy Hands/Feet",
+    "name_pl": "Ciężkie Dłonie/Stopy",
+    "description": "Your unarmed strikes are magical — they affect creatures resistant to non-magical damage. Hitting the same target twice in one turn staggers them: they act last next round.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Hunter",
+    "name_pl": "Łowca",
+    "description": "When you fire from hiding and hit, you remain hidden — enemies don't immediately locate you. You may fire once more from the same position before needing to move.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Illusions",
+    "name_pl": "Iluzje",
+    "description": "Your illusions include convincing sound. Targets that fail to see through them remain affected for one round after you stop concentrating.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Inspire",
+    "name_pl": "Natchnienie",
+    "description": "You can direct a crowd toward a specific action — not just opinion but behavior. The GM will tell you what it would take to push them too far.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Instinct",
+    "name_pl": "Instynkt",
+    "description": "You can re-roll DEX twice per scene and keep the better result. You are never caught flat-footed by an ambush.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Linguist",
+    "name_pl": "Lingwista",
+    "description": "You can decode ancient, extinct, or monstrous languages given enough time. You notice immediately when someone is speaking in cipher or concealed subtext.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Lookout",
+    "name_pl": "Obserwator",
+    "description": "When you spot an enemy before they spot you, you silently warn all allies — everyone acts first in the ensuing encounter.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Lucky",
+    "name_pl": "Szczęście",
+    "description": "Once per session, you can use Lucky on behalf of any ally you can see, turning their Miss into a Success.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Magic-fueled hit points",
+    "name_pl": "Punkty Życia Zasilane Magią",
+    "description": "When magic-fueled HP are depleted, you can fuel Wizardry spells by spending regular HP at a 2:1 ratio.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Mind Shield",
+    "name_pl": "Tarcza Umysłu",
+    "description": "Once per day, you can extend Mind Shield to one nearby ally for a full scene.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Opportunist",
+    "name_pl": "Oportunista",
+    "description": "When you hit an already-engaged foe, they have disadvantage on their next action against anyone other than you.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Pacify",
+    "name_pl": "Uspokojenie",
+    "description": "Creatures you have Pacified remain favorably disposed toward you for days.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Perform",
+    "name_pl": "Występ",
+    "description": "A rolled 1 now causes minor awkwardness, not hostility. All dice showing 4+ attracts a patron or important admirer.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Pet",
+    "name_pl": "Zwierzę",
+    "description": "Your companion can follow complex multi-step instructions without you present and return with a signal about what it found.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Prestige",
+    "name_pl": "Prestiż",
+    "description": "Your name opens doors coin cannot. Once per session, reputation alone grants access to something normally refused. You receive free lodging and meals where you are known.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Reflexes",
+    "name_pl": "Refleks",
+    "description": "Once per combat, when an enemy misses you, you may act immediately out of turn, taking one full action.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Rockskin",
+    "name_pl": "Kamienna Skóra",
+    "description": "Bludgeoning damage is reduced by an additional 1 (minimum 0). Immune to minor environmental damage — heat, cold, abrasion.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Rover",
+    "name_pl": "Wędrowiec",
+    "description": "You can erase your entire party's tracks. You can read others' tracks as a written account — numbers, pace, weight, emotional state.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Sailor",
+    "name_pl": "Marynarz",
+    "description": "You can navigate without charts. Once per voyage, your quick action automatically prevents one catastrophic outcome.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Sapper",
+    "name_pl": "Saper",
+    "description": "You can construct improvised charges from available materials in an hour. Your explosives can be set with a ten-minute delay fuse or a tripwire trigger.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Schemer",
+    "name_pl": "Intrygant",
+    "description": "When a scheme goes wrong, there is always one degree of separation protecting you. An NPC intermediary takes the fall before it reaches you.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Scout",
+    "name_pl": "Zwiad",
+    "description": "When you scout and return, you identify two points of interest. Your companions gain advantage on their first roll at each of those locations.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Shifting",
+    "name_pl": "Przemiana",
+    "description": "You no longer need blood — one minute of contact with an animal is enough. While shifted, you retain your INT and can form simple plans and speak short, broken sentences.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Skirmish",
+    "name_pl": "Potyczka",
+    "description": "When you deal damage with Skirmish, you can immediately disengage without triggering any opportunity strikes and re-engage another target.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Slay",
+    "name_pl": "Zabójca",
+    "description": "When you reduce an enemy to 0 HP with a melee attack, you may immediately make a second attack against any adjacent enemy.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Sleuth",
+    "name_pl": "Detektyw",
+    "description": "When you detect a lie, you also sense the emotional shape of the deception — fear, greed, loyalty, shame.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Sorcery",
+    "name_pl": "Czarodziejstwo",
+    "description": "Once per day, cast a completely improvised Sorcery spell by choosing options from each list on the spot in real time.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Strategy",
+    "name_pl": "Strategia",
+    "description": "When you read an enemy's strategy, one ally gains a bonus to their next roll against that enemy. A word relays the benefit to the whole group.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Summon",
+    "name_pl": "Przywołanie",
+    "description": "When a Bound demon performs its daily deed, you may request two actions instead of one. The demon names a price for the second before performing it.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Surgeon",
+    "name_pl": "Chirurg",
+    "description": "When you bring someone back from the brink, they recover with one extra Hit Die rolled and added immediately. Your medicines counter magical diseases and curses.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Talented",
+    "name_pl": "Utalentowany",
+    "description": "Once per session, temporarily use a Skill you don't possess for one roll.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Tinker",
+    "name_pl": "Majsterkowicz",
+    "description": "When you examine a lock or trap, you understand how it was built and who built it. You can re-arm any trap you've disabled, with modifications.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Tough",
+    "name_pl": "Twardziel",
+    "description": "Once per combat, completely ignore one source of damage, decided after seeing the damage roll.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Tracker",
+    "name_pl": "Tropiciel",
+    "description": "When you follow a trail, the GM tells you the quarry's destination if they have one. You always sense when a trail has been deliberately laid to mislead you.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Trick",
+    "name_pl": "Sztuczka",
+    "description": "When you successfully Trick a target, all nearby enemies who witnessed it hesitate. Your allies gain a bonus to their next action against any of those enemies.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Turn",
+    "name_pl": "Odpędzenie",
+    "description": "Undead you Turn flee from you for the rest of the scene. Against powerful undead, Turn forces them to act defensively.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Vehemence",
+    "name_pl": "Gwałtowność",
+    "description": "When you roll maximum damage on a Vehemence-enhanced spell, the target is knocked back or prone.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Vision",
+    "name_pl": "Wizja",
+    "description": "You no longer need holy water — ten minutes of meditation suffices. Once per session, your deity sends you a brief, unsolicited warning before significant danger.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Volley",
+    "name_pl": "Salwa",
+    "description": "Once per combat, loose a volley targeting two adjacent enemies simultaneously, rolling damage separately for each.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Warded",
+    "name_pl": "Osłonięty",
+    "description": "Your wards persist for one round after you stop using magic. You can extend your ward to one nearby ally as a quick action, granting them +1 armor until your next turn.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Wild",
+    "name_pl": "Dzikość",
+    "description": "Animals you have commanded remain loyal to you even after the command expires — they will not act against you. You can command animals up to large size without additional difficulty.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Wizardry",
+    "name_pl": "Czarnoksięstwo",
+    "description": "When you roll a Critical Success on a Wizardry spell, recover 1 spent Power. You may spend Power at a 2:1 ratio to extend spell duration by one rank without triggering Warp exposure for that adjustment.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "WTF?",
+    "name_pl": "Co u licha?",
+    "description": "Once per combat against any foe — even a known one — you may do something so unexpected they lose their next action processing it.",
+    "description_pl": "",
+    "level": 2,
+    "source": "AWoD"
+  },
+  {
+    "name": "Alchemy",
+    "name_pl": "Alchemia",
+    "description": "You can create a Legendary Formula — a single preparation that combines one option from every category plus one exotic effect of your own invention, subject to GM approval. Additionally, any formula you create can now be made permanent: it does not expire after use, but recharges after one full day.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Affluent",
+    "name_pl": "Zamożność",
+    "description": "Your financial reputation is unassailable. You no longer need to roll when making purchases on credit — it is simply assumed. Once per campaign, you can arrange financing for a truly massive acquisition (a ship, a building, an army's provisions) with no immediate funds required.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Allure",
+    "name_pl": "Urok",
+    "description": "Your allure is overwhelming. Once per session, you can make someone completely devoted to your wellbeing for a full scene — they will not harm you, lie to you, or allow others to harm you without a WIS roll to resist. They remember the experience afterward but cannot explain why they acted that way.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Appraise",
+    "name_pl": "Wycena",
+    "description": "You can appraise anything — curses, blessings, the value of information, even the worth of a person's life in the GM's economy. Once per session, ask the GM: \"What is the most valuable thing in this location?\" The GM must answer honestly.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Backstab",
+    "name_pl": "Cios w Plecy",
+    "description": "Your Backstab damage bonus increases to +5. When you Backstab and kill a target in a single strike, no witness immediately realizes what happened — the death appears natural, accidental, or the result of someone else, unless actively and carefully investigated.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Bargain",
+    "name_pl": "Targowanie",
+    "description": "You can Bargain for things that are not technically for sale — secrets, favors from powerful figures, dangerous information, even freedom. The GM must engage with your offer rather than dismiss it. Something is always on the table, even if the price is steep.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Berserk",
+    "name_pl": "Berserk",
+    "description": "You cannot be knocked unconscious while Berserk — you fight until your HP reaches a negative value equal to your CON score, at which point you collapse. Additionally, your frenzy is contagious: one ally who can see you fighting gains +1 damage and +1 armor for as long as your Berserk lasts.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Bless",
+    "name_pl": "Błogosławieństwo",
+    "description": "You can Bless a location rather than a person or item. For 24 hours, the blessed area has the following properties: Evil creatures suffer disadvantage when entering; allies who rest there recover an extra Hit Die; the location cannot be scried or tracked by magical means.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Brawny",
+    "name_pl": "Krzepki",
+    "description": "Your melee and thrown damage ignores 1 point of armor (minimum 0, applied after normal armor reduction). When you knock a target prone via maximum damage, you may immediately grab and pin them — they remain pinned until they succeed on a STR roll.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Cloaked",
+    "name_pl": "Zamaskowany",
+    "description": "Once per day, you can become completely invisible in any lighting condition for up to one hour. You remain invisible even when attacking, until the end of the round in which you struck. The effect ends if you speak loudly or use a light source.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Connected",
+    "name_pl": "Wpływowy",
+    "description": "You have a contact at every level of society. Once per session, name any type of person — a spymaster, a pirate captain, a high priest, a crime lord — and you have a contact of that type. They owe you enough to meet with you and genuinely hear your request.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Contort",
+    "name_pl": "Akrobata",
+    "description": "Your body endures compression and positions that should be lethal. You can survive being buried, crushed in rubble, or physically trapped indefinitely without harm. You also reduce falling damage by half, regardless of the height.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Cutpurse",
+    "name_pl": "Kieszonkowiec",
+    "description": "You can steal things that are not simply on a person's body — a key actively being turned in a lock, a document being actively read, information someone is clearly thinking about. Nothing a person is actively interacting with is beyond your reach. The GM determines the exact mechanics case by case.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Cure",
+    "name_pl": "Uzdrowienie",
+    "description": "Your healing is miraculous. Once per day, you can perform a Full Restoration — bringing a character at 0 HP to half their maximum HP, simultaneously cured of all poisons, curses, and diseases. No components required. This works even at the very threshold of death, as long as they have not been dead for more than a minute.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Damnation",
+    "name_pl": "Potępienie",
+    "description": "Once per session, you can place a Doom — a named curse with a specific triggering condition of your choosing (\"the next time you betray a friend, you will lose your voice for a week\"). The Doom activates automatically when met and cannot be removed by normal means — only by undoing whatever act of harm you named.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Daring",
+    "name_pl": "Brawura",
+    "description": "Your Daring is unlimited — you can use it any number of times per day. Additionally, when you perform an act of extraordinary courage that others witness, all allies present cannot be affected by fear or doubt for the rest of the scene.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Diplomat",
+    "name_pl": "Dyplomata",
+    "description": "Once per session, you can declare a Parley — a period of enforced negotiation. All parties must negotiate in good faith for at least one full scene before violence can resume. Even enemies who were attacking moments before must pause. This cannot be invoked if lives are actively being lost in that instant.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Disguise",
+    "name_pl": "Przebranie",
+    "description": "After studying someone for at least an hour, you can take on their mannerisms, emotional tells, and knowledge of private matters convincingly enough to fool even their closest family and confidants. When disguised as someone specific, you can answer questions about their private life as if you had access to their memories — the GM will fill in what you would plausibly know.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Divination",
+    "name_pl": "Wróżbiarstwo",
+    "description": "By touching a location or object, you can witness its past as vivid visions. Once per session, you can ask the GM to show you one specific event from the past related to your current investigation — they describe it as if you were present.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Duelist",
+    "name_pl": "Pojedynkowicz",
+    "description": "In declared one-on-one combat, you are essentially untouchable by less skilled opponents. When fighting a single opponent in a formal or clearly declared duel, you have advantage on all rolls and they have disadvantage on all rolls against you.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Engineer",
+    "name_pl": "Inżynieria",
+    "description": "Given adequate materials and time, you can construct any mechanical device you can conceptualize — siege engines, automata, traps of extraordinary complexity. Once per session, a contraption you build on the fly works perfectly on the first use, no roll required.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Expert",
+    "name_pl": "Ekspert",
+    "description": "You can use Expert any number of times per day. Additionally, once per session, you can turn a Partial Success into a Full Success — not just a Miss into a Partial.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Familiar",
+    "name_pl": "Duch Towarzysz",
+    "description": "You can fully inhabit your Familiar's body — your own body falls unconscious while you act through your Familiar completely. You can maintain this for up to one hour. If your Familiar is killed while you inhabit it, you take d6 damage and are stunned for a round.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Full-contact magic",
+    "name_pl": "Magia w Kontakcie",
+    "description": "You can now channel any spell — not just Wizardry — through your fists. When you channel a Sorcery spell through a strike, it deals additional damage equal to your STR modifier. Your unarmed strikes are always considered magical weapons.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Gadgetry",
+    "name_pl": "Gadżety",
+    "description": "One of your gadgets becomes a Masterwork — a permanent device that never breaks down and can replicate its assigned Sorcery spell at will, with no daily limit. You choose which of your existing devices receives this status.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Getaway",
+    "name_pl": "Ucieczka",
+    "description": "Getaway now works for your entire party simultaneously. Additionally, you can pre-designate a safe house or exit point at the start of any session — when you use Getaway, the party arrives there regardless of the distance between you and it.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Guarded",
+    "name_pl": "Chroniony",
+    "description": "You can now redirect attacks to yourself instead of a Hireling, absorbing the blow for any ally. When you do, you take only half damage — the rest is mitigated by your reflexive guard. This version of Guarded can be used any number of times per combat.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Hardy",
+    "name_pl": "Zahartowany",
+    "description": "Gain an additional +6 HP (total +16 from Hardy across all levels). You are immune to instant-death effects and lethal environments. When reduced to 0 HP, you automatically stabilize — no roll required.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Heavy Hands/Feet",
+    "name_pl": "Ciężkie Dłonie/Stopy",
+    "description": "Your unarmed strikes deal 2d6 damage instead of 1d6 and count as Martial Weapons for all purposes. Once per combat, you can deliver a Devastating Strike — dealing your maximum possible unarmed damage automatically, no roll required.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Hunter",
+    "name_pl": "Łowca",
+    "description": "You can maintain concealment indefinitely in any natural environment, never needing to relocate after firing. Any target you hit this combat is Marked — all sources of damage against a Marked target deal +1 additional damage, as you've identified their weak points for your allies.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Illusions",
+    "name_pl": "Iluzje",
+    "description": "Your illusions are fully multi-sensory — sight, sound, smell, temperature, and touch. Any target interacting with your illusions must make a WIS roll to disbelieve them. Particularly convincing illusions can cause real psychosomatic damage (d4, GM's discretion based on the severity and violence of the illusion).",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Inspire",
+    "name_pl": "Natchnienie",
+    "description": "Once per session, your words create a lasting change — not a momentary reaction. A crowd you've inspired will remember your message for weeks and may act on it independently, long after you've left. The GM should incorporate the consequences into future sessions.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Instinct",
+    "name_pl": "Instynkt",
+    "description": "You have advantage on all DEX-based rolls. Once per session, just before catastrophe strikes, your instincts fire ahead of it — the GM gives you one free action to react before the disaster fully unfolds.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Linguist",
+    "name_pl": "Lingwista",
+    "description": "You can understand any language, including those of creatures, animals, spirits, and magical entities, with no prior exposure needed. Given a few minutes of listening to a completely unknown language, you can communicate basic ideas in return.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Lookout",
+    "name_pl": "Obserwator",
+    "description": "You are never caught unaware. You automatically detect hidden creatures, concealed doors, and people in disguise within your line of sight. The GM must tell you when something is not as it appears, even if you don't know specifically what is wrong.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Lucky",
+    "name_pl": "Szczęście",
+    "description": "You can use Lucky three times per day on yourself and once per session on any ally. When you invoke Lucky, you may also ask the GM for one additional piece of good fortune alongside the mechanical effect — a timely distraction, a misfire, a lucky coincidence that helps your position.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Magic-fueled hit points",
+    "name_pl": "Punkty Życia Zasilane Magią",
+    "description": "Your magic-fueled HP regenerate during combat — you recover 1 magic HP at the start of each round, up to your Power score maximum. When your magic-fueled HP are at their maximum, your Wizardry spells deal +1 additional damage.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Mind Shield",
+    "name_pl": "Tarcza Umysłu",
+    "description": "Your mind is an absolute fortress. You are immune to all forms of mental intrusion — scrying, telepathy, possession, and magical compulsion of any kind. When someone attempts to magically affect your mind, you immediately sense the attempt and know the general direction it came from.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Opportunist",
+    "name_pl": "Oportunista",
+    "description": "Once per round, whenever any ally deals damage to a target, you may immediately make a free attack against that same target. This does not consume your action — it is the reflexive strike of a master tactician reading the flow of battle.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Pacify",
+    "name_pl": "Uspokojenie",
+    "description": "Once per session, you can Pacify an entire crowd or group simultaneously — not just one creature. The effect lasts for a full scene. Creatures you Pacify at this scale may become genuinely sympathetic to your cause if you speak to them clearly while they are calm.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Perform",
+    "name_pl": "Występ",
+    "description": "One of your performances has become legendary in a specific region — your name alone opens doors, earns favors, and creates trust there without any roll. In new regions, a single memorable performance establishes this reputation permanently. The GM should track where your legend has spread.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Pet",
+    "name_pl": "Zwierzę",
+    "description": "Your bond with your companion transcends the mundane. Choose three of the following traits for your companion: can speak one sentence per day in your language; can perform any complex task without instruction; is immune to fear and magical charm; can detect magical auras within 30 feet; can track any target it has met at least once regardless of time elapsed.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Prestige",
+    "name_pl": "Prestiż",
+    "description": "Your reputation is so formidable that enemies may choose not to attack you to avoid the notoriety. Once per session, declare your name and deeds to a group of enemies — they may stand down entirely without combat, if doing so doesn't directly contradict their core purpose or orders.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Reflexes",
+    "name_pl": "Refleks",
+    "description": "You have advantage on all DEX-based rolls. When you act out of turn via your Level 2 ability, you may take two actions instead of one. You also automatically succeed at dodging any environmental hazard that can be avoided with fast reaction — no roll required.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Rockskin",
+    "name_pl": "Kamienna Skóra",
+    "description": "Your Rockskin Armor value increases to 3. You are immune to poison delivered through skin contact or small wounds and cannot be affected by bleeding effects. Your skin is hard enough to damage unprotected weapons — light weapons that strike you directly take a notch (GM's discretion on breakage).",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Rover",
+    "name_pl": "Wędrowiec",
+    "description": "You have no natural predators in the wilderness. Animals will not attack you unprovoked, ever. You can survive indefinitely in any natural environment without supplies — you always find water, shelter, and sufficient food regardless of conditions.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Sailor",
+    "name_pl": "Marynarz",
+    "description": "Any vessel you captain operates at its absolute peak. Once per voyage, you automatically succeed at any navigation crisis that would otherwise sink the ship — storm, reef, monster, mutiny — no roll required. Sailors serving under your command never mutiny; they will endure conditions that would break others.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Sapper",
+    "name_pl": "Saper",
+    "description": "Your explosives are precision instruments. You can create shaped charges that destroy specific structural targets — walls, doors, foundations — without harming adjacent areas or people. Once per session, you can set a catastrophic delayed trap that causes a significant and lasting environmental change: collapses a tunnel, brings down a tower, floods a room.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Schemer",
+    "name_pl": "Intrygant",
+    "description": "You can set a scheme in motion that plays out over weeks or months without you being present. Once per session, you can declare that a scheme you arranged earlier has come to fruition — the GM must incorporate a meaningful positive outcome from your prior planning into the current scene.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Scout",
+    "name_pl": "Zwiad",
+    "description": "You cannot be surprised by any environment you have scouted. When you scout an area and return, the GM must reveal all threats, hazards, and points of interest in that area — nothing is withheld. Your scouting reports are always complete.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Shifting",
+    "name_pl": "Przemiana",
+    "description": "You can now shift into any animal you have ever encountered, with no contact or blood required. While shifted, you retain all your mental stats, can speak normally, and may use any non-physical ability you possess. Shifting back is effortless and instantaneous.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Skirmish",
+    "name_pl": "Potyczka",
+    "description": "You can engage and disengage with any target in a single fluid action with no consequences ever. When you deal damage with Skirmish, choose one additional effect: the target drops their weapon, you steal a small item from them, or you Mark them — your next attack against that target has advantage.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Slay",
+    "name_pl": "Zabójca",
+    "description": "Your total melee damage bonus from Slay becomes +4. Once per combat, before rolling to attack, you may declare a Killing Blow — if you hit, the target is reduced to 0 HP regardless of their current HP total. This does not work on named, significant NPCs or boss-level creatures unless the GM deems it dramatically appropriate.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Sleuth",
+    "name_pl": "Detektyw",
+    "description": "Once per session, when you have gathered enough information, you can declare a Deduction — a moment of clarity where you lay out exactly what happened or is happening. The GM must tell you if your deduction is correct and must fill in any gaps you missed with true information.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Sorcery",
+    "name_pl": "Czarodziejstwo",
+    "description": "You no longer expend Sorcery spells when you cast them — your mastery means they replenish naturally. Once per day, you can cast two Sorcery spells simultaneously, combining their effects into a single action.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Strategy",
+    "name_pl": "Strategia",
+    "description": "Once per combat, you can call a Tactical Pause — declaring a formation or approach that grants all allies +1 to all rolls for the next full round. This requires only a word or gesture; your allies have trained to recognize your signals instantly.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Summon",
+    "name_pl": "Przywołanie",
+    "description": "You no longer need any of the standard summoning requirements — you can call a Bound demon with a single spoken word, anywhere, at any time. Additionally, you may now attempt to bind a demon you've never met before, during an active encounter, using only your WIS and whatever leverage the situation provides.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Surgeon",
+    "name_pl": "Chirurg",
+    "description": "Your healing is miraculous. You can restore a dead character to life if they died within the last hour, given ten minutes of work and basic medical supplies. They return with 1 HP and one permanent scar — the GM describes it. This can be done once per character, ever.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Talented",
+    "name_pl": "Utalentowany",
+    "description": "Choose one Skill you don't possess — you now have it permanently. Additionally, you can use your once-per-session improvised skill use twice per session instead of once.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Tinker",
+    "name_pl": "Majsterkowicz",
+    "description": "No mundane lock or trap can stop you — you automatically succeed at disabling any non-magical mechanical device. Against magical locks and traps, you still roll, but you have advantage. You can also build a perfect functional replica of any mechanism you have examined.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Tough",
+    "name_pl": "Twardziel",
+    "description": "You reduce all incoming damage by 1 (minimum 0, applied after armor). Your once-per-combat damage immunity can now be used twice per combat. Combined with Level 1, you have +2 total armor from Tough alone.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Tracker",
+    "name_pl": "Tropiciel",
+    "description": "You can track anything — not just physical creatures, but magical entities, spirits, and abstract sources: \"whoever sent this message,\" \"the origin of this curse,\" \"whatever passed through here last.\" If a trail exists in any form, you can follow it.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Trick",
+    "name_pl": "Sztuczka",
+    "description": "Your tricks are so elaborate that the confusion lasts the full scene, not just a moment. Once per session, you can perform a Grand Trick — a deception so complete it changes the flow of an entire encounter: disguising an attack as an accident, making enemies fight each other, creating a distraction that persists beyond your direct involvement.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Turn",
+    "name_pl": "Odpędzenie",
+    "description": "Lesser undead (non-named, non-boss) are destroyed outright when you Turn them — not merely fled. Against powerful undead, Turn causes ongoing pain — they take d6 damage per round they remain near you, and the damage is not reduced by any form of undead resistance.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Vehemence",
+    "name_pl": "Gwałtowność",
+    "description": "Your magical damage ignores 2 points of magical resistance or protection. When a Vehemence-enhanced spell deals maximum damage and triggers the knockback effect (Level 2), the knockback also affects any creature adjacent to the primary target — the raw force radiates outward.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Vision",
+    "name_pl": "Wizja",
+    "description": "Your communion with your deity is continuous — a low, constant connection. Once per session, your deity may intervene directly in a small but tangible way: redirecting a blow, providing a sudden inspiration, or delivering a physical sign visible to everyone present. The GM decides the form, but it should be unambiguous.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Volley",
+    "name_pl": "Salwa",
+    "description": "You can fire into melee without any risk of hitting allies — your precision is absolute. Your ranged attacks are so controlled that you choose exactly where each shot lands. Once per combat, you can fire at three different targets simultaneously, rolling damage separately for each.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Warded",
+    "name_pl": "Osłonięty",
+    "description": "Your wards are now permanent and passive — you always have +1 armor even when not using magic. The ward you share with allies (Level 2) now lasts for the full scene instead of until your next turn.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Wild",
+    "name_pl": "Dzikość",
+    "description": "You can attempt to command any creature — not just animals, but monsters, summoned entities, and magical beasts. Truly intelligent creatures resist with WIS, but the attempt is always valid. Animals you've previously commanded will seek you out again if circumstances allow — your bond with the natural world is absolute.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "Wizardry",
+    "name_pl": "Czarnoksięstwo",
+    "description": "You no longer risk Warp exposure on Partial Successes — only a Miss exposes you to the Warp. Your Power score maximum increases by +3 permanently. When you roll a Critical Success, recover 2 Power instead of 1.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  },
+  {
+    "name": "WTF?",
+    "name_pl": "Co u licha?",
+    "description": "Your chaos is a philosophy, not just a tactic. Once per session, you can declare that the current situation \"doesn't make sense\" — and the GM must introduce one genuinely unexpected element that disrupts the scene in your favor. Your enemies can never fully model your behavior; even those who know you well always treat you as an unknown quantity.",
+    "description_pl": "",
+    "level": 3,
+    "source": "AWoD"
+  }
+]

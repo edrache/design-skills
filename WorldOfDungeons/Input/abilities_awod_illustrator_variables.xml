@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variableSets xmlns="http://ns.adobe.com/Variables/1.0/">
+  <variables>
+    <variable varName="ability_name" trait="textcontent"/>
+    <variable varName="ability_name_pl" trait="textcontent"/>
+    <variable varName="ability_description" trait="textcontent"/>
+    <variable varName="ability_description_pl" trait="textcontent"/>
+    <variable varName="ability_level" trait="textcontent"/>
+    <variable varName="ability_source" trait="textcontent"/>
+  </variables>
+  <sampleDataSets>
+    <sampleDataSet dataSetName="01_Alchemy">
+      <ability_name>Alchemy</ability_name>
+      <ability_name_pl>Alchemia</ability_name_pl>
+      <ability_description>You can imbue magic within a potion, salve, or item. You start with three alchemical formulas.</ability_description>
+      <ability_description_pl>Możesz wnieść magię do mikstury, maści lub przedmiotu. Zaczynasz z trzema alchemicznymi recepturami.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="02_Affluent">
+      <ability_name>Affluent</ability_name>
+      <ability_name_pl>Zamożność</ability_name_pl>
+      <ability_description>When your purse is empty, you can attempt to make purchases with the promise of paying the money back at a later date.</ability_description>
+      <ability_description_pl>Gdy twoja sakiewka jest pusta, możesz podjąć próbę dokonania zakupów na obietnicę późniejszej spłaty.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="03_Allure">
+      <ability_name>Allure</ability_name>
+      <ability_name_pl>Urok</ability_name_pl>
+      <ability_description>When you seduce someone, you can make them reveal intimate secrets about themselves despite their better judgment. You can also attract someone's attention with only a glance.</ability_description>
+      <ability_description_pl>Gdy uwodujesz kogoś, możesz skłonić go do wyjawienia intymnych sekretów wbrew zdrowemu rozsądkowi. Możesz też przyciągnąć czyjąś uwagę jednym spojrzeniem.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="04_Appraise">
+      <ability_name>Appraise</ability_name>
+      <ability_name_pl>Wycena</ability_name_pl>
+      <ability_description>You can tell the approximate value of artwork and trade goods once you've inspected them.</ability_description>
+      <ability_description_pl>Po zbadaniu przedmiotu jesteś w stanie określić przybliżoną wartość dzieł sztuki i towarów.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="05_Backstab">
+      <ability_name>Backstab</ability_name>
+      <ability_name_pl>Cios w Plecy</ability_name_pl>
+      <ability_description>Add +3 damage to melee attacks when the target is unaware of your presence.</ability_description>
+      <ability_description_pl>Dodaj +3 obrażeń do ataków w walce wręcz, gdy cel nie jest świadomy twojej obecności.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="06_Bargain">
+      <ability_name>Bargain</ability_name>
+      <ability_name_pl>Targowanie</ability_name_pl>
+      <ability_description>Once per day, you can halve the price of a purchase thanks to the different tradesmen you know, or the guilds you have contacts with.</ability_description>
+      <ability_description_pl>Raz dziennie możesz o połowę obniżyć cenę zakupu dzięki znajomościom z kupcami lub gildyjnymi kontaktami.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="07_Berserk">
+      <ability_name>Berserk</ability_name>
+      <ability_name_pl>Berserk</ability_name_pl>
+      <ability_description>When you are outnumbered, add +1 to the damage you inflict and +1 armor, but you must make an effort to not immediately resort to violence in heated situations.</ability_description>
+      <ability_description_pl>Gdy jesteś w przewadze liczebnej wroga, dodajesz +1 do zadawanych obrażeń i +1 do pancerza, lecz musisz się powstrzymywać, by nie uciekać się do przemocy w napiętych sytuacjach.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="08_Bless">
+      <ability_name>Bless</ability_name>
+      <ability_name_pl>Błogosławieństwo</ability_name_pl>
+      <ability_description>With holy water, you can anoint items so they are considered holy and magical — +3 damage vs. Evil — for a short time.</ability_description>
+      <ability_description_pl>Przy pomocy święconej wody możesz poświęcić przedmioty, czyniąc je świętymi i magicznymi — +3 obrażeń przeciwko Złu — na krótki czas.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="09_Brawny">
+      <ability_name>Brawny</ability_name>
+      <ability_name_pl>Krzepki</ability_name_pl>
+      <ability_description>+1 melee and thrown weapons damage, can re-roll damage once per attack.</ability_description>
+      <ability_description_pl>+1 obrażeń w walce wręcz i bronią miotaną; możesz raz na atak przerzucić obrażenia.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="10_Cloaked">
+      <ability_name>Cloaked</ability_name>
+      <ability_name_pl>Zamaskowany</ability_name_pl>
+      <ability_description>When you are under the cover of darkness, you get +1 armor.</ability_description>
+      <ability_description_pl>Gdy jesteś skryty w mroku, otrzymujesz +1 do pancerza.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="11_Connected">
+      <ability_name>Connected</ability_name>
+      <ability_name_pl>Wpływowy</ability_name_pl>
+      <ability_description>You can attempt to obtain favors from nobles, whether getting a loan, an invitation to a party, or introductions to other important people.</ability_description>
+      <ability_description_pl>Możesz podejmować próby uzyskania przysług od szlachty — pożyczki, zaproszenia na przyjęcie lub przedstawień ważnym osobistościom.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="12_Contort">
+      <ability_name>Contort</ability_name>
+      <ability_name_pl>Akrobata</ability_name_pl>
+      <ability_description>You are able to escape from bonds or squeeze into small or tight places.</ability_description>
+      <ability_description_pl>Potrafisz uwolnić się z więzów lub wcisnąć w ciasne miejsca.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="13_Cutpurse">
+      <ability_name>Cutpurse</ability_name>
+      <ability_name_pl>Kieszonkowiec</ability_name_pl>
+      <ability_description>When you pick pockets or conceal things on your person, you can do so quickly while running.</ability_description>
+      <ability_description_pl>Gdy kradniesz z kieszeni lub ukrywasz przedmioty przy sobie, możesz to robić w biegu.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="14_Cure">
+      <ability_name>Cure</ability_name>
+      <ability_name_pl>Uzdrowienie</ability_name_pl>
+      <ability_description>You can neutralize poisons, remove curses and heal wounds without a touch.</ability_description>
+      <ability_description_pl>Możesz neutralizować trucizny, usuwać klątwy i leczyć rany bez dotykania.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="15_Damnation">
+      <ability_name>Damnation</ability_name>
+      <ability_name_pl>Potępienie</ability_name_pl>
+      <ability_description>You can attempt to inflict curses or ailments upon others, either with eye contact or through a fetish.</ability_description>
+      <ability_description_pl>Możesz próbować zsyłać klątwy lub dolegliwości na innych — poprzez kontakt wzrokowy lub fetysze.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="16_Daring">
+      <ability_name>Daring</ability_name>
+      <ability_name_pl>Brawura</ability_name_pl>
+      <ability_description>Once per day, you can ignore the damage or effects of an environmental hazard.</ability_description>
+      <ability_description_pl>Raz dziennie możesz zignorować obrażenia lub skutki zagrożenia środowiskowego.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="17_Diplomat">
+      <ability_name>Diplomat</ability_name>
+      <ability_name_pl>Dyplomata</ability_name_pl>
+      <ability_description>You can enter negotiations, bargain, or parley, even with the most disagreeable of people, as long as they are intelligent enough to understand you.</ability_description>
+      <ability_description_pl>Możesz wchodzić w negocjacje, targować się i pertraktować nawet z najbardziej nieznośnymi rozmówcami, o ile są wystarczająco inteligentni, by cię zrozumieć.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="18_Disguise">
+      <ability_name>Disguise</ability_name>
+      <ability_name_pl>Przebranie</ability_name_pl>
+      <ability_description>When you use costumes and makeup, you can attempt to convincingly imitate other people, or ensure your own identity is unrecognizable.</ability_description>
+      <ability_description_pl>Używając kostiumów i makijażu, możesz próbować wiarygodnie podszywać się pod inne osoby lub ukryć własną tożsamość.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="19_Divination">
+      <ability_name>Divination</ability_name>
+      <ability_name_pl>Wróżbiarstwo</ability_name_pl>
+      <ability_description>When you gaze into a crystal or a bowl of holy water, you can attempt to see events either far away, in the past, or in the future.</ability_description>
+      <ability_description_pl>Wpatrując się w kryształ lub czaszę święconej wody, możesz próbować dostrzec odległe wydarzenia — przeszłe lub przyszłe.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="20_Duelist">
+      <ability_name>Duelist</ability_name>
+      <ability_name_pl>Pojedynkowicz</ability_name_pl>
+      <ability_description>You treat any one-handed weapon as Light.</ability_description>
+      <ability_description_pl>Traktujesz każdą jednoręczną broń jak Lekką.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="21_Engineer">
+      <ability_name>Engineer</ability_name>
+      <ability_name_pl>Inżynieria</ability_name_pl>
+      <ability_description>With the Crafting skill, you can create and repair mechanical devices and firearms.</ability_description>
+      <ability_description_pl>Z umiejętnością Rzemiosła możesz tworzyć i naprawiać mechaniczne urządzenia i broń palną.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="22_Expert">
+      <ability_name>Expert</ability_name>
+      <ability_name_pl>Ekspert</ability_name_pl>
+      <ability_description>Once per day, you can turn a Miss into a Partial Success.</ability_description>
+      <ability_description_pl>Raz dziennie możesz zamienić Pudło w Częściowy Sukces.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="23_Familiar">
+      <ability_name>Familiar</ability_name>
+      <ability_name_pl>Duch Towarzysz</ability_name_pl>
+      <ability_description>You have an animal companion, such as a crow, rat, cat, snake or spider, magically bonded to you. You can see through its eyes, and hear what it hears.</ability_description>
+      <ability_description_pl>Masz towarzysza zwierzęcego — kruka, szczura, kota, węża lub pająka — magicznie z tobą związanego. Możesz widzieć jego oczami i słyszeć, co słyszy.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="24_Full_contact_magic">
+      <ability_name>Full-contact magic</ability_name>
+      <ability_name_pl>Magia w Kontakcie</ability_name_pl>
+      <ability_description>You can channel spells through your fists in melee. If you hit successfully, you can send one Wizardry spell through your fists into your opponent. You remain unharmed, even if that spell affects an area around you.</ability_description>
+      <ability_description_pl>Możesz kanalizować zaklęcia przez pięści w walce wręcz. Jeśli trafisz, możesz przepuścić przez dłonie jedno zaklęcie Czarnoksięstwa w przeciwnika. Pozostajesz bezpieczny, nawet gdy zaklęcie obejmuje obszar wokół ciebie.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="25_Gadgetry">
+      <ability_name>Gadgetry</ability_name>
+      <ability_name_pl>Gadżety</ability_name_pl>
+      <ability_description>You try to solve any problem with gadgets you build. Anytime you attempt something risky, you roll +INT. A Miss means the gadget does not what it should (GM's discretion). At Level 3, you design a device that replicates a Sorcery spell three times a day. At Levels 6 and 9, you each get one additional device that replicates another Sorcery spell.</ability_description>
+      <ability_description_pl>Każdy problem próbujesz rozwiązać gadżetem własnej roboty. Za każdym razem gdy próbujesz czegoś ryzykownego, rzucasz +INT. Pudło oznacza, że gadżet nie działa jak powinien (wedle uznania MG). Na 3. poziomie projektujesz urządzenie replikujące zaklęcie Czarodziejstwa trzy razy dziennie. Na 6. i 9. poziomie zdobywasz kolejne urządzenia replikujące inne zaklęcia Czarodziejstwa.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="26_Getaway">
+      <ability_name>Getaway</ability_name>
+      <ability_name_pl>Ucieczka</ability_name_pl>
+      <ability_description>Once per day, you can automatically flee a location — sprinting, dodging, and ducking to avoid pursuit.</ability_description>
+      <ability_description_pl>Raz dziennie możesz automatycznie uciec z miejsca — sprintując, kluczując i unikając pościgu.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="27_Guarded">
+      <ability_name>Guarded</ability_name>
+      <ability_name_pl>Chroniony</ability_name_pl>
+      <ability_description>Once per day, you can redirect any attack against you to one of your Hirelings.</ability_description>
+      <ability_description_pl>Raz dziennie możesz skierować dowolny atak wymierzony w ciebie na jednego ze swoich Najemników.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="28_Hardy">
+      <ability_name>Hardy</ability_name>
+      <ability_name_pl>Zahartowany</ability_name_pl>
+      <ability_description>Add +6 to your hit points.</ability_description>
+      <ability_description_pl>Dodaj +6 do punktów wytrzymałości.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="29_Heavy_Hands_Feet">
+      <ability_name>Heavy Hands/Feet</ability_name>
+      <ability_name_pl>Ciężkie Dłonie/Stopy</ability_name_pl>
+      <ability_description>You do 1d6 unarmed damage. On levels 3, 5, 7 and 9, you get an additional +1 damage.</ability_description>
+      <ability_description_pl>Zadajesz 1k6 obrażeń bez broni. Na 3., 5., 7. i 9. poziomie otrzymujesz dodatkowe +1 obrażeń.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="30_Hunter">
+      <ability_name>Hunter</ability_name>
+      <ability_name_pl>Łowca</ability_name_pl>
+      <ability_description>Add +3 damage to ranged attacks when the target is unaware of your presence.</ability_description>
+      <ability_description_pl>Dodaj +3 obrażeń do ataków dystansowych, gdy cel nie jest świadomy twojej obecności.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="31_Illusions">
+      <ability_name>Illusions</ability_name>
+      <ability_name_pl>Iluzje</ability_name_pl>
+      <ability_description>You can create illusions to make someone see something that isn't there, or mesmerize them so they believe something that isn't true.</ability_description>
+      <ability_description_pl>Możesz tworzyć iluzje sprawiające, że ktoś widzi coś, czego nie ma, lub urzekać go, by wierzył w rzeczy nieprawdziwe.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="32_Inspire">
+      <ability_name>Inspire</ability_name>
+      <ability_name_pl>Natchnienie</ability_name_pl>
+      <ability_description>You can attempt to sway public opinion with your song, stories, or rhetoric.</ability_description>
+      <ability_description_pl>Możesz próbować kształtować opinię publiczną swoją pieśnią, opowieściami lub retoryką.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="33_Instinct">
+      <ability_name>Instinct</ability_name>
+      <ability_name_pl>Instynkt</ability_name_pl>
+      <ability_description>You can re-roll DEX when reacting to dangerous situations.</ability_description>
+      <ability_description_pl>Możesz przerzucić ZRĘ w reakcji na niebezpieczne sytuacje.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="34_Linguist">
+      <ability_name>Linguist</ability_name>
+      <ability_name_pl>Lingwista</ability_name_pl>
+      <ability_description>You can speak and read all civilized languages.</ability_description>
+      <ability_description_pl>Znasz mowę i pismo wszystkich języków cywilizowanych.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="35_Lookout">
+      <ability_name>Lookout</ability_name>
+      <ability_name_pl>Obserwator</ability_name_pl>
+      <ability_description>When you take the lead in the city or a dungeon, you always spot your targets before they spot you.</ability_description>
+      <ability_description_pl>Gdy prowadzisz w mieście lub lochach, zawsze dostrzegasz cel przed tym, nim cel dostrzeże ciebie.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="36_Lucky">
+      <ability_name>Lucky</ability_name>
+      <ability_name_pl>Szczęście</ability_name_pl>
+      <ability_description>Once per day, you can turn any Miss into a Success instead.</ability_description>
+      <ability_description_pl>Raz dziennie możesz zamienić dowolne Pudło w Sukces.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="37_Magic_fueled_hit_points">
+      <ability_name>Magic-fueled hit points</ability_name>
+      <ability_name_pl>Punkty Życia Zasilane Magią</ability_name_pl>
+      <ability_description>You have additional hit points (as many as your Power score). For each Wizardry spell you use, you lose 1 or 2 of those additional hit points.</ability_description>
+      <ability_description_pl>Masz dodatkowe punkty wytrzymałości (tyle, ile wynosi twój wynik Mocy). Za każde użyte zaklęcie Czarnoksięstwa tracisz 1 lub 2 z tych dodatkowych PW.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="38_Mind_Shield">
+      <ability_name>Mind Shield</ability_name>
+      <ability_name_pl>Tarcza Umysłu</ability_name_pl>
+      <ability_description>You are immune against fear, charm and sleep spells.</ability_description>
+      <ability_description_pl>Jesteś odporny na zaklęcia strachu, oczarowania i snu.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="39_Opportunist">
+      <ability_name>Opportunist</ability_name>
+      <ability_name_pl>Oportunista</ability_name_pl>
+      <ability_description>When you and your allies overpower your opponents, you inflict +2 damage.</ability_description>
+      <ability_description_pl>Gdy ty i twoi sojusznicy górujesz nad przeciwnikami, zadajesz +2 obrażeń.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="40_Pacify">
+      <ability_name>Pacify</ability_name>
+      <ability_name_pl>Uspokojenie</ability_name_pl>
+      <ability_description>You can attempt to pacify or charm (demi)intelligent creatures with your voice.</ability_description>
+      <ability_description_pl>Możesz próbować uśmierzyć lub oczarować (pół)inteligentne stworzenia swoim głosem.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="41_Perform">
+      <ability_name>Perform</ability_name>
+      <ability_name_pl>Występ</ability_name_pl>
+      <ability_description>When you entertain a crowd, you can earn d6s per Level each day. However, should any die roll a 1, the audience turns nasty and you won't be allowed to perform for at least a week without having rotten vegetables thrown at you.</ability_description>
+      <ability_description_pl>Gdy bawisz tłum, możesz zarabiać k6 za każdy poziom dziennie. Jednak jeśli choć jedna kość wypadnie 1, publiczność staje się wroga i przez co najmniej tydzień nie wpuści cię na scenę bez obrzucania zgniłymi warzywami.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="42_Pet">
+      <ability_name>Pet</ability_name>
+      <ability_name_pl>Zwierzę</ability_name_pl>
+      <ability_description>You have a loyal and effective animal companion.</ability_description>
+      <ability_description_pl>Masz lojalnego i skutecznego towarzysza zwierzęcego.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="43_Prestige">
+      <ability_name>Prestige</ability_name>
+      <ability_name_pl>Prestiż</ability_name_pl>
+      <ability_description>Everyone knows who you are. Halve the price of any Hirelings, as they seek your employ in order to gain later favors or advantages.</ability_description>
+      <ability_description_pl>Wszyscy wiedzą, kim jesteś. Najemnicy kosztują o połowę mniej, bo szukają twojego zatrudnienia dla przyszłych łask i korzyści.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="44_Reflexes">
+      <ability_name>Reflexes</ability_name>
+      <ability_name_pl>Refleks</ability_name_pl>
+      <ability_description>You always act first, and can react when suddenly surprised.</ability_description>
+      <ability_description_pl>Zawsze działasz pierwszy i możesz reagować, gdy zostajesz zaskoczony.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="45_Rockskin">
+      <ability_name>Rockskin</ability_name>
+      <ability_name_pl>Kamienna Skóra</ability_name_pl>
+      <ability_description>You have rock-hard skin (Armor 2).</ability_description>
+      <ability_description_pl>Masz twardą jak kamień skórę (Pancerz 2).</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="46_Rover">
+      <ability_name>Rover</ability_name>
+      <ability_name_pl>Wędrowiec</ability_name_pl>
+      <ability_description>When you run through the wilderness, you do so without leaving obvious tracks or a trail.</ability_description>
+      <ability_description_pl>Biegnąc przez pustkowie, nie pozostawiasz wyraźnych śladów ani tropu.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="47_Sailor">
+      <ability_name>Sailor</ability_name>
+      <ability_name_pl>Marynarz</ability_name_pl>
+      <ability_description>You can crew a sailing vessel, and never feel ill due to stormy seas.</ability_description>
+      <ability_description_pl>Potrafisz obsługiwać żaglowiec i nie cierpisz na chorobę morską nawet w burzę.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="48_Sapper">
+      <ability_name>Sapper</ability_name>
+      <ability_name_pl>Saper</ability_name_pl>
+      <ability_description>When using blackpowder explosives or artillery, add +1 die to damage, discarding the lowest result.</ability_description>
+      <ability_description_pl>Używając prochu czarnego lub artylerii, dodajesz +1 kość do obrażeń i odrzucasz najniższy wynik.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="49_Schemer">
+      <ability_name>Schemer</ability_name>
+      <ability_name_pl>Intrygant</ability_name_pl>
+      <ability_description>When you bribe or blackmail others, you can do so subtly or through third parties, without drawing too much unwanted attention to yourself.</ability_description>
+      <ability_description_pl>Gdy przekupujesz lub szantażujesz innych, możesz to robić dyskretnie lub przez pośredników, nie przyciągając niepotrzebnej uwagi.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="50_Scout">
+      <ability_name>Scout</ability_name>
+      <ability_name_pl>Zwiad</ability_name_pl>
+      <ability_description>When you take the lead in the wilderness, you always spot your targets before they spot you.</ability_description>
+      <ability_description_pl>Gdy prowadzisz na pustkowiu, zawsze dostrzegasz cel przed tym, nim cel dostrzeże ciebie.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="51_Shifting">
+      <ability_name>Shifting</ability_name>
+      <ability_name_pl>Przemiana</ability_name_pl>
+      <ability_description>When drinking the blood of an animal you can attempt to take its form, leaving your possessions behind. However, it is a feat of willpower to revert to your original self, particularly the longer you stay a beast.</ability_description>
+      <ability_description_pl>Gdy wypijesz krew zwierzęcia, możesz próbować przybrać jego postać, zostawiając za sobą swój dobytek. Jednak powrót do własnego kształtu wymaga silnej woli — tym bardziej, im dłużej pozostajesz bestią.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="52_Skirmish">
+      <ability_name>Skirmish</ability_name>
+      <ability_name_pl>Potyczka</ability_name_pl>
+      <ability_description>+1 damage and worn armor counts as one type lighter.</ability_description>
+      <ability_description_pl>+1 obrażeń, a noszona zbroja liczy się jako jeden stopień lżejsza.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="53_Slay">
+      <ability_name>Slay</ability_name>
+      <ability_name_pl>Zabójca</ability_name_pl>
+      <ability_description>+2 melee damage.</ability_description>
+      <ability_description_pl>+2 obrażeń w walce wręcz.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="54_Sleuth">
+      <ability_name>Sleuth</ability_name>
+      <ability_name_pl>Detektyw</ability_name_pl>
+      <ability_description>When you search for clues, you can do so quickly and while on the move. You can always tell when someone is lying, though you may not know the cause of their deception.</ability_description>
+      <ability_description_pl>Gdy szukasz śladów, robisz to szybko i w ruchu. Zawsze wiesz, gdy ktoś kłamie, choć możesz nie znać przyczyny oszustwa.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="55_Sorcery">
+      <ability_name>Sorcery</ability_name>
+      <ability_name_pl>Czarodziejstwo</ability_name_pl>
+      <ability_description>You are able to cast spells that, while limited in scope, are much safer than the raw magical power of Wizardry. You start with three spells.</ability_description>
+      <ability_description_pl>Możesz rzucać zaklęcia, które — choć ograniczone w zakresie — są znacznie bezpieczniejsze niż surowa moc Czarnoksięstwa. Zaczynasz z trzema zaklęciami.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="56_Strategy">
+      <ability_name>Strategy</ability_name>
+      <ability_name_pl>Strategia</ability_name_pl>
+      <ability_description>When you are in combat, you can attempt to predict the movements, positions, and strengths of your enemies.</ability_description>
+      <ability_description_pl>W walce możesz próbować przewidzieć ruchy, pozycje i siły wrogów.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="57_Summon">
+      <ability_name>Summon</ability_name>
+      <ability_name_pl>Przywołanie</ability_name_pl>
+      <ability_description>You can call forth demons to seek their counsel...or so you can bind them to serve you. You start with two bound demons that you can call upon.</ability_description>
+      <ability_description_pl>Możesz wywoływać demony, by zasięgać ich rady... lub by związać je w służbę. Zaczynasz z dwoma związanymi demonami, na które możesz liczyć.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="58_Surgeon">
+      <ability_name>Surgeon</ability_name>
+      <ability_name_pl>Chirurg</ability_name_pl>
+      <ability_description>With the Treatment skill, you can try to mix new medicines or bring someone back from the brink of death.</ability_description>
+      <ability_description_pl>Używając umiejętności Leczenia, możesz próbować sporządzać nowe leki lub wyrwać kogoś z objęć śmierci.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="59_Talented">
+      <ability_name>Talented</ability_name>
+      <ability_name_pl>Utalentowany</ability_name_pl>
+      <ability_description>Add +1 Skill.</ability_description>
+      <ability_description_pl>Dodaj +1 Umiejętność.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="60_Tinker">
+      <ability_name>Tinker</ability_name>
+      <ability_name_pl>Majsterkowicz</ability_name_pl>
+      <ability_description>When you pick locks or disable traps, you can do so quickly and unnoticed while in plain sight.</ability_description>
+      <ability_description_pl>Gdy wyłamujesz zamki lub rozbrajasz pułapki, robisz to szybko i niezauważenie, nawet na widoku.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="61_Tough">
+      <ability_name>Tough</ability_name>
+      <ability_name_pl>Twardziel</ability_name_pl>
+      <ability_description>Add +1 armor, from being badass.</ability_description>
+      <ability_description_pl>Dodaj +1 do pancerza — jesteś zwyczajnie niezniszczalny.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="62_Tracker">
+      <ability_name>Tracker</ability_name>
+      <ability_name_pl>Tropiciel</ability_name_pl>
+      <ability_description>When you attempt to identify and follow tracks, you can do so quickly while on the move.</ability_description>
+      <ability_description_pl>Gdy próbujesz identyfikować i śledzić tropy, robisz to szybko w ruchu.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="63_Trick">
+      <ability_name>Trick</ability_name>
+      <ability_name_pl>Sztuczka</ability_name_pl>
+      <ability_description>You can attempt to distract or delay your opponent with your antics.</ability_description>
+      <ability_description_pl>Możesz próbować rozpraszać lub zwodzić przeciwnika swoimi wybrykami.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="64_Turn">
+      <ability_name>Turn</ability_name>
+      <ability_name_pl>Odpędzenie</ability_name_pl>
+      <ability_description>You can attempt to hold undead at bay with the power of your faith and a holy symbol.</ability_description>
+      <ability_description_pl>Możesz próbować powstrzymywać nieumarłych mocą swojej wiary i świętego symbolu.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="65_Vehemence">
+      <ability_name>Vehemence</ability_name>
+      <ability_name_pl>Gwałtowność</ability_name_pl>
+      <ability_description>When you use damaging magic effects, add +1 die to damage, discarding the lowest result.</ability_description>
+      <ability_description_pl>Gdy używasz niszczycielskich efektów magicznych, dodajesz +1 kość do obrażeń i odrzucasz najniższy wynik.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="66_Vision">
+      <ability_name>Vision</ability_name>
+      <ability_name_pl>Wizja</ability_name_pl>
+      <ability_description>Drink holy water to commune with your deity for divine guidance.</ability_description>
+      <ability_description_pl>Wypij święconą wodę, by obcować ze swoim bóstwem i otrzymać boskie wskazówki.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="67_Volley">
+      <ability_name>Volley</ability_name>
+      <ability_name_pl>Salwa</ability_name_pl>
+      <ability_description>Add +2 damage to any ranged attack.</ability_description>
+      <ability_description_pl>Dodaj +2 obrażeń do każdego ataku dystansowego.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="68_Warded">
+      <ability_name>Warded</ability_name>
+      <ability_name_pl>Osłonięty</ability_name_pl>
+      <ability_description>When you are using magic, your protective wards keep you safe, granting +1 Armor.</ability_description>
+      <ability_description_pl>Gdy używasz magii, twoje ochronne zaklęcia ochronią cię, dając +1 do Pancerza.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="69_Wild">
+      <ability_name>Wild</ability_name>
+      <ability_name_pl>Dzikość</ability_name_pl>
+      <ability_description>You can converse with and attempt to command animals.</ability_description>
+      <ability_description_pl>Możesz rozmawiać ze zwierzętami i próbować nimi dowodzić.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="70_Wizardry">
+      <ability_name>Wizardry</ability_name>
+      <ability_name_pl>Czarnoksięstwo</ability_name_pl>
+      <ability_description>You can create magical effects drawn from the raw power of Chaos. Such effects are powerful and wondrous, and not limited in scope like Sorcery. However, the risks of weaving such energies have hazards, both extreme and varied. You start with a Power score equal to your base Hit Dice +WIS.</ability_description>
+      <ability_description_pl>Możesz tworzyć magiczne efekty czerpiąc z surowej mocy Chaosu. Efekty te są potężne i cudowne, nieograniczone zakresem jak Czarodziejstwo. Jednakże ryzyko tkania takich energii kryje hazardy — skrajne i różnorodne. Zaczynasz z wynikiem Mocy równym twoim bazowym Kościom Wytrzymałości +MĄD.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+    <sampleDataSet dataSetName="71_WTF">
+      <ability_name>WTF?</ability_name>
+      <ability_name_pl>Co u licha?</ability_name_pl>
+      <ability_description>You get a bonus to roll against opponents that haven't fought against you. This bonus is lost after the first confrontation.</ability_description>
+      <ability_description_pl>Otrzymujesz premię do rzutów przeciwko wrogom, którzy jeszcze z tobą nie walczyli. Premia przepada po pierwszej konfrontacji.</ability_description_pl>
+      <ability_level>1</ability_level>
+      <ability_source>AWoD</ability_source>
+    </sampleDataSet>
+  </sampleDataSets>
+</variableSets>

@@ -1,0 +1,1235 @@
+<title>World of Dungeons</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ground:      #E9E5DC;
+    --text:        #18190E;
+    --page-bg:     #191C14;
+    --muted:       #8A8478;
+    --rule:        #C8C2B4;
+
+    --walka:       #6A1E14;
+    --magia:       #1C1A5C;
+    --spoleczne:   #164836;
+    --eksploracja: #523A10;
+
+    --walka-pale:       #F5EAE8;
+    --magia-pale:       #EAEAF5;
+    --spoleczne-pale:   #E6F0EC;
+    --eksploracja-pale: #F5EDDC;
+
+    --font-serif: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    --font-sans:  Optima, Candara, "Gill Sans MT", "Gill Sans", Calibri, sans-serif;
+  }
+
+  body {
+    background-color: var(--page-bg);
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent, transparent 31px,
+      rgba(255,255,255,0.016) 31px, rgba(255,255,255,0.016) 32px
+    );
+    min-height: 100vh;
+    padding: 3rem 2rem 5rem;
+    font-family: var(--font-sans);
+    color: var(--text);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .header-eyebrow {
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #484638;
+    margin-bottom: 0.6rem;
+  }
+
+  .header-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    font-weight: normal;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ground);
+    line-height: 1;
+  }
+
+  .header-rule {
+    width: 44px;
+    height: 1px;
+    background: #343422;
+    margin: 1.4rem auto 0;
+  }
+
+  /* ── TAB NAVIGATION ── */
+  .tab-nav-wrap {
+    max-width: 1300px;
+    margin: 0 auto 0;
+    border-bottom: 1px solid #252518;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-nav-wrap::-webkit-scrollbar { display: none; }
+
+  .tab-nav {
+    display: flex;
+    gap: 0;
+    min-width: max-content;
+  }
+
+  .tab-btn {
+    padding: 0.7rem 1.3rem;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #504E3C;
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-bottom: -1px;
+    transition: color 0.15s, border-color 0.15s;
+    outline: none;
+  }
+  .tab-btn:hover { color: #8A8470; }
+  .tab-btn:focus-visible { outline: 1px solid var(--ground); outline-offset: -2px; }
+  .tab-btn.active { color: var(--ground); border-bottom-color: var(--ground); }
+  .tab-btn[data-tab="zasady"].active          { color: var(--ground); border-bottom-color: #8A8470; }
+  .tab-btn[data-tab="alchemia"].active        { color: #C89040; border-bottom-color: #C89040; }
+  .tab-btn[data-tab="przyzwanie"].active      { color: #9070C0; border-bottom-color: #9070C0; }
+  .tab-btn[data-tab="czarnoksiestwo"].active  { color: #5090A0; border-bottom-color: #5090A0; }
+  .tab-btn[data-tab="magiachaosu"].active     { color: #C05040; border-bottom-color: #C05040; }
+
+  /* ── PANELS ── */
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* ── ZDOLNOŚCI PANEL ── */
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 2rem 0 2.25rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 0.3rem 0.8rem;
+    background: transparent;
+    border: 1px solid #30301E;
+    color: #585648;
+    font-family: var(--font-sans);
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s, border-color 0.12s;
+    outline: none;
+  }
+  .filter-btn:hover { border-color: #585648; color: #988E7A; }
+  .filter-btn:focus-visible { outline: 1px solid var(--ground); outline-offset: 2px; }
+
+  .filter-btn.active[data-cat="all"]          { background: var(--ground); border-color: var(--ground); color: var(--text); }
+  .filter-btn.active[data-cat="walka"]        { background: var(--walka); border-color: var(--walka); color: #F2E4E0; }
+  .filter-btn.active[data-cat="magia"]        { background: var(--magia); border-color: var(--magia); color: #DCDCF2; }
+  .filter-btn.active[data-cat="spoleczne"]    { background: var(--spoleczne); border-color: var(--spoleczne); color: #D0EAE2; }
+  .filter-btn.active[data-cat="eksploracja"]  { background: var(--eksploracja); border-color: var(--eksploracja); color: #F0E4C8; }
+
+  .sep { width: 1px; height: 18px; background: #30301E; flex-shrink: 0; margin: 0 0.2rem; }
+
+  .print-btn {
+    padding: 0.3rem 0.8rem;
+    background: transparent;
+    border: 1px solid #30301E;
+    color: #585648;
+    font-family: var(--font-sans);
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.12s, color 0.12s;
+    outline: none;
+  }
+  .print-btn:hover { border-color: var(--ground); color: var(--ground); }
+
+  /* ── CARDS GRID ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    gap: 1.15rem;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--ground);
+    aspect-ratio: 5 / 7;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    border-left: 5px solid transparent;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: cardIn 0.28s ease forwards;
+    transition: transform 0.18s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.18s ease, background 0.18s ease;
+  }
+
+  @keyframes cardIn { to { opacity: 1; transform: translateY(0); } }
+
+  .card[data-cat="walka"]       { border-left-color: var(--walka); }
+  .card[data-cat="magia"]       { border-left-color: var(--magia); }
+  .card[data-cat="spoleczne"]   { border-left-color: var(--spoleczne); }
+  .card[data-cat="eksploracja"] { border-left-color: var(--eksploracja); }
+
+  .card:hover { transform: translateY(-5px); box-shadow: 0 18px 44px rgba(0,0,0,0.55); }
+
+  .card[data-cat="walka"]:hover       { background: color-mix(in srgb, var(--walka-pale) 35%, var(--ground)); }
+  .card[data-cat="magia"]:hover       { background: color-mix(in srgb, var(--magia-pale) 35%, var(--ground)); }
+  .card[data-cat="spoleczne"]:hover   { background: color-mix(in srgb, var(--spoleczne-pale) 35%, var(--ground)); }
+  .card[data-cat="eksploracja"]:hover { background: color-mix(in srgb, var(--eksploracja-pale) 35%, var(--ground)); }
+
+  .card-inner {
+    padding: 0.8rem 0.85rem 0.7rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card-cat { display: flex; align-items: center; gap: 0.35rem; margin-bottom: 0.55rem; flex-shrink: 0; }
+
+  .cat-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  .card[data-cat="walka"]       .cat-dot { background: var(--walka); }
+  .card[data-cat="magia"]       .cat-dot { background: var(--magia); }
+  .card[data-cat="spoleczne"]   .cat-dot { background: var(--spoleczne); }
+  .card[data-cat="eksploracja"] .cat-dot { background: var(--eksploracja); }
+
+  .cat-label { font-size: 0.5rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+
+  .card-title {
+    font-family: var(--font-serif);
+    font-weight: normal;
+    font-size: 1.22rem;
+    line-height: 1.18;
+    color: #121410;
+    flex-shrink: 0;
+    margin-bottom: 0.2rem;
+  }
+
+  .card-en {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.6rem;
+    color: #9C9484;
+    flex-shrink: 0;
+  }
+
+  .card-rule { border: none; border-top: 1px solid var(--rule); margin: 0.65rem 0; flex-shrink: 0; }
+
+  .card-effect { font-size: 0.67rem; line-height: 1.56; color: #282A1C; flex: 1; }
+
+  .card-footer { margin-top: auto; padding-top: 0.45rem; display: flex; justify-content: flex-end; flex-shrink: 0; }
+
+  .card-source { font-size: 0.48rem; letter-spacing: 0.18em; text-transform: uppercase; color: #B4ACA0; }
+
+  /* ── RULES PANEL ── */
+  .rules-panel {
+    max-width: 680px;
+    margin: 2.5rem auto 0;
+    padding: 0 1rem 5rem;
+  }
+
+  .r-h1 {
+    font-family: var(--font-serif);
+    font-weight: normal;
+    font-size: 1.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ground);
+    margin: 2.5rem 0 1rem;
+    line-height: 1.15;
+  }
+  .r-h1:first-child { margin-top: 0; }
+
+  .r-h2 {
+    font-family: var(--font-serif);
+    font-weight: normal;
+    font-size: 1.2rem;
+    color: #C0BC9E;
+    margin: 1.8rem 0 0.65rem;
+    line-height: 1.25;
+  }
+
+  .r-h3 {
+    font-family: var(--font-sans);
+    font-weight: normal;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #686448;
+    margin: 1.4rem 0 0.45rem;
+  }
+
+  .r-p {
+    font-size: 0.875rem;
+    line-height: 1.72;
+    color: #A8A494;
+    margin-bottom: 0.65rem;
+  }
+
+  .r-p strong { color: #D8D4C4; font-weight: bold; }
+  .r-p em    { font-style: italic; color: #B8B4A4; }
+
+  .rules-hr { border: none; border-top: 1px solid #252518; margin: 2rem 0; }
+
+  .r-list {
+    list-style: none;
+    margin: 0.65rem 0 0.8rem;
+    padding: 0;
+  }
+
+  .r-list li {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: #A8A494;
+    padding-left: 1.25rem;
+    position: relative;
+    margin-bottom: 0.25rem;
+  }
+
+  .r-list li::before { content: '—'; position: absolute; left: 0; color: #484830; }
+
+  .r-list strong { color: #D8D4C4; font-weight: bold; }
+  .r-list em    { font-style: italic; }
+
+  .r-blockquote {
+    border-left: 3px solid #383820;
+    padding: 0.5rem 0 0.5rem 1.25rem;
+    margin: 1rem 0;
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #C0BC9E;
+    line-height: 1.6;
+  }
+
+  .r-blockquote strong { color: var(--ground); font-style: normal; }
+
+  .r-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.25rem;
+    font-size: 0.8rem;
+    overflow-x: auto;
+    display: block;
+  }
+
+  .r-table th {
+    text-align: left;
+    color: #888470;
+    font-family: var(--font-sans);
+    font-size: 0.56rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #2A2A18;
+    font-weight: normal;
+    white-space: nowrap;
+  }
+
+  .r-table td {
+    padding: 0.4rem 0.75rem;
+    color: #A0A088;
+    border-bottom: 1px solid #1E1E12;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .r-table td strong { color: #C8C4A8; font-weight: bold; }
+  .r-table tr:last-child td { border-bottom: none; }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; padding: 0; }
+    .header, .tab-nav-wrap, .controls { display: none; }
+    .panel { display: none !important; }
+    #panel-zdolnosci { display: block !important; }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 63mm);
+      gap: 2mm;
+      padding: 8mm 12mm;
+      max-width: none;
+    }
+    .card {
+      width: 63mm; height: 88mm; aspect-ratio: unset;
+      border: 0.3pt solid #CCC; border-left: 3pt solid;
+      break-inside: avoid; page-break-inside: avoid;
+      animation: none; opacity: 1; transform: none !important;
+      box-shadow: none !important; background: white !important;
+      transition: none;
+    }
+    .card:hover { transform: none; box-shadow: none; background: white !important; }
+    .card-inner { padding: 4pt 5pt; }
+    .card-title { font-size: 10pt; }
+    .card-effect { font-size: 6.5pt; line-height: 1.4; }
+    .card-en { font-size: 6pt; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card { animation: none; opacity: 1; transform: none; transition: none; }
+  }
+</style>
+
+<div class="header">
+  <p class="header-eyebrow">Advanced World of Dungeons</p>
+  <h1 class="header-title">Podręcznik</h1>
+  <div class="header-rule"></div>
+</div>
+
+<div class="tab-nav-wrap">
+  <nav class="tab-nav" role="tablist">
+    <button class="tab-btn active" data-tab="zdolnosci" role="tab" aria-selected="true">Zdolności</button>
+    <button class="tab-btn" data-tab="zasady"         role="tab">Zasady</button>
+    <button class="tab-btn" data-tab="alchemia"       role="tab">Alchemia</button>
+    <button class="tab-btn" data-tab="przyzwanie"     role="tab">Przyzwanie</button>
+    <button class="tab-btn" data-tab="czarnoksiestwo" role="tab">Czarnoksięstwo</button>
+    <button class="tab-btn" data-tab="magiachaosu"    role="tab">Magia Chaosu</button>
+  </nav>
+</div>
+
+<!-- PANEL: Zdolności -->
+<div class="panel active" id="panel-zdolnosci" role="tabpanel">
+  <div class="controls" id="controls">
+    <button class="filter-btn active" data-cat="all">Wszystkie</button>
+    <button class="filter-btn" data-cat="walka">Walka</button>
+    <button class="filter-btn" data-cat="magia">Magia</button>
+    <button class="filter-btn" data-cat="spoleczne">Społeczne</button>
+    <button class="filter-btn" data-cat="eksploracja">Eksploracja</button>
+    <div class="sep"></div>
+    <button class="print-btn" onclick="window.print()">Drukuj</button>
+  </div>
+  <div class="cards-grid" id="cardsGrid"></div>
+</div>
+
+<!-- PANEL: Zasady -->
+<div class="panel" id="panel-zasady" role="tabpanel">
+  <div class="rules-panel" id="rules-zasady"></div>
+</div>
+
+<!-- PANEL: Alchemia -->
+<div class="panel" id="panel-alchemia" role="tabpanel">
+  <div class="rules-panel" id="rules-alchemia"></div>
+</div>
+
+<!-- PANEL: Przyzwanie -->
+<div class="panel" id="panel-przyzwanie" role="tabpanel">
+  <div class="rules-panel" id="rules-przyzwanie"></div>
+</div>
+
+<!-- PANEL: Czarnoksięstwo -->
+<div class="panel" id="panel-czarnoksiestwo" role="tabpanel">
+  <div class="rules-panel" id="rules-czarnoksiestwo"></div>
+</div>
+
+<!-- PANEL: Magia Chaosu -->
+<div class="panel" id="panel-magiachaosu" role="tabpanel">
+  <div class="rules-panel" id="rules-magiachaosu"></div>
+</div>
+
+<script>
+/* ── ABILITIES DATA ── */
+const ABILITIES = [
+  // WALKA
+  { pl:"Szał",                   en:"Berserk",             cat:"walka",       effect:"Gdy masz przewagę liczebną przeciw sobie, zadajesz +1 obrażenie i masz +1 Pancerza, ale trudniej ci powstrzymać się od przemocy." },
+  { pl:"Krzepa",                 en:"Brawny",               cat:"walka",       effect:"Zadajesz +1 obrażenie bronią wręcz i miotaną oraz możesz raz przerzucić obrażenia przy każdym ataku." },
+  { pl:"Szermierz",              en:"Duelist",              cat:"walka",       effect:"Traktujesz każdą broń jednoręczną jak broń lekką." },
+  { pl:"Ciężkie Dłonie i Stopy", en:"Heavy Hands/Feet",    cat:"walka",       effect:"Zadajesz 1k6 obrażeń bez broni. Na poziomach 3, 5, 7 i 9 otrzymujesz dodatkowe +1 obrażenie." },
+  { pl:"Łowca",                  en:"Hunter",               cat:"walka",       effect:"Zadajesz +3 obrażenia atakami dystansowymi, gdy cel nie wie o twojej obecności." },
+  { pl:"Oportunista",            en:"Opportunist",          cat:"walka",       effect:"Gdy ty i twoi sojusznicy macie przewagę nad przeciwnikami, zadajesz +2 obrażenia." },
+  { pl:"Saper",                  en:"Sapper",               cat:"walka",       effect:"Gdy używasz czarnego prochu, materiałów wybuchowych lub artylerii, dodajesz jedną kość obrażeń i odrzucasz najniższy wynik." },
+  { pl:"Strategia",              en:"Strategy",             cat:"walka",       effect:"W walce możesz próbować przewidywać ruchy, pozycje i mocne strony przeciwników." },
+  { pl:"Gwałtowność",            en:"Vehemence",            cat:"walka",       effect:"Gdy używasz niszczących efektów magicznych, dodajesz jedną kość obrażeń i odrzucasz najniższy wynik." },
+  { pl:"Skalna Skóra",           en:"Rockskin",             cat:"walka",       effect:"Masz skórę twardą jak skała i Pancerz 2." },
+  { pl:"Brawura",                en:"Daring",               cat:"walka",       effect:"Raz dziennie możesz zignorować obrażenia lub skutki zagrożenia środowiskowego." },
+  { pl:"Sztuczka",               en:"Trick",                cat:"walka",       effect:"Możesz próbować rozpraszać lub opóźniać przeciwnika swoimi wybiegami." },
+  // MAGIA
+  { pl:"Alchemia",               en:"Alchemy",              cat:"magia",       effect:"Możesz nasycać magią mikstury, maści i przedmioty. Zaczynasz z trzema formułami alchemicznymi." },
+  { pl:"Chowaniec",              en:"Familiar",             cat:"magia",       effect:"Masz magicznie związanego zwierzęcego towarzysza i możesz patrzeć oraz słyszeć jego zmysłami." },
+  { pl:"Magia Kontaktowa",       en:"Full-contact Magic",   cat:"magia",       effect:"Możesz przekazywać zaklęcia przez ciosy pięściami w walce wręcz." },
+  { pl:"Magiczne Punkty Życia",  en:"Magic-fueled HP",      cat:"magia",       effect:"Masz dodatkowe punkty życia równe wartości Power. Każde użycie Wizardry zużywa część tych punktów." },
+  { pl:"Potępienie",             en:"Damnation",            cat:"magia",       effect:"Możesz próbować zsyłać klątwy lub choroby przez kontakt wzrokowy albo fetysz." },
+  { pl:"Zmiana Kształtu",        en:"Shifting",             cat:"magia",       effect:"Po wypiciu krwi zwierzęcia możesz próbować przyjąć jego postać, zostawiając swój ekwipunek. Powrót do własnej formy wymaga siły woli." },
+  { pl:"Czarnoksięstwo",         en:"Sorcery",              cat:"magia",       effect:"Możesz rzucać ograniczone, ale bezpieczniejsze zaklęcia oparte na konkretnych formułach. Zaczynasz z trzema zaklęciami." },
+  { pl:"Magia Chaosu",           en:"Wizardry",             cat:"magia",       effect:"Możesz tworzyć potężne efekty magiczne z surowej mocy Chaosu, ale każde użycie niesie ryzyko nieprzewidzianych skutków i skażenia Warp." },
+  { pl:"Ochronne Pieczęcie",     en:"Warded",               cat:"magia",       effect:"Gdy używasz magii, twoje ochronne pieczęcie dają ci +1 Pancerza." },
+  { pl:"Tarcza Umysłu",          en:"Mind Shield",          cat:"magia",       effect:"Jesteś odporny na strach, zauroczenie i zaklęcia snu." },
+  // SPOŁECZNE
+  { pl:"Zamożność",              en:"Affluent",             cat:"spoleczne",   effect:"Gdy nie masz pieniędzy, możesz próbować kupować rzeczy na kredyt, obiecując zapłatę później." },
+  { pl:"Urok",                   en:"Allure",               cat:"spoleczne",   effect:"Gdy kogoś uwodzisz, możesz skłonić go do ujawnienia intymnych sekretów. Możesz też przyciągnąć czyjąś uwagę samym spojrzeniem." },
+  { pl:"Targowanie",             en:"Bargain",              cat:"spoleczne",   effect:"Raz dziennie możesz obniżyć cenę zakupu o połowę dzięki kontaktom z kupcami lub gildiami." },
+  { pl:"Koneksje",               en:"Connected",            cat:"spoleczne",   effect:"Możesz próbować uzyskać przysługi od możnych: pożyczkę, zaproszenie lub wprowadzenie do wpływowych osób." },
+  { pl:"Dyplomata",              en:"Diplomat",             cat:"spoleczne",   effect:"Możesz negocjować nawet z bardzo nieprzyjaznymi istotami, jeśli są dość inteligentne, by cię zrozumieć." },
+  { pl:"Natchnienie",            en:"Inspire",              cat:"spoleczne",   effect:"Możesz próbować wpływać na opinię publiczną pieśnią, opowieścią lub przemową." },
+  { pl:"Intrygant",              en:"Schemer",              cat:"spoleczne",   effect:"Możesz przekupywać i szantażować subtelnie, przez pośredników, bez przyciągania nadmiernej uwagi." },
+  { pl:"Uspokojenie",            en:"Pacify",               cat:"spoleczne",   effect:"Możesz próbować uspokajać lub oczarowywać inteligentne istoty swoim głosem." },
+  { pl:"Występ",                 en:"Perform",              cat:"spoleczne",   effect:"Gdy zabawiasz tłum, możesz zarobić 1k6 srebra za poziom dziennie, ale przy wyniku 1 publiczność obraca się przeciw tobie." },
+  { pl:"Prestiż",                en:"Prestige",             cat:"spoleczne",   effect:"Wszyscy wiedzą, kim jesteś. Koszt najemników jest dla ciebie o połowę niższy." },
+  { pl:"Lingwista",              en:"Linguist",             cat:"spoleczne",   effect:"Umiesz mówić i czytać we wszystkich cywilizowanych językach." },
+  // EKSPLORACJA
+  { pl:"Wycena",                 en:"Appraise",             cat:"eksploracja", effect:"Po obejrzeniu dzieła sztuki lub towaru możesz określić jego przybliżoną wartość." },
+  { pl:"Okryty Cieniem",         en:"Cloaked",              cat:"eksploracja", effect:"Gdy jesteś pod osłoną ciemności, otrzymujesz +1 Pancerza." },
+  { pl:"Gibkość",                en:"Contort",              cat:"eksploracja", effect:"Możesz wydostawać się z więzów i przeciskać przez ciasne przestrzenie." },
+  { pl:"Kieszonkowiec",          en:"Cutpurse",             cat:"eksploracja", effect:"Możesz szybko kraść kieszonkowo lub ukrywać przedmioty przy sobie, nawet w biegu." },
+  { pl:"Przebranie",             en:"Disguise",             cat:"eksploracja", effect:"Używając kostiumów i makijażu, możesz przekonująco udawać innych lub ukryć własną tożsamość." },
+  { pl:"Inżynier",               en:"Engineer",             cat:"eksploracja", effect:"Z umiejętnością Crafting możesz tworzyć i naprawiać urządzenia mechaniczne oraz broń palną." },
+  { pl:"Ekspert",                en:"Expert",               cat:"eksploracja", effect:"Raz dziennie możesz zamienić porażkę w częściowy sukces." },
+  { pl:"Gadżeciarstwo",          en:"Gadgetry",             cat:"eksploracja", effect:"Rozwiązujesz problemy gadżetami. Przy ryzykownych działaniach możesz używać INT, ale porażka oznacza wadliwe działanie urządzenia." },
+  { pl:"Ucieczka",               en:"Getaway",              cat:"eksploracja", effect:"Raz dziennie możesz automatycznie uciec z miejsca, unikając pościgu." },
+  { pl:"Zasłona z Najemnika",    en:"Guarded",              cat:"eksploracja", effect:"Raz dziennie możesz przekierować atak wymierzony w ciebie na jednego ze swoich najemników." },
+  { pl:"Instynkt",               en:"Instinct",             cat:"eksploracja", effect:"Możesz przerzucać DEX, gdy reagujesz na niebezpieczne sytuacje." },
+  { pl:"Czujka",                 en:"Lookout",              cat:"eksploracja", effect:"Gdy idziesz na przedzie w mieście lub lochu, zawsze zauważasz cele, zanim one zauważą ciebie." },
+  { pl:"Wędrowiec",              en:"Rover",                cat:"eksploracja", effect:"Gdy biegniesz przez dzicz, nie zostawiasz wyraźnych śladów." },
+  { pl:"Żeglarz",                en:"Sailor",               cat:"eksploracja", effect:"Umiesz obsługiwać statek żaglowy i nigdy nie cierpisz na chorobę morską." },
+  { pl:"Detektyw",               en:"Sleuth",               cat:"eksploracja", effect:"Możesz szybko szukać wskazówek, także w ruchu. Zawsze wiesz, kiedy ktoś kłamie, choć niekoniecznie dlaczego." },
+  { pl:"Chirurg",                en:"Surgeon",              cat:"eksploracja", effect:"Z odpowiednią umiejętnością leczenia możesz mieszać nowe lekarstwa lub ratować kogoś na granicy śmierci." },
+  { pl:"Utalentowany",           en:"Talented",             cat:"eksploracja", effect:"Otrzymujesz +1 umiejętność." },
+  { pl:"Tropiciel Śladów",       en:"Tracker",              cat:"eksploracja", effect:"Możesz szybko rozpoznawać i śledzić tropy, także w ruchu." },
+  { pl:"Co To Było?",            en:"WTF?",                 cat:"eksploracja", effect:"Masz premię przeciw przeciwnikom, którzy jeszcze z tobą nie walczyli. Premia znika po pierwszej konfrontacji." },
+  { pl:"Udawanie Śmierci",       en:"Simulate Death",       cat:"eksploracja", effect:"Raz dziennie możesz obniżyć tętno i temperaturę ciała oraz sprawiać wrażenie martwego przez 1k6 minut na poziom." },
+];
+
+const CAT_LABELS = { walka:'Walka', magia:'Magia', spoleczne:'Społeczne', eksploracja:'Eksploracja' };
+
+/* ── RULES CONTENT ── */
+const RULES_CONTENT = {
+  zasady: `# Tworzenie Postaci (Character Creation)
+
+## Atrybuty
+
+Rzuć **2k6** dla każdego z sześciu Atrybutów:
+
+- Siła (**STR**)
+- Inteligencja (**INT**)
+- Zręczność (**DEX**)
+- Mądrość (**WIS**)
+- Kondycja (**CON**)
+- Charyzma (**CHA**)
+
+Odczytaj wynik:
+
+| Wynik 2k6 | Wartość Atrybutu |
+|-----------|-----------------:|
+| 2–6 | +0 |
+| 7–9 | +1 |
+| 10–11 | +2 |
+| 12 | +3 |
+
+---
+
+## Umiejętności
+
+Wybierz **jedną Umiejętność**.
+
+Dostępne Umiejętności:
+
+- Atletyka — Czujność — Kultura — Oszustwo — Odczytywanie
+- Leczenie — Dowodzenie — Wiedza — Skradanie — Przetrwanie
+- Rzemiosło — Mechanika — Mediacja
+
+---
+
+## Punkty Życia
+
+> **1 Kość Życia (k6) + dodatkowe Kości Życia równe modyfikatorowi CON.**
+
+Rzuć wszystkimi Kośćmi Życia. Zatrzymaj liczbę wyników równą swojemu poziomowi. Ich suma stanowi **Punkty Życia**.
+
+Po odpoczynku, spożyciu racji żywności i napiciu się wody możesz ponownie przeliczyć Punkty Życia. Jeżeli opiekuje się tobą uzdrowiciel, rzuć jedną dodatkową Kością Życia.
+
+---
+
+# Wyposażenie
+
+Na początku gry otrzymujesz **60 srebrników**.
+
+## Broń
+
+| Typ | Cena | Obrażenia | Uwagi |
+|-----|-----:|-----------|-------|
+| Lekka | 10 sr | 1k6 | Można przerzucić raz |
+| Bojowa | 30 sr | 1k6+1 | Tylko broń główna |
+| Dwuręczna | 40 sr | 1k6+2 | Wymaga obu rąk |
+| Krótki łuk / proca | 10 sr | 1k6 | — |
+| Łuk / kusza | 30 sr | 1k6+1 | — |
+| Ciężki łuk / arkebuz | 50 sr | 1k6+2 | +obrażenia tylko z nieruchomej pozycji |
+
+## Pancerz
+
+| Typ | Cena | Pancerz |
+|-----|-----:|--------:|
+| Lekki | 30 sr | +1 |
+| Ciężki (z hełmem) | 60 sr | +2 |
+| Tarcza | 10 sr | +1 |
+
+Ciężki pancerz znacznie utrudnia bieganie, skradanie, pływanie i wspinaczkę.
+
+---
+
+## Sprzęt Podróżny — 2 sr/szt.
+
+- Lina (6 m), żelazny kolec, kreda, pergamin, krzesiwo, 4 pochodnie
+- Namiot, bandaże, racje żywnościowe, bukłak z wodą/winem
+
+## Narzędzia — 5 sr/szt.
+
+- Łom, siekierka, pułapka, wytrychy, hak z liną, kilof, łopata
+
+## Przedmioty Okultystyczne — 10 sr/szt.
+
+- Dawka Rtęci Alchemicznej, woreczek sproszkowanych kości, Woda Święcona, fiolka krwi, kadzidła i oleje
+
+## Ogień Alchemiczny — 20 sr
+
+Zadaje **1k6+1 obrażeń przez 3 rundy**. Jedna butla = 10 napełnień latarni.
+
+---
+
+## Najemnicy
+
+| Typ | Koszt | PŻ | Wyposażenie |
+|-----|------:|---:|-------------|
+| Tragarz z pochodnią | 2 sr/dzień | 3 | Nóż |
+| Przewodnik | 5 sr/dzień | 6 | Nóż, latarnia, lina |
+| Zbrojny | 20 sr/dzień | 12 | Włócznia, tarcza, lekki pancerz |
+| Specjalista | 20 sr/dzień | 6 | Umiejętność 4, sztylet, łuk |
+| Czempion | 60 sr/dzień | 18 | Ciężki pancerz, halabarda, miecz, tarcza |
+
+---
+
+# Rzuty Kośćmi
+
+Gdy podejmujesz ryzykowne działanie:
+
+> **Rzuć 2k6 i dodaj odpowiedni Atrybut.**
+
+| Wynik | Rezultat |
+|------:|----------|
+| 6– | Porażka. Ryzyko materializuje się w najgorszy możliwy sposób. |
+| 7–9 | Częściowy sukces. Cel osiągnięty, ale z kosztem lub komplikacją. |
+| 10–11 | Sukces bez komplikacji. |
+| 12+ | Sukces Krytyczny. Pełny sukces z nieoczekiwaną korzyścią. |
+
+---
+
+## Umiejętności
+
+Jeżeli posiadasz odpowiednią **Umiejętność**, wynik **6 lub mniej** liczy się jako **Częściowy sukces** — jednak komplikacja będzie poważniejsza.
+
+## Kość Losu
+
+Czasami wynik zależy wyłącznie od szczęścia. MG rzuca **Kością Losu** — niskie wyniki to pech, wysokie to szczęście.
+
+---
+
+# Doświadczenie i Poziomy
+
+Za każdy wyniesiony z lochu **1 srebrnik** otrzymujesz **1 XP**. Można też zdobywać XP za pokonanych wrogów i ukończone misje (10–200+ XP).
+
+| Poziom | Kości Życia | Umiejętności | Atrybuty | Łączne XP |
+|-------:|-------------|-------------|----------|----------:|
+| 1 | 1 + CON | 2 | — | 0 |
+| 2 | +1 | — | — | 1 000 |
+| 3 | +1 | +1 | — | 3 000 |
+| 4 | +1 | — | +1 | 6 000 |
+| 5 | +1k6 | — | — | 10 000 |
+| 6 | +1 | +1 | +1 | 15 000 |
+| 7 | +1 | — | +1 | 21 000 |
+| 8 | +1 | — | — | 28 000 |
+| 9 | +1 | +1 | — | 36 000 |
+| 10 | +1 | — | +1 (+1k6 obrażeń) | 45 000 |
+
+---
+
+## Typowe Potwory
+
+| Rodzaj | PŻ | Obrażenia |
+|--------|---:|----------:|
+| Zwykły człowiek | 4 | 1k6+1 |
+| Elitarny wojownik / magiczna bestia | — | 2k6 |
+| Potężna magia / wielkie potwory | — | 3k6 |`,
+
+  alchemia: `# Alchemia
+
+Alchemia działa podobnie do zaklęć — magia zostaje zamknięta w fizycznej postaci: miksturze, maści lub przedmiocie.
+
+Tworzenie preparatów jest ryzykowne ze względu na żrące substancje i niestabilne składniki. Samo **użycie** gotowego preparatu jest bezpieczne i zazwyczaj nie wymaga rzutu.
+
+Przygotowanie jednego preparatu kosztuje **100 srebrników** i zajmuje **1 dzień**. Z **Zestawem Alchemika** koszt spada do **25 srebrników**, a czas do **4 godzin**.
+
+Alchemik rozpoczyna grę z **trzema recepturami** i może poznawać kolejne podczas badań, eksperymentów lub przygód.
+
+---
+
+# Tworzenie receptury
+
+Każda receptura składa się z **dwóch elementów**: formy preparatu i efektu.
+
+## Forma preparatu
+
+Wybierz jedną:
+
+- **Mikstura** — można wypić tylko raz.
+- **Maść lub balsam** — można zastosować trzykrotnie.
+- **Przedmiot jednorazowego użytku** — każdy użytkownik może skorzystać tylko raz.
+- **Przedmiot wymagający 2 PŻ ludzkiej krwi** do aktywacji.
+- **Przedmiot wymagający polania wodą święconą**.
+- **Przedmiot wymagający spożycia Rtęci Alchemicznej (Quicksilver)** przed użyciem.
+
+---
+
+## Efekt
+
+Wybierz jeden:
+
+- +1 Pancerza przez 1 minutę.
+- +1 do wybranego Atrybutu przez 1 minutę.
+- +1k6 obrażeń bronią wręcz lub dystansową przez 1 minutę.
+- Korzystanie z jednej wybranej Zdolności przez 1 godzinę.
+- Korzystanie z jednej wybranej Umiejętności przez 1 godzinę.
+- Zadanie **2k6 magicznych obrażeń** pobliskiemu celowi (**3k6**, jeśli jest szczególnie podatny).
+- Natychmiastowe leczenie oraz +1 Kość Odzyskiwania.
+- Poznanie odpowiedzi na jedno pytanie.
+- Niewrażliwość na ból.
+- Wykonanie nadludzkiego wyczynu (np. latanie lub oddychanie pod wodą) przez 10 minut.
+
+---
+
+# Przykładowe receptury
+
+## Balsam Morza
+
+**Forma:** Maść (trzykrotne użycie)
+
+**Efekt:** Oddychanie pod wodą przez 10 minut.
+
+---
+
+## Smoczy Oddech
+
+**Forma:** Mikstura (jednorazowa)
+
+**Efekt:** Po wypiciu użytkownik może raz zionąć ogniem, zadając pobliskiemu przeciwnikowi **2k6 obrażeń magicznych**.
+
+---
+
+## Karwasze Olbrzyma
+
+**Forma:** Przedmiot wymagający spożycia Rtęci Alchemicznej
+
+**Efekt:** Przez 1 minutę ataki wręcz zadają dodatkowe **+1k6 obrażeń**.`,
+
+  przyzwanie: `# Przyzywanie (Summoning)
+
+Przyzywanie demonów jest jedną z najszybszych dróg do zdobycia ogromnej mocy.
+
+Sam akt przywołania bywa niebezpieczny i wymaga znajomości **prawdziwego imienia demona**, którego chcesz wezwać.
+
+---
+
+# Warunki przywołania
+
+Aby przyzwać demona, musisz spełnić **jeden** z poniższych warunków:
+
+- Przeprowadzić **godzinny, nieprzerwany rytuał**.
+- Spożyć dawkę **Rtęci Alchemicznej (Quicksilver)**.
+- Użyć **magicznego przedmiotu**, w którym demon został wcześniej uwięziony.
+- Złożyć **ofiarę z 5 Punktów Życia**.
+- Narysować **krąg przywołania z proszku szmaragdowego**.
+
+Po przywołaniu możesz rozmawiać z demonem i zadawać mu pytania. Demony znają wiele sekretów niedostępnych śmiertelnikom.
+
+Możesz również spróbować **związać demona**, zmuszając go do posłuszeństwa.
+
+---
+
+# Wiązanie demona
+
+Wiązanie jest zawsze ryzykowne. Demony nie chcą służyć śmiertelnikom i przy każdej okazji próbują wypaczyć znaczenie wydanych rozkazów.
+
+Aby związać demona, musisz:
+
+- Przeprowadzić **godzinny rytuał**.
+- Narysować **krąg z proszku złota**.
+- Spełnić **jeden** z poniższych dodatkowych warunków:
+- Posiadać **Kamień Osnowy (Warpstone)**.
+- Posiadać fragment ciała przyzywanego ducha lub demona.
+- Podpisać z demonem kontrakt.
+- Złożyć **ofiarę z 20 Punktów Życia**.
+
+---
+
+# Związane demony
+
+Po związaniu demon staje się twoim sługą. Możesz **raz dziennie** przyzwać go, aby wykonał **jedno polecenie**, bez ryzyka buntu.
+
+Najczęściej demony:
+
+- Odpowiadają na pytania i ujawniają ukrytą wiedzę.
+- Wykonują złowrogą magię.
+- Realizują pojedyncze zadanie zgodnie z decyzją Mistrza Gry.
+
+Każda prośba wykraczająca poza ten zakres wymaga negocjacji.
+
+Nawet związany demon pozostaje istotą przebiegłą i złośliwą. Jeśli tylko znajdzie sposób, będzie próbował wypaczyć polecenie lub obrócić je przeciw swojemu panu.
+
+---
+
+# Początkowe demony
+
+Przywoływacz rozpoczyna grę z **dwoma związanymi demonami**.
+
+Każdy z nich posiada własne prawdziwe imię, osobowość, wiedzę i moce określane przez Mistrza Gry. Stanowią zarówno potężne narzędzie, jak i nieustanne zagrożenie dla swojego pana.`,
+
+  czarnoksiestwo: `# Czarnoksięstwo (Sorcery)
+
+Czarnoksięstwo jest najbezpieczniejszym sposobem korzystania z magii. Zaklęcia są ograniczone do konkretnych efektów i formuł — zamiast wykonywać daną czynność przy pomocy narzędzi i długiego przygotowania, mag osiąga ten sam rezultat mocą magiczną.
+
+Czarownik rozpoczyna grę z **trzema zaklęciami** i może poznawać kolejne podczas badań lub przygód.
+
+Rzucenie zaklęcia nie zawsze wymaga rzutu — zależy to od sytuacji, presji czasu i zagrożenia.
+
+Każde zaklęcie powinno mieć własną, tajemniczo brzmiącą nazwę.
+
+---
+
+# Tworzenie zaklęcia
+
+Każde zaklęcie składa się z **trzech elementów**: sposobu rzucania, celu i efektu.
+
+## Sposób rzucania
+
+Wybierz jeden:
+
+### Natychmiastowe
+
+Zaklęcie działa od razu. Jego efekt jest chwilowy.
+
+### Powolne
+
+Zaklęcie aktywuje się na początku następnej tury i trwa tak długo, jak długo utrzymujesz koncentrację.
+
+### Inkantacja
+
+Rzucenie zajmuje około **1 minuty**. Efekt trwa maksymalnie **1 godzinę**.
+
+### Rytuał
+
+Rzucenie zajmuje około **5 minut**. Efekt trwa **1 godzinę za każde poświęcone 2 Punkty Życia**.
+
+---
+
+## Cel
+
+Wybierz jeden:
+
+- Wszyscy w najbliższym obszarze (widoczny efekt).
+- Ty sam (subtelny efekt).
+- Osoba, której dotykasz.
+- Jeden pobliski cel.
+
+---
+
+## Efekt
+
+Wybierz jeden:
+
+- +1 Pancerza.
+- +1 lub -1 do wybranego Atrybutu.
+- Korzystanie z jednej Umiejętności.
+- Korzystanie z jednej Zdolności.
+- Zadanie **1k6 magicznych obrażeń** (+2, jeśli cel jest szczególnie podatny).
+- Natychmiastowe wykonanie zwykłej czynności przy pomocy magii.
+- Wykonanie zwykłej czynności na odległość.
+- Magiczne zastąpienie działania przedmiotu o wartości do **10 srebrników**.
+- Zwiększenie lub zmniejszenie efektu środowiskowego (wiatr, światło, zimno, mgła, deszcz).
+
+---
+
+# Rtęć alchemiczna (Quicksilver)
+
+Po wypiciu dawki Rtęci możesz wzmocnić zaklęcie na jeden z dwóch sposobów:
+
+- **Wydłużyć** jego czas działania o jeden poziom.
+- **Skrócić** czas rzucania o jeden poziom.
+
+| Czas działania | → |
+|----------------|---|
+| Chwilowy | Koncentracja |
+| Koncentracja | 1 godzina |
+
+| Czas rzucania | → |
+|---------------|---|
+| Rytuał | Inkantacja |
+| Inkantacja | Powolne |
+| Powolne | Natychmiastowe |
+
+---
+
+# Przykładowe zaklęcia
+
+## Duchowa Świeca
+
+**Rzucanie:** Powolne — **Cel:** Ty sam
+
+Tworzysz unoszące się światło oświetlające okolicę tak długo, jak utrzymujesz koncentrację.
+
+---
+
+## Łowy Sigmara
+
+**Rzucanie:** Rytuał — **Cel:** Ty sam
+
+Otrzymujesz zdolność **Tropiciel** na jedną godzinę za każde poświęcone 2 Punkty Życia.
+
+---
+
+## Sprawiedliwy Gniew
+
+**Rzucanie:** Natychmiastowe — **Cel:** Dotyk
+
+Dotknięty przeciwnik otrzymuje **1k6 magicznych obrażeń**, jakby został ugodzony mieczem.
+
+---
+
+## Głos Umysłu
+
+**Rzucanie:** Powolne — **Cel:** Jeden pobliski cel
+
+Możesz rozmawiać z wybraną osobą wyłącznie za pomocą myśli.`,
+
+  magiachaosu: `# Magia Chaosu (Wizardry)
+
+Magia Chaosu jest najpotężniejszą, ale również najbardziej niebezpieczną formą magii. W przeciwieństwie do Czarnoksięstwa, czerpie energię bezpośrednio z surowych sił Chaosu. Zaklęcia nie są ograniczone listą efektów — jedynym ograniczeniem jest moc maga i ryzyko wypaczenia rzeczywistości.
+
+---
+
+# Moc (Power)
+
+Każdy Mag rozpoczyna grę z wartością **Mocy (Power)** równą:
+
+> **Bazowa liczba Kości Życia + Modyfikator Mądrości (WIS)**
+
+Mag 1. poziomu z **WIS +2** posiada **3 Punkty Mocy**.
+
+Punkty Mocy wydajesz podczas rzucania zaklęć. Im potężniejsze zaklęcie, tym więcej Mocy kosztuje.
+
+---
+
+# Domyślne zaklęcie
+
+Każde zaklęcie domyślnie:
+
+- Działa z opóźnieniem (efekt na początku następnej tury).
+- Posiada jeden cel w zasięgu wzroku.
+- Trwa 1 minutę.
+
+Zmieniając te parametry, zwiększasz lub zmniejszasz koszt.
+
+---
+
+# Modyfikatory Mocy
+
+## Zwiększenie dostępnej Mocy (+1 za każdy)
+
+- Zaklęcie działa wyłącznie na ciebie lub dotykaną osobę.
+- Efekt jest natychmiastowy lub bardzo krótki.
+- Poświęcasz 5 Punktów Życia lub wypijasz dwie dawki Rtęci Alchemicznej.
+- Wdychasz szczyptę Kamienia Osnowy (Warpstone).
+- Rzucenie zaklęcia wymaga godzinnego rytuału.
+- Potrzebujesz fetyszu wykonanego z włosów celu.
+
+---
+
+## Zmniejszenie dostępnej Mocy (-1 za każdy)
+
+- Zaklęcie obejmuje wszystkich w pobliżu celu.
+- Możesz wskazać dowolny cel, jeśli posiadasz próbkę jego krwi.
+- Zaklęcie trwa 1 godzinę.
+- Zaklęcie trwa tak długo, jak utrzymujesz koncentrację.
+- Zaklęcie trwa tak długo, jak co godzinę poświęcasz 5 Punktów Życia.
+- Efekt pojawia się natychmiast.
+
+---
+
+# Efekty zaklęć
+
+Każdy wydany Punkt Mocy pozwala uzyskać jeden z poniższych efektów:
+
+- Przejąć kontrolę nad bezmyślnymi nieumarłymi w liczbie równej twojej Inteligencji.
+- Przejąć kontrolę nad działaniami jednej istoty.
+- Stworzyć lub usunąć efekt środowiskowy.
+- Dać +1 do dowolnego działania lub +2 do jednego Atrybutu.
+- Nałożyć -1 do dowolnego działania lub -2 do jednego Atrybutu.
+- Nadać nadprzyrodzoną zdolność.
+- Zadać **2k6 magicznych obrażeń** (**3k6**, jeśli cel jest szczególnie podatny).
+- Natychmiast uleczyć cel (+2 Kości Odzyskiwania).
+- Poznać odpowiedzi na trzy pytania.
+- Ożywić bezmyślnych nieumarłych w liczbie równej twojej liczbie Kości Życia.
+
+Efekty można **łączyć**, wydając odpowiednią liczbę Punktów Mocy.
+
+---
+
+# Rzucanie zaklęć
+
+> **2k6 + INT**
+
+Jeżeli dzięki wysokiej Mocy rzucasz więcej niż dwiema kośćmi, **zachowujesz tylko dwa najwyższe wyniki**.
+
+| Wynik | Rezultat |
+|------:|----------|
+| 6– | Zaklęcie działa, ale efekt opisuje MG. Następuje **Skażenie Osnową**. |
+| 7–9 | Zaklęcie działa zgodnie z zamierzeniem + efekt uboczny. **Skażenie Osnową**. |
+| 10–11 | Zaklęcie działa dokładnie tak, jak planowałeś. Brak skażenia. |
+| 12+ | Sukces krytyczny. Nadmiar energii powoduje dodatkowy efekt (MG decyduje). |
+
+---
+
+# Skażenie Osnową (Warp)
+
+Osnowa jest manifestacją czystego Chaosu. Każdy, kto zbyt często korzysta z jej mocy, stopniowo ulega wypaczeniu.
+
+Źródła Skażenia: spożywanie lub wdychanie Kamienia Osnowy, kontakt z demoniczną magią, częste używanie Magii Chaosu.
+
+Po Skażeniu wykonujesz test: **2k6 + CON**
+
+---
+
+## Porażka — Mutacja Chaosu
+
+Twoje ciało ulega **trwałej mutacji**.
+
+| Wynik | Mutacja |
+|------:|---------|
+| 2 | Ciało pokrywają wrzody. **-1 CON** |
+| 3 | Nieustanny ból kości i mięśni. **-1 STR** |
+| 4 | Ciało puchnie, potrajając wagę. **-1 DEX** |
+| 5 | Nogi zamieniają się w zwierzęce. |
+| 6 | Z czoła wyrastają ogromne rogi. |
+| 7 | Zęby zmieniają się w ostre kły. |
+| 8 | Ramiona wydłużają się i pokrywają brodawkami. |
+| 9 | Wyrasta długi gadzi ogon. |
+| 10 | Głos tłucze szkło i kwaśnieje mleko. **-1 CHA** |
+| 11 | Oczy mętnieją. **-1 WIS** |
+| 12 | Umysł popada w obłęd. **-1 INT** |
+
+---
+
+## Częściowy sukces — Piętno Osnowy
+
+Pozostajesz **na zawsze naznaczony** Chaosem.
+
+| Wynik | Piętno |
+|------:|--------|
+| 2 | Rozdwojony język. |
+| 3 | Świecące czerwone oczy. |
+| 4 | Dodatkowe oczy wyrastają na kończynie. |
+| 5 | Wszystkie włosy wypadają. |
+| 6 | Palce wydłużają się w szpony. |
+| 7 | Kwiaty i zioła więdną w twojej obecności. |
+| 8 | Zwierzęta unikają cię. |
+| 9 | Pachnieasz zgniłą rybą. |
+| 10 | Twój wzrost znacznie się zmienia. |
+| 11 | Skóra staje się ciemna jak głębiny oceanu. |
+| 12 | Ubrania zaczynają się tlić po kilku godzinach noszenia. |
+
+---
+
+## Sukces — Dotknięcie Osnową
+
+Skażenie jest **chwilowe**.
+
+| Wynik | Efekt |
+|------:|-------|
+| 2 | Całe jedzenie w pobliżu psuje się. |
+| 3 | Obficie krwawisz z nosa. Tracisz 1 PŻ. |
+| 4 | Twój oddech staje się lodowaty i cuchnący. |
+| 5 | Włosy przypalają się i pachną dymem. |
+| 6 | Oczy bieleją, głos przypomina szum wiatru. |
+| 7 | Wszystkie zwierzęta wpadają w panikę. |
+| 8 | Skóra zaczyna intensywnie się złuszczać. |
+| 9 | Przez kilka minut nie możesz używać magii. |
+| 10 | Na chwilę zapominasz kim jesteś i gdzie jesteś. |
+| 11 | Mimowolnie oddajesz mocz. |
+| 12 | Paznokcie i włosy natychmiast podwajają długość. |
+
+---
+
+## Sukces krytyczny
+
+Opierasz się wpływowi Osnową. Chaos tym razem nie pozostawia na tobie żadnego śladu.`
+};
+
+/* ── MARKDOWN RENDERER ── */
+function inlineFmt(text) {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>');
+}
+
+function isSeparatorRow(line) {
+  return /^\|[\s\-:|]+\|$/.test(line.trim());
+}
+
+function mdToHtml(md) {
+  const lines = md.split('\n');
+  let html = '';
+  let inList = false;
+  let inTable = false;
+
+  for (let i = 0; i < lines.length; i++) {
+    const raw = lines[i];
+    const line = raw.trimEnd();
+
+    if (/^---+\s*$/.test(line)) {
+      if (inList)  { html += '</ul>'; inList = false; }
+      if (inTable) { html += '</tbody></table>'; inTable = false; }
+      html += '<hr class="rules-hr">';
+      continue;
+    }
+
+    const h1 = line.match(/^# (.+)/);
+    const h2 = line.match(/^## (.+)/);
+    const h3 = line.match(/^### (.+)/);
+
+    if (h1) {
+      if (inList)  { html += '</ul>'; inList = false; }
+      if (inTable) { html += '</tbody></table>'; inTable = false; }
+      html += `<h1 class="r-h1">${inlineFmt(h1[1])}</h1>`;
+      continue;
+    }
+    if (h2) {
+      if (inList)  { html += '</ul>'; inList = false; }
+      if (inTable) { html += '</tbody></table>'; inTable = false; }
+      html += `<h2 class="r-h2">${inlineFmt(h2[1])}</h2>`;
+      continue;
+    }
+    if (h3) {
+      if (inList)  { html += '</ul>'; inList = false; }
+      if (inTable) { html += '</tbody></table>'; inTable = false; }
+      html += `<h3 class="r-h3">${inlineFmt(h3[1])}</h3>`;
+      continue;
+    }
+
+    if (line.startsWith('|')) {
+      if (isSeparatorRow(line)) continue;
+      const cells = line.split('|').slice(1, -1).map(c => c.trim());
+      if (!inTable) {
+        if (inList) { html += '</ul>'; inList = false; }
+        html += '<table class="r-table"><thead><tr>';
+        cells.forEach(c => { html += `<th>${inlineFmt(c)}</th>`; });
+        html += '</tr></thead><tbody>';
+        inTable = true;
+      } else {
+        html += '<tr>';
+        cells.forEach(c => { html += `<td>${inlineFmt(c)}</td>`; });
+        html += '</tr>';
+      }
+      continue;
+    } else if (inTable) {
+      html += '</tbody></table>';
+      inTable = false;
+    }
+
+    const li = line.match(/^- (.+)/);
+    if (li) {
+      if (!inList) { html += '<ul class="r-list">'; inList = true; }
+      html += `<li>${inlineFmt(li[1])}</li>`;
+      continue;
+    } else if (inList && line.trim() !== '') {
+      html += '</ul>';
+      inList = false;
+    }
+
+    if (line.startsWith('> ')) {
+      if (inList) { html += '</ul>'; inList = false; }
+      html += `<blockquote class="r-blockquote">${inlineFmt(line.slice(2))}</blockquote>`;
+      continue;
+    }
+
+    if (line.trim() === '') continue;
+
+    html += `<p class="r-p">${inlineFmt(line)}</p>`;
+  }
+
+  if (inList)  html += '</ul>';
+  if (inTable) html += '</tbody></table>';
+  return html;
+}
+
+/* ── RENDER RULES ── */
+Object.entries(RULES_CONTENT).forEach(([key, md]) => {
+  const el = document.getElementById('rules-' + key);
+  if (el) el.innerHTML = mdToHtml(md);
+});
+
+/* ── RENDER CARDS ── */
+const grid = document.getElementById('cardsGrid');
+
+function renderCards(filterCat) {
+  grid.innerHTML = '';
+  const list = filterCat === 'all' ? ABILITIES : ABILITIES.filter(a => a.cat === filterCat);
+  list.forEach((a, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.cat = a.cat;
+    card.style.animationDelay = `${Math.min(i, 26) * 22}ms`;
+    card.innerHTML = `
+      <div class="card-inner">
+        <div class="card-cat">
+          <span class="cat-dot"></span>
+          <span class="cat-label">${CAT_LABELS[a.cat]}</span>
+        </div>
+        <h2 class="card-title">${a.pl}</h2>
+        <p class="card-en">${a.en}</p>
+        <hr class="card-rule" />
+        <p class="card-effect">${a.effect}</p>
+        <div class="card-footer"><span class="card-source">AWoD</span></div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+/* ── FILTER BUTTONS ── */
+document.getElementById('controls').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCards(btn.dataset.cat);
+});
+
+/* ── TAB SWITCHING ── */
+document.querySelector('.tab-nav').addEventListener('click', e => {
+  const btn = e.target.closest('.tab-btn');
+  if (!btn) return;
+  document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+});
+
+renderCards('all');
+</script>

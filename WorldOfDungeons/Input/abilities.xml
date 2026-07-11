@@ -1,0 +1,1452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+	<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
+	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
+	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
+	<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
+]>
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="0px" height="0px" viewBox="0 0 0 0" style="overflow:visible;" xml:space="preserve">
+<variableSets  xmlns="&ns_vars;">
+	<variableSet  locked="none" varSetName="binding1">
+		<variables>
+			<variable  category="&ns_flows;" trait="textcontent" varName="NamePL"></variable>
+			<variable  category="&ns_flows;" trait="textcontent" varName="NameEN"></variable>
+			<variable  category="&ns_flows;" trait="textcontent" varName="DescPL"></variable>
+			<variable  category="&ns_flows;" trait="textcontent" varName="DescEN"></variable>
+			<variable  category="&ns_flows;" trait="textcontent" varName="Source"></variable>
+			<variable  category="&ns_flows;" trait="textcontent" varName="Level"></variable>
+		</variables>
+		<v:sampleDataSets  xmlns="&ns_custom;" xmlns:v="&ns_vars;">
+			<v:sampleDataSet  dataSetName="Alchemy">
+				<NamePL>
+					<p>Alchemia</p>
+				</NamePL>
+				<NameEN>
+					<p>Alchemy</p>
+				</NameEN>
+				<DescPL>
+					<p>Możesz wnieść magię do mikstury, maści lub przedmiotu. Zaczynasz z trzema alchemicznymi recepturami.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can imbue magic within a potion, salve, or item. You start with three alchemical formulas.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Affluent">
+				<NamePL>
+					<p>Zamożność</p>
+				</NamePL>
+				<NameEN>
+					<p>Affluent</p>
+				</NameEN>
+				<DescPL>
+					<p>Gdy twoja sakiewka jest pusta, możesz podjąć próbę dokonania zakupów na obietnicę późniejszej spłaty.</p>
+				</DescPL>
+				<DescEN>
+					<p>When your purse is empty, you can attempt to make purchases with the promise of paying the money back at a later date.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Allure">
+				<NamePL>
+					<p>Urok</p>
+				</NamePL>
+				<NameEN>
+					<p>Allure</p>
+				</NameEN>
+				<DescPL>
+					<p>Gdy uwodujesz kogoś, możesz skłonić go do wyjawienia intymnych sekretów wbrew zdrowemu rozsądkowi. Możesz też przyciągnąć czyjąś uwagę jednym spojrzeniem.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you seduce someone, you can make them reveal intimate secrets about themselves despite their better judgment. You can also attract someone's attention with only a glance.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Appraise">
+				<NamePL>
+					<p>Wycena</p>
+				</NamePL>
+				<NameEN>
+					<p>Appraise</p>
+				</NameEN>
+				<DescPL>
+					<p>Po zbadaniu przedmiotu jesteś w stanie określić przybliżoną wartość dzieł sztuki i towarów.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can tell the approximate value of artwork and trade goods once you've inspected them.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Backstab">
+				<NamePL>
+					<p>Cios w Plecy</p>
+				</NamePL>
+				<NameEN>
+					<p>Backstab</p>
+				</NameEN>
+				<DescPL>
+					<p>Dodaj +3 obrażeń do ataków w walce wręcz, gdy cel nie jest świadomy twojej obecności.</p>
+				</DescPL>
+				<DescEN>
+					<p>Add +3 damage to melee attacks when the target is unaware of your presence.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Bargain">
+				<NamePL>
+					<p>Targowanie</p>
+				</NamePL>
+				<NameEN>
+					<p>Bargain</p>
+				</NameEN>
+				<DescPL>
+					<p>Raz dziennie możesz o połowę obniżyć cenę zakupu dzięki znajomościom z kupcami lub gildyjnymi kontaktami.</p>
+				</DescPL>
+				<DescEN>
+					<p>Once per day, you can halve the price of a purchase thanks to the different tradesmen you know, or the guilds you have contacts with.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Berserk">
+				<NamePL>
+					<p>Berserk</p>
+				</NamePL>
+				<NameEN>
+					<p>Berserk</p>
+				</NameEN>
+				<DescPL>
+					<p>Gdy jesteś w przewadze liczebnej wroga, dodajesz +1 do zadawanych obrażeń i +1 do pancerza, lecz musisz się powstrzymywać, by nie uciekać się do przemocy w napiętych sytuacjach.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you are outnumbered, add +1 to the damage you inflict and +1 armor, but you must make an effort to not immediately resort to violence in heated situations.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Bless">
+				<NamePL>
+					<p>Błogosławieństwo</p>
+				</NamePL>
+				<NameEN>
+					<p>Bless</p>
+				</NameEN>
+				<DescPL>
+					<p>Przy pomocy święconej wody możesz poświęcić przedmioty, czyniąc je świętymi i magicznymi — +3 obrażeń przeciwko Złu — na krótki czas.</p>
+				</DescPL>
+				<DescEN>
+					<p>With holy water, you can anoint items so they are considered holy and magical — +3 damage vs. Evil — for a short time.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Brawny">
+				<NamePL>
+					<p>Krzepki</p>
+				</NamePL>
+				<NameEN>
+					<p>Brawny</p>
+				</NameEN>
+				<DescPL>
+					<p>+1 obrażeń w walce wręcz i bronią miotaną; możesz raz na atak przerzucić obrażenia.</p>
+				</DescPL>
+				<DescEN>
+					<p>+1 melee and thrown weapons damage, can re-roll damage once per attack.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Cloaked">
+				<NamePL>
+					<p>Zamaskowany</p>
+				</NamePL>
+				<NameEN>
+					<p>Cloaked</p>
+				</NameEN>
+				<DescPL>
+					<p>Gdy jesteś skryty w mroku, otrzymujesz +1 do pancerza.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you are under the cover of darkness, you get +1 armor.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Connected">
+				<NamePL>
+					<p>Wpływowy</p>
+				</NamePL>
+				<NameEN>
+					<p>Connected</p>
+				</NameEN>
+				<DescPL>
+					<p>Możesz podejmować próby uzyskania przysług od szlachty — pożyczki, zaproszenia na przyjęcie lub przedstawień ważnym osobistościom.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can attempt to obtain favors from nobles, whether getting a loan, an invitation to a party, or introductions to other important people.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Contort">
+				<NamePL>
+					<p>Akrobata</p>
+				</NamePL>
+				<NameEN>
+					<p>Contort</p>
+				</NameEN>
+				<DescPL>
+					<p>Potrafisz uwolnić się z więzów lub wcisnąć w ciasne miejsca.</p>
+				</DescPL>
+				<DescEN>
+					<p>You are able to escape from bonds or squeeze into small or tight places.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Cutpurse">
+				<NamePL>
+					<p>Kieszonkowiec</p>
+				</NamePL>
+				<NameEN>
+					<p>Cutpurse</p>
+				</NameEN>
+				<DescPL>
+					<p>Gdy kradniesz z kieszeni lub ukrywasz przedmioty przy sobie, możesz to robić w biegu.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you pick pockets or conceal things on your person, you can do so quickly while running.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Cure">
+				<NamePL>
+					<p>Uzdrowienie</p>
+				</NamePL>
+				<NameEN>
+					<p>Cure</p>
+				</NameEN>
+				<DescPL>
+					<p>Możesz neutralizować trucizny, usuwać klątwy i leczyć rany bez dotykania.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can neutralize poisons, remove curses and heal wounds without a touch.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Damnation">
+				<NamePL>
+					<p>Potępienie</p>
+				</NamePL>
+				<NameEN>
+					<p>Damnation</p>
+				</NameEN>
+				<DescPL>
+					<p>Możesz próbować zsyłać klątwy lub dolegliwości na innych — poprzez kontakt wzrokowy lub fetysze.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can attempt to inflict curses or ailments upon others, either with eye contact or through a fetish.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Daring">
+				<NamePL>
+					<p>Brawura</p>
+				</NamePL>
+				<NameEN>
+					<p>Daring</p>
+				</NameEN>
+				<DescPL>
+					<p>Raz dziennie możesz zignorować obrażenia lub skutki zagrożenia środowiskowego.</p>
+				</DescPL>
+				<DescEN>
+					<p>Once per day, you can ignore the damage or effects of an environmental hazard.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Diplomat">
+				<NamePL>
+					<p>Dyplomata</p>
+				</NamePL>
+				<NameEN>
+					<p>Diplomat</p>
+				</NameEN>
+				<DescPL>
+					<p>Możesz wchodzić w negocjacje, targować się i pertraktować nawet z najbardziej nieznośnymi rozmówcami, o ile są wystarczająco inteligentni, by cię zrozumieć.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can enter negotiations, bargain, or parley, even with the most disagreeable of people, as long as they are intelligent enough to understand you.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Disguise">
+				<NamePL>
+					<p>Przebranie</p>
+				</NamePL>
+				<NameEN>
+					<p>Disguise</p>
+				</NameEN>
+				<DescPL>
+					<p>Używając kostiumów i makijażu, możesz próbować wiarygodnie podszywać się pod inne osoby lub ukryć własną tożsamość.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you use costumes and makeup, you can attempt to convincingly imitate other people, or ensure your own identity is unrecognizable.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Divination">
+				<NamePL>
+					<p>Wróżbiarstwo</p>
+				</NamePL>
+				<NameEN>
+					<p>Divination</p>
+				</NameEN>
+				<DescPL>
+					<p>Wpatrując się w kryształ lub czaszę święconej wody, możesz próbować dostrzec odległe wydarzenia — przeszłe lub przyszłe.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you gaze into a crystal or a bowl of holy water, you can attempt to see events either far away, in the past, or in the future.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Duelist">
+				<NamePL>
+					<p>Pojedynkowicz</p>
+				</NamePL>
+				<NameEN>
+					<p>Duelist</p>
+				</NameEN>
+				<DescPL>
+					<p>Traktujesz każdą jednoręczną broń jak Lekką.</p>
+				</DescPL>
+				<DescEN>
+					<p>You treat any one-handed weapon as Light.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Engineer">
+				<NamePL>
+					<p>Inżynieria</p>
+				</NamePL>
+				<NameEN>
+					<p>Engineer</p>
+				</NameEN>
+				<DescPL>
+					<p>Z umiejętnością Rzemiosła możesz tworzyć i naprawiać mechaniczne urządzenia i broń palną.</p>
+				</DescPL>
+				<DescEN>
+					<p>With the Crafting skill, you can create and repair mechanical devices and firearms.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Expert">
+				<NamePL>
+					<p>Ekspert</p>
+				</NamePL>
+				<NameEN>
+					<p>Expert</p>
+				</NameEN>
+				<DescPL>
+					<p>Raz dziennie możesz zamienić Pudło w Częściowy Sukces.</p>
+				</DescPL>
+				<DescEN>
+					<p>Once per day, you can turn a Miss into a Partial Success.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Familiar">
+				<NamePL>
+					<p>Duch Towarzysz</p>
+				</NamePL>
+				<NameEN>
+					<p>Familiar</p>
+				</NameEN>
+				<DescPL>
+					<p>Masz towarzysza zwierzęcego — kruka, szczura, kota, węża lub pająka — magicznie z tobą związanego. Możesz widzieć jego oczami i słyszeć, co słyszy.</p>
+				</DescPL>
+				<DescEN>
+					<p>You have an animal companion, such as a crow, rat, cat, snake or spider, magically bonded to you. You can see through its eyes, and hear what it hears.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Full-contact magic">
+				<NamePL>
+					<p>Magia w Kontakcie</p>
+				</NamePL>
+				<NameEN>
+					<p>Full-contact magic</p>
+				</NameEN>
+				<DescPL>
+					<p>Możesz kanalizować zaklęcia przez pięści w walce wręcz. Jeśli trafisz, możesz przepuścić przez dłonie jedno zaklęcie Czarnoksięstwa w przeciwnika. Pozostajesz bezpieczny, nawet gdy zaklęcie obejmuje obszar wokół ciebie.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can channel spells through your fists in melee. If you hit successfully, you can send one Wizardry spell through your fists into your opponent. You remain unharmed, even if that spell affects an area around you.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Gadgetry">
+				<NamePL>
+					<p>Gadżety</p>
+				</NamePL>
+				<NameEN>
+					<p>Gadgetry</p>
+				</NameEN>
+				<DescPL>
+					<p>Każdy problem próbujesz rozwiązać gadżetem własnej roboty. Za każdym razem gdy próbujesz czegoś ryzykownego, rzucasz +INT. Pudło oznacza, że gadżet nie działa jak powinien (wedle uznania MG). Na 3. poziomie projektujesz urządzenie replikujące zaklęcie Czarodziejstwa trzy razy dziennie. Na 6. i 9. poziomie zdobywasz kolejne urządzenia replikujące inne zaklęcia Czarodziejstwa.</p>
+				</DescPL>
+				<DescEN>
+					<p>You try to solve any problem with gadgets you build. Anytime you attempt something risky, you roll +INT. A Miss means the gadget does not what it should (GM's discretion). At Level 3, you design a device that replicates a Sorcery spell three times a day. At Levels 6 and 9, you each get one additional device that replicates another Sorcery spell.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Getaway">
+				<NamePL>
+					<p>Ucieczka</p>
+				</NamePL>
+				<NameEN>
+					<p>Getaway</p>
+				</NameEN>
+				<DescPL>
+					<p>Raz dziennie możesz automatycznie uciec z miejsca — sprintując, kluczując i unikając pościgu.</p>
+				</DescPL>
+				<DescEN>
+					<p>Once per day, you can automatically flee a location — sprinting, dodging, and ducking to avoid pursuit.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Guarded">
+				<NamePL>
+					<p>Chroniony</p>
+				</NamePL>
+				<NameEN>
+					<p>Guarded</p>
+				</NameEN>
+				<DescPL>
+					<p>Raz dziennie możesz skierować dowolny atak wymierzony w ciebie na jednego ze swoich Najemników.</p>
+				</DescPL>
+				<DescEN>
+					<p>Once per day, you can redirect any attack against you to one of your Hirelings.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Hardy">
+				<NamePL>
+					<p>Zahartowany</p>
+				</NamePL>
+				<NameEN>
+					<p>Hardy</p>
+				</NameEN>
+				<DescPL>
+					<p>Dodaj +6 do punktów wytrzymałości.</p>
+				</DescPL>
+				<DescEN>
+					<p>Add +6 to your hit points.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Heavy Hands/Feet">
+				<NamePL>
+					<p>Ciężkie Dłonie/Stopy</p>
+				</NamePL>
+				<NameEN>
+					<p>Heavy Hands/Feet</p>
+				</NameEN>
+				<DescPL>
+					<p>Zadajesz 1d6 obrażeń bez broni. Na 3., 5., 7. i 9. poziomie otrzymujesz dodatkowe +1 obrażeń.</p>
+				</DescPL>
+				<DescEN>
+					<p>You do 1d6 unarmed damage. On levels 3, 5, 7 and 9, you get an additional +1 damage.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Hunter">
+				<NamePL>
+					<p>Łowca</p>
+				</NamePL>
+				<NameEN>
+					<p>Hunter</p>
+				</NameEN>
+				<DescPL>
+					<p>Dodaj +3 obrażeń do ataków dystansowych, gdy cel nie jest świadomy twojej obecności.</p>
+				</DescPL>
+				<DescEN>
+					<p>Add +3 damage to ranged attacks when the target is unaware of your presence.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Illusions">
+				<NamePL>
+					<p>Iluzje</p>
+				</NamePL>
+				<NameEN>
+					<p>Illusions</p>
+				</NameEN>
+				<DescPL>
+					<p>Możesz tworzyć iluzje sprawiające, że ktoś widzi coś, czego nie ma, lub urzekać go, by wierzył w rzeczy nieprawdziwe.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can create illusions to make someone see something that isn't there, or mesmerize them so they believe something that isn't true.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Inspire">
+				<NamePL>
+					<p>Natchnienie</p>
+				</NamePL>
+				<NameEN>
+					<p>Inspire</p>
+				</NameEN>
+				<DescPL>
+					<p>Możesz próbować kształtować opinię publiczną swoją pieśnią, opowieściami lub retoryką.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can attempt to sway public opinion with your song, stories, or rhetoric.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Instinct">
+				<NamePL>
+					<p>Instynkt</p>
+				</NamePL>
+				<NameEN>
+					<p>Instinct</p>
+				</NameEN>
+				<DescPL>
+					<p>Możesz przerzucić ZRĘ w reakcji na niebezpieczne sytuacje.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can re-roll DEX when reacting to dangerous situations.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Linguist">
+				<NamePL>
+					<p>Lingwista</p>
+				</NamePL>
+				<NameEN>
+					<p>Linguist</p>
+				</NameEN>
+				<DescPL>
+					<p>Znasz mowę i pismo wszystkich języków cywilizowanych.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can speak and read all civilized languages.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Lookout">
+				<NamePL>
+					<p>Obserwator</p>
+				</NamePL>
+				<NameEN>
+					<p>Lookout</p>
+				</NameEN>
+				<DescPL>
+					<p>Gdy prowadzisz w mieście lub lochach, zawsze dostrzegasz cel przed tym, nim cel dostrzeże ciebie.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you take the lead in the city or a dungeon, you always spot your targets before they spot you.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Lucky">
+				<NamePL>
+					<p>Szczęście</p>
+				</NamePL>
+				<NameEN>
+					<p>Lucky</p>
+				</NameEN>
+				<DescPL>
+					<p>Raz dziennie możesz zamienić dowolne Pudło w Sukces.</p>
+				</DescPL>
+				<DescEN>
+					<p>Once per day, you can turn any Miss into a Success instead.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Magic-fueled hit points">
+				<NamePL>
+					<p>Punkty Życia Zasilane Magią</p>
+				</NamePL>
+				<NameEN>
+					<p>Magic-fueled hit points</p>
+				</NameEN>
+				<DescPL>
+					<p>Masz dodatkowe punkty wytrzymałości (tyle, ile wynosi twój wynik Mocy). Za każde użyte zaklęcie Czarnoksięstwa tracisz 1 lub 2 z tych dodatkowych PW.</p>
+				</DescPL>
+				<DescEN>
+					<p>You have additional hit points (as many as your Power score). For each Wizardry spell you use, you lose 1 or 2 of those additional hit points.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Mind Shield">
+				<NamePL>
+					<p>Tarcza Umysłu</p>
+				</NamePL>
+				<NameEN>
+					<p>Mind Shield</p>
+				</NameEN>
+				<DescPL>
+					<p>Jesteś odporny na zaklęcia strachu, oczarowania i snu.</p>
+				</DescPL>
+				<DescEN>
+					<p>You are immune against fear, charm and sleep spells.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Opportunist">
+				<NamePL>
+					<p>Oportunista</p>
+				</NamePL>
+				<NameEN>
+					<p>Opportunist</p>
+				</NameEN>
+				<DescPL>
+					<p>Gdy ty i twoi sojusznicy górujesz nad przeciwnikami, zadajesz +2 obrażeń.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you and your allies overpower your opponents, you inflict +2 damage.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Pacify">
+				<NamePL>
+					<p>Uspokojenie</p>
+				</NamePL>
+				<NameEN>
+					<p>Pacify</p>
+				</NameEN>
+				<DescPL>
+					<p>Możesz próbować uśmierzyć lub oczarować (pół)inteligentne stworzenia swoim głosem.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can attempt to pacify or charm (demi)intelligent creatures with your voice.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Perform">
+				<NamePL>
+					<p>Występ</p>
+				</NamePL>
+				<NameEN>
+					<p>Perform</p>
+				</NameEN>
+				<DescPL>
+					<p>Gdy bawisz tłum, możesz zarabiać k6 za każdy poziom dziennie. Jednak jeśli choć jedna kość wypadnie 1, publiczność staje się wroga i przez co najmniej tydzień nie wpuści cię na scenę bez obrzucania zgniłymi warzywami.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you entertain a crowd, you can earn d6s per Level each day. However, should any die roll a 1, the audience turns nasty and you won't be allowed to perform for at least a week without having rotten vegetables thrown at you.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Pet">
+				<NamePL>
+					<p>Zwierzę</p>
+				</NamePL>
+				<NameEN>
+					<p>Pet</p>
+				</NameEN>
+				<DescPL>
+					<p>Masz lojalnego i skutecznego towarzysza zwierzęcego.</p>
+				</DescPL>
+				<DescEN>
+					<p>You have a loyal and effective animal companion.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Prestige">
+				<NamePL>
+					<p>Prestiż</p>
+				</NamePL>
+				<NameEN>
+					<p>Prestige</p>
+				</NameEN>
+				<DescPL>
+					<p>Wszyscy wiedzą, kim jesteś. Najemnicy kosztują o połowę mniej, bo szukają twojego zatrudnienia dla przyszłych łask i korzyści.</p>
+				</DescPL>
+				<DescEN>
+					<p>Everyone knows who you are. Halve the price of any Hirelings, as they seek your employ in order to gain later favors or advantages.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Reflexes">
+				<NamePL>
+					<p>Refleks</p>
+				</NamePL>
+				<NameEN>
+					<p>Reflexes</p>
+				</NameEN>
+				<DescPL>
+					<p>Zawsze działasz pierwszy i możesz reagować, gdy zostajesz zaskoczony.</p>
+				</DescPL>
+				<DescEN>
+					<p>You always act first, and can react when suddenly surprised.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Rockskin">
+				<NamePL>
+					<p>Kamienna Skóra</p>
+				</NamePL>
+				<NameEN>
+					<p>Rockskin</p>
+				</NameEN>
+				<DescPL>
+					<p>Masz twardą jak kamień skórę (Pancerz 2).</p>
+				</DescPL>
+				<DescEN>
+					<p>You have rock-hard skin (Armor 2).</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Rover">
+				<NamePL>
+					<p>Wędrowiec</p>
+				</NamePL>
+				<NameEN>
+					<p>Rover</p>
+				</NameEN>
+				<DescPL>
+					<p>Biegnąc przez pustkowie, nie pozostawiasz wyraźnych śladów ani tropu.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you run through the wilderness, you do so without leaving obvious tracks or a trail.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Sailor">
+				<NamePL>
+					<p>Marynarz</p>
+				</NamePL>
+				<NameEN>
+					<p>Sailor</p>
+				</NameEN>
+				<DescPL>
+					<p>Potrafisz obsługiwać żaglowiec i nie cierpisz na chorobę morską nawet w burzę.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can crew a sailing vessel, and never feel ill due to stormy seas.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Sapper">
+				<NamePL>
+					<p>Saper</p>
+				</NamePL>
+				<NameEN>
+					<p>Sapper</p>
+				</NameEN>
+				<DescPL>
+					<p>Używając prochu czarnego lub artylerii, dodajesz +1 kość do obrażeń i odrzucasz najniższy wynik.</p>
+				</DescPL>
+				<DescEN>
+					<p>When using blackpowder explosives or artillery, add +1 die to damage, discarding the lowest result.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Schemer">
+				<NamePL>
+					<p>Intrygant</p>
+				</NamePL>
+				<NameEN>
+					<p>Schemer</p>
+				</NameEN>
+				<DescPL>
+					<p>Gdy przekupujesz lub szantażujesz innych, możesz to robić dyskretnie lub przez pośredników, nie przyciągając niepotrzebnej uwagi.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you bribe or blackmail others, you can do so subtly or through third parties, without drawing too much unwanted attention to yourself.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Scout">
+				<NamePL>
+					<p>Zwiad</p>
+				</NamePL>
+				<NameEN>
+					<p>Scout</p>
+				</NameEN>
+				<DescPL>
+					<p>Gdy prowadzisz na pustkowiu, zawsze dostrzegasz cel przed tym, nim cel dostrzeże ciebie.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you take the lead in the wilderness, you always spot your targets before they spot you.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Shifting">
+				<NamePL>
+					<p>Przemiana</p>
+				</NamePL>
+				<NameEN>
+					<p>Shifting</p>
+				</NameEN>
+				<DescPL>
+					<p>Gdy wypijesz krew zwierzęcia, możesz próbować przybrać jego postać, zostawiając za sobą swój dobytek. Jednak powrót do własnego kształtu wymaga silnej woli — tym bardziej, im dłużej pozostajesz bestią.</p>
+				</DescPL>
+				<DescEN>
+					<p>When drinking the blood of an animal you can attempt to take its form, leaving your possessions behind. However, it is a feat of willpower to revert to your original self, particularly the longer you stay a beast.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Skirmish">
+				<NamePL>
+					<p>Potyczka</p>
+				</NamePL>
+				<NameEN>
+					<p>Skirmish</p>
+				</NameEN>
+				<DescPL>
+					<p>+1 obrażeń, a noszona zbroja liczy się jako jeden stopień lżejsza.</p>
+				</DescPL>
+				<DescEN>
+					<p>+1 damage and worn armor counts as one type lighter.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Slay">
+				<NamePL>
+					<p>Zabójca</p>
+				</NamePL>
+				<NameEN>
+					<p>Slay</p>
+				</NameEN>
+				<DescPL>
+					<p>+2 obrażeń w walce wręcz.</p>
+				</DescPL>
+				<DescEN>
+					<p>+2 melee damage.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Sleuth">
+				<NamePL>
+					<p>Detektyw</p>
+				</NamePL>
+				<NameEN>
+					<p>Sleuth</p>
+				</NameEN>
+				<DescPL>
+					<p>Gdy szukasz śladów, robisz to szybko i w ruchu. Zawsze wiesz, gdy ktoś kłamie, choć możesz nie znać przyczyny oszustwa.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you search for clues, you can do so quickly and while on the move. You can always tell when someone is lying, though you may not know the cause of their deception.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Sorcery">
+				<NamePL>
+					<p>Czarodziejstwo</p>
+				</NamePL>
+				<NameEN>
+					<p>Sorcery</p>
+				</NameEN>
+				<DescPL>
+					<p>Możesz rzucać zaklęcia, które, choć ograniczone w zakresie, są znacznie bezpieczniejsze niż surowa moc Czarnoksięstwa. Zaczynasz z trzema zaklęciami.</p>
+				</DescPL>
+				<DescEN>
+					<p>You are able to cast spells that, while limited in scope, are much safer than the raw magical power of Wizardry. You start with three spells.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Strategy">
+				<NamePL>
+					<p>Strategia</p>
+				</NamePL>
+				<NameEN>
+					<p>Strategy</p>
+				</NameEN>
+				<DescPL>
+					<p>W walce możesz próbować przewidzieć ruchy, pozycje i siły wrogów.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you are in combat, you can attempt to predict the movements, positions, and strengths of your enemies.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Summon">
+				<NamePL>
+					<p>Przywołanie</p>
+				</NamePL>
+				<NameEN>
+					<p>Summon</p>
+				</NameEN>
+				<DescPL>
+					<p>Możesz wywoływać demony, by zasięgać ich rady... lub by związać je w służbę. Zaczynasz z dwoma związanymi demonami, na które możesz liczyć.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can call forth demons to seek their counsel...or so you can bind them to serve you. You start with two bound demons that you can call upon.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Surgeon">
+				<NamePL>
+					<p>Chirurg</p>
+				</NamePL>
+				<NameEN>
+					<p>Surgeon</p>
+				</NameEN>
+				<DescPL>
+					<p>Używając umiejętności Leczenia, możesz próbować sporządzać nowe leki lub wyrwać kogoś z objęć śmierci.</p>
+				</DescPL>
+				<DescEN>
+					<p>With the Treatment skill, you can try to mix new medicines or bring someone back from the brink of death.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Talented">
+				<NamePL>
+					<p>Utalentowany</p>
+				</NamePL>
+				<NameEN>
+					<p>Talented</p>
+				</NameEN>
+				<DescPL>
+					<p>Add +1 Skill.</p>
+				</DescPL>
+				<DescEN>
+					<p>Add +1 Skill.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Tinker">
+				<NamePL>
+					<p>Majsterkowicz</p>
+				</NamePL>
+				<NameEN>
+					<p>Tinker</p>
+				</NameEN>
+				<DescPL>
+					<p>Gdy wyłamujesz zamki lub rozbrajasz pułapki, robisz to szybko i niezauważenie, nawet na widoku.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you pick locks or disable traps, you can do so quickly and unnoticed while in plain sight.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Tough">
+				<NamePL>
+					<p>Twardziel</p>
+				</NamePL>
+				<NameEN>
+					<p>Tough</p>
+				</NameEN>
+				<DescPL>
+					<p>Dodaj +1 do pancerza, z bycia zwyczajnie niezniszczalnym.</p>
+				</DescPL>
+				<DescEN>
+					<p>Add +1 armor, from being badass.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Tracker">
+				<NamePL>
+					<p>Tropiciel</p>
+				</NamePL>
+				<NameEN>
+					<p>Tracker</p>
+				</NameEN>
+				<DescPL>
+					<p>Gdy próbujesz identyfikować i śledzić tropy, robisz to szybko w ruchu.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you attempt to identify and follow tracks, you can do so quickly while on the move.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Trick">
+				<NamePL>
+					<p>Sztuczka</p>
+				</NamePL>
+				<NameEN>
+					<p>Trick</p>
+				</NameEN>
+				<DescPL>
+					<p>Możesz próbować rozpraszać lub zwodzić przeciwnika swoimi wybrykami.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can attempt to distract or delay your opponent with your antics.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Turn">
+				<NamePL>
+					<p>Odpędzenie</p>
+				</NamePL>
+				<NameEN>
+					<p>Turn</p>
+				</NameEN>
+				<DescPL>
+					<p>Możesz próbować powstrzymywać nieumarłych mocą swojej wiary i świętego symbolu.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can attempt to hold undead at bay with the power of your faith and a holy symbol.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Vehemence">
+				<NamePL>
+					<p>Gwałtowność</p>
+				</NamePL>
+				<NameEN>
+					<p>Vehemence</p>
+				</NameEN>
+				<DescPL>
+					<p>Gdy używasz niszczycielskich efektów magicznych, dodajesz +1 kość do obrażeń i odrzucasz najniższy wynik.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you use damaging magic effects, add +1 die to damage, discarding the lowest result.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Vision">
+				<NamePL>
+					<p>Wizja</p>
+				</NamePL>
+				<NameEN>
+					<p>Vision</p>
+				</NameEN>
+				<DescPL>
+					<p>Wypij święconą wodę, by obcować ze swoim bóstwem i otrzymać boskie wskazówki.</p>
+				</DescPL>
+				<DescEN>
+					<p>Drink holy water to commune with your deity for divine guidance.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Volley">
+				<NamePL>
+					<p>Salwa</p>
+				</NamePL>
+				<NameEN>
+					<p>Volley</p>
+				</NameEN>
+				<DescPL>
+					<p>Dodaj +2 obrażeń do każdego ataku dystansowego.</p>
+				</DescPL>
+				<DescEN>
+					<p>Add +2 damage to any ranged attack.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Warded">
+				<NamePL>
+					<p>Osłonięty</p>
+				</NamePL>
+				<NameEN>
+					<p>Warded</p>
+				</NameEN>
+				<DescPL>
+					<p>Gdy używasz magii, twoje ochronne zaklęcia ochronią cię, dając +1 do Pancerza.</p>
+				</DescPL>
+				<DescEN>
+					<p>When you are using magic, your protective wards keep you safe, granting +1 Armor.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Wild">
+				<NamePL>
+					<p>Dzikość</p>
+				</NamePL>
+				<NameEN>
+					<p>Wild</p>
+				</NameEN>
+				<DescPL>
+					<p>Możesz rozmawiać ze zwierzętami i próbować nimi dowodzić.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can converse with and attempt to command animals.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="Wizardry">
+				<NamePL>
+					<p>Czarnoksięstwo</p>
+				</NamePL>
+				<NameEN>
+					<p>Wizardry</p>
+				</NameEN>
+				<DescPL>
+					<p>Możesz tworzyć magiczne efekty czerpiąc z surowej mocy Chaosu. Efekty te są potężne i cudowne, nieograniczone zakresem jak Czarodziejstwo. Jednakże ryzyko tkania takich energii kryje hazardy, skrajne i różnorodne. Zaczynasz z wynikiem Mocy równym twoim bazowym Kościom Wytrzymałości +MĄD.</p>
+				</DescPL>
+				<DescEN>
+					<p>You can create magical effects drawn from the raw power of Chaos. Such effects are powerful and wondrous, and not limited in scope like Sorcery. However, the risks of weaving such energies have hazards, both extreme and varied. You start with a Power score equal to your base Hit Dice +WIS.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+			<v:sampleDataSet  dataSetName="WTF?">
+				<NamePL>
+					<p>Co u licha?</p>
+				</NamePL>
+				<NameEN>
+					<p>WTF?</p>
+				</NameEN>
+				<DescPL>
+					<p>Otrzymujesz premię do rzutów przeciwko wrogom, którzy jeszcze z tobą nie walczyli. Premia przepada po pierwszej konfrontacji.</p>
+				</DescPL>
+				<DescEN>
+					<p>You get a bonus to roll against opponents that haven't fought against you. This bonus is lost after the first confrontation.</p>
+				</DescEN>
+				<Source>
+					<p>AWoD</p>
+				</Source>
+				<Level>
+					<p>1</p>
+				</Level>
+			</v:sampleDataSet>
+		</v:sampleDataSets>
+	</variableSet>
+</variableSets>
+</svg>

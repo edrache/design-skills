@@ -1,0 +1,570 @@
+[
+  {
+    "name": "Alchemy",
+    "name_pl": "Alchemia",
+    "description": "You can imbue magic within a potion, salve, or item. You start with three alchemical formulas.",
+    "description_pl": "Możesz nasycać magią miksturę, maść lub przedmiot. Zaczynasz z trzema formułami alchemicznymi.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Affluent",
+    "name_pl": "Zamożność",
+    "description": "When your purse is empty, you can attempt to make purchases with the promise of paying the money back at a later date.",
+    "description_pl": "Gdy sakiewka świeci pustką, możesz próbować kupować na kredyt, obiecując zapłatę później.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Allure",
+    "name_pl": "Urok",
+    "description": "When you seduce someone, you can make them reveal intimate secrets about themselves despite their better judgment. You can also attract someone's attention with only a glance.",
+    "description_pl": "Gdy kogoś uwodzisz, możesz skłonić go do wyjawienia intymnych sekretów wbrew lepszemu osądowi. Możesz też przyciągnąć czyjąś uwagę samym spojrzeniem.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Appraise",
+    "name_pl": "Wycena",
+    "description": "You can tell the approximate value of artwork and trade goods once you've inspected them.",
+    "description_pl": "Po obejrzeniu dzieła sztuki lub towaru potrafisz określić jego przybliżoną wartość.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Backstab",
+    "name_pl": "Cios w Plecy",
+    "description": "Add +3 damage to melee attacks when the target is unaware of your presence.",
+    "description_pl": "Dodaj +3 obrażenia do ataków wręcz, jeśli cel nie jest świadomy twojej obecności.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Bargain",
+    "name_pl": "Targowanie",
+    "description": "Once per day, you can halve the price of a purchase thanks to the different tradesmen you know, or the guilds you have contacts with.",
+    "description_pl": "Raz dziennie możesz obniżyć cenę zakupu o połowę dzięki znajomościom wśród kupców i gildii.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Berserk",
+    "name_pl": "Szał",
+    "description": "When you are outnumbered, add +1 to the damage you inflict and +1 armor, but you must make an effort to not immediately resort to violence in heated situations.",
+    "description_pl": "Gdy przeciwnicy mają nad tobą przewagę liczebną, zadajesz +1 obrażenie i zyskujesz +1 Pancerza, ale w napiętych sytuacjach musisz powstrzymywać się przed natychmiastowym sięganiem po przemoc.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Bless",
+    "name_pl": "Błogosławieństwo",
+    "description": "With holy water, you can anoint items so they are considered holy and magical — +3 damage vs. Evil — for a short time.",
+    "description_pl": "Za pomocą wody święconej możesz namaścić przedmiot, czyniąc go na krótko świętym i magicznym: zadaje +3 obrażenia przeciw Złu.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Brawny",
+    "name_pl": "Krzepa",
+    "description": "+1 melee and thrown weapons damage, can re-roll damage once per attack.",
+    "description_pl": "+1 do obrażeń bronią wręcz i miotaną; raz na atak możesz przerzucić obrażenia.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Cloaked",
+    "name_pl": "Okryty Cieniem",
+    "description": "When you are under the cover of darkness, you get +1 armor.",
+    "description_pl": "Gdy kryje cię mrok, zyskujesz +1 Pancerza.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Connected",
+    "name_pl": "Koneksje",
+    "description": "You can attempt to obtain favors from nobles, whether getting a loan, an invitation to a party, or introductions to other important people.",
+    "description_pl": "Możesz próbować uzyskać przysługi od możnych: pożyczkę, zaproszenie na przyjęcie albo wprowadzenie do ważnych osób.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Contort",
+    "name_pl": "Gibkość",
+    "description": "You are able to escape from bonds or squeeze into small or tight places.",
+    "description_pl": "Potrafisz uwolnić się z więzów i przecisnąć przez ciasne szczeliny.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Cutpurse",
+    "name_pl": "Kieszonkowiec",
+    "description": "When you pick pockets or conceal things on your person, you can do so quickly while running.",
+    "description_pl": "Gdy kradniesz z kieszeni lub ukrywasz coś przy sobie, możesz robić to szybko, nawet w biegu.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Cure",
+    "name_pl": "Uzdrowienie",
+    "description": "You can neutralize poisons, remove curses and heal wounds without a touch.",
+    "description_pl": "Możesz neutralizować trucizny, zdejmować klątwy i leczyć rany bez dotyku.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Damnation",
+    "name_pl": "Potępienie",
+    "description": "You can attempt to inflict curses or ailments upon others, either with eye contact or through a fetish.",
+    "description_pl": "Możesz próbować zsyłać na innych klątwy lub dolegliwości poprzez kontakt wzrokowy albo fetysz.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Daring",
+    "name_pl": "Brawura",
+    "description": "Once per day, you can ignore the damage or effects of an environmental hazard.",
+    "description_pl": "Raz dziennie możesz zignorować obrażenia lub skutki zagrożenia środowiskowego.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Diplomat",
+    "name_pl": "Dyplomata",
+    "description": "You can enter negotiations, bargain, or parley, even with the most disagreeable of people, as long as they are intelligent enough to understand you.",
+    "description_pl": "Możesz negocjować, targować się i pertraktować nawet z najbardziej nieznośnymi rozmówcami, o ile są dość inteligentni, by cię zrozumieć.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Disguise",
+    "name_pl": "Przebranie",
+    "description": "When you use costumes and makeup, you can attempt to convincingly imitate other people, or ensure your own identity is unrecognizable.",
+    "description_pl": "Używając kostiumów i makijażu, możesz przekonująco podszywać się pod innych albo uczynić własną tożsamość nierozpoznawalną.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Divination",
+    "name_pl": "Wróżbiarstwo",
+    "description": "When you gaze into a crystal or a bowl of holy water, you can attempt to see events either far away, in the past, or in the future.",
+    "description_pl": "Wpatrując się w kryształ lub misę z wodą święconą, możesz próbować ujrzeć wydarzenia odległe, minione albo przyszłe.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Duelist",
+    "name_pl": "Szermierz",
+    "description": "You treat any one-handed weapon as Light.",
+    "description_pl": "Traktujesz każdą broń jednoręczną jak Lekką.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Engineer",
+    "name_pl": "Inżynier",
+    "description": "With the Crafting skill, you can create and repair mechanical devices and firearms.",
+    "description_pl": "Mając umiejętność Rzemiosło, możesz tworzyć i naprawiać urządzenia mechaniczne oraz broń palną.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Expert",
+    "name_pl": "Ekspert",
+    "description": "Once per day, you can turn a Miss into a Partial Success.",
+    "description_pl": "Raz dziennie możesz zamienić Pudło w Częściowy sukces.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Familiar",
+    "name_pl": "Chowaniec",
+    "description": "You have an animal companion, such as a crow, rat, cat, snake or spider, magically bonded to you. You can see through its eyes, and hear what it hears.",
+    "description_pl": "Masz magicznie związanego ze sobą zwierzęcego towarzysza, takiego jak kruk, szczur, kot, wąż albo pająk. Możesz widzieć jego oczami i słyszeć jego uszami.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Full-contact magic",
+    "name_pl": "Magia Kontaktowa",
+    "description": "You can channel spells through your fists in melee. If you hit successfully, you can send one Wizardry spell through your fists into your opponent. You remain unharmed, even if that spell affects an area around you.",
+    "description_pl": "Możesz przekazywać zaklęcia przez pięści w walce wręcz. Jeśli trafisz, możesz posłać w przeciwnika jedno zaklęcie Czarnoksięstwa. Sam pozostajesz bez szwanku, nawet jeśli zaklęcie obejmuje obszar wokół ciebie.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Gadgetry",
+    "name_pl": "Gadżeciarstwo",
+    "description": "You try to solve any problem with gadgets you build. Anytime you attempt something risky, you roll +INT. A Miss means the gadget does not what it should (GM's discretion). At Level 3, you design a device that replicates a Sorcery spell three times a day. At Levels 6 and 9, you each get one additional device that replicates another Sorcery spell.",
+    "description_pl": "Każdy problem próbujesz rozwiązać skonstruowanym przez siebie gadżetem. Za każdym razem, gdy podejmujesz ryzykowne działanie, rzucasz +INT. Pudło oznacza, że gadżet nie działa tak, jak powinien (wedle uznania MG). Na 3. poziomie projektujesz urządzenie, które trzy razy dziennie odtwarza jedno zaklęcie Czarodziejstwa. Na 6. i 9. poziomie otrzymujesz po jednym dodatkowym urządzeniu odtwarzającym inne zaklęcie Czarodziejstwa.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Getaway",
+    "name_pl": "Ucieczka",
+    "description": "Once per day, you can automatically flee a location — sprinting, dodging, and ducking to avoid pursuit.",
+    "description_pl": "Raz dziennie możesz automatycznie uciec z danego miejsca, biegnąc, robiąc uniki i kryjąc się przed pościgiem.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Guarded",
+    "name_pl": "Osłona",
+    "description": "Once per day, you can redirect any attack against you to one of your Hirelings.",
+    "description_pl": "Raz dziennie możesz przekierować dowolny atak wymierzony w ciebie na jednego ze swoich najemników.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Hardy",
+    "name_pl": "Zahartowany",
+    "description": "Add +6 to your hit points.",
+    "description_pl": "Dodaj +6 do swoich punktów życia.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Heavy Hands/Feet",
+    "name_pl": "Ciężkie Dłonie i Stopy",
+    "description": "You do 1d6 unarmed damage. On levels 3, 5, 7 and 9, you get an additional +1 damage.",
+    "description_pl": "Zadajesz 1k6 obrażeń bez broni. Na 3., 5., 7. i 9. poziomie zyskujesz dodatkowo +1 obrażenie.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Hunter",
+    "name_pl": "Łowca",
+    "description": "Add +3 damage to ranged attacks when the target is unaware of your presence.",
+    "description_pl": "Dodaj +3 obrażenia do ataków dystansowych, jeśli cel nie jest świadomy twojej obecności.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Illusions",
+    "name_pl": "Iluzje",
+    "description": "You can create illusions to make someone see something that isn't there, or mesmerize them so they believe something that isn't true.",
+    "description_pl": "Możesz tworzyć iluzje, by ktoś zobaczył coś, czego nie ma, albo zahipnotyzować go tak, by uwierzył w coś nieprawdziwego.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Inspire",
+    "name_pl": "Natchnienie",
+    "description": "You can attempt to sway public opinion with your song, stories, or rhetoric.",
+    "description_pl": "Możesz próbować wpływać na opinię publiczną swoją pieśnią, opowieściami lub retoryką.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Instinct",
+    "name_pl": "Instynkt",
+    "description": "You can re-roll DEX when reacting to dangerous situations.",
+    "description_pl": "Możesz przerzucić test ZRĘ, gdy reagujesz na niebezpieczną sytuację.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Linguist",
+    "name_pl": "Lingwista",
+    "description": "You can speak and read all civilized languages.",
+    "description_pl": "Potrafisz mówić i czytać we wszystkich cywilizowanych językach.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Lookout",
+    "name_pl": "Czujka",
+    "description": "When you take the lead in the city or a dungeon, you always spot your targets before they spot you.",
+    "description_pl": "Gdy prowadzisz grupę w mieście albo lochu, zawsze dostrzegasz cele, zanim one dostrzegą ciebie.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Lucky",
+    "name_pl": "Szczęście",
+    "description": "Once per day, you can turn any Miss into a Success instead.",
+    "description_pl": "Raz dziennie możesz zamienić dowolne Pudło w Sukces.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Magic-fueled hit points",
+    "name_pl": "Magiczne Punkty Życia",
+    "description": "You have additional hit points (as many as your Power score). For each Wizardry spell you use, you lose 1 or 2 of those additional hit points.",
+    "description_pl": "Masz dodatkowe punkty życia równe wartości twojej Mocy. Za każde użyte zaklęcie Czarnoksięstwa tracisz 1 albo 2 z tych dodatkowych punktów życia.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Mind Shield",
+    "name_pl": "Tarcza Umysłu",
+    "description": "You are immune against fear, charm and sleep spells.",
+    "description_pl": "Jesteś odporny na strach, zauroczenie i zaklęcia snu.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Opportunist",
+    "name_pl": "Oportunista",
+    "description": "When you and your allies overpower your opponents, you inflict +2 damage.",
+    "description_pl": "Gdy ty i twoi sprzymierzeńcy bierzecie przeciwników górą, zadajesz +2 obrażenia.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Pacify",
+    "name_pl": "Uspokojenie",
+    "description": "You can attempt to pacify or charm (demi)intelligent creatures with your voice.",
+    "description_pl": "Możesz próbować uspokoić lub zauroczyć głosem istoty (pół)inteligentne.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Perform",
+    "name_pl": "Występ",
+    "description": "When you entertain a crowd, you can earn d6s per Level each day. However, should any die roll a 1, the audience turns nasty and you won't be allowed to perform for at least a week without having rotten vegetables thrown at you.",
+    "description_pl": "Gdy zabawiasz tłum, możesz zarobić dziennie po 1k6 srebrników za poziom. Jeśli jednak na którejkolwiek kości wypadnie 1, publiczność staje się wroga i przez co najmniej tydzień nie pozwoli ci występować bez obrzucania cię zgniłymi warzywami.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Pet",
+    "name_pl": "Towarzysz Zwierzęcy",
+    "description": "You have a loyal and effective animal companion.",
+    "description_pl": "Masz lojalnego i skutecznego zwierzęcego towarzysza.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Prestige",
+    "name_pl": "Prestiż",
+    "description": "Everyone knows who you are. Halve the price of any Hirelings, as they seek your employ in order to gain later favors or advantages.",
+    "description_pl": "Wszyscy wiedzą, kim jesteś. Koszt najemników spada o połowę, bo szukają służby u ciebie z nadzieją na późniejsze łaski i korzyści.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Reflexes",
+    "name_pl": "Refleks",
+    "description": "You always act first, and can react when suddenly surprised.",
+    "description_pl": "Zawsze działasz pierwszy i możesz reagować nawet wtedy, gdy ktoś zaskoczy cię znienacka.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Rockskin",
+    "name_pl": "Skalna Skóra",
+    "description": "You have rock-hard skin (Armor 2).",
+    "description_pl": "Masz skórę twardą jak skała (Pancerz 2).",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Rover",
+    "name_pl": "Wędrowiec",
+    "description": "When you run through the wilderness, you do so without leaving obvious tracks or a trail.",
+    "description_pl": "Biegnąc przez dzicz, nie zostawiasz wyraźnych śladów ani tropu.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Sailor",
+    "name_pl": "Żeglarz",
+    "description": "You can crew a sailing vessel, and never feel ill due to stormy seas.",
+    "description_pl": "Potrafisz obsługiwać żaglowiec i nigdy nie dopada cię choroba morska, nawet na wzburzonym morzu.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Sapper",
+    "name_pl": "Saper",
+    "description": "When using blackpowder explosives or artillery, add +1 die to damage, discarding the lowest result.",
+    "description_pl": "Używając czarnoprochowych ładunków wybuchowych albo artylerii, dodajesz +1 kość do obrażeń i odrzucasz najniższy wynik.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Schemer",
+    "name_pl": "Intrygant",
+    "description": "When you bribe or blackmail others, you can do so subtly or through third parties, without drawing too much unwanted attention to yourself.",
+    "description_pl": "Gdy przekupujesz lub szantażujesz innych, możesz robić to subtelnie albo przez pośredników, nie ściągając na siebie niepożądanej uwagi.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Scout",
+    "name_pl": "Zwiadowca",
+    "description": "When you take the lead in the wilderness, you always spot your targets before they spot you.",
+    "description_pl": "Gdy prowadzisz grupę w dziczy, zawsze dostrzegasz cele, zanim one dostrzegą ciebie.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Shifting",
+    "name_pl": "Zmiana Kształtu",
+    "description": "When drinking the blood of an animal you can attempt to take its form, leaving your possessions behind. However, it is a feat of willpower to revert to your original self, particularly the longer you stay a beast.",
+    "description_pl": "Gdy wypijesz krew zwierzęcia, możesz próbować przybrać jego postać, zostawiając swój dobytek. Powrót do własnej formy wymaga jednak silnej woli, zwłaszcza im dłużej pozostajesz bestią.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Skirmish",
+    "name_pl": "Potyczka",
+    "description": "+1 damage and worn armor counts as one type lighter.",
+    "description_pl": "+1 do obrażeń, a noszona przez ciebie zbroja liczy się jak o jeden typ lżejsza.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Slay",
+    "name_pl": "Pogromca",
+    "description": "+2 melee damage.",
+    "description_pl": "+2 obrażenia w walce wręcz.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Sleuth",
+    "name_pl": "Detektyw",
+    "description": "When you search for clues, you can do so quickly and while on the move. You can always tell when someone is lying, though you may not know the cause of their deception.",
+    "description_pl": "Gdy szukasz wskazówek, robisz to szybko i w ruchu. Zawsze rozpoznasz, kiedy ktoś kłamie, choć możesz nie znać przyczyny oszustwa.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Sorcery",
+    "name_pl": "Czarodziejstwo",
+    "description": "You are able to cast spells that, while limited in scope, are much safer than the raw magical power of Wizardry. You start with three spells.",
+    "description_pl": "Możesz rzucać zaklęcia, które choć mają ograniczony zakres, są znacznie bezpieczniejsze niż surowa moc Czarnoksięstwa. Zaczynasz z trzema zaklęciami.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Strategy",
+    "name_pl": "Strategia",
+    "description": "When you are in combat, you can attempt to predict the movements, positions, and strengths of your enemies.",
+    "description_pl": "W walce możesz próbować przewidzieć ruchy, pozycje i siłę swoich wrogów.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Summon",
+    "name_pl": "Przywołanie",
+    "description": "You can call forth demons to seek their counsel...or so you can bind them to serve you. You start with two bound demons that you can call upon.",
+    "description_pl": "Możesz przyzywać demony, by zasięgać ich rady, albo po to, by związać je i zmusić do służby. Zaczynasz z dwoma związanymi demonami, które możesz przywołać.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Surgeon",
+    "name_pl": "Chirurg",
+    "description": "With the Treatment skill, you can try to mix new medicines or bring someone back from the brink of death.",
+    "description_pl": "Dzięki umiejętności Leczenie możesz próbować sporządzać nowe lekarstwa albo wyrwać kogoś z objęć śmierci.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Talented",
+    "name_pl": "Utalentowany",
+    "description": "Add +1 Skill.",
+    "description_pl": "Zyskujesz +1 Umiejętność.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Tinker",
+    "name_pl": "Majsterkowicz",
+    "description": "When you pick locks or disable traps, you can do so quickly and unnoticed while in plain sight.",
+    "description_pl": "Gdy otwierasz zamki lub rozbrajasz pułapki, możesz robić to szybko i niezauważenie, nawet na oczach innych.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Tough",
+    "name_pl": "Twardziel",
+    "description": "Add +1 armor, from being badass.",
+    "description_pl": "Dodaj +1 do Pancerza. Jesteś po prostu wyjątkowo twardy.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Tracker",
+    "name_pl": "Tropiciel",
+    "description": "When you attempt to identify and follow tracks, you can do so quickly while on the move.",
+    "description_pl": "Gdy próbujesz rozpoznać i podjąć trop, możesz robić to szybko i w ruchu.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Trick",
+    "name_pl": "Sztuczka",
+    "description": "You can attempt to distract or delay your opponent with your antics.",
+    "description_pl": "Możesz próbować rozproszyć albo opóźnić przeciwnika swoimi wybiegami.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Turn",
+    "name_pl": "Odpędzenie",
+    "description": "You can attempt to hold undead at bay with the power of your faith and a holy symbol.",
+    "description_pl": "Możesz próbować utrzymać nieumarłych na dystans mocą swojej wiary i świętego symbolu.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Vehemence",
+    "name_pl": "Gwałtowność",
+    "description": "When you use damaging magic effects, add +1 die to damage, discarding the lowest result.",
+    "description_pl": "Gdy używasz efektów magicznych zadających obrażenia, dodajesz +1 kość do obrażeń i odrzucasz najniższy wynik.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Vision",
+    "name_pl": "Wizja",
+    "description": "Drink holy water to commune with your deity for divine guidance.",
+    "description_pl": "Wypij wodę święconą, by obcować ze swoim bóstwem i otrzymać boskie wskazówki.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Volley",
+    "name_pl": "Salwa",
+    "description": "Add +2 damage to any ranged attack.",
+    "description_pl": "Dodaj +2 obrażenia do każdego ataku dystansowego.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Warded",
+    "name_pl": "Ochronne Pieczęcie",
+    "description": "When you are using magic, your protective wards keep you safe, granting +1 Armor.",
+    "description_pl": "Gdy używasz magii, twoje ochronne pieczęcie strzegą cię, dając +1 Pancerza.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Wild",
+    "name_pl": "Dziki Zew",
+    "description": "You can converse with and attempt to command animals.",
+    "description_pl": "Możesz rozmawiać ze zwierzętami i próbować wydawać im polecenia.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "Wizardry",
+    "name_pl": "Czarnoksięstwo",
+    "description": "You can create magical effects drawn from the raw power of Chaos. Such effects are powerful and wondrous, and not limited in scope like Sorcery. However, the risks of weaving such energies have hazards, both extreme and varied. You start with a Power score equal to your base Hit Dice +WIS.",
+    "description_pl": "Możesz tworzyć magiczne efekty czerpiące z surowej mocy Chaosu. Są potężne i cudowne, a ich zakres nie jest tak ograniczony jak w Czarodziejstwie. Jednak splatanie takich energii niesie ze sobą skrajne i nieprzewidywalne zagrożenia. Zaczynasz z Mocą równą liczbie bazowych Kości Wytrzymałości + MĄD.",
+    "level": 1,
+    "source": "AWoD"
+  },
+  {
+    "name": "WTF?",
+    "name_pl": "Co To Było?",
+    "description": "You get a bonus to roll against opponents that haven't fought against you. This bonus is lost after the first confrontation.",
+    "description_pl": "Otrzymujesz premię do rzutów przeciw przeciwnikom, którzy jeszcze z tobą nie walczyli. Po pierwszej konfrontacji ta premia przepada.",
+    "level": 1,
+    "source": "AWoD"
+  }
+]
