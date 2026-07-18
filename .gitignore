@@ -23,6 +23,12 @@ Marsz/game2/assets/*.png
 # Large files
 LARP_cards/karty_cien_nad_zakonem_1x329.pdf
 
+# Media files
+*.pdf
+*.mp3
+*.mp4
+*.mov
+
 # AI Metadata
 CLAUDE.md
 MEMORY.md
