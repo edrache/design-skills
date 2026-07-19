@@ -46,3 +46,10 @@ Original prompt: przejdź do implementacji planu [2026-07-18-tetromino-prototype
 - Tunable knobs were added in `config.js`: `BUILT_EDGE_FRINGE_WORLD_SIZE` and `BUILT_EDGE_EROSION_WORLD_SIZE`.
 - 2026-07-19: Reworked inward edge erosion so it now erases the built-area layer instead of painting another copy of the world background over it.
 - This removes the bright straight-sided polygon artifact that could remain visible inside the city bounds even with tint alpha set to zero.
+- 2026-07-19: Added `BUILT_EDGE_DETAIL_WORLD_SPACING` in `config.js` to control edge-detail density independently from edge size.
+- Lower spacing values create more frequent bumps and notches; higher values make the city edge calmer and simpler.
+- 2026-07-19: Added `BUILT_BACKGROUND_OVERDRAW_WORLD_SIZE` so the main city-ground layer itself can extend beyond the strict city footprint.
+- This is separate from decorative fringe, so the user can now control how far the base town texture pushes outward before any extra edge treatment is added.
+- 2026-07-19: Limited per-tetromino element generation to at most one `Shop_*` tile.
+- Placement now uses the normal weighted catalog until the first shop appears on that piece, then filters the remaining cells to non-shop entries only.
+- Added a regression test in `tests/state.test.js` to verify that even shop-favoring RNG produces at most one shop on a single placed tetromino.

@@ -17,7 +17,9 @@ export function renderGrid(ctx, state, viewportWidth, viewportHeight, now = perf
     builtBackgroundTexture,
     builtBackgroundTileWorldSize,
     builtBackgroundTextureOpacity,
+    builtBackgroundOverdrawWorldSize,
     builtBackgroundTint,
+    builtEdgeDetailWorldSpacing,
     builtEdgeFringeWorldSize,
     builtEdgeFringeTextureOpacity,
     builtEdgeFringeTint,
@@ -52,7 +54,9 @@ export function renderGrid(ctx, state, viewportWidth, viewportHeight, now = perf
     builtBackgroundTexture,
     builtBackgroundTileWorldSize,
     builtBackgroundTextureOpacity,
+    builtBackgroundOverdrawWorldSize,
     builtBackgroundTint,
+    builtEdgeDetailWorldSpacing,
     builtEdgeFringeWorldSize,
     builtEdgeFringeTextureOpacity,
     builtEdgeFringeTint,
@@ -177,7 +181,9 @@ function drawBuiltAreaBackground(
   texture,
   tileWorldSize = 512,
   builtBackgroundTextureOpacity = 0.92,
+  builtBackgroundOverdrawWorldSize = 0,
   builtBackgroundTint = 'rgba(181, 129, 64, 0.14)',
+  edgeDetailWorldSpacing = 18,
   fringeWorldSize = 0,
   fringeTextureOpacity = 0.8,
   fringeTint = 'rgba(220, 174, 102, 0.18)',
@@ -260,6 +266,19 @@ function drawBuiltAreaBackground(
     return;
   }
 
+  if (builtBackgroundOverdrawWorldSize > 0) {
+    drawBuiltAreaEdgeExtension(
+      layerCtx,
+      boundaryEdges,
+      pattern,
+      camera,
+      builtBackgroundOverdrawWorldSize,
+      builtBackgroundTextureOpacity,
+      builtBackgroundTint,
+      edgeDetailWorldSpacing
+    );
+  }
+
   if (erosionWorldSize > 0) {
     drawBuiltAreaEdgeErosion(
       layerCtx,
@@ -267,7 +286,8 @@ function drawBuiltAreaBackground(
       camera,
       erosionWorldSize,
       erosionTextureOpacity,
-      erosionTint
+      erosionTint,
+      edgeDetailWorldSpacing
     );
   }
 
@@ -279,11 +299,59 @@ function drawBuiltAreaBackground(
       camera,
       fringeWorldSize,
       fringeTextureOpacity,
-      fringeTint
+      fringeTint,
+      edgeDetailWorldSpacing
     );
   }
 
   ctx.drawImage(layerCanvas, 0, 0);
+}
+
+function drawBuiltAreaEdgeExtension(
+  ctx,
+  boundaryEdges,
+  builtPattern,
+  camera,
+  overdrawWorldSize,
+  builtTextureOpacity,
+  builtTint,
+  edgeDetailWorldSpacing
+) {
+  const overdrawPx = overdrawWorldSize * camera.zoom;
+  if (overdrawPx <= 0) {
+    return;
+  }
+
+  ctx.save();
+  for (const edge of boundaryEdges) {
+    const { edgePoints, outerPoints } = buildEdgeStripPoints(
+      edge,
+      0,
+      overdrawPx,
+      0.55,
+      edgeDetailWorldSpacing * camera.zoom
+    );
+    if (edgePoints.length < 2 || outerPoints.length < 2) {
+      continue;
+    }
+
+    ctx.beginPath();
+    ctx.moveTo(outerPoints[0].x, outerPoints[0].y);
+    for (let i = 1; i < outerPoints.length; i += 1) {
+      ctx.lineTo(outerPoints[i].x, outerPoints[i].y);
+    }
+    for (let i = edgePoints.length - 1; i >= 0; i -= 1) {
+      ctx.lineTo(edgePoints[i].x, edgePoints[i].y);
+    }
+    ctx.closePath();
+    ctx.globalAlpha = builtTextureOpacity;
+    ctx.fillStyle = builtPattern;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = builtTint;
+    ctx.fill();
+  }
+  ctx.restore();
 }
 
 function collectBuiltAreaBoundaryEdges(
@@ -349,7 +417,8 @@ function drawBuiltAreaEdgeErosion(
   camera,
   erosionWorldSize,
   erosionTextureOpacity,
-  erosionTint
+  erosionTint,
+  edgeDetailWorldSpacing
 ) {
   const erosionPx = erosionWorldSize * camera.zoom;
   if (erosionPx <= 0) {
@@ -358,7 +427,13 @@ function drawBuiltAreaEdgeErosion(
 
   ctx.save();
   for (const edge of boundaryEdges) {
-    const { edgePoints, innerPoints } = buildEdgeStripPoints(edge, erosionPx, 0, 0.45);
+    const { edgePoints, innerPoints } = buildEdgeStripPoints(
+      edge,
+      erosionPx,
+      0,
+      0.45,
+      edgeDetailWorldSpacing * camera.zoom
+    );
     if (edgePoints.length < 2 || innerPoints.length < 2) {
       continue;
     }
@@ -391,7 +466,8 @@ function drawBuiltAreaEdgeFringe(
   camera,
   fringeWorldSize,
   fringeTextureOpacity,
-  fringeTint
+  fringeTint,
+  edgeDetailWorldSpacing
 ) {
   const fringePx = fringeWorldSize * camera.zoom;
   if (fringePx <= 0) {
@@ -400,7 +476,13 @@ function drawBuiltAreaEdgeFringe(
 
   ctx.save();
   for (const edge of boundaryEdges) {
-    const { edgePoints, outerPoints } = buildEdgeStripPoints(edge, 0, fringePx, 0.7);
+    const { edgePoints, outerPoints } = buildEdgeStripPoints(
+      edge,
+      0,
+      fringePx,
+      0.7,
+      edgeDetailWorldSpacing * camera.zoom
+    );
     if (edgePoints.length < 2 || outerPoints.length < 2) {
       continue;
     }
@@ -424,7 +506,13 @@ function drawBuiltAreaEdgeFringe(
   ctx.restore();
 }
 
-function buildEdgeStripPoints(edge, innerDepthPx, outerDepthPx, noiseStrength = 0.5) {
+function buildEdgeStripPoints(
+  edge,
+  innerDepthPx,
+  outerDepthPx,
+  noiseStrength = 0.5,
+  detailSpacingPx = 18
+) {
   const { a, b, outward, seed } = edge;
   const dx = b.x - a.x;
   const dy = b.y - a.y;
@@ -433,7 +521,9 @@ function buildEdgeStripPoints(edge, innerDepthPx, outerDepthPx, noiseStrength = 
     return { edgePoints: [], innerPoints: [], outerPoints: [] };
   }
 
-  const segments = Math.max(4, Math.ceil(length / 18));
+  const spacing = Math.max(4, detailSpacingPx);
+  const waveCount = Math.max(1, Math.min(80, length / spacing));
+  const segments = Math.max(12, Math.ceil(waveCount * 3));
   const edgePoints = [];
   const innerPoints = [];
   const outerPoints = [];
@@ -444,8 +534,8 @@ function buildEdgeStripPoints(edge, innerDepthPx, outerDepthPx, noiseStrength = 
       x: a.x + dx * t,
       y: a.y + dy * t,
     };
-    const outerNoise = sampleEdgeNoise(seed, t);
-    const innerNoise = sampleEdgeNoise(seed + 101, t);
+    const outerNoise = sampleEdgeNoise(seed, t, waveCount);
+    const innerNoise = sampleEdgeNoise(seed + 101, t, waveCount);
     const outerMagnitude =
       outerDepthPx > 0
         ? outerDepthPx * (0.45 + ((outerNoise + 1) * 0.5) * noiseStrength)
@@ -469,9 +559,10 @@ function buildEdgeStripPoints(edge, innerDepthPx, outerDepthPx, noiseStrength = 
   return { edgePoints, innerPoints, outerPoints };
 }
 
-function sampleEdgeNoise(seed, t) {
-  const low = Math.sin(seed * 0.173 + t * Math.PI * 2.4);
-  const high = Math.sin(seed * 0.617 + t * Math.PI * 5.1 + 1.7);
+function sampleEdgeNoise(seed, t, waveCount = 1) {
+  const baseCycles = waveCount * Math.PI * 2;
+  const low = Math.sin(seed * 0.173 + t * baseCycles);
+  const high = Math.sin(seed * 0.617 + t * baseCycles * 2.15 + 1.7);
   return low * 0.72 + high * 0.28;
 }
 

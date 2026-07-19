@@ -1,8 +1,10 @@
 import {
   BACKGROUND_TEXTURE_PATH,
   BACKGROUND_TILE_WORLD_SIZE,
+  BUILT_BACKGROUND_OVERDRAW_WORLD_SIZE,
   BUILT_BACKGROUND_TINT,
   BUILT_BACKGROUND_TEXTURE_OPACITY,
+  BUILT_EDGE_DETAIL_WORLD_SPACING,
   BUILT_EDGE_EROSION_WORLD_SIZE,
   BUILT_EDGE_EROSION_TEXTURE_OPACITY,
   BUILT_EDGE_EROSION_TINT,
@@ -107,6 +109,8 @@ function attachBuiltBackgroundTexture(targetState) {
     targetState.builtBackgroundTexture = image;
     targetState.builtBackgroundTileWorldSize = BUILT_BACKGROUND_TILE_WORLD_SIZE;
     targetState.builtBackgroundTextureOpacity = BUILT_BACKGROUND_TEXTURE_OPACITY;
+    targetState.builtBackgroundOverdrawWorldSize = BUILT_BACKGROUND_OVERDRAW_WORLD_SIZE;
+    targetState.builtEdgeDetailWorldSpacing = BUILT_EDGE_DETAIL_WORLD_SPACING;
     targetState.builtEdgeFringeWorldSize = BUILT_EDGE_FRINGE_WORLD_SIZE;
     targetState.builtEdgeFringeTextureOpacity = BUILT_EDGE_FRINGE_TEXTURE_OPACITY;
     targetState.builtEdgeErosionWorldSize = BUILT_EDGE_EROSION_WORLD_SIZE;

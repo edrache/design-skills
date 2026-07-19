@@ -62,3 +62,7 @@ export function pickWeightedElement(counts, rng = Math.random, catalog = ELEMENT
 
   return pool[pool.length - 1].id;
 }
+
+export function isShopElement(id) {
+  return typeof id === 'string' && id.startsWith('Shop_');
+}

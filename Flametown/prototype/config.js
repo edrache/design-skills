@@ -17,7 +17,11 @@ export const BUILT_BACKGROUND_TILE_WORLD_SIZE = 20; // World-space size covered 
 export const BUILT_BACKGROUND_TEXTURE_OPACITY = 1.0; // Opacity of the main built-area texture before any tint is applied.
 export const BUILT_EDGE_FRINGE_WORLD_SIZE = 0; // How far the city ground can irregularly extend outside the strict occupied footprint.
 export const BUILT_EDGE_FRINGE_TEXTURE_OPACITY = 0.1; // Opacity of the built-area texture on the outer fringe strip.
-export const BUILT_EDGE_EROSION_WORLD_SIZE = 15; // How far the city ground can irregularly recede inward along its outer edge.
+
+export const BUILT_BACKGROUND_OVERDRAW_WORLD_SIZE =5; // How far the main city-ground layer can extend beyond the strict occupied footprint before decorative fringe is applied.
+export const BUILT_EDGE_DETAIL_WORLD_SPACING = 10; // Approximate world-space distance assigned to one edge-wave; lower means more frequent waves, higher means fewer waves.
+export const BUILT_EDGE_EROSION_WORLD_SIZE = 0; // How far the city ground can irregularly recede inward along its outer edge.
+
 export const BUILT_EDGE_EROSION_TEXTURE_OPACITY = 1.0; // Opacity of the terrain texture on the inward erosion strip.
 export const BUILT_BACKGROUND_TINT = 'rgba(181, 129, 64, 0.0)'; // Warm translucent tint laid over the full built-area texture.
 export const BUILT_EDGE_EROSION_TINT = 'rgba(0, 255, 255, 0.0)'; // Green translucent tint used on the inward edge erosion strip.

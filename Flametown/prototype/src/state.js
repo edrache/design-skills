@@ -1,5 +1,5 @@
 import { SAVE_KEY } from '../config.js';
-import { pickWeightedElement } from './elementCatalog.js';
+import { ELEMENT_CATALOG, isShopElement, pickWeightedElement } from './elementCatalog.js';
 import { createCellGrid, createVertexGrid } from './grid.js';
 import { absoluteCells, canPlacePiece, randomPieceId } from './pieces.js';
 import { assignRoadsForPiece } from './roads.js';
@@ -139,17 +139,24 @@ export function placePiece(state, shapeId, rotation, anchorRow, anchorCol, rng =
   const roads = assignRoadsForPiece(state.grid, state.gridSize, cells, rng);
   const pieceId = state.placedPieceCount + 1;
   const assetManifest = state.assetManifest || {};
+  const nonShopCatalog = ELEMENT_CATALOG.filter((entry) => !isShopElement(entry.id));
+  let hasShopOnPiece = false;
 
   cells.forEach(([row, col], index) => {
-    const elementType = pickWeightedElement(state.elementCounts, rng);
-    state.elementCounts[elementType] = (state.elementCounts[elementType] || 0) + 1;
+    const finalElementType = pickWeightedElement(
+      state.elementCounts,
+      rng,
+      hasShopOnPiece ? nonShopCatalog : ELEMENT_CATALOG
+    );
+    state.elementCounts[finalElementType] = (state.elementCounts[finalElementType] || 0) + 1;
+    hasShopOnPiece = hasShopOnPiece || isShopElement(finalElementType);
 
-    const variants = assetManifest[elementType] || [];
+    const variants = assetManifest[finalElementType] || [];
     const elementVariant =
       variants.length > 0 ? Math.min(variants.length - 1, Math.floor(rng() * variants.length)) : null;
 
     state.grid[row][col] = {
-      elementType,
+      elementType: finalElementType,
       elementVariant,
       pieceId,
       roads: roads[index],

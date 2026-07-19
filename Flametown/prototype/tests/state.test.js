@@ -38,6 +38,22 @@ test('placePiece fills 4 cells, assigns element types, and increments counters',
   assert.equal(totalCounted, 4);
 });
 
+test('placePiece allows at most one shop element per tetromino', () => {
+  const state = createNewWorld(8, 32, 0.2, () => 0.5);
+  const ok = placePiece(state, 'O', 0, 3, 3, () => 0.99);
+  assert.equal(ok, true);
+
+  const placedTypes = [
+    state.grid[3][3].elementType,
+    state.grid[3][4].elementType,
+    state.grid[4][3].elementType,
+    state.grid[4][4].elementType,
+  ];
+  const shopCount = placedTypes.filter((type) => type.startsWith('Shop_')).length;
+
+  assert.equal(shopCount, 1);
+});
+
 test('placePiece rejects an illegal placement and leaves state unchanged', () => {
   const state = createNewWorld(8, 32, 0.2, () => 0.5);
   placePiece(state, 'O', 0, 3, 3, () => 0.1);
