@@ -1,4 +1,9 @@
-import { CAMERA_PAN_SPEED, CELL_SIZE } from '../config.js';
+import {
+  CAMERA_PAN_ACCELERATION,
+  CAMERA_PAN_DECELERATION,
+  CAMERA_PAN_SPEED,
+  CELL_SIZE,
+} from '../config.js';
 import { panCamera, panCameraWorld, screenToWorld, zoomCamera } from './camera.js';
 import { worldToCell } from './grid.js';
 
@@ -13,9 +18,59 @@ const PAN_KEYS = {
   ArrowRight: { dx: 1, dy: 0 },
 };
 
+function approachScalar(current, target, maxDelta) {
+  if (current < target) {
+    return Math.min(current + maxDelta, target);
+  }
+  if (current > target) {
+    return Math.max(current - maxDelta, target);
+  }
+  return target;
+}
+
+export function getCameraPanDirection(pressedKeys) {
+  let dx = 0;
+  let dy = 0;
+
+  for (const code of pressedKeys) {
+    const vector = PAN_KEYS[code];
+    if (!vector) {
+      continue;
+    }
+    dx += vector.dx;
+    dy += vector.dy;
+  }
+
+  if (dx === 0 && dy === 0) {
+    return { x: 0, y: 0 };
+  }
+
+  const length = Math.hypot(dx, dy) || 1;
+  return {
+    x: dx / length,
+    y: dy / length,
+  };
+}
+
+export function stepCameraPanVelocity(currentVelocity, direction, deltaSeconds) {
+  const targetVelocity = {
+    x: direction.x * CAMERA_PAN_SPEED,
+    y: direction.y * CAMERA_PAN_SPEED,
+  };
+  const rate =
+    direction.x === 0 && direction.y === 0 ? CAMERA_PAN_DECELERATION : CAMERA_PAN_ACCELERATION;
+  const maxDelta = rate * deltaSeconds;
+
+  return {
+    x: approachScalar(currentVelocity.x, targetVelocity.x, maxDelta),
+    y: approachScalar(currentVelocity.y, targetVelocity.y, maxDelta),
+  };
+}
+
 export function createCameraInput(canvas, initialState) {
   const input = { state: initialState };
   const pressedKeys = new Set();
+  let keyboardVelocity = { x: 0, y: 0 };
   let isMiddleDragging = false;
   let lastDragPos = { x: 0, y: 0 };
 
@@ -65,22 +120,15 @@ export function createCameraInput(canvas, initialState) {
   });
 
   input.update = (deltaSeconds) => {
-    let dx = 0;
-    let dy = 0;
+    const direction = getCameraPanDirection(pressedKeys);
+    keyboardVelocity = stepCameraPanVelocity(keyboardVelocity, direction, deltaSeconds);
 
-    for (const code of pressedKeys) {
-      const vector = PAN_KEYS[code];
-      dx += vector.dx;
-      dy += vector.dy;
-    }
-
-    if (dx === 0 && dy === 0) {
+    if (keyboardVelocity.x === 0 && keyboardVelocity.y === 0) {
       return;
     }
 
-    const length = Math.hypot(dx, dy) || 1;
-    const worldDx = (dx / length) * CAMERA_PAN_SPEED * deltaSeconds;
-    const worldDy = (dy / length) * CAMERA_PAN_SPEED * deltaSeconds;
+    const worldDx = keyboardVelocity.x * deltaSeconds;
+    const worldDy = keyboardVelocity.y * deltaSeconds;
     panCameraWorld(input.state.camera, worldDx, worldDy);
   };
 

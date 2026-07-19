@@ -1,7 +1,7 @@
 # Flametown Prototype Project Context
 
 Stan na: 2026-07-19
-Aktualna wersja prototypu: `0.1.4`
+Aktualna wersja prototypu: `0.1.5`
 
 Ten dokument jest przeznaczony dla kolejnych agentow pracujacych nad projektem.
 
@@ -12,6 +12,12 @@ Przy kazdej istotnej zmianie w architekturze, assetach, testach, workflow albo s
 Przy kazdej zmianie w prototypie trzeba tez zwiekszyc numer wersji, zaktualizowac badge w prawym dolnym rogu gry i dopisac wpis do changelogu ponizej.
 
 ## Changelog
+
+### 0.1.5 - 2026-07-19
+
+- klawiaturowy pan kamery dostal bezwladnosc, wiec start i zatrzymanie ruchu sa plynniejsze niz przy natychmiastowym skoku pozycji
+- `config.js` ma teraz osobne pokretla `CAMERA_PAN_SPEED`, `CAMERA_PAN_ACCELERATION` i `CAMERA_PAN_DECELERATION`
+- dodano testy regresyjne dla normalizacji kierunku i rampowania predkosci w `tests/input.test.js`
 
 ### 0.1.4 - 2026-07-19
 
@@ -121,6 +127,7 @@ Na teraz zaimplementowane i sprawdzone sa:
 
 - jitterowana siatka
 - kamera: zoom, pan myszka i `WASD`
+- pan klawiaturowy kamery korzysta z przyspieszenia i hamowania sterowanego z `config.js`
 - wszystkie klasyczne ksztalty tetromino
 - legalnosc stawiania:
   - pierwszy klocek mozna postawic wszedzie w granicach

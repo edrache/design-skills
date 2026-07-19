@@ -1,5 +1,11 @@
 Original prompt: przejdź do implementacji planu [2026-07-18-tetromino-prototype-plan.md](Flametown/docs/plans/2026-07-18-tetromino-prototype-plan.md) używając wielu agentów. Aktualizuj plan na każdym kroku po jego zakończeniu
 
+- 2026-07-19: Wygładzono klawiaturowe przesuwanie kamery przez dodanie bezwładności ruchu zamiast natychmiastowego skoku do pełnej prędkości.
+- `config.js` ma teraz trzy osobne parametry do tuningu: `CAMERA_PAN_SPEED`, `CAMERA_PAN_ACCELERATION`, `CAMERA_PAN_DECELERATION`.
+- `src/input.js` utrzymuje teraz bieżącą prędkość panu i płynnie dochodzi do celu po wciśnięciu oraz puszczeniu klawiszy.
+- Dodano regresję `tests/input.test.js` dla diagonalnej normalizacji oraz rozpędzania/hamowania prędkości kamery.
+- Wersja prototypu podbita do `0.1.5`, zaktualizowano `index.html`, `package.json` i dokumentację projektu.
+
 - 2026-07-19: Released cache-resilience hotfix `0.1.4` after live error `The requested module './ui.js' does not provide an export named 'createTutorialOverlay'`.
 - `main.js` now imports `ui.js` and `tutorial.js` via namespace imports with explicit version query strings and can fall back to a no-op tutorial controller/overlay when stale modules are served from cache.
 - 2026-07-19: Released cache-mismatch hotfix `0.1.3` after live error `The requested module '../config.js' does not provide an export named 'APP_VERSION'`.

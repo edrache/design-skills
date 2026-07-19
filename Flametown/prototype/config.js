@@ -1,4 +1,4 @@
-export const APP_VERSION = '0.1.4'; // Human-readable prototype version tracked in project docs and release notes.
+export const APP_VERSION = '0.1.5'; // Human-readable prototype version tracked in project docs and release notes.
 
 // Keep every exported config value documented inline so the file stays readable as new knobs are added.
 export const DEFAULT_GRID_SIZE = 256; // Default world size used when starting a fresh game.
@@ -9,9 +9,13 @@ export const JITTER_AMOUNT = 0.2; // Strength of vertex jitter that makes the gr
 export const MAX_ASSET_VARIANTS = 20; // Safety cap for probing numbered sprite variants like house_1, house_2, etc.
 export const ROAD_RANDOM_CHANCE = 0.5; // Chance used by road generation when a road connection is optional.
 export const SAVE_KEY = 'flametown-save-v1'; // localStorage key for saved prototype state.
+
 export const ZOOM_MIN = 0.3; // Lowest camera zoom allowed during play.
 export const ZOOM_MAX = 20.0; // Highest camera zoom allowed during play.
-export const CAMERA_PAN_SPEED = 600; // Keyboard pan speed in world units per second.
+export const CAMERA_PAN_SPEED = 300; // Target keyboard pan speed in world units per second once the camera reaches full glide speed.
+export const CAMERA_PAN_ACCELERATION = 1400; // How quickly keyboard camera pan ramps up toward CAMERA_PAN_SPEED, in world units per second squared.
+export const CAMERA_PAN_DECELERATION = 1400; // How quickly keyboard camera pan slows down after key release or direction changes, in world units per second squared.
+
 export const BACKGROUND_TEXTURE_PATH = 'assets/tiles/Terrain_Base.png'; // Texture path for the main grassland world background.
 export const BACKGROUND_TILE_WORLD_SIZE = 256; // World-space size covered by one repeat of the main background texture.
 export const BUILT_BACKGROUND_TEXTURE_PATH = 'assets/tiles/Terrain_Town.png'; // Texture path for the ground shown under occupied city cells.
