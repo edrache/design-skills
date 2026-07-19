@@ -54,3 +54,13 @@ export async function loadAssetManifest(
 
   return manifest;
 }
+
+export async function loadNamedImages(assetPaths, loadImage = defaultLoadImage) {
+  const manifest = {};
+
+  for (const [id, path] of Object.entries(assetPaths || {})) {
+    manifest[id] = await loadImage(path);
+  }
+
+  return manifest;
+}

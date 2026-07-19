@@ -1,0 +1,140 @@
+[
+  {
+    "zoom": 5,
+    "screenshotPath": "/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/output/road-zoom-smoke/road-zoom-5.png",
+    "snapshot": {
+      "mode": "idle",
+      "currentPiece": {
+        "shapeId": "S",
+        "rotation": 0,
+        "plannedCells": [
+          {
+            "elementType": "Shop_DragonAlley"
+          },
+          {
+            "elementType": "house"
+          },
+          {
+            "elementType": "house"
+          },
+          {
+            "elementType": "park"
+          }
+        ]
+      },
+      "placedPieceCount": 0,
+      "camera": {
+        "x": 159.35171006917955,
+        "y": 153.98286261856555,
+        "zoom": 5
+      },
+      "mouseCell": null,
+      "hoveredCell": null,
+      "hoveredClusterSize": 0,
+      "gridSize": 12,
+      "residents": [],
+      "scoreTotals": {
+        "Bread": 0,
+        "Crystal": 0,
+        "Iron": 0,
+        "Meat": 0,
+        "Plant": 0,
+        "Potion": 0
+      },
+      "activeScorePopups": 0,
+      "note": "origin=(0,0) top-left; +x right; +y down"
+    }
+  },
+  {
+    "zoom": 6.5,
+    "screenshotPath": "/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/output/road-zoom-smoke/road-zoom-6_5.png",
+    "snapshot": {
+      "mode": "idle",
+      "currentPiece": {
+        "shapeId": "S",
+        "rotation": 0,
+        "plannedCells": [
+          {
+            "elementType": "Shop_DragonAlley"
+          },
+          {
+            "elementType": "house"
+          },
+          {
+            "elementType": "house"
+          },
+          {
+            "elementType": "park"
+          }
+        ]
+      },
+      "placedPieceCount": 0,
+      "camera": {
+        "x": 159.35171006917955,
+        "y": 153.98286261856555,
+        "zoom": 6.5
+      },
+      "mouseCell": null,
+      "hoveredCell": null,
+      "hoveredClusterSize": 0,
+      "gridSize": 12,
+      "residents": [],
+      "scoreTotals": {
+        "Bread": 0,
+        "Crystal": 0,
+        "Iron": 0,
+        "Meat": 0,
+        "Plant": 0,
+        "Potion": 0
+      },
+      "activeScorePopups": 0,
+      "note": "origin=(0,0) top-left; +x right; +y down"
+    }
+  },
+  {
+    "zoom": 8,
+    "screenshotPath": "/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/output/road-zoom-smoke/road-zoom-8.png",
+    "snapshot": {
+      "mode": "idle",
+      "currentPiece": {
+        "shapeId": "S",
+        "rotation": 0,
+        "plannedCells": [
+          {
+            "elementType": "Shop_DragonAlley"
+          },
+          {
+            "elementType": "house"
+          },
+          {
+            "elementType": "house"
+          },
+          {
+            "elementType": "park"
+          }
+        ]
+      },
+      "placedPieceCount": 0,
+      "camera": {
+        "x": 159.35171006917955,
+        "y": 153.98286261856555,
+        "zoom": 8
+      },
+      "mouseCell": null,
+      "hoveredCell": null,
+      "hoveredClusterSize": 0,
+      "gridSize": 12,
+      "residents": [],
+      "scoreTotals": {
+        "Bread": 0,
+        "Crystal": 0,
+        "Iron": 0,
+        "Meat": 0,
+        "Plant": 0,
+        "Potion": 0
+      },
+      "activeScorePopups": 0,
+      "note": "origin=(0,0) top-left; +x right; +y down"
+    }
+  }
+]

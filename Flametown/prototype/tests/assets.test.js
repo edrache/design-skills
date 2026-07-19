@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { detectVariants, loadAssetManifest } from '../src/assets.js';
+import { detectVariants, loadAssetManifest, loadNamedImages } from '../src/assets.js';
 
 function test(name, fn) {
   return fn().then(
@@ -47,4 +47,19 @@ await test('loadAssetManifest builds a map keyed by catalog id', async () => {
   const manifest = await loadAssetManifest(catalog, 'tiles', 20, loader);
   assert.equal(manifest.house.length, 1);
   assert.equal(manifest.Shop_DracoBell.length, 1);
+});
+
+await test('loadNamedImages loads a direct manifest keyed by logical id', async () => {
+  const loader = fakeLoader(
+    new Set(['assets/icons/Icon_Shop.png', 'assets/icons/Icon_GoodsToken_Bread.png'])
+  );
+  const manifest = await loadNamedImages(
+    {
+      shop: 'assets/icons/Icon_Shop.png',
+      Bread: 'assets/icons/Icon_GoodsToken_Bread.png',
+    },
+    loader
+  );
+  assert.equal(manifest.shop.url, 'assets/icons/Icon_Shop.png');
+  assert.equal(manifest.Bread.url, 'assets/icons/Icon_GoodsToken_Bread.png');
 });

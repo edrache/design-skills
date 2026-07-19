@@ -1,0 +1,88 @@
+{
+  "gridSize": 16,
+  "placedPieceCount": 0,
+  "currentPiece": {
+    "shapeId": "T",
+    "rotation": 0,
+    "plannedCells": [
+      {
+        "elementType": "house"
+      },
+      {
+        "elementType": "Shop_FogoDeChar"
+      },
+      {
+        "elementType": "park"
+      },
+      {
+        "elementType": "house"
+      }
+    ]
+  },
+  "holding": false,
+  "lastPlacedCells": [],
+  "residents": [
+    {
+      "id": 1,
+      "homeCell": {
+        "row": 6,
+        "col": 6
+      },
+      "from": {
+        "row": 6,
+        "col": 7
+      },
+      "to": {
+        "row": 6,
+        "col": 8
+      },
+      "progress": 0.20171120463984277
+    }
+  ],
+  "scoreTotals": {
+    "Bread": 0,
+    "Crystal": 0,
+    "Iron": 0,
+    "Meat": 1,
+    "Plant": 0,
+    "Potion": 0
+  },
+  "occupiedCells": [
+    {
+      "row": 5,
+      "col": 6,
+      "elementType": "Shop_DracoBell",
+      "pieceId": 2,
+      "roads": {
+        "N": false,
+        "E": false,
+        "S": true,
+        "W": false
+      }
+    },
+    {
+      "row": 6,
+      "col": 6,
+      "elementType": "house",
+      "pieceId": 1,
+      "roads": {
+        "N": true,
+        "E": false,
+        "S": false,
+        "W": false
+      }
+    },
+    {
+      "row": 6,
+      "col": 7,
+      "elementType": "Shop_DrakeOfCakes",
+      "pieceId": 3,
+      "roads": {
+        "N": true,
+        "E": false,
+        "S": false,
+        "W": false
+      }
+    }
+  ]
+}

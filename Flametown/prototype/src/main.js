@@ -21,27 +21,35 @@ import {
   MAP_POINT_TEXTURE_PATH,
   MAP_POINT_WORLD_SIZE,
   MAX_ASSET_VARIANTS,
+  ROAD_TEXTURE_PATH,
+  RESIDENT_SPRITE_PATH,
 } from '../config.js';
-import { loadAssetManifest, loadOptionalImage } from './assets.js';
+import { loadAssetManifest, loadNamedImages, loadOptionalImage } from './assets.js';
 import { createCamera } from './camera.js';
-import { ELEMENT_CATALOG } from './elementCatalog.js';
+import { ELEMENT_CATALOG, ELEMENT_OVERLAY_ICON_DEFINITIONS } from './elementCatalog.js';
 import { createCameraInput, createPlacementInput } from './input.js';
 import { renderGhost, renderGrid } from './render.js';
+import { bootstrapResidentsFromGrid, syncResidentGraph, updateResidents } from './residents.js';
 import {
   clampGridSize,
   clearStorage,
+  createInitialScoreTotals,
+  createPieceDraft,
   createNewWorld,
   ensureCurrentPiece,
   loadFromStorage,
   placePiece,
   reconcileElementVariants,
+  rebuildClusterState,
   saveToStorage,
+  syncHoveredCluster,
 } from './state.js';
-import { createUIPanel } from './ui.js';
+import { createScorePanel, createUIPanel } from './ui.js';
 
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
 const panelEl = document.getElementById('ui-panel');
+const scorePanelEl = document.getElementById('score-panel');
 
 function resizeCanvas() {
   const dpr = window.devicePixelRatio || 1;
@@ -64,7 +72,7 @@ function buildFreshState(gridSize) {
 }
 
 function hydrateSavedState(saved) {
-  return {
+  const hydrated = {
     gridSize: saved.gridSize,
     worldSeed: saved.worldSeed,
     grid: saved.cells,
@@ -77,7 +85,22 @@ function hydrateSavedState(saved) {
     animations: [],
     assetManifest: {},
     lastPlacedCells: [],
+    scoreTotals: { ...createInitialScoreTotals(), ...(saved.scoreTotals || {}) },
+    scoreTotalsVersion: 0,
+    scorePopups: [],
+    residents: saved.residents || [],
+    nextResidentId: saved.nextResidentId || 1,
+    clusterIndex: null,
+    hoveredCell: null,
+    hoveredClusterCells: [],
+    hoveredClusterSize: 0,
   };
+  syncResidentGraph(hydrated);
+  rebuildClusterState(hydrated);
+  if (hydrated.residents.length === 0) {
+    bootstrapResidentsFromGrid(hydrated);
+  }
+  return hydrated;
 }
 
 function buildInitialState() {
@@ -94,6 +117,18 @@ function attachAssetManifest(targetState) {
     if (reconcileElementVariants(targetState, manifest)) {
       saveToStorage(targetState);
     }
+  });
+}
+
+function attachIconManifest(targetState) {
+  const iconPaths = Object.fromEntries(
+    Object.values(ELEMENT_OVERLAY_ICON_DEFINITIONS).map((definition) => [
+      definition.id,
+      definition.iconAssetPath,
+    ])
+  );
+  loadNamedImages(iconPaths).then((manifest) => {
+    targetState.iconManifest = manifest;
   });
 }
 
@@ -128,16 +163,33 @@ function attachMapPointTexture(targetState) {
   });
 }
 
+function attachRoadTexture(targetState) {
+  loadOptionalImage(ROAD_TEXTURE_PATH).then((image) => {
+    targetState.roadTexture = image;
+  });
+}
+
+function attachResidentSprite(targetState) {
+  loadOptionalImage(RESIDENT_SPRITE_PATH).then((image) => {
+    targetState.residentSprite = image;
+  });
+}
+
 let state = buildInitialState();
 ensureCurrentPiece(state);
 attachAssetManifest(state);
+attachIconManifest(state);
 attachBackgroundTexture(state);
 attachBuiltBackgroundTexture(state);
 attachMapPointTexture(state);
+attachRoadTexture(state);
+attachResidentSprite(state);
+let lastSavedScoreTotalsVersion = state.scoreTotalsVersion || 0;
 
 const cameraInput = createCameraInput(canvas, state);
 
 let uiPanel;
+let scorePanel;
 const placementInput = createPlacementInput(canvas, state, (row, col) => {
   if (!state.currentPiece) {
     return;
@@ -161,7 +213,10 @@ const placementInput = createPlacementInput(canvas, state, (row, col) => {
   state.currentPiece = null;
   ensureCurrentPiece(state);
   uiPanel.renderPreview();
+  scorePanel.renderScores(true);
   saveToStorage(state);
+}, () => {
+  uiPanel.renderPreview();
 });
 
 uiPanel = createUIPanel(panelEl, state, {
@@ -174,21 +229,38 @@ uiPanel = createUIPanel(panelEl, state, {
     state = buildFreshState(clampedSize);
     ensureCurrentPiece(state);
     attachAssetManifest(state);
+    attachIconManifest(state);
     attachBackgroundTexture(state);
     attachBuiltBackgroundTexture(state);
     attachMapPointTexture(state);
+    attachRoadTexture(state);
+    attachResidentSprite(state);
     cameraInput.state = state;
     placementInput.state = state;
     uiPanel.state = state;
+    scorePanel.state = state;
     uiPanel.setGridSize(clampedSize);
     uiPanel.renderPreview();
+    scorePanel.renderScores(true);
+    lastSavedScoreTotalsVersion = state.scoreTotalsVersion || 0;
   },
 });
 uiPanel.renderPreview();
+scorePanel = createScorePanel(scorePanelEl, state);
+uiPanel.renderDebug();
 
 function renderFrame(now = performance.now()) {
+  syncHoveredCluster(state, state.holding ? null : placementInput.getMouseCell());
+  state.hoveredPointerScreen = state.holding ? null : placementInput.getMouseScreen();
+  state.scorePopups = (state.scorePopups || []).filter((popup) => now - popup.startTime < popup.duration);
+  if ((state.scoreTotalsVersion || 0) !== lastSavedScoreTotalsVersion) {
+    saveToStorage(state);
+    lastSavedScoreTotalsVersion = state.scoreTotalsVersion || 0;
+  }
+  scorePanel.renderScores();
   renderGrid(ctx, state, window.innerWidth, window.innerHeight, now);
   renderGhost(ctx, state, window.innerWidth, window.innerHeight, placementInput.getMouseCell());
+  uiPanel.renderDebug();
 }
 
 window.render_game_to_text = () =>
@@ -198,7 +270,18 @@ window.render_game_to_text = () =>
     placedPieceCount: state.placedPieceCount,
     camera: { ...state.camera },
     mouseCell: placementInput.getMouseCell(),
+    hoveredCell: state.hoveredCell,
+    hoveredClusterSize: state.hoveredClusterSize ?? 0,
+    hoveredClusterEntries: state.hoveredClusterEntries ?? [],
     gridSize: state.gridSize,
+    residents: (state.residents || []).map((resident) => ({
+      id: resident.id,
+      from: resident.from,
+      to: resident.to,
+      progress: Number(resident.progress?.toFixed?.(3) || resident.progress || 0),
+    })),
+    scoreTotals: state.scoreTotals,
+    activeScorePopups: (state.scorePopups || []).length,
     note: 'origin=(0,0) top-left; +x right; +y down',
   });
 
@@ -209,7 +292,23 @@ window.__flametown = {
       placedPieceCount: state.placedPieceCount,
       currentPiece: state.currentPiece ? { ...state.currentPiece } : null,
       holding: state.holding,
+      hoveredCell: state.hoveredCell ? { ...state.hoveredCell } : null,
+      hoveredClusterSize: state.hoveredClusterSize ?? 0,
+      hoveredClusterEntries: Array.isArray(state.hoveredClusterEntries)
+        ? state.hoveredClusterEntries.map((entry) => ({ ...entry }))
+        : [],
+      hoveredClusterCells: Array.isArray(state.hoveredClusterCells)
+        ? state.hoveredClusterCells.map((cell) => ({ ...cell }))
+        : Array.from(state.hoveredClusterCells || []),
       lastPlacedCells: [...state.lastPlacedCells],
+      residents: (state.residents || []).map((resident) => ({
+        id: resident.id,
+        homeCell: { ...resident.homeCell },
+        from: { ...resident.from },
+        to: { ...resident.to },
+        progress: resident.progress,
+      })),
+      scoreTotals: { ...(state.scoreTotals || {}) },
       occupiedCells: state.grid.flatMap((row, rowIndex) =>
         row.flatMap((cell, colIndex) =>
           cell.elementType
@@ -228,7 +327,7 @@ window.__flametown = {
     };
   },
   setCurrentPiece(shapeId, rotation = 0) {
-    state.currentPiece = { shapeId, rotation };
+    state.currentPiece = createPieceDraft(state, shapeId, rotation);
     state.holding = true;
     uiPanel.renderPreview();
   },
@@ -246,12 +345,227 @@ window.__flametown = {
     saveToStorage(state);
     return true;
   },
+  loadScoreTestScenario() {
+    state = buildFreshState(16);
+    state.grid[6][6] = {
+      elementType: 'house',
+      elementVariant: null,
+      pieceId: 1,
+      roads: { N: true, E: false, S: false, W: false },
+    };
+    state.grid[5][6] = {
+      elementType: 'Shop_DracoBell',
+      elementVariant: null,
+      pieceId: 2,
+      roads: { N: false, E: false, S: true, W: false },
+    };
+    state.grid[6][7] = {
+      elementType: 'Shop_DrakeOfCakes',
+      elementVariant: null,
+      pieceId: 3,
+      roads: { N: true, E: false, S: false, W: false },
+    };
+    state.elementCounts = {
+      house: 1,
+      Shop_DracoBell: 1,
+      Shop_DrakeOfCakes: 1,
+    };
+    state.scoreTotals = createInitialScoreTotals();
+    state.scoreTotalsVersion = 0;
+    state.scorePopups = [];
+    state.residents = [
+      {
+        id: 1,
+        homeCell: { row: 6, col: 6 },
+        from: { row: 6, col: 6 },
+        to: { row: 6, col: 7 },
+        progress: 0.48,
+        walkDistance: 0,
+        facing: 1,
+      },
+    ];
+    state.nextResidentId = 2;
+    state.camera = createCamera(state.gridSize, window.innerWidth, window.innerHeight);
+    state.camera.x = state.vertices[6][6].x + CELL_SIZE * 0.9;
+    state.camera.y = state.vertices[6][6].y + CELL_SIZE * 0.4;
+    syncResidentGraph(state);
+    ensureCurrentPiece(state);
+    attachAssetManifest(state);
+    attachIconManifest(state);
+    attachBackgroundTexture(state);
+    attachBuiltBackgroundTexture(state);
+    attachMapPointTexture(state);
+    attachRoadTexture(state);
+    attachResidentSprite(state);
+    cameraInput.state = state;
+    placementInput.state = state;
+    uiPanel.state = state;
+    scorePanel.state = state;
+    uiPanel.setGridSize(state.gridSize);
+    uiPanel.renderPreview();
+    scorePanel.renderScores(true);
+    lastSavedScoreTotalsVersion = state.scoreTotalsVersion || 0;
+    saveToStorage(state);
+    return this.getStateSnapshot();
+  },
+  loadClusterTestScenario() {
+    state = buildFreshState(12);
+    state.grid[5][3] = {
+      elementType: 'Shop_CriticalRolls',
+      elementVariant: null,
+      pieceId: 1,
+      roads: { N: false, E: false, S: false, W: false },
+    };
+    state.grid[5][4] = {
+      elementType: 'Shop_BizarreBazaar',
+      elementVariant: null,
+      pieceId: 2,
+      roads: { N: false, E: false, S: false, W: false },
+    };
+    state.grid[5][5] = {
+      elementType: 'Shop_DrakeOfCakes',
+      elementVariant: null,
+      pieceId: 3,
+      roads: { N: false, E: false, S: false, W: false },
+    };
+    state.grid[5][6] = {
+      elementType: 'Shop_DraconicTonic',
+      elementVariant: null,
+      pieceId: 4,
+      roads: { N: false, E: false, S: false, W: false },
+    };
+    state.grid[7][2] = {
+      elementType: 'house',
+      elementVariant: null,
+      pieceId: 5,
+      roads: { N: false, E: false, S: false, W: false },
+    };
+    state.grid[7][3] = {
+      elementType: 'house',
+      elementVariant: null,
+      pieceId: 5,
+      roads: { N: false, E: false, S: false, W: false },
+    };
+    state.elementCounts = {
+      Shop_CriticalRolls: 1,
+      Shop_BizarreBazaar: 1,
+      Shop_DrakeOfCakes: 1,
+      Shop_DraconicTonic: 1,
+      house: 2,
+    };
+    state.scoreTotals = createInitialScoreTotals();
+    state.scoreTotalsVersion = 0;
+    state.scorePopups = [];
+    state.residents = [];
+    state.nextResidentId = 1;
+    state.camera = createCamera(state.gridSize, window.innerWidth, window.innerHeight);
+    state.camera.x = state.vertices[5][4].x + CELL_SIZE * 1.5;
+    state.camera.y = state.vertices[5][4].y + CELL_SIZE * 0.8;
+    rebuildClusterState(state);
+    syncHoveredCluster(state, null);
+    ensureCurrentPiece(state);
+    attachAssetManifest(state);
+    attachIconManifest(state);
+    attachBackgroundTexture(state);
+    attachBuiltBackgroundTexture(state);
+    attachMapPointTexture(state);
+    attachRoadTexture(state);
+    attachResidentSprite(state);
+    cameraInput.state = state;
+    placementInput.state = state;
+    uiPanel.state = state;
+    scorePanel.state = state;
+    uiPanel.setGridSize(state.gridSize);
+    uiPanel.renderPreview();
+    scorePanel.renderScores(true);
+    lastSavedScoreTotalsVersion = state.scoreTotalsVersion || 0;
+    saveToStorage(state);
+    return this.getStateSnapshot();
+  },
+  loadRoadRenderTestScenario() {
+    state = buildFreshState(12);
+    state.grid[5][4] = {
+      elementType: 'house',
+      elementVariant: null,
+      pieceId: 1,
+      roads: { N: false, E: true, S: true, W: false },
+    };
+    state.grid[5][5] = {
+      elementType: 'Shop_DracoBell',
+      elementVariant: null,
+      pieceId: 2,
+      roads: { N: true, E: true, S: true, W: true },
+    };
+    state.grid[5][6] = {
+      elementType: 'Shop_DrakeOfCakes',
+      elementVariant: null,
+      pieceId: 3,
+      roads: { N: false, E: false, S: false, W: true },
+    };
+    state.grid[4][5] = {
+      elementType: 'Shop_DraconicTonic',
+      elementVariant: null,
+      pieceId: 4,
+      roads: { N: false, E: false, S: true, W: false },
+    };
+    state.grid[6][5] = {
+      elementType: 'Shop_BizarreBazaar',
+      elementVariant: null,
+      pieceId: 5,
+      roads: { N: true, E: false, S: false, W: false },
+    };
+    state.elementCounts = {
+      house: 1,
+      Shop_DracoBell: 1,
+      Shop_DrakeOfCakes: 1,
+      Shop_DraconicTonic: 1,
+      Shop_BizarreBazaar: 1,
+    };
+    state.scoreTotals = createInitialScoreTotals();
+    state.scoreTotalsVersion = 0;
+    state.scorePopups = [];
+    state.residents = [];
+    state.nextResidentId = 1;
+    state.camera = createCamera(state.gridSize, window.innerWidth, window.innerHeight);
+    state.camera.x = state.vertices[5][5].x;
+    state.camera.y = state.vertices[5][5].y;
+    rebuildClusterState(state);
+    syncHoveredCluster(state, null);
+    ensureCurrentPiece(state);
+    attachAssetManifest(state);
+    attachIconManifest(state);
+    attachBackgroundTexture(state);
+    attachBuiltBackgroundTexture(state);
+    attachMapPointTexture(state);
+    attachRoadTexture(state);
+    attachResidentSprite(state);
+    cameraInput.state = state;
+    placementInput.state = state;
+    uiPanel.state = state;
+    scorePanel.state = state;
+    uiPanel.setGridSize(state.gridSize);
+    uiPanel.renderPreview();
+    scorePanel.renderScores(true);
+    lastSavedScoreTotalsVersion = state.scoreTotalsVersion || 0;
+    saveToStorage(state);
+    return this.getStateSnapshot();
+  },
+  setCameraZoom(zoom) {
+    state.camera.zoom = zoom;
+    return this.getStateSnapshot();
+  },
+  setCameraPosition(x, y) {
+    state.camera.x = x;
+    state.camera.y = y;
+    return this.getStateSnapshot();
+  },
 };
 
 window.advanceTime = (ms) => {
   const now = performance.now();
   const deltaSeconds = Math.max(0, ms) / 1000;
   cameraInput.update(deltaSeconds);
+  updateResidents(state, deltaSeconds);
   state.animations = state.animations.filter((anim) => now - anim.startTime < anim.duration);
   renderFrame(now);
 };
@@ -261,6 +575,7 @@ function frame(now) {
   const deltaSeconds = (now - lastTime) / 1000;
   lastTime = now;
   cameraInput.update(deltaSeconds);
+  updateResidents(state, deltaSeconds);
   state.animations = state.animations.filter((anim) => now - anim.startTime < anim.duration);
   renderFrame(now);
   requestAnimationFrame(frame);

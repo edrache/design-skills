@@ -1,0 +1,200 @@
+{
+  "result": {
+    "target": {
+      "row": 5,
+      "col": 4,
+      "elementType": "Shop_BizarreBazaar",
+      "pieceId": 2,
+      "roads": {
+        "N": false,
+        "E": false,
+        "S": false,
+        "W": false
+      }
+    },
+    "clientX": 168.66597688198112,
+    "clientY": 252.3850362300874,
+    "rect": {
+      "left": 0,
+      "top": 0,
+      "width": 1440,
+      "height": 960
+    }
+  },
+  "hovered": {
+    "snapshot": {
+      "gridSize": 12,
+      "placedPieceCount": 0,
+      "currentPiece": {
+        "shapeId": "L",
+        "rotation": 0,
+        "plannedCells": [
+          {
+            "elementType": "park"
+          },
+          {
+            "elementType": "house"
+          },
+          {
+            "elementType": "Shop_OhMyGourd"
+          },
+          {
+            "elementType": "park"
+          }
+        ]
+      },
+      "holding": false,
+      "hoveredCell": {
+        "row": 5,
+        "col": 4
+      },
+      "hoveredClusterSize": 3,
+      "hoveredClusterCells": [
+        {
+          "row": 5,
+          "col": 3
+        },
+        {
+          "row": 5,
+          "col": 4
+        },
+        {
+          "row": 5,
+          "col": 5
+        }
+      ],
+      "lastPlacedCells": [],
+      "residents": [],
+      "scoreTotals": {
+        "Bread": 0,
+        "Crystal": 0,
+        "Iron": 0,
+        "Meat": 0,
+        "Plant": 0,
+        "Potion": 0
+      },
+      "occupiedCells": [
+        {
+          "row": 5,
+          "col": 3,
+          "elementType": "Shop_CriticalRolls",
+          "pieceId": 1,
+          "roads": {
+            "N": false,
+            "E": false,
+            "S": false,
+            "W": false
+          }
+        },
+        {
+          "row": 5,
+          "col": 4,
+          "elementType": "Shop_BizarreBazaar",
+          "pieceId": 2,
+          "roads": {
+            "N": false,
+            "E": false,
+            "S": false,
+            "W": false
+          }
+        },
+        {
+          "row": 5,
+          "col": 5,
+          "elementType": "Shop_DrakeOfCakes",
+          "pieceId": 3,
+          "roads": {
+            "N": false,
+            "E": false,
+            "S": false,
+            "W": false
+          }
+        },
+        {
+          "row": 5,
+          "col": 6,
+          "elementType": "Shop_DraconicTonic",
+          "pieceId": 4,
+          "roads": {
+            "N": false,
+            "E": false,
+            "S": false,
+            "W": false
+          }
+        },
+        {
+          "row": 7,
+          "col": 2,
+          "elementType": "house",
+          "pieceId": 5,
+          "roads": {
+            "N": false,
+            "E": false,
+            "S": false,
+            "W": false
+          }
+        },
+        {
+          "row": 7,
+          "col": 3,
+          "elementType": "house",
+          "pieceId": 5,
+          "roads": {
+            "N": false,
+            "E": false,
+            "S": false,
+            "W": false
+          }
+        }
+      ]
+    },
+    "runtime": {
+      "mode": "idle",
+      "currentPiece": {
+        "shapeId": "L",
+        "rotation": 0,
+        "plannedCells": [
+          {
+            "elementType": "park"
+          },
+          {
+            "elementType": "house"
+          },
+          {
+            "elementType": "Shop_OhMyGourd"
+          },
+          {
+            "elementType": "park"
+          }
+        ]
+      },
+      "placedPieceCount": 0,
+      "camera": {
+        "x": 171.56670115590094,
+        "y": 187.38074818849563,
+        "zoom": 20
+      },
+      "mouseCell": {
+        "row": 5,
+        "col": 4
+      },
+      "hoveredCell": {
+        "row": 5,
+        "col": 4
+      },
+      "hoveredClusterSize": 3,
+      "gridSize": 12,
+      "residents": [],
+      "scoreTotals": {
+        "Bread": 0,
+        "Crystal": 0,
+        "Iron": 0,
+        "Meat": 0,
+        "Plant": 0,
+        "Potion": 0
+      },
+      "activeScorePopups": 0,
+      "note": "origin=(0,0) top-left; +x right; +y down"
+    }
+  }
+}

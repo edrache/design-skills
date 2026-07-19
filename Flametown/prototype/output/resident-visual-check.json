@@ -1,0 +1,112 @@
+{
+  "text": "{\"mode\":\"idle\",\"currentPiece\":{\"shapeId\":\"S\",\"rotation\":0,\"plannedCells\":[{\"elementType\":\"house\"},{\"elementType\":\"park\"},{\"elementType\":\"Shop_OhMyGourd\"},{\"elementType\":\"house\"}]},\"placedPieceCount\":1,\"camera\":{\"x\":4096,\"y\":4096,\"zoom\":20},\"mouseCell\":{\"row\":0,\"col\":0},\"gridSize\":256,\"residents\":[{\"id\":1,\"from\":{\"row\":129,\"col\":129},\"to\":{\"row\":129,\"col\":128},\"progress\":0.086}],\"note\":\"origin=(0,0) top-left; +x right; +y down\"}",
+  "snapshot": {
+    "gridSize": 256,
+    "placedPieceCount": 1,
+    "currentPiece": {
+      "shapeId": "S",
+      "rotation": 0,
+      "plannedCells": [
+        {
+          "elementType": "house"
+        },
+        {
+          "elementType": "park"
+        },
+        {
+          "elementType": "Shop_OhMyGourd"
+        },
+        {
+          "elementType": "house"
+        }
+      ]
+    },
+    "holding": false,
+    "lastPlacedCells": [
+      [
+        127,
+        127
+      ],
+      [
+        127,
+        128
+      ],
+      [
+        128,
+        127
+      ],
+      [
+        128,
+        128
+      ]
+    ],
+    "residents": [
+      {
+        "id": 1,
+        "homeCell": {
+          "row": 128,
+          "col": 127
+        },
+        "from": {
+          "row": 129,
+          "col": 129
+        },
+        "to": {
+          "row": 129,
+          "col": 128
+        },
+        "progress": 0.08559660718892483
+      }
+    ],
+    "occupiedCells": [
+      {
+        "row": 127,
+        "col": 127,
+        "elementType": "Shop_OhMyGourd",
+        "pieceId": 1,
+        "roads": {
+          "N": true,
+          "E": false,
+          "S": true,
+          "W": false
+        }
+      },
+      {
+        "row": 127,
+        "col": 128,
+        "elementType": "park",
+        "pieceId": 1,
+        "roads": {
+          "N": true,
+          "E": true,
+          "S": false,
+          "W": true
+        }
+      },
+      {
+        "row": 128,
+        "col": 127,
+        "elementType": "house",
+        "pieceId": 1,
+        "roads": {
+          "N": false,
+          "E": true,
+          "S": true,
+          "W": false
+        }
+      },
+      {
+        "row": 128,
+        "col": 128,
+        "elementType": "park",
+        "pieceId": 1,
+        "roads": {
+          "N": true,
+          "E": false,
+          "S": true,
+          "W": true
+        }
+      }
+    ]
+  }
+}

@@ -22,11 +22,13 @@ test('serializeState then deserializeState round-trips grid contents', () => {
   const state = createNewWorld(8, 32, 0.2, () => 0.5);
   state.camera = { x: 10, y: 20, zoom: 1 };
   placePiece(state, 'O', 0, 3, 3, () => 0.1);
+  state.scoreTotals.Bread = 3;
   const json = serializeState(state);
   const data = deserializeState(json);
   assert.equal(data.gridSize, 8);
   assert.equal(data.cells[3][3].elementType, state.grid[3][3].elementType);
   assert.equal(data.placedPieceCount, 1);
+  assert.equal(data.scoreTotals.Bread, 3);
 });
 
 test('deserializeState rejects an unsupported save version', () => {

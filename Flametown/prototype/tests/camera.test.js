@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { ZOOM_MAX, ZOOM_MIN } from '../config.js';
 import {
   createCamera,
   clampZoom,
@@ -29,8 +30,8 @@ test('createCamera centers on the middle of the world', () => {
 });
 
 test('clampZoom respects min/max bounds', () => {
-  assert.equal(clampZoom(0.01), 0.3);
-  assert.equal(clampZoom(100), 3.0);
+  assert.equal(clampZoom(0.01), ZOOM_MIN);
+  assert.equal(clampZoom(100), ZOOM_MAX);
   assert.equal(clampZoom(1), 1);
 });
 
@@ -58,9 +59,9 @@ test('panCameraWorld moves the camera directly in world units', () => {
 });
 
 test('zoomCamera multiplies and clamps', () => {
-  const camera = { x: 0, y: 0, zoom: 2.9 };
+  const camera = { x: 0, y: 0, zoom: ZOOM_MAX - 0.1 };
   zoomCamera(camera, 1.5);
-  assert.equal(camera.zoom, 3.0);
+  assert.equal(camera.zoom, ZOOM_MAX);
 });
 
 test('visibleCellRange stays within grid bounds', () => {

@@ -39,13 +39,81 @@
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
     }
 
+    #score-panel {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      min-width: 120px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(27, 18, 12, 0.84);
+      color: #fff0d5;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 227, 178, 0.16);
+    }
+
+    .score-panel-title {
+      margin-bottom: 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(255, 231, 189, 0.74);
+    }
+
+    .score-panel-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .score-row {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .score-row-icon {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
+    }
+
+    .score-row-value {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1;
+    }
+
     #ui-panel button {
+      cursor: pointer;
+    }
+
+    #debug-panel {
+      position: fixed;
+      left: 12px;
+      bottom: 12px;
+      min-width: 220px;
+      max-width: 320px;
+      padding: 12px;
+      border-radius: 8px;
+      background: rgba(20, 20, 24, 0.82);
+      color: #f0f0f0;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    #debug-panel button {
       cursor: pointer;
     }
   </style>
 </head>
 <body>
   <canvas id="game-canvas"></canvas>
+  <div id="score-panel"></div>
   <div id="ui-panel"></div>
   <script type="module" src="src/main.js"></script>
 </body>

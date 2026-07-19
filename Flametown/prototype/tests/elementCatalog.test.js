@@ -1,5 +1,12 @@
 import assert from 'node:assert/strict';
-import { ELEMENT_CATALOG, pickWeightedElement, catalogEntry } from '../src/elementCatalog.js';
+import {
+  ELEMENT_CATALOG,
+  UNIVERSAL_SHOP_GROUP_ID,
+  catalogEntry,
+  elementBelongsToShopGroup,
+  getElementOverlayIconIds,
+  pickWeightedElement,
+} from '../src/elementCatalog.js';
 
 function test(name, fn) {
   try {
@@ -52,4 +59,27 @@ test('the default catalog has no exceedingly low caps that would starve a 256x25
   for (const entry of ELEMENT_CATALOG) {
     assert.ok(entry.maxCount === Infinity || entry.maxCount >= 1000);
   }
+});
+
+test('house uses the shop overlay icon while park uses none', () => {
+  assert.deepEqual(getElementOverlayIconIds('house'), ['shop']);
+  assert.deepEqual(getElementOverlayIconIds('park'), []);
+});
+
+test('wild shops belong to every group through the Any marker', () => {
+  assert.equal(elementBelongsToShopGroup('Shop_BizarreBazaar', 'Bread'), true);
+  assert.equal(elementBelongsToShopGroup('Shop_BizarreBazaar', 'Potion'), true);
+  assert.equal(elementBelongsToShopGroup('Shop_BizarreBazaar', UNIVERSAL_SHOP_GROUP_ID), true);
+});
+
+test('non-wild shops stay within their assigned group', () => {
+  assert.equal(elementBelongsToShopGroup('Shop_PotablePotions', 'Potion'), true);
+  assert.equal(elementBelongsToShopGroup('Shop_PotablePotions', 'Bread'), false);
+});
+
+test('Any shops are weighted 10x lower than concrete shop types', () => {
+  const anyShop = catalogEntry('Shop_BizarreBazaar');
+  const concreteShop = catalogEntry('Shop_PotablePotions');
+
+  assert.ok(Math.abs(anyShop.weight * 10 - concreteShop.weight) < 1e-12);
 });

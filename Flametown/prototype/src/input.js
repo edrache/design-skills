@@ -87,19 +87,30 @@ export function createCameraInput(canvas, initialState) {
   return input;
 }
 
-export function createPlacementInput(canvas, initialState, onPlace) {
+export function createPlacementInput(canvas, initialState, onPlace, onRotate = () => {}) {
   const input = { state: initialState };
   let mouseWorld = { x: 0, y: 0 };
+  let hoveredCell = null;
+  let mouseScreen = null;
 
-  canvas.addEventListener('mousemove', (event) => {
+  function updateMouseWorld(event) {
     const rect = canvas.getBoundingClientRect();
+    mouseScreen = {
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
+    };
     mouseWorld = screenToWorld(
       input.state.camera,
       rect.width,
       rect.height,
-      event.clientX - rect.left,
-      event.clientY - rect.top
+      mouseScreen.x,
+      mouseScreen.y
     );
+    hoveredCell = worldToCell(mouseWorld.x, mouseWorld.y, CELL_SIZE);
+  }
+
+  canvas.addEventListener('mousemove', (event) => {
+    updateMouseWorld(event);
   });
 
   canvas.addEventListener('contextmenu', (event) => {
@@ -109,12 +120,15 @@ export function createPlacementInput(canvas, initialState, onPlace) {
   });
 
   canvas.addEventListener('mousedown', (event) => {
+    updateMouseWorld(event);
+
     if (!input.state.holding || !input.state.currentPiece) {
       return;
     }
 
     if (event.button === 2) {
       input.state.currentPiece.rotation = (input.state.currentPiece.rotation + 1) % 4;
+      onRotate();
       return;
     }
 
@@ -124,13 +138,20 @@ export function createPlacementInput(canvas, initialState, onPlace) {
     }
   });
 
+  canvas.addEventListener('mouseleave', () => {
+    hoveredCell = null;
+    mouseScreen = null;
+  });
+
   window.addEventListener('keydown', (event) => {
     if (input.state.holding && input.state.currentPiece && event.code === 'Tab') {
       event.preventDefault();
       input.state.currentPiece.rotation = (input.state.currentPiece.rotation + 1) % 4;
+      onRotate();
     }
   });
 
-  input.getMouseCell = () => worldToCell(mouseWorld.x, mouseWorld.y, CELL_SIZE);
+  input.getMouseCell = () => hoveredCell;
+  input.getMouseScreen = () => (mouseScreen ? { ...mouseScreen } : null);
   return input;
 }

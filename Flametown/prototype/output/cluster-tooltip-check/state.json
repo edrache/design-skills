@@ -1,0 +1,226 @@
+{
+  "result": {
+    "target": {
+      "row": 5,
+      "col": 4,
+      "elementType": "Shop_BizarreBazaar",
+      "pieceId": 2,
+      "roads": {
+        "N": false,
+        "E": false,
+        "S": false,
+        "W": false
+      }
+    },
+    "clientX": 175.80773061513923,
+    "clientY": 235.1754335165026
+  },
+  "hovered": {
+    "snapshot": {
+      "gridSize": 12,
+      "placedPieceCount": 0,
+      "currentPiece": {
+        "shapeId": "J",
+        "rotation": 0,
+        "plannedCells": [
+          {
+            "elementType": "park"
+          },
+          {
+            "elementType": "Shop_FogoDeChar"
+          },
+          {
+            "elementType": "house"
+          },
+          {
+            "elementType": "house"
+          }
+        ]
+      },
+      "holding": false,
+      "hoveredCell": {
+        "row": 5,
+        "col": 4
+      },
+      "hoveredClusterSize": 3,
+      "hoveredClusterEntries": [
+        {
+          "targetType": "Bread",
+          "label": "Bread",
+          "iconId": "Bread",
+          "size": 3,
+          "isWildcardExpansion": true
+        },
+        {
+          "targetType": "Potion",
+          "label": "Potion",
+          "iconId": "Potion",
+          "size": 1,
+          "isWildcardExpansion": true
+        }
+      ],
+      "hoveredClusterCells": [
+        {
+          "row": 5,
+          "col": 3
+        },
+        {
+          "row": 5,
+          "col": 4
+        },
+        {
+          "row": 5,
+          "col": 5
+        }
+      ],
+      "lastPlacedCells": [],
+      "residents": [],
+      "scoreTotals": {
+        "Bread": 0,
+        "Crystal": 0,
+        "Iron": 0,
+        "Meat": 0,
+        "Plant": 0,
+        "Potion": 0
+      },
+      "occupiedCells": [
+        {
+          "row": 5,
+          "col": 3,
+          "elementType": "Shop_CriticalRolls",
+          "pieceId": 1,
+          "roads": {
+            "N": false,
+            "E": false,
+            "S": false,
+            "W": false
+          }
+        },
+        {
+          "row": 5,
+          "col": 4,
+          "elementType": "Shop_BizarreBazaar",
+          "pieceId": 2,
+          "roads": {
+            "N": false,
+            "E": false,
+            "S": false,
+            "W": false
+          }
+        },
+        {
+          "row": 5,
+          "col": 5,
+          "elementType": "Shop_DrakeOfCakes",
+          "pieceId": 3,
+          "roads": {
+            "N": false,
+            "E": false,
+            "S": false,
+            "W": false
+          }
+        },
+        {
+          "row": 5,
+          "col": 6,
+          "elementType": "Shop_DraconicTonic",
+          "pieceId": 4,
+          "roads": {
+            "N": false,
+            "E": false,
+            "S": false,
+            "W": false
+          }
+        },
+        {
+          "row": 7,
+          "col": 2,
+          "elementType": "house",
+          "pieceId": 5,
+          "roads": {
+            "N": false,
+            "E": false,
+            "S": false,
+            "W": false
+          }
+        },
+        {
+          "row": 7,
+          "col": 3,
+          "elementType": "house",
+          "pieceId": 5,
+          "roads": {
+            "N": false,
+            "E": false,
+            "S": false,
+            "W": false
+          }
+        }
+      ]
+    },
+    "runtime": {
+      "mode": "idle",
+      "currentPiece": {
+        "shapeId": "J",
+        "rotation": 0,
+        "plannedCells": [
+          {
+            "elementType": "park"
+          },
+          {
+            "elementType": "Shop_FogoDeChar"
+          },
+          {
+            "elementType": "house"
+          },
+          {
+            "elementType": "house"
+          }
+        ]
+      },
+      "placedPieceCount": 0,
+      "camera": {
+        "x": 171.20961346924304,
+        "y": 188.24122832417487,
+        "zoom": 20
+      },
+      "mouseCell": {
+        "row": 5,
+        "col": 4
+      },
+      "hoveredCell": {
+        "row": 5,
+        "col": 4
+      },
+      "hoveredClusterSize": 3,
+      "hoveredClusterEntries": [
+        {
+          "targetType": "Bread",
+          "label": "Bread",
+          "iconId": "Bread",
+          "size": 3,
+          "isWildcardExpansion": true
+        },
+        {
+          "targetType": "Potion",
+          "label": "Potion",
+          "iconId": "Potion",
+          "size": 1,
+          "isWildcardExpansion": true
+        }
+      ],
+      "gridSize": 12,
+      "residents": [],
+      "scoreTotals": {
+        "Bread": 0,
+        "Crystal": 0,
+        "Iron": 0,
+        "Meat": 0,
+        "Plant": 0,
+        "Potion": 0
+      },
+      "activeScorePopups": 0,
+      "note": "origin=(0,0) top-left; +x right; +y down"
+    }
+  }
+}

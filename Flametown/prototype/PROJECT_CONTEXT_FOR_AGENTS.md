@@ -1,6 +1,6 @@
 # Flametown Prototype Project Context
 
-Stan na: 2026-07-18
+Stan na: 2026-07-19
 
 Ten dokument jest przeznaczony dla kolejnych agentow pracujacych nad projektem.
 
@@ -19,6 +19,7 @@ Projekt implementuje grywalny prototyp HTML/JS/canvas dla core loopu tetromino c
 - podglad ghost piece
 - legalne / nielegalne stawianie
 - drogi na krawedziach
+- render dróg zależny od zoomu, ze skalowaną szerokością i przejściem na teksturę `Road.png` z bliska
 - losowanie typu pola
 - zapis / odczyt stanu
 - automatyczna podmiana emoji na prawdziwe assety PNG, jesli istnieja
@@ -56,6 +57,7 @@ Moduly logiki:
 - [assets.js](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/src/assets.js)
 - [state.js](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/src/state.js)
 - [anim.js](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/src/anim.js)
+- [clusters.js](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/src/clusters.js)
 
 Warstwa UI / wejscia / renderu:
 
@@ -70,6 +72,7 @@ Testy:
 Assety:
 
 - [assets/tiles/](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/assets/tiles)
+- [assets/icons/](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/assets/icons)
 - tlo swiata: [Terrain_Base.png](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/assets/tiles/Terrain_Base.png)
 
 Artefakty z lokalnych testow:
@@ -89,10 +92,30 @@ Na teraz zaimplementowane i sprawdzone sa:
 - drogi z dopasowaniem do juz postawionych sasiadow
 - losowanie typu pola z katalogu wag
 - preview aktualnego klocka w panelu
+- preview aktualnego klocka pokazuje juz przypisane typy pol dla tego konkretnego tetromino
+- pola na planszy i komorki preview maja wspolny system overlay ikon:
+  - `house` pokazuje `Icon_Shop.png`
+  - `park` nie pokazuje ikony
+  - sklepy `Shop_*` pokazuja ikone swojej grupy towaru
+  - grupa `Any` jest wildcardem tylko w systemie klastrow sklepow, a nie dla `house` ani `park`
+- system klastrow typow budynkow jest juz zaimplementowany:
+  - dla zwyklych budynkow klaster liczy sie po dokladnym `elementType`, bez wildcardow miedzy roznymi typami
+  - `house` moze laczyc sie w klastry tylko z `house`
+  - `park` moze laczyc sie w klastry tylko z `park`
+  - dla sklepow klaster liczy sie po `shopGroups`, wiec konkretne typy towarow sa rozdzielone, a `Any` dziala jako wild tylko dla sklepow i laczy sie z odpowiednim typem towaru
+  - runtime utrzymuje cache klastrow i rozmiar klastra jest zawsze dostepny dla hoverowanego bloku
+  - hover budynku podswietla tlo wszystkich blokow nalezacych do tego samego polaczonego klastra
+  - kolor highlightu klastra ma byc konfigurowalny, a nie zaszyty na stale w rendererze
+  - przy kursorze ma pojawiac sie tooltip z ikona typu i liczba pol w klastrze
+  - jesli hover dotyczy sklepu `Any`, tooltip ma pokazac osobne linie dla kazdej pasujacej grupy towaru, kazda z wlasna ikona i liczba pol
+- po oddaleniu kamery ikony typu moga pojawiac sie tez na juz zbudowanych polach miasta:
+  - start pojawiania steruje `CITY_ICON_ZOOM_START`
+  - pelny rozmiar i wypelnienie bloku steruje `CITY_ICON_ZOOM_FULL`
 - ghost piece z legal / illegal feedback
 - autosave i reload
 - bounce animation dla nowo postawionych pol
 - asynchroniczne ladowanie asset manifestu
+- asynchroniczne ladowanie manifestu ikon overlay
 - fallback do emoji, gdy nie ma PNG
 
 ## Elementy swiata / assety
@@ -113,11 +136,31 @@ Tlo planszy:
 Typy pol obecnie zdefiniowane w katalogu:
 
 - `house`
-- `shop`
-- `plaza`
 - `park`
-- `fountain`
-- `decoration`
+- szeroka lista nazwanych sklepow fantasy `Shop_*`
+- sklepy z grupa `Any` korzystaja z tej samej logiki co pozostale sklepy, ale ich waga losowania jest celowo obnizona do 10% wagi zwyklego sklepu
+
+Metadane grup sklepow sa teraz czescia wpisow w katalogu elementow:
+
+- definicje grup i ich ikon: `SHOP_GROUP_DEFINITIONS` w [elementCatalog.js](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/src/elementCatalog.js)
+- overlaye ikon elementow: `ELEMENT_OVERLAY_ICON_DEFINITIONS` i helpery `getElementOverlayIconIds()` / `getElementOverlayIcons()`
+- dodanie nowej grupy wymaga dopisania definicji ikony i przypisania `shopGroups` do wybranych elementow
+
+Logika klastrow dla zbudowanych blokow:
+
+- klaster jest wyznaczany po ortogonalnym sasiedztwie komorek na planszy
+- zwykle typy budynkow naleza do jednego klastra tylko wtedy, gdy maja ten sam `elementType`
+- `house` moze nalezec tylko do klastra `house`
+- `park` moze nalezec tylko do klastra `park`
+- sklepy naleza do klastrow po `shopGroups`; `Any` mostkuje dopasowany typ towaru tylko w warstwie sklepow i nie laczy sklepow z `house` czy `park`
+- hover na konkretnym sklepie z typem towaru podswietla tylko jego klaster tego typu z ewentualnymi mostkami `Any`
+- hover na sklepie `Any` laczy wszystkie klastry typow towaru, do ktorych ten konkretny sklep nalezy
+- system utrzymuje gotowy indeks klastrow w runtime, zeby mozna bylo od razu pobrac rozmiar klastra i liste nalezacych do niego komorek
+- renderer hovera zmienia kolor tla calego klastra powiazanego z aktualnie wskazanym budynkiem
+- kolor tego tla powinien byc sterowany konfiguracja
+- tooltip hovera powinien korzystac z danych klastra trzymanych w runtime, zeby liczebnosc nie byla liczona ad hoc w rendererze
+- dla zwyklego typu tooltip pokazuje jedna linie: ikona typu + liczba pol w aktywnym klastrze
+- dla `Any` tooltip pokazuje wiele linii: po jednej na kazda grupe sklepu, do ktorej dany blok nalezy, z osobna liczebnoscia klastra
 
 Wzorzec nazw assetow:
 
@@ -126,11 +169,23 @@ Wzorzec nazw assetow:
 - ...
 - do `MAX_ASSET_VARIANTS = 20`
 
-Na ten moment w repo istnieje tylko:
+Na ten moment w repo istnieja m.in.:
 
 - [house_1.png](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/assets/tiles/house_1.png)
+- liczne bezposrednie PNG dla sklepow `Shop_*`
+- ikony overlay w [assets/icons/](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/assets/icons)
 
 Jesli plik nie istnieje, render leci przez emoji z `elementCatalog.js`.
+
+Road rendering:
+
+- szerokosc drogi kontroluje `ROAD_WIDTH_AT_CITY_ICON_ZOOM_START` w [config.js](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/config.js)
+- ta wartosc oznacza szerokosc drogi w pikselach ekranu dokladnie przy `CITY_ICON_ZOOM_START`
+- renderer skaluje te szerokosc proporcjonalnie dla innych zoomow
+- tekstura bliskiego zoomu jest ladowana z `ROAD_TEXTURE_PATH`, obecnie `assets/tiles/Road.png`
+- powtarzalnosc tekstury po dlugosci odcinka ustawia `ROAD_TEXTURE_TILE_WORLD_LENGTH`
+- sila przejscia do tekstury steruje `ROAD_TEXTURE_ZOOM_FULL`
+- tekstura jest rysowana jako strip wzdluz kazdego odcinka drogi, wiec tileuje sie tylko w jednym kierunku; pionowe drogi to ten sam strip obrocony razem z odcinkiem
 
 ## Ważne decyzje techniczne
 
@@ -138,6 +193,7 @@ Jesli plik nie istnieje, render leci przez emoji z `elementCatalog.js`.
 - Aplikacja dziala jako natywne ES modules.
 - Grid logic dziala na regularnych wspolrzednych `(row, col)`.
 - Jitter jest tylko transformacja renderingu, nie wplywa na legalnosc ani sasiedztwo.
+- Planowane klastry tez maja bazowac na regularnym ortogonalnym sasiedztwie gridu, a nie na jitterze renderingu.
 - Save do `localStorage` zostal odchudzony:
   - zapisywany jest sparse stan zajetych pol
   - oraz `worldSeed`
@@ -184,7 +240,9 @@ Istniejace pliki testowe:
 - `persistence.test.js`
 - `pieces.test.js`
 - `roads.test.js`
+- `roadStyle.test.js`
 - `state.test.js`
+- `clusters.test.js`
 
 ## Browser verification
 
@@ -197,6 +255,11 @@ Byly robione lokalne testy przegladarkowe dla:
 - road continuity
 - persistence po reloadzie
 - podmiany emoji na prawdziwy asset dla `house_1.png`
+- hover highlight klastrow budynkow z wildcardem `Any`
+- road zoom transition in `output/road-zoom-smoke/`:
+  - `zoom = 5` dla legacy flat roads
+  - `zoom = 6.5` dla przejscia
+  - `zoom = 8` dla wyraznej tekstury z bliska
 
 Screenshoty i JSON-y z tych testow sa w:
 
@@ -211,6 +274,10 @@ W `window` sa dostepne pomocnicze haki:
 - `window.__flametown.getStateSnapshot()`
 - `window.__flametown.setCurrentPiece(shapeId, rotation)`
 - `window.__flametown.placeCurrentPiece(row, col)`
+- `window.__flametown.loadClusterTestScenario()`
+- `window.__flametown.loadRoadRenderTestScenario()`
+- `window.__flametown.setCameraZoom(zoom)`
+- `window.__flametown.setCameraPosition(x, y)`
 
 Te haki istnieja glownie po to, by kolejni agenci mogli szybciej testowac i diagnozowac zachowanie gry.
 

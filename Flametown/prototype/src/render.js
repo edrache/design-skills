@@ -1,8 +1,29 @@
-import { animationScale } from './anim.js';
+import {
+  CITY_ICON_ZOOM_FULL,
+  CITY_ICON_ZOOM_START,
+  CLUSTER_HIGHLIGHT_FILL,
+  CLUSTER_HIGHLIGHT_SOURCE_FILL,
+  CLUSTER_HIGHLIGHT_STROKE,
+  ROAD_TEXTURE_ZOOM_FULL,
+  ROAD_WIDTH_AT_CITY_ICON_ZOOM_START,
+  RESIDENT_PIVOT_X,
+  RESIDENT_WORLD_HEIGHT,
+} from '../config.js';
+import { animationScale, easeOutQuint } from './anim.js';
 import { visibleCellRange, worldToScreen } from './camera.js';
-import { catalogEntry } from './elementCatalog.js';
+import {
+  ELEMENT_OVERLAY_ICON_DEFINITIONS,
+  catalogEntry,
+  getElementOverlayIconIds,
+} from './elementCatalog.js';
 import { cellQuad, quadCentroid } from './grid.js';
 import { absoluteCells, canPlacePiece } from './pieces.js';
+import { getRoadRenderStyle, getRoadTextureTileSpanPx } from './roadStyle.js';
+import { residentScaleY, residentWorldPosition } from './residents.js';
+
+function cellKey(row, col) {
+  return `${row}:${col}`;
+}
 
 export function renderGrid(ctx, state, viewportWidth, viewportHeight, now = performance.now()) {
   const {
@@ -28,9 +49,18 @@ export function renderGrid(ctx, state, viewportWidth, viewportHeight, now = perf
     builtEdgeErosionTint,
     mapPointTexture,
     mapPointWorldSize,
+    roadTexture,
+    residents = [],
+    residentSprite,
+    scorePopups = [],
   } = state;
   const manifest = assetManifest || {};
   const range = visibleCellRange(camera, viewportWidth, viewportHeight, gridSize);
+  const builtCellIconOverlay = getBuiltCellIconOverlayState(camera.zoom);
+  const hoveredClusterLookup = buildHoveredClusterLookup(state.hoveredClusterCells);
+  const hoveredSourceKey = state.hoveredCell
+    ? cellKey(state.hoveredCell.row, state.hoveredCell.col)
+    : null;
 
   drawBackground(
     ctx,
@@ -79,13 +109,39 @@ export function renderGrid(ctx, state, viewportWidth, viewportHeight, now = perf
         ctx.lineTo(screenQuad[i].x, screenQuad[i].y);
       }
       ctx.closePath();
+      const clusterKey = cellKey(row, col);
+      const isHoveredClusterCell = hoveredClusterLookup.has(clusterKey);
+      const isHoveredSourceCell = hoveredSourceKey === clusterKey;
       if (cell.elementType) {
+        if (isHoveredClusterCell) {
+          ctx.fillStyle = isHoveredSourceCell
+            ? CLUSTER_HIGHLIGHT_SOURCE_FILL
+            : CLUSTER_HIGHLIGHT_FILL;
+          ctx.fill();
+          ctx.strokeStyle = CLUSTER_HIGHLIGHT_STROKE;
+          ctx.lineWidth = Math.max(1, camera.zoom * 0.08);
+          ctx.stroke();
+        }
+
         const anim = animations.find((entry) => entry.row === row && entry.col === col);
         const scale = anim ? animationScale(anim, now) : 1;
         drawElement(ctx, cell, quadCentroid(screenQuad), manifest, camera.zoom, scale);
+        if (builtCellIconOverlay.visible) {
+          drawElementOverlayIcons(
+            ctx,
+            cell.elementType,
+            quadCentroid(screenQuad),
+            Math.min(
+              Math.hypot(screenQuad[1].x - screenQuad[0].x, screenQuad[1].y - screenQuad[0].y),
+              Math.hypot(screenQuad[3].x - screenQuad[0].x, screenQuad[3].y - screenQuad[0].y)
+            ),
+            state.iconManifest,
+            builtCellIconOverlay
+          );
+        }
       }
 
-      drawRoads(ctx, cell, screenQuad);
+      drawRoads(ctx, cell, screenQuad, camera.zoom, roadTexture);
     }
   }
 
@@ -99,6 +155,57 @@ export function renderGrid(ctx, state, viewportWidth, viewportHeight, now = perf
     mapPointTexture,
     mapPointWorldSize
   );
+
+  drawResidents(
+    ctx,
+    camera,
+    viewportWidth,
+    viewportHeight,
+    state.vertices,
+    residents,
+    residentSprite
+  );
+
+  drawScorePopups(
+    ctx,
+    camera,
+    viewportWidth,
+    viewportHeight,
+    scorePopups,
+    state.iconManifest,
+    now
+  );
+
+  drawHoveredClusterTooltip(
+    ctx,
+    state.hoveredPointerScreen,
+    state.hoveredClusterEntries,
+    state.iconManifest,
+    viewportWidth,
+    viewportHeight
+  );
+}
+
+function buildHoveredClusterLookup(cells) {
+  if (!cells) {
+    return new Set();
+  }
+
+  if (cells instanceof Set) {
+    return new Set(cells);
+  }
+
+  const lookup = new Set();
+  for (const cell of cells) {
+    if (typeof cell === 'string') {
+      lookup.add(cell);
+      continue;
+    }
+    if (cell && Number.isInteger(cell.row) && Number.isInteger(cell.col)) {
+      lookup.add(cellKey(cell.row, cell.col));
+    }
+  }
+  return lookup;
 }
 
 function createWorldPattern(
@@ -588,37 +695,144 @@ function drawElement(ctx, cell, center, assetManifest, zoom, scale = 1) {
   if (variants && variants.length > 0 && cell.elementVariant != null) {
     const img = variants[cell.elementVariant % variants.length];
     ctx.drawImage(img, center.x - size / 2, center.y - size / 2, size, size);
+  } else {
+    const entry = catalogEntry(cell.elementType);
+    ctx.font = `${size}px sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(entry.emoji, center.x, center.y);
+  }
+}
+
+function drawElementOverlayIcons(ctx, elementType, center, size, iconManifest, options = {}) {
+  const iconIds = getElementOverlayIconIds(elementType);
+  if (iconIds.length === 0 || !iconManifest) {
     return;
   }
 
-  const entry = catalogEntry(cell.elementType);
-  ctx.font = `${size}px sans-serif`;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText(entry.emoji, center.x, center.y);
+  const {
+    iconScale = 0.88,
+    minIconSize = 12,
+    gapScale = 0.05,
+    minGap = 2,
+    alpha = 0.92,
+  } = options;
+  const baseIconSize = Math.max(minIconSize, size * iconScale);
+  const gap = Math.max(minGap, size * gapScale);
+  const totalWidth = iconIds.length * baseIconSize + (iconIds.length - 1) * gap;
+  const startX = center.x - totalWidth / 2;
+  const y = center.y - baseIconSize / 2;
+
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  for (const [index, iconId] of iconIds.entries()) {
+    const iconImage = iconManifest[iconId];
+    if (!iconImage) {
+      continue;
+    }
+
+    const x = startX + index * (baseIconSize + gap);
+    ctx.drawImage(iconImage, x, y, baseIconSize, baseIconSize);
+  }
+  ctx.restore();
 }
 
-function drawRoads(ctx, cell, screenQuad) {
+function getBuiltCellIconOverlayState(zoom) {
+  if (zoom > CITY_ICON_ZOOM_START) {
+    return { visible: false };
+  }
+
+  const range = CITY_ICON_ZOOM_START - CITY_ICON_ZOOM_FULL;
+  const progress =
+    range <= 0 ? 1 : Math.max(0, Math.min(1, (CITY_ICON_ZOOM_START - zoom) / range));
+
+  return {
+    visible: true,
+    alpha: 0.25 + progress * 0.67,
+    iconScale: 0.36 + progress * 0.52,
+    minIconSize: 8 + progress * 10,
+    gapScale: 0.02 + progress * 0.03,
+    minGap: 1 + progress,
+  };
+}
+
+function drawRoads(ctx, cell, screenQuad, zoom, roadTexture) {
   const edges = {
     N: [screenQuad[0], screenQuad[1]],
     E: [screenQuad[1], screenQuad[2]],
     S: [screenQuad[3], screenQuad[2]],
     W: [screenQuad[0], screenQuad[3]],
   };
-
-  ctx.strokeStyle = '#d8c27a';
-  ctx.lineWidth = 3;
-
+  const roadStyle = getRoadRenderStyle({
+    zoom,
+    widthAtCityIconZoomStart: ROAD_WIDTH_AT_CITY_ICON_ZOOM_START,
+    cityIconZoomStart: CITY_ICON_ZOOM_START,
+    textureZoomFull: ROAD_TEXTURE_ZOOM_FULL,
+  });
   for (const dir of Object.keys(edges)) {
     if (!cell.roads[dir]) {
       continue;
     }
     const [a, b] = edges[dir];
-    ctx.beginPath();
-    ctx.moveTo(a.x, a.y);
-    ctx.lineTo(b.x, b.y);
-    ctx.stroke();
+    drawFlatRoadSegment(ctx, a, b, roadStyle.widthPx);
+    if (roadTexture && roadStyle.textureMix > 0) {
+      drawTexturedRoadSegment(
+        ctx,
+        a,
+        b,
+        roadStyle.widthPx,
+        roadTexture,
+        roadStyle.textureMix
+      );
+    }
   }
+}
+
+function drawFlatRoadSegment(ctx, a, b, widthPx) {
+  ctx.save();
+  ctx.strokeStyle = '#d8c27a';
+  ctx.lineWidth = widthPx;
+  ctx.beginPath();
+  ctx.moveTo(a.x, a.y);
+  ctx.lineTo(b.x, b.y);
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawTexturedRoadSegment(ctx, a, b, widthPx, texture, alpha) {
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const length = Math.hypot(dx, dy);
+  const tileLengthPx = getRoadTextureTileSpanPx(widthPx, texture.width, texture.height);
+  if (length <= 0.001 || widthPx <= 0.001 || tileLengthPx <= 0.001) {
+    return;
+  }
+
+  const angle = Math.atan2(dy, dx);
+  const halfWidth = widthPx * 0.5;
+
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.translate(a.x, a.y);
+  ctx.rotate(angle);
+
+  for (let offset = 0; offset < length; offset += tileLengthPx) {
+    const drawWidth = Math.min(tileLengthPx, length - offset);
+    const sourceWidth = texture.width * (drawWidth / tileLengthPx);
+    ctx.drawImage(
+      texture,
+      0,
+      0,
+      sourceWidth,
+      texture.height,
+      offset,
+      -halfWidth,
+      drawWidth,
+      widthPx
+    );
+  }
+
+  ctx.restore();
 }
 
 function drawMapPoints(
@@ -668,6 +882,235 @@ function drawMapPoints(
   ctx.restore();
 }
 
+function drawResidents(
+  ctx,
+  camera,
+  viewportWidth,
+  viewportHeight,
+  vertices,
+  residents,
+  residentSprite
+) {
+  if (!residentSprite || !residents?.length) {
+    return;
+  }
+
+  const positionedResidents = residents
+    .map((resident) => {
+      const worldPosition = residentWorldPosition(resident, vertices);
+      return worldPosition ? { resident, worldPosition } : null;
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.worldPosition.y - b.worldPosition.y);
+
+  ctx.save();
+  for (const { resident, worldPosition } of positionedResidents) {
+    const screenPosition = worldToScreen(
+      camera,
+      viewportWidth,
+      viewportHeight,
+      worldPosition.x,
+      worldPosition.y
+    );
+    const height = RESIDENT_WORLD_HEIGHT * camera.zoom;
+    const width = height * (residentSprite.width / residentSprite.height);
+    const facing = resident.facing === -1 ? -1 : 1;
+    const scaleY = residentScaleY(resident);
+    const pivotX = width * RESIDENT_PIVOT_X;
+
+    ctx.save();
+    ctx.translate(screenPosition.x, screenPosition.y);
+    ctx.fillStyle = 'rgba(48, 27, 12, 0.24)';
+    ctx.beginPath();
+    ctx.ellipse(0, -height * 0.04, width * 0.18, height * 0.08, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.scale(facing, scaleY);
+    ctx.drawImage(residentSprite, -pivotX, -height, width, height);
+    ctx.restore();
+  }
+  ctx.restore();
+}
+
+function drawScorePopups(
+  ctx,
+  camera,
+  viewportWidth,
+  viewportHeight,
+  scorePopups,
+  iconManifest,
+  now
+) {
+  if (!Array.isArray(scorePopups) || scorePopups.length === 0) {
+    return;
+  }
+
+  ctx.save();
+  for (const popup of scorePopups) {
+    if (!popup || now < popup.startTime) {
+      continue;
+    }
+
+    const duration = Math.max(1, popup.duration || 900);
+    const t = Math.max(0, Math.min(1, (now - popup.startTime) / duration));
+    if (t >= 1) {
+      continue;
+    }
+
+    const eased = easeOutQuint(t);
+    const fade = t < 0.75 ? 1 : 1 - (t - 0.75) / 0.25;
+    const screenPosition = worldToScreen(camera, viewportWidth, viewportHeight, popup.x, popup.y);
+    const rise = (16 + camera.zoom * 1.8) * eased;
+    const scale = 0.7 + 0.3 * eased;
+    const iconSize = Math.max(18, camera.zoom * 1.35) * scale;
+    const text = popup.amount > 1 ? `+${popup.amount}` : '';
+    const hasText = text.length > 0;
+    const paddingX = 8;
+    const gap = hasText ? 6 : 0;
+
+    ctx.save();
+    ctx.translate(screenPosition.x, screenPosition.y - rise);
+    ctx.globalAlpha = 0.94 * Math.max(0, fade);
+    ctx.font = `600 ${Math.max(13, iconSize * 0.68)}px "Avenir Next", "Segoe UI", sans-serif`;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    const textWidth = hasText ? ctx.measureText(text).width : 0;
+    const pillWidth = paddingX * 2 + iconSize + gap + textWidth;
+    const pillHeight = Math.max(iconSize + 8, 28);
+
+    ctx.fillStyle = 'rgba(28, 19, 10, 0.78)';
+    roundRect(ctx, -pillWidth / 2, -pillHeight / 2, pillWidth, pillHeight, pillHeight / 2);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255, 221, 162, 0.32)';
+    ctx.lineWidth = 1.25;
+    ctx.stroke();
+
+    const icon = iconManifest?.[popup.groupId];
+    const iconX = -pillWidth / 2 + paddingX;
+    const iconY = -iconSize / 2;
+    if (icon) {
+      ctx.drawImage(icon, iconX, iconY, iconSize, iconSize);
+    } else {
+      const fallbackIcon = ELEMENT_OVERLAY_ICON_DEFINITIONS[popup.groupId];
+      ctx.fillStyle = '#f3d18a';
+      ctx.fillText(fallbackIcon?.id?.[0] || '?', iconX, 0);
+    }
+
+    if (hasText) {
+      ctx.fillStyle = '#fff3d6';
+      ctx.fillText(text, iconX + iconSize + gap, 0);
+    }
+    ctx.restore();
+  }
+  ctx.restore();
+}
+
+function drawHoveredClusterTooltip(
+  ctx,
+  hoveredPointerScreen,
+  hoveredClusterEntries,
+  iconManifest,
+  viewportWidth,
+  viewportHeight
+) {
+  if (
+    !hoveredPointerScreen ||
+    !Array.isArray(hoveredClusterEntries) ||
+    hoveredClusterEntries.length === 0
+  ) {
+    return;
+  }
+
+  const paddingX = 10;
+  const paddingY = 8;
+  const iconSize = 16;
+  const iconGap = 8;
+  const lineHeight = 22;
+  const cornerRadius = 12;
+
+  ctx.save();
+  ctx.font = '600 14px "Avenir Next", "Segoe UI", sans-serif';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'middle';
+
+  const lineMetrics = hoveredClusterEntries.map((entry) => {
+    const text = `${entry.label}: ${entry.size}`;
+    const width = iconSize + iconGap + ctx.measureText(text).width;
+    return { ...entry, text, width };
+  });
+  const tooltipWidth = Math.max(...lineMetrics.map((line) => line.width)) + paddingX * 2;
+  const tooltipHeight = lineMetrics.length * lineHeight + paddingY * 2;
+
+  let x = hoveredPointerScreen.x + 16;
+  let y = hoveredPointerScreen.y + 18;
+  if (x + tooltipWidth > viewportWidth - 12) {
+    x = Math.max(12, hoveredPointerScreen.x - tooltipWidth - 16);
+  }
+  if (y + tooltipHeight > viewportHeight - 12) {
+    y = Math.max(12, hoveredPointerScreen.y - tooltipHeight - 18);
+  }
+
+  ctx.fillStyle = 'rgba(28, 19, 10, 0.86)';
+  roundRect(ctx, x, y, tooltipWidth, tooltipHeight, cornerRadius);
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(255, 229, 176, 0.32)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  lineMetrics.forEach((entry, index) => {
+    const lineY = y + paddingY + lineHeight * index + lineHeight / 2;
+    const iconX = x + paddingX;
+    const icon = resolveHoveredClusterTooltipIcon(entry, iconManifest);
+    const emoji = resolveHoveredClusterTooltipEmoji(entry);
+
+    if (icon) {
+      ctx.drawImage(icon, iconX, lineY - iconSize / 2, iconSize, iconSize);
+    } else {
+      ctx.fillStyle = '#fff3d6';
+      ctx.fillText(emoji || '•', iconX + 1, lineY);
+    }
+
+    ctx.fillStyle = '#fff3d6';
+    ctx.fillText(entry.text, iconX + iconSize + iconGap, lineY);
+  });
+
+  ctx.restore();
+}
+
+function resolveHoveredClusterTooltipIcon(entry, iconManifest) {
+  if (!entry?.iconId) {
+    return null;
+  }
+
+  if (entry.targetType === 'house' || entry.targetType === 'park') {
+    return null;
+  }
+
+  return iconManifest?.[entry.iconId] || null;
+}
+
+function resolveHoveredClusterTooltipEmoji(entry) {
+  if (!entry?.targetType) {
+    return null;
+  }
+
+  try {
+    return catalogEntry(entry.targetType).emoji || null;
+  } catch {
+    return null;
+  }
+}
+
+function roundRect(ctx, x, y, width, height, radius) {
+  const r = Math.min(radius, width / 2, height / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + width, y, x + width, y + height, r);
+  ctx.arcTo(x + width, y + height, x, y + height, r);
+  ctx.arcTo(x, y + height, x, y, r);
+  ctx.arcTo(x, y, x + width, y, r);
+  ctx.closePath();
+}
+
 export function renderGhost(ctx, state, viewportWidth, viewportHeight, mouseCell) {
   if (!state.holding || !state.currentPiece || !mouseCell) {
     return;
@@ -685,9 +1128,12 @@ export function renderGhost(ctx, state, viewportWidth, viewportHeight, mouseCell
     isFirstPiece
   );
   const cells = absoluteCells(shapeId, rotation, mouseCell.row, mouseCell.col);
+  const plannedCells = Array.isArray(state.currentPiece.plannedCells)
+    ? state.currentPiece.plannedCells
+    : [];
 
   ctx.save();
-  for (const [row, col] of cells) {
+  for (const [cellIndex, [row, col]] of cells.entries()) {
     if (row < 0 || row >= state.gridSize || col < 0 || col >= state.gridSize) {
       continue;
     }
@@ -705,7 +1151,30 @@ export function renderGhost(ctx, state, viewportWidth, viewportHeight, mouseCell
 
     ctx.lineWidth = 3;
     ctx.strokeStyle = legal ? 'rgba(241, 196, 15, 0.95)' : 'rgba(192, 57, 43, 0.95)';
+    ctx.fillStyle = legal ? 'rgba(255, 245, 190, 0.22)' : 'rgba(255, 140, 140, 0.16)';
+    ctx.fill();
     ctx.stroke();
+
+    const elementType = plannedCells[cellIndex]?.elementType;
+    if (elementType) {
+      drawElementOverlayIcons(
+        ctx,
+        elementType,
+        quadCentroid(screenQuad),
+        Math.min(
+          Math.hypot(screenQuad[1].x - screenQuad[0].x, screenQuad[1].y - screenQuad[0].y),
+          Math.hypot(screenQuad[3].x - screenQuad[0].x, screenQuad[3].y - screenQuad[0].y)
+        ),
+        state.iconManifest,
+        {
+          alpha: 0.92,
+          iconScale: 0.88,
+          minIconSize: 12,
+          gapScale: 0.05,
+          minGap: 2,
+        }
+      );
+    }
   }
   ctx.restore();
 }

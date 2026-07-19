@@ -53,3 +53,56 @@ Original prompt: przejdź do implementacji planu [2026-07-18-tetromino-prototype
 - 2026-07-19: Limited per-tetromino element generation to at most one `Shop_*` tile.
 - Placement now uses the normal weighted catalog until the first shop appears on that piece, then filters the remaining cells to non-shop entries only.
 - Added a regression test in `tests/state.test.js` to verify that even shop-favoring RNG produces at most one shop on a single placed tetromino.
+- 2026-07-19: Reduced spawn weight for wildcard `Any` shops to one tenth of a concrete shop type.
+- `Shop_*` entries with `shopGroups: ['Any']` now keep the same behavior in clustering and scoring, but appear 10x less often than a normal typed shop during piece planning.
+- 2026-07-19: Added extensible shop-group metadata plus overlay-icon rendering for both placed cells and tetromino preview.
+- `house` now renders `Icon_Shop.png`, `park` renders no overlay, and each `Shop_*` entry now carries a group such as `Bread`, `Crystal`, `Iron`, `Meat`, `Plant`, `Potion`, or wild `Any`.
+- Piece contents are now planned when `currentPiece` is created, so the preview panel shows the same building-group icons that will be placed on the map.
+- Added regression coverage in `tests/elementCatalog.test.js`, `tests/assets.test.js`, and `tests/state.test.js` for group membership, icon-manifest loading, and planned tetromino contents.
+- 2026-07-19: Added city residents that spawn from newly placed `house` cells when that house has at least one road edge.
+- Residents traverse the road-edge graph between cell vertices, choose a random outgoing branch at intersections, and avoid immediately backtracking unless they reach a dead end.
+- Movement is now configurable via `RESIDENT_EDGE_SPEED`, `RESIDENT_ROAD_SPEED`, `RESIDENT_WORLD_HEIGHT`, `RESIDENT_PIVOT_X`, `RESIDENT_WALK_SCALE_Y_AMPLITUDE`, and `RESIDENT_WALK_BOB_DISTANCE` in `config.js`.
+- `assets/dragons/dragon_bread.png` now renders as the resident sprite with bottom-foot pivoting, left/right mirroring, and a subtle y-scale walk bob.
+- Added regression coverage in `tests/residents.test.js` and `tests/state.test.js`, plus local browser verification artifacts in `output/resident-smoke-client/` and `output/resident-visual-check.*`.
+- 2026-07-19: Added resident midpoint scoring for the six goods types (`Bread`, `Crystal`, `Iron`, `Meat`, `Plant`, `Potion`).
+- When a resident crosses the midpoint of an edge, the game now inspects the touching cells on both sides and awards +1 per scoring cell to the matching goods bucket.
+- Added a score HUD in the top-left corner and floating reward popups that rise from the resident with a smooth ease-out. If both sides award the same good, the popup collapses into a single `+2` style badge.
+- Save data now persists accumulated score totals, and regression coverage was extended in `tests/residents.test.js`, `tests/state.test.js`, and `tests/persistence.test.js`.
+- 2026-07-19: Prepared UI/render-side integration points for cluster hover highlight without touching cluster logic or logic tests.
+- `createPlacementInput()` now exposes a nullable hovered board cell and clears it on canvas leave, `main.js` mirrors that into runtime state, and renderer accepts `state.hoveredClusterCells` plus `state.hoveredClusterSize` to tint the background of highlighted built cells.
+- Debug UI now shows hovered cell plus hovered cluster size so future cluster-logic wiring can be verified quickly in-browser.
+- 2026-07-19: Updated project documentation for the planned building-cluster feature without changing game source code.
+- Documented that cluster membership is based on connected orthogonal neighbors of the same type, with `Any` acting as a wild match for every type.
+- Documented that we want cluster size to be known for every occupied block at all times, and that hovering a building should highlight the background of its entire connected cluster.
+- 2026-07-19: Finished the runtime building-cluster system and wired it into hover highlight, state, tests, and browser verification.
+- Added `src/clusters.js` as a pure cluster helper module with orthogonal flood-fill, per-target cluster indexing, wildcard `Any` support, and direct cluster lookup by id.
+- `state.js` now rebuilds cluster caches after world creation, save hydration, and every successful placement; hover state is synchronized through cluster membership so cluster size is always available in runtime state.
+- Non-shop cells cluster by exact `elementType`; shop cells cluster by `shopGroups`, so concrete goods types stay separate while `Any` bridges the matching type-specific cluster.
+- Hovering a concrete goods building highlights only that goods cluster plus bridging `Any` cells; hovering an `Any` shop unions all type-specific clusters that include that shop.
+- Added regression coverage in `tests/clusters.test.js` and `tests/state.test.js` for wildcard matching, separate per-type memberships, runtime hover synchronization, and cluster-size caching.
+- Added `window.__flametown.loadClusterTestScenario()` for deterministic browser verification of cluster highlighting.
+- Browser verification on 2026-07-19 confirmed that hovering the `Shop_BizarreBazaar` cell in the cluster test scenario produces `hoveredClusterSize = 3` with highlighted cells `(5,3)`, `(5,4)`, `(5,5)`.
+- Verification artifacts were written to `output/cluster-smoke-client/` and `output/cluster-hover-check/`.
+- 2026-07-19: Updated Flametown prototype documentation only for the next cluster-rules pass; no game code was changed in this step.
+- Documented that cluster highlight color should be configurable.
+- Documented that `Any` is a wildcard only for shop-group clustering, while `house` clusters only with `house` and `park` clusters only with `park`.
+- Documented hover tooltip requirements: show icon plus cluster size at the cursor, and for `Any` show separate lines per matching shop group with independent counts.
+- 2026-07-19: Added zoom-scaled road rendering with a close-up texture transition.
+- Roads now read their style from config:
+  - `ROAD_WIDTH_AT_CITY_ICON_ZOOM_START`
+  - `ROAD_TEXTURE_PATH`
+  - `ROAD_TEXTURE_TILE_WORLD_LENGTH`
+  - `ROAD_TEXTURE_ZOOM_FULL`
+- At `zoom === CITY_ICON_ZOOM_START` roads preserve the old flat-drawn look; above that zoom they blend toward tiled `assets/tiles/Road.png`.
+- Added `src/roadStyle.js` as a pure helper for road width / texture-blend math and covered it with `tests/roadStyle.test.js`.
+- `main.js` now loads the road texture separately from the building asset manifest and reattaches it after debug scenario resets.
+- Added `window.__flametown.loadRoadRenderTestScenario()`, `setCameraZoom()`, and `setCameraPosition()` for deterministic road-render verification.
+- Browser smoke artifacts for the road change were captured in `output/road-zoom-smoke/` for zoom values `5`, `6.5`, and `8`.
+- Verification results for this task:
+  - PASS: `tests/roadStyle.test.js`
+  - PASS: `tests/roads.test.js`
+  - PASS: `tests/camera.test.js` after replacing stale hardcoded zoom assertions with current config values
+  - PASS: `tests/residents.test.js`
+  - Browser smoke visually confirmed flat roads at `zoom = 5` and textured roads at `zoom = 8`
+- Remaining unrelated test issue observed during full-suite run:
+  - `tests/clusters.test.js` currently fails in wildcard-cluster expectations and was not changed as part of this road task
