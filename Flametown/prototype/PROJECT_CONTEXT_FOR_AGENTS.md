@@ -1,6 +1,7 @@
 # Flametown Prototype Project Context
 
 Stan na: 2026-07-19
+Aktualna wersja prototypu: `0.1.4`
 
 Ten dokument jest przeznaczony dla kolejnych agentow pracujacych nad projektem.
 
@@ -8,6 +9,39 @@ Ten dokument jest przeznaczony dla kolejnych agentow pracujacych nad projektem.
 
 Ten dokument ma byc rozwijany i aktualizowany.
 Przy kazdej istotnej zmianie w architekturze, assetach, testach, workflow albo statusie projektu nalezy dopisac tu nowe informacje, zamiast liczyc na to, ze kolejny agent sam je odszuka w repo.
+Przy kazdej zmianie w prototypie trzeba tez zwiekszyc numer wersji, zaktualizowac badge w prawym dolnym rogu gry i dopisac wpis do changelogu ponizej.
+
+## Changelog
+
+### 0.1.4 - 2026-07-19
+
+- `main.js` importuje teraz `ui.js` i `tutorial.js` jako namespace z query stringiem `?v=0.1.4`
+- dodano fallback runtime dla tutoriala, zeby mieszany cache modulu nie wywracal calej gry na starcie
+- to jest hotfix pod blad `The requested module './ui.js' does not provide an export named 'createTutorialOverlay'`
+
+### 0.1.3 - 2026-07-19
+
+- usunieto zaleznosc startu `main.js` od eksportu `APP_VERSION` z `config.js`
+- badge wersji czyta teraz numer z `data-version` w `index.html`, co zmniejsza ryzyko awarii przy mieszanym cache po deployu
+- query string modulu zostal podbity do `v=0.1.3`
+
+### 0.1.2 - 2026-07-19
+
+- przywrocono brakujacy import `BUILT_BACKGROUND_TEXTURE_PATH` oraz `BUILT_BACKGROUND_TILE_WORLD_SIZE` w `src/main.js`
+- to jest hotfix do regresji z wersji `0.1.1`, przez ktora gra przestawala startowac z bledem `ReferenceError`
+
+### 0.1.1 - 2026-07-19
+
+- usunieto podwojny import w `src/main.js`, ktory mogl zatrzymywac start modulu w przegladarce po deployu
+- dodano query string wersji do `src/main.js` w `index.html`, zeby ograniczyc problemy z cache po wdrozeniu
+- to jest poprawka pod sytuacje, w ktorej na serwerze widac placeholder `version-badge`, ale nie pojawiaja sie numer wersji ani przycisk `Tutorial`
+
+### 0.1.0 - 2026-07-19
+
+- wprowadzono pierwszy jawny numer wersji prototypu
+- dodano badge wersji w prawym dolnym rogu gry
+- dodano changelog i regule obowiazkowego podbijania wersji przy kazdej kolejnej zmianie
+- uzgodniono dokumenty agentowe dla dalszej pracy nad Flametown
 
 ## Cel projektu
 
@@ -46,6 +80,7 @@ Punkt startowy aplikacji:
 Konfiguracja:
 
 - [config.js](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/config.js)
+- wersja aplikacji: `APP_VERSION` w [config.js](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/config.js)
 
 Moduly logiki:
 
@@ -64,6 +99,7 @@ Warstwa UI / wejscia / renderu:
 - [render.js](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/src/render.js)
 - [input.js](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/src/input.js)
 - [ui.js](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/src/ui.js)
+- badge wersji jest osadzony w [index.html](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/index.html) i uzupelniany z [main.js](/Users/marek/OfflineDocuments/Repo/Antigravity/Design/Flametown/prototype/src/main.js)
 
 Testy:
 
@@ -304,3 +340,6 @@ Jesli zmieniasz projekt, zaktualizuj przynajmniej:
 - odpowiedni plan / status assetow, jesli zmiana tego dotyczy
 
 Nie zakladaj, ze wiedza jest oczywista albo juz zapisana gdzie indziej - dopisz to tutaj.
+Przy kazdej kolejnej zmianie dopisz tez nowa sekcje changelogu z nowym numerem wersji.
+Przy zmianie frontendu warto tez aktualizowac query string wersji przy `src/main.js` w `index.html`, zeby deploy nie zostawial starego cache JS.
+Badge wersji jest odporniejszy na cache, gdy `index.html` trzyma tez aktualne `data-version`.

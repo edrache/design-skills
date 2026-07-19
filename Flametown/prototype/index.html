@@ -110,6 +110,25 @@
       cursor: pointer;
     }
 
+    #version-badge {
+      position: fixed;
+      right: 12px;
+      bottom: 12px;
+      z-index: 20;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(20, 20, 24, 0.82);
+      border: 1px solid rgba(255, 232, 188, 0.18);
+      color: rgba(255, 239, 213, 0.92);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
     #tutorial-overlay {
       position: fixed;
       inset: 0;
@@ -287,6 +306,7 @@
   <canvas id="game-canvas"></canvas>
   <div id="score-panel"></div>
   <div id="ui-panel"></div>
-  <script type="module" src="src/main.js"></script>
+  <div id="version-badge" aria-label="Wersja prototypu" data-version="0.1.4"></div>
+  <script type="module" src="src/main.js?v=0.1.4"></script>
 </body>
 </html>

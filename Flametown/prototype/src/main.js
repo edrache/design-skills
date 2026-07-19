@@ -2,6 +2,8 @@ import {
   BACKGROUND_TEXTURE_PATH,
   BACKGROUND_TILE_WORLD_SIZE,
   BUILT_BACKGROUND_OVERDRAW_WORLD_SIZE,
+  BUILT_BACKGROUND_TEXTURE_PATH,
+  BUILT_BACKGROUND_TILE_WORLD_SIZE,
   BUILT_BACKGROUND_TINT,
   BUILT_BACKGROUND_TEXTURE_OPACITY,
   BUILT_EDGE_DETAIL_WORLD_SPACING,
@@ -11,8 +13,6 @@ import {
   BUILT_EDGE_FRINGE_WORLD_SIZE,
   BUILT_EDGE_FRINGE_TEXTURE_OPACITY,
   BUILT_EDGE_FRINGE_TINT,
-  BUILT_BACKGROUND_TEXTURE_PATH,
-  BUILT_BACKGROUND_TILE_WORLD_SIZE,
   CELL_SIZE,
   DEFAULT_GRID_SIZE,
   GRID_SIZE_MAX,
@@ -47,13 +47,77 @@ import {
   saveToStorage,
   syncHoveredCluster,
 } from './state.js';
-import { createTutorialController, getTutorialRulesSections } from './tutorial.js';
-import { createScorePanel, createTutorialOverlay, createUIPanel } from './ui.js';
+import * as tutorialModule from './tutorial.js?v=0.1.4';
+import * as uiModule from './ui.js?v=0.1.4';
 
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
 const panelEl = document.getElementById('ui-panel');
 const scorePanelEl = document.getElementById('score-panel');
+const versionBadgeEl = document.getElementById('version-badge');
+
+if (versionBadgeEl) {
+  const version = versionBadgeEl.dataset.version || '';
+  versionBadgeEl.textContent = version ? `v${version}` : '';
+}
+
+function createInactiveTutorialViewModel() {
+  return {
+    active: false,
+    stepNumber: 0,
+    totalSteps: 0,
+    title: '',
+    body: '',
+    instruction: '',
+    completed: false,
+    canGoBack: false,
+    canGoNext: false,
+    continueLabel: 'Dalej',
+  };
+}
+
+function createFallbackTutorialController() {
+  const inactive = createInactiveTutorialViewModel();
+  return {
+    isActive() {
+      return false;
+    },
+    start() {
+      return inactive;
+    },
+    stop() {
+      return inactive;
+    },
+    previous() {
+      return inactive;
+    },
+    restartStep() {
+      return inactive;
+    },
+    next() {
+      return inactive;
+    },
+    sync() {
+      return inactive;
+    },
+    getViewModel() {
+      return inactive;
+    },
+  };
+}
+
+function createFallbackTutorialOverlay() {
+  return {
+    render() {},
+  };
+}
+
+const createUIPanel = uiModule.createUIPanel;
+const createScorePanel = uiModule.createScorePanel;
+const createTutorialOverlay = uiModule.createTutorialOverlay ?? createFallbackTutorialOverlay;
+const createTutorialController =
+  tutorialModule.createTutorialController ?? createFallbackTutorialController;
+const getTutorialRulesSections = tutorialModule.getTutorialRulesSections ?? (() => []);
 
 function resizeCanvas() {
   const dpr = window.devicePixelRatio || 1;

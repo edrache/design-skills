@@ -1,5 +1,23 @@
 Original prompt: przejdź do implementacji planu [2026-07-18-tetromino-prototype-plan.md](Flametown/docs/plans/2026-07-18-tetromino-prototype-plan.md) używając wielu agentów. Aktualizuj plan na każdym kroku po jego zakończeniu
 
+- 2026-07-19: Released cache-resilience hotfix `0.1.4` after live error `The requested module './ui.js' does not provide an export named 'createTutorialOverlay'`.
+- `main.js` now imports `ui.js` and `tutorial.js` via namespace imports with explicit version query strings and can fall back to a no-op tutorial controller/overlay when stale modules are served from cache.
+- 2026-07-19: Released cache-mismatch hotfix `0.1.3` after live error `The requested module '../config.js' does not provide an export named 'APP_VERSION'`.
+- `main.js` no longer imports `APP_VERSION` from `config.js`; the version badge now reads `data-version` from `index.html`.
+- Updated frontend cache-busting query string to `src/main.js?v=0.1.3`.
+- 2026-07-19: Released hotfix `0.1.2` after live browser error reports.
+- Restored missing `BUILT_BACKGROUND_TEXTURE_PATH` and `BUILT_BACKGROUND_TILE_WORLD_SIZE` imports in `src/main.js`.
+- Updated the frontend cache-busting query string in `index.html` to `v=0.1.2`.
+- 2026-07-19: Fixed a deployment-facing issue where the published page could show the `version-badge` placeholder without the actual version text or tutorial UI.
+- Root cause investigated against the live site `https://edrache.cytr.us/flametown/`: HTML and JS were present remotely, so the issue was narrowed to frontend module startup / caching.
+- Removed duplicated config imports from `src/main.js` and added a version query string to `index.html` module loading for cache-busting on deploy.
+- Bumped Flametown prototype version from `0.1.0` to `0.1.1`.
+- 2026-07-19: Established explicit prototype versioning for Flametown.
+- Added version `0.1.0` to `package.json` and `APP_VERSION` in `config.js`.
+- Added an always-visible bottom-right version badge in the game UI.
+- Updated `PROJECT_CONTEXT_FOR_AGENTS.md` with a changelog section and a rule to bump the version on every future change.
+- Updated root `CLAUDE.md` with Flametown-specific agent workflow notes and created `Flametown/prototype/AGENTS.md`.
+
 - 2026-07-18: Started implementation from the plan.
 - Using parallel workstreams:
   - Main agent: scaffold, integration, plan/progress updates, browser verification.
