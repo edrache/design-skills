@@ -1,0 +1,214 @@
+{
+  "corruptedRecovery": {
+    "mode": "idle",
+    "currentPiece": {
+      "shapeId": "O",
+      "rotation": 0
+    },
+    "placedPieceCount": 0,
+    "camera": {
+      "x": 4096,
+      "y": 4096,
+      "zoom": 2.9166666666666665
+    },
+    "mouseCell": {
+      "row": 0,
+      "col": 0
+    },
+    "gridSize": 256,
+    "note": "origin=(0,0) top-left; +x right; +y down"
+  },
+  "versionRecovery": {
+    "mode": "idle",
+    "currentPiece": {
+      "shapeId": "T",
+      "rotation": 0
+    },
+    "placedPieceCount": 0,
+    "camera": {
+      "x": 4096,
+      "y": 4096,
+      "zoom": 2.9166666666666665
+    },
+    "mouseCell": {
+      "row": 0,
+      "col": 0
+    },
+    "gridSize": 256,
+    "note": "origin=(0,0) top-left; +x right; +y down"
+  },
+  "minClamp": {
+    "mode": "idle",
+    "currentPiece": {
+      "shapeId": "O",
+      "rotation": 0
+    },
+    "placedPieceCount": 0,
+    "camera": {
+      "x": 256,
+      "y": 256,
+      "zoom": 2.9166666666666665
+    },
+    "mouseCell": {
+      "row": 0,
+      "col": 0
+    },
+    "gridSize": 16,
+    "note": "origin=(0,0) top-left; +x right; +y down"
+  },
+  "maxClamp": {
+    "mode": "idle",
+    "currentPiece": {
+      "shapeId": "S",
+      "rotation": 0
+    },
+    "placedPieceCount": 0,
+    "camera": {
+      "x": 8192,
+      "y": 8192,
+      "zoom": 2.9166666666666665
+    },
+    "mouseCell": {
+      "row": 0,
+      "col": 0
+    },
+    "gridSize": 512,
+    "note": "origin=(0,0) top-left; +x right; +y down"
+  },
+  "firstPlaced": true,
+  "illegalPlaced": false,
+  "secondPlaced": true,
+  "roadMatch": true,
+  "snapshot": {
+    "gridSize": 512,
+    "placedPieceCount": 2,
+    "currentPiece": {
+      "shapeId": "I",
+      "rotation": 0
+    },
+    "holding": false,
+    "lastPlacedCells": [
+      [
+        50,
+        52
+      ],
+      [
+        50,
+        53
+      ],
+      [
+        51,
+        52
+      ],
+      [
+        51,
+        53
+      ]
+    ],
+    "occupiedCells": [
+      {
+        "row": 50,
+        "col": 50,
+        "elementType": "shop",
+        "pieceId": 1,
+        "roads": {
+          "N": false,
+          "E": false,
+          "S": false,
+          "W": true
+        }
+      },
+      {
+        "row": 50,
+        "col": 51,
+        "elementType": "shop",
+        "pieceId": 1,
+        "roads": {
+          "N": true,
+          "E": false,
+          "S": true,
+          "W": false
+        }
+      },
+      {
+        "row": 50,
+        "col": 52,
+        "elementType": "plaza",
+        "pieceId": 2,
+        "roads": {
+          "N": false,
+          "E": false,
+          "S": true,
+          "W": false
+        }
+      },
+      {
+        "row": 50,
+        "col": 53,
+        "elementType": "shop",
+        "pieceId": 2,
+        "roads": {
+          "N": true,
+          "E": false,
+          "S": true,
+          "W": true
+        }
+      },
+      {
+        "row": 51,
+        "col": 50,
+        "elementType": "decoration",
+        "pieceId": 1,
+        "roads": {
+          "N": false,
+          "E": false,
+          "S": false,
+          "W": false
+        }
+      },
+      {
+        "row": 51,
+        "col": 51,
+        "elementType": "house",
+        "pieceId": 1,
+        "roads": {
+          "N": true,
+          "E": true,
+          "S": true,
+          "W": false
+        }
+      },
+      {
+        "row": 51,
+        "col": 52,
+        "elementType": "shop",
+        "pieceId": 2,
+        "roads": {
+          "N": true,
+          "E": true,
+          "S": false,
+          "W": true
+        }
+      },
+      {
+        "row": 51,
+        "col": 53,
+        "elementType": "decoration",
+        "pieceId": 2,
+        "roads": {
+          "N": true,
+          "E": true,
+          "S": true,
+          "W": true
+        }
+      }
+    ]
+  },
+  "persistedPlacedPieceCount": 2,
+  "warnings": [
+    "Failed to load saved game, starting fresh SyntaxError: Unexpected token 'o', \"not valid json\" is not valid JSON\n    at JSON.parse (<anonymous>)\n    at deserializeState (http://127.0.0.1:8091/src/state.js:155:21)\n    at loadFromStorage (http://127.0.0.1:8091/src/state.js:211:12)\n    at buildInitialState (http://127.0.0.1:8091/src/main.js:67:17)\n    at http://127.0.0.1:8091/src/main.js:80:13",
+    "Failed to load saved game, starting fresh Error: Unsupported save version: 99\n    at deserializeState (http://127.0.0.1:8091/src/state.js:157:11)\n    at loadFromStorage (http://127.0.0.1:8091/src/state.js:211:12)\n    at buildInitialState (http://127.0.0.1:8091/src/main.js:67:17)\n    at http://127.0.0.1:8091/src/main.js:80:13",
+    "The specified value \"abc\" cannot be parsed, or is out of range."
+  ],
+  "errors": []
+}

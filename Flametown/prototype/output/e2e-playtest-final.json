@@ -1,0 +1,117 @@
+{
+  "beforePlace": {
+    "mode": "holding-piece",
+    "currentPiece": {
+      "shapeId": "O",
+      "rotation": 0
+    },
+    "placedPieceCount": 0,
+    "camera": {
+      "x": 4096,
+      "y": 4096,
+      "zoom": 2.9166666666666665
+    },
+    "mouseCell": {
+      "row": 127,
+      "col": 127
+    },
+    "gridSize": 256,
+    "note": "origin=(0,0) top-left; +x right; +y down"
+  },
+  "afterRotate": {
+    "mode": "holding-piece",
+    "currentPiece": {
+      "shapeId": "O",
+      "rotation": 1
+    },
+    "placedPieceCount": 0,
+    "camera": {
+      "x": 4096,
+      "y": 4096,
+      "zoom": 2.9166666666666665
+    },
+    "mouseCell": {
+      "row": 127,
+      "col": 127
+    },
+    "gridSize": 256,
+    "note": "origin=(0,0) top-left; +x right; +y down"
+  },
+  "afterFirstPlace": {
+    "mode": "idle",
+    "currentPiece": {
+      "shapeId": "L",
+      "rotation": 0
+    },
+    "placedPieceCount": 1,
+    "camera": {
+      "x": 4096,
+      "y": 4096,
+      "zoom": 2.9166666666666665
+    },
+    "mouseCell": {
+      "row": 127,
+      "col": 127
+    },
+    "gridSize": 256,
+    "note": "origin=(0,0) top-left; +x right; +y down"
+  },
+  "afterIllegalTry": {
+    "mode": "holding-piece",
+    "currentPiece": {
+      "shapeId": "L",
+      "rotation": 0
+    },
+    "placedPieceCount": 1,
+    "camera": {
+      "x": 4096,
+      "y": 4096,
+      "zoom": 2.9166666666666665
+    },
+    "mouseCell": {
+      "row": 124,
+      "col": 121
+    },
+    "gridSize": 256,
+    "note": "origin=(0,0) top-left; +x right; +y down"
+  },
+  "afterSecondPlace": {
+    "mode": "holding-piece",
+    "currentPiece": {
+      "shapeId": "L",
+      "rotation": 0
+    },
+    "placedPieceCount": 1,
+    "camera": {
+      "x": 4096,
+      "y": 4096,
+      "zoom": 2.9166666666666665
+    },
+    "mouseCell": {
+      "row": 127,
+      "col": 128
+    },
+    "gridSize": 256,
+    "note": "origin=(0,0) top-left; +x right; +y down"
+  },
+  "afterReload": {
+    "mode": "idle",
+    "currentPiece": {
+      "shapeId": "I",
+      "rotation": 0
+    },
+    "placedPieceCount": 1,
+    "camera": {
+      "x": 4096,
+      "y": 4096,
+      "zoom": 2.9166666666666665
+    },
+    "mouseCell": {
+      "row": 0,
+      "col": 0
+    },
+    "gridSize": 256,
+    "note": "origin=(0,0) top-left; +x right; +y down"
+  },
+  "errors": []
+}

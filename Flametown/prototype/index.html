@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flametown Prototype</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #1b1b1f;
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    canvas {
+      display: block;
+    }
+
+    #ui-panel {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      min-width: 190px;
+      padding: 12px;
+      border-radius: 8px;
+      background: rgba(20, 20, 24, 0.85);
+      color: #f0f0f0;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+    }
+
+    #ui-panel button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="game-canvas"></canvas>
+  <div id="ui-panel"></div>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

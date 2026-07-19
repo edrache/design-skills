@@ -37,7 +37,7 @@
 **Interfaces:**
 - Produces: `config.js` exports `DEFAULT_GRID_SIZE`, `GRID_SIZE_MIN`, `GRID_SIZE_MAX`, `CELL_SIZE`, `JITTER_AMOUNT`, `MAX_ASSET_VARIANTS`, `ROAD_RANDOM_CHANCE`, `SAVE_KEY`, `ZOOM_MIN`, `ZOOM_MAX`, `CAMERA_PAN_SPEED` — every later task imports from this file.
 
-- [ ] **Step 1: Create the config file**
+- [x] **Step 1: Create the config file**
 
 `Flametown/prototype/config.js`:
 ```js
@@ -54,7 +54,7 @@ export const ZOOM_MAX = 3.0;
 export const CAMERA_PAN_SPEED = 600;
 ```
 
-- [ ] **Step 2: Create package.json (ESM marker for Node test runs, no dependencies)**
+- [x] **Step 2: Create package.json (ESM marker for Node test runs, no dependencies)**
 
 `Flametown/prototype/package.json`:
 ```json
@@ -65,7 +65,7 @@ export const CAMERA_PAN_SPEED = 600;
 }
 ```
 
-- [ ] **Step 3: Create index.html**
+- [x] **Step 3: Create index.html**
 
 `Flametown/prototype/index.html`:
 ```html
@@ -99,7 +99,7 @@ export const CAMERA_PAN_SPEED = 600;
 </html>
 ```
 
-- [ ] **Step 4: Create minimal main.js (resizing canvas + render loop)**
+- [x] **Step 4: Create minimal main.js (resizing canvas + render loop)**
 
 `Flametown/prototype/src/main.js`:
 ```js
@@ -125,7 +125,7 @@ function frame() {
 requestAnimationFrame(frame);
 ```
 
-- [ ] **Step 5: Verify in the browser**
+- [x] **Step 5: Verify in the browser**
 
 Run: `cd Flametown/prototype && python3 -m http.server 8000`
 Open: `http://localhost:8000`
@@ -150,7 +150,7 @@ git commit -m "feat: scaffold Flametown prototype (canvas shell, config)"
 - Consumes: nothing (pure module).
 - Produces: `DIRS` (`['N','E','S','W']`), `oppositeDir(dir)`, `neighborCoord(row,col,dir)`, `inBounds(size,row,col)`, `createCellGrid(size)`, `createVertexGrid(size, cellSize, jitterAmount, rng)`, `cellQuad(vertexGrid,row,col)`, `quadCentroid(quad)`. Cell shape: `{ elementType: string|null, elementVariant: number|null, pieceId: number|null, roads: {N,E,S,W: boolean} }`. These are consumed by `pieces.js`, `roads.js`, `camera.js`, `render.js`, `state.js` in later tasks.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `Flametown/prototype/tests/grid.test.js`:
 ```js
@@ -243,12 +243,12 @@ test('quadCentroid averages the 4 corners', () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `node tests/grid.test.js` (from `Flametown/prototype/`)
 Expected: `Cannot find module '../src/grid.js'` error.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 `Flametown/prototype/src/grid.js`:
 ```js
@@ -335,7 +335,7 @@ export function worldToCell(worldX, worldY, cellSize) {
 }
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `node tests/grid.test.js`
 Expected: 7 `PASS:` lines, exit code 0.
@@ -359,7 +359,7 @@ git commit -m "feat: add grid math (cells, jittered vertices, quads)"
 - Consumes: `CELL_SIZE, ZOOM_MIN, ZOOM_MAX` from `config.js`.
 - Produces: `createCamera(gridSize, viewportWidth, viewportHeight)`, `clampZoom(zoom)`, `worldToScreen(camera, vw, vh, worldX, worldY)`, `screenToWorld(camera, vw, vh, screenX, screenY)`, `panCamera(camera, dxScreen, dyScreen)`, `panCameraWorld(camera, dxWorld, dyWorld)`, `zoomCamera(camera, factor)`, `visibleCellRange(camera, vw, vh, gridSize)`. Camera shape: `{ x, y, zoom }`. Consumed by `render.js`, `input.js`, `main.js`.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `Flametown/prototype/tests/camera.test.js`:
 ```js
@@ -436,12 +436,12 @@ test('visibleCellRange stays within grid bounds', () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `node tests/camera.test.js`
 Expected: `Cannot find module '../src/camera.js'` error.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 `Flametown/prototype/src/camera.js`:
 ```js
@@ -498,7 +498,7 @@ export function visibleCellRange(camera, viewportWidth, viewportHeight, gridSize
 }
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `node tests/camera.test.js`
 Expected: 7 `PASS:` lines, exit code 0.
@@ -523,7 +523,7 @@ git commit -m "feat: add camera pan/zoom math"
 - Consumes: `createCellGrid, createVertexGrid, cellQuad` from `grid.js`; `createCamera, visibleCellRange, worldToScreen` from `camera.js`; `DEFAULT_GRID_SIZE, CELL_SIZE, JITTER_AMOUNT` from `config.js`.
 - Produces: `state.js` exports `createNewWorld(gridSize, cellSize, jitterAmount, rng)` returning `{ gridSize, grid, vertices }`. `render.js` exports `renderGrid(ctx, state, viewportWidth, viewportHeight)`. Both are extended by later tasks — this task establishes their initial shape.
 
-- [ ] **Step 1: Create the initial state module**
+- [x] **Step 1: Create the initial state module**
 
 `Flametown/prototype/src/state.js`:
 ```js
@@ -538,7 +538,7 @@ export function createNewWorld(gridSize, cellSize, jitterAmount, rng = Math.rand
 }
 ```
 
-- [ ] **Step 2: Create the render module**
+- [x] **Step 2: Create the render module**
 
 `Flametown/prototype/src/render.js`:
 ```js
@@ -568,7 +568,7 @@ export function renderGrid(ctx, state, viewportWidth, viewportHeight) {
 }
 ```
 
-- [ ] **Step 3: Wire it into main.js**
+- [x] **Step 3: Wire it into main.js**
 
 `Flametown/prototype/src/main.js` (replace entire contents):
 ```js
@@ -604,7 +604,7 @@ function frame() {
 requestAnimationFrame(frame);
 ```
 
-- [ ] **Step 4: Verify in the browser**
+- [x] **Step 4: Verify in the browser**
 
 Run: `cd Flametown/prototype && python3 -m http.server 8000` (if not already running)
 Open: `http://localhost:8000`
@@ -629,7 +629,7 @@ git commit -m "feat: render the static jittered grid"
 - Consumes: `zoomCamera, panCamera, panCameraWorld` from `camera.js`; `CAMERA_PAN_SPEED` from `config.js`.
 - Produces: `createCameraInput(canvas, state)` returning `{ update(deltaSeconds) }`. Consumed by `main.js`.
 
-- [ ] **Step 1: Create the input module**
+- [x] **Step 1: Create the input module**
 
 `Flametown/prototype/src/input.js`:
 ```js
@@ -699,7 +699,7 @@ export function createCameraInput(canvas, state) {
 }
 ```
 
-- [ ] **Step 2: Wire it into main.js**
+- [x] **Step 2: Wire it into main.js**
 
 `Flametown/prototype/src/main.js` (replace entire contents):
 ```js
@@ -742,7 +742,7 @@ function frame(now) {
 requestAnimationFrame(frame);
 ```
 
-- [ ] **Step 3: Verify in the browser**
+- [x] **Step 3: Verify in the browser**
 
 Open: `http://localhost:8000`
 Expected: scrolling zooms in/out smoothly (clamped, doesn't flip or invert); holding the middle mouse button and dragging pans the view; holding W/A/S/D or arrow keys pans continuously in that direction. No console errors.
@@ -766,7 +766,7 @@ git commit -m "feat: add camera pan/zoom controls"
 - Consumes: `DIRS, neighborCoord, inBounds` from `grid.js`.
 - Produces: `TETROMINO_IDS` (array of 7 shape ids: `I,O,T,S,Z,J,L`), `pieceCells(shapeId, rotation)`, `randomPieceId(rng)`, `absoluteCells(shapeId, rotation, anchorRow, anchorCol)`, `canPlacePiece(grid, gridSize, shapeId, rotation, anchorRow, anchorCol, isFirstPiece)`. Consumed by `state.js`, `roads.js` (via cells), `render.js`, `input.js`, `ui.js`.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `Flametown/prototype/tests/pieces.test.js`:
 ```js
@@ -845,12 +845,12 @@ test('placement fails when it overlaps an occupied cell', () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `node tests/pieces.test.js`
 Expected: `Cannot find module '../src/pieces.js'` error.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 `Flametown/prototype/src/pieces.js`:
 ```js
@@ -921,7 +921,7 @@ export function canPlacePiece(grid, gridSize, shapeId, rotation, anchorRow, anch
 }
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `node tests/pieces.test.js`
 Expected: 8 `PASS:` lines, exit code 0.
@@ -945,7 +945,7 @@ git commit -m "feat: add tetromino shapes, rotation, and placement legality"
 - Consumes: nothing.
 - Produces: `ELEMENT_CATALOG` (array of `{id, weight, maxCount, emoji}`), `pickWeightedElement(counts, rng, catalog)`, `catalogEntry(id, catalog)`. Consumed by `state.js`, `render.js`.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `Flametown/prototype/tests/elementCatalog.test.js`:
 ```js
@@ -1008,12 +1008,12 @@ test('the default catalog has no exceedingly low caps that would starve a 256x25
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `node tests/elementCatalog.test.js`
 Expected: `Cannot find module '../src/elementCatalog.js'` error.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 `Flametown/prototype/src/elementCatalog.js`:
 ```js
@@ -1047,7 +1047,7 @@ export function pickWeightedElement(counts, rng = Math.random, catalog = ELEMENT
 }
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `node tests/elementCatalog.test.js`
 Expected: 6 `PASS:` lines, exit code 0.
@@ -1071,7 +1071,7 @@ git commit -m "feat: add weighted element catalog with maxCount caps"
 - Consumes: `DIRS, neighborCoord, oppositeDir, inBounds` from `grid.js`; `ROAD_RANDOM_CHANCE` from `config.js`.
 - Produces: `assignRoadsForPiece(grid, gridSize, cells, rng)` returning an array (parallel to `cells`) of `{N,E,S,W: boolean}`. Consumed by `state.js`.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `Flametown/prototype/tests/roads.test.js`:
 ```js
@@ -1125,12 +1125,12 @@ test('edges shared between two cells of the same new piece are randomized indepe
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `node tests/roads.test.js`
 Expected: `Cannot find module '../src/roads.js'` error.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 `Flametown/prototype/src/roads.js`:
 ```js
@@ -1156,7 +1156,7 @@ export function assignRoadsForPiece(grid, gridSize, cells, rng = Math.random) {
 }
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `node tests/roads.test.js`
 Expected: 3 `PASS:` lines, exit code 0.
@@ -1180,7 +1180,7 @@ git commit -m "feat: add road edge matching against placed neighbors"
 - Consumes: `MAX_ASSET_VARIANTS` from `config.js`.
 - Produces: `defaultLoadImage(url)` (real `Image`-based loader, browser-only), `detectVariants(typeId, basePath, maxVariants, loadImage)`, `loadAssetManifest(catalog, basePath, maxVariants, loadImage)`. `loadImage` is injectable so `detectVariants`/`loadAssetManifest` are testable in Node without a DOM. Consumed by `main.js`, `render.js`.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `Flametown/prototype/tests/assets.test.js`:
 ```js
@@ -1229,12 +1229,12 @@ await test('loadAssetManifest builds a map keyed by catalog id', async () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `node tests/assets.test.js`
 Expected: `Cannot find module '../src/assets.js'` error.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 `Flametown/prototype/src/assets.js`:
 ```js
@@ -1267,7 +1267,7 @@ export async function loadAssetManifest(catalog, basePath, maxVariants, loadImag
 }
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `node tests/assets.test.js`
 Expected: 4 `PASS:` lines, exit code 0.
@@ -1291,7 +1291,7 @@ git commit -m "feat: add asset variant probing loader with emoji-fallback hook"
 - Consumes: `canPlacePiece, absoluteCells` from `pieces.js`; `assignRoadsForPiece` from `roads.js`; `pickWeightedElement` from `elementCatalog.js`; `createCellGrid, createVertexGrid` from `grid.js`.
 - Produces: `createNewWorld(gridSize, cellSize, jitterAmount, rng)` now also returns `elementCounts: {}` and `placedPieceCount: 0`. New export `placePiece(state, shapeId, rotation, anchorRow, anchorCol, rng)` returns `true`/`false` and mutates `state.grid`, `state.elementCounts`, `state.placedPieceCount` on success. Consumed by `main.js` (Task 13).
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `Flametown/prototype/tests/state.test.js`:
 ```js
@@ -1347,12 +1347,12 @@ test('a second piece touching the first is accepted', () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `node tests/state.test.js`
 Expected: `placePiece` is not exported / undefined error.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 `Flametown/prototype/src/state.js` (replace entire contents):
 ```js
@@ -1397,12 +1397,12 @@ export function placePiece(state, shapeId, rotation, anchorRow, anchorCol, rng =
 }
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `node tests/state.test.js`
 Expected: 4 `PASS:` lines, exit code 0.
 
-- [ ] **Step 5: Verify main.js still runs (state.js's exported shape changed but createNewWorld's call signature didn't)**
+- [x] **Step 5: Verify main.js still runs (state.js's exported shape changed but createNewWorld's call signature didn't)**
 
 Run: `python3 -m http.server 8000` (from `Flametown/prototype/`), open `http://localhost:8000`
 Expected: same jittered grid as Task 5, pan/zoom still work, no console errors.
@@ -1427,7 +1427,7 @@ git commit -m "feat: add placePiece orchestration (legality + roads + elements)"
 - Consumes: `SAVE_KEY, GRID_SIZE_MIN, GRID_SIZE_MAX` from `config.js`.
 - Produces: `serializeState(state)`, `deserializeState(json)`, `clampGridSize(value, min, max)` (pure, Node-testable), plus `saveToStorage(state)`, `loadFromStorage()`, `clearStorage()` (thin `localStorage` wrappers, browser-only, manually verified). Consumed by `main.js`.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `Flametown/prototype/tests/persistence.test.js`:
 ```js
@@ -1471,12 +1471,12 @@ test('clampGridSize clamps out-of-range and non-numeric values', () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `node tests/persistence.test.js`
 Expected: `serializeState is not a function` error.
 
-- [ ] **Step 3: Append the new exports to state.js**
+- [x] **Step 3: Append the new exports to state.js**
 
 Add to the end of `Flametown/prototype/src/state.js`:
 ```js
@@ -1537,12 +1537,12 @@ export function clearStorage() {
 
 (Move the `import { SAVE_KEY } from '../config.js';` line up to join the existing imports at the top of the file instead of leaving it mid-file.)
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `node tests/persistence.test.js`
 Expected: 4 `PASS:` lines, exit code 0.
 
-- [ ] **Step 5: Wire load-on-startup into main.js**
+- [x] **Step 5: Wire load-on-startup into main.js**
 
 `Flametown/prototype/src/main.js` (replace entire contents):
 ```js
@@ -1596,7 +1596,7 @@ function frame(now) {
 requestAnimationFrame(frame);
 ```
 
-- [ ] **Step 6: Verify in the browser**
+- [x] **Step 6: Verify in the browser**
 
 Open: `http://localhost:8000`
 Expected: page loads a fresh empty grid on first run (no save yet), no console errors. Open devtools console and run `localStorage.getItem('flametown-save-v1')` — expect `null` (nothing saves yet until Task 13 wires `placePiece` + `saveToStorage` together).
@@ -1621,7 +1621,7 @@ git commit -m "feat: add save/load persistence and grid-size clamping"
 - Consumes: `GRID_SIZE_MIN, GRID_SIZE_MAX, DEFAULT_GRID_SIZE` from `config.js`; `pieceCells` from `pieces.js`.
 - Produces: `createUIPanel(panelEl, state, callbacks)` returning `{ renderPreview() }`, where `callbacks = { onTakePiece(), onNewGame(size) }`. `state.js` gains `ensureCurrentPiece(state, rng)` and `createNewWorld`'s return value gains `currentPiece: null, holding: false, animations: [], assetManifest: {}`. Consumed by `main.js`.
 
-- [ ] **Step 1: Extend createNewWorld and add ensureCurrentPiece in state.js**
+- [x] **Step 1: Extend createNewWorld and add ensureCurrentPiece in state.js**
 
 Replace the `createNewWorld` function in `Flametown/prototype/src/state.js` with:
 ```js
@@ -1652,7 +1652,7 @@ Add `randomPieceId` to the existing `import { canPlacePiece, absoluteCells } fro
 import { canPlacePiece, absoluteCells, randomPieceId } from './pieces.js';
 ```
 
-- [ ] **Step 2: Create the UI panel module**
+- [x] **Step 2: Create the UI panel module**
 
 `Flametown/prototype/src/ui.js`:
 ```js
@@ -1711,7 +1711,7 @@ export function createUIPanel(panelEl, state, callbacks) {
 }
 ```
 
-- [ ] **Step 3: Wire the panel into main.js**
+- [x] **Step 3: Wire the panel into main.js**
 
 `Flametown/prototype/src/main.js` (replace entire contents):
 ```js
@@ -1789,7 +1789,7 @@ function frame(now) {
 requestAnimationFrame(frame);
 ```
 
-- [ ] **Step 4: Fix createCameraInput to read a mutable state reference (New Game replaces `state` wholesale)**
+- [x] **Step 4: Fix createCameraInput to read a mutable state reference (New Game replaces `state` wholesale)**
 
 `createCameraInput` currently closes over the `state` parameter directly, so reassigning the outer `state` variable in `onNewGame` won't be seen by the already-created `cameraInput`. Replace the `createCameraInput` function signature and body in `Flametown/prototype/src/input.js` to read `input.state` instead of the closed-over parameter:
 
@@ -1853,7 +1853,7 @@ export function createCameraInput(canvas, initialState) {
 
 This changes the return shape from `{ update }` to `{ state, update }` — `main.js`'s `cameraInput.update(deltaSeconds)` call is unchanged, and `cameraInput.state = state` in `onNewGame` now correctly redirects future pans/zooms to the new world.
 
-- [ ] **Step 5: Verify in the browser**
+- [x] **Step 5: Verify in the browser**
 
 Open: `http://localhost:8000`
 Expected: side panel shows a 4x4 preview grid with a random tetromino shape highlighted in it, control hints, a "New Game" button, and a grid-size number input defaulting to 256. Clicking "New Game" asks for confirmation, then regenerates the world (new jitter pattern visible) and a new piece preview. Changing the grid-size input and clicking "New Game" regenerates at that size (zoom out with scroll to see the new bounds). No console errors.
@@ -1880,7 +1880,7 @@ git commit -m "feat: add UI panel with piece preview and New Game/grid-size cont
 - Consumes: `absoluteCells, canPlacePiece` from `pieces.js`; `catalogEntry` from `elementCatalog.js`; `placePiece, saveToStorage` from `state.js`; `worldToCell` from `grid.js`.
 - Produces: `createPlacementInput(canvas, state, onPlace)` returning `{ getMouseCell() }`. `renderGrid` now also draws placed elements and roads. New `renderGhost(ctx, state, viewportWidth, viewportHeight, mouseCell)`. Consumed by `main.js`.
 
-- [ ] **Step 1: Add a test for worldToCell and confirm it's implemented**
+- [x] **Step 1: Add a test for worldToCell and confirm it's implemented**
 
 Append to `Flametown/prototype/tests/grid.test.js` (before the last line, alongside the other `test(...)` calls):
 ```js
@@ -1905,12 +1905,12 @@ import {
 } from '../src/grid.js';
 ```
 
-- [ ] **Step 2: Run test to verify it fails (or passes if Task 2 already added worldToCell)**
+- [x] **Step 2: Run test to verify it fails (or passes if Task 2 already added worldToCell)**
 
 Run: `node tests/grid.test.js`
 Expected: PASS if `worldToCell` was added in Task 2 exactly as specified; if it's missing from `src/grid.js`, add the function shown in Task 2 Step 3 now.
 
-- [ ] **Step 3: Add gameplay input handling**
+- [x] **Step 3: Add gameplay input handling**
 
 Append to `Flametown/prototype/src/input.js`:
 ```js
@@ -1957,7 +1957,7 @@ export function createPlacementInput(canvas, state, onPlace) {
 
 Note: this module-level `state` parameter is fixed at creation time, same limitation `createCameraInput` had before Task 12 Step 4 fixed it. Since `createPlacementInput` is only created once in `main.js` and never needs to survive a New Game (Step 5 below recreates it after New Game instead of patching it), this is acceptable — do not add the same indirection here (YAGNI).
 
-- [ ] **Step 4: Extend rendering to draw placed elements, roads, and the ghost piece**
+- [x] **Step 4: Extend rendering to draw placed elements, roads, and the ghost piece**
 
 `Flametown/prototype/src/render.js` (replace entire contents):
 ```js
@@ -2049,7 +2049,7 @@ export function renderGhost(ctx, state, viewportWidth, viewportHeight, mouseCell
 }
 ```
 
-- [ ] **Step 5: Wire gameplay input + ghost rendering + autosave into main.js**
+- [x] **Step 5: Wire gameplay input + ghost rendering + autosave into main.js**
 
 `Flametown/prototype/src/main.js` (replace entire contents):
 ```js
@@ -2179,7 +2179,7 @@ export function createPlacementInput(canvas, initialState, onPlace) {
 
 (This replaces the version written in Step 3 above — the return shape changes from `{ getMouseCell }` to `{ state, getMouseCell }`; `main.js`'s `placementInput.getMouseCell()` call is unchanged.)
 
-- [ ] **Step 6: Verify the full core loop in the browser**
+- [x] **Step 6: Verify the full core loop in the browser**
 
 Open: `http://localhost:8000` (clear the save first via devtools: `localStorage.removeItem('flametown-save-v1')`, then reload)
 Expected:
@@ -2212,7 +2212,7 @@ git commit -m "feat: wire up the full core loop (take, rotate, place, autosave)"
 - Consumes: nothing.
 - Produces: `easeOutBounce(t)`, `animationScale(anim, now)` where `anim = { startTime, duration }`. Consumed by `render.js`, `main.js`.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `Flametown/prototype/tests/anim.test.js`:
 ```js
@@ -2248,12 +2248,12 @@ test('animationScale is between 0 and 1 mid-animation', () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `node tests/anim.test.js`
 Expected: `Cannot find module '../src/anim.js'` error.
 
-- [ ] **Step 3: Write the implementation**
+- [x] **Step 3: Write the implementation**
 
 `Flametown/prototype/src/anim.js`:
 ```js
@@ -2274,12 +2274,12 @@ export function animationScale(anim, now) {
 }
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `node tests/anim.test.js`
 Expected: 3 `PASS:` lines, exit code 0.
 
-- [ ] **Step 5: Apply the scale to element rendering**
+- [x] **Step 5: Apply the scale to element rendering**
 
 In `Flametown/prototype/src/render.js`, update the `drawElement` function signature and body to accept a `scale`:
 ```js
@@ -2336,7 +2336,7 @@ export function renderGrid(ctx, state, viewportWidth, viewportHeight, now = perf
 }
 ```
 
-- [ ] **Step 6: Spawn and prune animations in main.js**
+- [x] **Step 6: Spawn and prune animations in main.js**
 
 In `Flametown/prototype/src/main.js`, update the `placementInput` placement callback to spawn animations, and update `frame()` to prune finished ones and pass `now` to `renderGrid`:
 ```js
@@ -2398,11 +2398,11 @@ git commit -m "feat: add staggered bounce-in animation for newly placed tiles"
 - Consumes: `loadAssetManifest, defaultLoadImage` from `assets.js`; `ELEMENT_CATALOG` from `elementCatalog.js`; `MAX_ASSET_VARIANTS` from `config.js`.
 - Produces: nothing new — assigns to the existing `state.assetManifest` field that `render.js`/`state.js` already read.
 
-- [ ] **Step 1: Create the assets folder placeholder**
+- [x] **Step 1: Create the assets folder placeholder**
 
 `Flametown/prototype/assets/tiles/.gitkeep`: (empty file, just so the folder exists in git before any real PNGs are added)
 
-- [ ] **Step 2: Load the manifest at startup**
+- [x] **Step 2: Load the manifest at startup**
 
 In `Flametown/prototype/src/main.js`, add imports:
 ```js
@@ -2420,11 +2420,11 @@ loadAssetManifest(ELEMENT_CATALOG, 'assets/tiles', MAX_ASSET_VARIANTS).then((man
 
 (The game is playable immediately with emoji fallback since `state.assetManifest` starts as `{}`; it upgrades in place once the async scan resolves — no loading screen needed for a prototype this size.)
 
-- [ ] **Step 3: Verify emoji-only behavior first**
+- [x] **Step 3: Verify emoji-only behavior first**
 
 Reload with an empty `assets/tiles/` folder. Expected: identical behavior to Task 14 (all emoji), no console errors, no failed-request spam (probing 404s are expected and harmless, but confirm the count stops growing unbounded — check the Network tab shows exactly `MAX_ASSET_VARIANTS` (20) failed requests per catalog type, not more).
 
-- [ ] **Step 4: Verify with a real image**
+- [x] **Step 4: Verify with a real image**
 
 Save any small square PNG as `Flametown/prototype/assets/tiles/house_1.png`. Reload. Expected: cells with `elementType === 'house'` now render that image instead of the 🏠 emoji; all other types still show emoji. Add a second `house_2.png` and reload a few times — expect roughly half of new house placements to use each variant.
 
@@ -2441,30 +2441,30 @@ git commit -m "feat: load real asset variants at startup with emoji fallback"
 
 **Files:** none created — this task is manual verification of behavior already implemented in Tasks 1–15.
 
-- [ ] **Step 1: Verify corrupted save recovery**
+- [x] **Step 1: Verify corrupted save recovery**
 
 Open devtools console: `localStorage.setItem('flametown-save-v1', 'not valid json')`, reload.
 Expected: game starts with a fresh empty world (per `loadFromStorage`'s try/catch), a `console.warn` appears (not an uncaught error), no blank/broken page.
 
-- [ ] **Step 2: Verify unsupported save version recovery**
+- [x] **Step 2: Verify unsupported save version recovery**
 
 `localStorage.setItem('flametown-save-v1', JSON.stringify({version: 99}))`, reload.
 Expected: same graceful fallback to a fresh world as Step 1.
 
-- [ ] **Step 3: Verify grid-size input clamping**
+- [x] **Step 3: Verify grid-size input clamping**
 
 In the UI panel, set the grid-size input to `abc`, click New Game. Expected: world resets at the minimum size (16) per `clampGridSize`'s NaN fallback, not a crash.
 Set it to `99999`, click New Game. Expected: world resets at 512 (the max), not a 99999×512 tile grid that would hang the browser.
 
-- [ ] **Step 4: Verify placement legality feedback end-to-end**
+- [x] **Step 4: Verify placement legality feedback end-to-end**
 
 Place several pieces to build a small city. Take a new piece and hover it over an empty area not touching the city — confirm it renders red and clicking does nothing (no piece consumed, no console error). Hover it back onto a legal spot — confirm it turns yellow and places on click.
 
-- [ ] **Step 5: Verify road continuity visually**
+- [x] **Step 5: Verify road continuity visually**
 
 Zoom in (scroll) on a seam between two separately-placed pieces. Confirm any road line that touches that seam continues unbroken into the neighboring piece (per Task 8's matching rule) — this is the visual proof that `assignRoadsForPiece` is wired correctly end-to-end, not just passing in isolation.
 
-- [ ] **Step 6: Run the full automated test suite once, end to end**
+- [x] **Step 6: Run the full automated test suite once, end to end**
 
 Run (from `Flametown/prototype/`):
 ```bash

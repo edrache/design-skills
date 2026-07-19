@@ -1,0 +1,48 @@
+Original prompt: przejdź do implementacji planu [2026-07-18-tetromino-prototype-plan.md](Flametown/docs/plans/2026-07-18-tetromino-prototype-plan.md) używając wielu agentów. Aktualizuj plan na każdym kroku po jego zakończeniu
+
+- 2026-07-18: Started implementation from the plan.
+- Using parallel workstreams:
+  - Main agent: scaffold, integration, plan/progress updates, browser verification.
+  - Subagent A: grid + camera pure logic modules and tests.
+  - Subagent B: pieces + element catalog + roads + assets pure logic modules and tests.
+- No existing prototype files were present at start.
+- 2026-07-18: Added test scaffolding for Task 6-9 plus minimal shared dependencies (`package.json`, `config.js`, `src/grid.js`) needed to run pure Node tests without touching app integration files.
+- 2026-07-18: Implemented pure logic modules for tetromino placement (`src/pieces.js`), weighted element selection (`src/elementCatalog.js`), road assignment (`src/roads.js`), and asset probing (`src/assets.js`).
+- 2026-07-18: Verified Node test runs for Task 6-9. Results: pieces 9 PASS, elementCatalog 6 PASS, roads 3 PASS, assets 4 PASS.
+- 2026-07-18: Integrated `state`, `render`, `input`, `ui`, `anim`, persistence, ghost placement, autosave, and asset-manifest loading into a playable prototype.
+- 2026-07-18: Reworked persistence to use sparse occupied-cell saves plus a deterministic world seed after browser verification exposed `localStorage` quota overflow on full-grid/full-vertex saves.
+- 2026-07-18: Full test suite passes end to end:
+  - anim 3 PASS
+  - assets 4 PASS
+  - camera 7 PASS
+  - elementCatalog 6 PASS
+  - grid 9 PASS
+  - persistence 4 PASS
+  - pieces 9 PASS
+  - roads 3 PASS
+  - state 4 PASS
+- 2026-07-18: Browser verification completed with Playwright-driven local checks for:
+  - corrupted-save recovery
+  - unsupported-save-version recovery
+  - grid-size clamping to 16 and 512
+  - illegal vs legal placement behavior
+  - road continuity across separately placed pieces
+  - persistence across reload
+  - real image override for `house_1.png`
+- Remaining unchecked plan items are mostly commit-only checkpoints plus the explicit manual bounce-animation verification step.
+- 2026-07-18: Added world-anchored tiled background rendering using `assets/tiles/Terrain_Base.png`.
+- Background texture scale is now controlled by `BACKGROUND_TILE_WORLD_SIZE` in `config.js` so the tile density can be tuned later without changing render logic.
+- 2026-07-18: Replaced per-cell grid stroke lines with a separate vertex overlay using `assets/tiles/MapPoint.png`.
+- Map point sprite size is now controlled by `MAP_POINT_WORLD_SIZE` in `config.js`.
+- 2026-07-18: Replaced prototype element types `shop`, `plaza`, `fountain`, and `decoration` with a named shop roster.
+- Asset loading now supports direct unnumbered files like `Shop_DracoBell.png` in addition to numbered variants like `house_1.png`.
+- 2026-07-18: Added a second world-anchored tiled background layer for occupied cells only.
+- The built-area fill is clipped to placed cell quads, uses its own config keys (`BUILT_BACKGROUND_TEXTURE_PATH`, `BUILT_BACKGROUND_TILE_WORLD_SIZE`), and currently defaults to the same terrain texture plus a warm tint until a dedicated built-area texture is provided.
+- 2026-07-18: Built-area background now uses `assets/tiles/Terrain_Town.png` instead of the base terrain fallback.
+- 2026-07-19: Softened the outer silhouette of the built-area background without changing cell geometry or road borders.
+- Occupied-cell terrain still uses the exact polygon clip, but exposed perimeter edges now get two extra treatments:
+  - a textured fringe that pushes the town ground a bit outside the strict footprint,
+  - and a terrain-colored erosion strip that nibbles slightly back into the town fill.
+- Tunable knobs were added in `config.js`: `BUILT_EDGE_FRINGE_WORLD_SIZE` and `BUILT_EDGE_EROSION_WORLD_SIZE`.
+- 2026-07-19: Reworked inward edge erosion so it now erases the built-area layer instead of painting another copy of the world background over it.
+- This removes the bright straight-sided polygon artifact that could remain visible inside the city bounds even with tint alpha set to zero.
