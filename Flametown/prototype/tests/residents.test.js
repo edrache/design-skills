@@ -226,6 +226,55 @@ test('updateResidents awards points for scoring blocks touching the crossed edge
   assert.equal(state.scorePopups.length, 2);
 });
 
+test('updateResidents awards a concrete shop by the full size of its cluster', () => {
+  const state = createResidentState();
+  state.scoreTotals = {
+    Bread: 0,
+    Crystal: 0,
+    Iron: 0,
+    Meat: 0,
+    Plant: 0,
+    Potion: 0,
+  };
+  state.scoreTotalsVersion = 0;
+  state.scorePopups = [];
+  state.grid[1][1] = {
+    elementType: 'Shop_CriticalRolls',
+    elementVariant: null,
+    pieceId: 1,
+    roads: { N: true, E: false, S: false, W: false },
+  };
+  state.grid[1][2] = {
+    elementType: 'Shop_BizarreBazaar',
+    elementVariant: null,
+    pieceId: 2,
+    roads: { N: false, E: false, S: false, W: false },
+  };
+  state.grid[1][3] = {
+    elementType: 'Shop_DrakeOfCakes',
+    elementVariant: null,
+    pieceId: 3,
+    roads: { N: false, E: false, S: false, W: false },
+  };
+  syncResidentGraph(state);
+  state.residents.push({
+    id: 1,
+    homeCell: { row: 1, col: 1 },
+    from: { row: 1, col: 1 },
+    to: { row: 1, col: 2 },
+    progress: 0.4,
+    walkDistance: 0,
+    facing: 1,
+  });
+
+  updateResidents(state, 0.5, () => 0.1);
+
+  assert.equal(state.scoreTotals.Bread, 3);
+  assert.equal(state.scoreTotalsVersion, 1);
+  assert.equal(state.scorePopups.length, 1);
+  assert.equal(state.scorePopups[0].amount, 3);
+});
+
 test('updateResidents aggregates duplicate scoring types from both sides of one edge', () => {
   const state = createResidentState();
   state.scoreTotals = {
@@ -263,7 +312,7 @@ test('updateResidents aggregates duplicate scoring types from both sides of one 
 
   updateResidents(state, 0.5, () => 0.1);
 
-  assert.equal(state.scoreTotals.Meat, 2);
+  assert.equal(state.scoreTotals.Meat, 4);
   assert.equal(state.scorePopups.length, 1);
-  assert.equal(state.scorePopups[0].amount, 2);
+  assert.equal(state.scorePopups[0].amount, 4);
 });

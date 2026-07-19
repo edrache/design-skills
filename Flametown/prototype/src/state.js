@@ -2,15 +2,16 @@ import { SAVE_KEY } from '../config.js';
 import {
   DEFAULT_WILD_TYPE,
   buildClusterIndex,
+  getClusterCellTypes,
+  getHoveredClusterEntryIconId,
+  getHoveredClusterEntryLabel,
   getClusterMembership,
+  matchShopClusterWildType,
 } from './clusters.js';
 import {
   ELEMENT_CATALOG,
   SCORING_GROUP_IDS,
-  SHOP_GROUP_DEFINITIONS,
   UNIVERSAL_SHOP_GROUP_ID,
-  catalogEntry,
-  getElementOverlayIconIds,
   getElementShopGroups,
   isShopElement,
   pickWeightedElement,
@@ -102,43 +103,6 @@ function createEmptyHoverState() {
   };
 }
 
-function getClusterCellTypes(cell) {
-  if (!cell?.elementType) {
-    return [];
-  }
-
-  if (isShopElement(cell.elementType)) {
-    return getElementShopGroups(cell.elementType);
-  }
-
-  return [cell.elementType];
-}
-
-function matchShopWildType(cell, targetType) {
-  return (
-    isShopElement(cell?.elementType) &&
-    typeof targetType === 'string' &&
-    targetType !== UNIVERSAL_SHOP_GROUP_ID &&
-    Object.hasOwn(SHOP_GROUP_DEFINITIONS, targetType)
-  );
-}
-
-function getHoveredClusterEntryLabel(elementType, targetType) {
-  if (isShopElement(elementType)) {
-    return targetType;
-  }
-
-  return catalogEntry(elementType).id;
-}
-
-function getHoveredClusterEntryIconId(elementType, targetType) {
-  if (isShopElement(elementType)) {
-    return targetType;
-  }
-
-  return getElementOverlayIconIds(elementType)[0] ?? null;
-}
-
 function normalizeHoveredCell(state, hoveredCell) {
   if (
     !hoveredCell ||
@@ -161,7 +125,7 @@ function normalizeHoveredCell(state, hoveredCell) {
 export function rebuildClusterState(state) {
   state.clusterIndex = buildClusterIndex(state.grid, {
     getCellTypes: getClusterCellTypes,
-    matchWildType: matchShopWildType,
+    matchWildType: matchShopClusterWildType,
   });
   return state.clusterIndex;
 }

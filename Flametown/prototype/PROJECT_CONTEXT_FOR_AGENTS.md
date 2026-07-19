@@ -103,6 +103,8 @@ Na teraz zaimplementowane i sprawdzone sa:
   - `house` moze laczyc sie w klastry tylko z `house`
   - `park` moze laczyc sie w klastry tylko z `park`
   - dla sklepow klaster liczy sie po `shopGroups`, wiec konkretne typy towarow sa rozdzielone, a `Any` dziala jako wild tylko dla sklepow i laczy sie z odpowiednim typem towaru
+  - scoring mieszkancow przy mijaniu sklepu korzysta z tego samego indeksu klastrow: pojedynczy mijany sklep daje tyle punktow, ile wynosi rozmiar jego klastra dla danego `shopGroup`
+  - jesli jedna krawedz dotyka dwoch sklepow tego samego typu punktowego, oba sklepy naliczaja swoje wartosci i popup agreguje sume w ramach `groupId`
   - runtime utrzymuje cache klastrow i rozmiar klastra jest zawsze dostepny dla hoverowanego bloku
   - hover budynku podswietla tlo wszystkich blokow nalezacych do tego samego polaczonego klastra
   - kolor highlightu klastra ma byc konfigurowalny, a nie zaszyty na stale w rendererze
@@ -156,6 +158,7 @@ Logika klastrow dla zbudowanych blokow:
 - hover na konkretnym sklepie z typem towaru podswietla tylko jego klaster tego typu z ewentualnymi mostkami `Any`
 - hover na sklepie `Any` laczy wszystkie klastry typow towaru, do ktorych ten konkretny sklep nalezy
 - system utrzymuje gotowy indeks klastrow w runtime, zeby mozna bylo od razu pobrac rozmiar klastra i liste nalezacych do niego komorek
+- ten sam indeks klastrow jest wspoldzielony przez hover i scoring mieszkancow, zeby reguly `Any` / `shopGroups` byly identyczne w obu miejscach
 - renderer hovera zmienia kolor tla calego klastra powiazanego z aktualnie wskazanym budynkiem
 - kolor tego tla powinien byc sterowany konfiguracja
 - tooltip hovera powinien korzystac z danych klastra trzymanych w runtime, zeby liczebnosc nie byla liczona ad hoc w rendererze
@@ -241,6 +244,7 @@ Istniejace pliki testowe:
 - `pieces.test.js`
 - `roads.test.js`
 - `roadStyle.test.js`
+- `residents.test.js`
 - `state.test.js`
 - `clusters.test.js`
 

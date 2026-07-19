@@ -106,3 +106,6 @@ Original prompt: przejdź do implementacji planu [2026-07-18-tetromino-prototype
   - Browser smoke visually confirmed flat roads at `zoom = 5` and textured roads at `zoom = 8`
 - Remaining unrelated test issue observed during full-suite run:
   - `tests/clusters.test.js` currently fails in wildcard-cluster expectations and was not changed as part of this road task
+- 2026-07-19: Resident scoring for passed shops now uses full shop-cluster size instead of flat `+1` per scored shop cell.
+- Shared shop-cluster helpers were moved into `src/clusters.js`, so hover state and resident scoring use the same `shopGroups` / `Any` wildcard rules.
+- Added regression coverage in `tests/residents.test.js` for cluster-sized score awards and updated duplicate-group expectations; also added helper coverage in `tests/clusters.test.js`.

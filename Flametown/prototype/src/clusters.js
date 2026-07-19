@@ -1,4 +1,11 @@
 import { DIRS, neighborCoord } from './grid.js';
+import {
+  SHOP_GROUP_DEFINITIONS,
+  UNIVERSAL_SHOP_GROUP_ID,
+  getElementOverlayIconIds,
+  getElementShopGroups,
+  isShopElement,
+} from './elementCatalog.js';
 
 export const DEFAULT_WILD_TYPE = 'Any';
 
@@ -12,6 +19,43 @@ function uniqueTypes(types) {
 
 function defaultGetCellTypes(cell) {
   return cell?.elementType ? [cell.elementType] : [];
+}
+
+export function getClusterCellTypes(cell) {
+  if (!cell?.elementType) {
+    return [];
+  }
+
+  if (isShopElement(cell.elementType)) {
+    return getElementShopGroups(cell.elementType);
+  }
+
+  return [cell.elementType];
+}
+
+export function matchShopClusterWildType(cell, targetType) {
+  return (
+    isShopElement(cell?.elementType) &&
+    typeof targetType === 'string' &&
+    targetType !== UNIVERSAL_SHOP_GROUP_ID &&
+    Object.hasOwn(SHOP_GROUP_DEFINITIONS, targetType)
+  );
+}
+
+export function getHoveredClusterEntryLabel(elementType, targetType) {
+  if (isShopElement(elementType)) {
+    return targetType;
+  }
+
+  return elementType;
+}
+
+export function getHoveredClusterEntryIconId(elementType, targetType) {
+  if (isShopElement(elementType)) {
+    return targetType;
+  }
+
+  return getElementOverlayIconIds(elementType)[0] ?? null;
 }
 
 function inGrid(grid, row, col) {

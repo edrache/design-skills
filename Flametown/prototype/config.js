@@ -28,7 +28,7 @@ export const BUILT_EDGE_EROSION_TINT = 'rgba(0, 255, 255, 0.0)'; // Green transl
 export const BUILT_EDGE_FRINGE_TINT = 'rgba(220, 174, 102, 0.0)'; // Warm translucent tint used on the outward edge fringe strip.
 export const MAP_POINT_TEXTURE_PATH = 'assets/tiles/MapPoint.png'; // Texture path for the marker sprite rendered on grid vertices.
 export const MAP_POINT_WORLD_SIZE = 10; // World-space size of each vertex marker sprite before camera zoom.
-export const CITY_ICON_ZOOM_START = 5; // Built-cell type icons start fading in once camera zoom drops to this value or below.
+export const CITY_ICON_ZOOM_START = 4; // Built-cell type icons start fading in once camera zoom drops to this value or below.
 export const CITY_ICON_ZOOM_FULL = 3; // Built-cell type icons reach full size/opacity once camera zoom drops to this value or below.
 export const CLUSTER_HIGHLIGHT_FILL = 'rgba(255, 214, 102, 0.24)'; // Fill color used for non-source cells in the hovered cluster.
 export const CLUSTER_HIGHLIGHT_SOURCE_FILL = 'rgba(255, 232, 150, 0.42)'; // Stronger fill color used for the cell directly under the pointer.
@@ -36,7 +36,7 @@ export const CLUSTER_HIGHLIGHT_STROKE = 'rgba(255, 227, 163, 0.55)'; // Stroke c
 
 export const ROAD_WIDTH_AT_CITY_ICON_ZOOM_START = 14; // Road width in screen pixels at CITY_ICON_ZOOM_START; roads scale proportionally with camera zoom from this reference.
 export const ROAD_TEXTURE_PATH = 'assets/tiles/Road.png'; // Texture path for close-up roads.
-export const ROAD_TEXTURE_ZOOM_FULL = 8; // Close-up road texture reaches full strength at this zoom; at CITY_ICON_ZOOM_START roads still match the old flat rendering.
+export const ROAD_TEXTURE_ZOOM_FULL = 2; // Close-up road texture reaches full strength at this zoom; at CITY_ICON_ZOOM_START roads still match the old flat rendering.
 
 export const RESIDENT_SPRITE_PATH = 'assets/dragons/dragon_bread.png'; // Sprite used for residents walking around the city.
 export const RESIDENT_EDGE_SPEED = 4; // Base world-units-per-second speed used when a resident moves along a non-road edge.

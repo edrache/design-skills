@@ -3,7 +3,9 @@ import {
   buildClusterIndex,
   cellMatchesClusterType,
   findCluster,
+  getClusterCellTypes,
   getClusterMembership,
+  matchShopClusterWildType,
 } from '../src/clusters.js';
 import { getElementShopGroups } from '../src/elementCatalog.js';
 
@@ -142,4 +144,12 @@ test('buildClusterIndex reports cluster sizes for multiple disconnected groups o
   assert.equal(getClusterMembership(index, 0, 0, 'house')?.size, 3);
   assert.equal(getClusterMembership(index, 1, 1, 'house')?.size, 3);
   assert.equal(getClusterMembership(index, 0, 3, 'house')?.size, 1);
+});
+
+test('shared shop cluster helpers expose shop groups and wildcard matching consistently', () => {
+  assert.deepEqual(getClusterCellTypes({ elementType: 'Shop_BizarreBazaar' }), ['Any']);
+  assert.deepEqual(getClusterCellTypes({ elementType: 'house' }), ['house']);
+  assert.equal(matchShopClusterWildType({ elementType: 'Shop_BizarreBazaar' }, 'Bread'), true);
+  assert.equal(matchShopClusterWildType({ elementType: 'Shop_BizarreBazaar' }, 'Any'), false);
+  assert.equal(matchShopClusterWildType({ elementType: 'house' }, 'Bread'), false);
 });

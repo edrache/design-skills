@@ -6,6 +6,12 @@ import {
 } from '../config.js';
 import { easeInOutSine } from './anim.js';
 import { SCORING_GROUP_IDS, getElementScoringGroupId } from './elementCatalog.js';
+import {
+  buildClusterIndex,
+  getClusterCellTypes,
+  getClusterMembership,
+  matchShopClusterWildType,
+} from './clusters.js';
 
 function nodeKey(row, col) {
   return `${row},${col}`;
@@ -333,6 +339,30 @@ function ensureScoreState(state) {
   }
 }
 
+function ensureClusterIndex(state) {
+  if (!state.clusterIndex) {
+    state.clusterIndex = buildClusterIndex(state.grid, {
+      getCellTypes: getClusterCellTypes,
+      matchWildType: matchShopClusterWildType,
+    });
+  }
+  return state.clusterIndex;
+}
+
+function scoringAmountForCell(state, row, col, cell) {
+  const groupId = getElementScoringGroupId(cell.elementType);
+  if (!groupId) {
+    return null;
+  }
+
+  const clusterIndex = ensureClusterIndex(state);
+  const membership = getClusterMembership(clusterIndex, row, col, groupId);
+  return {
+    groupId,
+    amount: membership?.size ?? 1,
+  };
+}
+
 function awardEdgeMidpointPoints(state, resident, from, to, now = performance.now()) {
   const touchedCells = touchedCellsForEdge(state.grid, from, to);
   if (touchedCells.length === 0) {
@@ -340,12 +370,12 @@ function awardEdgeMidpointPoints(state, resident, from, to, now = performance.no
   }
 
   const additions = {};
-  for (const { cell } of touchedCells) {
-    const groupId = getElementScoringGroupId(cell.elementType);
-    if (!groupId) {
+  for (const { row, col, cell } of touchedCells) {
+    const scoring = scoringAmountForCell(state, row, col, cell);
+    if (!scoring) {
       continue;
     }
-    additions[groupId] = (additions[groupId] || 0) + 1;
+    additions[scoring.groupId] = (additions[scoring.groupId] || 0) + scoring.amount;
   }
 
   const awardedGroups = Object.entries(additions);
