@@ -1,7 +1,7 @@
-export const APP_VERSION = '0.1.5'; // Human-readable prototype version tracked in project docs and release notes.
+export const APP_VERSION = '0.1.10'; // Human-readable prototype version tracked in project docs and release notes.
 
 // Keep every exported config value documented inline so the file stays readable as new knobs are added.
-export const DEFAULT_GRID_SIZE = 256; // Default world size used when starting a fresh game.
+export const DEFAULT_GRID_SIZE = 64; // Default world size used when starting a fresh game.
 export const GRID_SIZE_MIN = 16; // Smallest grid size accepted by the New Game flow.
 export const GRID_SIZE_MAX = 512; // Largest grid size accepted by the New Game flow.
 export const CELL_SIZE = 32; // Base world-space size of one logical cell before camera zoom.
@@ -9,6 +9,11 @@ export const JITTER_AMOUNT = 0.2; // Strength of vertex jitter that makes the gr
 export const MAX_ASSET_VARIANTS = 20; // Safety cap for probing numbered sprite variants like house_1, house_2, etc.
 export const ROAD_RANDOM_CHANCE = 0.5; // Chance used by road generation when a road connection is optional.
 export const SAVE_KEY = 'flametown-save-v1'; // localStorage key for saved prototype state.
+export const DRAW_COST_AMOUNT = 20; // Goods cost to refill the hand by drawing up to its limit.
+export const MARKET_STARTER_COST_ANY_AMOUNT = 100; // Cost of a starter offer, paid as one chosen goods type.
+export const MARKET_RANDOM_COST_PER_GOOD_AMOUNT = 50; // Cost per goods token on a non-starter market offer.
+export const MARKET_RANDOM_COST_GOOD_TYPES = 2; // Number of different goods types required for a non-starter market offer.
+export const MARKET_REFRESH_COST_AMOUNT = 300; // Cost to reroll the shop, paid as one chosen goods type.
 
 export const ZOOM_MIN = 0.3; // Lowest camera zoom allowed during play.
 export const ZOOM_MAX = 20.0; // Highest camera zoom allowed during play.
@@ -34,8 +39,8 @@ export const BUILT_EDGE_EROSION_TINT = 'rgba(0, 255, 255, 0.0)'; // Green transl
 export const BUILT_EDGE_FRINGE_TINT = 'rgba(220, 174, 102, 0.0)'; // Warm translucent tint used on the outward edge fringe strip.
 export const MAP_POINT_TEXTURE_PATH = 'assets/tiles/MapPoint.png'; // Texture path for the marker sprite rendered on grid vertices.
 export const MAP_POINT_WORLD_SIZE = 10; // World-space size of each vertex marker sprite before camera zoom.
-export const CITY_ICON_ZOOM_START = 4; // Built-cell type icons start fading in once camera zoom drops to this value or below.
-export const CITY_ICON_ZOOM_FULL = 3; // Built-cell type icons reach full size/opacity once camera zoom drops to this value or below.
+export const CITY_ICON_ZOOM_START = 2.2; // Built-cell type icons start fading in once camera zoom drops to this value or below.
+export const CITY_ICON_ZOOM_FULL = 1.5; // Built-cell type icons reach full size/opacity once camera zoom drops to this value or below.
 export const CLUSTER_HIGHLIGHT_FILL = 'rgba(255, 214, 102, 0.24)'; // Fill color used for non-source cells in the hovered cluster.
 export const CLUSTER_HIGHLIGHT_SOURCE_FILL = 'rgba(255, 232, 150, 0.42)'; // Stronger fill color used for the cell directly under the pointer.
 export const CLUSTER_HIGHLIGHT_STROKE = 'rgba(255, 227, 163, 0.55)'; // Stroke color used to outline hovered cluster cells.

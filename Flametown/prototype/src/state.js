@@ -1,5 +1,23 @@
 import { SAVE_KEY } from '../config.js';
 import {
+  canAffordCostEntries,
+  createMarketOffers,
+  createDeckState,
+  createEmptyBuildingCooldownState,
+  createMarketState,
+  createStarterOffer,
+  createTileInstance,
+  createTileInstanceFromDefinition,
+  countDrawableTiles,
+  drawMissingCount,
+  findAffordableGoods,
+  getStarterTileDefinitions,
+  normalizeMarketOffer,
+  spendCostEntries,
+  shuffleTiles,
+  totalTilesInDeckState,
+} from './deck.js';
+import {
   DEFAULT_WILD_TYPE,
   buildClusterIndex,
   getClusterCellTypes,
@@ -245,6 +263,12 @@ export function createNewWorld(gridSize, cellSize, jitterAmount, rng = Math.rand
     scoreTotals: createInitialScoreTotals(),
     scoreTotalsVersion: 0,
     scorePopups: [],
+    runState: 'starter-selection',
+    starterOptions: getStarterTileDefinitions().map((tile) => tile.id),
+    starterTileId: null,
+    deckState: createDeckState(),
+    marketState: createMarketState(rng),
+    buildingCooldowns: createEmptyBuildingCooldownState(),
     residents: [],
     nextResidentId: 1,
     clusterIndex: null,
@@ -287,11 +311,249 @@ export function createPieceDraft(
   };
 }
 
+export function syncCurrentPieceSelection(state) {
+  const deckState = state.deckState || createDeckState();
+  state.deckState = deckState;
+
+  if (!Array.isArray(deckState.hand)) {
+    deckState.hand = [];
+  }
+  if (!Array.isArray(deckState.drawPile)) {
+    deckState.drawPile = [];
+  }
+  if (!Array.isArray(deckState.discardPile)) {
+    deckState.discardPile = [];
+  }
+
+  const maxIndex = Math.max(0, deckState.hand.length - 1);
+  deckState.selectedHandIndex = Math.min(maxIndex, Math.max(0, deckState.selectedHandIndex || 0));
+  state.currentPiece = deckState.hand[deckState.selectedHandIndex] || null;
+  if (!state.currentPiece) {
+    state.holding = false;
+  }
+}
+
 export function ensureCurrentPiece(state, rng = Math.random) {
+  if (state.deckState) {
+    if (!state.currentPiece || (state.deckState.hand?.length || 0) > 0) {
+      syncCurrentPieceSelection(state);
+    }
+    return;
+  }
+
   if (!state.currentPiece) {
     state.currentPiece = createPieceDraft(state, randomPieceId(rng), 0, rng);
     state.holding = false;
   }
+}
+
+function getOwnedStarterTileIds(state) {
+  const owned = new Set();
+  const deckState = state.deckState || createDeckState();
+  for (const zone of [deckState.drawPile, deckState.hand, deckState.discardPile]) {
+    for (const tile of zone || []) {
+      if (tile?.tileId?.startsWith?.('starter-')) {
+        owned.add(tile.tileId);
+      }
+    }
+  }
+  if (typeof state.starterTileId === 'string') {
+    owned.add(state.starterTileId);
+  }
+  return [...owned];
+}
+
+function normalizeMarketState(state, rng = Math.random) {
+  if (!state.marketState) {
+    state.marketState = createMarketState(rng, getOwnedStarterTileIds(state));
+    return;
+  }
+
+  state.marketState.offers = (state.marketState.offers || [])
+    .map((offer) => normalizeMarketOffer(offer))
+    .filter(Boolean);
+  state.marketState.refreshCost = Number.isFinite(state.marketState.refreshCost)
+    ? state.marketState.refreshCost
+    : createMarketState().refreshCost;
+}
+
+export function rerollMarketOffers(state, rng = Math.random) {
+  normalizeMarketState(state, rng);
+  state.marketState.offers = createMarketOffers(getOwnedStarterTileIds(state), rng);
+  return state.marketState.offers;
+}
+
+export function startRunWithStarter(state, tileId, rng = Math.random) {
+  state.runState = 'playing';
+  state.starterTileId = tileId;
+  state.deckState = createDeckState();
+  state.marketState = createMarketState(rng, [tileId]);
+  state.buildingCooldowns = createEmptyBuildingCooldownState();
+  state.deckState.drawPile.push(createTileInstance(tileId));
+  drawTilesUpToHandLimit(state, rng);
+  state.holding = false;
+}
+
+export function reshuffleDiscardIntoDraw(state, rng = Math.random) {
+  const deckState = state.deckState || createDeckState();
+  state.deckState = deckState;
+  if ((deckState.drawPile?.length || 0) > 0 || (deckState.discardPile?.length || 0) === 0) {
+    return false;
+  }
+
+  deckState.drawPile = shuffleTiles(deckState.discardPile, rng);
+  deckState.discardPile = [];
+  deckState.lastDrawUsedReshuffle = true;
+  return true;
+}
+
+export function drawTilesUpToHandLimit(state, rng = Math.random) {
+  const deckState = state.deckState || createDeckState();
+  state.deckState = deckState;
+  deckState.lastDrawUsedReshuffle = false;
+
+  while (drawMissingCount(deckState) > 0 && countDrawableTiles(deckState) > 0) {
+    if ((deckState.drawPile?.length || 0) === 0) {
+      reshuffleDiscardIntoDraw(state, rng);
+    }
+
+    const nextPiece = deckState.drawPile.shift();
+    if (!nextPiece) {
+      break;
+    }
+    deckState.hand.push(nextPiece);
+  }
+
+  syncCurrentPieceSelection(state);
+}
+
+export function canAffordDraw(state, goodsType) {
+  const deckState = state.deckState || createDeckState();
+  const missing = drawMissingCount(deckState);
+  if (missing <= 0 || countDrawableTiles(deckState) <= 0) {
+    return false;
+  }
+  return (state.scoreTotals?.[goodsType] || 0) >= (deckState.drawCost || 0);
+}
+
+export function drawUsingGoods(state, goodsType, rng = Math.random) {
+  if (!canAffordDraw(state, goodsType)) {
+    return { ok: false, reason: 'insufficient-goods' };
+  }
+
+  state.scoreTotals[goodsType] -= state.deckState.drawCost;
+  state.scoreTotalsVersion = (state.scoreTotalsVersion || 0) + 1;
+  state.deckState.lastDrawGoodType = goodsType;
+  drawTilesUpToHandLimit(state, rng);
+  return { ok: true, reshuffled: Boolean(state.deckState.lastDrawUsedReshuffle) };
+}
+
+export function moveCurrentPieceToDiscard(state) {
+  const deckState = state.deckState || createDeckState();
+  state.deckState = deckState;
+  if (!state.currentPiece || !Array.isArray(deckState.hand) || deckState.hand.length === 0) {
+    state.currentPiece = null;
+    state.holding = false;
+    return null;
+  }
+
+  const selectedIndex = Math.max(
+    0,
+    Math.min(deckState.hand.length - 1, deckState.selectedHandIndex || 0)
+  );
+  const [playedPiece] = deckState.hand.splice(selectedIndex, 1);
+  if (playedPiece) {
+    deckState.discardPile.push(playedPiece);
+  }
+  syncCurrentPieceSelection(state);
+  state.holding = false;
+  return playedPiece || null;
+}
+
+export function buyMarketTile(state, offerIndex, rng = Math.random, preferredAnyGoodsType = null) {
+  normalizeMarketState(state, rng);
+  const offer = state.marketState?.offers?.[offerIndex];
+  if (!offer) {
+    return { ok: false, reason: 'missing-offer' };
+  }
+
+  const tileInstance =
+    offer.offerType === 'starter'
+      ? createTileInstance(offer.tileId)
+      : createTileInstanceFromDefinition({
+          id: offer.tileId,
+          name: offer.name,
+          goodsType: offer.goodsType,
+          shopElementType: offer.shopElementType,
+          shapeId: offer.shapeId,
+          rotation: offer.rotation,
+          plannedCells: offer.plannedCells,
+        });
+  const payment = spendCostEntries(state.scoreTotals, offer.costEntries, {
+    preferredAnyGoodsType,
+  });
+  if (!payment) {
+    return { ok: false, reason: 'insufficient-goods' };
+  }
+
+  state.scoreTotals = payment.nextTotals;
+  state.scoreTotalsVersion = (state.scoreTotalsVersion || 0) + 1;
+  state.deckState.discardPile.push(tileInstance);
+  rerollMarketOffers(state, rng);
+  return { ok: true, spentEntries: payment.spentEntries };
+}
+
+export function canAffordMarketRefresh(state, goodsType) {
+  normalizeMarketState(state);
+  return (state.scoreTotals?.[goodsType] || 0) >= (state.marketState?.refreshCost || 0);
+}
+
+export function refreshMarketUsingGoods(state, goodsType, rng = Math.random) {
+  normalizeMarketState(state, rng);
+  const refreshCost = state.marketState?.refreshCost || 0;
+  if ((state.scoreTotals?.[goodsType] || 0) < refreshCost) {
+    return { ok: false, reason: 'insufficient-goods', goodsType };
+  }
+
+  state.scoreTotals[goodsType] -= refreshCost;
+  state.scoreTotalsVersion = (state.scoreTotalsVersion || 0) + 1;
+  rerollMarketOffers(state, rng);
+  return { ok: true, goodsType };
+}
+
+export function canAffordMarketOffer(state, offerIndex, preferredAnyGoodsType = null) {
+  normalizeMarketState(state);
+  const offer = state.marketState?.offers?.[offerIndex];
+  if (!offer) {
+    return false;
+  }
+  return canAffordCostEntries(state.scoreTotals, offer.costEntries, {
+    preferredAnyGoodsType,
+  });
+}
+
+export function getAffordableDrawGoods(state) {
+  return findAffordableGoods(state.scoreTotals, state.deckState?.drawCost || 0);
+}
+
+export function getTotalOwnedTiles(state) {
+  return totalTilesInDeckState(state.deckState);
+}
+
+export function isBuildingReady(state, row, col, now = Date.now()) {
+  const cooldown = state.buildingCooldowns?.[`${row}:${col}`];
+  return !cooldown || cooldown.readyAtMs <= now;
+}
+
+export function setBuildingCooldown(state, row, col, now, cooldownMs) {
+  if (!state.buildingCooldowns) {
+    state.buildingCooldowns = createEmptyBuildingCooldownState();
+  }
+  state.buildingCooldowns[`${row}:${col}`] = {
+    readyAtMs: now + cooldownMs,
+    startedAtMs: now,
+    cooldownMs,
+  };
 }
 
 export function placePiece(state, shapeId, rotation, anchorRow, anchorCol, rng = Math.random) {
@@ -384,13 +646,19 @@ export function reconcileElementVariants(state, assetManifest) {
 
 export function serializeState(state) {
   return JSON.stringify({
-    version: 3,
+    version: 4,
     gridSize: state.gridSize,
     worldSeed: normalizeSeed(state.worldSeed || 1),
     occupiedCells: sparseOccupiedCells(state.grid),
     elementCounts: state.elementCounts,
     placedPieceCount: state.placedPieceCount,
     scoreTotals: { ...createInitialScoreTotals(), ...(state.scoreTotals || {}) },
+    runState: state.runState || 'starter-selection',
+    starterTileId: state.starterTileId || null,
+    starterOptions: state.starterOptions || getStarterTileDefinitions().map((tile) => tile.id),
+    deckState: state.deckState || createDeckState(),
+    marketState: state.marketState || createMarketState(),
+    buildingCooldowns: state.buildingCooldowns || createEmptyBuildingCooldownState(),
     residents: serializeResidents(state.residents),
     nextResidentId: state.nextResidentId || nextResidentId(state.residents),
     camera: state.camera
@@ -401,7 +669,7 @@ export function serializeState(state) {
 
 export function deserializeState(json) {
   const data = JSON.parse(json);
-  if (data.version !== 1 && data.version !== 2 && data.version !== 3) {
+  if (data.version !== 1 && data.version !== 2 && data.version !== 3 && data.version !== 4) {
     throw new Error(`Unsupported save version: ${data.version}`);
   }
   if (!Number.isInteger(data.gridSize) || data.gridSize < 1) {
@@ -424,7 +692,7 @@ export function deserializeState(json) {
   const residents = deserializeResidents(data.residents);
 
   const state = {
-    version: 3,
+    version: 4,
     gridSize: data.gridSize,
     worldSeed,
     cells,
@@ -432,10 +700,20 @@ export function deserializeState(json) {
     elementCounts: data.elementCounts || {},
     placedPieceCount: data.placedPieceCount || 0,
     scoreTotals: { ...createInitialScoreTotals(), ...(data.scoreTotals || {}) },
+    runState: data.runState || 'starter-selection',
+    starterTileId: data.starterTileId || null,
+    starterOptions: data.starterOptions || getStarterTileDefinitions().map((tile) => tile.id),
+    deckState: { ...createDeckState(), ...(data.deckState || {}) },
+    marketState: { ...createMarketState(), ...(data.marketState || {}) },
+    buildingCooldowns: data.buildingCooldowns || createEmptyBuildingCooldownState(),
     residents,
     nextResidentId: data.nextResidentId || nextResidentId(residents),
     camera: data.camera || null,
   };
+
+  // Tuning values should come from the current build, not from stale saves.
+  state.deckState.drawCost = createDeckState().drawCost;
+  normalizeMarketState(state);
 
   if (data.version === 1 && residents.length === 0) {
     const upgradeState = {

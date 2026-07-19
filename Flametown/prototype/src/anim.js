@@ -28,8 +28,11 @@ export function easeOutQuint(t) {
 
 export function animationScale(anim, now) {
   if (now < anim.startTime) {
-    return 0;
+    return anim.kind === 'shop-click-bounce' ? 1 : 0;
   }
   const t = Math.min(1, (now - anim.startTime) / anim.duration);
+  if (anim.kind === 'shop-click-bounce') {
+    return 1 + Math.sin(t * Math.PI) * 0.16;
+  }
   return easeOutBounce(t);
 }

@@ -1,4 +1,5 @@
 import { DEFAULT_GRID_SIZE, GRID_SIZE_MAX, GRID_SIZE_MIN } from '../config.js';
+import { canAffordCostEntries, getStarterTileDefinitions } from './deck.js';
 import { SCORING_GROUP_IDS, SHOP_GROUP_DEFINITIONS, getElementOverlayIcons } from './elementCatalog.js';
 import { pieceCells } from './pieces.js';
 
@@ -6,7 +7,15 @@ export function createUIPanel(panelEl, initialState, callbacks) {
   const panel = { state: initialState };
 
   panelEl.innerHTML = `
+    <div id="starter-picker" style="display:none;margin-bottom:12px;"></div>
+    <div style="font-size:12px;margin-bottom:8px;line-height:1.4;">
+      Talia klocków: starter wybierasz raz, potem dobierasz z ręki i płacisz towarami za refill.
+    </div>
     <div id="piece-preview" style="display:grid;grid-template-columns:repeat(4,20px);grid-template-rows:repeat(4,20px);gap:2px;margin-bottom:8px;cursor:pointer;"></div>
+    <div id="deck-status" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:8px;"></div>
+    <div id="draw-controls" style="display:grid;gap:6px;margin-bottom:8px;"></div>
+    <button id="shop-toggle-btn" type="button" style="margin-bottom:6px;">Sklep</button>
+    <div id="market-panel" style="display:none;gap:6px;margin-bottom:8px;"></div>
     <div style="font-size:12px;margin-bottom:8px;line-height:1.4;">
       Scroll: zoom &middot; Środkowy przycisk / WASD: przesuń widok<br/>
       Kliknij klocek: podnieś &middot; TAB / PPM: obróć &middot; Klik na polu: postaw
@@ -33,6 +42,11 @@ export function createUIPanel(panelEl, initialState, callbacks) {
   const gridSizeInput = panelEl.querySelector('#grid-size-input');
   const debugToggleBtn = debugPanelEl.querySelector('#debug-toggle-btn');
   const debugContentEl = debugPanelEl.querySelector('#debug-content');
+  const starterPickerEl = panelEl.querySelector('#starter-picker');
+  const deckStatusEl = panelEl.querySelector('#deck-status');
+  const drawControlsEl = panelEl.querySelector('#draw-controls');
+  const marketPanelEl = panelEl.querySelector('#market-panel');
+  const shopToggleBtn = panelEl.querySelector('#shop-toggle-btn');
   let debugCollapsed = false;
 
   function sortedElementCounts(elementCounts) {
@@ -62,6 +76,78 @@ export function createUIPanel(panelEl, initialState, callbacks) {
       return cells.length;
     }
     return 0;
+  }
+
+  function createGoodsTokenChip(goodsType, amount, options = {}) {
+    const chip = document.createElement('div');
+    chip.style.display = 'inline-flex';
+    chip.style.alignItems = 'center';
+    chip.style.justifyContent = 'center';
+    chip.style.gap = '4px';
+    chip.style.padding = options.compact ? '0' : '4px 6px';
+    chip.style.borderRadius = '999px';
+    chip.style.background = options.compact ? 'transparent' : 'rgba(255,255,255,0.06)';
+
+    const iconEl = document.createElement('img');
+    iconEl.src = SHOP_GROUP_DEFINITIONS[goodsType].iconAssetPath;
+    iconEl.alt = goodsType;
+    iconEl.style.width = options.iconSize ? `${options.iconSize}px` : '16px';
+    iconEl.style.height = options.iconSize ? `${options.iconSize}px` : '16px';
+    iconEl.style.objectFit = 'contain';
+    chip.appendChild(iconEl);
+
+    if (amount !== undefined && amount !== null) {
+      const valueEl = document.createElement('span');
+      valueEl.textContent = String(amount);
+      valueEl.style.fontSize = options.fontSize || '12px';
+      valueEl.style.fontWeight = '700';
+      chip.appendChild(valueEl);
+    }
+
+    return chip;
+  }
+
+  function createGoodsCostStrip(costEntries, options = {}) {
+    const wrap = document.createElement('div');
+    wrap.style.display = 'flex';
+    wrap.style.flexWrap = 'wrap';
+    wrap.style.alignItems = 'center';
+    wrap.style.gap = options.gap || '6px';
+    for (const entry of costEntries || []) {
+      wrap.appendChild(
+        createGoodsTokenChip(entry.goodsType, entry.amount, {
+          compact: options.compact,
+          iconSize: options.iconSize,
+          fontSize: options.fontSize,
+        })
+      );
+    }
+    return wrap;
+  }
+
+  function createCostButton(costEntries, options = {}) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.disabled = Boolean(options.disabled);
+    button.style.padding = options.padding || '6px 8px';
+    button.style.minWidth = '0';
+    button.style.borderRadius = options.radius || '8px';
+    button.style.border = '0';
+    button.style.display = 'flex';
+    button.style.alignItems = 'center';
+    button.style.justifyContent = 'center';
+    button.style.cursor = button.disabled ? 'default' : 'pointer';
+    button.style.opacity = button.disabled ? '0.45' : '1';
+    button.style.background = button.disabled ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.12)';
+    button.appendChild(
+      createGoodsCostStrip(costEntries, {
+        compact: true,
+        iconSize: options.iconSize || 14,
+        fontSize: options.fontSize || '11px',
+        gap: options.gap || '6px',
+      })
+    );
+    return button;
   }
 
   panel.renderPreview = () => {
@@ -129,6 +215,297 @@ export function createUIPanel(panelEl, initialState, callbacks) {
     }
   };
 
+  function renderStarterPicker() {
+    const showStarterPicker = panel.state?.runState === 'starter-selection';
+    starterPickerEl.style.display = showStarterPicker ? 'grid' : 'none';
+    if (!showStarterPicker) {
+      starterPickerEl.innerHTML = '';
+      return;
+    }
+
+    starterPickerEl.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
+    starterPickerEl.style.gap = '8px';
+    starterPickerEl.innerHTML = '';
+    for (const tile of getStarterTileDefinitions()) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.style.padding = '10px';
+      button.style.borderRadius = '10px';
+      button.style.border = '1px solid rgba(255,255,255,0.12)';
+      button.style.background = 'rgba(255,255,255,0.06)';
+      button.style.color = '#fff4e0';
+      button.style.textAlign = 'left';
+      button.style.cursor = 'pointer';
+      button.innerHTML = `
+        <strong style="display:block;margin-bottom:4px;">${tile.name}</strong>
+        <span style="display:block;font-size:11px;opacity:0.8;">1 dom · 2 parki · 1 sklep</span>
+      `;
+      const goodsRow = document.createElement('div');
+      goodsRow.style.marginTop = '6px';
+      goodsRow.style.display = 'flex';
+      goodsRow.style.alignItems = 'center';
+      goodsRow.style.gap = '6px';
+      goodsRow.style.fontSize = '11px';
+      goodsRow.style.opacity = '0.8';
+      goodsRow.appendChild(createGoodsTokenChip(tile.goodsType, null, { compact: true, iconSize: 14 }));
+      button.appendChild(goodsRow);
+      button.addEventListener('click', () => callbacks.onStartRun(tile.id));
+      starterPickerEl.appendChild(button);
+    }
+  }
+
+  function renderTilePreviewGrid(shapeId, plannedCells, options = {}) {
+    const rotation = options.rotation || 0;
+    const cells = pieceCells(shapeId || 'O', rotation);
+    const maxRow = Math.max(...cells.map(([row]) => row), 0);
+    const maxCol = Math.max(...cells.map(([, col]) => col), 0);
+    const columns = Math.max(options.columns || 0, maxCol + 1);
+    const rows = Math.max(options.rows || 0, maxRow + 1);
+    const cellSize = options.cellSize || 16;
+    const gap = options.gap || 2;
+    const wrapper = document.createElement('div');
+    wrapper.style.display = 'grid';
+    wrapper.style.gridTemplateColumns = `repeat(${columns}, ${cellSize}px)`;
+    wrapper.style.gridTemplateRows = `repeat(${rows}, ${cellSize}px)`;
+    wrapper.style.gap = `${gap}px`;
+    wrapper.style.justifyContent = 'center';
+    const cellIndexByGridIndex = new Map(
+      cells.map(([row, col], cellIndex) => [`${row}:${col}`, cellIndex])
+    );
+
+    for (let index = 0; index < columns * rows; index += 1) {
+      const row = Math.floor(index / columns);
+      const col = index % columns;
+      const cellEl = document.createElement('div');
+      cellEl.style.width = `${cellSize}px`;
+      cellEl.style.height = `${cellSize}px`;
+      cellEl.style.background = 'rgba(255,255,255,0.08)';
+      cellEl.style.borderRadius = '4px';
+      cellEl.style.position = 'relative';
+      cellEl.style.overflow = 'hidden';
+
+      const plannedCellIndex = cellIndexByGridIndex.get(`${row}:${col}`);
+      const elementType =
+        plannedCellIndex === undefined ? null : plannedCells?.[plannedCellIndex];
+      if (elementType) {
+        cellEl.style.background = '#5a5a66';
+        cellEl.style.boxShadow = 'inset 0 0 0 1px rgba(255,255,255,0.12)';
+        const icons = getElementOverlayIcons(elementType);
+        for (const icon of icons) {
+          const iconEl = document.createElement('img');
+          iconEl.src = icon.iconAssetPath;
+          iconEl.alt = icon.id;
+          iconEl.style.position = 'absolute';
+          iconEl.style.inset = '0';
+          iconEl.style.width = '100%';
+          iconEl.style.height = '100%';
+          iconEl.style.objectFit = 'contain';
+          iconEl.style.filter = 'drop-shadow(0 1px 1px rgba(0,0,0,0.45))';
+          cellEl.appendChild(iconEl);
+        }
+      }
+
+      wrapper.appendChild(cellEl);
+    }
+    return wrapper;
+  }
+
+  function renderDeckStatus() {
+    const deckState = panel.state?.deckState || { hand: [], drawPile: [], discardPile: [], handSize: 0 };
+    const items = [
+      { label: 'Ręka', value: `${deckState.hand?.length || 0}/${deckState.handSize || 0}` },
+      { label: 'Deck', value: String(deckState.drawPile?.length || 0) },
+      { label: 'Odrzucone', value: String(deckState.discardPile?.length || 0) },
+    ];
+
+    deckStatusEl.innerHTML = '';
+    for (const item of items) {
+      const cell = document.createElement('div');
+      cell.style.padding = '6px 8px';
+      cell.style.borderRadius = '8px';
+      cell.style.background = 'rgba(255,255,255,0.06)';
+      cell.innerHTML = `
+        <div style="font-size:9px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.7;">${item.label}</div>
+        <div style="font-size:13px;font-weight:700;margin-top:2px;">${item.value}</div>
+      `;
+      deckStatusEl.appendChild(cell);
+    }
+  }
+
+  function renderDrawControls() {
+    const deckState = panel.state?.deckState || {};
+    const scoreTotals = panel.state?.scoreTotals || {};
+    const missing = Math.max(0, (deckState.handSize || 0) - (deckState.hand?.length || 0));
+    drawControlsEl.innerHTML = '';
+
+    const status = document.createElement('div');
+    status.style.fontSize = '12px';
+    status.style.opacity = '0.8';
+    if (panel.state?.runState === 'starter-selection') {
+      status.textContent = 'Wybierz starter, aby rozpocząć talię.';
+    } else if (missing <= 0) {
+      status.textContent = 'Ręka pełna.';
+    } else if ((deckState.drawPile?.length || 0) + (deckState.discardPile?.length || 0) <= 0) {
+      status.textContent = 'Brak klocków do dobrania.';
+    } else {
+      status.textContent = 'Dobierz do pełnej ręki.';
+    }
+    drawControlsEl.appendChild(status);
+
+    const buttons = document.createElement('div');
+    buttons.style.display = 'flex';
+    buttons.style.flexWrap = 'nowrap';
+    buttons.style.gap = '4px';
+    for (const groupId of SCORING_GROUP_IDS) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.disabled =
+        panel.state?.runState !== 'playing' || missing <= 0 || (scoreTotals[groupId] || 0) < (deckState.drawCost || 0);
+      button.style.padding = '6px 4px';
+      button.style.minWidth = '0';
+      button.style.flex = '1 1 0';
+      button.style.borderRadius = '8px';
+      button.style.border = '0';
+      button.style.display = 'flex';
+      button.style.alignItems = 'center';
+      button.style.justifyContent = 'center';
+      button.style.cursor = button.disabled ? 'default' : 'pointer';
+      button.style.opacity = button.disabled ? '0.45' : '1';
+      button.appendChild(
+        createGoodsCostStrip([{ goodsType: groupId, amount: deckState.drawCost || 0 }], {
+          compact: true,
+          iconSize: 14,
+          fontSize: '11px',
+          gap: '4px',
+        })
+      );
+      button.addEventListener('click', () => callbacks.onDraw(groupId));
+      buttons.appendChild(button);
+    }
+    drawControlsEl.appendChild(buttons);
+  }
+
+  function renderMarket() {
+    const isOpen = Boolean(panel.state?.marketState?.isOpen);
+    marketPanelEl.style.display = isOpen ? 'grid' : 'none';
+    shopToggleBtn.textContent = isOpen ? 'Ukryj sklep' : 'Sklep';
+    marketPanelEl.innerHTML = '';
+    if (!isOpen) {
+      return;
+    }
+
+    const summary = document.createElement('div');
+    summary.style.fontSize = '12px';
+    summary.style.opacity = '0.8';
+    summary.textContent = 'Sklep pokazuje 2 startery i 1 losowy klocek.';
+    marketPanelEl.appendChild(summary);
+
+    const refreshWrap = document.createElement('div');
+    refreshWrap.style.padding = '8px';
+    refreshWrap.style.borderRadius = '10px';
+    refreshWrap.style.background = 'rgba(255,255,255,0.06)';
+    const refreshLabel = document.createElement('div');
+    refreshLabel.style.fontSize = '12px';
+    refreshLabel.style.opacity = '0.8';
+    refreshLabel.style.marginBottom = '6px';
+    refreshLabel.textContent = 'Odśwież sklep:';
+    refreshWrap.appendChild(refreshLabel);
+    const refreshButtons = document.createElement('div');
+    refreshButtons.style.display = 'flex';
+    refreshButtons.style.flexWrap = 'nowrap';
+    refreshButtons.style.gap = '4px';
+    for (const groupId of SCORING_GROUP_IDS) {
+      const funds = panel.state?.scoreTotals?.[groupId] || 0;
+      const refreshCost = panel.state?.marketState?.refreshCost || 0;
+      const button = createCostButton([{ goodsType: groupId, amount: refreshCost }], {
+        disabled: panel.state?.runState !== 'playing' || funds < refreshCost,
+        padding: '6px 4px',
+        iconSize: 14,
+        fontSize: '11px',
+        gap: '4px',
+      });
+      button.style.flex = '1 1 0';
+      button.addEventListener('click', () => callbacks.onRefreshMarket(groupId));
+      refreshButtons.appendChild(button);
+    }
+    refreshWrap.appendChild(refreshButtons);
+    marketPanelEl.appendChild(refreshWrap);
+
+    const offers = panel.state?.marketState?.offers || [];
+    offers.forEach((offer, index) => {
+      const isAffordable = canAffordCostEntries(panel.state?.scoreTotals, offer.costEntries);
+      const row = document.createElement('div');
+      row.style.padding = '8px';
+      row.style.borderRadius = '10px';
+      row.style.background = 'rgba(255,255,255,0.06)';
+      const header = document.createElement('div');
+      header.style.display = 'grid';
+      header.style.gridTemplateColumns = '1fr auto';
+      header.style.gap = '8px';
+      header.style.alignItems = 'center';
+      const copy = document.createElement('div');
+      const typeLabel = offer.offerType === 'starter' ? 'Starter' : 'Losowy klocek';
+      copy.innerHTML = `
+        <strong style="display:block;">${offer.name}</strong>
+        <span style="display:block;font-size:11px;opacity:0.76;margin-top:2px;">${typeLabel}</span>
+      `;
+      header.appendChild(copy);
+      header.appendChild(
+        renderTilePreviewGrid(offer.shapeId || 'O', offer.plannedCells, {
+          columns: 4,
+          rows: 2,
+          cellSize: 16,
+          gap: 2,
+        })
+      );
+      row.appendChild(header);
+      const buttonsWrap = document.createElement('div');
+      buttonsWrap.style.display = 'flex';
+      buttonsWrap.style.flexWrap = 'nowrap';
+      buttonsWrap.style.gap = '4px';
+      buttonsWrap.style.marginTop = '8px';
+
+      if (offer.offerType === 'starter') {
+        for (const groupId of SCORING_GROUP_IDS) {
+          const canUse = canAffordCostEntries(panel.state?.scoreTotals, offer.costEntries, {
+            preferredAnyGoodsType: groupId,
+          });
+          const buyButton = createCostButton([{ goodsType: groupId, amount: offer.costEntries?.[0]?.amount || 0 }], {
+            disabled: panel.state?.runState !== 'playing' || !canUse,
+            padding: '6px 4px',
+            iconSize: 14,
+            fontSize: '11px',
+            gap: '4px',
+          });
+          buyButton.style.flex = '1 1 0';
+          buyButton.addEventListener('click', () => callbacks.onBuyOffer(index, groupId));
+          buttonsWrap.appendChild(buyButton);
+        }
+      } else {
+        const buyButton = createCostButton(offer.costEntries, {
+          disabled: panel.state?.runState !== 'playing' || !isAffordable,
+          padding: '6px 8px',
+          iconSize: 14,
+          fontSize: '11px',
+          gap: '6px',
+        });
+        buyButton.addEventListener('click', () => callbacks.onBuyOffer(index));
+        buttonsWrap.appendChild(buyButton);
+      }
+
+      row.appendChild(buttonsWrap);
+      marketPanelEl.appendChild(row);
+    });
+  }
+
+  panel.render = () => {
+    panel.renderPreview();
+    renderStarterPicker();
+    renderDeckStatus();
+    renderDrawControls();
+    renderMarket();
+  };
+
   panel.renderDebug = () => {
     const { camera, residents, elementCounts, gridSize, grid, hoveredCell } = panel.state;
     const occupiedCells = countOccupiedCells(grid);
@@ -141,6 +518,10 @@ export function createUIPanel(panelEl, initialState, callbacks) {
       `Occupied: ${occupiedCells} / ${totalCells}`,
       hoveredCell ? `Hovered: (${hoveredCell.row}, ${hoveredCell.col})` : 'Hovered: none',
       `Hovered cluster size: ${hoveredClusterSize}`,
+      `Run state: ${panel.state.runState || 'unknown'}`,
+      `Deck/Hand/Discard: ${panel.state.deckState?.drawPile?.length || 0} / ${
+        panel.state.deckState?.hand?.length || 0
+      } / ${panel.state.deckState?.discardPile?.length || 0}`,
       'Buildings:',
     ];
 
@@ -154,6 +535,7 @@ export function createUIPanel(panelEl, initialState, callbacks) {
   };
 
   previewEl.addEventListener('click', () => callbacks.onTakePiece());
+  shopToggleBtn.addEventListener('click', () => callbacks.onToggleShop());
   tutorialBtn.addEventListener('click', () => callbacks.onToggleTutorial());
   newGameBtn.addEventListener('click', () => {
     const requestedSize = Number(gridSizeInput.value);
@@ -170,6 +552,7 @@ export function createUIPanel(panelEl, initialState, callbacks) {
     gridSizeInput.value = String(value);
   };
 
+  panel.renderPreview = panel.renderPreview.bind(panel);
   return panel;
 }
 

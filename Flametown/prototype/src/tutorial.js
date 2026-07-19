@@ -7,9 +7,9 @@ export function getTutorialRulesSections() {
     {
       title: 'Core loop',
       items: [
-        'Gra losuje jedno tetromino naraz i pokazuje je w panelu preview.',
-        'Kliknięcie preview podnosi klocek do postawienia na planszy.',
-        'Po postawieniu gra od razu losuje następny klocek.',
+        'Na starcie wybierasz jeden z sześciu klocków 2x2 i budujesz z niego początek talii.',
+        'Klocek z ręki podnosisz z panelu preview, stawiasz na planszy, a potem trafia on na stos odrzuconych.',
+        'Nowe klocki dobierasz płacąc kosztem pokazanym bezpośrednio na przycisku danego towaru, a pusty deck miesza odrzucone z powrotem do gry.',
       ],
     },
     {
@@ -33,10 +33,20 @@ export function getTutorialRulesSections() {
     {
       title: 'Typy pól i drogi',
       items: [
-        'Preview pokazuje nie tylko kształt, ale też planowane typy pól dla aktualnego klocka.',
-        'Każdy klocek może zawierać najwyżej jeden sklep.',
+        'Preview pokazuje typy pól aktualnego klocka z ręki.',
+        'Startery mają układ 2x2: jeden dom, dwa parki i jeden sklep, ale losowe klocki ze sklepu mogą mieć dowolny kształt tetromino.',
         'Po postawieniu pola zamieniają się w domy, parki albo konkretne sklepy fantasy.',
         'Drogi pojawiają się automatycznie na krawędziach i próbują zachować ciągłość z sąsiadami.',
+      ],
+    },
+    {
+      title: 'Sklep i koszty',
+      items: [
+        'Sklep pokazuje dwa startery, jeśli jeszcze ich nie masz, oraz jeden losowy klocek o kształcie losowego tetromino.',
+        'Starter kupujesz za 100 dowolnego jednego towaru; ikona Any oznacza, że sam wybierasz którym towarem płacisz.',
+        'Losowy klocek kosztuje po 50 dwóch różnych towarów naraz, więc musisz spełnić oba koszty jednocześnie.',
+        'Odświeżenie sklepu kosztuje 300 jednego wybranego towaru i także wybierasz je przyciskiem z ikoną.',
+        'Przyciski kosztów są nieaktywne, jeśli nie masz wystarczających zasobów do danej płatności.',
       ],
     },
     {
@@ -44,7 +54,8 @@ export function getTutorialRulesSections() {
       items: [
         'Mieszkańcy pojawiają się po postawieniu domu, jeśli dom ma drogę, po której mogą ruszyć.',
         'Mieszkańcy poruszają się po grafie dróg miasta.',
-        'Gdy mieszkaniec mija sklep, panel Goods flow dostaje punkty odpowiedniej grupy towaru.',
+        'Gdy mieszkaniec mija sklep, panel Goods flow dostaje towary odpowiedniej grupy.',
+        'Kliknięcie sklepu też daje towar, ale tylko po zejściu jego cooldownu.',
         'Sklep daje tyle punktów, ile wynosi rozmiar jego klastra dla danego towaru.',
       ],
     },

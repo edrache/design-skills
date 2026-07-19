@@ -28,3 +28,14 @@ test('animationScale is between 0 and 1 mid-animation', () => {
   const mid = animationScale(anim, 1150);
   assert.ok(mid >= 0 && mid <= 1.1);
 });
+
+test('shop click bounce stays at neutral scale before start and after finish', () => {
+  const anim = { startTime: 1000, duration: 260, kind: 'shop-click-bounce' };
+  assert.equal(animationScale(anim, 999), 1);
+  assert.ok(Math.abs(animationScale(anim, 1260) - 1) < 1e-9);
+});
+
+test('shop click bounce briefly scales above 1 during the animation', () => {
+  const anim = { startTime: 1000, duration: 260, kind: 'shop-click-bounce' };
+  assert.ok(animationScale(anim, 1130) > 1);
+});

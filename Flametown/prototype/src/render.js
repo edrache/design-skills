@@ -139,6 +139,7 @@ export function renderGrid(ctx, state, viewportWidth, viewportHeight, now = perf
             builtCellIconOverlay
           );
         }
+        drawBuildingCooldownBar(ctx, state, cell, row, col, screenQuad, now);
       }
 
       drawRoads(ctx, cell, screenQuad, camera.zoom, roadTexture);
@@ -734,6 +735,43 @@ function drawElementOverlayIcons(ctx, elementType, center, size, iconManifest, o
     const x = startX + index * (baseIconSize + gap);
     ctx.drawImage(iconImage, x, y, baseIconSize, baseIconSize);
   }
+  ctx.restore();
+}
+
+function drawBuildingCooldownBar(ctx, state, cell, row, col, screenQuad, now) {
+  if (!cell?.elementType || !cell.elementType.startsWith('Shop_')) {
+    return;
+  }
+
+  const cooldown = state.buildingCooldowns?.[`${row}:${col}`];
+  if (!cooldown?.cooldownMs || !cooldown?.startedAtMs) {
+    return;
+  }
+
+  const elapsed = Math.max(0, Date.now() - cooldown.startedAtMs);
+  const progress = Math.max(0, Math.min(1, elapsed / cooldown.cooldownMs));
+  if (progress >= 1) {
+    return;
+  }
+
+  const minX = Math.min(...screenQuad.map((point) => point.x));
+  const maxX = Math.max(...screenQuad.map((point) => point.x));
+  const minY = Math.min(...screenQuad.map((point) => point.y));
+  const maxY = Math.max(...screenQuad.map((point) => point.y));
+  const fieldWidth = Math.max(12, maxX - minX);
+  const fieldHeight = Math.max(12, maxY - minY);
+  const height = 5;
+  const width = Math.max(10, fieldWidth * 0.5);
+  const x = minX + (maxX - minX - width) * 0.5;
+  const y = minY + (fieldHeight - height) * 0.5;
+
+  ctx.save();
+  ctx.fillStyle = 'rgba(25, 17, 10, 0.72)';
+  roundRect(ctx, x, y, width, height, height / 2);
+  ctx.fill();
+  ctx.fillStyle = 'rgba(255, 206, 112, 0.9)';
+  roundRect(ctx, x, y, width * progress, height, height / 2);
+  ctx.fill();
   ctx.restore();
 }
 

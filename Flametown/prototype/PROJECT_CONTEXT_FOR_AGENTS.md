@@ -1,7 +1,7 @@
 # Flametown Prototype Project Context
 
 Stan na: 2026-07-19
-Aktualna wersja prototypu: `0.1.5`
+Aktualna wersja prototypu: `0.1.10`
 
 Ten dokument jest przeznaczony dla kolejnych agentow pracujacych nad projektem.
 
@@ -12,6 +12,43 @@ Przy kazdej istotnej zmianie w architekturze, assetach, testach, workflow albo s
 Przy kazdej zmianie w prototypie trzeba tez zwiekszyc numer wersji, zaktualizowac badge w prawym dolnym rogu gry i dopisac wpis do changelogu ponizej.
 
 ## Changelog
+
+### 0.1.10 - 2026-07-19
+
+- wszystkie aktywne ceny zostaly skupione w `config.js`
+- starter offer kosztuje `100 Any`, czyli `100` jednego wybranego typu towaru
+- random offer kosztuje `50 + 50` dwoch roznych towarow
+- market offers wspieraja teraz wieloelementowe `costEntries`
+- UI marketu, starter pickera i przyciskow goods pokazuje ikony assetow zamiast nazw towarow
+- save/load zachowuje wymagane typy towarow dla losowego klocka, a kwoty sa normalizowane do biezacego configu
+
+### 0.1.9 - 2026-07-19
+
+- klikniecie gotowego sklepu uruchamia teraz przyjemna, krotka animacje bounce bez zmiany mechaniki cooldownu ani przyznawania towaru
+- bounce klikniecia sklepu jest osobnym trybem animacji od bounce nowo postawionych pol, wiec nie skaluje kafla od zera tylko robi szybki pop wokol skali `1`
+- dodano regresje w `tests/anim.test.js` dla neutralnego startu/konca i chwilowego powiekszenia podczas shop-click bounce
+
+### 0.1.7 - 2026-07-19
+
+- market nie operuje juz na samych ID starterow; oferty przechowuja typ (`starter` / `random`), preview klocka, koszt i wymagany towar
+- sklep pokazuje dwa nieposiadane startery oraz jeden losowy klocek `2x2` z jednym losowym konkretnym sklepem
+- panel sklepu renderuje mini-preview kazdego kupowanego klocka
+- dodano odswiezanie sklepu za `300` jednego wybranego typu towaru
+- dodano testy regresyjne dla nowego ksztaltu ofert marketu, refreshu i persistence
+
+### 0.1.6 - 2026-07-19
+
+- prototyp dostal pierwszy system deckbuildera oparty o klocki 2x2:
+  - start gry czeka na wybor jednego z 6 starterow (`Draco Bell`, `Potable Potions`, `Hello Nursery`, `Smith Mart`, `Fragile Reptile`, `Critical Rolls`)
+  - kazdy starter ma staly sklad `1 house + 2 park + 1 shop`
+  - runtime utrzymuje teraz `drawPile`, `hand`, `discardPile`, koszt dociagu i oferty sklepu
+- zagranie klocka z reki odklada go na stos odrzuconych zamiast natychmiast generowac kolejny losowy draft
+- dociag kosztuje towar jednego typu i umie przetasowac odrzucone z powrotem do decku
+- pojawil sie prosty sklep z zakupem nowych klockow, a zapis stanu obejmuje teraz tez deckbuilder state i cooldowny budynkow
+- klikniecie sklepu na planszy daje +1 odpowiadajacego towaru, ale uruchamia tez per-budynek cooldown widoczny jako pasek na polu
+- panel UI pokazuje teraz starter picker, liczebnosc reki/decku/odrzuconych, przyciski dociagu per towar i liste ofert sklepu
+- tutorial / tekstowe zasady zostaly zaktualizowane do nowej petli deckbuildera
+- dodano regresje pod starter run, reshuffle draw, zakup oferty i round-trip persistence nowego stanu
 
 ### 0.1.5 - 2026-07-19
 

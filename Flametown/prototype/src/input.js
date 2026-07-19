@@ -135,7 +135,13 @@ export function createCameraInput(canvas, initialState) {
   return input;
 }
 
-export function createPlacementInput(canvas, initialState, onPlace, onRotate = () => {}) {
+export function createPlacementInput(
+  canvas,
+  initialState,
+  onPlace,
+  onRotate = () => {},
+  onActivate = () => {}
+) {
   const input = { state: initialState };
   let mouseWorld = { x: 0, y: 0 };
   let hoveredCell = null;
@@ -171,6 +177,9 @@ export function createPlacementInput(canvas, initialState, onPlace, onRotate = (
     updateMouseWorld(event);
 
     if (!input.state.holding || !input.state.currentPiece) {
+      if (event.button === 0 && hoveredCell) {
+        onActivate(hoveredCell.row, hoveredCell.col);
+      }
       return;
     }
 
@@ -182,6 +191,11 @@ export function createPlacementInput(canvas, initialState, onPlace, onRotate = (
 
     if (event.button === 0) {
       const cell = worldToCell(mouseWorld.x, mouseWorld.y, CELL_SIZE);
+      const occupiedCell = input.state.grid?.[cell.row]?.[cell.col];
+      if (occupiedCell?.elementType) {
+        onActivate(cell.row, cell.col);
+        return;
+      }
       onPlace(cell.row, cell.col);
     }
   });

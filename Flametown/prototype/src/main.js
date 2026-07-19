@@ -26,29 +26,41 @@ import {
 } from '../config.js';
 import { loadAssetManifest, loadNamedImages, loadOptionalImage } from './assets.js';
 import { createCamera } from './camera.js';
+import { DEFAULT_BUILDING_CLICK_COOLDOWN_MS } from './deck.js';
 import { ELEMENT_CATALOG, ELEMENT_OVERLAY_ICON_DEFINITIONS } from './elementCatalog.js';
 import { createCameraInput, createPlacementInput } from './input.js';
 import { canPlacePiece } from './pieces.js';
 import { renderGhost, renderGrid } from './render.js';
+import { getElementScoringGroupId, isShopElement } from './elementCatalog.js';
 import { bootstrapResidentsFromGrid, syncResidentGraph, updateResidents } from './residents.js';
 import {
+  buyMarketTile,
   clampGridSize,
   clearStorage,
   createInitialScoreTotals,
   createPieceDraft,
+  drawUsingGoods,
   deserializeState,
   createNewWorld,
   ensureCurrentPiece,
+  getAffordableDrawGoods,
+  getTotalOwnedTiles,
+  isBuildingReady,
   loadFromStorage,
+  moveCurrentPieceToDiscard,
   placePiece,
+  refreshMarketUsingGoods,
   reconcileElementVariants,
   rebuildClusterState,
   serializeState,
   saveToStorage,
+  setBuildingCooldown,
+  startRunWithStarter,
   syncHoveredCluster,
+  syncCurrentPieceSelection,
 } from './state.js';
-import * as tutorialModule from './tutorial.js?v=0.1.4';
-import * as uiModule from './ui.js?v=0.1.4';
+import * as tutorialModule from './tutorial.js?v=0.1.10';
+import * as uiModule from './ui.js?v=0.1.10';
 
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
@@ -156,6 +168,12 @@ function hydrateSavedState(saved) {
     scoreTotals: { ...createInitialScoreTotals(), ...(saved.scoreTotals || {}) },
     scoreTotalsVersion: 0,
     scorePopups: [],
+    runState: saved.runState || 'starter-selection',
+    starterTileId: saved.starterTileId || null,
+    starterOptions: saved.starterOptions || [],
+    deckState: saved.deckState || undefined,
+    marketState: saved.marketState || undefined,
+    buildingCooldowns: saved.buildingCooldowns || {},
     residents: saved.residents || [],
     nextResidentId: saved.nextResidentId || 1,
     clusterIndex: null,
@@ -168,6 +186,7 @@ function hydrateSavedState(saved) {
   if (hydrated.residents.length === 0) {
     bootstrapResidentsFromGrid(hydrated);
   }
+  syncCurrentPieceSelection(hydrated);
   return hydrated;
 }
 
@@ -302,7 +321,7 @@ function syncPanels() {
   if (uiPanel) {
     uiPanel.state = state;
     uiPanel.setGridSize(state.gridSize);
-    uiPanel.renderPreview();
+    uiPanel.render();
   }
   if (scorePanel) {
     scorePanel.state = state;
@@ -317,6 +336,76 @@ function adoptState(nextState, { persist = false } = {}) {
   if (persist) {
     saveToStorage(state);
   }
+}
+
+function cellWorldCenter(targetState, row, col) {
+  const topLeft = targetState.vertices?.[row]?.[col];
+  const bottomRight = targetState.vertices?.[row + 1]?.[col + 1];
+  if (!topLeft || !bottomRight) {
+    return null;
+  }
+  return {
+    x: (topLeft.x + bottomRight.x) * 0.5,
+    y: (topLeft.y + bottomRight.y) * 0.5,
+  };
+}
+
+function awardGoodsAtCell(groupId, amount, row, col, now = performance.now()) {
+  if (!groupId || !amount) {
+    return;
+  }
+
+  state.scoreTotals[groupId] = (state.scoreTotals[groupId] || 0) + amount;
+  state.scoreTotalsVersion = (state.scoreTotalsVersion || 0) + 1;
+  const popupCenter = cellWorldCenter(state, row, col);
+  if (popupCenter) {
+    state.scorePopups.push({
+      id: `click-${groupId}-${row}-${col}-${now}`,
+      groupId,
+      amount,
+      x: popupCenter.x,
+      y: popupCenter.y,
+      startTime: now,
+      duration: 900,
+    });
+  }
+}
+
+function activateBuildingAt(row, col) {
+  if (tutorialController?.isActive()) {
+    return;
+  }
+
+  const cell = state.grid?.[row]?.[col];
+  if (!cell?.elementType || !isShopElement(cell.elementType)) {
+    return;
+  }
+
+  const goodsType = getElementScoringGroupId(cell.elementType);
+  if (!goodsType) {
+    return;
+  }
+
+  const cooldownNow = Date.now();
+  if (!isBuildingReady(state, row, col, cooldownNow)) {
+    return;
+  }
+
+  const now = performance.now();
+  awardGoodsAtCell(goodsType, 1, row, col, now);
+  state.animations = (state.animations || []).filter(
+    (anim) => anim.row !== row || anim.col !== col
+  );
+  state.animations.push({
+    row,
+    col,
+    startTime: now,
+    duration: 260,
+    kind: 'shop-click-bounce',
+  });
+  setBuildingCooldown(state, row, col, cooldownNow, DEFAULT_BUILDING_CLICK_COOLDOWN_MS);
+  saveToStorage(state);
+  syncPanels();
 }
 
 function buildTutorialBoardState() {
@@ -441,15 +530,22 @@ const placementInput = createPlacementInput(canvas, state, (row, col) => {
     });
   }
 
-  state.currentPiece = null;
-  ensureCurrentPiece(state);
-  uiPanel.renderPreview();
+  if (tutorialController.isActive()) {
+    state.currentPiece = null;
+    state.holding = false;
+  } else {
+    moveCurrentPieceToDiscard(state);
+  }
+
+  syncPanels();
   scorePanel.renderScores(true);
   if (!tutorialController.isActive()) {
     saveToStorage(state);
   }
 }, () => {
-  uiPanel.renderPreview();
+  syncPanels();
+}, (row, col) => {
+  activateBuildingAt(row, col);
 });
 
 tutorialController = createTutorialController({
@@ -462,7 +558,7 @@ tutorialController = createTutorialController({
   prepareSecondPlacementStep() {
     state.currentPiece = createPieceDraft(state, 'I', 0, () => 0.3);
     state.holding = false;
-    uiPanel.renderPreview();
+    syncPanels();
   },
   loadIllegalPlacementBoard() {
     adoptState(buildIllegalPlacementState());
@@ -490,7 +586,36 @@ tutorialController = createTutorialController({
 
 uiPanel = createUIPanel(panelEl, state, {
   onTakePiece: () => {
-    state.holding = true;
+    if (state.currentPiece) {
+      state.holding = true;
+    }
+  },
+  onStartRun: (tileId) => {
+    startRunWithStarter(state, tileId);
+    syncPanels();
+    saveToStorage(state);
+  },
+  onDraw: (goodsType) => {
+    drawUsingGoods(state, goodsType);
+    syncPanels();
+    saveToStorage(state);
+  },
+  onToggleShop: () => {
+    if (!state.marketState) {
+      return;
+    }
+    state.marketState.isOpen = !state.marketState.isOpen;
+    syncPanels();
+  },
+  onBuyOffer: (offerIndex, goodsType = null) => {
+    buyMarketTile(state, offerIndex, Math.random, goodsType);
+    syncPanels();
+    saveToStorage(state);
+  },
+  onRefreshMarket: (goodsType) => {
+    refreshMarketUsingGoods(state, goodsType);
+    syncPanels();
+    saveToStorage(state);
   },
   onToggleTutorial: () => {
     const viewModel = tutorialController.isActive()
@@ -504,7 +629,7 @@ uiPanel = createUIPanel(panelEl, state, {
     adoptState(buildFreshState(clampedSize));
   },
 });
-uiPanel.renderPreview();
+uiPanel.render();
 scorePanel = createScorePanel(scorePanelEl, state);
 tutorialOverlay = createTutorialOverlay(tutorialController.getViewModel(), {
   onPrevious: () => {
@@ -531,6 +656,7 @@ function renderFrame(now = performance.now()) {
   if (!tutorialController.isActive() && (state.scoreTotalsVersion || 0) !== lastSavedScoreTotalsVersion) {
     saveToStorage(state);
     lastSavedScoreTotalsVersion = state.scoreTotalsVersion || 0;
+    uiPanel.render();
   }
   scorePanel.renderScores();
   renderGrid(ctx, state, window.innerWidth, window.innerHeight, now);
@@ -541,9 +667,25 @@ function renderFrame(now = performance.now()) {
 
 window.render_game_to_text = () =>
   JSON.stringify({
-    mode: state.holding ? 'holding-piece' : 'idle',
+    mode: state.runState || (state.holding ? 'holding-piece' : 'idle'),
     currentPiece: state.currentPiece,
     placedPieceCount: state.placedPieceCount,
+    starterTileId: state.starterTileId,
+    handSize: state.deckState?.handSize || 0,
+    handCount: state.deckState?.hand?.length || 0,
+    deckCount: state.deckState?.drawPile?.length || 0,
+    discardCount: state.deckState?.discardPile?.length || 0,
+    totalOwnedTiles: getTotalOwnedTiles(state),
+    drawCost: state.deckState?.drawCost || 0,
+    affordableDrawGoods: getAffordableDrawGoods(state),
+    marketOffers: (state.marketState?.offers || []).map((offer) => ({
+      id: offer.offerId,
+      name: offer.name,
+      goodsType: offer.goodsType,
+      offerType: offer.offerType,
+      costEntries: offer.costEntries,
+    })),
+    buildingCooldowns: state.buildingCooldowns,
     camera: { ...state.camera },
     mouseCell: placementInput.getMouseCell(),
     hoveredCell: state.hoveredCell,
@@ -569,6 +711,11 @@ window.__flametown = {
       placedPieceCount: state.placedPieceCount,
       camera: state.camera ? { ...state.camera } : null,
       currentPiece: state.currentPiece ? { ...state.currentPiece } : null,
+      runState: state.runState,
+      starterTileId: state.starterTileId,
+      deckState: JSON.parse(JSON.stringify(state.deckState || null)),
+      marketState: JSON.parse(JSON.stringify(state.marketState || null)),
+      buildingCooldowns: JSON.parse(JSON.stringify(state.buildingCooldowns || {})),
       holding: state.holding,
       hoveredCell: state.hoveredCell ? { ...state.hoveredCell } : null,
       hoveredClusterSize: state.hoveredClusterSize ?? 0,

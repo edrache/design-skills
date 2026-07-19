@@ -1,11 +1,18 @@
 import assert from 'node:assert/strict';
 import { getClusterMembership } from '../src/clusters.js';
 import {
+  buyMarketTile,
+  canAffordMarketRefresh,
   createNewWorld,
   createPieceDraft,
+  drawUsingGoods,
+  drawTilesUpToHandLimit,
+  refreshMarketUsingGoods,
+  moveCurrentPieceToDiscard,
   placePiece,
   reconcileElementVariants,
   rebuildClusterState,
+  startRunWithStarter,
   syncHoveredCluster,
 } from '../src/state.js';
 
@@ -24,6 +31,132 @@ test('createNewWorld starts with zero placed pieces and empty element counts', (
   const state = createNewWorld(8, 32, 0.2, () => 0.5);
   assert.equal(state.placedPieceCount, 0);
   assert.deepEqual(state.elementCounts, {});
+});
+
+test('startRunWithStarter creates a one-tile hand from the chosen starter', () => {
+  const state = createNewWorld(8, 32, 0.2, () => 0.5);
+  startRunWithStarter(state, 'starter-draco-bell', () => 0.5);
+
+  assert.equal(state.runState, 'playing');
+  assert.equal(state.deckState.hand.length, 1);
+  assert.equal(state.deckState.drawPile.length, 0);
+  assert.equal(state.currentPiece?.tileId, 'starter-draco-bell');
+});
+
+test('drawUsingGoods reshuffles discard into deck and refills the hand', () => {
+  const state = createNewWorld(8, 32, 0.2, () => 0.5);
+  startRunWithStarter(state, 'starter-draco-bell', () => 0.5);
+  moveCurrentPieceToDiscard(state);
+  state.scoreTotals.Meat = state.deckState.drawCost;
+
+  const result = drawUsingGoods(state, 'Meat', () => 0.5);
+
+  assert.equal(result.ok, true);
+  assert.equal(result.reshuffled, true);
+  assert.equal(state.deckState.hand.length, 1);
+  assert.equal(state.currentPiece?.tileId, 'starter-draco-bell');
+  assert.equal(state.scoreTotals.Meat, 0);
+});
+
+test('buyMarketTile spends matching goods and adds the tile to discard', () => {
+  const state = createNewWorld(8, 32, 0.2, () => 0.5);
+  startRunWithStarter(state, 'starter-draco-bell', () => 0.5);
+  state.marketState.offers = [
+    {
+      offerId: 'starter-critical-rolls',
+      offerType: 'starter',
+      tileId: 'starter-critical-rolls',
+      name: 'Critical Rolls',
+      goodsType: 'Bread',
+      shopElementType: 'Shop_CriticalRolls',
+      shapeId: 'O',
+      plannedCells: ['house', 'park', 'park', 'Shop_CriticalRolls'],
+      costEntries: [{ goodsType: 'Any', amount: 100 }],
+    },
+  ];
+  state.scoreTotals.Iron = 100;
+
+  const result = buyMarketTile(state, 0, () => 0.5);
+
+  assert.equal(result.ok, true);
+  assert.equal(state.scoreTotals.Iron, 0);
+  assert.equal(state.deckState.discardPile.at(-1)?.tileId, 'starter-critical-rolls');
+});
+
+test('createNewWorld builds market offers as two starters plus one random tile', () => {
+  const state = createNewWorld(8, 32, 0.2, () => 0.5);
+  const offers = state.marketState.offers;
+
+  assert.equal(offers.length, 3);
+  assert.equal(offers.filter((offer) => offer.offerType === 'starter').length, 2);
+  assert.equal(offers.filter((offer) => offer.offerType === 'random').length, 1);
+});
+
+test('random market tile can use a non-square tetromino shape', () => {
+  const state = createNewWorld(8, 32, 0.2, () => 0);
+  const randomOffer = state.marketState.offers.find((offer) => offer.offerType === 'random');
+
+  assert.equal(randomOffer.shapeId, 'I');
+  assert.equal(randomOffer.plannedCells.length, 4);
+});
+
+test('startRunWithStarter excludes the owned starter from starter market offers', () => {
+  const state = createNewWorld(8, 32, 0.2, () => 0.5);
+  startRunWithStarter(state, 'starter-draco-bell', () => 0.5);
+
+  const starterIds = state.marketState.offers
+    .filter((offer) => offer.offerType === 'starter')
+    .map((offer) => offer.tileId);
+
+  assert.equal(starterIds.includes('starter-draco-bell'), false);
+});
+
+test('buyMarketTile can buy a random market tile and sends it to discard', () => {
+  const state = createNewWorld(8, 32, 0.2, () => 0.5);
+  startRunWithStarter(state, 'starter-draco-bell', () => 0.5);
+  state.marketState.offers = [
+    {
+      offerId: 'random-test-offer',
+      offerType: 'random',
+      tileId: 'market-random-test',
+      name: 'Random Test',
+      goodsType: 'Potion',
+      shopElementType: 'Shop_PotablePotions',
+      shapeId: 'O',
+      plannedCells: ['house', 'park', 'Shop_PotablePotions', 'park'],
+      costEntries: [
+        { goodsType: 'Potion', amount: 50 },
+        { goodsType: 'Bread', amount: 50 },
+      ],
+    },
+  ];
+  state.scoreTotals.Potion = 50;
+  state.scoreTotals.Bread = 50;
+
+  const result = buyMarketTile(state, 0, () => 0.5);
+
+  assert.equal(result.ok, true);
+  assert.equal(state.scoreTotals.Potion, 0);
+  assert.equal(state.scoreTotals.Bread, 0);
+  assert.equal(state.deckState.discardPile.at(-1)?.tileId, 'market-random-test');
+  assert.deepEqual(
+    state.deckState.discardPile.at(-1)?.plannedCells?.map((cell) => cell.elementType),
+    ['house', 'park', 'Shop_PotablePotions', 'park']
+  );
+});
+
+test('refreshMarketUsingGoods spends selected goods and rerolls the market', () => {
+  const state = createNewWorld(8, 32, 0.2, () => 0.5);
+  startRunWithStarter(state, 'starter-draco-bell', () => 0.5);
+  const before = state.marketState.offers.map((offer) => offer.offerId).join('|');
+  state.scoreTotals.Iron = state.marketState.refreshCost;
+
+  assert.equal(canAffordMarketRefresh(state, 'Iron'), true);
+  const result = refreshMarketUsingGoods(state, 'Iron', () => 0.1);
+
+  assert.equal(result.ok, true);
+  assert.equal(state.scoreTotals.Iron, 0);
+  assert.notEqual(state.marketState.offers.map((offer) => offer.offerId).join('|'), before);
 });
 
 test('placePiece fills 4 cells, assigns element types, and increments counters', () => {

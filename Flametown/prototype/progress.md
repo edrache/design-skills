@@ -1,5 +1,42 @@
 Original prompt: przejdź do implementacji planu [2026-07-18-tetromino-prototype-plan.md](Flametown/docs/plans/2026-07-18-tetromino-prototype-plan.md) używając wielu agentów. Aktualizuj plan na każdym kroku po jego zakończeniu
 
+- 2026-07-19: Przepieto koszty marketu i ich prezentacje na ikony oraz koszt wieloskladnikowy.
+- Wszystkie aktywne ceny sa teraz zebrane w `config.js`: draw `20`, starter offer `100 Any`, random offer `50 + 50` dwoch roznych towarow i refresh `300`.
+- Market offers wspieraja teraz `costEntries`, dzieki czemu starter placi sie `100` dowolnego jednego towaru, a losowy klocek dwoma roznymi towarami naraz.
+- UI marketu, starter pickera i draw/refesh buttons pokazuje ikony towarow z assetow zamiast nazw grup.
+- Save/load zachowuje wymagane typy towarow dla losowego klocka, ale kwoty sa brane z biezacego configu.
+- Dodano regresje testowe dla kosztu `Any`, kosztu `50 + 50` i persistence nowego modelu kosztow.
+- Wersja prototypu podbita do `0.1.10`, zaktualizowano `config.js`, `package.json`, `index.html` i cache-busting importow `tutorial.js` / `ui.js` w `src/main.js`.
+
+- 2026-07-19: Dodano przyjemny bounce przy kliknieciu gotowego sklepu na planszy.
+- Klik sklepu po udanym odbiorze towaru dopisuje teraz krotka animacje `shop-click-bounce`, niezalezna od bounce nowo stawianych pol.
+- `src/anim.js` obsluguje dwa profile skali: klasyczny spawn bounce od `0` do `1` oraz shop-click pop wokol skali `1`.
+- Dodano regresje do `tests/anim.test.js`.
+- Wersja prototypu podbita do `0.1.9`, zaktualizowano `config.js`, `package.json`, `index.html` i cache-busting importow `tutorial.js` / `ui.js` w `src/main.js`.
+
+- 2026-07-19: Przebudowano market na bardziej czytelny sklep talii.
+- Oferty sklepu sa teraz bogatszymi obiektami zamiast samych `tileId`, co pozwala rozrozniac `starter` i `random` oraz serializowac preview, koszt i typ towaru oferty.
+- Sklep pokazuje teraz `2` startery, jesli jeszcze nie sa posiadane, oraz `1` losowy klocek `2x2` z jednym losowym konkretnym sklepem.
+- Kazda oferta renderuje mini-preview kupowanego klocka bezposrednio w panelu sklepu.
+- Zakup korzysta z kosztu i typu towaru zapisanych na ofercie; losowy klocek trafia do discardu tak samo jak starter.
+- Dodano odswiezanie sklepu za `300` jednego wybranego typu towaru.
+- Dodano regresje testowe dla struktury ofert marketu, zakupu randomowego klocka, refreshu i round-trip persistence nowego ksztaltu `marketState`.
+- Wersja prototypu podbita do `0.1.7`, zaktualizowano `config.js`, `package.json`, `index.html` i cache-busting `src/main.js?v=0.1.7`.
+
+- 2026-07-19: Przebudowano draft klocków na pierwszy system deckbuildera.
+- Dodano `src/deck.js` z 6 starterami 2x2 (`1 house + 2 park + 1 shop`), stanem `drawPile/hand/discardPile`, kosztem dociągu, ofertami sklepu i cooldownem klikanych budynków.
+- `state.js` serializuje teraz deckbuilder state, sklep i cooldowny; start run wybiera starter, draw może tasować discard do decku, a zakup dorzuca nowy klocek do discardu.
+- `main.js`, `ui.js`, `input.js` i `render.js` zostaly przepiete na nowa petle:
+  - preview reprezentuje klocek z reki, nie losowy draft,
+  - placement odklada klocek na discard,
+  - panel pokazuje starter picker, liczebnosc reki/decku/odrzuconych, draw za towary i prosty sklep,
+  - klik sklepu na planszy daje +1 towaru i uruchamia widoczny cooldown na polu.
+- Zaktualizowano tekst tutoriala do nowej petli deckbuildera.
+- Dodano regresje testowe dla starter run, reshuffle draw, zakupu marketu i round-trip persistence nowego stanu.
+- Wersja prototypu podbita do `0.1.6`, zaktualizowano `config.js`, `package.json`, `index.html` i cache-busting `src/main.js?v=0.1.6`.
+- 2026-07-19: Zsynchronizowano high-level dokument MVP `Flametown/docs/Flamecraft_Tetromino_City_Builder_MVP_v0.1.md` z aktualnym prototypem.
+- Dokument opisuje teraz realny stan gry: starter selection, deckbuilder layer (`hand/deck/discard`), draw za `20`, market za `100`, aktywacje sklepow kliknieciem, cooldown `6000 ms`, mieszkancow i towary jako glowna petle ekonomii.
+
 - 2026-07-19: Wygładzono klawiaturowe przesuwanie kamery przez dodanie bezwładności ruchu zamiast natychmiastowego skoku do pełnej prędkości.
 - `config.js` ma teraz trzy osobne parametry do tuningu: `CAMERA_PAN_SPEED`, `CAMERA_PAN_ACCELERATION`, `CAMERA_PAN_DECELERATION`.
 - `src/input.js` utrzymuje teraz bieżącą prędkość panu i płynnie dochodzi do celu po wciśnięciu oraz puszczeniu klawiszy.

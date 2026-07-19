@@ -6,7 +6,7 @@ Ten dokument opisuje aktualny design gry widoczny w prototypie `Flametown/protot
 
 ## 1. High concept
 
-Flametown jest prototypem lekkiego city buildera z logiką placementu opartą o tetromino. Gracz nie stawia pojedynczych budynków, tylko całe czteropolowe klocki, które doklejają nowe fragmenty miasta do istniejącej tkanki.
+Flametown jest prototypem lekkiego city buildera z logiką placementu opartą o klocki miejskie i prostą warstwą deckbuildera. Gracz nie stawia pojedynczych budynków, tylko całe czteropolowe klocki, które doklejają nowe fragmenty miasta do istniejącej tkanki, a dostęp do kolejnych klocków przechodzi przez system ręki, decku i odrzuconych.
 
 Rdzeń fantasy gry opiera się dziś na połączeniu:
 
@@ -15,16 +15,21 @@ Rdzeń fantasy gry opiera się dziś na połączeniu:
 - lekkiej symulacji życia miasta poprzez mieszkańców, drogi i przepływ towarów
 - miękkiej punktacji, która nagradza dobre układanie sklepów w klastry
 
-To nie jest już tylko toy do dokładania kształtów. Prototyp w obecnej formie testuje, czy samo budowanie z tetromino może napędzać też prosty system ruchu mieszkańców i scoring oparty o układ dzielnic handlowych.
+To nie jest już tylko toy do dokładania kształtów. Prototyp w obecnej formie testuje, czy samo budowanie z klocków może napędzać jednocześnie:
+
+- prosty system ruchu mieszkańców
+- scoring i przepływ towarów oparty o układ dzielnic handlowych
+- lekką ekonomię deckbuildera, w której towary finansują draw i zakupy nowych klocków
 
 ## 2. Fantasy i doświadczenie gracza
 
 Aktualne doświadczenie gracza opiera się na kilku odczuciach naraz:
 
-1. "Dostaję klocek i próbuję znaleźć dla niego dobre miejsce."
+1. "Najpierw wybieram starter, potem zarządzam jednym klockiem w ręce i próbuję znaleźć dla niego dobre miejsce."
 2. "Każdy kolejny ruch musi sensownie doczepić się do miasta, więc jego kształt ma znaczenie."
 3. "Preview pokazuje mi nie tylko geometrię, ale też jakie typy pól wylądują na planszy."
-4. "Miasto po chwili zaczyna żyć: pojawiają się mieszkańcy, sklepy tworzą specjalizacje, a licznik surowców rośnie sam z dobrze zaprojektowanej tkanki."
+4. "Miasto po chwili zaczyna żyć: pojawiają się mieszkańcy, sklepy tworzą specjalizacje, a licznik surowców rośnie z dobrze zaprojektowanej tkanki oraz z aktywnego klikania sklepów."
+5. "Towary nie są już tylko wynikiem. Służą też do dobierania kolejnych klocków i kupowania nowych opcji do talii."
 
 To przesuwa prototyp z czystej układanki przestrzennej w stronę spokojnego city-builder puzzle, gdzie placement, czytelność dzielnic i lekka ekonomia wizualna zaczynają działać razem.
 
@@ -32,18 +37,22 @@ To przesuwa prototyp z czystej układanki przestrzennej w stronę spokojnego cit
 
 Obecna pętla rozgrywki wygląda tak:
 
-1. Gra losuje nowe tetromino.
-2. Jednocześnie planuje dla jego czterech pól konkretne typy zabudowy.
-3. Preview pokazuje kształt i ikony planowanych pól.
+1. Przy nowej grze gracz wybiera jeden z 6 starterów.
+2. Wybrany starter trafia do talii i zostaje dobrany do ręki.
+3. Preview pokazuje aktualny klocek z ręki.
 4. Gracz podnosi klocek, obraca go i szuka miejsca na planszy.
 5. Ghost piece pokazuje legalność placementu.
 6. Gracz stawia klocek.
-7. Na planszy pojawiają się budynki i drogi.
-8. Jeśli w klocku był dom z dostępem do krawędzi ruchu, może pojawić się mieszkaniec.
-9. Mieszkańcy poruszają się po mieście i naliczają punkty, gdy mijają sklepy.
-10. Gra losuje kolejny klocek.
+7. Zagrany klocek schodzi z ręki i trafia na stos odrzuconych.
+8. Na planszy pojawiają się budynki i drogi.
+9. Jeśli w klocku był dom z dostępem do krawędzi ruchu, może pojawić się mieszkaniec.
+10. Mieszkańcy poruszają się po mieście i naliczają towary, gdy mijają sklepy.
+11. Gracz może też kliknąć sklep na planszy, by dostać `+1` towaru, ale z cooldownem per budynek.
+12. Gdy ręka jest pusta lub niepełna, gracz może dobrać do limitu, płacąc `20` sztuk jednego typu towaru.
+13. Gdy deck jest pusty, discard tasuje się z powrotem do decku.
+14. Gracz może otworzyć sklep i kupić nowy klocek za `100` sztuk towaru zgodnego z ofertą; kupiony klocek trafia na stos odrzuconych.
 
-To nadal jest pętla szybka i bez przeciwnika, ale nie jest już całkowicie neutralna systemowo. Ułożenie dzielnic i sieci przejść zaczyna bezpośrednio wpływać na wynik.
+To nadal jest pętla szybka i bez przeciwnika, ale nie jest już całkowicie neutralna systemowo. Ułożenie dzielnic, sieci przejść i tempo zdobywania towarów wpływają bezpośrednio na tempo rozbudowy talii.
 
 ## 4. Plansza i reguły placementu
 
@@ -59,20 +68,35 @@ Najważniejsze reguły placementu:
 
 To daje model wzrostu miasta, który jest jednocześnie prosty i czytelny: swobodny start, potem zwarta ekspansja wymagająca myślenia o kształcie granicy miasta.
 
-## 5. Tetromino i planowanie zawartości klocka
+## 5. Klocki i planowanie zawartości
 
-Gra korzysta z klasycznego zestawu siedmiu tetromino: `I`, `O`, `T`, `S`, `Z`, `J`, `L`.
+Warstwa deckbuildera używa dziś wyłącznie klocków `2x2`, opartych o shape `O`.
 
-Ważna zmiana względem wcześniejszego prototypu: zawartość budynków jest planowana już w momencie wygenerowania aktualnego klocka, a nie dopiero po postawieniu. Dzięki temu preview jest wiążące i gracz może podejmować decyzję placementową, wiedząc z góry, czy dany klocek niesie domy, park czy sklep.
+Aktualnie istnieje 6 ręcznie zdefiniowanych starterów:
+
+- `Draco Bell`
+- `Potable Potions`
+- `Hello Nursery`
+- `Smith Mart`
+- `Fragile Reptile`
+- `Critical Rolls`
+
+Każdy taki klocek ma stały skład:
+
+- `1 house`
+- `2 park`
+- `1 shop`
+
+Shop na starterze zawsze odpowiada nazwie klocka i jego grupie towaru. Preview jest więc wiążące: gracz widzi dokładny skład aktualnego klocka z ręki przed placementem.
 
 Aktualne zasady planowania pól:
 
 - każdy klocek ma dokładnie cztery zaplanowane pola
-- rozkład typów korzysta z wag z katalogu elementów
-- jeden klocek może zawierać najwyżej jeden sklep
-- sklepy typu `Any` są celowo dużo rzadsze niż sklepy przypisane do konkretnego dobra
+- obecne startery mają stały, deterministyczny skład
+- każdy klocek zawiera dokładnie jeden sklep
+- kupione klocki w obecnym prototypie korzystają z tej samej puli 6 definicji co startery
 
-To daje graczowi lekki, ale realny poziom planowania: czasem opłaca się zagrać klocek pod geometrię, a czasem pod przyszły układ dzielnic handlowych.
+To daje graczowi realny poziom planowania: każda decyzja placementowa dotyczy jednocześnie geometrii, przyszłego spawnu mieszkańców i specjalizacji handlowej dokładanej do talii.
 
 ## 6. Typy pól i zawartość miasta
 
@@ -98,7 +122,7 @@ W praktyce role pól są dziś następujące:
 
 - domy są źródłem mieszkańców
 - parki budują spokojniejszą tkankę miasta i mają własne klastry, ale bez aktywnej punktacji
-- sklepy tworzą specjalizacje dzielnic i są głównym źródłem wyniku
+- sklepy tworzą specjalizacje dzielnic i są głównym źródłem towarów
 
 ## 7. Drogi i sieć ruchu
 
@@ -122,23 +146,39 @@ Po postawieniu domu gra może stworzyć mieszkańca przypisanego do tego domu, j
 
 Z punktu widzenia designu to bardzo ważne: mieszkańcy zamieniają statyczną planszę w coś, co wygląda jak żyjące miasto, a jednocześnie są nośnikiem systemu scoringowego.
 
-## 9. Punktacja i przepływ towarów
+## 9. Towary, draw i ekonomia
 
-Prototyp ma już aktywną punktację. Nie ma jeszcze klasycznego celu wygranej ani porażki, ale istnieje stale rosnący wynik w panelu `Goods flow`.
+Prototyp ma już aktywny panel `Goods flow`. Liczniki nie są tylko wynikiem wizualnym, ale pełnią rolę waluty do tempa dalszej gry.
 
-Zasada naliczania jest dziś taka:
+Towary powstają dziś na dwa sposoby:
+
+- pasywnie: gdy mieszkaniec przekracza środek krawędzi i mija sklep
+- aktywnie: gdy gracz kliknie sklep na planszy
+
+Zasada naliczania przez mieszkańców jest taka:
 
 - gdy mieszkaniec przekracza środek krawędzi, gra sprawdza pola stykające się z tą krawędzią
 - jeśli przy tej krawędzi znajduje się sklep punktujący dla konkretnego dobra, odpowiedni licznik rośnie
-- wartość punktów nie jest stała: sklep daje tyle punktów, ile wynosi rozmiar jego klastra dla danej grupy towaru
+- wartość nie jest stała: sklep daje tyle jednostek dobra, ile wynosi rozmiar jego klastra dla danej grupy towaru
 - jeśli obie strony tej samej krawędzi dają punkty do tego samego dobra, popup może zwinąć się do jednego większego bonusu, np. `+2`
 
-To oznacza, że aktualny wynik zależy od dwóch rzeczy naraz:
+Zasada aktywacji kliknięciem jest taka:
+
+- kliknięcie sklepu daje `+1` towaru jego typu
+- sklep po kliknięciu wchodzi na cooldown `6000 ms`
+- cooldown nie blokuje pasywnego naliczania przez mieszkańców
+- cooldown jest rysowany jako krótki pasek na środku pola sklepu
+
+Towary są dziś używane do dwóch wydatków:
+
+- dociąg do limitu ręki kosztuje `20` sztuk jednego typu towaru
+- zakup nowego klocka w sklepie kosztuje `100` sztuk towaru zgodnego z ofertą
+
+To oznacza, że aktualny stan ekonomii zależy od trzech rzeczy naraz:
 
 - czy mieszkańcy rzeczywiście przemieszczają się przez miasto
 - czy sklepy są układane w większe, wartościowsze klastry
-
-Jest to lekka ekonomia pasywna, a nie pełny system produkcji, ale już dziś daje sens budowaniu określonych układów.
+- czy gracz aktywnie klika sklepy, by przyspieszyć tempo rozwoju talii
 
 ## 10. Klastry budynków
 
@@ -167,12 +207,15 @@ Aktualny prototyp daje kilka warstw feedbacku mechanicznego:
 
 - ghost piece pokazuje przyszłe położenie klocka
 - ghost rozróżnia placement legalny i nielegalny
-- preview pokazuje planowane typy pól dla aktualnego klocka
+- preview pokazuje planowane typy pól dla aktualnego klocka z ręki
+- panel po prawej pokazuje liczebność `Ręka / Deck / Odrzucone`
+- panel po prawej pokazuje też akcje draw i sklep ofert
 - po hoverze na zbudowanym polu podświetla się cały odpowiadający mu klaster
 - tooltip przy kursorze pokazuje ikonę i rozmiar klastra
 - dla sklepu `Any` tooltip może pokazać kilka linii, po jednej dla każdej pasującej grupy towaru
 - nowo postawione pola dostają krótką animację bounce
 - pop-upy punktowe unoszą się nad planszą, gdy mieszkaniec aktywuje scoring
+- kliknięty sklep pokazuje wizualny cooldown jako krótki pasek na środku pola
 
 To sprawia, że nawet przy dość lekkiej symulacji gracz może dość szybko zrozumieć zależność między układem miasta, klastrami i wynikiem.
 
@@ -180,7 +223,11 @@ To sprawia, że nawet przy dość lekkiej symulacji gracz może dość szybko zr
 
 Najważniejsze elementy UI to dziś:
 
+- starter picker z 6 opcjami na początku runu
 - panel preview aktualnego klocka
+- wskaźniki `Ręka`, `Deck`, `Odrzucone`
+- przyciski draw per typ towaru
+- rozwijany prosty sklep z ofertami kupna nowych klocków
 - skrót sterowania
 - przycisk `Tutorial`
 - przycisk `New Game`
@@ -191,9 +238,10 @@ Najważniejsze elementy UI to dziś:
 
 Sterowanie:
 
-- klik na preview: podnieś klocek
+- klik na preview: podnieś klocek z ręki
 - `Tab` lub prawy przycisk myszy: obrót
-- lewy klik na planszy: postaw klocek
+- lewy klik na pustym polu planszy: postaw klocek
+- lewy klik na zajętym sklepie: aktywuj sklep
 - scroll: zoom
 - środkowy przycisk myszy i drag: pan
 - `WASD` lub strzałki: pan
@@ -207,7 +255,7 @@ Prototyp ma osobny, interaktywny tutorial uruchamiany z poziomu UI. Nie jest to 
 Tutorial:
 
 - przełącza gracza na osobne plansze treningowe
-- prowadzi krok po kroku przez sterowanie kamerą, podnoszenie klocka, obrót, pierwszy placement, zasadę styku krawędziowego, nielegalny ghost, klastry i scoring
+- prowadzi krok po kroku przez sterowanie kamerą, starter / rękę / placement, obrót, pierwszy placement, zasadę styku krawędziowego, nielegalny ghost, klastry i scoring
 - ma też modal z pełną tekstową wersją zasad
 - po zamknięciu lub ukończeniu wraca do poprzedniego miasta gracza, więc nie nadpisuje zwykłego progresu
 
@@ -251,12 +299,16 @@ Gra autosave'uje stan do `localStorage`. Zapisywane są między innymi:
 - zajęte pola miasta
 - liczności elementów
 - liczba postawionych klocków
-- wynik punktowy
+- liczniki towarów
+- stan `drawPile / hand / discardPile`
+- wybrany starter
+- oferty sklepu
+- cooldowny budynków
 - mieszkańcy
 - pozycja i zoom kamery
 - seed świata potrzebny do stabilnej rekonstrukcji geometrii
 
-W praktyce daje to spokojny, długofalowy rytm: gracz może budować duże miasto, wracać do niego po odświeżeniu strony i obserwować, jak jego układ wpływa na późniejszy przepływ mieszkańców i punktów.
+W praktyce daje to spokojny, długofalowy rytm: gracz może budować duże miasto, wracać do niego po odświeżeniu strony i obserwować, jak jego układ wpływa na późniejszy przepływ mieszkańców, tempo zdobywania towarów i rozwój talii.
 
 ## 17. Co prototyp testuje teraz
 

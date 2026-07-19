@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict';
 import {
+  buyMarketTile,
   clampGridSize,
   createNewWorld,
   deserializeState,
   placePiece,
   serializeState,
+  startRunWithStarter,
 } from '../src/state.js';
 
 function test(name, fn) {
@@ -23,12 +25,38 @@ test('serializeState then deserializeState round-trips grid contents', () => {
   state.camera = { x: 10, y: 20, zoom: 1 };
   placePiece(state, 'O', 0, 3, 3, () => 0.1);
   state.scoreTotals.Bread = 3;
+  startRunWithStarter(state, 'starter-draco-bell', () => 0.5);
+  state.marketState.offers = [
+    {
+      offerId: 'starter-critical-rolls',
+      offerType: 'starter',
+      tileId: 'starter-critical-rolls',
+      name: 'Critical Rolls',
+      goodsType: 'Bread',
+      shopElementType: 'Shop_CriticalRolls',
+      shapeId: 'O',
+      plannedCells: ['house', 'park', 'park', 'Shop_CriticalRolls'],
+      costEntries: [{ goodsType: 'Any', amount: 100 }],
+    },
+  ];
+  state.scoreTotals.Bread = 100;
+  buyMarketTile(state, 0, () => 0.5);
+  state.buildingCooldowns['3:3'] = {
+    startedAtMs: 10,
+    readyAtMs: 20,
+    cooldownMs: 10,
+  };
   const json = serializeState(state);
   const data = deserializeState(json);
   assert.equal(data.gridSize, 8);
   assert.equal(data.cells[3][3].elementType, state.grid[3][3].elementType);
   assert.equal(data.placedPieceCount, 1);
-  assert.equal(data.scoreTotals.Bread, 3);
+  assert.equal(data.starterTileId, 'starter-draco-bell');
+  assert.equal(data.deckState.hand.length, 1);
+  assert.equal(data.deckState.discardPile.at(-1)?.tileId, 'starter-critical-rolls');
+  assert.equal(data.buildingCooldowns['3:3'].readyAtMs, 20);
+  assert.equal(data.marketState.refreshCost, 300);
+  assert.deepEqual(data.marketState.offers[0].costEntries, [{ goodsType: 'Any', amount: 100 }]);
 });
 
 test('deserializeState rejects an unsupported save version', () => {

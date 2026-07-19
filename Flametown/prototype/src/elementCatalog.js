@@ -156,3 +156,7 @@ export function getElementScoringGroupId(id, catalog = ELEMENT_CATALOG) {
   const groups = getElementShopGroups(id, catalog);
   return groups.find((groupId) => SCORING_GROUP_IDS.includes(groupId)) ?? null;
 }
+
+export function getShopPrimaryGoodsType(id, catalog = ELEMENT_CATALOG) {
+  return getElementScoringGroupId(id, catalog);
+}
