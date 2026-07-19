@@ -15,6 +15,10 @@ export const MARKET_RANDOM_COST_PER_GOOD_AMOUNT = 50; // Cost per goods token on
 export const MARKET_RANDOM_COST_GOOD_TYPES = 2; // Number of different goods types required for a non-starter market offer.
 export const MARKET_REFRESH_COST_AMOUNT = 300; // Cost to reroll the shop, paid as one chosen goods type.
 
+export const SHOP_AUDIO_VOLUME = 0.1; // Volume for shop click sounds in the 0..1 range.
+export const SHOP_AUDIO_BASE_PLAYBACK_RATE = 1; // Default playback rate used for shop click sounds before any random pitch variation.
+export const SHOP_AUDIO_PLAYBACK_RATE_JITTER = 0; // Random playback-rate offset applied as +/- jitter on each shop sound; set to 0 for a fixed pitch.
+
 export const ZOOM_MIN = 0.3; // Lowest camera zoom allowed during play.
 export const ZOOM_MAX = 20.0; // Highest camera zoom allowed during play.
 export const CAMERA_PAN_SPEED = 300; // Target keyboard pan speed in world units per second once the camera reaches full glide speed.

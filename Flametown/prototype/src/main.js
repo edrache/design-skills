@@ -23,8 +23,12 @@ import {
   MAX_ASSET_VARIANTS,
   ROAD_TEXTURE_PATH,
   RESIDENT_SPRITE_PATH,
+  SHOP_AUDIO_BASE_PLAYBACK_RATE,
+  SHOP_AUDIO_PLAYBACK_RATE_JITTER,
+  SHOP_AUDIO_VOLUME,
 } from '../config.js';
 import { loadAssetManifest, loadNamedImages, loadOptionalImage } from './assets.js';
+import { createGameAudio } from './audio.js';
 import { createCamera } from './camera.js';
 import { DEFAULT_BUILDING_CLICK_COOLDOWN_MS } from './deck.js';
 import { ELEMENT_CATALOG, ELEMENT_OVERLAY_ICON_DEFINITIONS } from './elementCatalog.js';
@@ -72,6 +76,13 @@ if (versionBadgeEl) {
   const version = versionBadgeEl.dataset.version || '';
   versionBadgeEl.textContent = version ? `v${version}` : '';
 }
+
+const gameAudio = createGameAudio({
+  volume: SHOP_AUDIO_VOLUME,
+  basePlaybackRate: SHOP_AUDIO_BASE_PLAYBACK_RATE,
+  playbackRateJitter: SHOP_AUDIO_PLAYBACK_RATE_JITTER,
+});
+gameAudio.preload();
 
 function createInactiveTutorialViewModel() {
   return {
@@ -393,6 +404,7 @@ function activateBuildingAt(row, col) {
 
   const now = performance.now();
   awardGoodsAtCell(goodsType, 1, row, col, now);
+  gameAudio.playShopSound(goodsType);
   state.animations = (state.animations || []).filter(
     (anim) => anim.row !== row || anim.col !== col
   );
