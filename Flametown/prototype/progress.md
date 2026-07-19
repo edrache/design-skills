@@ -109,3 +109,26 @@ Original prompt: przejdź do implementacji planu [2026-07-18-tetromino-prototype
 - 2026-07-19: Resident scoring for passed shops now uses full shop-cluster size instead of flat `+1` per scored shop cell.
 - Shared shop-cluster helpers were moved into `src/clusters.js`, so hover state and resident scoring use the same `shopGroups` / `Any` wildcard rules.
 - Added regression coverage in `tests/residents.test.js` for cluster-sized score awards and updated duplicate-group expectations; also added helper coverage in `tests/clusters.test.js`.
+- 2026-07-19: Added a separate interactive tutorial flow under a new `Tutorial` button in the main UI panel.
+- Tutorial now runs through guided steps for:
+  - camera movement and zoom,
+  - taking the piece from preview,
+  - rotation,
+  - first free placement,
+  - edge-adjacency placement for later turns,
+  - illegal red ghost feedback,
+  - cluster hover reading,
+  - resident-driven scoring.
+- Implemented `src/tutorial.js` as a dedicated step controller instead of spreading tutorial state across `main.js`.
+- Tutorial uses isolated training scenarios and restores the player's previous saved city after closing or finishing, so it does not overwrite normal progress.
+- Added `tests/tutorial.test.js` for tutorial-controller progression and restore behavior.
+- Regression checks run after this change:
+  - PASS: `node Flametown/prototype/tests/tutorial.test.js`
+  - PASS: `node Flametown/prototype/tests/state.test.js`
+  - PASS: `node --check Flametown/prototype/src/main.js`
+- 2026-07-19: Browser tutorial smoke uncovered one live integration bug: the camera tutorial step did not complete because `window.__flametown.getStateSnapshot()` did not expose `camera`.
+- Fixed by adding `camera` to the debug snapshot consumed by the tutorial runtime.
+- Browser verification after the fix:
+  - Playwright client opened tutorial mode and confirmed the training board loads (`output/tutorial-smoke/`).
+  - Full-page Playwright smoke confirmed the welcome overlay renders (`output/tutorial-dom-open.png`).
+  - Follow-up Playwright smoke confirmed camera movement now marks step 2 as complete (`output/tutorial-dom-camera-complete-fixed.png`).

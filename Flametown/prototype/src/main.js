@@ -28,6 +28,7 @@ import { loadAssetManifest, loadNamedImages, loadOptionalImage } from './assets.
 import { createCamera } from './camera.js';
 import { ELEMENT_CATALOG, ELEMENT_OVERLAY_ICON_DEFINITIONS } from './elementCatalog.js';
 import { createCameraInput, createPlacementInput } from './input.js';
+import { canPlacePiece } from './pieces.js';
 import { renderGhost, renderGrid } from './render.js';
 import { bootstrapResidentsFromGrid, syncResidentGraph, updateResidents } from './residents.js';
 import {
@@ -35,16 +36,19 @@ import {
   clearStorage,
   createInitialScoreTotals,
   createPieceDraft,
+  deserializeState,
   createNewWorld,
   ensureCurrentPiece,
   loadFromStorage,
   placePiece,
   reconcileElementVariants,
   rebuildClusterState,
+  serializeState,
   saveToStorage,
   syncHoveredCluster,
 } from './state.js';
-import { createScorePanel, createUIPanel } from './ui.js';
+import { createTutorialController, getTutorialRulesSections } from './tutorial.js';
+import { createScorePanel, createTutorialOverlay, createUIPanel } from './ui.js';
 
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
@@ -111,10 +115,37 @@ function buildInitialState() {
   return buildFreshState(DEFAULT_GRID_SIZE);
 }
 
+function configureStateResources(targetState) {
+  attachAssetManifest(targetState);
+  attachIconManifest(targetState);
+  attachBackgroundTexture(targetState);
+  attachBuiltBackgroundTexture(targetState);
+  attachMapPointTexture(targetState);
+  attachRoadTexture(targetState);
+  attachResidentSprite(targetState);
+}
+
+function primeState(targetState) {
+  ensureCurrentPiece(targetState);
+  configureStateResources(targetState);
+  return targetState;
+}
+
+function centerCameraOnCells(targetState, cells) {
+  if (!Array.isArray(cells) || cells.length === 0) {
+    return;
+  }
+  const points = cells.map(({ row, col }) => targetState.vertices[row][col]);
+  const centerX = points.reduce((sum, point) => sum + point.x, 0) / points.length;
+  const centerY = points.reduce((sum, point) => sum + point.y, 0) / points.length;
+  targetState.camera.x = centerX + CELL_SIZE * 0.5;
+  targetState.camera.y = centerY + CELL_SIZE * 0.5;
+}
+
 function attachAssetManifest(targetState) {
   loadAssetManifest(ELEMENT_CATALOG, 'assets/tiles', MAX_ASSET_VARIANTS).then((manifest) => {
     targetState.assetManifest = manifest;
-    if (reconcileElementVariants(targetState, manifest)) {
+    if (reconcileElementVariants(targetState, manifest) && !tutorialController?.isActive()) {
       saveToStorage(targetState);
     }
   });
@@ -175,21 +206,157 @@ function attachResidentSprite(targetState) {
   });
 }
 
-let state = buildInitialState();
-ensureCurrentPiece(state);
-attachAssetManifest(state);
-attachIconManifest(state);
-attachBackgroundTexture(state);
-attachBuiltBackgroundTexture(state);
-attachMapPointTexture(state);
-attachRoadTexture(state);
-attachResidentSprite(state);
+let state = primeState(buildInitialState());
 let lastSavedScoreTotalsVersion = state.scoreTotalsVersion || 0;
 
 const cameraInput = createCameraInput(canvas, state);
 
 let uiPanel;
 let scorePanel;
+let tutorialOverlay;
+let tutorialController;
+
+function computeGhostLegal(targetState, mouseCell) {
+  if (!targetState.holding || !targetState.currentPiece || !mouseCell) {
+    return null;
+  }
+
+  return canPlacePiece(
+    targetState.grid,
+    targetState.gridSize,
+    targetState.currentPiece.shapeId,
+    targetState.currentPiece.rotation,
+    mouseCell.row,
+    mouseCell.col,
+    targetState.placedPieceCount === 0
+  );
+}
+
+function syncPanels() {
+  cameraInput.state = state;
+  placementInput.state = state;
+  if (uiPanel) {
+    uiPanel.state = state;
+    uiPanel.setGridSize(state.gridSize);
+    uiPanel.renderPreview();
+  }
+  if (scorePanel) {
+    scorePanel.state = state;
+    scorePanel.renderScores(true);
+  }
+  lastSavedScoreTotalsVersion = state.scoreTotalsVersion || 0;
+}
+
+function adoptState(nextState, { persist = false } = {}) {
+  state = primeState(nextState);
+  syncPanels();
+  if (persist) {
+    saveToStorage(state);
+  }
+}
+
+function buildTutorialBoardState() {
+  const nextState = buildFreshState(14);
+  nextState.currentPiece = createPieceDraft(nextState, 'L', 0, () => 0.18);
+  nextState.holding = false;
+  return nextState;
+}
+
+function buildIllegalPlacementState() {
+  const nextState = buildFreshState(12);
+  nextState.currentPiece = createPieceDraft(nextState, 'T', 0, () => 0.22);
+  nextState.holding = false;
+  const occupied = [
+    { row: 5, col: 5, elementType: 'house' },
+    { row: 5, col: 6, elementType: 'park' },
+    { row: 6, col: 5, elementType: 'park' },
+    { row: 6, col: 6, elementType: 'house' },
+  ];
+  for (const cell of occupied) {
+    nextState.grid[cell.row][cell.col] = {
+      elementType: cell.elementType,
+      elementVariant: null,
+      pieceId: 1,
+      roads: { N: false, E: false, S: false, W: false },
+    };
+    nextState.elementCounts[cell.elementType] = (nextState.elementCounts[cell.elementType] || 0) + 1;
+  }
+  nextState.placedPieceCount = 1;
+  rebuildClusterState(nextState);
+  centerCameraOnCells(nextState, occupied);
+  return nextState;
+}
+
+function buildClusterTutorialState() {
+  const nextState = buildFreshState(12);
+  const occupied = [
+    { row: 5, col: 3, elementType: 'Shop_CriticalRolls', pieceId: 1 },
+    { row: 5, col: 4, elementType: 'Shop_BizarreBazaar', pieceId: 2 },
+    { row: 5, col: 5, elementType: 'Shop_DrakeOfCakes', pieceId: 3 },
+    { row: 5, col: 6, elementType: 'Shop_DraconicTonic', pieceId: 4 },
+    { row: 7, col: 2, elementType: 'house', pieceId: 5 },
+    { row: 7, col: 3, elementType: 'house', pieceId: 5 },
+  ];
+  for (const cell of occupied) {
+    nextState.grid[cell.row][cell.col] = {
+      elementType: cell.elementType,
+      elementVariant: null,
+      pieceId: cell.pieceId,
+      roads: { N: false, E: false, S: false, W: false },
+    };
+    nextState.elementCounts[cell.elementType] = (nextState.elementCounts[cell.elementType] || 0) + 1;
+  }
+  nextState.placedPieceCount = 5;
+  rebuildClusterState(nextState);
+  centerCameraOnCells(nextState, occupied);
+  return nextState;
+}
+
+function buildScoreTutorialState() {
+  const nextState = buildFreshState(16);
+  const occupied = [
+    { row: 6, col: 6, elementType: 'house', pieceId: 1, roads: { N: true, E: false, S: false, W: false } },
+    { row: 5, col: 6, elementType: 'Shop_DracoBell', pieceId: 2, roads: { N: false, E: false, S: true, W: false } },
+    { row: 6, col: 7, elementType: 'Shop_DrakeOfCakes', pieceId: 3, roads: { N: true, E: false, S: false, W: false } },
+  ];
+  for (const cell of occupied) {
+    nextState.grid[cell.row][cell.col] = {
+      elementType: cell.elementType,
+      elementVariant: null,
+      pieceId: cell.pieceId,
+      roads: cell.roads,
+    };
+    nextState.elementCounts[cell.elementType] = (nextState.elementCounts[cell.elementType] || 0) + 1;
+  }
+  nextState.placedPieceCount = 3;
+  nextState.scoreTotals = createInitialScoreTotals();
+  nextState.scoreTotalsVersion = 0;
+  nextState.scorePopups = [];
+  nextState.residents = [
+    {
+      id: 1,
+      homeCell: { row: 6, col: 6 },
+      from: { row: 6, col: 6 },
+      to: { row: 6, col: 7 },
+      progress: 0.48,
+      walkDistance: 0,
+      facing: 1,
+    },
+  ];
+  nextState.nextResidentId = 2;
+  centerCameraOnCells(nextState, occupied);
+  syncResidentGraph(nextState);
+  rebuildClusterState(nextState);
+  return nextState;
+}
+
+function buildResidentTutorialState() {
+  const nextState = buildScoreTutorialState();
+  nextState.scoreTotals = createInitialScoreTotals();
+  nextState.scoreTotalsVersion = 0;
+  nextState.scorePopups = [];
+  return nextState;
+}
 const placementInput = createPlacementInput(canvas, state, (row, col) => {
   if (!state.currentPiece) {
     return;
@@ -214,46 +381,90 @@ const placementInput = createPlacementInput(canvas, state, (row, col) => {
   ensureCurrentPiece(state);
   uiPanel.renderPreview();
   scorePanel.renderScores(true);
-  saveToStorage(state);
+  if (!tutorialController.isActive()) {
+    saveToStorage(state);
+  }
 }, () => {
   uiPanel.renderPreview();
+});
+
+tutorialController = createTutorialController({
+  loadTutorialBoard() {
+    adoptState(buildTutorialBoardState());
+  },
+  loadResidentBoard() {
+    adoptState(buildResidentTutorialState());
+  },
+  prepareSecondPlacementStep() {
+    state.currentPiece = createPieceDraft(state, 'I', 0, () => 0.3);
+    state.holding = false;
+    uiPanel.renderPreview();
+  },
+  loadIllegalPlacementBoard() {
+    adoptState(buildIllegalPlacementState());
+  },
+  loadClusterBoard() {
+    adoptState(buildClusterTutorialState());
+  },
+  loadScoreBoard() {
+    adoptState(buildScoreTutorialState());
+  },
+  captureCameraBaseline() {
+    return { ...state.camera };
+  },
+  getSnapshot() {
+    return window.__flametown.getStateSnapshot();
+  },
+  saveGameSnapshot() {
+    return serializeState(state);
+  },
+  restoreGameSnapshot(serialized) {
+    const saved = deserializeState(serialized);
+    adoptState(hydrateSavedState(saved));
+  },
 });
 
 uiPanel = createUIPanel(panelEl, state, {
   onTakePiece: () => {
     state.holding = true;
   },
+  onToggleTutorial: () => {
+    const viewModel = tutorialController.isActive()
+      ? tutorialController.stop({ restore: true })
+      : tutorialController.start();
+    tutorialOverlay.render(viewModel);
+  },
   onNewGame: (size) => {
     clearStorage();
     const clampedSize = clampGridSize(size, GRID_SIZE_MIN, GRID_SIZE_MAX);
-    state = buildFreshState(clampedSize);
-    ensureCurrentPiece(state);
-    attachAssetManifest(state);
-    attachIconManifest(state);
-    attachBackgroundTexture(state);
-    attachBuiltBackgroundTexture(state);
-    attachMapPointTexture(state);
-    attachRoadTexture(state);
-    attachResidentSprite(state);
-    cameraInput.state = state;
-    placementInput.state = state;
-    uiPanel.state = state;
-    scorePanel.state = state;
-    uiPanel.setGridSize(clampedSize);
-    uiPanel.renderPreview();
-    scorePanel.renderScores(true);
-    lastSavedScoreTotalsVersion = state.scoreTotalsVersion || 0;
+    adoptState(buildFreshState(clampedSize));
   },
 });
 uiPanel.renderPreview();
 scorePanel = createScorePanel(scorePanelEl, state);
+tutorialOverlay = createTutorialOverlay(tutorialController.getViewModel(), {
+  onPrevious: () => {
+    tutorialOverlay.render(tutorialController.previous());
+  },
+  onRestart: () => {
+    tutorialOverlay.render(tutorialController.restartStep());
+  },
+  onNext: () => {
+    tutorialOverlay.render(tutorialController.next());
+  },
+  onClose: () => {
+    tutorialOverlay.render(tutorialController.stop({ restore: true }));
+  },
+  getRulesSections: () => getTutorialRulesSections(),
+});
 uiPanel.renderDebug();
 
 function renderFrame(now = performance.now()) {
   syncHoveredCluster(state, state.holding ? null : placementInput.getMouseCell());
   state.hoveredPointerScreen = state.holding ? null : placementInput.getMouseScreen();
+  state.ghostLegal = computeGhostLegal(state, placementInput.getMouseCell());
   state.scorePopups = (state.scorePopups || []).filter((popup) => now - popup.startTime < popup.duration);
-  if ((state.scoreTotalsVersion || 0) !== lastSavedScoreTotalsVersion) {
+  if (!tutorialController.isActive() && (state.scoreTotalsVersion || 0) !== lastSavedScoreTotalsVersion) {
     saveToStorage(state);
     lastSavedScoreTotalsVersion = state.scoreTotalsVersion || 0;
   }
@@ -261,6 +472,7 @@ function renderFrame(now = performance.now()) {
   renderGrid(ctx, state, window.innerWidth, window.innerHeight, now);
   renderGhost(ctx, state, window.innerWidth, window.innerHeight, placementInput.getMouseCell());
   uiPanel.renderDebug();
+  tutorialOverlay.render(tutorialController.sync());
 }
 
 window.render_game_to_text = () =>
@@ -273,6 +485,7 @@ window.render_game_to_text = () =>
     hoveredCell: state.hoveredCell,
     hoveredClusterSize: state.hoveredClusterSize ?? 0,
     hoveredClusterEntries: state.hoveredClusterEntries ?? [],
+    ghostLegal: state.ghostLegal,
     gridSize: state.gridSize,
     residents: (state.residents || []).map((resident) => ({
       id: resident.id,
@@ -290,6 +503,7 @@ window.__flametown = {
     return {
       gridSize: state.gridSize,
       placedPieceCount: state.placedPieceCount,
+      camera: state.camera ? { ...state.camera } : null,
       currentPiece: state.currentPiece ? { ...state.currentPiece } : null,
       holding: state.holding,
       hoveredCell: state.hoveredCell ? { ...state.hoveredCell } : null,
@@ -297,6 +511,7 @@ window.__flametown = {
       hoveredClusterEntries: Array.isArray(state.hoveredClusterEntries)
         ? state.hoveredClusterEntries.map((entry) => ({ ...entry }))
         : [],
+      ghostLegal: state.ghostLegal ?? null,
       hoveredClusterCells: Array.isArray(state.hoveredClusterCells)
         ? state.hoveredClusterCells.map((cell) => ({ ...cell }))
         : Array.from(state.hoveredClusterCells || []),

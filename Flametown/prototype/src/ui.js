@@ -11,6 +11,7 @@ export function createUIPanel(panelEl, initialState, callbacks) {
       Scroll: zoom &middot; Środkowy przycisk / WASD: przesuń widok<br/>
       Kliknij klocek: podnieś &middot; TAB / PPM: obróć &middot; Klik na polu: postaw
     </div>
+    <button id="tutorial-btn" type="button" style="margin-bottom:6px;">Tutorial</button>
     <button id="new-game-btn">New Game</button>
     <div style="margin-top:6px;font-size:12px;">
       Rozmiar siatki:
@@ -27,6 +28,7 @@ export function createUIPanel(panelEl, initialState, callbacks) {
   document.body.appendChild(debugPanelEl);
 
   const previewEl = panelEl.querySelector('#piece-preview');
+  const tutorialBtn = panelEl.querySelector('#tutorial-btn');
   const newGameBtn = panelEl.querySelector('#new-game-btn');
   const gridSizeInput = panelEl.querySelector('#grid-size-input');
   const debugToggleBtn = debugPanelEl.querySelector('#debug-toggle-btn');
@@ -152,6 +154,7 @@ export function createUIPanel(panelEl, initialState, callbacks) {
   };
 
   previewEl.addEventListener('click', () => callbacks.onTakePiece());
+  tutorialBtn.addEventListener('click', () => callbacks.onToggleTutorial());
   newGameBtn.addEventListener('click', () => {
     const requestedSize = Number(gridSizeInput.value);
     if (window.confirm('Na pewno zaczynasz nową grę? Obecne miasto zostanie utracone.')) {
@@ -168,6 +171,131 @@ export function createUIPanel(panelEl, initialState, callbacks) {
   };
 
   return panel;
+}
+
+export function createTutorialOverlay(initialViewModel, callbacks) {
+  const overlayEl = document.createElement('div');
+  overlayEl.id = 'tutorial-overlay';
+  overlayEl.innerHTML = `
+    <div class="tutorial-backdrop"></div>
+    <section class="tutorial-card" aria-live="polite">
+      <div class="tutorial-step-label"></div>
+      <h2 class="tutorial-title"></h2>
+      <p class="tutorial-body"></p>
+      <p class="tutorial-instruction"></p>
+      <div class="tutorial-status"></div>
+      <div class="tutorial-actions">
+        <button id="tutorial-prev-btn" type="button">Wstecz</button>
+        <button id="tutorial-restart-btn" type="button">Powtórz krok</button>
+        <button id="tutorial-rules-btn" type="button">Wersja tekstowa</button>
+        <button id="tutorial-next-btn" type="button">Dalej</button>
+        <button id="tutorial-close-btn" type="button">Zamknij</button>
+      </div>
+    </section>
+    <section class="tutorial-rules-modal" aria-hidden="true">
+      <div class="tutorial-rules-header">
+        <h3>Pełne zasady gry</h3>
+        <button id="tutorial-rules-close-btn" type="button">Zamknij</button>
+      </div>
+      <div class="tutorial-rules-body"></div>
+    </section>
+  `;
+  document.body.appendChild(overlayEl);
+
+  const stepLabelEl = overlayEl.querySelector('.tutorial-step-label');
+  const titleEl = overlayEl.querySelector('.tutorial-title');
+  const bodyEl = overlayEl.querySelector('.tutorial-body');
+  const instructionEl = overlayEl.querySelector('.tutorial-instruction');
+  const statusEl = overlayEl.querySelector('.tutorial-status');
+  const prevBtn = overlayEl.querySelector('#tutorial-prev-btn');
+  const restartBtn = overlayEl.querySelector('#tutorial-restart-btn');
+  const rulesBtn = overlayEl.querySelector('#tutorial-rules-btn');
+  const nextBtn = overlayEl.querySelector('#tutorial-next-btn');
+  const closeBtn = overlayEl.querySelector('#tutorial-close-btn');
+  const rulesModalEl = overlayEl.querySelector('.tutorial-rules-modal');
+  const rulesBodyEl = overlayEl.querySelector('.tutorial-rules-body');
+  const rulesCloseBtn = overlayEl.querySelector('#tutorial-rules-close-btn');
+  let rulesOpen = false;
+
+  function renderRulesContent() {
+    const sections = callbacks.getRulesSections?.() || [];
+    rulesBodyEl.innerHTML = '';
+    for (const section of sections) {
+      const sectionEl = document.createElement('section');
+      sectionEl.className = 'tutorial-rules-section';
+
+      const title = document.createElement('h4');
+      title.textContent = section.title;
+      sectionEl.appendChild(title);
+
+      const list = document.createElement('ul');
+      for (const item of section.items || []) {
+        const listItem = document.createElement('li');
+        listItem.textContent = item;
+        list.appendChild(listItem);
+      }
+      sectionEl.appendChild(list);
+      rulesBodyEl.appendChild(sectionEl);
+    }
+  }
+
+  function setRulesOpen(nextValue) {
+    rulesOpen = nextValue;
+    rulesModalEl.dataset.open = rulesOpen ? 'true' : 'false';
+    rulesModalEl.setAttribute('aria-hidden', rulesOpen ? 'false' : 'true');
+  }
+
+  prevBtn.addEventListener('click', () => callbacks.onPrevious());
+  restartBtn.addEventListener('click', () => callbacks.onRestart());
+  rulesBtn.addEventListener('click', () => {
+    renderRulesContent();
+    setRulesOpen(true);
+  });
+  nextBtn.addEventListener('click', () => callbacks.onNext());
+  closeBtn.addEventListener('click', () => callbacks.onClose());
+  rulesCloseBtn.addEventListener('click', () => setRulesOpen(false));
+
+  window.addEventListener('keydown', (event) => {
+    if (!event.code || event.code !== 'Space') {
+      return;
+    }
+    if (overlayEl.style.display !== 'block' || nextBtn.disabled || rulesOpen) {
+      return;
+    }
+
+    const targetTagName = event.target instanceof HTMLElement ? event.target.tagName : '';
+    if (targetTagName === 'INPUT' || targetTagName === 'TEXTAREA') {
+      return;
+    }
+
+    event.preventDefault();
+    callbacks.onNext();
+  });
+
+  return {
+    render(viewModel) {
+      const model = viewModel || initialViewModel;
+      overlayEl.style.display = model?.active ? 'block' : 'none';
+      if (!model?.active) {
+        setRulesOpen(false);
+        return;
+      }
+
+      stepLabelEl.textContent = `Krok ${model.stepNumber} / ${model.totalSteps}`;
+      titleEl.textContent = model.title || '';
+      bodyEl.textContent = model.body || '';
+      instructionEl.textContent = model.instruction || '';
+      statusEl.textContent = model.completed
+        ? 'Krok zaliczony. Możesz przejść dalej.'
+        : 'Ten krok czeka na akcję w grze.';
+      statusEl.dataset.complete = model.completed ? 'true' : 'false';
+      prevBtn.disabled = !model.canGoBack;
+      nextBtn.disabled = !model.canGoNext;
+      nextBtn.textContent = model.continueLabel || 'Dalej';
+      restartBtn.disabled = false;
+      rulesBtn.disabled = false;
+    },
+  };
 }
 
 export function createScorePanel(scorePanelEl, initialState) {
