@@ -1,4 +1,4 @@
-export const APP_VERSION = '0.1.10'; // Human-readable prototype version tracked in project docs and release notes.
+export const APP_VERSION = '0.1.12'; // Human-readable prototype version tracked in project docs and release notes.
 
 // Keep every exported config value documented inline so the file stays readable as new knobs are added.
 export const DEFAULT_GRID_SIZE = 64; // Default world size used when starting a fresh game.

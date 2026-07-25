@@ -14,9 +14,11 @@ Ten katalog zawiera grywalny prototyp gry Flametown w czystym HTML/JS/canvas bez
 - Przy kazdej zmianie zwieksz wersje w obu miejscach:
   - `package.json`
   - `config.js` jako `APP_VERSION`
+- Traktuj podbicie wersji jako warunek zakonczenia zadania: jesli zmienia sie frontend (`src/`, `index.html`, `config.js`), zadanie nie jest zakonczone bez nowej wersji.
 - Jezeli dotykasz frontendu, zaktualizuj tez query string wersji przy `src/main.js` w `index.html`.
 - Zaktualizuj tez `data-version` na elemencie `#version-badge` w `index.html`.
 - Przy modulach, ktore czesto sie zmieniaja i blokuja start gry, preferuj importy odporne na cache mismatch albo aktualizuj ich query stringi razem z `main.js`.
+- Po zmianie frontendu uruchom `npm run release-check`; dopoki ten check nie przejdzie, nie uznawaj pracy za gotowa.
 - Utrzymuj widoczny numer wersji w prawym dolnym rogu gry.
 - Jezeli zmiana dotyczy assetow, zaktualizuj tez odpowiedni status assetow i opis w dokumentacji.
 - Jezeli dodajesz nowa mechanike, dopisz debug hook albo test tam, gdzie to ma sens.
@@ -37,6 +39,7 @@ Otworz:
 ## Szybka checklista przed zakonczeniem pracy
 
 - wersja podbita
+- `npm run release-check` przechodzi
 - changelog dopisany
 - `PROJECT_CONTEXT_FOR_AGENTS.md` zaktualizowany
 - `progress.md` zaktualizowany

@@ -1,7 +1,7 @@
 # Flametown Prototype Project Context
 
-Stan na: 2026-07-19
-Aktualna wersja prototypu: `0.1.10`
+Stan na: 2026-07-20
+Aktualna wersja prototypu: `0.1.12`
 
 Ten dokument jest przeznaczony dla kolejnych agentow pracujacych nad projektem.
 
@@ -12,6 +12,18 @@ Przy kazdej istotnej zmianie w architekturze, assetach, testach, workflow albo s
 Przy kazdej zmianie w prototypie trzeba tez zwiekszyc numer wersji, zaktualizowac badge w prawym dolnym rogu gry i dopisac wpis do changelogu ponizej.
 
 ## Changelog
+
+### 0.1.12 - 2026-07-20
+
+- dodano `npm run release-check`, ktory pilnuje zgodnosci wersji miedzy `package.json`, `config.js`, `index.html` i cache-bustingiem importow w `src/main.js`
+- check failuje tez wtedy, gdy sa zmiany frontendowe w `Flametown/prototype`, ale nie zostaly dotkniete pliki wersjonujace
+- `AGENTS.md` traktuje teraz podbicie wersji i uruchomienie `release-check` jako twardy warunek zakonczenia pracy nad frontendem
+
+### 0.1.11 - 2026-07-20
+
+- debug menu dostalo przycisk do dodawania `+50` kazdego podstawowego towaru naraz
+- callback debugowy zwieksza teraz wszystkie grupy z `SCORING_GROUP_IDS`, a nie tylko `Any`
+- podbito query stringi `index.html`, `src/main.js`, `src/ui.js` i `src/tutorial.js`, zeby ograniczyc ryzyko deployu z mieszanym cache modolow po zmianach frontendowych
 
 ### 0.1.10 - 2026-07-19
 

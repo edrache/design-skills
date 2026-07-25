@@ -31,7 +31,10 @@ export function createUIPanel(panelEl, initialState, callbacks) {
   const debugPanelEl = document.createElement('div');
   debugPanelEl.id = 'debug-panel';
   debugPanelEl.innerHTML = `
-    <button id="debug-toggle-btn" type="button">Hide Debug</button>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      <button id="debug-toggle-btn" type="button">Hide Debug</button>
+      <button id="debug-add-any-btn" type="button">Dodaj +50 każdego towaru</button>
+    </div>
     <pre id="debug-content" style="margin:8px 0 0;white-space:pre-wrap;"></pre>
   `;
   document.body.appendChild(debugPanelEl);
@@ -41,6 +44,7 @@ export function createUIPanel(panelEl, initialState, callbacks) {
   const newGameBtn = panelEl.querySelector('#new-game-btn');
   const gridSizeInput = panelEl.querySelector('#grid-size-input');
   const debugToggleBtn = debugPanelEl.querySelector('#debug-toggle-btn');
+  const debugAddAnyBtn = debugPanelEl.querySelector('#debug-add-any-btn');
   const debugContentEl = debugPanelEl.querySelector('#debug-content');
   const starterPickerEl = panelEl.querySelector('#starter-picker');
   const deckStatusEl = panelEl.querySelector('#deck-status');
@@ -547,6 +551,7 @@ export function createUIPanel(panelEl, initialState, callbacks) {
     debugCollapsed = !debugCollapsed;
     panel.renderDebug();
   });
+  debugAddAnyBtn.addEventListener('click', () => callbacks.onDebugAddAny?.());
 
   panel.setGridSize = (value) => {
     gridSizeInput.value = String(value);

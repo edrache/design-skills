@@ -1,6 +1,9 @@
 {
   "name": "flametown-prototype",
-  "version": "0.1.10",
+  "version": "0.1.12",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "release-check": "node scripts/release-check.mjs"
+  }
 }

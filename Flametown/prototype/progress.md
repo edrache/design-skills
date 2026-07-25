@@ -1,5 +1,16 @@
 Original prompt: przejdź do implementacji planu [2026-07-18-tetromino-prototype-plan.md](Flametown/docs/plans/2026-07-18-tetromino-prototype-plan.md) używając wielu agentów. Aktualizuj plan na każdym kroku po jego zakończeniu
 
+- 2026-07-20: Dodano automatyczny `npm run release-check` i zaostrzono workflow wersjonowania frontendu.
+- Skrypt `scripts/release-check.mjs` pilnuje zgodnosci `package.json`, `config.js`, `index.html` oraz query stringow `tutorial.js` / `ui.js` w `src/main.js`.
+- Check failuje rowniez wtedy, gdy sa zmiany frontendowe bez zmian w plikach wersjonujacych, co ma wyłapywac brak podbicia wersji przed deployem.
+- `AGENTS.md` traktuje teraz `npm run release-check` jako obowiazkowy krok koncowy przy zmianach frontendu.
+- Wersja prototypu podbita do `0.1.12`, zaktualizowano `config.js`, `package.json`, `index.html` i cache-busting importow `tutorial.js` / `ui.js` w `src/main.js`.
+
+- 2026-07-20: Dodano debugowy przycisk do szybkiego zasilania wszystkich towarow i od razu wykonano hotfix cache-busting pod deploy.
+- Debug panel ma teraz przycisk `Dodaj +50 każdego towaru`, a callback przechodzi po `SCORING_GROUP_IDS`, zamiast zwiekszac tylko `Any`.
+- Po analizie live URL `https://edrache.cytr.us/flametown/` potwierdzono, ze serwer oddaje `200` dla HTML, JS i assetow, wiec glownym podejrzeniem pozostaje mieszany cache przegladarki / CDN po zmianach frontendowych.
+- Wersja prototypu podbita do `0.1.11`, zaktualizowano `config.js`, `package.json`, `index.html` i cache-busting importow `tutorial.js` / `ui.js` w `src/main.js`.
+
 - 2026-07-19: Przepieto koszty marketu i ich prezentacje na ikony oraz koszt wieloskladnikowy.
 - Wszystkie aktywne ceny sa teraz zebrane w `config.js`: draw `20`, starter offer `100 Any`, random offer `50 + 50` dwoch roznych towarow i refresh `300`.
 - Market offers wspieraja teraz `costEntries`, dzieki czemu starter placi sie `100` dowolnego jednego towaru, a losowy klocek dwoma roznymi towarami naraz.

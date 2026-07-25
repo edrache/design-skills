@@ -31,7 +31,7 @@ import { loadAssetManifest, loadNamedImages, loadOptionalImage } from './assets.
 import { createGameAudio } from './audio.js';
 import { createCamera } from './camera.js';
 import { DEFAULT_BUILDING_CLICK_COOLDOWN_MS } from './deck.js';
-import { ELEMENT_CATALOG, ELEMENT_OVERLAY_ICON_DEFINITIONS } from './elementCatalog.js';
+import { ELEMENT_CATALOG, ELEMENT_OVERLAY_ICON_DEFINITIONS, SCORING_GROUP_IDS } from './elementCatalog.js';
 import { createCameraInput, createPlacementInput } from './input.js';
 import { canPlacePiece } from './pieces.js';
 import { renderGhost, renderGrid } from './render.js';
@@ -63,8 +63,8 @@ import {
   syncHoveredCluster,
   syncCurrentPieceSelection,
 } from './state.js';
-import * as tutorialModule from './tutorial.js?v=0.1.10';
-import * as uiModule from './ui.js?v=0.1.10';
+import * as tutorialModule from './tutorial.js?v=0.1.12';
+import * as uiModule from './ui.js?v=0.1.12';
 
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
@@ -626,6 +626,14 @@ uiPanel = createUIPanel(panelEl, state, {
   },
   onRefreshMarket: (goodsType) => {
     refreshMarketUsingGoods(state, goodsType);
+    syncPanels();
+    saveToStorage(state);
+  },
+  onDebugAddAny: () => {
+    for (const groupId of SCORING_GROUP_IDS) {
+      state.scoreTotals[groupId] = (state.scoreTotals?.[groupId] || 0) + 50;
+    }
+    state.scoreTotalsVersion = (state.scoreTotalsVersion || 0) + 1;
     syncPanels();
     saveToStorage(state);
   },
