@@ -1,0 +1,429 @@
+{
+  "replacements": [
+    {
+      "page": 1,
+      "old": "Investigate",
+      "new": "Badaj"
+    },
+    {
+      "page": 1,
+      "old": "Whenever you have a question you want to find the answers to you Investigate to help create a scene where you try to find the answer, or at least a clue towards the answer. Ask a question and pick up to 3 positive or wild tags that you want to bring into play in the scene. The Oracle also picks up to 2 of your negative or wild tags. And remember - you both can invoke the town tags! Roll 2d6 and add tags : the number of tags you picked and subtract the number of tags the Oracle picked. On a 7 + you find a clue relevant to the question you were asking and pick one of the options from the relevant results tange. On a 6 -the Oracle picks one or more options. Remember, you can't pick an option you've already marked off until you recover it.",
+      "new": "Kiedykolwiek masz pytanie, na które chcesz znaleźć odpowiedź, wykonujesz ruch Badaj, aby stworzyć scenę, w której próbujesz znaleźć odpowiedź albo przynajmniej wskazówkę prowadzącą w jej stronę. Zadaj pytanie i wybierz do 3 pozytywnych lub uniwersalnych tagów, które chcesz wprowadzić do tej sceny. Wyrocznia również wybiera do 2 twoich negatywnych lub uniwersalnych tagów. I pamiętajcie: oboje możecie przywoływać tagi miasteczka! Rzuć 2k6, dodaj liczbę wybranych przez siebie tagów, a następnie odejmij liczbę tagów wybranych przez Wyrocznię. Przy wyniku 7+ znajdujesz wskazówkę istotną dla zadanego pytania i wybierasz jedną z opcji z odpowiedniej tabeli wyników. Przy wyniku 6- Wyrocznia wybiera jedną lub więcej opcji. Pamiętaj, że nie możesz wybrać opcji, która jest już skreślona, dopóki jej nie odzyskasz."
+    },
+    {
+      "page": 1,
+      "old": "The clue could be the answer, or it could be learning where you can find more information. If you get more than one clue, you can use those to ask follow up questions.",
+      "new": "Wskazówka może być odpowiedzią, ale może też być informacją o tym, gdzie znaleźć więcej danych. Jeśli zdobędziesz więcej niż jedną wskazówkę, możesz wykorzystać je do zadawania dalszych pytań."
+    },
+    {
+      "page": 1,
+      "old": "10 + In addition to the clue you get for hitting, you may choose one.",
+      "new": "10+ Oprócz wskazówki uzyskanej przy sukcesie możesz wybrać jedno."
+    },
+    {
+      "page": 1,
+      "old": "O You find something useful. You gain a wild tag, such as a shotgun, or blackmail on that obnoxious dilettante , or a fragment of an Elder Sign . Mark this off.",
+      "new": "O Znajdujesz coś użytecznego. Zyskujesz uniwersalny tag, taki jak strzelba, haki na tego nieznośnego dyletanta albo fragment Starszego Znaku. Skreśl tę opcję."
+    },
+    {
+      "page": 1,
+      "old": "O You find an additional clue. Ask a follow up question, or a question about something else. Mark this off.",
+      "new": "O Znajdujesz dodatkową wskazówkę. Zadaj pytanie uzupełniające albo pytanie o coś innego. Skreśl tę opcję."
+    },
+    {
+      "page": 1,
+      "old": "Someone notices your investigation, and takes an interest. Recover the other two options.",
+      "new": "Ktoś zauważa twoje śledztwo i zaczyna się nim interesować. Odzyskaj dwie pozostałe opcje."
+    },
+    {
+      "page": 1,
+      "old": "7 -9 In addition to the clue you get for hitting, you may choose one.",
+      "new": "7-9 Oprócz wskazówki uzyskanej przy sukcesie możesz wybrać jedno."
+    },
+    {
+      "page": 1,
+      "old": "O You find an additional clue, relevant to the question you were asking. Ask a follow up question, then mark this off.",
+      "new": "O Znajdujesz dodatkową wskazówkę istotną dla zadanego pytania. Zadaj pytanie uzupełniające, a potem skreśl tę opcję."
+    },
+    {
+      "page": 1,
+      "old": "O You find something useful during your investigation. You gain a temporary tag, like the killer's weapon , or keys to... something , or the cultist's book . Mark this off.",
+      "new": "O Podczas śledztwa znajdujesz coś użytecznego. Zyskujesz tymczasowy tag, taki jak broń mordercy, klucze do... czegoś albo księga kultysty. Skreśl tę opcję."
+    },
+    {
+      "page": 1,
+      "old": "While you're investigating, something significant happens elsewhere. Recover the other two options.",
+      "new": "Gdy prowadzisz śledztwo, gdzie indziej dzieje się coś istotnego. Odzyskaj dwie pozostałe opcje."
+    },
+    {
+      "page": 1,
+      "old": "6 -You gain Foreboding and the Oracle chooses one or more of the following options.",
+      "new": "6- Zyskujesz 1 punkt Złowieszczości, a Wyrocznia wybiera jedną lub więcej z poniższych opcji."
+    },
+    {
+      "page": 1,
+      "old": "Your negative tags that were invoked come into play in a major way.",
+      "new": "Przywołane negatywne tagi odgrywają kluczową rolę."
+    },
+    {
+      "page": 1,
+      "old": "You can still discover something, but something else goes wrong",
+      "new": "Nadal możesz coś odkryć, ale coś innego idzie nie tak."
+    },
+    {
+      "page": 1,
+      "old": "You gain a temporary tag - work with the Oracle to determine it",
+      "new": "Zyskujesz tymczasowy tag - ustal z Wyrocznią, jaki."
+    },
+    {
+      "page": 1,
+      "old": "You find a clue that's unrelated to what you were looking for.",
+      "new": "Znajdujesz wskazówkę niezwiązaną z tym, czego szukasz."
+    },
+    {
+      "page": 1,
+      "old": "You learn something you didn't want to know.",
+      "new": "Dowiadujesz się czegoś, czego nie chcesz wiedzieć."
+    },
+    {
+      "page": 1,
+      "old": "You learn a horrible secret that tests your mettle, and have to Encounter True Horror.",
+      "new": "Poznajesz straszliwy sekret, który wystawia cię na próbę, i musisz wykonać ruch Doświadcz Prawdziwej Grozy."
+    },
+    {
+      "page": 1,
+      "old": "Someone else learns something about you that you'd rather they didn't.",
+      "new": "Ktoś inny dowiaduje się o tobie czegoś, czego nie chcesz ujawniać."
+    },
+    {
+      "page": 1,
+      "old": "You end up in a treacherous situation, and likely have to Face Peril.",
+      "new": "Trafiasz w zdradliwą sytuację i najpewniej musisz wykonać ruch Staw Czoła Niebezpieczeństwu."
+    },
+    {
+      "page": 1,
+      "old": "Someone who assisted you must suffer in some way.",
+      "new": "Ktoś, kto ci pomagał, musi w jakiś sposób ucierpieć."
+    },
+    {
+      "page": 1,
+      "old": "Something bad happens to a town tag that was invoked.",
+      "new": "Coś złego dzieje się z tagiem miasteczka, który został przywołany."
+    },
+    {
+      "page": 1,
+      "old": "An NPC in the scene gets in some sort of trouble.",
+      "new": "BN obecny w scenie wpada w jakieś tarapaty."
+    },
+    {
+      "page": 1,
+      "old": "Something bad happens elsewhere while you're distracted.",
+      "new": "Gdzieś indziej dzieje się coś złego, podczas gdy twoją uwagę odciąga coś innego."
+    },
+    {
+      "page": 1,
+      "old": "Something goes very wrong, and you have to mark off a tag.",
+      "new": "Coś idzie bardzo źle i musisz skreślić tag."
+    },
+    {
+      "page": 1,
+      "old": "Some other devious scenario of the Oracle's invention.",
+      "new": "Jakiś inny podstępny scenariusz wymyślony przez Wyrocznię."
+    },
+    {
+      "page": 2,
+      "old": "Face Peril",
+      "new": "Staw Czoła Niebezpieczeństwu"
+    },
+    {
+      "page": 2,
+      "old": "Whenever you're in a potentially deadly situation, whether you're attacked by an antagonist, be they monster or man, or you confront them yourself, or you have to face any peril that plausibly might kill you, roll 2d6 and add tags : the number of relevant positive or wild tags ( up to 3 ) minus the number of relevant negative or wild tags ( up to 2 ) . You pick the positive tags, and the Oracle picks the negative tags. Rolling higher is better. On a hit ( 7 + ) , you accomplish something, and probably don't die. Combat is frequently a single engage physically roll, or a single roll per investigator.",
+      "new": "Kiedykolwiek znajdujesz się w potencjalnie śmiertelnej sytuacji, niezależnie od tego, czy atakuje cię antagonista, czy to potwór, czy człowiek, czy stajesz z nim twarzą w twarz z własnej woli, albo musisz zmierzyć się z jakimkolwiek niebezpieczeństwem, które może cię zabić, rzuć 2k6 i dodaj tagi: liczbę odpowiednich pozytywnych lub uniwersalnych tagów (do 3), po czym odejmij liczbę odpowiednich negatywnych lub uniwersalnych tagów (do 2). To ty wybierasz pozytywne tagi, a Wyrocznia wybiera negatywne. Wyższy wynik jest lepszy. Przy sukcesie (7+) coś osiągasz i prawdopodobnie nie umierasz. Walka często sprowadza się do jednego rzutu, gdy dochodzi do fizycznego starcia, albo do jednego rzutu na protagonistę."
+    },
+    {
+      "page": 2,
+      "old": "10 + Choose one.",
+      "new": "10+ Wybierz jedno."
+    },
+    {
+      "page": 2,
+      "old": "O Your experience, and your success at it, affects you for the better. You gain a positive tag, such as a sense of calm , or a sharp eye , or even ( with the Oracle ' s approval ) I know what hurts them . Mark this off.",
+      "new": "O Twoje doświadczenie, a także sam sukces, działa na ciebie korzystnie. Zyskujesz pozytywny tag, taki jak spokój, bystre oko albo nawet (za zgodą Wyroczni) wiem, co ich rani. Skreśl tę opcję."
+    },
+    {
+      "page": 2,
+      "old": "O You find something that gets you out of the situation safely. You gain a positive tag, such as an old camp axe , or a cultist ' s decoder ring , or a truck . Mark this off.",
+      "new": "O Znajdujesz coś, co pozwala ci bezpiecznie wyjść z sytuacji. Zyskujesz pozytywny tag, taki jak stara obozowa siekiera, pierścień dekodujący kultysty albo ciężarówka. Skreśl tę opcję."
+    },
+    {
+      "page": 2,
+      "old": "O You make or reveal a connection with an NPC who helps you out. Gain a wild tag naming them, such as my study partner Szandor , or my childhood bestie Rebecca , or \" Laces ' the hobo . Mark this off.",
+      "new": "O Nawiązujesz albo ujawniasz więź z BN-em, który ci pomaga. Zyskujesz uniwersalny tag nazywający tę postać, taki jak mój partner z zajęć Szandor, moja przyjaciółka z dzieciństwa Rebecca albo włóczęga \"Sznurowadła\". Skreśl tę opcję."
+    },
+    {
+      "page": 2,
+      "old": "You succeed, but barely, at the skin of your teeth. It costs you something. Mark off a positive or wild tag, or a town tag that was invoked on this roll. Recover one of the other three options.",
+      "new": "Odnosisz sukces, ale ledwie, rzutem na taśmę. Coś cię to kosztuje. Skreśl pozytywny lub uniwersalny tag albo tag miasteczka, który został przywołany przy tym rzucie. Odzyskaj jedną z trzech pozostałych opcji."
+    },
+    {
+      "page": 2,
+      "old": "7 -9 Choose one.",
+      "new": "7-9 Wybierz jedno."
+    },
+    {
+      "page": 2,
+      "old": "O Suffer a minor injury -lose a temporary tag you invoked in this scene, or gain a temporary tag, like I smacked my hand , or I ' m feeling dizzy , or I lost my glasses. Mark this off.",
+      "new": "O Odnosisz lekki uraz - tracisz tymczasowy tag przywołany w tej scenie albo zyskujesz tymczasowy tag, taki jak potłuczona ręka, zawroty głowy albo zgubione okulary. Skreśl tę opcję."
+    },
+    {
+      "page": 2,
+      "old": "O Suffer a chronic injury -gain a negative tag, like horrific scar, or missing an ear, or permanent limp . Mark this off.",
+      "new": "O Odnosisz przewlekły uraz - zyskujesz negatywny tag, taki jak potworna blizna, brak ucha albo trwała kulawizna. Skreśl tę opcję."
+    },
+    {
+      "page": 2,
+      "old": "O Suffer a crippling injury -gain a negative tag, like broken leg , or missing eye , or lost a hand. If you don ' t receive medical attention soon, choose an additional result on this list. If you do, replace the negative tag with a wild tag, like uses a sturdy silver -topped cane , or wears a mesmerizing glass eye , or has an artificial hand . Mark this off.",
+      "new": "O Odnosisz wyniszczający uraz - zyskujesz negatywny tag, taki jak złamana noga, brak oka albo utracona dłoń. Jeśli wkrótce nie otrzymasz pomocy medycznej, wybierz dodatkowy wynik z tej listy. Jeśli ją otrzymasz, zastąp ten negatywny tag uniwersalnym tagiem, takim jak używa solidnej laski ze srebrną gałką, nosi hipnotyzujące szklane oko albo ma sztuczną dłoń. Skreśl tę opcję."
+    },
+    {
+      "page": 2,
+      "old": "You manage to escape unscathed, but something in town doesn't. Mark off a town tag you or the Oracle invoked in this scene.",
+      "new": "Udaje ci się ujść bez szwanku, ale czegoś takiego nie można powiedzieć o miasteczku. Skreśl tag miasteczka, który ty albo Wyrocznia przywołaliście w tej scenie."
+    },
+    {
+      "page": 2,
+      "old": "O Die. Work with the Oracle to describe how you die.",
+      "new": "O Umierasz. Ustal z Wyrocznią, jak do tego dochodzi."
+    },
+    {
+      "page": 2,
+      "old": "6 -You gain Foreboding and the Oracle chooses one or more of the following options.",
+      "new": "6- Zyskujesz 1 punkt Złowieszczości, a Wyrocznia wybiera jedną lub więcej z poniższych opcji."
+    },
+    {
+      "page": 2,
+      "old": "Your negative tags that were invoked come into play in a major way.",
+      "new": "Przywołane negatywne tagi odgrywają kluczową rolę."
+    },
+    {
+      "page": 2,
+      "old": "You die. This should only happen in particularly dangerous or foolhardy situations, or in the climax.",
+      "new": "Umierasz. To powinno zdarzać się tylko w szczególnie niebezpiecznych albo skrajnie lekkomyślnych sytuacjach lub w kulminacji."
+    },
+    {
+      "page": 2,
+      "old": "You mark off one or more 7-9 options.",
+      "new": "Skreślasz jedną lub więcej opcji z wyniku 7-9."
+    },
+    {
+      "page": 2,
+      "old": "Other protagonists in the scene need to mark off one or more 7-9 options.",
+      "new": "Inni protagoniści obecni w scenie muszą skreślić jedną lub więcej opcji z wyniku 7-9."
+    },
+    {
+      "page": 2,
+      "old": "You find yourself in a yet more dangerous position.",
+      "new": "Znajdujesz się w jeszcze groźniejszym położeniu."
+    },
+    {
+      "page": 2,
+      "old": "Something truly horrible happens, and you have to Encounter True Horror.",
+      "new": "Dzieje się coś naprawdę strasznego i musisz wykonać ruch Doświadcz Prawdziwej Grozy."
+    },
+    {
+      "page": 2,
+      "old": "Something terrible happens to someone who assisted you.",
+      "new": "Coś okropnego spotyka kogoś, kto ci pomagał."
+    },
+    {
+      "page": 2,
+      "old": "Something bad happens to a town tag that was invoked.",
+      "new": "Coś złego dzieje się z tagiem miasteczka, który został przywołany."
+    },
+    {
+      "page": 2,
+      "old": "An NPC in the scene gets hurt, or worse.",
+      "new": "BN obecny w scenie zostaje ranny albo nawet spotyka go coś gorszego."
+    },
+    {
+      "page": 2,
+      "old": "Something bad happens elsewhere while you're distracted.",
+      "new": "Gdzieś indziej dzieje się coś złego, podczas gdy twoją uwagę odciąga coś innego."
+    },
+    {
+      "page": 2,
+      "old": "Something goes very wrong, and you have to mark off a tag.",
+      "new": "Coś idzie bardzo źle i musisz skreślić tag."
+    },
+    {
+      "page": 2,
+      "old": "Some other devious scenario of the Oracle's invention.",
+      "new": "Jakiś inny podstępny scenariusz wymyślony przez Wyrocznię."
+    },
+    {
+      "page": 3,
+      "old": "Encounter True Horror",
+      "new": "Doświadcz Prawdziwej Grozy"
+    },
+    {
+      "page": 3,
+      "old": "Whenever you are in a truly horrifying situation - you see a creature that science tells you shouldn't exist, or learn something that defies your understanding of reality, or encounter a scene of terror beyond anything most people will ever see, or otherwise encounter true horror, roll 2 d 6 and add your horror - there's no limit to how much. Rolling lower is safer. After your roll, whatever the result, gain a horror.",
+      "new": "Kiedykolwiek znajdujesz się w naprawdę przerażającej sytuacji - widzisz stworzenie, które według nauki nie powinno istnieć, dowiadujesz się czegoś, co wymyka się twojemu rozumieniu rzeczywistości, trafiasz na scenę grozy przekraczającą wszystko, co większość ludzi kiedykolwiek zobaczy, albo w inny sposób doświadczasz prawdziwej grozy - rzuć 2k6 i dodaj swoją Grozę; tutaj nie ma żadnego limitu. Niższy wynik jest bezpieczniejszy. Po rzucie, niezależnie od wyniku, zyskujesz 1 punkt Grozy."
+    },
+    {
+      "page": 3,
+      "old": "13 + Choose one of the following.",
+      "new": "13+ Wybierz jedno z poniższych."
+    },
+    {
+      "page": 3,
+      "old": "O You lose yourself in the horror. Perhaps you find something compelling in it and switch allegiances, or perhaps you retreat into your mind and never leave the fetal position again, or perhaps you retreat to your room to write a mysterious tome for the rest of your life. You ( r character ) almost certainly becomes an NPC. Mark this off.",
+      "new": "O Zatracasz się w grozie. Może odnajdujesz w niej coś pociągającego i zmieniasz stronę, może zamykasz się we własnym umyśle i już nigdy nie opuszczasz pozycji embrionalnej, a może wracasz do swojego pokoju, by do końca życia pisać tajemniczą księgę. Twoja postać niemal na pewno staje się BN-em. Skreśl tę opcję."
+    },
+    {
+      "page": 3,
+      "old": "You're barely holding on. Mark off a positive tag or a town tag. Perhaps you're too traumatized to use a particular skill again, or perhaps later tonight you sleepwalk and burn down the town mall, or perhaps you lash out and break your favorite tool in the process.",
+      "new": "Ledwie się trzymasz. Skreśl pozytywny tag albo tag miasteczka. Może trauma jest zbyt silna, by znów użyć danej umiejętności, może tej nocy lunatykujesz i podpalasz centrum handlowe, a może w przypływie szału niszczysz swoje ulubione narzędzie."
+    },
+    {
+      "page": 3,
+      "old": "10 -12 Choose one of the following.",
+      "new": "10-12 Wybierz jedno z poniższych."
+    },
+    {
+      "page": 3,
+      "old": "O You take foolish or selfish action, endangering yourself and / or the people around you. Perhaps you rush at a monster you have no hope of defeating, or perhaps you read the spell you just discovered aloud from the tome before anyone can stop you, or perhaps you attempt to flee in a way that makes it harder for your allies to follow. Mark this off.",
+      "new": "O Podejmujesz głupie albo samolubne działanie, narażając siebie i/lub ludzi wokół. Może rzucasz się na potwora, którego nie masz szans pokonać, może czytasz na głos właśnie odkryte zaklęcie z księgi, zanim ktokolwiek zdąży cię powstrzymać, a może próbujesz uciec w sposób, który utrudnia twoim sojusznikom pójście za tobą. Skreśl tę opcję."
+    },
+    {
+      "page": 3,
+      "old": "O You experience the sudden shock to your system in a way that permanently alters your sense of self. Gain a wild tag, like prophetic nightmares , or foolhardy bravery , or obsessive paranoia . Mark this off.",
+      "new": "O Przeżywasz ten nagły wstrząs w sposób, który trwale zmienia twoje poczucie własnego \"ja\". Zyskujesz uniwersalny tag, taki jak prorocze koszmary, brawura granicząca z głupotą albo obsesyjna paranoja. Skreśl tę opcję."
+    },
+    {
+      "page": 3,
+      "old": "Your experiences are wearing on you. Gain a negative tag, like pareidolia (seeing patterns that aren't there) , or losing moments of time , or another trauma symptom or mental illness that you as the player want to explore with your character, and which your fellow players and the Oracle are comfortable with having in the game. Recover the other two options.",
+      "new": "Twoje doświadczenia odciskają na tobie piętno. Zyskujesz negatywny tag, taki jak pareidolia (dostrzeganie wzorów tam, gdzie ich nie ma), utrata poczucia czasu albo inny objaw traumy czy choroba psychiczna, którą chcesz eksplorować poprzez swoją postać i z którą twoi współgracze oraz Wyrocznia czują się komfortowo w tej grze. Odzyskaj dwie pozostałe opcje."
+    },
+    {
+      "page": 3,
+      "old": "7 -9 Choose one of the following.",
+      "new": "7-9 Wybierz jedno z poniższych."
+    },
+    {
+      "page": 3,
+      "old": "O You notice something useful in the fear, and gain a clue. Perhaps you spot a potential weakness in the creature that just surprised you, or notice a useful detail in the instructions for the spell in the tome you just read, or piece together a pattern you hadn ' t noticed before. Ask a question about what you've encountered and mark this off.",
+      "new": "O Dostrzegasz w strachu coś użytecznego i zyskujesz wskazówkę. Może zauważasz potencjalną słabość stworzenia, które właśnie cię zaskoczyło, dostrzegasz użyteczny detal w instrukcjach zaklęcia z przeczytanej właśnie księgi albo składasz w całość wzór, który wcześniej umykał twojej uwadze. Zadaj pytanie na temat tego, czego właśnie doświadczasz, i skreśl tę opcję."
+    },
+    {
+      "page": 3,
+      "old": "O You spot an opportunity, and put either yourself or someone else in danger to take advantage of it. Perhaps the spell will require a sacrifice, and you don ' t tell one of your fellow casters that, or perhaps you can leap in between your allies and the creature to aid their escape, or perhaps you knock one of them down to aid your own. Mark this off.",
+      "new": "O Widzisz okazję i narażasz siebie albo kogoś innego, by ją wykorzystać. Może zaklęcie będzie wymagało ofiary, a ty nie mówisz o tym jednemu z pozostałych rzucających, może wskakujesz między swoich sojuszników a stworzenie, by umożliwić im ucieczkę, albo przewracasz jednego z nich, żeby samemu łatwiej uciec. Skreśl tę opcję."
+    },
+    {
+      "page": 3,
+      "old": "Your trauma is starting to pile up. Gain an additional horror. Recover the other two options.",
+      "new": "Twoja trauma zaczyna się nawarstwiać. Zyskujesz dodatkowy 1 punkt Grozy. Odzyskaj dwie pozostałe opcje."
+    },
+    {
+      "page": 3,
+      "old": "6 -You gain foreboding, and aside from becoming slightly more horrified, nothing else bad happens - yet.",
+      "new": "6- Zyskujesz 1 punkt Złowieszczości i poza tym, że ogarnia cię jeszcze większy lęk, na razie nie dzieje się nic więcej."
+    },
+    {
+      "page": 4,
+      "old": "Revelations",
+      "new": "Objawienia"
+    },
+    {
+      "page": 4,
+      "old": "Whenever you have 3 or more Horror, Humanity, or Foreboding, you can make a Revelation. This lets you create a short scene - perhaps a flashback, perhaps an aside, or perhaps something more major - where you choose some way to affect your protagonist's character arc or the evolution of the setting, with no dice involved.",
+      "new": "Kiedykolwiek masz 3 lub więcej punktów Grozy, Człowieczeństwa albo Złowieszczości, możesz dokonać Objawienia. Pozwala ci to stworzyć krótką scenę - może retrospekcję, może dygresję, a może coś ważniejszego - w której wybierasz sposób wpływu na łuk fabularny swojej postaci albo na ewolucję realiów gry, bez wykonywania żadnego rzutu."
+    },
+    {
+      "page": 4,
+      "old": "Reveal Something About the World",
+      "new": "Ujawnij coś o świecie"
+    },
+    {
+      "page": 4,
+      "old": "Spend three foreboding to gain one of the following effects.",
+      "new": "Wydaj 3 punkty Złowieszczości, aby uzyskać jeden z poniższych efektów."
+    },
+    {
+      "page": 4,
+      "old": "There ' s a new landmark, organization, or prominent player in town. Who or what is it? A biker gang that just rode into town, a new bookstore that opened on Main Street, a famous scientist who just joined the university? The town gains a tag naming them or it.",
+      "new": "W miasteczku pojawia się nowy punkt orientacyjny, organizacja albo ważny gracz. Kto lub co to jest? Gang motocyklowy, który właśnie wjechał do miasteczka, nowa księgarnia otwarta przy głównej ulicy, słynny naukowiec, który właśnie dołączył do uniwersytetu? Miasteczko zyskuje tag miasteczka nazywający tę osobę albo to miejsce."
+    },
+    {
+      "page": 4,
+      "old": "Someone you know comes to town. Who are they? A cousin from the country, a colleague returning from an expedition, a touring musician you grew up with? What is your relationship like? Gain a wild tag naming them.",
+      "new": "Ktoś, kogo znasz, przyjeżdża do miasteczka. Kto to jest? Kuzyn ze wsi, kolega wracający z ekspedycji, koncertujący muzyk z dawnych lat? Jak wygląda wasza relacja? Zyskujesz uniwersalny tag nazywający tę osobę."
+    },
+    {
+      "page": 4,
+      "old": "Some new and interesting item arrives on the scene. What is it? A rare tome at the University library, a strange statue at the art gallery, a mysterious machine in a warehouse by the docks? If you can manage to gain possession of the item, gain a wild tag naming it.",
+      "new": "W scenie pojawia się nowy i interesujący przedmiot. Co to jest? Rzadka księga w bibliotece uniwersyteckiej, dziwny posąg w galerii sztuki, tajemnicza maszyna w magazynie przy dokach? Jeśli zdołasz wejść w posiadanie tego przedmiotu, zyskujesz uniwersalny tag nazywający go."
+    },
+    {
+      "page": 4,
+      "old": "Let the Horror Sink In",
+      "new": "Pozwól Grozie Wsiąknąć"
+    },
+    {
+      "page": 4,
+      "old": "Spend three horror and gain one of the following effects.",
+      "new": "Wydaj 3 punkty Grozy i uzyskaj jeden z poniższych efektów."
+    },
+    {
+      "page": 4,
+      "old": "O You can no longer rely on something you used to depend on. What was it? How will you still make partial use of it, or its replacement, going forward? Mark off a positive tag. Gain a related wild tag. Mark this off.",
+      "new": "O Nie możesz już polegać na czymś, od czego dawniej zależało twoje poczucie bezpieczeństwa. Co to było? Jak nadal będziesz częściowo z tego korzystać albo z jego zamiennika? Skreśl pozytywny tag. Zyskaj powiązany z nim uniwersalny tag. Skreśl tę opcję."
+    },
+    {
+      "page": 4,
+      "old": "O Your experiences leave you shaken and with new problems. What are they? Gain a negative tag. Mark this off.",
+      "new": "O Twoje doświadczenia zostawiają po sobie wstrząs i nowe problemy. Jakie? Zyskujesz negatywny tag. Skreśl tę opcję."
+    },
+    {
+      "page": 4,
+      "old": "Your experiences are making you lose part of yourself. Which part, and why? Mark off a positive tag. Recover the other two options.",
+      "new": "Twoje doświadczenia sprawiają, że tracisz część siebie. Którą i dlaczego? Skreśl pozytywny tag. Odzyskaj dwie pozostałe opcje."
+    },
+    {
+      "page": 4,
+      "old": "Reveal Something About Yourself",
+      "new": "Ujawnij coś o sobie"
+    },
+    {
+      "page": 4,
+      "old": "Spend three humanity to gain one of the following effects",
+      "new": "Wydaj 3 punkty Człowieczeństwa, aby uzyskać jeden z poniższych efektów."
+    },
+    {
+      "page": 4,
+      "old": "O You heal from your wounds. How do you do so? Emergency surgery in a hospital, convalescing at home, black market opiates? Recover a marked off option on Face Peril . Mark this off.",
+      "new": "O Leczysz swoje rany. Jak to robisz? Operacja ratunkowa w szpitalu, rekonwalescencja w domu, opioidy z czarnego rynku? Odzyskaj skreśloną opcję ruchu Staw Czoła Niebezpieczeństwu. Skreśl tę opcję."
+    },
+    {
+      "page": 4,
+      "old": "We see an aspect of your character we haven't seen before, either because it was just revealed or because it's brand new. What is it? A flashback, a training montage, a shopping spree? Gain a positive tag representing it.",
+      "new": "Widzimy aspekt twojej postaci, którego wcześniej nie znaliśmy, bo właśnie został ujawniony albo jest zupełnie nowy. Co to jest? Retrospekcja, montaż treningowy, zakupowy szał? Zyskujesz pozytywny tag, który to reprezentuje."
+    },
+    {
+      "page": 4,
+      "old": "You ' re working on overcoming your weaknesses. Which one are you currently working on, and how are you improving? Get a cane to help with your chronic limp, go to therapy to rein in your neuroses, pay off a debt? Mark off a negative tag, and gain a related wild tag.",
+      "new": "Pracujesz nad przezwyciężeniem swoich słabości. Nad którą właśnie pracujesz i jak się poprawiasz? Zdobywasz laskę, by pomóc sobie z przewlekłą kulawizną, idziesz na terapię, by zapanować nad nerwicą, spłacasz dług? Skreśl negatywny tag i zyskaj powiązany z nim uniwersalny tag."
+    },
+    {
+      "page": 4,
+      "old": "You're feeling more connected to one of your fellow protagonists. Which one, and why? Gain a bond with them.",
+      "new": "Czujesz się bardziej związany z jednym z pozostałych protagonistów. Z którym i dlaczego? Zyskujesz więź z tą postacią."
+    },
+    {
+      "page": 4,
+      "old": "For the rules for character and setting creation, bonds, the Epilogue move, rules for assisting other characters, optional moves, themebooks, guides to creating your own moves and themebooks, all of the GM tools, and much more, check out the full book, on DriveThruRPG now!",
+      "new": "Po zasady tworzenia postaci i realiów gry, więzi, ruchu Epilog, zasad pomagania innym postaciom, ruchów opcjonalnych, ksiąg tematów, porad dotyczących tworzenia własnych ruchów i ksiąg tematów, wszystkich narzędzi dla MG i wielu innych rzeczy zajrzyj do pełnej książki, dostępnej już teraz na DriveThruRPG!"
+    }
+  ]
+}
