@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { sequenceRng } from "../src/engine/dice.js";
 import { createState, penaltyFor } from "../src/engine/state.js";
-import { applyDamage, applySanLoss, resolveBout, sanityCheck, SYSTEM_ENTRIES } from "../src/engine/rules.js";
+import { applyDamage, applySanLoss, resolveBout, sanityCheck, resetDay, SYSTEM_ENTRIES } from "../src/engine/rules.js";
 
 const characters = JSON.parse(readFileSync(new URL("../data/characters.json", import.meta.url)));
 const fresh = () => createState(characters.charlie, { rng: sequenceRng([0.5, 0.5, 0.5]) }); // Luck 60
@@ -103,4 +103,21 @@ test("rzut Sanity 1/1D6: porażka losuje z 1D6", () => {
   const out = sanityCheck(fresh(), characters.charlie, sequenceRng([0.0, 0.9, 0.5]), "1/1d6");
   assert.equal(out.lost, 4);
   assert.equal(out.state.san, 56);
+});
+
+test("nowy dzień zeruje licznik Sanity utraconej w ciągu doby", () => {
+  let state = applySanLoss(fresh(), 4, characters.charlie, sequenceRng([])).state;
+  assert.equal(state.sanLostToday, 4);
+  state = resetDay(state);
+  assert.equal(state.sanLostToday, 0);
+  assert.equal(state.san, 56, "reset dnia nie odzyskuje utraconej Sanity");
+});
+
+test("po resecie dnia próg indefinite insanity liczy się od nowa", () => {
+  // Charlie ma SAN 60, jedna piąta to 12.
+  let state = fresh();
+  for (const loss of [5, 5]) state = applySanLoss(state, loss, characters.charlie, sequenceRng([])).state;
+  state = resetDay(state);
+  const out = applySanLoss(state, 5, characters.charlie, sequenceRng([]));
+  assert.equal(out.redirect, null, "10 punktów sprzed resetu nie liczy się do progu");
 });

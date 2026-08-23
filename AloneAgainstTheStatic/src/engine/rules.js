@@ -45,6 +45,12 @@ export function applySanLoss(state, amount, character, rng) {
   return { state: next, redirect: null };
 }
 
+// Nowy dzień w scenariuszu zeruje licznik Sanity utraconej w ciągu doby.
+// Próg indefinite insanity (328) liczy się w obrębie jednego dnia.
+export function resetDay(state) {
+  return { ...state, sanLostToday: 0 };
+}
+
 // Paragraf 329. Nieudany rzut INT oznacza, że umysł zamyka się na grozę.
 export function resolveBout(state, character, rng) {
   const check = skillCheck(rng, skillValue(state, character, "INT"));
