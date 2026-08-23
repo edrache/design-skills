@@ -1530,7 +1530,7 @@ git commit -m "Ekstrakcja paragrafów z PDF przez PyMuPDF"
 
 **Interfaces:**
 - Consumes: `tools/raw-entries.json`
-- Produces: `story.json` w kształcie `{extracted: [1, 30], start: 1, entries: {...}}` zgodnym z fixture z zadania 4; `text.en.json` w kształcie `{"e1.p1": "…"}`
+- Produces: `story.json` w kształcie `{extracted: [1, 30], start: 1, starts: {alex: 1, charlie: 2}, entries: {...}}` zgodnym z fixture z zadania 4 i obsługującym oba początki postaci; `text.en.json` w kształcie `{"e1.p1": "…"}`
 
 - [ ] **Step 1: Napisz konwerter**
 
@@ -1622,7 +1622,7 @@ for (let id = RANGE[0]; id <= RANGE[1]; id += 1) {
   entries[id] = entry;
 }
 
-const story = { extracted: RANGE, start: 1, entries };
+const story = { extracted: RANGE, start: 1, starts: { alex: 1, charlie: 2 }, entries };
 const dir = new URL("../data/", import.meta.url);
 writeFileSync(new URL("story.json", dir), JSON.stringify(story, null, 2) + "\n");
 writeFileSync(new URL("text.en.json", dir), JSON.stringify(texts, null, 2) + "\n");
@@ -2356,7 +2356,8 @@ function startGame(characterId) {
   history.length = 0;
   clearJournal(dom.journal);
   showScreen("game");
-  advance(enter(ctx, createState(character, { rng: Math.random }), story.start));
+  const start = story.starts?.[character.id] ?? story.start;
+  advance(enter(ctx, createState(character, { rng: Math.random }), start));
 }
 
 function renderCharacterChoice() {
@@ -2577,7 +2578,8 @@ function startGame(characterId) {
   history.length = 0;
   clearJournal(dom.journal);
   showScreen("game");
-  advance(enter(ctx, createState(character, { rng: Math.random }), story.start));
+  const start = story.starts?.[character.id] ?? story.start;
+  advance(enter(ctx, createState(character, { rng: Math.random }), start));
 }
 ```
 

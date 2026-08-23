@@ -1,0 +1,751 @@
+{
+  "extracted": [
+    1,
+    30
+  ],
+  "start": 1,
+  "starts": {
+    "alex": 1,
+    "charlie": 2
+  },
+  "entries": {
+    "1": {
+      "id": 1,
+      "scene": "drive",
+      "text": [
+        "e1.p1",
+        "e1.p2",
+        "e1.p3"
+      ],
+      "from": [],
+      "on": [
+        {
+          "flag": "alex"
+        }
+      ],
+      "choices": [
+        {
+          "text": "e1.c1",
+          "goto": 7
+        },
+        {
+          "text": "e1.c2",
+          "goto": 3
+        }
+      ]
+    },
+    "2": {
+      "id": 2,
+      "scene": "drive",
+      "text": [
+        "e2.p1",
+        "e2.p2",
+        "e2.p3"
+      ],
+      "from": [],
+      "on": [
+        {
+          "flag": "charlie"
+        }
+      ],
+      "choices": [
+        {
+          "text": "e2.c1",
+          "goto": 83
+        },
+        {
+          "text": "e2.c2",
+          "goto": 96
+        }
+      ]
+    },
+    "3": {
+      "id": 3,
+      "scene": "drive",
+      "text": [
+        "e3.p1",
+        "e3.p2",
+        "e3.p3",
+        "e3.p4",
+        "e3.p5"
+      ],
+      "from": [
+        1
+      ],
+      "on": [
+        {
+          "roll": "Psychology",
+          "onSuccess": {
+            "goto": 4
+          },
+          "onFail": {
+            "goto": 8
+          }
+        }
+      ]
+    },
+    "4": {
+      "id": 4,
+      "scene": "drive",
+      "text": [
+        "e4.p1",
+        "e4.p2"
+      ],
+      "from": [
+        3,
+        7
+      ],
+      "on": [
+        {
+          "goto": 5
+        }
+      ]
+    },
+    "5": {
+      "id": 5,
+      "scene": "arrival",
+      "text": [
+        "e5.p1",
+        "e5.p2",
+        "e5.p3"
+      ],
+      "from": [
+        4,
+        8
+      ],
+      "on": [
+        {
+          "roll": "CON",
+          "onFail": [
+            {
+              "flag": "touched_by_cold"
+            }
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "text": "e5.c1",
+          "goto": 6
+        },
+        {
+          "text": "e5.c2",
+          "goto": 12
+        }
+      ]
+    },
+    "6": {
+      "id": 6,
+      "scene": "arrival",
+      "text": [
+        "e6.p1",
+        "e6.p2"
+      ],
+      "from": [
+        5
+      ],
+      "on": [
+        {
+          "goto": 11
+        }
+      ]
+    },
+    "7": {
+      "id": 7,
+      "scene": "drive",
+      "text": [
+        "e7.p1",
+        "e7.p2",
+        "e7.p3"
+      ],
+      "from": [
+        1
+      ],
+      "on": [
+        {
+          "roll": "Psychology",
+          "onSuccess": {
+            "goto": 4
+          },
+          "onFail": {
+            "goto": 8
+          }
+        }
+      ]
+    },
+    "8": {
+      "id": 8,
+      "scene": "drive",
+      "text": [
+        "e8.p1",
+        "e8.p2"
+      ],
+      "from": [
+        3,
+        7
+      ],
+      "on": [
+        {
+          "goto": 5
+        }
+      ]
+    },
+    "9": {
+      "id": 9,
+      "scene": "clearing",
+      "text": [
+        "e9.p1",
+        "e9.p2",
+        "e9.p3"
+      ],
+      "from": [
+        355
+      ],
+      "guards": [
+        {
+          "if": [
+            "temporal_steel",
+            {
+              "not": "knife_to_a_gun_fight"
+            }
+          ],
+          "goto": 363
+        }
+      ],
+      "choices": [
+        {
+          "text": "e9.c1",
+          "goto": 27
+        },
+        {
+          "text": "e9.c2",
+          "goto": 134
+        }
+      ]
+    },
+    "10": {
+      "id": 10,
+      "scene": "clearing",
+      "text": [
+        "e10.p1"
+      ],
+      "from": [
+        280,
+        351
+      ],
+      "on": [
+        {
+          "roll": "DEX",
+          "onSuccess": {
+            "goto": 360
+          },
+          "onFail": {
+            "goto": 359
+          }
+        }
+      ]
+    },
+    "11": {
+      "id": 11,
+      "scene": "cabin",
+      "text": [
+        "e11.p1",
+        "e11.p2",
+        "e11.p3",
+        "e11.p4"
+      ],
+      "from": [
+        6,
+        12
+      ],
+      "choices": [
+        {
+          "text": "e11.c1",
+          "goto": 13
+        },
+        {
+          "text": "e11.c2",
+          "goto": 16
+        }
+      ]
+    },
+    "12": {
+      "id": 12,
+      "scene": "arrival",
+      "text": [
+        "e12.p1",
+        "e12.p2"
+      ],
+      "from": [
+        5
+      ],
+      "on": [
+        {
+          "goto": 11
+        }
+      ]
+    },
+    "13": {
+      "id": 13,
+      "scene": "cabin",
+      "text": [
+        "e13.p1",
+        "e13.p2",
+        "e13.p3",
+        "e13.p4",
+        "e13.p5"
+      ],
+      "from": [
+        11
+      ],
+      "choices": [
+        {
+          "text": "e13.c1",
+          "goto": 14
+        },
+        {
+          "text": "e13.c2",
+          "goto": 17
+        }
+      ]
+    },
+    "14": {
+      "id": 14,
+      "scene": "cabin",
+      "text": [
+        "e14.p1",
+        "e14.p2",
+        "e14.p3"
+      ],
+      "from": [
+        13,
+        16
+      ],
+      "choices": [
+        {
+          "text": "e14.c1",
+          "goto": 18
+        },
+        {
+          "text": "e14.c2",
+          "goto": 15
+        }
+      ]
+    },
+    "15": {
+      "id": 15,
+      "scene": "cabin",
+      "text": [
+        "e15.p1",
+        "e15.p2",
+        "e15.p3"
+      ],
+      "from": [
+        14,
+        17
+      ],
+      "choices": [
+        {
+          "text": "e15.c1",
+          "goto": 19
+        },
+        {
+          "text": "e15.c2",
+          "goto": 25
+        }
+      ]
+    },
+    "16": {
+      "id": 16,
+      "scene": "cabin",
+      "text": [
+        "e16.p1",
+        "e16.p2",
+        "e16.p3"
+      ],
+      "from": [
+        11
+      ],
+      "choices": [
+        {
+          "text": "e16.c1",
+          "goto": 14
+        },
+        {
+          "text": "e16.c2",
+          "goto": 17
+        }
+      ]
+    },
+    "17": {
+      "id": 17,
+      "scene": "cabin",
+      "text": [
+        "e17.p1",
+        "e17.p2",
+        "e17.p3"
+      ],
+      "from": [
+        13,
+        16
+      ],
+      "on": [
+        {
+          "flag": "broken_heart"
+        }
+      ],
+      "choices": [
+        {
+          "text": "e17.c1",
+          "goto": 18
+        },
+        {
+          "text": "e17.c2",
+          "goto": 15
+        }
+      ]
+    },
+    "18": {
+      "id": 18,
+      "scene": "cabin",
+      "text": [
+        "e18.p1",
+        "e18.p2",
+        "e18.p3",
+        "e18.p4"
+      ],
+      "from": [
+        14,
+        17
+      ],
+      "choices": [
+        {
+          "text": "e18.c1",
+          "goto": 19
+        },
+        {
+          "text": "e18.c2",
+          "goto": 25
+        }
+      ]
+    },
+    "19": {
+      "id": 19,
+      "scene": "cabin",
+      "text": [
+        "e19.p1",
+        "e19.p2",
+        "e19.p3",
+        "e19.p4",
+        "e19.p5"
+      ],
+      "from": [
+        15,
+        18
+      ],
+      "on": [
+        {
+          "roll": "Spot Hidden",
+          "onSuccess": {
+            "goto": 26
+          },
+          "onFail": {
+            "goto": 20
+          }
+        }
+      ]
+    },
+    "20": {
+      "id": 20,
+      "scene": "cabin",
+      "text": [
+        "e20.p1",
+        "e20.p2",
+        "e20.p3",
+        "e20.p4",
+        "e20.p5",
+        "e20.p6"
+      ],
+      "from": [
+        19,
+        25
+      ],
+      "choices": [
+        {
+          "text": "e20.c1",
+          "goto": 28
+        },
+        {
+          "text": "e20.c2",
+          "goto": 21
+        }
+      ]
+    },
+    "21": {
+      "id": 21,
+      "scene": "cabin",
+      "text": [
+        "e21.p1",
+        "e21.p2",
+        "e21.p3",
+        "e21.p4",
+        "e21.p5"
+      ],
+      "from": [
+        20,
+        26
+      ],
+      "on": [
+        {
+          "flag": "occupied"
+        },
+        {
+          "goto": 22
+        }
+      ]
+    },
+    "22": {
+      "id": 22,
+      "scene": "cabin",
+      "text": [
+        "e22.p1",
+        "e22.p2",
+        "e22.p3",
+        "e22.p4",
+        "e22.p5",
+        "e22.p6",
+        "e22.p7",
+        "e22.p8"
+      ],
+      "from": [
+        21,
+        28
+      ],
+      "on": [
+        {
+          "roll": "Sanity",
+          "onFail": [
+            {
+              "flag": "unsettled"
+            },
+            {
+              "san": "1"
+            }
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "text": "e22.c1",
+          "goto": 29
+        },
+        {
+          "text": "e22.c2",
+          "goto": 23
+        }
+      ]
+    },
+    "23": {
+      "id": 23,
+      "scene": "cabin",
+      "text": [
+        "e23.p1",
+        "e23.p2",
+        "e23.p3",
+        "e23.p4",
+        "e23.p5",
+        "e23.p6"
+      ],
+      "from": [
+        22,
+        28
+      ],
+      "guards": [
+        {
+          "if": "broken_heart",
+          "goto": 24
+        }
+      ],
+      "choices": [
+        {
+          "text": "e23.c1",
+          "goto": 24
+        },
+        {
+          "text": "e23.c2",
+          "goto": 30
+        }
+      ]
+    },
+    "24": {
+      "id": 24,
+      "scene": "cabin",
+      "text": [
+        "e24.p1",
+        "e24.p2",
+        "e24.p3",
+        "e24.p4",
+        "e24.p5",
+        "e24.p6"
+      ],
+      "from": [
+        23,
+        29
+      ],
+      "on": [
+        {
+          "flag": "blame_game"
+        },
+        {
+          "goto": 31
+        }
+      ]
+    },
+    "25": {
+      "id": 25,
+      "scene": "cabin",
+      "text": [
+        "e25.p1",
+        "e25.p2",
+        "e25.p3",
+        "e25.p4",
+        "e25.p5"
+      ],
+      "from": [
+        15,
+        18
+      ],
+      "on": [
+        {
+          "roll": "Spot Hidden",
+          "onSuccess": {
+            "goto": 26
+          },
+          "onFail": {
+            "goto": 20
+          }
+        }
+      ]
+    },
+    "26": {
+      "id": 26,
+      "scene": "cabin",
+      "text": [
+        "e26.p1",
+        "e26.p2",
+        "e26.p3",
+        "e26.p4",
+        "e26.p5"
+      ],
+      "from": [
+        19,
+        25
+      ],
+      "on": [
+        {
+          "flag": "the_flowers_in_the_stream"
+        }
+      ],
+      "choices": [
+        {
+          "text": "e26.c1",
+          "goto": 21
+        },
+        {
+          "text": "e26.c2",
+          "goto": 28
+        }
+      ]
+    },
+    "27": {
+      "id": 27,
+      "scene": "clearing",
+      "text": [
+        "e27.p1",
+        "e27.p2",
+        "e27.p3",
+        "e27.p4",
+        "e27.p5",
+        "e27.p6"
+      ],
+      "from": [
+        9,
+        363
+      ],
+      "on": [
+        {
+          "goto": 354
+        }
+      ]
+    },
+    "28": {
+      "id": 28,
+      "scene": "cabin",
+      "text": [
+        "e28.p1",
+        "e28.p2"
+      ],
+      "from": [
+        20,
+        26
+      ],
+      "on": [
+        {
+          "goto": 22
+        }
+      ]
+    },
+    "29": {
+      "id": 29,
+      "scene": "cabin",
+      "text": [
+        "e29.p1",
+        "e29.p2",
+        "e29.p3",
+        "e29.p4",
+        "e29.p5",
+        "e29.p6",
+        "e29.p7"
+      ],
+      "from": [
+        22
+      ],
+      "guards": [
+        {
+          "if": "broken_heart",
+          "goto": 24
+        }
+      ],
+      "choices": [
+        {
+          "text": "e29.c1",
+          "goto": 24
+        },
+        {
+          "text": "e29.c2",
+          "goto": 30
+        }
+      ]
+    },
+    "30": {
+      "id": 30,
+      "scene": "cabin",
+      "text": [
+        "e30.p1",
+        "e30.p2",
+        "e30.p3",
+        "e30.p4",
+        "e30.p5"
+      ],
+      "from": [
+        23,
+        29
+      ],
+      "on": [
+        {
+          "goto": 31
+        }
+      ]
+    }
+  }
+}
