@@ -155,3 +155,26 @@ test("przejście poza wyekstrahowany zakres daje zdarzenie missing", () => {
   assert.deepEqual(kinds(frame), ["missing"]);
   assert.equal(frame.events[0].entryId, 200);
 });
+
+test("nie można wydać Luck na nieudanym rzucie Luck", () => {
+  const ctx = ctxWith([0.0, 0.9]); // rzut 90 przy Luck 60 - porażka
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const frame = enter(ctx, state, 12);
+  assert.equal(frame.pending.type, "choices", "silnik nie proponuje decyzji");
+  assert.equal(hasFlag(frame.state, "unlucky"), true);
+  assert.equal(frame.state.luck, 60, "punkty Luck nie zostały wydane");
+});
+
+test("paragraf bez wyborów i bez końca zgłasza czytelny błąd danych", () => {
+  const broken = { ...story, entries: { ...story.entries, 13: { id: 13, text: ["e13.p1"] } } };
+  const ctx = { story: broken, character, rng: sequenceRng([]) };
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  assert.throws(() => enter(ctx, state, 13), /Paragraf 13/);
+});
+
+test("wybór spoza zakresu zgłasza czytelny błąd", () => {
+  const ctx = ctxWith([]);
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const frame = enter(ctx, state, 1);
+  assert.throws(() => resume(ctx, frame, { type: "choose", index: 9 }), /nie ma wyboru/);
+});

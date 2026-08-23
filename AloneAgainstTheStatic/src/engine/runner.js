@@ -142,11 +142,13 @@ function runSteps(ctx, frame) {
 
       // Wydanie Luck jest dostępne przy każdym nieudanym rzucie, na który gracza
       // stać — niezależnie od tego, czy paragraf oferuje przepchnięcie — z wyjątkiem
-      // rzutów na Sanity. Koszt liczymy od progu wymaganego przez difficulty, nie od
-      // pełnej umiejętności, bo przy Hard/Extreme dałoby to zaniżony albo ujemny koszt.
+      // rzutów na Sanity (nie ratuje samej siebie) i na Luck (nie można ratować
+      // rzutu Luck wydaniem punktów Luck). Koszt liczymy od progu wymaganego przez
+      // difficulty, nie od pełnej umiejętności, bo przy Hard/Extreme dałoby to
+      // zaniżony albo ujemny koszt.
       const threshold = requiredThreshold(target, step.difficulty ?? "regular");
       const luckCost = check.result - threshold;
-      const canLuck = step.roll !== "Sanity" && state.luck >= luckCost && luckCost > 0;
+      const canLuck = step.roll !== "Sanity" && step.roll !== "Luck" && state.luck >= luckCost && luckCost > 0;
       const pendingDecision = {
         type: "rollDecision",
         roll: check,
@@ -236,13 +238,17 @@ function finish(ctx, state, entryId, events) {
     used: Boolean(choice.once) && isChoiceUsed(state, entryId, index),
     blocked: choice.if ? !guardMatches(state, choice.if) : false,
   }));
+  if (options.length === 0) {
+    throw new Error(`Paragraf ${entryId} nie ma ani wyborów, ani znacznika końca — błąd w danych`);
+  }
   events.push({ kind: "choices", options });
   return frameOf(state, entryId, events, { type: "choices", options }, 0);
 }
 
 export function resume(ctx, frame, action) {
   if (action.type === "choose") {
-    const option = frame.pending.options[action.index];
+    const option = frame.pending?.options?.[action.index];
+    if (!option) throw new Error(`Paragraf ${frame.entryId} nie ma wyboru o numerze ${action.index}`);
     if (option.used || option.blocked) throw new Error(`Wybór ${action.index} jest niedostępny`);
     const state = option.used ? frame.state : useChoice(frame.state, frame.entryId, action.index);
     return continueAt(ctx, state, [], option.goto);

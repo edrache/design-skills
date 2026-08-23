@@ -1,5 +1,5 @@
 {
-  "extracted": [1, 11],
+  "extracted": [1, 12],
   "start": 1,
   "entries": {
     "1": {
@@ -44,6 +44,7 @@
     "9": { "id": 9, "text": ["e9.p1"], "guards": [{ "if": ["touched_by_cold", { "visits": 1 }], "goto": 6 }], "choices": [{ "text": "e9.c1", "goto": 7 }] },
     "10": { "id": 10, "text": ["e10.p1"], "end": true },
     "11": { "id": 11, "text": ["e11.p1"], "on": [{ "san": "6" }], "choices": [{ "text": "e11.c1", "goto": 7 }] },
+    "12": { "id": 12, "text": ["e12.p1"], "on": [{ "roll": "Luck", "onFail": [{ "flag": "unlucky" }] }], "choices": [{ "text": "e12.c1", "goto": 7 }] },
     "324": { "id": 324, "text": ["e324.p1"], "end": true },
     "325": { "id": 325, "text": ["e325.p1"], "on": [{ "goto": "@return" }] },
     "329": { "id": 329, "text": ["e329.p1"], "on": [{ "bout": true }] },
