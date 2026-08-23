@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { successLevel, meetsDifficulty } from "../src/engine/dice.js";
+import { successLevel, meetsDifficulty, rollD100, skillCheck, sequenceRng, rollDice } from "../src/engine/dice.js";
 
 test("poziomy sukcesu przy umiejętności 60", () => {
   assert.equal(successLevel(1, 60), "critical");
@@ -27,8 +27,6 @@ test("wymagany poziom trudności", () => {
   assert.equal(meetsDifficulty("fail", "regular"), false);
   assert.equal(meetsDifficulty("fumble", "regular"), false);
 });
-
-import { rollD100, skillCheck, sequenceRng, rollDice } from "../src/engine/dice.js";
 
 test("sequenceRng oddaje wartości po kolei", () => {
   const rng = sequenceRng([0.0, 0.55, 0.9]);
