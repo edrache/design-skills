@@ -121,7 +121,7 @@ function renderRoll(doc, event, i18n) {
   return box;
 }
 
-function createEntry(doc, entryId, labels) {
+function createEntry(doc, entryId, labels, media) {
   const block = el(doc, "article", "journal-entry");
   block.tabIndex = -1;
 
@@ -131,6 +131,21 @@ function createEntry(doc, entryId, labels) {
     const number = el(doc, "div", "entry-number");
     number.append(`${labels.entry} `, el(doc, "b", null, String(entryId)));
     block.append(number);
+  }
+
+  const image = media?.entries?.[String(entryId)]?.image;
+  if (typeof image === "string" && image) {
+    const artwork = el(doc, "img", "entry-image");
+    try {
+      artwork.src = new URL(image, new URL("../../", import.meta.url));
+    } catch {
+      return block;
+    }
+    artwork.alt = "";
+    artwork.loading = "lazy";
+    artwork.decoding = "async";
+    artwork.addEventListener("error", () => artwork.remove());
+    block.append(artwork);
   }
   return block;
 }
@@ -174,7 +189,7 @@ export function renderEvents(root, events, i18n, handlers, context = {}) {
   let block = null;
   for (const segment of segmentEvents(events, context)) {
     if (block) sealEntry(block);
-    block = createEntry(doc, segment.entryId, labels);
+    block = createEntry(doc, segment.entryId, labels, context.media);
     for (const event of segment.events) appendEvent(block, event, doc, labels, i18n, handlers);
     root.append(block);
   }

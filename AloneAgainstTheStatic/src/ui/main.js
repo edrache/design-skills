@@ -1,8 +1,10 @@
 import { createState } from "../engine/state.js";
 import { enter, resume } from "../engine/runner.js";
+import { createAudio } from "./audio.js";
 import { createI18n } from "./i18n.js";
 import { clearJournal, renderEvents, renderRollDecision } from "./journal.js";
 import { clearSave, isSaveCompatible, loadGame, saveGame } from "./save.js";
+import { createSettings } from "./settings.js";
 import { renderSheet } from "./sheet.js";
 
 const UI_COPY = {
@@ -12,7 +14,14 @@ const UI_COPY = {
     languageLabel: "Switch language to English",
     sheet: "Karta",
     settings: "Ustawienia",
-    settingsPending: "Regulacja obrazu i dźwięku pojawi się w następnym etapie montażu.",
+    settingsKicker: "OBRAZ / DŹWIĘK",
+    settingsTitle: "Ustawienia odtwarzania",
+    narration: "Lektor",
+    narrationVolume: "Głośność lektora",
+    musicVolume: "Głośność muzyki",
+    scanlines: "Linie skanowania",
+    proseSize: "Rozmiar tekstu",
+    close: "Zamknij",
     choose: "NAGRANIE OSOBISTE / WYBIERZ PERSPEKTYWĘ",
     who: "Kim jesteś?",
     intro: "Dwie osoby jadą do odciętej od świata chaty. Wybór określi, którą wersję wydarzeń zapamiętasz.",
@@ -34,7 +43,14 @@ const UI_COPY = {
     languageLabel: "Zmień język na polski",
     sheet: "Sheet",
     settings: "Settings",
-    settingsPending: "Picture and sound controls will arrive in the next editing pass.",
+    settingsKicker: "PICTURE / SOUND",
+    settingsTitle: "Playback settings",
+    narration: "Narration",
+    narrationVolume: "Narration volume",
+    musicVolume: "Music volume",
+    scanlines: "Scanlines",
+    proseSize: "Text size",
+    close: "Close",
     choose: "PERSONAL RECORD / CHOOSE A PERSPECTIVE",
     who: "Who are you?",
     intro: "Two people are driving to a cabin cut off from the world. Your choice decides which version of events you will remember.",
@@ -85,6 +101,10 @@ const dom = {
   langToggle: document.querySelector("#lang-toggle"),
   sheetToggle: document.querySelector("#sheet-toggle"),
   settingsToggle: document.querySelector("#settings-toggle"),
+  settingsDialog: document.querySelector("#settings-dialog"),
+  settingsKicker: document.querySelector("#settings-kicker"),
+  settingsTitle: document.querySelector("#settings-title"),
+  settingsClose: document.querySelector("#settings-close"),
   restart: document.querySelector("#restart"),
   skipLink: document.querySelector(".skip-link"),
   tools: document.querySelector(".topbar-actions"),
@@ -93,10 +113,12 @@ const dom = {
 
 let characters;
 let story;
+let media;
 let i18n;
+let settings;
+let audio;
 let ctx = null;
 let frame = null;
-let statusTimer = null;
 const history = [];
 const compactSheet = globalThis.matchMedia?.("(max-width: 61.999rem)") ?? null;
 
@@ -150,6 +172,7 @@ function draw(record, isLast) {
   const block = renderEvents(dom.journal, record.events, i18n, { onChoose: choose }, {
     entryId: record.entryId,
     originEntryId: record.originEntryId,
+    media,
   });
   if (isLast && frame.pending?.type === "rollDecision") {
     renderRollDecision(block, frame.pending, i18n, {
@@ -167,6 +190,8 @@ function advance(next, originEntryId = null) {
   const block = draw(history.at(-1), true);
   renderCharacterSheet();
   saveGame({ characterId: ctx.character.id, frame, originEntryId });
+  audio?.playNarration(frame.entryId, i18n.locale);
+  audio?.playScene(story.entries[String(frame.entryId)]?.scene);
   if (frame.pending?.type === "end") showEnd();
   else block.focus({ preventScroll: true });
 }
@@ -273,13 +298,31 @@ function updateChrome() {
   dom.tools.setAttribute("aria-label", text.tools);
   dom.journalHeading.textContent = text.journal;
   dom.sheet.setAttribute("aria-label", text.sheetLabel);
+  dom.settingsKicker.textContent = text.settingsKicker;
+  dom.settingsTitle.textContent = text.settingsTitle;
+  document.querySelector("#label-narration").textContent = text.narration;
+  document.querySelector("#label-narration-volume").textContent = text.narrationVolume;
+  document.querySelector("#label-music-volume").textContent = text.musicVolume;
+  document.querySelector("#label-scanlines").textContent = text.scanlines;
+  document.querySelector("#label-prose").textContent = text.proseSize;
+  dom.settingsClose.textContent = text.close;
 }
 
-function showTemporaryStatus(message) {
-  clearTimeout(statusTimer);
-  dom.systemStatus.textContent = message;
-  dom.systemStatus.hidden = false;
-  statusTimer = setTimeout(() => { dom.systemStatus.hidden = true; }, 4500);
+const settingControls = {
+  narration: [document.querySelector("#set-narration"), "checked"],
+  narrationVolume: [document.querySelector("#set-narration-volume"), "value"],
+  musicVolume: [document.querySelector("#set-music-volume"), "value"],
+  scanlines: [document.querySelector("#set-scanlines"), "value"],
+  proseSize: [document.querySelector("#set-prose"), "value"],
+};
+
+function connectSettingsControls() {
+  for (const [key, [input, property]] of Object.entries(settingControls)) {
+    input[property] = settings.values[key];
+    input.addEventListener("input", () => {
+      settings.set(key, property === "checked" ? input.checked : Number(input.value));
+    });
+  }
 }
 
 dom.langToggle.addEventListener("click", () => {
@@ -291,7 +334,10 @@ dom.langToggle.addEventListener("click", () => {
   if (!i18n) {
     const title = dom.screens.loading.querySelector(".screen-title");
     if (title.classList.contains("error-state")) title.textContent = labels().loadError;
-  } else if (frame) redraw();
+  } else if (frame) {
+    redraw();
+    audio?.playNarration(frame.entryId, next);
+  }
   else if (characters) renderCharacterChoice();
 });
 
@@ -303,8 +349,14 @@ dom.sheetToggle.addEventListener("click", () => {
 
 compactSheet?.addEventListener?.("change", syncSheetDisclosure);
 
-dom.settingsToggle.addEventListener("click", () => showTemporaryStatus(labels().settingsPending));
+dom.settingsToggle.addEventListener("click", () => {
+  if (!settings || typeof dom.settingsDialog.showModal !== "function") return;
+  dom.settingsDialog.showModal();
+  dom.settingsToggle.setAttribute("aria-expanded", "true");
+});
+dom.settingsDialog.addEventListener("close", () => dom.settingsToggle.setAttribute("aria-expanded", "false"));
 dom.restart.addEventListener("click", () => {
+  audio?.stopAll();
   clearSave();
   frame = null;
   ctx = null;
@@ -314,7 +366,7 @@ dom.restart.addEventListener("click", () => {
 });
 
 async function bootstrap() {
-  const [loadedCharacters, loadedStory, en, pl] = await Promise.all([
+  const [loadedCharacters, loadedStory, en, pl, loadedMedia] = await Promise.all([
     load("characters.json"),
     load("story.json"),
     load("text.en.json"),
@@ -324,7 +376,11 @@ async function bootstrap() {
 
   characters = loadedCharacters;
   story = loadedStory;
+  media = loadedMedia;
   i18n = createI18n({ en, pl }, storedLocale());
+  settings = createSettings();
+  audio = createAudio(media, settings);
+  connectSettingsControls();
   updateChrome();
   const saved = loadGame();
   const savedCharacter = saved ? characters[saved.characterId] : null;
