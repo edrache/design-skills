@@ -1752,6 +1752,12 @@ test("wykrywa paragraf nieosiągalny ze startu", () => {
   assert.ok(out.warnings.some((w) => w.includes("nieosiągalny") && w.includes("2")));
 });
 
+test("wykrywa paragraf bez żadnego wyjścia", () => {
+  const story = { extracted: [1, 5], start: 1, entries: { 1: { id: 1, text: ["e1.p1"] } } };
+  const out = validate(story, { "e1.p1": "x" }, {});
+  assert.ok(out.errors.some((e) => e.includes("nie ma ani wyborów")));
+});
+
 test("wykrywa flagę czytaną, ale nigdy niezapalaną", () => {
   const story = { extracted: [1, 5], start: 1, entries: {
     1: { id: 1, text: ["e1.p1"], guards: [{ if: "nigdy_niezapalona", goto: 1 }] },
@@ -1843,6 +1849,13 @@ export function validate(story, textEn, textPl) {
     flags.read.forEach((f) => readFlags.add(f));
   }
 
+  // Paragraf bez wyjścia zawiesza grę — interpreter zgłasza to dopiero w trakcie rozgrywki.
+  for (const entry of Object.values(story.entries)) {
+    if (entry.end || (entry.choices ?? []).length > 0) continue;
+    const leaves = (entry.on ?? []).some((step) => step.goto !== undefined);
+    if (!leaves) errors.push(`Paragraf ${entry.id} nie ma ani wyborów, ani znacznika końca, ani przejścia`);
+  }
+
   for (const flag of readFlags) {
     if (!setFlags.has(flag)) errors.push(`Flaga ${flag} jest czytana, ale nigdzie nie jest zapalana`);
   }
@@ -1879,7 +1892,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 - [ ] **Step 4: Uruchom test**
 
 Run: `node --test test/data.test.js`
-Expected: PASS — 7 testów. Jeśli ostatni test nie przechodzi, wróć do kroku 3 zadania 6 i popraw `story.json`, aż lista błędów będzie pusta.
+Expected: PASS — 8 testów. Jeśli ostatni test nie przechodzi, wróć do kroku 3 zadania 6 i popraw `story.json`, aż lista błędów będzie pusta.
 
 - [ ] **Step 5: Uruchom walidator na prawdziwych danych**
 
