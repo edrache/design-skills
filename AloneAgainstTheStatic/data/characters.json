@@ -1,0 +1,86 @@
+{
+  "alex": {
+    "id": "alex",
+    "name": "Alex",
+    "occupation": "Salesperson",
+    "birthplace": "Deadwood, SD",
+    "residence": "Pierre, SD",
+    "characteristics": { "STR": 70, "CON": 60, "SIZ": 75, "DEX": 65, "APP": 60, "EDU": 65, "INT": 55, "POW": 50 },
+    "hp": 13,
+    "mp": 10,
+    "san": 50,
+    "move": 7,
+    "build": 1,
+    "damageBonus": "1d4",
+    "skills": {
+      "Credit Rating": 40,
+      "Dodge": 32,
+      "Drive Auto": 45,
+      "Fighting (Brawl)": 55,
+      "First Aid": 40,
+      "Intimidate": 60,
+      "Language (Own)": 65,
+      "Listen": 50,
+      "Natural World": 30,
+      "Navigate": 40,
+      "Persuade": 60,
+      "Psychology": 45,
+      "Spot Hidden": 35,
+      "Stealth": 35
+    },
+    "story": {
+      "en": "Alex has been with Charlie for almost five years. Charlie seems less and less happy. Charlie's brother Mark recommended going to his vacation cabin for some time alone. It worked for Mark and his wife Julie. Maybe it will work for Alex and Charlie too...",
+      "pl": ""
+    },
+    "backstory": [
+      { "label": "Personal Description", "en": "Rugged or scruffy, depending on how charitable you're feeling.", "pl": "" },
+      { "label": "Traits", "en": "Hopeless romantic. Fiercely protective.", "pl": "" },
+      { "label": "Ideology & Beliefs", "en": "I only believe in what I can see.", "pl": "" },
+      { "label": "Significant People", "en": "Charlie despite everything...", "pl": "" },
+      { "label": "Meaningful Locations", "en": "The restaurant Charlie booked for their first date.", "pl": "" },
+      { "label": "Treasured Possessions", "en": "A love letter written by Charlie.", "pl": "" }
+    ]
+  },
+  "charlie": {
+    "id": "charlie",
+    "name": "Charlie",
+    "occupation": "Nurse",
+    "birthplace": "Pierre, SD",
+    "residence": "Pierre, SD",
+    "characteristics": { "STR": 60, "CON": 70, "SIZ": 65, "DEX": 60, "APP": 75, "EDU": 70, "INT": 65, "POW": 60 },
+    "hp": 13,
+    "mp": 12,
+    "san": 60,
+    "move": 7,
+    "build": 1,
+    "damageBonus": "1d4",
+    "skills": {
+      "Credit Rating": 30,
+      "Dodge": 30,
+      "Fighting (Brawl)": 55,
+      "First Aid": 70,
+      "Intimidate": 45,
+      "Language (Own)": 70,
+      "Listen": 60,
+      "Natural World": 40,
+      "Navigate": 20,
+      "Persuade": 50,
+      "Psychology": 60,
+      "Science (Biology)": 25,
+      "Science (Chemistry)": 25,
+      "Spot Hidden": 65,
+      "Stealth": 30
+    },
+    "story": {
+      "en": "Charlie has been with Alex for almost five years. Their relationship has begun to feel very strained. Some time alone might help them patch things up, but honestly, it doesn't feel likely...",
+      "pl": ""
+    },
+    "backstory": [
+      { "label": "Traits", "en": "Forlorn and whimsical.", "pl": "" },
+      { "label": "Ideology & Beliefs", "en": "Karmic justice.", "pl": "" },
+      { "label": "Significant People", "en": "Alex, for better or for worse...", "pl": "" },
+      { "label": "Meaningful Locations", "en": "A park bench across from Alex's old apartment where they first kissed.", "pl": "" },
+      { "label": "Treasured Possessions", "en": "An inherited family engagement ring.", "pl": "" }
+    ]
+  }
+}
