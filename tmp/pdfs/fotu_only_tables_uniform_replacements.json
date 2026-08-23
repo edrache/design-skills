@@ -1,0 +1,8541 @@
+{
+  "policies": {
+    "min_font_scale": 0.3,
+    "font_step": 0.1,
+    "fail_on_overflow": true
+  },
+  "layout_groups": {
+    "table-values": {
+      "font": "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+      "font_size": {
+        "mode": "uniform_fit",
+        "preferred": 8.0,
+        "minimum": 6.5,
+        "maximum": 8.0,
+        "step": 0.1
+      },
+      "align": "left",
+      "valign": "middle",
+      "padding": {
+        "left": 4,
+        "right": 3,
+        "top": 0.5,
+        "bottom": 0.5
+      },
+      "wrap": true,
+      "max_lines": 2,
+      "line_height": 1.0,
+      "overflow": "error",
+      "uppercase": false,
+      "hyphenation": "none",
+      "language": "pl"
+    }
+  },
+  "replacements": [
+    {
+      "page": 1,
+      "old": "What's a local landmark?",
+      "new": "Co jest lokalnym punktem orientacyjnym?"
+    },
+    {
+      "page": 1,
+      "old": "Gain  a town  tag ,  like the  abandoned  quarry ,  or the  statue  of  the beloved town founder, or the only diner in town.",
+      "new": "Zyskaj tag miasteczka, taki jak opuszczony kamieniołom, pomnik ukochanego założyciela miasteczka albo jedyna jadłodajnia w okolicy."
+    },
+    {
+      "page": 1,
+      "old": "Go to question 2",
+      "new": "Przejdź do pytania 2"
+    },
+    {
+      "page": 1,
+      "old": "1 The old sawmill",
+      "new": "1 Stary tartak",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        232.735,
+        221.04,
+        249.518
+      ]
+    },
+    {
+      "page": 1,
+      "old": "2 The abandoned mansion",
+      "new": "2 Opuszczona posiadłość",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        249.518,
+        221.04,
+        266.301
+      ]
+    },
+    {
+      "page": 1,
+      "old": "3 The old insane asylum",
+      "new": "3 Stary zakład dla obłąkanych",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        266.301,
+        221.04,
+        283.085
+      ]
+    },
+    {
+      "page": 1,
+      "old": "4 The mine",
+      "new": "4 Kopalnia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        283.085,
+        221.04,
+        299.868
+      ]
+    },
+    {
+      "page": 1,
+      "old": "5 The factory",
+      "new": "5 Fabryka",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        299.868,
+        221.04,
+        316.651
+      ]
+    },
+    {
+      "page": 1,
+      "old": "6 The farms",
+      "new": "6 Gospodarstwa rolne",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        316.651,
+        221.04,
+        333.434
+      ]
+    },
+    {
+      "page": 1,
+      "old": "1 The pier",
+      "new": "1 Molo",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        232.735,
+        405.58,
+        249.518
+      ]
+    },
+    {
+      "page": 1,
+      "old": "2 The docks",
+      "new": "2 Doki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        249.518,
+        405.58,
+        266.301
+      ]
+    },
+    {
+      "page": 1,
+      "old": "3 The wharf",
+      "new": "3 Nadbrzeże portowe",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        266.301,
+        405.58,
+        283.085
+      ]
+    },
+    {
+      "page": 1,
+      "old": "4 The marina",
+      "new": "4 Marina",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        283.085,
+        405.58,
+        299.868
+      ]
+    },
+    {
+      "page": 1,
+      "old": "5 The lighthouse",
+      "new": "5 Latarnia morska",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        299.868,
+        405.58,
+        316.651
+      ]
+    },
+    {
+      "page": 1,
+      "old": "6 The water tower",
+      "new": "6 Wieża ciśnień",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        316.651,
+        405.58,
+        333.434
+      ]
+    },
+    {
+      "page": 1,
+      "old": "1 The art museum",
+      "new": "1 Muzeum sztuki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        350.434,
+        221.04,
+        367.218
+      ]
+    },
+    {
+      "page": 1,
+      "old": "2 The natural history museum",
+      "new": "2 Muzeum historii naturalnej",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        367.218,
+        221.04,
+        384.001
+      ]
+    },
+    {
+      "page": 1,
+      "old": "3 The local history museum",
+      "new": "3 Muzeum historii miasteczka",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        384.001,
+        221.04,
+        400.784
+      ]
+    },
+    {
+      "page": 1,
+      "old": "4 The university",
+      "new": "4 Uniwersytet",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        400.784,
+        221.04,
+        417.567
+      ]
+    },
+    {
+      "page": 1,
+      "old": "5 The town square",
+      "new": "5 Rynek",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        417.567,
+        221.04,
+        434.35
+      ]
+    },
+    {
+      "page": 1,
+      "old": "6 The house of worship",
+      "new": "6 Dom modlitwy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        434.35,
+        221.04,
+        451.134
+      ]
+    },
+    {
+      "page": 1,
+      "old": "1 The only diner in town",
+      "new": "1 Jedyna jadłodajnia w miasteczku",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        350.434,
+        405.58,
+        367.218
+      ]
+    },
+    {
+      "page": 1,
+      "old": "2 The dive bar",
+      "new": "2 Obskurny bar",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        367.218,
+        405.58,
+        384.001
+      ]
+    },
+    {
+      "page": 1,
+      "old": "3 The campgrounds",
+      "new": "3 Pole namiotowe",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        384.001,
+        405.58,
+        400.784
+      ]
+    },
+    {
+      "page": 1,
+      "old": "4 The drive in movie theater",
+      "new": "4 Kino samochodowe",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        400.784,
+        405.58,
+        417.567
+      ]
+    },
+    {
+      "page": 1,
+      "old": "5 The library",
+      "new": "5 Biblioteka",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        417.567,
+        405.58,
+        434.35
+      ]
+    },
+    {
+      "page": 1,
+      "old": "6 The playhouse",
+      "new": "6 Teatrzyk",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        434.35,
+        405.58,
+        451.134
+      ]
+    },
+    {
+      "page": 1,
+      "old": "1 Makeout point",
+      "new": "1 Punkt na całowanie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        468.134,
+        221.04,
+        484.917
+      ]
+    },
+    {
+      "page": 1,
+      "old": "2 The mall",
+      "new": "2 Centrum handlowe",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        484.917,
+        221.04,
+        501.7
+      ]
+    },
+    {
+      "page": 1,
+      "old": "3 The cafe",
+      "new": "3 Kawiarnia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        501.7,
+        221.04,
+        518.483
+      ]
+    },
+    {
+      "page": 1,
+      "old": "4 Main street",
+      "new": "4 Główna ulica",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        518.483,
+        221.04,
+        535.266
+      ]
+    },
+    {
+      "page": 1,
+      "old": "5 The riverwalk",
+      "new": "5 Nadrzeczna promenada",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        535.266,
+        221.04,
+        552.05
+      ]
+    },
+    {
+      "page": 1,
+      "old": "6 The antiques shop",
+      "new": "6 Sklep z antykami",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        552.05,
+        221.04,
+        568.833
+      ]
+    },
+    {
+      "page": 1,
+      "old": "1 The cliffs",
+      "new": "1 Klify",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        468.134,
+        405.58,
+        484.917
+      ]
+    },
+    {
+      "page": 1,
+      "old": "2 The hanging tree",
+      "new": "2 Wisielcze drzewo",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        484.917,
+        405.58,
+        501.7
+      ]
+    },
+    {
+      "page": 1,
+      "old": "3 The barrens",
+      "new": "3 Jałowe pustkowia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        501.7,
+        405.58,
+        518.483
+      ]
+    },
+    {
+      "page": 1,
+      "old": "4 The swamp",
+      "new": "4 Bagno",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        518.483,
+        405.58,
+        535.266
+      ]
+    },
+    {
+      "page": 1,
+      "old": "5 The woods",
+      "new": "5 Lasy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        535.266,
+        405.58,
+        552.05
+      ]
+    },
+    {
+      "page": 1,
+      "old": "6 The desert",
+      "new": "6 Pustynia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        552.05,
+        405.58,
+        568.833
+      ]
+    },
+    {
+      "page": 2,
+      "old": "Who’s someone that everyone in town knows - or at least knows of?",
+      "new": "Kto jest kimś, kogo w miasteczku znają wszyscy albo przynajmniej o nim słyszeli?"
+    },
+    {
+      "page": 2,
+      "old": "Gain a town tag , like the gregarious dean , or the slimy mayor , or the quietly intimidating crime lord.",
+      "new": "Zyskaj tag miasteczka, taki jak towarzyski dziekan, obślizgły burmistrz albo cicho onieśmielający herszt przestępców."
+    },
+    {
+      "page": 2,
+      "old": "Go to question 3",
+      "new": "Przejdź do pytania 3"
+    },
+    {
+      "page": 2,
+      "old": "1 The barista at the cafe",
+      "new": "1 Barista z kawiarni",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        232.735,
+        221.04,
+        249.518
+      ]
+    },
+    {
+      "page": 2,
+      "old": "2 The bartender",
+      "new": "2 Barman",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        249.518,
+        221.04,
+        266.301
+      ]
+    },
+    {
+      "page": 2,
+      "old": "3 The innkeeper",
+      "new": "3 Właściciel zajazdu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        266.301,
+        221.04,
+        283.085
+      ]
+    },
+    {
+      "page": 2,
+      "old": "4 The drug dealer",
+      "new": "4 Diler narkotyków",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        283.085,
+        221.04,
+        299.868
+      ]
+    },
+    {
+      "page": 2,
+      "old": "5 The cook & waiter at the diner",
+      "new": "5 Kucharz i kelner z jadłodajni",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        299.868,
+        221.04,
+        316.651
+      ]
+    },
+    {
+      "page": 2,
+      "old": "6 The bookstore owner",
+      "new": "6 Właściciel księgarni",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        316.651,
+        221.04,
+        333.434
+      ]
+    },
+    {
+      "page": 2,
+      "old": "1 The town priest",
+      "new": "1 Ksiądz z miasteczka",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        232.735,
+        405.58,
+        249.518
+      ]
+    },
+    {
+      "page": 2,
+      "old": "2 The street corner preacher",
+      "new": "2 Kaznodzieja z ulicznego rogu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        249.518,
+        405.58,
+        266.301
+      ]
+    },
+    {
+      "page": 2,
+      "old": "3 The guy who thinks he's Jesus",
+      "new": "3 Typ, który uważa się za Jezusa",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        266.301,
+        405.58,
+        283.085
+      ]
+    },
+    {
+      "page": 2,
+      "old": "4 The town drunk",
+      "new": "4 Miasteczkowy pijak",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        283.085,
+        405.58,
+        299.868
+      ]
+    },
+    {
+      "page": 2,
+      "old": "5 The town ghost",
+      "new": "5 Duch miasteczka",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        299.868,
+        405.58,
+        316.651
+      ]
+    },
+    {
+      "page": 2,
+      "old": "6 The local celebrity",
+      "new": "6 Lokalna celebrytka lub lokalny celebryta",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        316.651,
+        405.58,
+        333.434
+      ]
+    },
+    {
+      "page": 2,
+      "old": "1 The university groundskeeper",
+      "new": "1 Dozorca terenów uniwersyteckich",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        350.434,
+        221.04,
+        367.218
+      ]
+    },
+    {
+      "page": 2,
+      "old": "2 The lighthouse keeper",
+      "new": "2 Strażnik latarni",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        367.218,
+        221.04,
+        384.001
+      ]
+    },
+    {
+      "page": 2,
+      "old": "3 The richest man in town",
+      "new": "3 Najbogatszy człowiek w miasteczku",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        384.001,
+        221.04,
+        400.784
+      ]
+    },
+    {
+      "page": 2,
+      "old": "4 The doctor",
+      "new": "4 Lekarz",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        400.784,
+        221.04,
+        417.567
+      ]
+    },
+    {
+      "page": 2,
+      "old": "5 The famous author",
+      "new": "5 Sławna pisarka lub sławny pisarz",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        417.567,
+        221.04,
+        434.35
+      ]
+    },
+    {
+      "page": 2,
+      "old": "6 The prominent professor",
+      "new": "6 Znana profesorka lub znany profesor",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        434.35,
+        221.04,
+        451.134
+      ]
+    },
+    {
+      "page": 2,
+      "old": "1 The librarian",
+      "new": "1 Bibliotekarka lub bibliotekarz",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        350.434,
+        405.58,
+        367.218
+      ]
+    },
+    {
+      "page": 2,
+      "old": "2 The sheriff",
+      "new": "2 Szeryf",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        367.218,
+        405.58,
+        384.001
+      ]
+    },
+    {
+      "page": 2,
+      "old": "3 The reporter",
+      "new": "3 Reporterka lub reporter",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        384.001,
+        405.58,
+        400.784
+      ]
+    },
+    {
+      "page": 2,
+      "old": "4 The creep who follows people",
+      "new": "4 Typ, który łazi za ludźmi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        400.784,
+        405.58,
+        417.567
+      ]
+    },
+    {
+      "page": 2,
+      "old": "5 The private eye",
+      "new": "5 Prywatny detektyw",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        417.567,
+        405.58,
+        434.35
+      ]
+    },
+    {
+      "page": 2,
+      "old": "6 The police chief",
+      "new": "6 Komendant policji",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        434.35,
+        405.58,
+        451.134
+      ]
+    },
+    {
+      "page": 2,
+      "old": "1 The “Tough Guy”",
+      "new": "1 „Twardziel”",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        468.134,
+        221.04,
+        484.917
+      ]
+    },
+    {
+      "page": 2,
+      "old": "2 The town gossip",
+      "new": "2 Miasteczkowa plotkara lub miasteczkowy plotkarz",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        484.917,
+        221.04,
+        501.7
+      ]
+    },
+    {
+      "page": 2,
+      "old": "3 The star athlete",
+      "new": "3 Gwiazda sportu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        501.7,
+        221.04,
+        518.483
+      ]
+    },
+    {
+      "page": 2,
+      "old": "4 The con artist",
+      "new": "4 Oszustka lub oszust",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        518.483,
+        221.04,
+        535.266
+      ]
+    },
+    {
+      "page": 2,
+      "old": "5 The beggar",
+      "new": "5 Żebrak",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        535.266,
+        221.04,
+        552.05
+      ]
+    },
+    {
+      "page": 2,
+      "old": "6 The radio DJ",
+      "new": "6 Radiowy DJ",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        552.05,
+        221.04,
+        568.833
+      ]
+    },
+    {
+      "page": 2,
+      "old": "1 The bully",
+      "new": "1 Prześladowca",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        468.134,
+        405.58,
+        484.917
+      ]
+    },
+    {
+      "page": 2,
+      "old": "2 The scientist",
+      "new": "2 Naukowczyni lub naukowiec",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        484.917,
+        405.58,
+        501.7
+      ]
+    },
+    {
+      "page": 2,
+      "old": "3 The outcast",
+      "new": "3 Wyrzutek",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        501.7,
+        405.58,
+        518.483
+      ]
+    },
+    {
+      "page": 2,
+      "old": "4 The cult leader",
+      "new": "4 Przywódczyni lub przywódca kultu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        518.483,
+        405.58,
+        535.266
+      ]
+    },
+    {
+      "page": 2,
+      "old": "5 The last living hippie",
+      "new": "5 Ostatnia żyjąca hipiska lub ostatni żyjący hipis",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        535.266,
+        405.58,
+        552.05
+      ]
+    },
+    {
+      "page": 2,
+      "old": "6 The game designer",
+      "new": "6 Projektant gier",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        552.05,
+        405.58,
+        568.833
+      ]
+    },
+    {
+      "page": 3,
+      "old": "What's a group that a sizable portion of the town despises?",
+      "new": "Jakiej grupy znaczna część miasteczka nie cierpi?"
+    },
+    {
+      "page": 3,
+      "old": "Gain a town tag , like the corrupt police , or the ivory tower university , or the biker gang with hearts of gold .",
+      "new": "Zyskaj tag miasteczka, taki jak skorumpowana policja, uniwersytet z kości słoniowej albo gang motocyklistów o złotych sercach."
+    },
+    {
+      "page": 3,
+      "old": "Go to question 4",
+      "new": "Przejdź do pytania 4"
+    },
+    {
+      "page": 3,
+      "old": "1 The historical society",
+      "new": "1 Towarzystwo historyczne",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        238.2,
+        221.04,
+        254.983
+      ]
+    },
+    {
+      "page": 3,
+      "old": "2 A powerful, old local family",
+      "new": "2 Potężna, stara lokalna rodzina",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        254.983,
+        221.04,
+        271.766
+      ]
+    },
+    {
+      "page": 3,
+      "old": "3 Busybodies",
+      "new": "3 Wścibscy ludzie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        271.766,
+        221.04,
+        288.55
+      ]
+    },
+    {
+      "page": 3,
+      "old": "4 Gossips",
+      "new": "4 Plotkarze",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        288.55,
+        221.04,
+        305.333
+      ]
+    },
+    {
+      "page": 3,
+      "old": "5 One of the local high schools",
+      "new": "5 Jedno z lokalnych liceów",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        305.333,
+        221.04,
+        322.116
+      ]
+    },
+    {
+      "page": 3,
+      "old": "6 Survivalists",
+      "new": "6 Surwiwalowcy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        322.116,
+        221.04,
+        338.899
+      ]
+    },
+    {
+      "page": 3,
+      "old": "1 The mafia",
+      "new": "1 Mafia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        238.2,
+        405.58,
+        254.983
+      ]
+    },
+    {
+      "page": 3,
+      "old": "2 The tong",
+      "new": "2 Tong",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        254.983,
+        405.58,
+        271.766
+      ]
+    },
+    {
+      "page": 3,
+      "old": "3 The church",
+      "new": "3 Kościół",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        271.766,
+        405.58,
+        288.55
+      ]
+    },
+    {
+      "page": 3,
+      "old": "4 The local secret society",
+      "new": "4 Lokalne tajne stowarzyszenie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        288.55,
+        405.58,
+        305.333
+      ]
+    },
+    {
+      "page": 3,
+      "old": "5 The local religion",
+      "new": "5 Lokalna religia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        305.333,
+        405.58,
+        322.116
+      ]
+    },
+    {
+      "page": 3,
+      "old": "6 The ;pca; weirdos",
+      "new": "6 Lokalne świry",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        322.116,
+        405.58,
+        338.899
+      ]
+    },
+    {
+      "page": 3,
+      "old": "1 The chamber of commerce",
+      "new": "1 Izba handlowa",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        355.899,
+        221.04,
+        372.682
+      ]
+    },
+    {
+      "page": 3,
+      "old": "2 A big business",
+      "new": "2 Wielki biznes",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        372.682,
+        221.04,
+        389.466
+      ]
+    },
+    {
+      "page": 3,
+      "old": "3 The rich guy who moved in",
+      "new": "3 Bogacz, który się tu sprowadził",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        389.466,
+        221.04,
+        406.249
+      ]
+    },
+    {
+      "page": 3,
+      "old": "4 These two jerks",
+      "new": "4 Tych dwoje palantów",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        406.249,
+        221.04,
+        423.032
+      ]
+    },
+    {
+      "page": 3,
+      "old": "5 The filthiest family in the world",
+      "new": "5 Najobrzydliwsza rodzina na świecie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        423.032,
+        221.04,
+        439.815
+      ]
+    },
+    {
+      "page": 3,
+      "old": "6 Con artists",
+      "new": "6 Naciągacze",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        439.815,
+        221.04,
+        456.599
+      ]
+    },
+    {
+      "page": 3,
+      "old": "1 A local band",
+      "new": "1 Lokalny zespół",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        355.899,
+        405.58,
+        372.682
+      ]
+    },
+    {
+      "page": 3,
+      "old": "2 The local sports team",
+      "new": "2 Lokalna drużyna sportowa",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        372.682,
+        405.58,
+        389.466
+      ]
+    },
+    {
+      "page": 3,
+      "old": "3 The circus",
+      "new": "3 Cyrk",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        389.466,
+        405.58,
+        406.249
+      ]
+    },
+    {
+      "page": 3,
+      "old": "4 The new film crew",
+      "new": "4 Nowa ekipa filmowa",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        406.249,
+        405.58,
+        423.032
+      ]
+    },
+    {
+      "page": 3,
+      "old": "5 A visiting band",
+      "new": "5 Zespół przyjezdny",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        423.032,
+        405.58,
+        439.815
+      ]
+    },
+    {
+      "page": 3,
+      "old": "6 Tourists",
+      "new": "6 Turyści",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        439.815,
+        405.58,
+        456.599
+      ]
+    },
+    {
+      "page": 3,
+      "old": "1 The fishers",
+      "new": "1 Rybacy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        473.599,
+        221.04,
+        490.382
+      ]
+    },
+    {
+      "page": 3,
+      "old": "2 The brewery",
+      "new": "2 Browar",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        490.382,
+        221.04,
+        507.165
+      ]
+    },
+    {
+      "page": 3,
+      "old": "3 The “bad” neighborhood",
+      "new": "3 „Zła” dzielnica",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        507.165,
+        221.04,
+        523.948
+      ]
+    },
+    {
+      "page": 3,
+      "old": "4 The dockworkers",
+      "new": "4 Dokerzy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        523.948,
+        221.04,
+        540.731
+      ]
+    },
+    {
+      "page": 3,
+      "old": "5 Itinerant workers",
+      "new": "5 Robotnicy sezonowi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        540.731,
+        221.04,
+        557.515
+      ]
+    },
+    {
+      "page": 3,
+      "old": "6 Farmers",
+      "new": "6 Rolnicy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        557.515,
+        221.04,
+        574.298
+      ]
+    },
+    {
+      "page": 3,
+      "old": "1 The homeless",
+      "new": "1 Osoby w kryzysie bezdomności",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        473.599,
+        405.58,
+        490.382
+      ]
+    },
+    {
+      "page": 3,
+      "old": "2 The hippie compound",
+      "new": "2 Osiedle hipisów",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        490.382,
+        405.58,
+        507.165
+      ]
+    },
+    {
+      "page": 3,
+      "old": "3 Immigrants",
+      "new": "3 Imigranci",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        507.165,
+        405.58,
+        523.948
+      ]
+    },
+    {
+      "page": 3,
+      "old": "4 Gentrifiers",
+      "new": "4 Gentryfikatorzy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        523.948,
+        405.58,
+        540.731
+      ]
+    },
+    {
+      "page": 3,
+      "old": "5 A local gang",
+      "new": "5 Lokalny gang",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        540.731,
+        405.58,
+        557.515
+      ]
+    },
+    {
+      "page": 3,
+      "old": "6 Rowdy drunks",
+      "new": "6 Awanturujący się pijacy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        557.515,
+        405.58,
+        574.298
+      ]
+    },
+    {
+      "page": 4,
+      "old": "What's something the town is obsessed with?",
+      "new": "Na punkcie czego miasteczko ma obsesję?"
+    },
+    {
+      "page": 4,
+      "old": "Gain a town tag ,  like the  cross  town  sports  rivalry ,  or the  annual harvest festival , or the stories of cryptids in the woods.",
+      "new": "Zyskaj tag miasteczka, taki jak międzymiastowa rywalizacja sportowa, coroczne święto plonów albo opowieści o kryptydach w lesie."
+    },
+    {
+      "page": 4,
+      "old": "Go to question 5",
+      "new": "Przejdź do pytania 5"
+    },
+    {
+      "page": 4,
+      "old": "1 A major holiday",
+      "new": "1 Ważne święto",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        238.2,
+        221.04,
+        254.983
+      ]
+    },
+    {
+      "page": 4,
+      "old": "2 A unique, local holiday",
+      "new": "2 Wyjątkowe lokalne święto",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        254.983,
+        221.04,
+        271.766
+      ]
+    },
+    {
+      "page": 4,
+      "old": "3 Mainstream religion",
+      "new": "3 Religia głównego nurtu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        271.766,
+        221.04,
+        288.55
+      ]
+    },
+    {
+      "page": 4,
+      "old": "4 A local, ancient religion",
+      "new": "4 Lokalna pradawna religia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        288.55,
+        221.04,
+        305.333
+      ]
+    },
+    {
+      "page": 4,
+      "old": "5 A local, new religion",
+      "new": "5 Lokalna nowa religia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        305.333,
+        221.04,
+        322.116
+      ]
+    },
+    {
+      "page": 4,
+      "old": "6 A specific ritual",
+      "new": "6 Konkretny rytuał",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        322.116,
+        221.04,
+        338.899
+      ]
+    },
+    {
+      "page": 4,
+      "old": "1 The ocean",
+      "new": "1 Ocean",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        238.2,
+        405.58,
+        254.983
+      ]
+    },
+    {
+      "page": 4,
+      "old": "2 The woods",
+      "new": "2 Lasy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        254.983,
+        405.58,
+        271.766
+      ]
+    },
+    {
+      "page": 4,
+      "old": "3 Stargazing",
+      "new": "3 Wpatrywanie się w gwiazdy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        271.766,
+        405.58,
+        288.55
+      ]
+    },
+    {
+      "page": 4,
+      "old": "4 The upcoming comet",
+      "new": "4 Nadchodząca kometa",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        288.55,
+        405.58,
+        305.333
+      ]
+    },
+    {
+      "page": 4,
+      "old": "5 The oncoming hurricane",
+      "new": "5 Zbliżający się huragan",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        305.333,
+        405.58,
+        322.116
+      ]
+    },
+    {
+      "page": 4,
+      "old": "6 The weather",
+      "new": "6 Pogoda",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        322.116,
+        405.58,
+        338.899
+      ]
+    },
+    {
+      "page": 4,
+      "old": "1 A specific sport",
+      "new": "1 Konkretny sport",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        355.899,
+        221.04,
+        372.682
+      ]
+    },
+    {
+      "page": 4,
+      "old": "2 Petty local politics",
+      "new": "2 Drobne lokalne rozgrywki polityczne",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        372.682,
+        221.04,
+        389.466
+      ]
+    },
+    {
+      "page": 4,
+      "old": "3 The nearest big city",
+      "new": "3 Najbliższe duże miasto",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        389.466,
+        221.04,
+        406.249
+      ]
+    },
+    {
+      "page": 4,
+      "old": "4 The even smaller sister city",
+      "new": "4 Jeszcze mniejsze miasto-siostra",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        406.249,
+        221.04,
+        423.032
+      ]
+    },
+    {
+      "page": 4,
+      "old": "5 Tourism",
+      "new": "5 Turystyka",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        423.032,
+        221.04,
+        439.815
+      ]
+    },
+    {
+      "page": 4,
+      "old": "6 The regatta",
+      "new": "6 Regaty",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        439.815,
+        221.04,
+        456.599
+      ]
+    },
+    {
+      "page": 4,
+      "old": "1 Fear of crime",
+      "new": "1 Lęk przed przestępczością",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        355.899,
+        405.58,
+        372.682
+      ]
+    },
+    {
+      "page": 4,
+      "old": "2 The town's reputation",
+      "new": "2 Reputacja miasteczka",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        372.682,
+        405.58,
+        389.466
+      ]
+    },
+    {
+      "page": 4,
+      "old": "3 A local institution",
+      "new": "3 Lokalna instytucja",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        389.466,
+        405.58,
+        406.249
+      ]
+    },
+    {
+      "page": 4,
+      "old": "4 Cleanliness",
+      "new": "4 Czystość",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        406.249,
+        405.58,
+        423.032
+      ]
+    },
+    {
+      "page": 4,
+      "old": "5 A local business",
+      "new": "5 Lokalny biznes",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        423.032,
+        405.58,
+        439.815
+      ]
+    },
+    {
+      "page": 4,
+      "old": "6 Out of towners",
+      "new": "6 Przyjezdni",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        439.815,
+        405.58,
+        456.599
+      ]
+    },
+    {
+      "page": 4,
+      "old": "1 Conserving the old ways",
+      "new": "1 Zachowywanie dawnych zwyczajów",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        473.599,
+        221.04,
+        490.382
+      ]
+    },
+    {
+      "page": 4,
+      "old": "2 A movie filmed here ages ago",
+      "new": "2 Film nakręcony tu wieki temu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        490.382,
+        221.04,
+        507.165
+      ]
+    },
+    {
+      "page": 4,
+      "old": "3 The film they're shooting here",
+      "new": "3 Film, który właśnie tu kręcą",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        507.165,
+        221.04,
+        523.948
+      ]
+    },
+    {
+      "page": 4,
+      "old": "4 Gossip",
+      "new": "4 Plotki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        523.948,
+        221.04,
+        540.731
+      ]
+    },
+    {
+      "page": 4,
+      "old": "5 Some new social fad",
+      "new": "5 Jakaś nowa społeczna moda",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        540.731,
+        221.04,
+        557.515
+      ]
+    },
+    {
+      "page": 4,
+      "old": "6 Parties",
+      "new": "6 Imprezy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        557.515,
+        221.04,
+        574.298
+      ]
+    },
+    {
+      "page": 4,
+      "old": "1 A specific style of music",
+      "new": "1 Konkretny styl muzyki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        473.599,
+        405.58,
+        490.382
+      ]
+    },
+    {
+      "page": 4,
+      "old": "2 A new dance",
+      "new": "2 Nowy taniec",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        490.382,
+        405.58,
+        507.165
+      ]
+    },
+    {
+      "page": 4,
+      "old": "3 An artform",
+      "new": "3 Forma sztuki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        507.165,
+        405.58,
+        523.948
+      ]
+    },
+    {
+      "page": 4,
+      "old": "4 Winning a contest",
+      "new": "4 Wygranie konkursu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        523.948,
+        405.58,
+        540.731
+      ]
+    },
+    {
+      "page": 4,
+      "old": "5 Murders from 40 years ago",
+      "new": "5 Morderstwa sprzed 40 lat",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        540.731,
+        405.58,
+        557.515
+      ]
+    },
+    {
+      "page": 4,
+      "old": "6 Nothing. It's so boring here",
+      "new": "6 Nic. Jest tu śmiertelnie nudno",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        557.515,
+        405.58,
+        574.298
+      ]
+    },
+    {
+      "page": 5,
+      "old": "Rumours",
+      "new": "Plotki",
+      "occurrence": 3
+    },
+    {
+      "page": 5,
+      "old": "Ask each player whether or not they've heard any rumours recently, and if so, what they've heard.",
+      "new": "Zapytaj każdego gracza, czy ostatnio słyszał jakieś plotki, a jeśli tak, to co słyszał."
+    },
+    {
+      "page": 5,
+      "old": "These rumours aren't necessarily true, they're just things that their character has heard. It's up to you, the Oracle, to decide whether they're true or not.",
+      "new": "Te plotki nie muszą być prawdziwe, to po prostu rzeczy, które słyszała ich postać. Od ciebie, Wyrocznio, zależy, czy okażą się prawdą, czy nie."
+    },
+    {
+      "page": 5,
+      "old": "Here are some examples of things they may have heard.",
+      "new": "Oto kilka przykładów rzeczy, które mogli usłyszeć."
+    },
+    {
+      "page": 5,
+      "old": "You're ready to Make Your Character",
+      "new": "Jesteś gotowy lub gotowa, by Stworzyć Swoją Postać"
+    },
+    {
+      "page": 5,
+      "old": "1 The local landmark is haunted",
+      "new": "1 Lokalny punkt orientacyjny jest nawiedzony",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        231.415,
+        221.04,
+        248.198
+      ]
+    },
+    {
+      "page": 5,
+      "old": "2 There was a murder there!",
+      "new": "2 Doszło tam do morderstwa!",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        248.198,
+        221.04,
+        264.982
+      ]
+    },
+    {
+      "page": 5,
+      "old": "3 Wet footsteps on the bridge",
+      "new": "3 Mokre ślady stóp na moście",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        264.982,
+        221.04,
+        281.765
+      ]
+    },
+    {
+      "page": 5,
+      "old": "4 Something is flying around",
+      "new": "4 Coś lata po okolicy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        281.765,
+        221.04,
+        298.548
+      ]
+    },
+    {
+      "page": 5,
+      "old": "5 Weird sounds in the woods",
+      "new": "5 Dziwne odgłosy w lesie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        298.548,
+        221.04,
+        315.331
+      ]
+    },
+    {
+      "page": 5,
+      "old": "6 Bigfoot!",
+      "new": "6 Wielka Stopa!",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        315.331,
+        221.04,
+        332.114
+      ]
+    },
+    {
+      "page": 5,
+      "old": "1 The mayor works for the mob",
+      "new": "1 Burmistrz pracuje dla mafii",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        231.415,
+        405.58,
+        248.198
+      ]
+    },
+    {
+      "page": 5,
+      "old": "2 The cops are being blackmailed",
+      "new": "2 Gliny są szantażowane",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        248.198,
+        405.58,
+        264.982
+      ]
+    },
+    {
+      "page": 5,
+      "old": "3 Dean is sleeping with a prof",
+      "new": "3 Dziekan sypia z profesorką lub profesorem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        264.982,
+        405.58,
+        281.765
+      ]
+    },
+    {
+      "page": 5,
+      "old": "4 There's a peeping tom",
+      "new": "4 Grasuje podglądacz",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        281.765,
+        405.58,
+        298.548
+      ]
+    },
+    {
+      "page": 5,
+      "old": "5 The new guy is on the run",
+      "new": "5 Ten nowy jest na ucieczce",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        298.548,
+        405.58,
+        315.331
+      ]
+    },
+    {
+      "page": 5,
+      "old": "6 Has anyone checked on Jeb?",
+      "new": "6 Ktoś w ogóle sprawdzał, co u Jeba?",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        315.331,
+        405.58,
+        332.114
+      ]
+    },
+    {
+      "page": 5,
+      "old": "1 Fishers are becoming monsters",
+      "new": "1 Rybacy zamieniają się w potwory",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        349.114,
+        221.04,
+        365.898
+      ]
+    },
+    {
+      "page": 5,
+      "old": "2 The farmer's being weird",
+      "new": "2 Z farmerem dzieje się coś dziwnego",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        365.898,
+        221.04,
+        382.681
+      ]
+    },
+    {
+      "page": 5,
+      "old": "3 The town well smells off",
+      "new": "3 Studnia miejska dziwnie śmierdzi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        382.681,
+        221.04,
+        399.464
+      ]
+    },
+    {
+      "page": 5,
+      "old": "4 The fish have extra eyes",
+      "new": "4 Ryby mają dodatkowe oczy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        399.464,
+        221.04,
+        416.247
+      ]
+    },
+    {
+      "page": 5,
+      "old": "5 There's something in the lake",
+      "new": "5 Coś jest w jeziorze",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        416.247,
+        221.04,
+        433.03
+      ]
+    },
+    {
+      "page": 5,
+      "old": "6 There's someone in the woods",
+      "new": "6 Ktoś jest w lesie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        433.03,
+        221.04,
+        449.814
+      ]
+    },
+    {
+      "page": 5,
+      "old": "1 The diner sells human meat",
+      "new": "1 W jadłodajni sprzedają ludzkie mięso",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        349.114,
+        405.58,
+        365.898
+      ]
+    },
+    {
+      "page": 5,
+      "old": "2 A spellbook in the library",
+      "new": "2 W bibliotece jest księga zaklęć",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        365.898,
+        405.58,
+        382.681
+      ]
+    },
+    {
+      "page": 5,
+      "old": "3 The cafe is a front",
+      "new": "3 Kawiarnia jest przykrywką",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        382.681,
+        405.58,
+        399.464
+      ]
+    },
+    {
+      "page": 5,
+      "old": "4 The town has a hidden history",
+      "new": "4 Miasteczko ma ukrytą historię",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        399.464,
+        405.58,
+        416.247
+      ]
+    },
+    {
+      "page": 5,
+      "old": "5 There are underground tunnels",
+      "new": "5 Pod ziemią są tunele",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        416.247,
+        405.58,
+        433.03
+      ]
+    },
+    {
+      "page": 5,
+      "old": "6 There's a creature in the sewers",
+      "new": "6 W kanałach żyje jakieś stworzenie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        433.03,
+        405.58,
+        449.814
+      ]
+    },
+    {
+      "page": 5,
+      "old": "1 There's a party in the quarry",
+      "new": "1 W kamieniołomie będzie impreza",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        466.814,
+        221.04,
+        483.597
+      ]
+    },
+    {
+      "page": 5,
+      "old": "2 Someone skipped town",
+      "new": "2 Ktoś zwiał z miasta",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        483.597,
+        221.04,
+        500.38
+      ]
+    },
+    {
+      "page": 5,
+      "old": "3 A weird nursery rhyme",
+      "new": "3 Dziwna kołysanka",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        500.38,
+        221.04,
+        517.163
+      ]
+    },
+    {
+      "page": 5,
+      "old": "4 A new game is all the rage",
+      "new": "4 Nowa gra robi furorę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        517.163,
+        221.04,
+        533.946
+      ]
+    },
+    {
+      "page": 5,
+      "old": "5 A new drug is addicting folks",
+      "new": "5 Nowy narkotyk uzależnia ludzi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        533.946,
+        221.04,
+        550.73
+      ]
+    },
+    {
+      "page": 5,
+      "old": "6 People are disappearing",
+      "new": "6 Ludzie znikają",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        550.73,
+        221.04,
+        567.513
+      ]
+    },
+    {
+      "page": 5,
+      "old": "1 The harvest is gonna be bad",
+      "new": "1 Zbiory będą w tym roku marne",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        466.814,
+        405.58,
+        483.597
+      ]
+    },
+    {
+      "page": 5,
+      "old": "2 Some kids have gone missing",
+      "new": "2 Zaginęło kilkoro dzieci",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        483.597,
+        405.58,
+        500.38
+      ]
+    },
+    {
+      "page": 5,
+      "old": "3 A holiday might be cancelled",
+      "new": "3 Jakieś święto może zostać odwołane",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        500.38,
+        405.58,
+        517.163
+      ]
+    },
+    {
+      "page": 5,
+      "old": "4 There was a bomb threat!",
+      "new": "4 Była groźba podłożenia bomby!",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        517.163,
+        405.58,
+        533.946
+      ]
+    },
+    {
+      "page": 5,
+      "old": "5 The big game is rigged",
+      "new": "5 Wielki mecz jest ustawiony",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        533.946,
+        405.58,
+        550.73
+      ]
+    },
+    {
+      "page": 5,
+      "old": "6 A killer will be released soon",
+      "new": "6 Wkrótce wypuszczą mordercę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        550.73,
+        405.58,
+        567.513
+      ]
+    },
+    {
+      "page": 6,
+      "old": "Creation",
+      "new": "Tworzenie postaci",
+      "occurrence": 2
+    },
+    {
+      "page": 6,
+      "old": "Here are some examples of the kinds of bonds you could form with your fellow protagonists. You don't need to pick one now - in fact, you should do it in the middle of character creation.",
+      "new": "Oto kilka przykładów rodzajów więzi, jakie możecie stworzyć między swoimi protagonistami. Nie musisz wybierać jednej już teraz. Właściwie najlepiej zrobić to w trakcie tworzenia postaci."
+    },
+    {
+      "page": 6,
+      "old": "Go to question 1",
+      "new": "Przejdź do pytania 1"
+    },
+    {
+      "page": 6,
+      "old": "1 Committed crimes together",
+      "new": "1 Razem popełniliśmy przestępstwa",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        200.215,
+        221.04,
+        216.998
+      ]
+    },
+    {
+      "page": 6,
+      "old": "2 Served in the same unit",
+      "new": "2 Służyliśmy w tej samej jednostce",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        216.998,
+        221.04,
+        233.782
+      ]
+    },
+    {
+      "page": 6,
+      "old": "3 Study in the same department",
+      "new": "3 Studiujemy na tym samym wydziale",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        233.782,
+        221.04,
+        250.565
+      ]
+    },
+    {
+      "page": 6,
+      "old": "4 Work at the same company",
+      "new": "4 Pracujemy w tej samej firmie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        250.565,
+        221.04,
+        267.348
+      ]
+    },
+    {
+      "page": 6,
+      "old": "5 Work at rival companies",
+      "new": "5 Pracujemy w konkurencyjnych firmach",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        267.348,
+        221.04,
+        284.131
+      ]
+    },
+    {
+      "page": 6,
+      "old": "6 One works for the other",
+      "new": "6 Jedno pracuje dla drugiego",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        284.131,
+        221.04,
+        300.914
+      ]
+    },
+    {
+      "page": 6,
+      "old": "1 We hate the same guy",
+      "new": "1 Nienawidzimy tego samego faceta",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        200.215,
+        405.58,
+        216.998
+      ]
+    },
+    {
+      "page": 6,
+      "old": "2 We love the same guy",
+      "new": "2 Kochamy tego samego faceta",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        216.998,
+        405.58,
+        233.782
+      ]
+    },
+    {
+      "page": 6,
+      "old": "3 We have the same stalker",
+      "new": "3 Mamy tego samego stalkera",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        233.782,
+        405.58,
+        250.565
+      ]
+    },
+    {
+      "page": 6,
+      "old": "4 Love triangle",
+      "new": "4 Trójkąt miłosny",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        250.565,
+        405.58,
+        267.348
+      ]
+    },
+    {
+      "page": 6,
+      "old": "5 Vying for the same job",
+      "new": "5 Walczymy o tę samą posadę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        267.348,
+        405.58,
+        284.131
+      ]
+    },
+    {
+      "page": 6,
+      "old": "6 Trying to buy the same house",
+      "new": "6 Próbujemy kupić ten sam dom",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        284.131,
+        405.58,
+        300.914
+      ]
+    },
+    {
+      "page": 6,
+      "old": "1 Siblings",
+      "new": "1 Rodzeństwo",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        317.914,
+        221.04,
+        334.698
+      ]
+    },
+    {
+      "page": 6,
+      "old": "2 Aunt or Uncle/niece or nephew",
+      "new": "2 Ciocia albo wujek oraz siostrzenica, siostrzeniec, bratanica lub bratanek",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        334.698,
+        221.04,
+        351.481
+      ]
+    },
+    {
+      "page": 6,
+      "old": "3 Parent/child",
+      "new": "3 Rodzic i dziecko",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        351.481,
+        221.04,
+        368.264
+      ]
+    },
+    {
+      "page": 6,
+      "old": "4 In-laws",
+      "new": "4 Powinowaci",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        368.264,
+        221.04,
+        385.047
+      ]
+    },
+    {
+      "page": 6,
+      "old": "5 From rival families",
+      "new": "5 Z rywalizujących rodów",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        385.047,
+        221.04,
+        401.83
+      ]
+    },
+    {
+      "page": 6,
+      "old": "6 Twins",
+      "new": "6 Bliźnięta",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        401.83,
+        221.04,
+        418.614
+      ]
+    },
+    {
+      "page": 6,
+      "old": "1 Lovers",
+      "new": "1 Kochankowie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        317.914,
+        405.58,
+        334.698
+      ]
+    },
+    {
+      "page": 6,
+      "old": "2 Rivals",
+      "new": "2 Rywale",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        334.698,
+        405.58,
+        351.481
+      ]
+    },
+    {
+      "page": 6,
+      "old": "3 Friends",
+      "new": "3 Przyjaciele",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        351.481,
+        405.58,
+        368.264
+      ]
+    },
+    {
+      "page": 6,
+      "old": "4 Best friends",
+      "new": "4 Najlepsi przyjaciele",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        368.264,
+        405.58,
+        385.047
+      ]
+    },
+    {
+      "page": 6,
+      "old": "5 Married",
+      "new": "5 Małżeństwo",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        385.047,
+        405.58,
+        401.83
+      ]
+    },
+    {
+      "page": 6,
+      "old": "6 Exes",
+      "new": "6 Byli partnerzy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        401.83,
+        405.58,
+        418.614
+      ]
+    },
+    {
+      "page": 6,
+      "old": "1 We look really similar",
+      "new": "1 Jesteśmy do siebie uderzająco podobni",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        435.614,
+        221.04,
+        452.397
+      ]
+    },
+    {
+      "page": 6,
+      "old": "2 Collaborating on a book",
+      "new": "2 Wspólnie piszemy książkę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        452.397,
+        221.04,
+        469.18
+      ]
+    },
+    {
+      "page": 6,
+      "old": "3 Members of the same religion",
+      "new": "3 Należymy do tej samej religii",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        469.18,
+        221.04,
+        485.963
+      ]
+    },
+    {
+      "page": 6,
+      "old": "4 Members of the same gang",
+      "new": "4 Należymy do tego samego gangu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        485.963,
+        221.04,
+        502.746
+      ]
+    },
+    {
+      "page": 6,
+      "old": "5 Next door neighbors",
+      "new": "5 Mieszkamy po sąsiedzku",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        502.746,
+        221.04,
+        519.53
+      ]
+    },
+    {
+      "page": 6,
+      "old": "6 On the same sports team",
+      "new": "6 Gramy w tej samej drużynie sportowej",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        519.53,
+        221.04,
+        536.313
+      ]
+    },
+    {
+      "page": 6,
+      "old": "1 Subject to the same bigotry",
+      "new": "1 Padamy ofiarą tych samych uprzedzeń",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        435.614,
+        405.58,
+        452.397
+      ]
+    },
+    {
+      "page": 6,
+      "old": "2 Survived the same tragedy",
+      "new": "2 Przetrwaliśmy tę samą tragedię",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        452.397,
+        405.58,
+        469.18
+      ]
+    },
+    {
+      "page": 6,
+      "old": "3 Former members of the same cult",
+      "new": "3 Kiedyś należeliśmy do tego samego kultu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        469.18,
+        405.58,
+        485.963
+      ]
+    },
+    {
+      "page": 6,
+      "old": "4 Former members of the same gang",
+      "new": "4 Kiedyś należeliśmy do tego samego gangu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        485.963,
+        405.58,
+        502.746
+      ]
+    },
+    {
+      "page": 6,
+      "old": "5 Have the same enemy",
+      "new": "5 Mamy tego samego wroga",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        502.746,
+        405.58,
+        519.53
+      ]
+    },
+    {
+      "page": 6,
+      "old": "6 Have the same patron",
+      "new": "6 Mamy tego samego patrona",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        519.53,
+        405.58,
+        536.313
+      ]
+    },
+    {
+      "page": 7,
+      "old": "What have you trained for the most in your life?",
+      "new": "Do czego trenowałeś lub trenowałaś najwięcej przez całe życie?"
+    },
+    {
+      "page": 7,
+      "old": "Gain a positive  tag ,  like seventh  generation  farmer ,  or promising young mathematician , or golden gloves boxer .",
+      "new": "Zyskaj pozytywny tag, na przykład rolnik z siódmego pokolenia, obiecująca młoda matematyczka albo bokser ze Złotych Rękawic."
+    },
+    {
+      "page": 7,
+      "old": "Go to question 2",
+      "new": "Przejdź do pytania 2"
+    },
+    {
+      "page": 7,
+      "old": "1 Archaeologist",
+      "new": "1 Archeolog",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        237.0,
+        221.04,
+        253.783
+      ]
+    },
+    {
+      "page": 7,
+      "old": "2 Linguist",
+      "new": "2 Lingwista",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        253.783,
+        221.04,
+        270.566
+      ]
+    },
+    {
+      "page": 7,
+      "old": "3 Antiquarian",
+      "new": "3 Antykwariusz",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        270.566,
+        221.04,
+        287.35
+      ]
+    },
+    {
+      "page": 7,
+      "old": "4 Psychologist",
+      "new": "4 Psycholog",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        287.35,
+        221.04,
+        304.133
+      ]
+    },
+    {
+      "page": 7,
+      "old": "5 Doctor",
+      "new": "5 Lekarz",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        304.133,
+        221.04,
+        320.916
+      ]
+    },
+    {
+      "page": 7,
+      "old": "6 Priest",
+      "new": "6 Ksiądz",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        320.916,
+        221.04,
+        337.699
+      ]
+    },
+    {
+      "page": 7,
+      "old": "1 Cop",
+      "new": "1 Policjant",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        237.0,
+        405.58,
+        253.783
+      ]
+    },
+    {
+      "page": 7,
+      "old": "2 Private Eye",
+      "new": "2 Prywatny detektyw",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        253.783,
+        405.58,
+        270.566
+      ]
+    },
+    {
+      "page": 7,
+      "old": "3 Deputy",
+      "new": "3 Zastępca szeryfa",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        270.566,
+        405.58,
+        287.35
+      ]
+    },
+    {
+      "page": 7,
+      "old": "4 Sheriff",
+      "new": "4 Szeryf",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        287.35,
+        405.58,
+        304.133
+      ]
+    },
+    {
+      "page": 7,
+      "old": "5 FBI agent",
+      "new": "5 Agent FBI",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        304.133,
+        405.58,
+        320.916
+      ]
+    },
+    {
+      "page": 7,
+      "old": "6 Warden",
+      "new": "6 Naczelnik więzienia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        320.916,
+        405.58,
+        337.699
+      ]
+    },
+    {
+      "page": 7,
+      "old": "1 Dilettante",
+      "new": "1 Dyletant",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        354.699,
+        221.04,
+        371.482
+      ]
+    },
+    {
+      "page": 7,
+      "old": "2 Philosopher",
+      "new": "2 Filozof",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        371.482,
+        221.04,
+        388.266
+      ]
+    },
+    {
+      "page": 7,
+      "old": "3 Chef",
+      "new": "3 Szef kuchni",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        388.266,
+        221.04,
+        405.049
+      ]
+    },
+    {
+      "page": 7,
+      "old": "4 Artist",
+      "new": "4 Artysta",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        405.049,
+        221.04,
+        421.832
+      ]
+    },
+    {
+      "page": 7,
+      "old": "5 Businessman",
+      "new": "5 Biznesmen",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        421.832,
+        221.04,
+        438.615
+      ]
+    },
+    {
+      "page": 7,
+      "old": "6 Industrialist",
+      "new": "6 Przemysłowiec",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        438.615,
+        221.04,
+        455.398
+      ]
+    },
+    {
+      "page": 7,
+      "old": "1 Construction worker",
+      "new": "1 Robotnik budowlany",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        354.699,
+        405.58,
+        371.482
+      ]
+    },
+    {
+      "page": 7,
+      "old": "2 Athlete",
+      "new": "2 Sportowiec",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        371.482,
+        405.58,
+        388.266
+      ]
+    },
+    {
+      "page": 7,
+      "old": "3 Firefighter",
+      "new": "3 Strażak",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        388.266,
+        405.58,
+        405.049
+      ]
+    },
+    {
+      "page": 7,
+      "old": "4 Soldier",
+      "new": "4 Żołnierz",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        405.049,
+        405.58,
+        421.832
+      ]
+    },
+    {
+      "page": 7,
+      "old": "5 Sailor",
+      "new": "5 Marynarz",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        421.832,
+        405.58,
+        438.615
+      ]
+    },
+    {
+      "page": 7,
+      "old": "6 Assassin",
+      "new": "6 Zabójca",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        438.615,
+        405.58,
+        455.398
+      ]
+    },
+    {
+      "page": 7,
+      "old": "1 Shaman",
+      "new": "1 Szaman",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        472.398,
+        221.04,
+        489.182
+      ]
+    },
+    {
+      "page": 7,
+      "old": "2 Martial artist",
+      "new": "2 Adept sztuk walki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        489.182,
+        221.04,
+        505.965
+      ]
+    },
+    {
+      "page": 7,
+      "old": "3 Medium",
+      "new": "3 Medium",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        505.965,
+        221.04,
+        522.748
+      ]
+    },
+    {
+      "page": 7,
+      "old": "4 Witch",
+      "new": "4 Wiedźma",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        522.748,
+        221.04,
+        539.531
+      ]
+    },
+    {
+      "page": 7,
+      "old": "5 Yoga instructor",
+      "new": "5 Instruktorka jogi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        539.531,
+        221.04,
+        556.315
+      ]
+    },
+    {
+      "page": 7,
+      "old": "6 Dancer",
+      "new": "6 Tancerz",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        556.315,
+        221.04,
+        573.098
+      ]
+    },
+    {
+      "page": 7,
+      "old": "1 Camp counselor",
+      "new": "1 Opiekun kolonijny",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        472.398,
+        405.58,
+        489.182
+      ]
+    },
+    {
+      "page": 7,
+      "old": "2 Pilot",
+      "new": "2 Pilot",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        489.182,
+        405.58,
+        505.965
+      ]
+    },
+    {
+      "page": 7,
+      "old": "3 Own a gas station",
+      "new": "3 Właściciel stacji benzynowej",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        505.965,
+        405.58,
+        522.748
+      ]
+    },
+    {
+      "page": 7,
+      "old": "4 Beggar",
+      "new": "4 Żebrak",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        522.748,
+        405.58,
+        539.531
+      ]
+    },
+    {
+      "page": 7,
+      "old": "5 Taxi driver",
+      "new": "5 Taksówkarz",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        539.531,
+        405.58,
+        556.315
+      ]
+    },
+    {
+      "page": 7,
+      "old": "6 Actor",
+      "new": "6 Aktor",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        556.315,
+        405.58,
+        573.098
+      ]
+    },
+    {
+      "page": 8,
+      "old": "You had to do something bad for cash once. What was it?",
+      "new": "Musiałeś kiedyś zrobić coś złego dla pieniędzy. Co to było?"
+    },
+    {
+      "page": 8,
+      "old": "Gain a negative tag , like gambling addict , or wanted criminal , or I owe the Don .",
+      "new": "Zyskaj negatywny tag, na przykład uzależniony od hazardu, ścigany przestępca albo jestem winien Donowi przysługę."
+    },
+    {
+      "page": 8,
+      "old": "Go to question 6",
+      "new": "Przejdź do pytania 6"
+    },
+    {
+      "page": 8,
+      "old": "1 I'm a kleptomaniac",
+      "new": "1 Jestem kleptomanem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        238.2,
+        221.04,
+        254.983
+      ]
+    },
+    {
+      "page": 8,
+      "old": "2 I'm a petty thief",
+      "new": "2 Jestem drobnym złodziejem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        254.983,
+        221.04,
+        271.766
+      ]
+    },
+    {
+      "page": 8,
+      "old": "3 Someone saw me steal",
+      "new": "3 Ktoś widział, jak kradnę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        271.766,
+        221.04,
+        288.55
+      ]
+    },
+    {
+      "page": 8,
+      "old": "4 Embezzled from work",
+      "new": "4 Sprzeniewierzyłem pieniądze z pracy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        288.55,
+        221.04,
+        305.333
+      ]
+    },
+    {
+      "page": 8,
+      "old": "5 Stole from my family",
+      "new": "5 Okradłem własną rodzinę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        305.333,
+        221.04,
+        322.116
+      ]
+    },
+    {
+      "page": 8,
+      "old": "6 Ran a scam",
+      "new": "6 Prowadziłem przekręt",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        322.116,
+        221.04,
+        338.899
+      ]
+    },
+    {
+      "page": 8,
+      "old": "1 I took credit I don't deserve",
+      "new": "1 Przypisałem sobie cudzą zasługę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        238.2,
+        405.58,
+        254.983
+      ]
+    },
+    {
+      "page": 8,
+      "old": "2 Falsely took charity",
+      "new": "2 Niesłusznie brałem jałmużnę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        254.983,
+        405.58,
+        271.766
+      ]
+    },
+    {
+      "page": 8,
+      "old": "3 I can't save money",
+      "new": "3 Nie umiem oszczędzać",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        271.766,
+        405.58,
+        288.55
+      ]
+    },
+    {
+      "page": 8,
+      "old": "4 I can't earn money",
+      "new": "4 Nie umiem zarabiać",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        288.55,
+        405.58,
+        305.333
+      ]
+    },
+    {
+      "page": 8,
+      "old": "5 I'm homeless",
+      "new": "5 Jestem bezdomny",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        305.333,
+        405.58,
+        322.116
+      ]
+    },
+    {
+      "page": 8,
+      "old": "6 I robbed someone",
+      "new": "6 Obrabowałem kogoś",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        322.116,
+        405.58,
+        338.899
+      ]
+    },
+    {
+      "page": 8,
+      "old": "1 I'm on the run",
+      "new": "1 Jestem w ucieczce",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        355.899,
+        221.04,
+        372.682
+      ]
+    },
+    {
+      "page": 8,
+      "old": "2 Arson for insurance",
+      "new": "2 Podpalenie dla odszkodowania",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        372.682,
+        221.04,
+        389.466
+      ]
+    },
+    {
+      "page": 8,
+      "old": "3 A cop has a grudge against me",
+      "new": "3 Policjant ma do mnie urazę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        389.466,
+        221.04,
+        406.249
+      ]
+    },
+    {
+      "page": 8,
+      "old": "4 I've been framed",
+      "new": "4 Zostałem wrobiony",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        406.249,
+        221.04,
+        423.032
+      ]
+    },
+    {
+      "page": 8,
+      "old": "5 I helped people cheat",
+      "new": "5 Pomagałem ludziom oszukiwać",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        423.032,
+        221.04,
+        439.815
+      ]
+    },
+    {
+      "page": 8,
+      "old": "6 I cheated",
+      "new": "6 Oszukiwałem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        439.815,
+        221.04,
+        456.599
+      ]
+    },
+    {
+      "page": 8,
+      "old": "1 I'm in the mafia",
+      "new": "1 Jestem w mafii",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        355.899,
+        405.58,
+        372.682
+      ]
+    },
+    {
+      "page": 8,
+      "old": "2 I’m “out” of the mafia",
+      "new": "2 Jestem już poza mafią",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        372.682,
+        405.58,
+        389.466
+      ]
+    },
+    {
+      "page": 8,
+      "old": "3 I joined a gang",
+      "new": "3 Dołączyłem do gangu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        389.466,
+        405.58,
+        406.249
+      ]
+    },
+    {
+      "page": 8,
+      "old": "4 I'm in with a bad crowd",
+      "new": "4 Trzymam się złego towarzystwa",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        406.249,
+        405.58,
+        423.032
+      ]
+    },
+    {
+      "page": 8,
+      "old": "5 My family is criminals",
+      "new": "5 Moja rodzina to przestępcy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        423.032,
+        405.58,
+        439.815
+      ]
+    },
+    {
+      "page": 8,
+      "old": "6 I hired some bad dudes",
+      "new": "6 Wynająłem paru niebezpiecznych typów",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        439.815,
+        405.58,
+        456.599
+      ]
+    },
+    {
+      "page": 8,
+      "old": "1 I'm gullible",
+      "new": "1 Jestem łatwowierny",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        473.599,
+        221.04,
+        490.382
+      ]
+    },
+    {
+      "page": 8,
+      "old": "2 Someone cursed me",
+      "new": "2 Ktoś rzucił na mnie klątwę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        490.382,
+        221.04,
+        507.165
+      ]
+    },
+    {
+      "page": 8,
+      "old": "3 The guilt is killing me",
+      "new": "3 Poczucie winy mnie zżera",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        507.165,
+        221.04,
+        523.948
+      ]
+    },
+    {
+      "page": 8,
+      "old": "4 I don't have a conscience",
+      "new": "4 Nie mam sumienia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        523.948,
+        221.04,
+        540.731
+      ]
+    },
+    {
+      "page": 8,
+      "old": "5 I'm afraid of failure",
+      "new": "5 Boję się porażki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        540.731,
+        221.04,
+        557.515
+      ]
+    },
+    {
+      "page": 8,
+      "old": "6 I self-sabotage",
+      "new": "6 Sam sobie szkodzę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        557.515,
+        221.04,
+        574.298
+      ]
+    },
+    {
+      "page": 8,
+      "old": "1 I crushed a rival's business",
+      "new": "1 Zniszczyłem interes rywala",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        473.599,
+        405.58,
+        490.382
+      ]
+    },
+    {
+      "page": 8,
+      "old": "2 I stole an invention",
+      "new": "2 Ukradłem czyjś wynalazek",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        490.382,
+        405.58,
+        507.165
+      ]
+    },
+    {
+      "page": 8,
+      "old": "3 I embezzled from my job",
+      "new": "3 Sprzeniewierzyłem pieniądze z pracy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        507.165,
+        405.58,
+        523.948
+      ]
+    },
+    {
+      "page": 8,
+      "old": "4 I threatened a rival",
+      "new": "4 Groziłem rywalowi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        523.948,
+        405.58,
+        540.731
+      ]
+    },
+    {
+      "page": 8,
+      "old": "5 I killed a rival",
+      "new": "5 Zabiłem rywala",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        540.731,
+        405.58,
+        557.515
+      ]
+    },
+    {
+      "page": 8,
+      "old": "6 I'm always lying",
+      "new": "6 Zawsze kłamię",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        557.515,
+        405.58,
+        574.298
+      ]
+    },
+    {
+      "page": 9,
+      "old": "What's something you want to know more about?",
+      "new": "O czym chcesz wiedzieć więcej?"
+    },
+    {
+      "page": 9,
+      "old": "Gain  a positive  tag ,  like obscure  geography  facts ,  or astronomy enthusiast , or this weird old book I found .",
+      "new": "Zyskaj pozytywny tag, na przykład zna dziwne fakty z geografii, pasjonat astronomii albo ta dziwna stara księga, którą znalazłem."
+    },
+    {
+      "page": 9,
+      "old": "Go to question 7",
+      "new": "Przejdź do pytania 7"
+    },
+    {
+      "page": 9,
+      "old": "1 A specific culture",
+      "new": "1 Konkretna kultura",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        238.2,
+        221.04,
+        254.983
+      ]
+    },
+    {
+      "page": 9,
+      "old": "2 Dead languages",
+      "new": "2 Martwe języki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        254.983,
+        221.04,
+        271.766
+      ]
+    },
+    {
+      "page": 9,
+      "old": "3 Music",
+      "new": "3 Muzyka",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        271.766,
+        221.04,
+        288.55
+      ]
+    },
+    {
+      "page": 9,
+      "old": "4 Painting",
+      "new": "4 Malarstwo",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        288.55,
+        221.04,
+        305.333
+      ]
+    },
+    {
+      "page": 9,
+      "old": "5 Writing",
+      "new": "5 Pisanie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        305.333,
+        221.04,
+        322.116
+      ]
+    },
+    {
+      "page": 9,
+      "old": "6 Speed-reading",
+      "new": "6 Szybkie czytanie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        322.116,
+        221.04,
+        338.899
+      ]
+    },
+    {
+      "page": 9,
+      "old": "1 Astrology",
+      "new": "1 Astrologia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        238.2,
+        405.58,
+        254.983
+      ]
+    },
+    {
+      "page": 9,
+      "old": "2 Sacred geometry",
+      "new": "2 Święta geometria",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        254.983,
+        405.58,
+        271.766
+      ]
+    },
+    {
+      "page": 9,
+      "old": "3 Local folklore",
+      "new": "3 Lokalny folklor",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        271.766,
+        405.58,
+        288.55
+      ]
+    },
+    {
+      "page": 9,
+      "old": "4 Traditional medicine",
+      "new": "4 Medycyna tradycyjna",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        288.55,
+        405.58,
+        305.333
+      ]
+    },
+    {
+      "page": 9,
+      "old": "5 Magic",
+      "new": "5 Magia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        305.333,
+        405.58,
+        322.116
+      ]
+    },
+    {
+      "page": 9,
+      "old": "6 Witchcraft",
+      "new": "6 Czarownictwo",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        322.116,
+        405.58,
+        338.899
+      ]
+    },
+    {
+      "page": 9,
+      "old": "1 Rare books",
+      "new": "1 Rzadkie książki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        355.899,
+        221.04,
+        372.682
+      ]
+    },
+    {
+      "page": 9,
+      "old": "2 Antiques",
+      "new": "2 Antyki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        372.682,
+        221.04,
+        389.466
+      ]
+    },
+    {
+      "page": 9,
+      "old": "3 Cars",
+      "new": "3 Samochody",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        389.466,
+        221.04,
+        406.249
+      ]
+    },
+    {
+      "page": 9,
+      "old": "4 Guns",
+      "new": "4 Broń palna",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        406.249,
+        221.04,
+        423.032
+      ]
+    },
+    {
+      "page": 9,
+      "old": "5 Cameras",
+      "new": "5 Aparaty",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        423.032,
+        221.04,
+        439.815
+      ]
+    },
+    {
+      "page": 9,
+      "old": "6 Knives",
+      "new": "6 Noże",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        439.815,
+        221.04,
+        456.599
+      ]
+    },
+    {
+      "page": 9,
+      "old": "1 Jiu-Jitsu",
+      "new": "1 Jiu-jitsu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        355.899,
+        405.58,
+        372.682
+      ]
+    },
+    {
+      "page": 9,
+      "old": "2 Fencing",
+      "new": "2 Szermierka",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        372.682,
+        405.58,
+        389.466
+      ]
+    },
+    {
+      "page": 9,
+      "old": "3 Boxing",
+      "new": "3 Boks",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        389.466,
+        405.58,
+        406.249
+      ]
+    },
+    {
+      "page": 9,
+      "old": "4 Racing",
+      "new": "4 Wyścigi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        406.249,
+        405.58,
+        423.032
+      ]
+    },
+    {
+      "page": 9,
+      "old": "5 True crime",
+      "new": "5 Prawdziwe zbrodnie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        423.032,
+        405.58,
+        439.815
+      ]
+    },
+    {
+      "page": 9,
+      "old": "6 Hunting",
+      "new": "6 Łowiectwo",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        439.815,
+        405.58,
+        456.599
+      ]
+    },
+    {
+      "page": 9,
+      "old": "1 Astronomy",
+      "new": "1 Astronomia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        473.599,
+        221.04,
+        490.382
+      ]
+    },
+    {
+      "page": 9,
+      "old": "2 Modern medicine",
+      "new": "2 Współczesna medycyna",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        490.382,
+        221.04,
+        507.165
+      ]
+    },
+    {
+      "page": 9,
+      "old": "3 Archaeology",
+      "new": "3 Archeologia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        507.165,
+        221.04,
+        523.948
+      ]
+    },
+    {
+      "page": 9,
+      "old": "4 Anthropology",
+      "new": "4 Antropologia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        523.948,
+        221.04,
+        540.731
+      ]
+    },
+    {
+      "page": 9,
+      "old": "5 Modern languages",
+      "new": "5 Współczesne języki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        540.731,
+        221.04,
+        557.515
+      ]
+    },
+    {
+      "page": 9,
+      "old": "6 Entomology",
+      "new": "6 Entomologia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        557.515,
+        221.04,
+        574.298
+      ]
+    },
+    {
+      "page": 9,
+      "old": "1 Horror movies",
+      "new": "1 Horrory",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        473.599,
+        405.58,
+        490.382
+      ]
+    },
+    {
+      "page": 9,
+      "old": "2 The law",
+      "new": "2 Prawo",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        490.382,
+        405.58,
+        507.165
+      ]
+    },
+    {
+      "page": 9,
+      "old": "3 Butchery",
+      "new": "3 Rzeźnictwo",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        507.165,
+        405.58,
+        523.948
+      ]
+    },
+    {
+      "page": 9,
+      "old": "4 Cooking",
+      "new": "4 Gotowanie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        523.948,
+        405.58,
+        540.731
+      ]
+    },
+    {
+      "page": 9,
+      "old": "5 Living off the land",
+      "new": "5 Życie z tego, co da ziemia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        540.731,
+        405.58,
+        557.515
+      ]
+    },
+    {
+      "page": 9,
+      "old": "6 Parkour",
+      "new": "6 Parkour",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        557.515,
+        405.58,
+        574.298
+      ]
+    },
+    {
+      "page": 10,
+      "old": "You haven't always used your power for good. What's one time you regret using it?",
+      "new": "Nie zawsze używałeś lub używałaś swojej władzy w dobrym celu. Jakiego użycia do dziś żałujesz?"
+    },
+    {
+      "page": 10,
+      "old": "Gain a negative tag , like don't know my own strength , or quick to anger , or I've made enemies .",
+      "new": "Zyskaj negatywny tag, na przykład nie znam własnej siły, łatwo się złoszczę albo narobiłem sobie wrogów."
+    },
+    {
+      "page": 10,
+      "old": "Go to question 8",
+      "new": "Przejdź do pytania 8"
+    },
+    {
+      "page": 10,
+      "old": "1 I refuse to listen to doubters",
+      "new": "1 Odmawiam słuchania niedowiarków",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        238.2,
+        221.04,
+        254.983
+      ]
+    },
+    {
+      "page": 10,
+      "old": "2 I get in over my head easily",
+      "new": "2 Łatwo porywam się z motyką na słońce",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        254.983,
+        221.04,
+        271.766
+      ]
+    },
+    {
+      "page": 10,
+      "old": "3 I'm carrying immense guilt",
+      "new": "3 Dźwigam ogromne poczucie winy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        271.766,
+        221.04,
+        288.55
+      ]
+    },
+    {
+      "page": 10,
+      "old": "4 I have a terrible secret",
+      "new": "4 Mam straszny sekret",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        288.55,
+        221.04,
+        305.333
+      ]
+    },
+    {
+      "page": 10,
+      "old": "5 I have a death wish",
+      "new": "5 Mam życzenie śmierci",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        305.333,
+        221.04,
+        322.116
+      ]
+    },
+    {
+      "page": 10,
+      "old": "6 I'm scared of dying",
+      "new": "6 Boję się śmierci",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        322.116,
+        221.04,
+        338.899
+      ]
+    },
+    {
+      "page": 10,
+      "old": "1 I like to hurt people",
+      "new": "1 Lubię krzywdzić ludzi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        238.2,
+        405.58,
+        254.983
+      ]
+    },
+    {
+      "page": 10,
+      "old": "2 I ignore the little people",
+      "new": "2 Ignoruję zwykłych ludzi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        254.983,
+        405.58,
+        271.766
+      ]
+    },
+    {
+      "page": 10,
+      "old": "3 I get angry easily",
+      "new": "3 Łatwo się złoszczę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        271.766,
+        405.58,
+        288.55
+      ]
+    },
+    {
+      "page": 10,
+      "old": "4 I'm easily offended",
+      "new": "4 Łatwo mnie obrazić",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        288.55,
+        405.58,
+        305.333
+      ]
+    },
+    {
+      "page": 10,
+      "old": "5 I take revenge too far",
+      "new": "5 Posuwam zemstę za daleko",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        305.333,
+        405.58,
+        322.116
+      ]
+    },
+    {
+      "page": 10,
+      "old": "6 I feel I'm owed everything",
+      "new": "6 Czuję, że wszystko mi się należy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        322.116,
+        405.58,
+        338.899
+      ]
+    },
+    {
+      "page": 10,
+      "old": "1 I'm banned from the library",
+      "new": "1 Mam zakaz wstępu do biblioteki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        355.899,
+        221.04,
+        372.682
+      ]
+    },
+    {
+      "page": 10,
+      "old": "2 I'm banned from the bar",
+      "new": "2 Mam zakaz wstępu do baru",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        372.682,
+        221.04,
+        389.466
+      ]
+    },
+    {
+      "page": 10,
+      "old": "3 The cops hate me",
+      "new": "3 Policja mnie nienawidzi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        389.466,
+        221.04,
+        406.249
+      ]
+    },
+    {
+      "page": 10,
+      "old": "4 The mayor hates me",
+      "new": "4 Burmistrz mnie nienawidzi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        406.249,
+        221.04,
+        423.032
+      ]
+    },
+    {
+      "page": 10,
+      "old": "5 Town kids hate me",
+      "new": "5 Dzieciaki z miasteczka mnie nienawidzą",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        423.032,
+        221.04,
+        439.815
+      ]
+    },
+    {
+      "page": 10,
+      "old": "6 Jealous people hate me",
+      "new": "6 Zazdrośnicy mnie nienawidzą",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        439.815,
+        221.04,
+        456.599
+      ]
+    },
+    {
+      "page": 10,
+      "old": "1 Someone has a grudge",
+      "new": "1 Ktoś żywi do mnie urazę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        355.899,
+        405.58,
+        372.682
+      ]
+    },
+    {
+      "page": 10,
+      "old": "2 I have a vengeful ex",
+      "new": "2 Mój były partner pała żądzą zemsty",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        372.682,
+        405.58,
+        389.466
+      ]
+    },
+    {
+      "page": 10,
+      "old": "3 I have burn scars",
+      "new": "3 Mam blizny po oparzeniach",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        389.466,
+        405.58,
+        406.249
+      ]
+    },
+    {
+      "page": 10,
+      "old": "4 I have a bum leg",
+      "new": "4 Mam niesprawną nogę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        406.249,
+        405.58,
+        423.032
+      ]
+    },
+    {
+      "page": 10,
+      "old": "5 I'm missing a hand",
+      "new": "5 Brakuje mi dłoni",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        423.032,
+        405.58,
+        439.815
+      ]
+    },
+    {
+      "page": 10,
+      "old": "6 I'm missing an eye",
+      "new": "6 Brakuje mi oka",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        439.815,
+        405.58,
+        456.599
+      ]
+    },
+    {
+      "page": 10,
+      "old": "1 I cast a curse and it backfired",
+      "new": "1 Rzuciłem klątwę i odbiło się to na mnie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        473.599,
+        221.04,
+        490.382
+      ]
+    },
+    {
+      "page": 10,
+      "old": "2 Someone cursed me",
+      "new": "2 Ktoś rzucił na mnie klątwę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        490.382,
+        221.04,
+        507.165
+      ]
+    },
+    {
+      "page": 10,
+      "old": "3 I have a bad fortune",
+      "new": "3 Ciąży nade mną zły los",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        507.165,
+        221.04,
+        523.948
+      ]
+    },
+    {
+      "page": 10,
+      "old": "4 I have bad luck",
+      "new": "4 Mam pecha",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        523.948,
+        221.04,
+        540.731
+      ]
+    },
+    {
+      "page": 10,
+      "old": "5 Bad omens follow me",
+      "new": "5 Ciągną się za mną złe znaki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        540.731,
+        221.04,
+        557.515
+      ]
+    },
+    {
+      "page": 10,
+      "old": "6 I misread situations",
+      "new": "6 Źle odczytuję sytuacje",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        557.515,
+        221.04,
+        574.298
+      ]
+    },
+    {
+      "page": 10,
+      "old": "1 I've cheated to get where I am",
+      "new": "1 Oszukiwałem, żeby zajść tak daleko",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        473.599,
+        405.58,
+        490.382
+      ]
+    },
+    {
+      "page": 10,
+      "old": "2 I helped cover up a crime",
+      "new": "2 Pomogłem zatuszować zbrodnię",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        490.382,
+        405.58,
+        507.165
+      ]
+    },
+    {
+      "page": 10,
+      "old": "3 I owe a big favor",
+      "new": "3 Jestem winien wielką przysługę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        507.165,
+        405.58,
+        523.948
+      ]
+    },
+    {
+      "page": 10,
+      "old": "4 I owe a lot of small favors",
+      "new": "4 Jestem winien mnóstwo drobnych przysług",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        523.948,
+        405.58,
+        540.731
+      ]
+    },
+    {
+      "page": 10,
+      "old": "5 I have an addiction",
+      "new": "5 Mam uzależnienie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        540.731,
+        405.58,
+        557.515
+      ]
+    },
+    {
+      "page": 10,
+      "old": "6 I can't stop myself when I'm mad",
+      "new": "6 Nie umiem się powstrzymać, kiedy jestem wściekły",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        557.515,
+        405.58,
+        574.298
+      ]
+    },
+    {
+      "page": 11,
+      "old": "You've got money, and you know how to spend it. What did you buy?",
+      "new": "Masz pieniądze i wiesz, jak je wydawać. Co kupiłeś lub kupiłaś?"
+    },
+    {
+      "page": 11,
+      "old": "Gain a positive tag , like an ancient amulet , or a seat on the University board , or a well maintained automobile .",
+      "new": "Zyskaj pozytywny tag, na przykład starożytny amulet, miejsce w radzie uniwersytetu albo zadbany samochód."
+    },
+    {
+      "page": 11,
+      "old": "Go to question 9",
+      "new": "Przejdź do pytania 9"
+    },
+    {
+      "page": 11,
+      "old": "1 I own a store",
+      "new": "1 Mam sklep",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        238.2,
+        221.04,
+        254.983
+      ]
+    },
+    {
+      "page": 11,
+      "old": "2 I have a safehouse",
+      "new": "2 Mam bezpieczną kryjówkę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        254.983,
+        221.04,
+        271.766
+      ]
+    },
+    {
+      "page": 11,
+      "old": "3 I have a fallout shelter",
+      "new": "3 Mam schron przeciwatomowy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        271.766,
+        221.04,
+        288.55
+      ]
+    },
+    {
+      "page": 11,
+      "old": "4 I have a huge private library",
+      "new": "4 Mam ogromną prywatną bibliotekę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        288.55,
+        221.04,
+        305.333
+      ]
+    },
+    {
+      "page": 11,
+      "old": "5 I collect rare fetishes",
+      "new": "5 Kolekcjonuję rzadkie fetysze",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        305.333,
+        221.04,
+        322.116
+      ]
+    },
+    {
+      "page": 11,
+      "old": "6 I belong to a private club",
+      "new": "6 Należę do prywatnego klubu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        322.116,
+        221.04,
+        338.899
+      ]
+    },
+    {
+      "page": 11,
+      "old": "1 I live in my family manor",
+      "new": "1 Mieszkam w rodowej posiadłości",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        238.2,
+        405.58,
+        254.983
+      ]
+    },
+    {
+      "page": 11,
+      "old": "2 I bought the hospital a new wing",
+      "new": "2 Sfinansowałem nowy oddział szpitala",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        254.983,
+        405.58,
+        271.766
+      ]
+    },
+    {
+      "page": 11,
+      "old": "3 I've invested in a lot of businesses",
+      "new": "3 Zainwestowałem w mnóstwo firm",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        271.766,
+        405.58,
+        288.55
+      ]
+    },
+    {
+      "page": 11,
+      "old": "4 I own one big business",
+      "new": "4 Posiadam jedno wielkie przedsiębiorstwo",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        288.55,
+        405.58,
+        305.333
+      ]
+    },
+    {
+      "page": 11,
+      "old": "5 I paid for the town library",
+      "new": "5 Opłaciłem bibliotekę miejską",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        305.333,
+        405.58,
+        322.116
+      ]
+    },
+    {
+      "page": 11,
+      "old": "6 I paid for a University position",
+      "new": "6 Opłaciłem stanowisko na uniwersytecie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        322.116,
+        405.58,
+        338.899
+      ]
+    },
+    {
+      "page": 11,
+      "old": "1 I've bribed a lot of people",
+      "new": "1 Przekupiłem mnóstwo ludzi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        355.899,
+        221.04,
+        372.682
+      ]
+    },
+    {
+      "page": 11,
+      "old": "2 I always have cash on hand",
+      "new": "2 Zawsze mam przy sobie gotówkę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        372.682,
+        221.04,
+        389.466
+      ]
+    },
+    {
+      "page": 11,
+      "old": "3 People owe me small favors",
+      "new": "3 Ludzie są mi winni drobne przysługi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        389.466,
+        221.04,
+        406.249
+      ]
+    },
+    {
+      "page": 11,
+      "old": "4 One person owes me a big favor",
+      "new": "4 Jedna osoba jest mi winna wielką przysługę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        406.249,
+        221.04,
+        423.032
+      ]
+    },
+    {
+      "page": 11,
+      "old": "5 My friends never have to pay",
+      "new": "5 Moi przyjaciele nigdy nie muszą płacić",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        423.032,
+        221.04,
+        439.815
+      ]
+    },
+    {
+      "page": 11,
+      "old": "6 I never run out of money",
+      "new": "6 Nigdy nie kończą mi się pieniądze",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        439.815,
+        221.04,
+        456.599
+      ]
+    },
+    {
+      "page": 11,
+      "old": "1 My family's sword",
+      "new": "1 Rodzinny miecz",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        355.899,
+        405.58,
+        372.682
+      ]
+    },
+    {
+      "page": 11,
+      "old": "2 I have a collection of custom guns",
+      "new": "2 Mam kolekcję broni robionej na zamówienie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        372.682,
+        405.58,
+        389.466
+      ]
+    },
+    {
+      "page": 11,
+      "old": "3 I keep a well stocked armory",
+      "new": "3 Trzymam doskonale zaopatrzoną zbrojownię",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        389.466,
+        405.58,
+        406.249
+      ]
+    },
+    {
+      "page": 11,
+      "old": "4 I collect strange antiques",
+      "new": "4 Kolekcjonuję dziwne antyki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        406.249,
+        405.58,
+        423.032
+      ]
+    },
+    {
+      "page": 11,
+      "old": "5 I collect weird knick knocks",
+      "new": "5 Kolekcjonuję osobliwe bibeloty",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        423.032,
+        405.58,
+        439.815
+      ]
+    },
+    {
+      "page": 11,
+      "old": "6 I have antique arms and armor",
+      "new": "6 Mam zabytkową broń i zbroje",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        439.815,
+        405.58,
+        456.599
+      ]
+    },
+    {
+      "page": 11,
+      "old": "1 I own this weird book",
+      "new": "1 Mam tę dziwną księgę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        473.599,
+        221.04,
+        490.382
+      ]
+    },
+    {
+      "page": 11,
+      "old": "2 I collect strange art",
+      "new": "2 Kolekcjonuję osobliwą sztukę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        490.382,
+        221.04,
+        507.165
+      ]
+    },
+    {
+      "page": 11,
+      "old": "3 I have some great toys",
+      "new": "3 Mam świetne zabawki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        507.165,
+        221.04,
+        523.948
+      ]
+    },
+    {
+      "page": 11,
+      "old": "4 I have a private bodyguard",
+      "new": "4 Mam prywatnego ochroniarza",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        523.948,
+        221.04,
+        540.731
+      ]
+    },
+    {
+      "page": 11,
+      "old": "5 I have amazing jewelry",
+      "new": "5 Mam niesamowitą biżuterię",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        540.731,
+        221.04,
+        557.515
+      ]
+    },
+    {
+      "page": 11,
+      "old": "6 I have a little of everything",
+      "new": "6 Mam po trochu wszystkiego",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        557.515,
+        221.04,
+        574.298
+      ]
+    },
+    {
+      "page": 11,
+      "old": "1 I'm supremely well dressed",
+      "new": "1 Ubieram się nienagannie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        473.599,
+        405.58,
+        490.382
+      ]
+    },
+    {
+      "page": 11,
+      "old": "2 I have a pickup",
+      "new": "2 Mam pick-upa",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        490.382,
+        405.58,
+        507.165
+      ]
+    },
+    {
+      "page": 11,
+      "old": "3 I have a sports car",
+      "new": "3 Mam sportowy samochód",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        507.165,
+        405.58,
+        523.948
+      ]
+    },
+    {
+      "page": 11,
+      "old": "4 I have a drone",
+      "new": "4 Mam drona",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        523.948,
+        405.58,
+        540.731
+      ]
+    },
+    {
+      "page": 11,
+      "old": "5 I have an amazing camera",
+      "new": "5 Mam znakomity aparat",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        540.731,
+        405.58,
+        557.515
+      ]
+    },
+    {
+      "page": 11,
+      "old": "6 I have a lot of equipment",
+      "new": "6 Mam mnóstwo sprzętu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        557.515,
+        405.58,
+        574.298
+      ]
+    },
+    {
+      "page": 12,
+      "old": "Someone learned something about you that you'd rather they didn't. What was it?",
+      "new": "Ktoś dowiedział się o tobie czegoś, czego wolałbyś lub wolałabyś nie ujawniać. Co to było?"
+    },
+    {
+      "page": 12,
+      "old": "Gain a negative tag , like unbeknownst to me someone saw me do a hit and run , or paranoid delusions , or I'm being blackmailed.",
+      "new": "Zyskaj negatywny tag, na przykład ktoś bez mojej wiedzy widział, jak uciekam po potrąceniu, paranoiczne urojenia albo ktoś mnie szantażuje."
+    },
+    {
+      "page": 12,
+      "old": "Go to question 9",
+      "new": "Przejdź do pytania 9"
+    },
+    {
+      "page": 12,
+      "old": "1 Bad dreams",
+      "new": "1 Złe sny",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        238.2,
+        221.04,
+        254.983
+      ]
+    },
+    {
+      "page": 12,
+      "old": "2 Obsession",
+      "new": "2 Obsesja",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        254.983,
+        221.04,
+        271.766
+      ]
+    },
+    {
+      "page": 12,
+      "old": "3 I can't keep a secret",
+      "new": "3 Nie umiem dochować tajemnicy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        271.766,
+        221.04,
+        288.55
+      ]
+    },
+    {
+      "page": 12,
+      "old": "4 I can't bring myself to trust",
+      "new": "4 Nie potrafię nikomu zaufać",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        288.55,
+        221.04,
+        305.333
+      ]
+    },
+    {
+      "page": 12,
+      "old": "5 Overly credulous",
+      "new": "5 Zbyt łatwo wierzę ludziom",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        305.333,
+        221.04,
+        322.116
+      ]
+    },
+    {
+      "page": 12,
+      "old": "6 Insomnia",
+      "new": "6 Bezsenność",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        322.116,
+        221.04,
+        338.899
+      ]
+    },
+    {
+      "page": 12,
+      "old": "1 Paranoid delusions",
+      "new": "1 Paranoiczne urojenia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        238.2,
+        405.58,
+        254.983
+      ]
+    },
+    {
+      "page": 12,
+      "old": "2 Pareidolia",
+      "new": "2 Pareidolia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        254.983,
+        405.58,
+        271.766
+      ]
+    },
+    {
+      "page": 12,
+      "old": "3 I see things that aren't there",
+      "new": "3 Widzę rzeczy, których nie ma",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        271.766,
+        405.58,
+        288.55
+      ]
+    },
+    {
+      "page": 12,
+      "old": "4 I constantly see omens",
+      "new": "4 Ciągle dostrzegam znaki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        288.55,
+        405.58,
+        305.333
+      ]
+    },
+    {
+      "page": 12,
+      "old": "5 I hear voices",
+      "new": "5 Słyszę głosy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        305.333,
+        405.58,
+        322.116
+      ]
+    },
+    {
+      "page": 12,
+      "old": "6 I can't spot the obvious",
+      "new": "6 Nie dostrzegam rzeczy oczywistych",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        322.116,
+        405.58,
+        338.899
+      ]
+    },
+    {
+      "page": 12,
+      "old": "1 I don't like them, but they love me",
+      "new": "1 Ja ich nie lubię, ale oni mnie kochają",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        355.899,
+        221.04,
+        372.682
+      ]
+    },
+    {
+      "page": 12,
+      "old": "2 I have a hater",
+      "new": "2 Mam hejtera",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        372.682,
+        221.04,
+        389.466
+      ]
+    },
+    {
+      "page": 12,
+      "old": "3 My rival really dislikes me",
+      "new": "3 Mój rywal naprawdę mnie nie znosi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        389.466,
+        221.04,
+        406.249
+      ]
+    },
+    {
+      "page": 12,
+      "old": "4 Someone pretends to love me",
+      "new": "4 Ktoś udaje, że mnie kocha",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        406.249,
+        221.04,
+        423.032
+      ]
+    },
+    {
+      "page": 12,
+      "old": "5 I get bullied",
+      "new": "5 Jestem gnębiony",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        423.032,
+        221.04,
+        439.815
+      ]
+    },
+    {
+      "page": 12,
+      "old": "6 My friend betrayed me",
+      "new": "6 Mój przyjaciel mnie zdradził",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        439.815,
+        221.04,
+        456.599
+      ]
+    },
+    {
+      "page": 12,
+      "old": "1 Someone saw me commit a crime",
+      "new": "1 Ktoś widział, jak popełniam przestępstwo",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        355.899,
+        405.58,
+        372.682
+      ]
+    },
+    {
+      "page": 12,
+      "old": "2 I'm being stalked",
+      "new": "2 Ktoś mnie prześladuje",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        372.682,
+        405.58,
+        389.466
+      ]
+    },
+    {
+      "page": 12,
+      "old": "3 The mob is after me",
+      "new": "3 Mafia depcze mi po piętach",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        389.466,
+        405.58,
+        406.249
+      ]
+    },
+    {
+      "page": 12,
+      "old": "4 A rival gang is after me",
+      "new": "4 Konkurencyjny gang depcze mi po piętach",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        406.249,
+        405.58,
+        423.032
+      ]
+    },
+    {
+      "page": 12,
+      "old": "5 My old gang is after me",
+      "new": "5 Mój dawny gang depcze mi po piętach",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        423.032,
+        405.58,
+        439.815
+      ]
+    },
+    {
+      "page": 12,
+      "old": "6 I'm wanted by the cops",
+      "new": "6 Policja mnie ściga",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        439.815,
+        405.58,
+        456.599
+      ]
+    },
+    {
+      "page": 12,
+      "old": "1 Agoraphobia",
+      "new": "1 Agorafobia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        473.599,
+        221.04,
+        490.382
+      ]
+    },
+    {
+      "page": 12,
+      "old": "2 Claustrophobia",
+      "new": "2 Klaustrofobia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        490.382,
+        221.04,
+        507.165
+      ]
+    },
+    {
+      "page": 12,
+      "old": "3 Fear of doctors",
+      "new": "3 Lęk przed lekarzami",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        507.165,
+        221.04,
+        523.948
+      ]
+    },
+    {
+      "page": 12,
+      "old": "4 Fear of books",
+      "new": "4 Lęk przed książkami",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        523.948,
+        221.04,
+        540.731
+      ]
+    },
+    {
+      "page": 12,
+      "old": "5 Fear of blood",
+      "new": "5 Lęk przed krwią",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        540.731,
+        221.04,
+        557.515
+      ]
+    },
+    {
+      "page": 12,
+      "old": "6 I live in fear of whoever it was",
+      "new": "6 Żyję w strachu przed tą osobą",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        557.515,
+        221.04,
+        574.298
+      ]
+    },
+    {
+      "page": 12,
+      "old": "1 Overconfident",
+      "new": "1 Zbyt duża pewność siebie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        473.599,
+        405.58,
+        490.382
+      ]
+    },
+    {
+      "page": 12,
+      "old": "2 Underconfident",
+      "new": "2 Zbyt mała pewność siebie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        490.382,
+        405.58,
+        507.165
+      ]
+    },
+    {
+      "page": 12,
+      "old": "3 Anxious",
+      "new": "3 Lękliwość",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        507.165,
+        405.58,
+        523.948
+      ]
+    },
+    {
+      "page": 12,
+      "old": "4 Braggart",
+      "new": "4 Samochwalca",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        523.948,
+        405.58,
+        540.731
+      ]
+    },
+    {
+      "page": 12,
+      "old": "5 Confrontational",
+      "new": "5 Konfrontacyjny charakter",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        540.731,
+        405.58,
+        557.515
+      ]
+    },
+    {
+      "page": 12,
+      "old": "6 Curiosity killed the cat",
+      "new": "6 Ciekawość to pierwszy stopień do piekła",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        557.515,
+        405.58,
+        574.298
+      ]
+    },
+    {
+      "page": 13,
+      "old": "All that effort's paying off . What have you been doing?",
+      "new": "Ten cały wysiłek zaczyna przynosić efekty. Co robiłeś lub robiłaś?"
+    },
+    {
+      "page": 13,
+      "old": "Gain a positive tag , like weightlifter , or police detective , or authority in her subcommunity .",
+      "new": "Zyskaj pozytywny tag, na przykład ciężarowiec, policyjny detektyw albo autorytet w swojej subkulturze."
+    },
+    {
+      "page": 13,
+      "old": "Go to question 9",
+      "new": "Przejdź do pytania 9"
+    },
+    {
+      "page": 13,
+      "old": "1 Getting swole",
+      "new": "1 Solidnie się rozbudowałem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        238.2,
+        221.04,
+        254.983
+      ]
+    },
+    {
+      "page": 13,
+      "old": "2 I made the team",
+      "new": "2 Dostałem się do drużyny",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        254.983,
+        221.04,
+        271.766
+      ]
+    },
+    {
+      "page": 13,
+      "old": "3 I can run further than ever",
+      "new": "3 Biegam dalej niż kiedykolwiek",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        271.766,
+        221.04,
+        288.55
+      ]
+    },
+    {
+      "page": 13,
+      "old": "4 I'm really tough",
+      "new": "4 Jestem naprawdę twardy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        288.55,
+        221.04,
+        305.333
+      ]
+    },
+    {
+      "page": 13,
+      "old": "5 I got my black belt",
+      "new": "5 Zdobyłem czarny pas",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        305.333,
+        221.04,
+        322.116
+      ]
+    },
+    {
+      "page": 13,
+      "old": "6 I can jump crazy high",
+      "new": "6 Skaczę niewiarygodnie wysoko",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        322.116,
+        221.04,
+        338.899
+      ]
+    },
+    {
+      "page": 13,
+      "old": "1 Working on my degree",
+      "new": "1 Pracuję nad dyplomem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        238.2,
+        405.58,
+        254.983
+      ]
+    },
+    {
+      "page": 13,
+      "old": "2 I've got tenure",
+      "new": "2 Mam stały etat akademicki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        254.983,
+        405.58,
+        271.766
+      ]
+    },
+    {
+      "page": 13,
+      "old": "3 I have my own lab",
+      "new": "3 Mam własne laboratorium",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        271.766,
+        405.58,
+        288.55
+      ]
+    },
+    {
+      "page": 13,
+      "old": "4 I have a team of subordinates",
+      "new": "4 Mam zespół podwładnych",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        288.55,
+        405.58,
+        305.333
+      ]
+    },
+    {
+      "page": 13,
+      "old": "5 I hold a high rank",
+      "new": "5 Piastuję wysoką rangę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        305.333,
+        405.58,
+        322.116
+      ]
+    },
+    {
+      "page": 13,
+      "old": "6 I'm getting a good reputation",
+      "new": "6 Zdobywam dobrą reputację",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        322.116,
+        405.58,
+        338.899
+      ]
+    },
+    {
+      "page": 13,
+      "old": "1 I've spent a lot of time at the range",
+      "new": "1 Spędziłem mnóstwo czasu na strzelnicy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        355.899,
+        221.04,
+        372.682
+      ]
+    },
+    {
+      "page": 13,
+      "old": "2 I'm going camping a lot",
+      "new": "2 Często jeżdżę na biwaki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        372.682,
+        221.04,
+        389.466
+      ]
+    },
+    {
+      "page": 13,
+      "old": "3 I'm getting good at hiking",
+      "new": "3 Coraz lepiej radzę sobie na szlaku",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        389.466,
+        221.04,
+        406.249
+      ]
+    },
+    {
+      "page": 13,
+      "old": "4 I'm a backwards expert",
+      "new": "4 Jestem ekspertem od bezdroży",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        406.249,
+        221.04,
+        423.032
+      ]
+    },
+    {
+      "page": 13,
+      "old": "5 I'm an expert hacker",
+      "new": "5 Jestem świetnym hakerem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        423.032,
+        221.04,
+        439.815
+      ]
+    },
+    {
+      "page": 13,
+      "old": "6 I never get lost",
+      "new": "6 Nigdy się nie gubię",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        439.815,
+        221.04,
+        456.599
+      ]
+    },
+    {
+      "page": 13,
+      "old": "1 I'm moving up socially",
+      "new": "1 Pnę się w górę towarzysko",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        355.899,
+        405.58,
+        372.682
+      ]
+    },
+    {
+      "page": 13,
+      "old": "2 I'm on the board",
+      "new": "2 Zasiadam w radzie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        372.682,
+        405.58,
+        389.466
+      ]
+    },
+    {
+      "page": 13,
+      "old": "3 I'm a local celebrity",
+      "new": "3 Jestem lokalną gwiazdą",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        389.466,
+        405.58,
+        406.249
+      ]
+    },
+    {
+      "page": 13,
+      "old": "4 I have a fanbase",
+      "new": "4 Mam grono fanów",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        406.249,
+        405.58,
+        423.032
+      ]
+    },
+    {
+      "page": 13,
+      "old": "5 I can always ask for favors",
+      "new": "5 Zawsze mogę poprosić o przysługę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        423.032,
+        405.58,
+        439.815
+      ]
+    },
+    {
+      "page": 13,
+      "old": "6 People around town know me",
+      "new": "6 Ludzie w miasteczku mnie znają",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        439.815,
+        405.58,
+        456.599
+      ]
+    },
+    {
+      "page": 13,
+      "old": "1 I'm picking up a new skill",
+      "new": "1 Uczę się nowej umiejętności",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        473.599,
+        221.04,
+        490.382
+      ]
+    },
+    {
+      "page": 13,
+      "old": "2 I can stay up for days",
+      "new": "2 Potrafię nie spać całymi dniami",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        490.382,
+        221.04,
+        507.165
+      ]
+    },
+    {
+      "page": 13,
+      "old": "3 I can be intimidating",
+      "new": "3 Umiem onieśmielać",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        507.165,
+        221.04,
+        523.948
+      ]
+    },
+    {
+      "page": 13,
+      "old": "4 I'm hot as hell",
+      "new": "4 Jestem piekielnie atrakcyjny",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        523.948,
+        221.04,
+        540.731
+      ]
+    },
+    {
+      "page": 13,
+      "old": "5 My harvest is gonna be great",
+      "new": "5 Moje zbiory będą świetne",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        540.731,
+        221.04,
+        557.515
+      ]
+    },
+    {
+      "page": 13,
+      "old": "6 My pet is a champion",
+      "new": "6 Moje zwierzę to czempion",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        557.515,
+        221.04,
+        574.298
+      ]
+    },
+    {
+      "page": 13,
+      "old": "1 I'm an expert driver",
+      "new": "1 Jestem mistrzem kierownicy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        473.599,
+        405.58,
+        490.382
+      ]
+    },
+    {
+      "page": 13,
+      "old": "2 I can SCUBA dive",
+      "new": "2 Umiem nurkować z akwalungiem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        490.382,
+        405.58,
+        507.165
+      ]
+    },
+    {
+      "page": 13,
+      "old": "3 I can fly a plane",
+      "new": "3 Umiem pilotować samolot",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        507.165,
+        405.58,
+        523.948
+      ]
+    },
+    {
+      "page": 13,
+      "old": "4 I can fly a helicopter",
+      "new": "4 Umiem pilotować śmigłowiec",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        523.948,
+        405.58,
+        540.731
+      ]
+    },
+    {
+      "page": 13,
+      "old": "5 I can ride a bicycle",
+      "new": "5 Umiem jeździć na rowerze",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        540.731,
+        405.58,
+        557.515
+      ]
+    },
+    {
+      "page": 13,
+      "old": "6 I can ride a motorcycle",
+      "new": "6 Umiem jeździć na motocyklu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        557.515,
+        405.58,
+        574.298
+      ]
+    },
+    {
+      "page": 14,
+      "old": "What went wrong in your life because you took a risk?",
+      "new": "Co poszło w twoim życiu źle, bo podjąłeś lub podjęłaś ryzyko?"
+    },
+    {
+      "page": 14,
+      "old": "Gain a negative tag , like permanent limp , or serious debts , or someone has a grudge .",
+      "new": "Zyskaj negatywny tag, na przykład trwałe utykanie, poważne długi albo ktoś żywi urazę."
+    },
+    {
+      "page": 14,
+      "old": "Go to question 11",
+      "new": "Przejdź do pytania 11"
+    },
+    {
+      "page": 14,
+      "old": "1 I got expelled",
+      "new": "1 Wyrzucono mnie ze szkoły",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        238.2,
+        221.04,
+        254.983
+      ]
+    },
+    {
+      "page": 14,
+      "old": "2 I'm a convicted felon",
+      "new": "2 Jestem skazanym przestępcą",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        254.983,
+        221.04,
+        271.766
+      ]
+    },
+    {
+      "page": 14,
+      "old": "3 I'm broke",
+      "new": "3 Jestem spłukany",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        271.766,
+        221.04,
+        288.55
+      ]
+    },
+    {
+      "page": 14,
+      "old": "4 Everything I own is falling apart",
+      "new": "4 Wszystko, co posiadam, się rozpada",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        288.55,
+        221.04,
+        305.333
+      ]
+    },
+    {
+      "page": 14,
+      "old": "5 I was robbed",
+      "new": "5 Zostałem okradziony",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        305.333,
+        221.04,
+        322.116
+      ]
+    },
+    {
+      "page": 14,
+      "old": "6 I was the victim of a terrible crime",
+      "new": "6 Padłem ofiarą strasznej zbrodni",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        322.116,
+        221.04,
+        338.899
+      ]
+    },
+    {
+      "page": 14,
+      "old": "1 I still have three bullets in me",
+      "new": "1 Wciąż mam w sobie trzy kule",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        238.2,
+        405.58,
+        254.983
+      ]
+    },
+    {
+      "page": 14,
+      "old": "2 I'm missing a hand",
+      "new": "2 Brakuje mi dłoni",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        254.983,
+        405.58,
+        271.766
+      ]
+    },
+    {
+      "page": 14,
+      "old": "3 I have lung disease",
+      "new": "3 Mam chorobę płuc",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        271.766,
+        405.58,
+        288.55
+      ]
+    },
+    {
+      "page": 14,
+      "old": "4 I have a speech impediment",
+      "new": "4 Mam wadę wymowy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        288.55,
+        405.58,
+        305.333
+      ]
+    },
+    {
+      "page": 14,
+      "old": "5 I've had a few concussions",
+      "new": "5 Miałem już kilka wstrząśnień mózgu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        305.333,
+        405.58,
+        322.116
+      ]
+    },
+    {
+      "page": 14,
+      "old": "6 My hands shake",
+      "new": "6 Trzęsą mi się ręce",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        322.116,
+        405.58,
+        338.899
+      ]
+    },
+    {
+      "page": 14,
+      "old": "1 I never got closure",
+      "new": "1 Nigdy nie doczekałem się domknięcia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        355.899,
+        221.04,
+        372.682
+      ]
+    },
+    {
+      "page": 14,
+      "old": "2 I can't handle loss",
+      "new": "2 Nie radzę sobie ze stratą",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        372.682,
+        221.04,
+        389.466
+      ]
+    },
+    {
+      "page": 14,
+      "old": "3 I'm carrying around trauma",
+      "new": "3 Dźwigam traumę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        389.466,
+        221.04,
+        406.249
+      ]
+    },
+    {
+      "page": 14,
+      "old": "4 I put on a false front",
+      "new": "4 Zakładam fałszywą maskę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        406.249,
+        221.04,
+        423.032
+      ]
+    },
+    {
+      "page": 14,
+      "old": "5 I lost a prominent position",
+      "new": "5 Straciłem ważną pozycję",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        423.032,
+        221.04,
+        439.815
+      ]
+    },
+    {
+      "page": 14,
+      "old": "6 I lost a limb",
+      "new": "6 Straciłem kończynę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        439.815,
+        221.04,
+        456.599
+      ]
+    },
+    {
+      "page": 14,
+      "old": "1 I owe someone a serious favor",
+      "new": "1 Jestem winien komuś poważną przysługę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        355.899,
+        405.58,
+        372.682
+      ]
+    },
+    {
+      "page": 14,
+      "old": "2 I've made a lot of minor enemies",
+      "new": "2 Narobiłem sobie wielu drobnych wrogów",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        372.682,
+        405.58,
+        389.466
+      ]
+    },
+    {
+      "page": 14,
+      "old": "3 I've made one big enemy",
+      "new": "3 Narobiłem sobie jednego wielkiego wroga",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        389.466,
+        405.58,
+        406.249
+      ]
+    },
+    {
+      "page": 14,
+      "old": "4 I took the fall for someone else",
+      "new": "4 Wziąłem winę za kogoś innego",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        406.249,
+        405.58,
+        423.032
+      ]
+    },
+    {
+      "page": 14,
+      "old": "5 I can't stand the sight of blood",
+      "new": "5 Nie mogę znieść widoku krwi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        423.032,
+        405.58,
+        439.815
+      ]
+    },
+    {
+      "page": 14,
+      "old": "6 I vomit easily",
+      "new": "6 Łatwo wymiotuję",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        439.815,
+        405.58,
+        456.599
+      ]
+    },
+    {
+      "page": 14,
+      "old": "1 I get off on the wrong foot a lot",
+      "new": "1 Często źle zaczynam z ludźmi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        473.599,
+        221.04,
+        490.382
+      ]
+    },
+    {
+      "page": 14,
+      "old": "2 I have an obvious addiction",
+      "new": "2 Mam oczywiste uzależnienie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        490.382,
+        221.04,
+        507.165
+      ]
+    },
+    {
+      "page": 14,
+      "old": "3 I “don’t” have an addiction",
+      "new": "3 Na pewno nie mam uzależnienia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        507.165,
+        221.04,
+        523.948
+      ]
+    },
+    {
+      "page": 14,
+      "old": "4 I can't stop myself",
+      "new": "4 Nie umiem się powstrzymać",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        523.948,
+        221.04,
+        540.731
+      ]
+    },
+    {
+      "page": 14,
+      "old": "5 I'm scared to start things",
+      "new": "5 Boję się zaczynać",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        540.731,
+        221.04,
+        557.515
+      ]
+    },
+    {
+      "page": 14,
+      "old": "6 I misinterpret things",
+      "new": "6 Mylnie interpretuję sytuacje",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        557.515,
+        221.04,
+        574.298
+      ]
+    },
+    {
+      "page": 14,
+      "old": "1 I'm a werewolf",
+      "new": "1 Jestem wilkołakiem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        473.599,
+        405.58,
+        490.382
+      ]
+    },
+    {
+      "page": 14,
+      "old": "2 I've developed a taste for blood",
+      "new": "2 Nabrałem smaku do krwi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        490.382,
+        405.58,
+        507.165
+      ]
+    },
+    {
+      "page": 14,
+      "old": "3 I need to eat... something",
+      "new": "3 Muszę jeść... coś",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        507.165,
+        405.58,
+        523.948
+      ]
+    },
+    {
+      "page": 14,
+      "old": "4 I have strange desires",
+      "new": "4 Mam dziwne pragnienia",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        523.948,
+        405.58,
+        540.731
+      ]
+    },
+    {
+      "page": 14,
+      "old": "5 I have an unusual addiction",
+      "new": "5 Mam nietypowe uzależnienie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        540.731,
+        405.58,
+        557.515
+      ]
+    },
+    {
+      "page": 14,
+      "old": "6 I can't stand still",
+      "new": "6 Nie potrafię ustać w miejscu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        557.515,
+        405.58,
+        574.298
+      ]
+    },
+    {
+      "page": 15,
+      "old": "What's something you're good at that folks might not guess?",
+      "new": "W czym jesteś dobry lub dobra, choć ludzie mogliby się tego po tobie nie spodziewać?"
+    },
+    {
+      "page": 15,
+      "old": "Gain a positive tag , like chess master , or bar room brawler , or former sailor .",
+      "new": "Zyskaj pozytywny tag, na przykład mistrz szachowy, barowy awanturnik albo były marynarz."
+    },
+    {
+      "page": 15,
+      "old": "go to question 12",
+      "new": "Przejdź do pytania 12"
+    },
+    {
+      "page": 15,
+      "old": "1 I'm a gym rat",
+      "new": "1 Jestem bywalcem siłowni",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        238.2,
+        221.04,
+        254.983
+      ]
+    },
+    {
+      "page": 15,
+      "old": "2 I'm a ballet dancer",
+      "new": "2 Jestem tancerką baletową",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        254.983,
+        221.04,
+        271.766
+      ]
+    },
+    {
+      "page": 15,
+      "old": "3 I used to be a huge jock",
+      "new": "3 Kiedyś byłem wielkim sportowcem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        271.766,
+        221.04,
+        288.55
+      ]
+    },
+    {
+      "page": 15,
+      "old": "4 I used to get in street fights",
+      "new": "4 Kiedyś wdawałem się w uliczne bójki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        288.55,
+        221.04,
+        305.333
+      ]
+    },
+    {
+      "page": 15,
+      "old": "5 I go for a run every night",
+      "new": "5 Co wieczór wychodzę pobiegać",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        305.333,
+        221.04,
+        322.116
+      ]
+    },
+    {
+      "page": 15,
+      "old": "6 I go rock climbing on weekends",
+      "new": "6 W weekendy wspinam się po skałach",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        322.116,
+        221.04,
+        338.899
+      ]
+    },
+    {
+      "page": 15,
+      "old": "1 I go hunting every year",
+      "new": "1 Co roku jeżdżę na polowania",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        238.2,
+        405.58,
+        254.983
+      ]
+    },
+    {
+      "page": 15,
+      "old": "2 I'm an Eagle Scout",
+      "new": "2 Mam najwyższy stopień harcerski",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        254.983,
+        405.58,
+        271.766
+      ]
+    },
+    {
+      "page": 15,
+      "old": "3 I'm a survivalist",
+      "new": "3 Jestem survivalowcem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        271.766,
+        405.58,
+        288.55
+      ]
+    },
+    {
+      "page": 15,
+      "old": "4 I hike long distances",
+      "new": "4 Wędruję na długich dystansach",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        288.55,
+        405.58,
+        305.333
+      ]
+    },
+    {
+      "page": 15,
+      "old": "5 I train dogs",
+      "new": "5 Tresuję psy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        305.333,
+        405.58,
+        322.116
+      ]
+    },
+    {
+      "page": 15,
+      "old": "6 I ride horses",
+      "new": "6 Jeżdżę konno",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        322.116,
+        405.58,
+        338.899
+      ]
+    },
+    {
+      "page": 15,
+      "old": "1 I get straight As",
+      "new": "1 Mam same szóstki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        355.899,
+        221.04,
+        372.682
+      ]
+    },
+    {
+      "page": 15,
+      "old": "2 I'm a writer",
+      "new": "2 Jestem pisarzem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        372.682,
+        221.04,
+        389.466
+      ]
+    },
+    {
+      "page": 15,
+      "old": "3 I used to be a huge nerd",
+      "new": "3 Kiedyś byłem strasznym nerdem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        389.466,
+        221.04,
+        406.249
+      ]
+    },
+    {
+      "page": 15,
+      "old": "4 I was a child prodigy",
+      "new": "4 Byłem cudownym dzieckiem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        406.249,
+        221.04,
+        423.032
+      ]
+    },
+    {
+      "page": 15,
+      "old": "5 I used to be a priest",
+      "new": "5 Kiedyś byłem księdzem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        423.032,
+        221.04,
+        439.815
+      ]
+    },
+    {
+      "page": 15,
+      "old": "6 I used to be sailor",
+      "new": "6 Kiedyś byłem marynarzem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        439.815,
+        221.04,
+        456.599
+      ]
+    },
+    {
+      "page": 15,
+      "old": "1 I'm psychometric",
+      "new": "1 Mam zdolności psychometryczne",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        355.899,
+        405.58,
+        372.682
+      ]
+    },
+    {
+      "page": 15,
+      "old": "2 I see dead people",
+      "new": "2 Widzę zmarłych",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        372.682,
+        405.58,
+        389.466
+      ]
+    },
+    {
+      "page": 15,
+      "old": "3 I can tell fortunes",
+      "new": "3 Umiem wróżyć",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        389.466,
+        405.58,
+        406.249
+      ]
+    },
+    {
+      "page": 15,
+      "old": "4 I conduct seances",
+      "new": "4 Prowadzę seanse spirytystyczne",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        406.249,
+        405.58,
+        423.032
+      ]
+    },
+    {
+      "page": 15,
+      "old": "5 I have visions",
+      "new": "5 Miewam wizje",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        423.032,
+        405.58,
+        439.815
+      ]
+    },
+    {
+      "page": 15,
+      "old": "6 I can imitate voices",
+      "new": "6 Umiem naśladować głosy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        439.815,
+        405.58,
+        456.599
+      ]
+    },
+    {
+      "page": 15,
+      "old": "1 I'm actually empathetic",
+      "new": "1 Tak naprawdę jestem empatyczny",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        473.599,
+        221.04,
+        490.382
+      ]
+    },
+    {
+      "page": 15,
+      "old": "2 I have eyes in the back of my head",
+      "new": "2 Mam oczy dookoła głowy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        490.382,
+        221.04,
+        507.165
+      ]
+    },
+    {
+      "page": 15,
+      "old": "3 I notice small details",
+      "new": "3 Dostrzegam drobne szczegóły",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        507.165,
+        221.04,
+        523.948
+      ]
+    },
+    {
+      "page": 15,
+      "old": "4 I can always spot patterns",
+      "new": "4 Zawsze wyłapuję wzorce",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        523.948,
+        221.04,
+        540.731
+      ]
+    },
+    {
+      "page": 15,
+      "old": "5 I have an eidetic memory",
+      "new": "5 Mam pamięć ejdetyczną",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        540.731,
+        221.04,
+        557.515
+      ]
+    },
+    {
+      "page": 15,
+      "old": "6 I have perfect pitch",
+      "new": "6 Mam słuch absolutny",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        557.515,
+        221.04,
+        574.298
+      ]
+    },
+    {
+      "page": 15,
+      "old": "1 I'm really involved in a subculture",
+      "new": "1 Jestem mocno zaangażowany w subkulturę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        473.599,
+        405.58,
+        490.382
+      ]
+    },
+    {
+      "page": 15,
+      "old": "2 I have friends in high places",
+      "new": "2 Mam znajomych na wysokich stanowiskach",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        490.382,
+        405.58,
+        507.165
+      ]
+    },
+    {
+      "page": 15,
+      "old": "3 I have friends in low places",
+      "new": "3 Mam znajomych na samym dole drabiny",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        507.165,
+        405.58,
+        523.948
+      ]
+    },
+    {
+      "page": 15,
+      "old": "4 I'm a celebrity in disguise",
+      "new": "4 Jestem celebrytą incognito",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        523.948,
+        405.58,
+        540.731
+      ]
+    },
+    {
+      "page": 15,
+      "old": "5 I used to be famous",
+      "new": "5 Kiedyś byłem sławny",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        540.731,
+        405.58,
+        557.515
+      ]
+    },
+    {
+      "page": 15,
+      "old": "6 People forget my face",
+      "new": "6 Ludzie zapominają moją twarz",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        557.515,
+        405.58,
+        574.298
+      ]
+    },
+    {
+      "page": 16,
+      "old": "What's still afflicting you?",
+      "new": "Co wciąż cię trapi?"
+    },
+    {
+      "page": 16,
+      "old": "Gain a negative tag , like I'm haunted (by your past, or by ghosts?) or discriminated against by bigots , or cursed .",
+      "new": "Zyskaj negatywny tag, na przykład nawiedzają mnie przeszłość lub duchy, spotykam się z dyskryminacją ze strony bigotów albo jestem przeklęty."
+    },
+    {
+      "page": 16,
+      "old": "Go to question 14",
+      "new": "Przejdź do pytania 14"
+    },
+    {
+      "page": 16,
+      "old": "1 I owe a lot of favors",
+      "new": "1 Jestem winien mnóstwo przysług",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        213.2,
+        221.04,
+        229.983
+      ]
+    },
+    {
+      "page": 16,
+      "old": "2 I owe one big favor",
+      "new": "2 Jestem winien jedną wielką przysługę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        229.983,
+        221.04,
+        246.766
+      ]
+    },
+    {
+      "page": 16,
+      "old": "3 Someone stole something from me",
+      "new": "3 Ktoś mi coś ukradł",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        246.766,
+        221.04,
+        263.55
+      ]
+    },
+    {
+      "page": 16,
+      "old": "4 Someone stole a lot from me",
+      "new": "4 Ktoś ukradł mi bardzo wiele",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        263.55,
+        221.04,
+        280.333
+      ]
+    },
+    {
+      "page": 16,
+      "old": "5 I can't get hired",
+      "new": "5 Nikt nie chce mnie zatrudnić",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        280.333,
+        221.04,
+        297.116
+      ]
+    },
+    {
+      "page": 16,
+      "old": "6 I just got fired",
+      "new": "6 Właśnie mnie zwolniono",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        297.116,
+        221.04,
+        313.899
+      ]
+    },
+    {
+      "page": 16,
+      "old": "1 I have asthma",
+      "new": "1 Mam astmę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        213.2,
+        405.58,
+        229.983
+      ]
+    },
+    {
+      "page": 16,
+      "old": "2 I'm fat, and that causes problems",
+      "new": "2 Jestem gruby i przez to mam problemy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        229.983,
+        405.58,
+        246.766
+      ]
+    },
+    {
+      "page": 16,
+      "old": "3 I'm thin, and that causes problems",
+      "new": "3 Jestem chudy i przez to mam problemy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        246.766,
+        405.58,
+        263.55
+      ]
+    },
+    {
+      "page": 16,
+      "old": "4 I have the Innsmouth Look",
+      "new": "4 Mam wygląd z Innsmouth",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        263.55,
+        405.58,
+        280.333
+      ]
+    },
+    {
+      "page": 16,
+      "old": "5 I have terrible allergies",
+      "new": "5 Mam straszne alergie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        280.333,
+        405.58,
+        297.116
+      ]
+    },
+    {
+      "page": 16,
+      "old": "6 I can't handle sunlight for long",
+      "new": "6 Nie mogę długo wytrzymać na słońcu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        297.116,
+        405.58,
+        313.899
+      ]
+    },
+    {
+      "page": 16,
+      "old": "1 I have a dark secret",
+      "new": "1 Mam mroczny sekret",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        330.899,
+        221.04,
+        347.682
+      ]
+    },
+    {
+      "page": 16,
+      "old": "2 I just look creepy",
+      "new": "2 Po prostu wyglądam upiornie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        347.682,
+        221.04,
+        364.466
+      ]
+    },
+    {
+      "page": 16,
+      "old": "3 People don't trust me",
+      "new": "3 Ludzie mi nie ufają",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        364.466,
+        221.04,
+        381.249
+      ]
+    },
+    {
+      "page": 16,
+      "old": "4 I'm awkward around strangers",
+      "new": "4 Dziwnie się zachowuję przy obcych",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        381.249,
+        221.04,
+        398.032
+      ]
+    },
+    {
+      "page": 16,
+      "old": "5 One person has a major grudge",
+      "new": "5 Jedna osoba żywi do mnie ogromną urazę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        398.032,
+        221.04,
+        414.815
+      ]
+    },
+    {
+      "page": 16,
+      "old": "6 I pissed off a group of people",
+      "new": "6 Wkurzyłem całą grupę ludzi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        414.815,
+        221.04,
+        431.599
+      ]
+    },
+    {
+      "page": 16,
+      "old": "1 I'm too quick to trust",
+      "new": "1 Zbyt szybko ufam",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        330.899,
+        405.58,
+        347.682
+      ]
+    },
+    {
+      "page": 16,
+      "old": "2 People don't take me seriously",
+      "new": "2 Ludzie nie traktują mnie poważnie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        347.682,
+        405.58,
+        364.466
+      ]
+    },
+    {
+      "page": 16,
+      "old": "3 I'm discriminated against",
+      "new": "3 Jestem dyskryminowany",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        364.466,
+        405.58,
+        381.249
+      ]
+    },
+    {
+      "page": 16,
+      "old": "4 I don't speak the local language",
+      "new": "4 Nie mówię w miejscowym języku",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        381.249,
+        405.58,
+        398.032
+      ]
+    },
+    {
+      "page": 16,
+      "old": "5 I get tired easily",
+      "new": "5 Łatwo się męczę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        398.032,
+        405.58,
+        414.815
+      ]
+    },
+    {
+      "page": 16,
+      "old": "6 I can't sit still",
+      "new": "6 Nie potrafię usiedzieć w miejscu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        414.815,
+        405.58,
+        431.599
+      ]
+    },
+    {
+      "page": 16,
+      "old": "1 I never learned to drive",
+      "new": "1 Nigdy nie nauczyłem się prowadzić",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        448.599,
+        221.04,
+        465.382
+      ]
+    },
+    {
+      "page": 16,
+      "old": "2 I need an assistive device",
+      "new": "2 Potrzebuję sprzętu wspomagającego",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        465.382,
+        221.04,
+        482.165
+      ]
+    },
+    {
+      "page": 16,
+      "old": "3 I can't read",
+      "new": "3 Nie umiem czytać",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        482.165,
+        221.04,
+        498.948
+      ]
+    },
+    {
+      "page": 16,
+      "old": "4 I don't know how to swim",
+      "new": "4 Nie umiem pływać",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        498.948,
+        221.04,
+        515.731
+      ]
+    },
+    {
+      "page": 16,
+      "old": "5 I'm a terrible runner",
+      "new": "5 Fatalnie biegam",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        515.731,
+        221.04,
+        532.515
+      ]
+    },
+    {
+      "page": 16,
+      "old": "6 I get exhausted easily",
+      "new": "6 Łatwo padam z wyczerpania",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        532.515,
+        221.04,
+        549.298
+      ]
+    },
+    {
+      "page": 16,
+      "old": "1 I get sick easily",
+      "new": "1 Łatwo choruję",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        448.599,
+        405.58,
+        465.382
+      ]
+    },
+    {
+      "page": 16,
+      "old": "2 I can't hold my liquor",
+      "new": "2 Słabo trzymam alkohol",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        465.382,
+        405.58,
+        482.165
+      ]
+    },
+    {
+      "page": 16,
+      "old": "3 I have bad eyesight",
+      "new": "3 Mam słaby wzrok",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        482.165,
+        405.58,
+        498.948
+      ]
+    },
+    {
+      "page": 16,
+      "old": "4 I'm hard of hearing",
+      "new": "4 Słabo słyszę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        498.948,
+        405.58,
+        515.731
+      ]
+    },
+    {
+      "page": 16,
+      "old": "5 I have tinnitus",
+      "new": "5 Mam szumy uszne",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        515.731,
+        405.58,
+        532.515
+      ]
+    },
+    {
+      "page": 16,
+      "old": "6 I don't have a sense of smell",
+      "new": "6 Nie mam węchu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        532.515,
+        405.58,
+        549.298
+      ]
+    },
+    {
+      "page": 17,
+      "old": "What's a connection you particularly value?",
+      "new": "Jakie połączenie jest dla ciebie szczególnie cenne?"
+    },
+    {
+      "page": 17,
+      "old": "Gain a positive tag , like parents with interesting jobs , or my pet dog , or drinking buddies .",
+      "new": "Zyskaj pozytywny tag, na przykład rodzice z ciekawą pracą, mój pies albo kompani od kieliszka."
+    },
+    {
+      "page": 17,
+      "old": "Go to question 15",
+      "new": "Przejdź do pytania 15"
+    },
+    {
+      "page": 17,
+      "old": "1 My repeating parrot",
+      "new": "1 Moja papuga, która wszystko powtarza",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        213.2,
+        221.04,
+        229.983
+      ]
+    },
+    {
+      "page": 17,
+      "old": "2 My sneaky cat",
+      "new": "2 Mój przebiegły kot",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        229.983,
+        221.04,
+        246.766
+      ]
+    },
+    {
+      "page": 17,
+      "old": "3 My identical twin",
+      "new": "3 Moje jednojajowe bliźnię",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        246.766,
+        221.04,
+        263.55
+      ]
+    },
+    {
+      "page": 17,
+      "old": "4 My fraternal twin",
+      "new": "4 Moje dwujajowe bliźnię",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        263.55,
+        221.04,
+        280.333
+      ]
+    },
+    {
+      "page": 17,
+      "old": "5 My boisterous dog",
+      "new": "5 Mój hałaśliwy pies",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        280.333,
+        221.04,
+        297.116
+      ]
+    },
+    {
+      "page": 17,
+      "old": "6 My scary snake",
+      "new": "6 Mój przerażający wąż",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        297.116,
+        221.04,
+        313.899
+      ]
+    },
+    {
+      "page": 17,
+      "old": "1 My loyal brother",
+      "new": "1 Mój lojalny brat",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        213.2,
+        405.58,
+        229.983
+      ]
+    },
+    {
+      "page": 17,
+      "old": "2 My sister who looks out for me",
+      "new": "2 Moja siostra, która mnie pilnuje",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        229.983,
+        405.58,
+        246.766
+      ]
+    },
+    {
+      "page": 17,
+      "old": "3 My protective father",
+      "new": "3 Mój opiekuńczy ojciec",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        246.766,
+        405.58,
+        263.55
+      ]
+    },
+    {
+      "page": 17,
+      "old": "4 My helpful mother",
+      "new": "4 Moja pomocna matka",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        263.55,
+        405.58,
+        280.333
+      ]
+    },
+    {
+      "page": 17,
+      "old": "5 My adoring younger sibling",
+      "new": "5 Moje uwielbiające mnie młodsze rodzeństwo",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        280.333,
+        405.58,
+        297.116
+      ]
+    },
+    {
+      "page": 17,
+      "old": "6 My adored older sibling",
+      "new": "6 Moje ukochane starsze rodzeństwo",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        297.116,
+        405.58,
+        313.899
+      ]
+    },
+    {
+      "page": 17,
+      "old": "1 The gossipy regulars at my bar",
+      "new": "1 Stali bywalcy mojego baru, którzy wszystko obgadują",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        330.899,
+        221.04,
+        347.682
+      ]
+    },
+    {
+      "page": 17,
+      "old": "2 My paid employees",
+      "new": "2 Moi opłacani pracownicy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        347.682,
+        221.04,
+        364.466
+      ]
+    },
+    {
+      "page": 17,
+      "old": "3 My fellow volunteers",
+      "new": "3 Moi współwolontariusze",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        364.466,
+        221.04,
+        381.249
+      ]
+    },
+    {
+      "page": 17,
+      "old": "4 My clever book club",
+      "new": "4 Mój bystry klub książki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        381.249,
+        221.04,
+        398.032
+      ]
+    },
+    {
+      "page": 17,
+      "old": "5 My knowledgeable history club",
+      "new": "5 Mój klub historyczny pełen wiedzy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        398.032,
+        221.04,
+        414.815
+      ]
+    },
+    {
+      "page": 17,
+      "old": "6 My dependable bowling league",
+      "new": "6 Moja niezawodna liga bowlingowa",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        414.815,
+        221.04,
+        431.599
+      ]
+    },
+    {
+      "page": 17,
+      "old": "1 My observant neighbours",
+      "new": "1 Moi spostrzegawczy sąsiedzi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        330.899,
+        405.58,
+        347.682
+      ]
+    },
+    {
+      "page": 17,
+      "old": "2 My loving partner",
+      "new": "2 Mój kochający partner",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        347.682,
+        405.58,
+        364.466
+      ]
+    },
+    {
+      "page": 17,
+      "old": "3 My beloved child",
+      "new": "3 Moje ukochane dziecko",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        364.466,
+        405.58,
+        381.249
+      ]
+    },
+    {
+      "page": 17,
+      "old": "4 My troublemaking cousin",
+      "new": "4 Mój kuzyn robiący kłopoty",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        381.249,
+        405.58,
+        398.032
+      ]
+    },
+    {
+      "page": 17,
+      "old": "5 My friend who's up for anything",
+      "new": "5 Mój przyjaciel, który zawsze jest na wszystko chętny",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        398.032,
+        405.58,
+        414.815
+      ]
+    },
+    {
+      "page": 17,
+      "old": "6 My friend who's the cautious one",
+      "new": "6 Mój przyjaciel, który zawsze zachowuje ostrożność",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        414.815,
+        405.58,
+        431.599
+      ]
+    },
+    {
+      "page": 17,
+      "old": "1 My believing therapist",
+      "new": "1 Mój terapeuta, który mi wierzy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        448.599,
+        221.04,
+        465.382
+      ]
+    },
+    {
+      "page": 17,
+      "old": "2 My forgiving priest",
+      "new": "2 Mój wybaczający ksiądz",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        465.382,
+        221.04,
+        482.165
+      ]
+    },
+    {
+      "page": 17,
+      "old": "3 My listening barkeep",
+      "new": "3 Mój barman, który umie słuchać",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        482.165,
+        221.04,
+        498.948
+      ]
+    },
+    {
+      "page": 17,
+      "old": "4 My wise librarian",
+      "new": "4 Mój mądry bibliotekarz",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        498.948,
+        221.04,
+        515.731
+      ]
+    },
+    {
+      "page": 17,
+      "old": "5 My nosy neighbor",
+      "new": "5 Mój wścibski sąsiad",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        515.731,
+        221.04,
+        532.515
+      ]
+    },
+    {
+      "page": 17,
+      "old": "6 My drug dealer",
+      "new": "6 Mój dealer",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        532.515,
+        221.04,
+        549.298
+      ]
+    },
+    {
+      "page": 17,
+      "old": "1 My parents are rich",
+      "new": "1 Moi rodzice są bogaci",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        448.599,
+        405.58,
+        465.382
+      ]
+    },
+    {
+      "page": 17,
+      "old": "2 My dad is the sheriff",
+      "new": "2 Mój tata jest szeryfem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        465.382,
+        405.58,
+        482.165
+      ]
+    },
+    {
+      "page": 17,
+      "old": "3 My mom is the mayor",
+      "new": "3 Moja mama jest burmistrzynią",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        482.165,
+        405.58,
+        498.948
+      ]
+    },
+    {
+      "page": 17,
+      "old": "4 My uncle is the dean",
+      "new": "4 Mój wujek jest dziekanem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        498.948,
+        405.58,
+        515.731
+      ]
+    },
+    {
+      "page": 17,
+      "old": "5 My aunt owns a local company",
+      "new": "5 Moja ciotka ma lokalną firmę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        515.731,
+        405.58,
+        532.515
+      ]
+    },
+    {
+      "page": 17,
+      "old": "6 My criminal cousin",
+      "new": "6 Mój kuzyn przestępca",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        532.515,
+        405.58,
+        549.298
+      ]
+    },
+    {
+      "page": 18,
+      "old": "What's your favorite thing about yourself?",
+      "new": "Co najbardziej lubisz w sobie?"
+    },
+    {
+      "page": 18,
+      "old": "Gain a positive tag , like I'm a good dancer , or I always have something useful in my bag , or my analytical mind .",
+      "new": "Zyskaj pozytywny tag, na przykład jestem świetną tancerką, zawsze mam w torbie coś przydatnego albo mój analityczny umysł."
+    },
+    {
+      "page": 18,
+      "old": "Go to question 16",
+      "new": "Przejdź do pytania 16"
+    },
+    {
+      "page": 18,
+      "old": "1 I'm smart as a whip",
+      "new": "1 Mam błyskotliwy umysł",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        238.2,
+        221.04,
+        254.983
+      ]
+    },
+    {
+      "page": 18,
+      "old": "2 I'm really quick",
+      "new": "2 Jestem naprawdę szybki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        254.983,
+        221.04,
+        271.766
+      ]
+    },
+    {
+      "page": 18,
+      "old": "3 Hyperfocus",
+      "new": "3 Hiperfokus",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        271.766,
+        221.04,
+        288.55
+      ]
+    },
+    {
+      "page": 18,
+      "old": "4 I barely need to sleep",
+      "new": "4 Prawie nie potrzebuję snu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        288.55,
+        221.04,
+        305.333
+      ]
+    },
+    {
+      "page": 18,
+      "old": "5 I'm persuasive",
+      "new": "5 Jestem przekonujący",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        305.333,
+        221.04,
+        322.116
+      ]
+    },
+    {
+      "page": 18,
+      "old": "6 I'm persistent",
+      "new": "6 Jestem wytrwały",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        322.116,
+        221.04,
+        338.899
+      ]
+    },
+    {
+      "page": 18,
+      "old": "1 I'm really fast",
+      "new": "1 Jestem naprawdę szybki",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        238.2,
+        405.58,
+        254.983
+      ]
+    },
+    {
+      "page": 18,
+      "old": "2 I'm light on my feet",
+      "new": "2 Lekko stąpam",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        254.983,
+        405.58,
+        271.766
+      ]
+    },
+    {
+      "page": 18,
+      "old": "3 I'm strong as an ox",
+      "new": "3 Jestem silny jak wół",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        271.766,
+        405.58,
+        288.55
+      ]
+    },
+    {
+      "page": 18,
+      "old": "4 I'm tough as nails",
+      "new": "4 Jestem twardy jak stal",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        288.55,
+        405.58,
+        305.333
+      ]
+    },
+    {
+      "page": 18,
+      "old": "5 I never get tired",
+      "new": "5 Nigdy się nie męczę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        305.333,
+        405.58,
+        322.116
+      ]
+    },
+    {
+      "page": 18,
+      "old": "6 I can run like the wind",
+      "new": "6 Biegam jak wiatr",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        322.116,
+        405.58,
+        338.899
+      ]
+    },
+    {
+      "page": 18,
+      "old": "1 I'm the best quarterback in state",
+      "new": "1 Jestem najlepszym rozgrywającym w stanie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        355.899,
+        221.04,
+        372.682
+      ]
+    },
+    {
+      "page": 18,
+      "old": "2 I'm a crack shot",
+      "new": "2 Jestem wyborowym strzelcem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        372.682,
+        221.04,
+        389.466
+      ]
+    },
+    {
+      "page": 18,
+      "old": "3 I can catch an arrow mid flight",
+      "new": "3 Potrafię złapać strzałę w locie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        389.466,
+        221.04,
+        406.249
+      ]
+    },
+    {
+      "page": 18,
+      "old": "4 My war record",
+      "new": "4 Moje wojenne zasługi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        406.249,
+        221.04,
+        423.032
+      ]
+    },
+    {
+      "page": 18,
+      "old": "5 My Olympic gold medal",
+      "new": "5 Mój złoty medal olimpijski",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        423.032,
+        221.04,
+        439.815
+      ]
+    },
+    {
+      "page": 18,
+      "old": "6 I have a cast iron stomach",
+      "new": "6 Mam żołądek ze stali",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        439.815,
+        221.04,
+        456.599
+      ]
+    },
+    {
+      "page": 18,
+      "old": "1 I'm quite the charmer",
+      "new": "1 Mam wielki urok osobisty",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        355.899,
+        405.58,
+        372.682
+      ]
+    },
+    {
+      "page": 18,
+      "old": "2 I'm very handsome",
+      "new": "2 Jestem bardzo przystojny",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        372.682,
+        405.58,
+        389.466
+      ]
+    },
+    {
+      "page": 18,
+      "old": "3 I'm a great actor",
+      "new": "3 Jestem świetnym aktorem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        389.466,
+        405.58,
+        406.249
+      ]
+    },
+    {
+      "page": 18,
+      "old": "4 I have a voice like an angel",
+      "new": "4 Mam głos jak anioł",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        406.249,
+        405.58,
+        423.032
+      ]
+    },
+    {
+      "page": 18,
+      "old": "5 I have a winning smile",
+      "new": "5 Mam ujmujący uśmiech",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        423.032,
+        405.58,
+        439.815
+      ]
+    },
+    {
+      "page": 18,
+      "old": "6 My puppy dog eyes",
+      "new": "6 Mój szczenięcy wzrok",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        439.815,
+        405.58,
+        456.599
+      ]
+    },
+    {
+      "page": 18,
+      "old": "1 I'm the bar darts champ",
+      "new": "1 Jestem mistrzem darta w barze",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        473.599,
+        221.04,
+        490.382
+      ]
+    },
+    {
+      "page": 18,
+      "old": "2 I'm captain of the chess team",
+      "new": "2 Jestem kapitanem drużyny szachowej",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        490.382,
+        221.04,
+        507.165
+      ]
+    },
+    {
+      "page": 18,
+      "old": "3 I'm valedictorian",
+      "new": "3 Jestem prymusem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        507.165,
+        221.04,
+        523.948
+      ]
+    },
+    {
+      "page": 18,
+      "old": "4 I'm a great gardener",
+      "new": "4 Jestem świetnym ogrodnikiem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        523.948,
+        221.04,
+        540.731
+      ]
+    },
+    {
+      "page": 18,
+      "old": "5 I read several books a week",
+      "new": "5 Czytam kilka książek tygodniowo",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        540.731,
+        221.04,
+        557.515
+      ]
+    },
+    {
+      "page": 18,
+      "old": "6 My stamp collection",
+      "new": "6 Moja kolekcja znaczków",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        557.515,
+        221.04,
+        574.298
+      ]
+    },
+    {
+      "page": 18,
+      "old": "1 I like to help people",
+      "new": "1 Lubię pomagać ludziom",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        473.599,
+        405.58,
+        490.382
+      ]
+    },
+    {
+      "page": 18,
+      "old": "2 I notice things",
+      "new": "2 Zauważam różne rzeczy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        490.382,
+        405.58,
+        507.165
+      ]
+    },
+    {
+      "page": 18,
+      "old": "3 I overhear things",
+      "new": "3 Podsłuchuję różne rzeczy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        507.165,
+        405.58,
+        523.948
+      ]
+    },
+    {
+      "page": 18,
+      "old": "4 I have a good reputation",
+      "new": "4 Mam dobrą reputację",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        523.948,
+        405.58,
+        540.731
+      ]
+    },
+    {
+      "page": 18,
+      "old": "5 People trust me",
+      "new": "5 Ludzie mi ufają",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        540.731,
+        405.58,
+        557.515
+      ]
+    },
+    {
+      "page": 18,
+      "old": "6 People instinctively like me",
+      "new": "6 Ludzie instynktownie mnie lubią",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        557.515,
+        405.58,
+        574.298
+      ]
+    },
+    {
+      "page": 19,
+      "old": "What is something you like about yourself that some people consider a character flaw?",
+      "new": "Co lubisz w sobie, choć niektórzy uznają to za wadę charakteru?"
+    },
+    {
+      "page": 19,
+      "old": "Gain a wild tag , like I know I'm gorgeous , or I'm the life of the party , or I'm convinced I'm the smartest person in the room .",
+      "new": "Zyskaj uniwersalny tag, na przykład wiem, że jestem olśniewający, jestem duszą towarzystwa albo jestem przekonany, że to ja jestem najmądrzejszą osobą w pokoju."
+    },
+    {
+      "page": 19,
+      "old": "You're ready to start playing",
+      "new": "Możecie zaczynać grę"
+    },
+    {
+      "page": 19,
+      "old": "1 I always have to be the best",
+      "new": "1 Zawsze muszę być najlepszy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        238.2,
+        221.04,
+        254.983
+      ]
+    },
+    {
+      "page": 19,
+      "old": "2 I can charm anyone",
+      "new": "2 Potrafię oczarować każdego",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        254.983,
+        221.04,
+        271.766
+      ]
+    },
+    {
+      "page": 19,
+      "old": "3 Everyone loves me",
+      "new": "3 Wszyscy mnie kochają",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        271.766,
+        221.04,
+        288.55
+      ]
+    },
+    {
+      "page": 19,
+      "old": "4 I'm very outspoken",
+      "new": "4 Mówię bardzo otwarcie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        288.55,
+        221.04,
+        305.333
+      ]
+    },
+    {
+      "page": 19,
+      "old": "5 I'm very reserved",
+      "new": "5 Jestem bardzo powściągliwy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        305.333,
+        221.04,
+        322.116
+      ]
+    },
+    {
+      "page": 19,
+      "old": "6 I'm lazy",
+      "new": "6 Jestem leniwy",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        322.116,
+        221.04,
+        338.899
+      ]
+    },
+    {
+      "page": 19,
+      "old": "1 I'm the strongest guy here",
+      "new": "1 Jestem tu najsilniejszym gościem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        238.2,
+        405.58,
+        254.983
+      ]
+    },
+    {
+      "page": 19,
+      "old": "2 I can whip anyone",
+      "new": "2 Mogę spuścić łomot każdemu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        254.983,
+        405.58,
+        271.766
+      ]
+    },
+    {
+      "page": 19,
+      "old": "3 I'm invincible",
+      "new": "3 Jestem niezwyciężony",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        271.766,
+        405.58,
+        288.55
+      ]
+    },
+    {
+      "page": 19,
+      "old": "4 I'll accept any dare",
+      "new": "4 Przyjmę każde wyzwanie",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        288.55,
+        405.58,
+        305.333
+      ]
+    },
+    {
+      "page": 19,
+      "old": "5 I always defend my honor",
+      "new": "5 Zawsze bronię swojego honoru",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        305.333,
+        405.58,
+        322.116
+      ]
+    },
+    {
+      "page": 19,
+      "old": "6 I treat everyone equally",
+      "new": "6 Traktuję wszystkich równo",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        322.116,
+        405.58,
+        338.899
+      ]
+    },
+    {
+      "page": 19,
+      "old": "1 No one would dare touch me",
+      "new": "1 Nikt nie odważyłby się mnie tknąć",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        355.899,
+        221.04,
+        372.682
+      ]
+    },
+    {
+      "page": 19,
+      "old": "2 I'm secretive",
+      "new": "2 Jestem skryty",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        372.682,
+        221.04,
+        389.466
+      ]
+    },
+    {
+      "page": 19,
+      "old": "3 I overshare",
+      "new": "3 Mówię o sobie za dużo",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        389.466,
+        221.04,
+        406.249
+      ]
+    },
+    {
+      "page": 19,
+      "old": "4 I'm always the boss",
+      "new": "4 Zawsze to ja tu rządzę",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        406.249,
+        221.04,
+        423.032
+      ]
+    },
+    {
+      "page": 19,
+      "old": "5 I'm impulsive",
+      "new": "5 Jestem impulsywny",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        423.032,
+        221.04,
+        439.815
+      ]
+    },
+    {
+      "page": 19,
+      "old": "6 I always think things through",
+      "new": "6 Zawsze wszystko dokładnie przemyślam",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        439.815,
+        221.04,
+        456.599
+      ]
+    },
+    {
+      "page": 19,
+      "old": "1 I have great luck",
+      "new": "1 Mam niezwykłe szczęście",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        355.899,
+        405.58,
+        372.682
+      ]
+    },
+    {
+      "page": 19,
+      "old": "2 I love to talk to people",
+      "new": "2 Uwielbiam rozmawiać z ludźmi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        372.682,
+        405.58,
+        389.466
+      ]
+    },
+    {
+      "page": 19,
+      "old": "3 I make friends easily",
+      "new": "3 Łatwo zaprzyjaźniam się z ludźmi",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        389.466,
+        405.58,
+        406.249
+      ]
+    },
+    {
+      "page": 19,
+      "old": "4 I trust everyone",
+      "new": "4 Ufam wszystkim",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        406.249,
+        405.58,
+        423.032
+      ]
+    },
+    {
+      "page": 19,
+      "old": "5 I trust no one",
+      "new": "5 Nie ufam nikomu",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        423.032,
+        405.58,
+        439.815
+      ]
+    },
+    {
+      "page": 19,
+      "old": "6 I don't respect boundaries",
+      "new": "6 Nie szanuję granic",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        439.815,
+        405.58,
+        456.599
+      ]
+    },
+    {
+      "page": 19,
+      "old": "1 I respect authority",
+      "new": "1 Szanuję autorytety",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        473.599,
+        221.04,
+        490.382
+      ]
+    },
+    {
+      "page": 19,
+      "old": "2 I don't respect authority",
+      "new": "2 Nie szanuję autorytetów",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        490.382,
+        221.04,
+        507.165
+      ]
+    },
+    {
+      "page": 19,
+      "old": "3 I don't answer questions",
+      "new": "3 Nie odpowiadam na pytania",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        507.165,
+        221.04,
+        523.948
+      ]
+    },
+    {
+      "page": 19,
+      "old": "4 I ask a lot of questions",
+      "new": "4 Zadaję mnóstwo pytań",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        523.948,
+        221.04,
+        540.731
+      ]
+    },
+    {
+      "page": 19,
+      "old": "5 I'm very talkative",
+      "new": "5 Jestem bardzo rozmowny",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        540.731,
+        221.04,
+        557.515
+      ]
+    },
+    {
+      "page": 19,
+      "old": "6 I hate to talk",
+      "new": "6 Nienawidzę rozmawiać",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        36.5,
+        557.515,
+        221.04,
+        574.298
+      ]
+    },
+    {
+      "page": 19,
+      "old": "1 Hubris",
+      "new": "1 Pycha",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        473.599,
+        405.58,
+        490.382
+      ]
+    },
+    {
+      "page": 19,
+      "old": "2 I'm extroverted",
+      "new": "2 Jestem ekstrawertykiem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        490.382,
+        405.58,
+        507.165
+      ]
+    },
+    {
+      "page": 19,
+      "old": "3 I'm introverted",
+      "new": "3 Jestem introwertykiem",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        507.165,
+        405.58,
+        523.948
+      ]
+    },
+    {
+      "page": 19,
+      "old": "4 I love violence",
+      "new": "4 Kocham przemoc",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        523.948,
+        405.58,
+        540.731
+      ]
+    },
+    {
+      "page": 19,
+      "old": "5 People feel sorry for me",
+      "new": "5 Ludzie mi współczują",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        540.731,
+        405.58,
+        557.515
+      ]
+    },
+    {
+      "page": 19,
+      "old": "6 I solve everyone's problems",
+      "new": "6 Rozwiązuję problemy wszystkich",
+      "layout_group": "table-values",
+      "layout_bbox": [
+        221.04,
+        557.515,
+        405.58,
+        574.298
+      ]
+    }
+  ]
+}

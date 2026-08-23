@@ -1,0 +1,59 @@
+{
+  "policies": {
+    "fail_on_overflow": true,
+    "font_step": 0.1
+  },
+  "layout_groups": {
+    "table-values": {
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf",
+      "font_size": {
+        "mode": "uniform_fit",
+        "preferred": 7.5,
+        "minimum": 6.5,
+        "maximum": 7.5,
+        "step": 0.1
+      },
+      "align": "left",
+      "valign": "middle",
+      "padding": {
+        "left": 4,
+        "right": 3,
+        "top": 0.5,
+        "bottom": 0.5
+      },
+      "wrap": true,
+      "max_lines": 2,
+      "line_height": 1.0,
+      "overflow": "error",
+      "uppercase": false,
+      "hyphenation": "none",
+      "language": "pl"
+    }
+  },
+  "replacements": [
+    {
+      "page": 1,
+      "old": "1 The old sawmill",
+      "new": "1 Stary tartak",
+      "occurrence": 1,
+      "layout_group": "table-values",
+      "layout_bbox": [42.25, 232.85, 208.7, 249.65]
+    },
+    {
+      "page": 1,
+      "old": "1 The pier",
+      "new": "1 Molo",
+      "occurrence": 1,
+      "layout_group": "table-values",
+      "layout_bbox": [208.7, 232.85, 375.15, 249.65]
+    },
+    {
+      "page": 2,
+      "old": "2 The town gossip",
+      "new": "2 Miasteczkowa plotkara lub miasteczkowy plotkarz",
+      "occurrence": 1,
+      "layout_group": "table-values",
+      "layout_bbox": [42.25, 484.8, 208.7, 501.6]
+    }
+  ]
+}

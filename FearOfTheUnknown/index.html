@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#251d18" />
+    <meta
+      name="description"
+      content="Generator miasta, postaci i tajemnicy do gry Fear of the Unknown."
+    />
+    <title>Fear of the Unknown — Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="paper-grain" aria-hidden="true"></div>
+    <header class="masthead">
+      <a class="brand" href="#" aria-label="Fear of the Unknown — strona główna">
+        <span class="brand-kicker">Fear of the Unknown</span>
+        <span class="brand-title">Generator grozy</span>
+      </a>
+
+      <fieldset class="setting-switch" aria-label="Wybierz setting">
+        <legend>Setting</legend>
+        <label>
+          <input type="radio" name="setting" value="core" checked />
+          <span>Podręcznik</span>
+        </label>
+        <label>
+          <input type="radio" name="setting" value="pl90" />
+          <span>Polska ’90</span>
+        </label>
+      </fieldset>
+    </header>
+
+    <nav class="category-tabs" aria-label="Kategorie" role="tablist"></nav>
+
+    <main id="app" class="app-shell">
+      <section class="category-heading">
+        <div>
+          <p class="eyebrow" id="category-eyebrow"></p>
+          <h1 id="category-title"></h1>
+        </div>
+        <p class="category-intro" id="category-intro"></p>
+      </section>
+
+      <p class="setting-note" id="setting-note"></p>
+
+      <section class="category-toolbar" aria-label="Działania kategorii">
+        <p><strong id="table-count"></strong> tabel w zestawie</p>
+        <div>
+          <button class="button button-primary" id="roll-all-button" type="button">
+            <span aria-hidden="true">◆</span>
+            Losuj całą kategorię
+          </button>
+          <button class="button button-secondary" id="copy-category-button" type="button">
+            <span aria-hidden="true">⧉</span>
+            Kopiuj cały zestaw
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="category-board"
+        id="results-grid"
+        aria-label="Wyniki kategorii"
+        aria-live="polite"
+      ></section>
+    </main>
+
+    <footer>
+      <span>Narzędzie fanowskie do gry przy stole</span>
+      <span>Dane: polskie materiały Fear of the Unknown</span>
+    </footer>
+
+    <dialog class="table-dialog" id="table-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-header">
+        <div>
+          <p class="eyebrow" id="dialog-label"></p>
+          <h2 id="dialog-title"></h2>
+          <p id="dialog-description"></p>
+        </div>
+        <button class="dialog-close" type="button" aria-label="Zamknij pełną tabelę">×</button>
+      </div>
+      <div class="full-table" id="full-table"></div>
+      <div class="dialog-footer">
+        <button class="button button-primary" id="dialog-roll-button" type="button">Losuj tę tabelę</button>
+        <button class="button button-secondary dialog-close-secondary" type="button">Zamknij</button>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

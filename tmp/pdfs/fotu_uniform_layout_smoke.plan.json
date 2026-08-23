@@ -1,0 +1,155 @@
+{
+  "input": "PDF_input/FearOfTheUnknown/fotu_only_tables.pdf",
+  "replacement_count": 3,
+  "status": "ok",
+  "layout_groups": {
+    "table-values": {
+      "replacement_count": 3,
+      "resolved_font_size": 7.5,
+      "minimum": 6.5,
+      "maximum": 7.5,
+      "wrapped_count": 0,
+      "overflow_count": 0
+    }
+  },
+  "replacements": [
+    {
+      "index": 1,
+      "page": 1,
+      "old": "1 The old sawmill",
+      "new": "1 Stary tartak",
+      "found_occurrences": 1,
+      "selected_occurrence": 1,
+      "bbox": [
+        85.938,
+        236.118,
+        171.606,
+        248.118
+      ],
+      "layout_bbox": [
+        42.25,
+        232.85,
+        208.7,
+        249.65
+      ],
+      "original_font": "PalatinoLinotype-Italic",
+      "font_file": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf",
+      "font_index": 0,
+      "font_resolution": "override",
+      "original_size": 12.0,
+      "uppercase": false,
+      "status": "planned",
+      "layout_group": "table-values",
+      "content_bbox": [
+        46.25,
+        233.35,
+        205.7,
+        249.15
+      ],
+      "font_size_mode": "uniform_fit",
+      "requested_font_size": 7.5,
+      "resolved_group_font_size": 7.5,
+      "final_size": 7.5,
+      "align": "left",
+      "valign": "middle",
+      "line_count": 1,
+      "lines": [
+        "1 Stary tartak"
+      ],
+      "wrapped": false,
+      "overflow": false
+    },
+    {
+      "index": 2,
+      "page": 1,
+      "old": "1 The pier",
+      "new": "1 Molo",
+      "found_occurrences": 1,
+      "selected_occurrence": 1,
+      "bbox": [
+        288.97,
+        236.118,
+        337.642,
+        248.118
+      ],
+      "layout_bbox": [
+        208.7,
+        232.85,
+        375.15,
+        249.65
+      ],
+      "original_font": "PalatinoLinotype-Italic",
+      "font_file": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf",
+      "font_index": 0,
+      "font_resolution": "override",
+      "original_size": 12.0,
+      "uppercase": false,
+      "status": "planned",
+      "layout_group": "table-values",
+      "content_bbox": [
+        212.7,
+        233.35,
+        372.15,
+        249.15
+      ],
+      "font_size_mode": "uniform_fit",
+      "requested_font_size": 7.5,
+      "resolved_group_font_size": 7.5,
+      "final_size": 7.5,
+      "align": "left",
+      "valign": "middle",
+      "line_count": 1,
+      "lines": [
+        "1 Molo"
+      ],
+      "wrapped": false,
+      "overflow": false
+    },
+    {
+      "index": 3,
+      "page": 2,
+      "old": "2 The town gossip",
+      "new": "2 Miasteczkowa plotkara lub miasteczkowy plotkarz",
+      "found_occurrences": 1,
+      "selected_occurrence": 1,
+      "bbox": [
+        84.936,
+        488.3,
+        172.596,
+        500.3
+      ],
+      "layout_bbox": [
+        42.25,
+        484.8,
+        208.7,
+        501.6
+      ],
+      "original_font": "PalatinoLinotype-Italic",
+      "font_file": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf",
+      "font_index": 0,
+      "font_resolution": "override",
+      "original_size": 12.0,
+      "uppercase": false,
+      "status": "planned",
+      "layout_group": "table-values",
+      "content_bbox": [
+        46.25,
+        485.3,
+        205.7,
+        501.1
+      ],
+      "font_size_mode": "uniform_fit",
+      "requested_font_size": 7.5,
+      "resolved_group_font_size": 7.5,
+      "final_size": 7.5,
+      "align": "left",
+      "valign": "middle",
+      "line_count": 1,
+      "lines": [
+        "2 Miasteczkowa plotkara lub miasteczkowy plotkarz"
+      ],
+      "wrapped": false,
+      "overflow": false
+    }
+  ]
+}

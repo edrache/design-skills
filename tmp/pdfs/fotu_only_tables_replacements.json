@@ -1,0 +1,4392 @@
+{
+  "policies": {
+    "min_font_scale": 0.3,
+    "font_step": 0.1
+  },
+  "replacements": [
+    {
+      "page": 1,
+      "old": "What's a local landmark?",
+      "new": "Co jest lokalnym punktem orientacyjnym?"
+    },
+    {
+      "page": 1,
+      "old": "Gain  a town  tag ,  like the  abandoned  quarry ,  or the  statue  of  the beloved town founder, or the only diner in town.",
+      "new": "Zyskaj tag miasteczka, taki jak opuszczony kamieniołom, pomnik ukochanego założyciela miasteczka albo jedyna jadłodajnia w okolicy."
+    },
+    {
+      "page": 1,
+      "old": "Go to question 2",
+      "new": "Przejdź do pytania 2"
+    },
+    {
+      "page": 1,
+      "old": "The old sawmill",
+      "new": "Stary tartak",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The abandoned mansion",
+      "new": "Opuszczona posiadłość",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The old insane asylum",
+      "new": "Stary zakład dla obłąkanych",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The mine",
+      "new": "Kopalnia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The factory",
+      "new": "Fabryka",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The farms",
+      "new": "Gospodarstwa rolne",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The pier",
+      "new": "Molo",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The docks",
+      "new": "Doki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The wharf",
+      "new": "Nadbrzeże portowe",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The marina",
+      "new": "Marina",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The lighthouse",
+      "new": "Latarnia morska",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The water tower",
+      "new": "Wieża ciśnień",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The art museum",
+      "new": "Muzeum sztuki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The natural history museum",
+      "new": "Muzeum historii naturalnej",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The local history museum",
+      "new": "Muzeum historii miasteczka",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The university",
+      "new": "Uniwersytet",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The town square",
+      "new": "Rynek",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The house of worship",
+      "new": "Dom modlitwy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The only diner in town",
+      "new": "Jedyna jadłodajnia w miasteczku",
+      "occurrence": 2,
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The dive bar",
+      "new": "Obskurny bar",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The campgrounds",
+      "new": "Pole namiotowe",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The drive in movie theater",
+      "new": "Kino samochodowe",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The library",
+      "new": "Biblioteka",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The playhouse",
+      "new": "Teatrzyk",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "Makeout point",
+      "new": "Punkt na całowanie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The mall",
+      "new": "Centrum handlowe",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The cafe",
+      "new": "Kawiarnia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "Main street",
+      "new": "Główna ulica",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The riverwalk",
+      "new": "Nadrzeczna promenada",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The antiques shop",
+      "new": "Sklep z antykami",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The cliffs",
+      "new": "Klify",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The hanging tree",
+      "new": "Wisielcze drzewo",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The barrens",
+      "new": "Jałowe pustkowia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The swamp",
+      "new": "Bagno",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The woods",
+      "new": "Lasy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 1,
+      "old": "The desert",
+      "new": "Pustynia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "Who’s someone that everyone in town knows - or at least knows of?",
+      "new": "Kto jest kimś, kogo w miasteczku znają wszyscy albo przynajmniej o nim słyszeli?"
+    },
+    {
+      "page": 2,
+      "old": "Gain a town tag , like the gregarious dean , or the slimy mayor , or the quietly intimidating crime lord.",
+      "new": "Zyskaj tag miasteczka, taki jak towarzyski dziekan, obślizgły burmistrz albo cicho onieśmielający herszt przestępców."
+    },
+    {
+      "page": 2,
+      "old": "Go to question 3",
+      "new": "Przejdź do pytania 3"
+    },
+    {
+      "page": 2,
+      "old": "The barista at the cafe",
+      "new": "Barista z kawiarni",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The bartender",
+      "new": "Barman",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The innkeeper",
+      "new": "Właściciel zajazdu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The drug dealer",
+      "new": "Diler narkotyków",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The cook & waiter at the diner",
+      "new": "Kucharz i kelner z jadłodajni",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The bookstore owner",
+      "new": "Właściciel księgarni",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The town priest",
+      "new": "Ksiądz z miasteczka",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The street corner preacher",
+      "new": "Kaznodzieja z ulicznego rogu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The guy who thinks he's Jesus",
+      "new": "Typ, który uważa się za Jezusa",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The town drunk",
+      "new": "Miasteczkowy pijak",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The town ghost",
+      "new": "Duch miasteczka",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The local celebrity",
+      "new": "Lokalna celebrytka lub lokalny celebryta",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The university groundskeeper",
+      "new": "Dozorca terenów uniwersyteckich",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The lighthouse keeper",
+      "new": "Strażnik latarni",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The richest man in town",
+      "new": "Najbogatszy człowiek w miasteczku",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The doctor",
+      "new": "Lekarz",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The famous author",
+      "new": "Sławna pisarka lub sławny pisarz",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The prominent professor",
+      "new": "Znana profesorka lub znany profesor",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The librarian",
+      "new": "Bibliotekarka lub bibliotekarz",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The sheriff",
+      "new": "Szeryf",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The reporter",
+      "new": "Reporterka lub reporter",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The creep who follows people",
+      "new": "Typ, który łazi za ludźmi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The private eye",
+      "new": "Prywatny detektyw",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The police chief",
+      "new": "Komendant policji",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The “Tough Guy”",
+      "new": "„Twardziel”",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The town gossip",
+      "new": "Miasteczkowa plotkara lub miasteczkowy plotkarz",
+      "font": "/System/Library/Fonts/Supplemental/DIN Condensed Bold.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The star athlete",
+      "new": "Gwiazda sportu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The con artist",
+      "new": "Oszustka lub oszust",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The beggar",
+      "new": "Żebrak",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The radio DJ",
+      "new": "Radiowy DJ",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The bully",
+      "new": "Prześladowca",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The scientist",
+      "new": "Naukowczyni lub naukowiec",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The outcast",
+      "new": "Wyrzutek",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The cult leader",
+      "new": "Przywódczyni lub przywódca kultu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The last living hippie",
+      "new": "Ostatnia żyjąca hipiska lub ostatni żyjący hipis",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 2,
+      "old": "The game designer",
+      "new": "Projektant gier",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "What's a group that a sizable portion of the town despises?",
+      "new": "Jakiej grupy znaczna część miasteczka nie cierpi?"
+    },
+    {
+      "page": 3,
+      "old": "Gain a town tag , like the corrupt police , or the ivory tower university , or the biker gang with hearts of gold .",
+      "new": "Zyskaj tag miasteczka, taki jak skorumpowana policja, uniwersytet z kości słoniowej albo gang motocyklistów o złotych sercach."
+    },
+    {
+      "page": 3,
+      "old": "Go to question 4",
+      "new": "Przejdź do pytania 4"
+    },
+    {
+      "page": 3,
+      "old": "The historical society",
+      "new": "Towarzystwo historyczne",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "A powerful, old local family",
+      "new": "Potężna, stara lokalna rodzina",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "Busybodies",
+      "new": "Wścibscy ludzie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "Gossips",
+      "new": "Plotkarze",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "One of the local high schools",
+      "new": "Jedno z lokalnych liceów",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "Survivalists",
+      "new": "Surwiwalowcy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The mafia",
+      "new": "Mafia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The tong",
+      "new": "Tong",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The church",
+      "new": "Kościół",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The local secret society",
+      "new": "Lokalne tajne stowarzyszenie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The local religion",
+      "new": "Lokalna religia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The ;pca; weirdos",
+      "new": "Lokalne świry",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The chamber of commerce",
+      "new": "Izba handlowa",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "A big business",
+      "new": "Wielki biznes",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The rich guy who moved in",
+      "new": "Bogacz, który się tu sprowadził",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "These two jerks",
+      "new": "Tych dwoje palantów",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The filthiest family in the world",
+      "new": "Najobrzydliwsza rodzina na świecie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "Con artists",
+      "new": "Naciągacze",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "A local band",
+      "new": "Lokalny zespół",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The local sports team",
+      "new": "Lokalna drużyna sportowa",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The circus",
+      "new": "Cyrk",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The new film crew",
+      "new": "Nowa ekipa filmowa",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "A visiting band",
+      "new": "Zespół przyjezdny",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "Tourists",
+      "new": "Turyści",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The fishers",
+      "new": "Rybacy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The brewery",
+      "new": "Browar",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The “bad” neighborhood",
+      "new": "„Zła” dzielnica",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The dockworkers",
+      "new": "Dokerzy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "Itinerant workers",
+      "new": "Robotnicy sezonowi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "Farmers",
+      "new": "Rolnicy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The homeless",
+      "new": "Osoby w kryzysie bezdomności",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "The hippie compound",
+      "new": "Osiedle hipisów",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "Immigrants",
+      "new": "Imigranci",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "Gentrifiers",
+      "new": "Gentryfikatorzy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "A local gang",
+      "new": "Lokalny gang",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 3,
+      "old": "Rowdy drunks",
+      "new": "Awanturujący się pijacy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "What's something the town is obsessed with?",
+      "new": "Na punkcie czego miasteczko ma obsesję?"
+    },
+    {
+      "page": 4,
+      "old": "Gain a town tag ,  like the  cross  town  sports  rivalry ,  or the  annual harvest festival , or the stories of cryptids in the woods.",
+      "new": "Zyskaj tag miasteczka, taki jak międzymiastowa rywalizacja sportowa, coroczne święto plonów albo opowieści o kryptydach w lesie."
+    },
+    {
+      "page": 4,
+      "old": "Go to question 5",
+      "new": "Przejdź do pytania 5"
+    },
+    {
+      "page": 4,
+      "old": "A major holiday",
+      "new": "Ważne święto",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "A unique, local holiday",
+      "new": "Wyjątkowe lokalne święto",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "Mainstream religion",
+      "new": "Religia głównego nurtu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "A local, ancient religion",
+      "new": "Lokalna pradawna religia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "A local, new religion",
+      "new": "Lokalna nowa religia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "A specific ritual",
+      "new": "Konkretny rytuał",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "The ocean",
+      "new": "Ocean",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "The woods",
+      "new": "Lasy",
+      "occurrence": 2,
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "Stargazing",
+      "new": "Wpatrywanie się w gwiazdy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "The upcoming comet",
+      "new": "Nadchodząca kometa",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "The oncoming hurricane",
+      "new": "Zbliżający się huragan",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "The weather",
+      "new": "Pogoda",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "A specific sport",
+      "new": "Konkretny sport",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "Petty local politics",
+      "new": "Drobne lokalne rozgrywki polityczne",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "The nearest big city",
+      "new": "Najbliższe duże miasto",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "The even smaller sister city",
+      "new": "Jeszcze mniejsze miasto-siostra",
+      "font": "/System/Library/Fonts/Palatino.ttc"
+    },
+    {
+      "page": 4,
+      "old": "Tourism",
+      "new": "Turystyka",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "The regatta",
+      "new": "Regaty",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "Fear of crime",
+      "new": "Lęk przed przestępczością",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "The town's reputation",
+      "new": "Reputacja miasteczka",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "A local institution",
+      "new": "Lokalna instytucja",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "Cleanliness",
+      "new": "Czystość",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "A local business",
+      "new": "Lokalny biznes",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "Out of towners",
+      "new": "Przyjezdni",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "Conserving the old ways",
+      "new": "Zachowywanie dawnych zwyczajów",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "A movie filmed here ages ago",
+      "new": "Film nakręcony tu wieki temu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "The film they're shooting here",
+      "new": "Film, który właśnie tu kręcą",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "Gossip",
+      "new": "Plotki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "Some new social fad",
+      "new": "Jakaś nowa społeczna moda",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "Parties",
+      "new": "Imprezy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "A specific style of music",
+      "new": "Konkretny styl muzyki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "A new dance",
+      "new": "Nowy taniec",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "An artform",
+      "new": "Forma sztuki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "Winning a contest",
+      "new": "Wygranie konkursu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "Murders from 40 years ago",
+      "new": "Morderstwa sprzed 40 lat",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 4,
+      "old": "Nothing. It's so boring here",
+      "new": "Nic. Jest tu śmiertelnie nudno",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "Rumours",
+      "new": "Plotki",
+      "occurrence": 3
+    },
+    {
+      "page": 5,
+      "old": "Ask each player whether or not they've heard any rumours recently, and if so, what they've heard.",
+      "new": "Zapytaj każdego gracza, czy ostatnio słyszał jakieś plotki, a jeśli tak, to co słyszał."
+    },
+    {
+      "page": 5,
+      "old": "These rumours aren't necessarily true, they're just things that their character has heard. It's up to you, the Oracle, to decide whether they're true or not.",
+      "new": "Te plotki nie muszą być prawdziwe, to po prostu rzeczy, które słyszała ich postać. Od ciebie, Wyrocznio, zależy, czy okażą się prawdą, czy nie."
+    },
+    {
+      "page": 5,
+      "old": "Here are some examples of things they may have heard.",
+      "new": "Oto kilka przykładów rzeczy, które mogli usłyszeć."
+    },
+    {
+      "page": 5,
+      "old": "You're ready to Make Your Character",
+      "new": "Jesteś gotowy lub gotowa, by Stworzyć Swoją Postać"
+    },
+    {
+      "page": 5,
+      "old": "The local landmark is haunted",
+      "new": "Lokalny punkt orientacyjny jest nawiedzony",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "There was a murder there!",
+      "new": "Doszło tam do morderstwa!",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "Wet footsteps on the bridge",
+      "new": "Mokre ślady stóp na moście",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "Something is flying around",
+      "new": "Coś lata po okolicy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "Weird sounds in the woods",
+      "new": "Dziwne odgłosy w lesie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "Bigfoot!",
+      "new": "Wielka Stopa!",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "The mayor works for the mob",
+      "new": "Burmistrz pracuje dla mafii",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "The cops are being blackmailed",
+      "new": "Gliny są szantażowane",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "Dean is sleeping with a prof",
+      "new": "Dziekan sypia z profesorką lub profesorem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "There's a peeping tom",
+      "new": "Grasuje podglądacz",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "The new guy is on the run",
+      "new": "Ten nowy jest na ucieczce",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "Has anyone checked on Jeb?",
+      "new": "Ktoś w ogóle sprawdzał, co u Jeba?",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "Fishers are becoming monsters",
+      "new": "Rybacy zamieniają się w potwory",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "The farmer's being weird",
+      "new": "Z farmerem dzieje się coś dziwnego",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "The town well smells off",
+      "new": "Studnia miejska dziwnie śmierdzi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "The fish have extra eyes",
+      "new": "Ryby mają dodatkowe oczy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "There's something in the lake",
+      "new": "Coś jest w jeziorze",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "There's someone in the woods",
+      "new": "Ktoś jest w lesie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "The diner sells human meat",
+      "new": "W jadłodajni sprzedają ludzkie mięso",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "A spellbook in the library",
+      "new": "W bibliotece jest księga zaklęć",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "The cafe is a front",
+      "new": "Kawiarnia jest przykrywką",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "The town has a hidden history",
+      "new": "Miasteczko ma ukrytą historię",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "There are underground tunnels",
+      "new": "Pod ziemią są tunele",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "There's a creature in the sewers",
+      "new": "W kanałach żyje jakieś stworzenie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "There's a party in the quarry",
+      "new": "W kamieniołomie będzie impreza",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "Someone skipped town",
+      "new": "Ktoś zwiał z miasta",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "A weird nursery rhyme",
+      "new": "Dziwna kołysanka",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "A new game is all the rage",
+      "new": "Nowa gra robi furorę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "A new drug is addicting folks",
+      "new": "Nowy narkotyk uzależnia ludzi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "People are disappearing",
+      "new": "Ludzie znikają",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "The harvest is gonna be bad",
+      "new": "Zbiory będą w tym roku marne",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "Some kids have gone missing",
+      "new": "Zaginęło kilkoro dzieci",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "A holiday might be cancelled",
+      "new": "Jakieś święto może zostać odwołane",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "There was a bomb threat!",
+      "new": "Była groźba podłożenia bomby!",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "The big game is rigged",
+      "new": "Wielki mecz jest ustawiony",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 5,
+      "old": "A killer will be released soon",
+      "new": "Wkrótce wypuszczą mordercę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Creation",
+      "new": "Tworzenie postaci",
+      "occurrence": 2
+    },
+    {
+      "page": 6,
+      "old": "Here are some examples of the kinds of bonds you could form with your fellow protagonists. You don't need to pick one now - in fact, you should do it in the middle of character creation.",
+      "new": "Oto kilka przykładów rodzajów więzi, jakie możecie stworzyć między swoimi protagonistami. Nie musisz wybierać jednej już teraz. Właściwie najlepiej zrobić to w trakcie tworzenia postaci."
+    },
+    {
+      "page": 6,
+      "old": "Go to question 1",
+      "new": "Przejdź do pytania 1"
+    },
+    {
+      "page": 6,
+      "old": "Committed crimes together",
+      "new": "Razem popełniliśmy przestępstwa",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Served in the same unit",
+      "new": "Służyliśmy w tej samej jednostce",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Study in the same department",
+      "new": "Studiujemy na tym samym wydziale",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Work at the same company",
+      "new": "Pracujemy w tej samej firmie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Work at rival companies",
+      "new": "Pracujemy w konkurencyjnych firmach",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "One works for the other",
+      "new": "Jedno pracuje dla drugiego",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "We hate the same guy",
+      "new": "Nienawidzimy tego samego faceta",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "We love the same guy",
+      "new": "Kochamy tego samego faceta",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "We have the same stalker",
+      "new": "Mamy tego samego stalkera",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Love triangle",
+      "new": "Trójkąt miłosny",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Vying for the same job",
+      "new": "Walczymy o tę samą posadę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Trying to buy the same house",
+      "new": "Próbujemy kupić ten sam dom",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Siblings",
+      "new": "Rodzeństwo",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Aunt or Uncle/niece or nephew",
+      "new": "Ciocia albo wujek oraz siostrzenica, siostrzeniec, bratanica lub bratanek",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Parent/child",
+      "new": "Rodzic i dziecko",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "In-laws",
+      "new": "Powinowaci",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "From rival families",
+      "new": "Z rywalizujących rodów",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Twins",
+      "new": "Bliźnięta",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Lovers",
+      "new": "Kochankowie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Rivals",
+      "new": "Rywale",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Friends",
+      "new": "Przyjaciele",
+      "occurrence": 1,
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Best friends",
+      "new": "Najlepsi przyjaciele",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Married",
+      "new": "Małżeństwo",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Exes",
+      "new": "Byli partnerzy",
+      "font": "/System/Library/Fonts/Supplemental/DIN Condensed Bold.ttf"
+    },
+    {
+      "page": 6,
+      "old": "We look really similar",
+      "new": "Jesteśmy do siebie uderzająco podobni",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Collaborating on a book",
+      "new": "Wspólnie piszemy książkę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Members of the same religion",
+      "new": "Należymy do tej samej religii",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Members of the same gang",
+      "new": "Należymy do tego samego gangu",
+      "occurrence": 1,
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Next door neighbors",
+      "new": "Mieszkamy po sąsiedzku",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "On the same sports team",
+      "new": "Gramy w tej samej drużynie sportowej",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Subject to the same bigotry",
+      "new": "Padamy ofiarą tych samych uprzedzeń",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Survived the same tragedy",
+      "new": "Przetrwaliśmy tę samą tragedię",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Former members of the same cult",
+      "new": "Kiedyś należeliśmy do tego samego kultu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Former members of the same gang",
+      "new": "Kiedyś należeliśmy do tego samego gangu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Have the same enemy",
+      "new": "Mamy tego samego wroga",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 6,
+      "old": "Have the same patron",
+      "new": "Mamy tego samego patrona",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "What have you trained for the most in your life?",
+      "new": "Do czego trenowałeś lub trenowałaś najwięcej przez całe życie?"
+    },
+    {
+      "page": 7,
+      "old": "Gain a positive  tag ,  like seventh  generation  farmer ,  or promising young mathematician , or golden gloves boxer .",
+      "new": "Zyskaj pozytywny tag, na przykład rolnik z siódmego pokolenia, obiecująca młoda matematyczka albo bokser ze Złotych Rękawic."
+    },
+    {
+      "page": 7,
+      "old": "Go to question 2",
+      "new": "Przejdź do pytania 2"
+    },
+    {
+      "page": 7,
+      "old": "Archaeologist",
+      "new": "Archeolog",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Linguist",
+      "new": "Lingwista",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Antiquarian",
+      "new": "Antykwariusz",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Psychologist",
+      "new": "Psycholog",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Doctor",
+      "new": "Lekarz",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Priest",
+      "new": "Ksiądz",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Cop",
+      "new": "Policjant",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Private Eye",
+      "new": "Prywatny detektyw",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Deputy",
+      "new": "Zastępca szeryfa",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Sheriff",
+      "new": "Szeryf",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "FBI agent",
+      "new": "Agent FBI",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Warden",
+      "new": "Naczelnik więzienia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Dilettante",
+      "new": "Dyletant",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Philosopher",
+      "new": "Filozof",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Chef",
+      "new": "Szef kuchni",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Artist",
+      "new": "Artysta",
+      "occurrence": 1,
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Businessman",
+      "new": "Biznesmen",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Industrialist",
+      "new": "Przemysłowiec",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Construction worker",
+      "new": "Robotnik budowlany",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Athlete",
+      "new": "Sportowiec",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Firefighter",
+      "new": "Strażak",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Soldier",
+      "new": "Żołnierz",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Sailor",
+      "new": "Marynarz",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Assassin",
+      "new": "Zabójca",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Shaman",
+      "new": "Szaman",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Martial artist",
+      "new": "Adept sztuk walki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Witch",
+      "new": "Wiedźma",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Yoga instructor",
+      "new": "Instruktorka jogi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Dancer",
+      "new": "Tancerz",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Camp counselor",
+      "new": "Opiekun kolonijny",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Own a gas station",
+      "new": "Właściciel stacji benzynowej",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Beggar",
+      "new": "Żebrak",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Taxi driver",
+      "new": "Taksówkarz",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 7,
+      "old": "Actor",
+      "new": "Aktor",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "You had to do something bad for cash once. What was it?",
+      "new": "Musiałeś kiedyś zrobić coś złego dla pieniędzy. Co to było?"
+    },
+    {
+      "page": 8,
+      "old": "Gain a negative tag , like gambling addict , or wanted criminal , or I owe the Don .",
+      "new": "Zyskaj negatywny tag, na przykład uzależniony od hazardu, ścigany przestępca albo jestem winien Donowi przysługę."
+    },
+    {
+      "page": 8,
+      "old": "Go to question 6",
+      "new": "Przejdź do pytania 6"
+    },
+    {
+      "page": 8,
+      "old": "I'm a kleptomaniac",
+      "new": "Jestem kleptomanem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I'm a petty thief",
+      "new": "Jestem drobnym złodziejem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "Someone saw me steal",
+      "new": "Ktoś widział, jak kradnę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "Embezzled from work",
+      "new": "Sprzeniewierzyłem pieniądze z pracy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "Stole from my family",
+      "new": "Okradłem własną rodzinę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "Ran a scam",
+      "new": "Prowadziłem przekręt",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I took credit I don't deserve",
+      "new": "Przypisałem sobie cudzą zasługę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "Falsely took charity",
+      "new": "Niesłusznie brałem jałmużnę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I can't save money",
+      "new": "Nie umiem oszczędzać",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I can't earn money",
+      "new": "Nie umiem zarabiać",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I'm homeless",
+      "new": "Jestem bezdomny",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I robbed someone",
+      "new": "Obrabowałem kogoś",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I'm on the run",
+      "new": "Jestem w ucieczce",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "Arson for insurance",
+      "new": "Podpalenie dla odszkodowania",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "A cop has a grudge against me",
+      "new": "Policjant ma do mnie urazę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I've been framed",
+      "new": "Zostałem wrobiony",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I helped people cheat",
+      "new": "Pomagałem ludziom oszukiwać",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I cheated",
+      "new": "Oszukiwałem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I'm in the mafia",
+      "new": "Jestem w mafii",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I’m “out” of the mafia",
+      "new": "Jestem już poza mafią",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I joined a gang",
+      "new": "Dołączyłem do gangu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I'm in with a bad crowd",
+      "new": "Trzymam się złego towarzystwa",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "My family is criminals",
+      "new": "Moja rodzina to przestępcy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I hired some bad dudes",
+      "new": "Wynająłem paru niebezpiecznych typów",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I'm gullible",
+      "new": "Jestem łatwowierny",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "Someone cursed me",
+      "new": "Ktoś rzucił na mnie klątwę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "The guilt is killing me",
+      "new": "Poczucie winy mnie zżera",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I don't have a conscience",
+      "new": "Nie mam sumienia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I'm afraid of failure",
+      "new": "Boję się porażki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I self-sabotage",
+      "new": "Sam sobie szkodzę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I crushed a rival's business",
+      "new": "Zniszczyłem interes rywala",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I stole an invention",
+      "new": "Ukradłem czyjś wynalazek",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I embezzled from my job",
+      "new": "Sprzeniewierzyłem pieniądze z pracy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I threatened a rival",
+      "new": "Groziłem rywalowi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I killed a rival",
+      "new": "Zabiłem rywala",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 8,
+      "old": "I'm always lying",
+      "new": "Zawsze kłamię",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "What's something you want to know more about?",
+      "new": "O czym chcesz wiedzieć więcej?"
+    },
+    {
+      "page": 9,
+      "old": "Gain  a positive  tag ,  like obscure  geography  facts ,  or astronomy enthusiast , or this weird old book I found .",
+      "new": "Zyskaj pozytywny tag, na przykład zna dziwne fakty z geografii, pasjonat astronomii albo ta dziwna stara księga, którą znalazłem."
+    },
+    {
+      "page": 9,
+      "old": "Go to question 7",
+      "new": "Przejdź do pytania 7"
+    },
+    {
+      "page": 9,
+      "old": "A specific culture",
+      "new": "Konkretna kultura",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Dead languages",
+      "new": "Martwe języki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Music",
+      "new": "Muzyka",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Painting",
+      "new": "Malarstwo",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Writing",
+      "new": "Pisanie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Speed-reading",
+      "new": "Szybkie czytanie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Astrology",
+      "new": "Astrologia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Sacred geometry",
+      "new": "Święta geometria",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Local folklore",
+      "new": "Lokalny folklor",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Traditional medicine",
+      "new": "Medycyna tradycyjna",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Magic",
+      "new": "Magia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Witchcraft",
+      "new": "Czarownictwo",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Rare books",
+      "new": "Rzadkie książki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Antiques",
+      "new": "Antyki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Cars",
+      "new": "Samochody",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Guns",
+      "new": "Broń palna",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Cameras",
+      "new": "Aparaty",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Knives",
+      "new": "Noże",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Jiu-Jitsu",
+      "new": "Jiu-jitsu",
+      "font": "/System/Library/Fonts/Palatino.ttc"
+    },
+    {
+      "page": 9,
+      "old": "Fencing",
+      "new": "Szermierka",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Boxing",
+      "new": "Boks",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Racing",
+      "new": "Wyścigi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "True crime",
+      "new": "Prawdziwe zbrodnie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Hunting",
+      "new": "Łowiectwo",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Astronomy",
+      "new": "Astronomia",
+      "occurrence": 2,
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Modern medicine",
+      "new": "Współczesna medycyna",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Archaeology",
+      "new": "Archeologia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Anthropology",
+      "new": "Antropologia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Modern languages",
+      "new": "Współczesne języki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Entomology",
+      "new": "Entomologia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Horror movies",
+      "new": "Horrory",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "The law",
+      "new": "Prawo",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Butchery",
+      "new": "Rzeźnictwo",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Cooking",
+      "new": "Gotowanie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 9,
+      "old": "Living off the land",
+      "new": "Życie z tego, co da ziemia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "You haven't always used your power for good. What's one time you regret using it?",
+      "new": "Nie zawsze używałeś lub używałaś swojej władzy w dobrym celu. Jakiego użycia do dziś żałujesz?"
+    },
+    {
+      "page": 10,
+      "old": "Gain a negative tag , like don't know my own strength , or quick to anger , or I've made enemies .",
+      "new": "Zyskaj negatywny tag, na przykład nie znam własnej siły, łatwo się złoszczę albo narobiłem sobie wrogów."
+    },
+    {
+      "page": 10,
+      "old": "Go to question 8",
+      "new": "Przejdź do pytania 8"
+    },
+    {
+      "page": 10,
+      "old": "I refuse to listen to doubters",
+      "new": "Odmawiam słuchania niedowiarków",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I get in over my head easily",
+      "new": "Łatwo porywam się z motyką na słońce",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I'm carrying immense guilt",
+      "new": "Dźwigam ogromne poczucie winy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I have a terrible secret",
+      "new": "Mam straszny sekret",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I have a death wish",
+      "new": "Mam życzenie śmierci",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I'm scared of dying",
+      "new": "Boję się śmierci",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I like to hurt people",
+      "new": "Lubię krzywdzić ludzi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I ignore the little people",
+      "new": "Ignoruję zwykłych ludzi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I get angry easily",
+      "new": "Łatwo się złoszczę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I'm easily offended",
+      "new": "Łatwo mnie obrazić",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I take revenge too far",
+      "new": "Posuwam zemstę za daleko",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I feel I'm owed everything",
+      "new": "Czuję, że wszystko mi się należy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I'm banned from the library",
+      "new": "Mam zakaz wstępu do biblioteki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I'm banned from the bar",
+      "new": "Mam zakaz wstępu do baru",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "The cops hate me",
+      "new": "Policja mnie nienawidzi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "The mayor hates me",
+      "new": "Burmistrz mnie nienawidzi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "Town kids hate me",
+      "new": "Dzieciaki z miasteczka mnie nienawidzą",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "Jealous people hate me",
+      "new": "Zazdrośnicy mnie nienawidzą",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "Someone has a grudge",
+      "new": "Ktoś żywi do mnie urazę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I have a vengeful ex",
+      "new": "Mój były partner pała żądzą zemsty",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I have burn scars",
+      "new": "Mam blizny po oparzeniach",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I have a bum leg",
+      "new": "Mam niesprawną nogę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I'm missing a hand",
+      "new": "Brakuje mi dłoni",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I'm missing an eye",
+      "new": "Brakuje mi oka",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I cast a curse and it backfired",
+      "new": "Rzuciłem klątwę i odbiło się to na mnie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "Someone cursed me",
+      "new": "Ktoś rzucił na mnie klątwę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I have a bad fortune",
+      "new": "Ciąży nade mną zły los",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I have bad luck",
+      "new": "Mam pecha",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "Bad omens follow me",
+      "new": "Ciągną się za mną złe znaki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I misread situations",
+      "new": "Źle odczytuję sytuacje",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I've cheated to get where I am",
+      "new": "Oszukiwałem, żeby zajść tak daleko",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I helped cover up a crime",
+      "new": "Pomogłem zatuszować zbrodnię",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I owe a big favor",
+      "new": "Jestem winien wielką przysługę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I owe a lot of small favors",
+      "new": "Jestem winien mnóstwo drobnych przysług",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I have an addiction",
+      "new": "Mam uzależnienie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 10,
+      "old": "I can't stop myself when I'm mad",
+      "new": "Nie umiem się powstrzymać, kiedy jestem wściekły",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "You've got money, and you know how to spend it. What did you buy?",
+      "new": "Masz pieniądze i wiesz, jak je wydawać. Co kupiłeś lub kupiłaś?"
+    },
+    {
+      "page": 11,
+      "old": "Gain a positive tag , like an ancient amulet , or a seat on the University board , or a well maintained automobile .",
+      "new": "Zyskaj pozytywny tag, na przykład starożytny amulet, miejsce w radzie uniwersytetu albo zadbany samochód."
+    },
+    {
+      "page": 11,
+      "old": "Go to question 9",
+      "new": "Przejdź do pytania 9"
+    },
+    {
+      "page": 11,
+      "old": "I own a store",
+      "new": "Mam sklep",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I have a safehouse",
+      "new": "Mam bezpieczną kryjówkę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I have a fallout shelter",
+      "new": "Mam schron przeciwatomowy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I have a huge private library",
+      "new": "Mam ogromną prywatną bibliotekę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I collect rare fetishes",
+      "new": "Kolekcjonuję rzadkie fetysze",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I belong to a private club",
+      "new": "Należę do prywatnego klubu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I live in my family manor",
+      "new": "Mieszkam w rodowej posiadłości",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I bought the hospital a new wing",
+      "new": "Sfinansowałem nowy oddział szpitala",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I've invested in a lot of businesses",
+      "new": "Zainwestowałem w mnóstwo firm",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I own one big business",
+      "new": "Posiadam jedno wielkie przedsiębiorstwo",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I paid for the town library",
+      "new": "Opłaciłem bibliotekę miejską",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I paid for a University position",
+      "new": "Opłaciłem stanowisko na uniwersytecie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I've bribed a lot of people",
+      "new": "Przekupiłem mnóstwo ludzi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I always have cash on hand",
+      "new": "Zawsze mam przy sobie gotówkę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "People owe me small favors",
+      "new": "Ludzie są mi winni drobne przysługi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "One person owes me a big favor",
+      "new": "Jedna osoba jest mi winna wielką przysługę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "My friends never have to pay",
+      "new": "Moi przyjaciele nigdy nie muszą płacić",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I never run out of money",
+      "new": "Nigdy nie kończą mi się pieniądze",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "My family's sword",
+      "new": "Rodzinny miecz",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I have a collection of custom guns",
+      "new": "Mam kolekcję broni robionej na zamówienie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I keep a well stocked armory",
+      "new": "Trzymam doskonale zaopatrzoną zbrojownię",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I collect strange antiques",
+      "new": "Kolekcjonuję dziwne antyki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I collect weird knick knocks",
+      "new": "Kolekcjonuję osobliwe bibeloty",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I have antique arms and armor",
+      "new": "Mam zabytkową broń i zbroje",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I own this weird book",
+      "new": "Mam tę dziwną księgę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I collect strange art",
+      "new": "Kolekcjonuję osobliwą sztukę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I have some great toys",
+      "new": "Mam świetne zabawki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I have a private bodyguard",
+      "new": "Mam prywatnego ochroniarza",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I have amazing jewelry",
+      "new": "Mam niesamowitą biżuterię",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I have a little of everything",
+      "new": "Mam po trochu wszystkiego",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I'm supremely well dressed",
+      "new": "Ubieram się nienagannie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I have a pickup",
+      "new": "Mam pick-upa",
+      "font": "/System/Library/Fonts/Palatino.ttc"
+    },
+    {
+      "page": 11,
+      "old": "I have a sports car",
+      "new": "Mam sportowy samochód",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I have a drone",
+      "new": "Mam drona",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I have an amazing camera",
+      "new": "Mam znakomity aparat",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 11,
+      "old": "I have a lot of equipment",
+      "new": "Mam mnóstwo sprzętu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Someone learned something about you that you'd rather they didn't. What was it?",
+      "new": "Ktoś dowiedział się o tobie czegoś, czego wolałbyś lub wolałabyś nie ujawniać. Co to było?"
+    },
+    {
+      "page": 12,
+      "old": "Gain a negative tag , like unbeknownst to me someone saw me do a hit and run , or paranoid delusions , or I'm being blackmailed.",
+      "new": "Zyskaj negatywny tag, na przykład ktoś bez mojej wiedzy widział, jak uciekam po potrąceniu, paranoiczne urojenia albo ktoś mnie szantażuje."
+    },
+    {
+      "page": 12,
+      "old": "Go to question 9",
+      "new": "Przejdź do pytania 9"
+    },
+    {
+      "page": 12,
+      "old": "Bad dreams",
+      "new": "Złe sny",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Obsession",
+      "new": "Obsesja",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "I can't keep a secret",
+      "new": "Nie umiem dochować tajemnicy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "I can't bring myself to trust",
+      "new": "Nie potrafię nikomu zaufać",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Overly credulous",
+      "new": "Zbyt łatwo wierzę ludziom",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Insomnia",
+      "new": "Bezsenność",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Paranoid delusions",
+      "new": "Paranoiczne urojenia",
+      "occurrence": 2,
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "I see things that aren't there",
+      "new": "Widzę rzeczy, których nie ma",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "I constantly see omens",
+      "new": "Ciągle dostrzegam znaki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "I hear voices",
+      "new": "Słyszę głosy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "I can't spot the obvious",
+      "new": "Nie dostrzegam rzeczy oczywistych",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "I don't like them, but they love me",
+      "new": "Ja ich nie lubię, ale oni mnie kochają",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "I have a hater",
+      "new": "Mam hejtera",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "My rival really dislikes me",
+      "new": "Mój rywal naprawdę mnie nie znosi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Someone pretends to love me",
+      "new": "Ktoś udaje, że mnie kocha",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "I get bullied",
+      "new": "Jestem gnębiony",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "My friend betrayed me",
+      "new": "Mój przyjaciel mnie zdradził",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Someone saw me commit a crime",
+      "new": "Ktoś widział, jak popełniam przestępstwo",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "I'm being stalked",
+      "new": "Ktoś mnie prześladuje",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "The mob is after me",
+      "new": "Mafia depcze mi po piętach",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "A rival gang is after me",
+      "new": "Konkurencyjny gang depcze mi po piętach",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "My old gang is after me",
+      "new": "Mój dawny gang depcze mi po piętach",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "I'm wanted by the cops",
+      "new": "Policja mnie ściga",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Agoraphobia",
+      "new": "Agorafobia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Claustrophobia",
+      "new": "Klaustrofobia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Fear of doctors",
+      "new": "Lęk przed lekarzami",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Fear of books",
+      "new": "Lęk przed książkami",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Fear of blood",
+      "new": "Lęk przed krwią",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "I live in fear of whoever it was",
+      "new": "Żyję w strachu przed tą osobą",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Overconfident",
+      "new": "Zbyt duża pewność siebie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Underconfident",
+      "new": "Zbyt mała pewność siebie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Anxious",
+      "new": "Lękliwość",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Braggart",
+      "new": "Samochwalca",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Confrontational",
+      "new": "Konfrontacyjny charakter",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 12,
+      "old": "Curiosity killed the cat",
+      "new": "Ciekawość to pierwszy stopień do piekła",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "All that effort's paying off . What have you been doing?",
+      "new": "Ten cały wysiłek zaczyna przynosić efekty. Co robiłeś lub robiłaś?"
+    },
+    {
+      "page": 13,
+      "old": "Gain a positive tag , like weightlifter , or police detective , or authority in her subcommunity .",
+      "new": "Zyskaj pozytywny tag, na przykład ciężarowiec, policyjny detektyw albo autorytet w swojej subkulturze."
+    },
+    {
+      "page": 13,
+      "old": "Go to question 9",
+      "new": "Przejdź do pytania 9"
+    },
+    {
+      "page": 13,
+      "old": "Getting swole",
+      "new": "Solidnie się rozbudowałem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I made the team",
+      "new": "Dostałem się do drużyny",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I can run further than ever",
+      "new": "Biegam dalej niż kiedykolwiek",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I'm really tough",
+      "new": "Jestem naprawdę twardy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I got my black belt",
+      "new": "Zdobyłem czarny pas",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I can jump crazy high",
+      "new": "Skaczę niewiarygodnie wysoko",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "Working on my degree",
+      "new": "Pracuję nad dyplomem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I've got tenure",
+      "new": "Mam stały etat akademicki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I have my own lab",
+      "new": "Mam własne laboratorium",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I have a team of subordinates",
+      "new": "Mam zespół podwładnych",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I hold a high rank",
+      "new": "Piastuję wysoką rangę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I'm getting a good reputation",
+      "new": "Zdobywam dobrą reputację",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I've spent a lot of time at the range",
+      "new": "Spędziłem mnóstwo czasu na strzelnicy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I'm going camping a lot",
+      "new": "Często jeżdżę na biwaki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I'm getting good at hiking",
+      "new": "Coraz lepiej radzę sobie na szlaku",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I'm a backwards expert",
+      "new": "Jestem ekspertem od bezdroży",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I'm an expert hacker",
+      "new": "Jestem świetnym hakerem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I never get lost",
+      "new": "Nigdy się nie gubię",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I'm moving up socially",
+      "new": "Pnę się w górę towarzysko",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I'm on the board",
+      "new": "Zasiadam w radzie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I'm a local celebrity",
+      "new": "Jestem lokalną gwiazdą",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I have a fanbase",
+      "new": "Mam grono fanów",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I can always ask for favors",
+      "new": "Zawsze mogę poprosić o przysługę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "People around town know me",
+      "new": "Ludzie w miasteczku mnie znają",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I'm picking up a new skill",
+      "new": "Uczę się nowej umiejętności",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I can stay up for days",
+      "new": "Potrafię nie spać całymi dniami",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I can be intimidating",
+      "new": "Umiem onieśmielać",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I'm hot as hell",
+      "new": "Jestem piekielnie atrakcyjny",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "My harvest is gonna be great",
+      "new": "Moje zbiory będą świetne",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "My pet is a champion",
+      "new": "Moje zwierzę to czempion",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I'm an expert driver",
+      "new": "Jestem mistrzem kierownicy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I can SCUBA dive",
+      "new": "Umiem nurkować z akwalungiem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I can fly a plane",
+      "new": "Umiem pilotować samolot",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I can fly a helicopter",
+      "new": "Umiem pilotować śmigłowiec",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I can ride a bicycle",
+      "new": "Umiem jeździć na rowerze",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 13,
+      "old": "I can ride a motorcycle",
+      "new": "Umiem jeździć na motocyklu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "What went wrong in your life because you took a risk?",
+      "new": "Co poszło w twoim życiu źle, bo podjąłeś lub podjęłaś ryzyko?"
+    },
+    {
+      "page": 14,
+      "old": "Gain a negative tag , like permanent limp , or serious debts , or someone has a grudge .",
+      "new": "Zyskaj negatywny tag, na przykład trwałe utykanie, poważne długi albo ktoś żywi urazę."
+    },
+    {
+      "page": 14,
+      "old": "Go to question 11",
+      "new": "Przejdź do pytania 11"
+    },
+    {
+      "page": 14,
+      "old": "I got expelled",
+      "new": "Wyrzucono mnie ze szkoły",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I'm a convicted felon",
+      "new": "Jestem skazanym przestępcą",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I'm broke",
+      "new": "Jestem spłukany",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "Everything I own is falling apart",
+      "new": "Wszystko, co posiadam, się rozpada",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I was robbed",
+      "new": "Zostałem okradziony",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I was the victim of a terrible crime",
+      "new": "Padłem ofiarą strasznej zbrodni",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I still have three bullets in me",
+      "new": "Wciąż mam w sobie trzy kule",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I'm missing a hand",
+      "new": "Brakuje mi dłoni",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I have lung disease",
+      "new": "Mam chorobę płuc",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I have a speech impediment",
+      "new": "Mam wadę wymowy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I've had a few concussions",
+      "new": "Miałem już kilka wstrząśnień mózgu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "My hands shake",
+      "new": "Trzęsą mi się ręce",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I never got closure",
+      "new": "Nigdy nie doczekałem się domknięcia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I can't handle loss",
+      "new": "Nie radzę sobie ze stratą",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I'm carrying around trauma",
+      "new": "Dźwigam traumę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I put on a false front",
+      "new": "Zakładam fałszywą maskę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I lost a prominent position",
+      "new": "Straciłem ważną pozycję",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I lost a limb",
+      "new": "Straciłem kończynę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I owe someone a serious favor",
+      "new": "Jestem winien komuś poważną przysługę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I've made a lot of minor enemies",
+      "new": "Narobiłem sobie wielu drobnych wrogów",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I've made one big enemy",
+      "new": "Narobiłem sobie jednego wielkiego wroga",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I took the fall for someone else",
+      "new": "Wziąłem winę za kogoś innego",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I can't stand the sight of blood",
+      "new": "Nie mogę znieść widoku krwi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I vomit easily",
+      "new": "Łatwo wymiotuję",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I get off on the wrong foot a lot",
+      "new": "Często źle zaczynam z ludźmi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I have an obvious addiction",
+      "new": "Mam oczywiste uzależnienie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I “don’t” have an addiction",
+      "new": "Na pewno nie mam uzależnienia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I can't stop myself",
+      "new": "Nie umiem się powstrzymać",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I'm scared to start things",
+      "new": "Boję się zaczynać",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I misinterpret things",
+      "new": "Mylnie interpretuję sytuacje",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I'm a werewolf",
+      "new": "Jestem wilkołakiem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I've developed a taste for blood",
+      "new": "Nabrałem smaku do krwi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I need to eat... something",
+      "new": "Muszę jeść... coś",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I have strange desires",
+      "new": "Mam dziwne pragnienia",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I have an unusual addiction",
+      "new": "Mam nietypowe uzależnienie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 14,
+      "old": "I can't stand still",
+      "new": "Nie potrafię ustać w miejscu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "What's something you're good at that folks might not guess?",
+      "new": "W czym jesteś dobry lub dobra, choć ludzie mogliby się tego po tobie nie spodziewać?"
+    },
+    {
+      "page": 15,
+      "old": "Gain a positive tag , like chess master , or bar room brawler , or former sailor .",
+      "new": "Zyskaj pozytywny tag, na przykład mistrz szachowy, barowy awanturnik albo były marynarz."
+    },
+    {
+      "page": 15,
+      "old": "go to question 12",
+      "new": "Przejdź do pytania 12"
+    },
+    {
+      "page": 15,
+      "old": "I'm a gym rat",
+      "new": "Jestem bywalcem siłowni",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I'm a ballet dancer",
+      "new": "Jestem tancerką baletową",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I used to be a huge jock",
+      "new": "Kiedyś byłem wielkim sportowcem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I used to get in street fights",
+      "new": "Kiedyś wdawałem się w uliczne bójki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I go for a run every night",
+      "new": "Co wieczór wychodzę pobiegać",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I go rock climbing on weekends",
+      "new": "W weekendy wspinam się po skałach",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I go hunting every year",
+      "new": "Co roku jeżdżę na polowania",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I'm an Eagle Scout",
+      "new": "Mam najwyższy stopień harcerski",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I'm a survivalist",
+      "new": "Jestem survivalowcem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I hike long distances",
+      "new": "Wędruję na długich dystansach",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I train dogs",
+      "new": "Tresuję psy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I ride horses",
+      "new": "Jeżdżę konno",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I get straight As",
+      "new": "Mam same szóstki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I'm a writer",
+      "new": "Jestem pisarzem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I used to be a huge nerd",
+      "new": "Kiedyś byłem strasznym nerdem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I was a child prodigy",
+      "new": "Byłem cudownym dzieckiem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I used to be a priest",
+      "new": "Kiedyś byłem księdzem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I used to be sailor",
+      "new": "Kiedyś byłem marynarzem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I'm psychometric",
+      "new": "Mam zdolności psychometryczne",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I see dead people",
+      "new": "Widzę zmarłych",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I can tell fortunes",
+      "new": "Umiem wróżyć",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I conduct seances",
+      "new": "Prowadzę seanse spirytystyczne",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I have visions",
+      "new": "Miewam wizje",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I can imitate voices",
+      "new": "Umiem naśladować głosy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I'm actually empathetic",
+      "new": "Tak naprawdę jestem empatyczny",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I have eyes in the back of my head",
+      "new": "Mam oczy dookoła głowy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I notice small details",
+      "new": "Dostrzegam drobne szczegóły",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I can always spot patterns",
+      "new": "Zawsze wyłapuję wzorce",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I have an eidetic memory",
+      "new": "Mam pamięć ejdetyczną",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I have perfect pitch",
+      "new": "Mam słuch absolutny",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I'm really involved in a subculture",
+      "new": "Jestem mocno zaangażowany w subkulturę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I have friends in high places",
+      "new": "Mam znajomych na wysokich stanowiskach",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I have friends in low places",
+      "new": "Mam znajomych na samym dole drabiny",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I'm a celebrity in disguise",
+      "new": "Jestem celebrytą incognito",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "I used to be famous",
+      "new": "Kiedyś byłem sławny",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 15,
+      "old": "People forget my face",
+      "new": "Ludzie zapominają moją twarz",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "What's still afflicting you?",
+      "new": "Co wciąż cię trapi?"
+    },
+    {
+      "page": 16,
+      "old": "Gain a negative tag , like I'm haunted (by your past, or by ghosts?) or discriminated against by bigots , or cursed .",
+      "new": "Zyskaj negatywny tag, na przykład nawiedzają mnie przeszłość lub duchy, spotykam się z dyskryminacją ze strony bigotów albo jestem przeklęty."
+    },
+    {
+      "page": 16,
+      "old": "Go to question 14",
+      "new": "Przejdź do pytania 14"
+    },
+    {
+      "page": 16,
+      "old": "I owe a lot of favors",
+      "new": "Jestem winien mnóstwo przysług",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I owe one big favor",
+      "new": "Jestem winien jedną wielką przysługę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "Someone stole something from me",
+      "new": "Ktoś mi coś ukradł",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "Someone stole a lot from me",
+      "new": "Ktoś ukradł mi bardzo wiele",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I can't get hired",
+      "new": "Nikt nie chce mnie zatrudnić",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I just got fired",
+      "new": "Właśnie mnie zwolniono",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I have asthma",
+      "new": "Mam astmę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I'm fat, and that causes problems",
+      "new": "Jestem gruby i przez to mam problemy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I'm thin, and that causes problems",
+      "new": "Jestem chudy i przez to mam problemy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I have the Innsmouth Look",
+      "new": "Mam wygląd z Innsmouth",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I have terrible allergies",
+      "new": "Mam straszne alergie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I can't handle sunlight for long",
+      "new": "Nie mogę długo wytrzymać na słońcu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I have a dark secret",
+      "new": "Mam mroczny sekret",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I just look creepy",
+      "new": "Po prostu wyglądam upiornie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "People don't trust me",
+      "new": "Ludzie mi nie ufają",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I'm awkward around strangers",
+      "new": "Dziwnie się zachowuję przy obcych",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "One person has a major grudge",
+      "new": "Jedna osoba żywi do mnie ogromną urazę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I pissed off a group of people",
+      "new": "Wkurzyłem całą grupę ludzi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I'm too quick to trust",
+      "new": "Zbyt szybko ufam",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "People don't take me seriously",
+      "new": "Ludzie nie traktują mnie poważnie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I'm discriminated against",
+      "new": "Jestem dyskryminowany",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I don't speak the local language",
+      "new": "Nie mówię w miejscowym języku",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I get tired easily",
+      "new": "Łatwo się męczę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I can't sit still",
+      "new": "Nie potrafię usiedzieć w miejscu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I never learned to drive",
+      "new": "Nigdy nie nauczyłem się prowadzić",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I need an assistive device",
+      "new": "Potrzebuję sprzętu wspomagającego",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I can't read",
+      "new": "Nie umiem czytać",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I don't know how to swim",
+      "new": "Nie umiem pływać",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I'm a terrible runner",
+      "new": "Fatalnie biegam",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I get exhausted easily",
+      "new": "Łatwo padam z wyczerpania",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I get sick easily",
+      "new": "Łatwo choruję",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I can't hold my liquor",
+      "new": "Słabo trzymam alkohol",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I have bad eyesight",
+      "new": "Mam słaby wzrok",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I'm hard of hearing",
+      "new": "Słabo słyszę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I have tinnitus",
+      "new": "Mam szumy uszne",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 16,
+      "old": "I don't have a sense of smell",
+      "new": "Nie mam węchu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "What's a connection you particularly value?",
+      "new": "Jakie połączenie jest dla ciebie szczególnie cenne?"
+    },
+    {
+      "page": 17,
+      "old": "Gain a positive tag , like parents with interesting jobs , or my pet dog , or drinking buddies .",
+      "new": "Zyskaj pozytywny tag, na przykład rodzice z ciekawą pracą, mój pies albo kompani od kieliszka."
+    },
+    {
+      "page": 17,
+      "old": "Go to question 15",
+      "new": "Przejdź do pytania 15"
+    },
+    {
+      "page": 17,
+      "old": "My repeating parrot",
+      "new": "Moja papuga, która wszystko powtarza",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My sneaky cat",
+      "new": "Mój przebiegły kot",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My identical twin",
+      "new": "Moje jednojajowe bliźnię",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My fraternal twin",
+      "new": "Moje dwujajowe bliźnię",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My boisterous dog",
+      "new": "Mój hałaśliwy pies",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My scary snake",
+      "new": "Mój przerażający wąż",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My loyal brother",
+      "new": "Mój lojalny brat",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My sister who looks out for me",
+      "new": "Moja siostra, która mnie pilnuje",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My protective father",
+      "new": "Mój opiekuńczy ojciec",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My helpful mother",
+      "new": "Moja pomocna matka",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My adoring younger sibling",
+      "new": "Moje uwielbiające mnie młodsze rodzeństwo",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My adored older sibling",
+      "new": "Moje ukochane starsze rodzeństwo",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "The gossipy regulars at my bar",
+      "new": "Stali bywalcy mojego baru, którzy wszystko obgadują",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My paid employees",
+      "new": "Moi opłacani pracownicy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My fellow volunteers",
+      "new": "Moi współwolontariusze",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My clever book club",
+      "new": "Mój bystry klub książki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My knowledgeable history club",
+      "new": "Mój klub historyczny pełen wiedzy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My dependable bowling league",
+      "new": "Moja niezawodna liga bowlingowa",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My observant neighbours",
+      "new": "Moi spostrzegawczy sąsiedzi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My loving partner",
+      "new": "Mój kochający partner",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My beloved child",
+      "new": "Moje ukochane dziecko",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My troublemaking cousin",
+      "new": "Mój kuzyn robiący kłopoty",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My friend who's up for anything",
+      "new": "Mój przyjaciel, który zawsze jest na wszystko chętny",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My friend who's the cautious one",
+      "new": "Mój przyjaciel, który zawsze zachowuje ostrożność",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My believing therapist",
+      "new": "Mój terapeuta, który mi wierzy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My forgiving priest",
+      "new": "Mój wybaczający ksiądz",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My listening barkeep",
+      "new": "Mój barman, który umie słuchać",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My wise librarian",
+      "new": "Mój mądry bibliotekarz",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My nosy neighbor",
+      "new": "Mój wścibski sąsiad",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My drug dealer",
+      "new": "Mój dealer",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My parents are rich",
+      "new": "Moi rodzice są bogaci",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My dad is the sheriff",
+      "new": "Mój tata jest szeryfem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My mom is the mayor",
+      "new": "Moja mama jest burmistrzynią",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My uncle is the dean",
+      "new": "Mój wujek jest dziekanem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My aunt owns a local company",
+      "new": "Moja ciotka ma lokalną firmę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 17,
+      "old": "My criminal cousin",
+      "new": "Mój kuzyn przestępca",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "What's your favorite thing about yourself?",
+      "new": "Co najbardziej lubisz w sobie?"
+    },
+    {
+      "page": 18,
+      "old": "Gain a positive tag , like I'm a good dancer , or I always have something useful in my bag , or my analytical mind .",
+      "new": "Zyskaj pozytywny tag, na przykład jestem świetną tancerką, zawsze mam w torbie coś przydatnego albo mój analityczny umysł."
+    },
+    {
+      "page": 18,
+      "old": "Go to question 16",
+      "new": "Przejdź do pytania 16"
+    },
+    {
+      "page": 18,
+      "old": "I'm smart as a whip",
+      "new": "Mam błyskotliwy umysł",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I'm really quick",
+      "new": "Jestem naprawdę szybki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "Hyperfocus",
+      "new": "Hiperfokus",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I barely need to sleep",
+      "new": "Prawie nie potrzebuję snu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I'm persuasive",
+      "new": "Jestem przekonujący",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I'm persistent",
+      "new": "Jestem wytrwały",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I'm really fast",
+      "new": "Jestem naprawdę szybki",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I'm light on my feet",
+      "new": "Lekko stąpam",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I'm strong as an ox",
+      "new": "Jestem silny jak wół",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I'm tough as nails",
+      "new": "Jestem twardy jak stal",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I never get tired",
+      "new": "Nigdy się nie męczę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I can run like the wind",
+      "new": "Biegam jak wiatr",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I'm the best quarterback in state",
+      "new": "Jestem najlepszym rozgrywającym w stanie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I'm a crack shot",
+      "new": "Jestem wyborowym strzelcem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I can catch an arrow mid flight",
+      "new": "Potrafię złapać strzałę w locie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "My war record",
+      "new": "Moje wojenne zasługi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "My Olympic gold medal",
+      "new": "Mój złoty medal olimpijski",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I have a cast iron stomach",
+      "new": "Mam żołądek ze stali",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I'm quite the charmer",
+      "new": "Mam wielki urok osobisty",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I'm very handsome",
+      "new": "Jestem bardzo przystojny",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I'm a great actor",
+      "new": "Jestem świetnym aktorem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I have a voice like an angel",
+      "new": "Mam głos jak anioł",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I have a winning smile",
+      "new": "Mam ujmujący uśmiech",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "My puppy dog eyes",
+      "new": "Mój szczenięcy wzrok",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I'm the bar darts champ",
+      "new": "Jestem mistrzem darta w barze",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I'm captain of the chess team",
+      "new": "Jestem kapitanem drużyny szachowej",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I'm valedictorian",
+      "new": "Jestem prymusem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I'm a great gardener",
+      "new": "Jestem świetnym ogrodnikiem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I read several books a week",
+      "new": "Czytam kilka książek tygodniowo",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "My stamp collection",
+      "new": "Moja kolekcja znaczków",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I like to help people",
+      "new": "Lubię pomagać ludziom",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I notice things",
+      "new": "Zauważam różne rzeczy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I overhear things",
+      "new": "Podsłuchuję różne rzeczy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "I have a good reputation",
+      "new": "Mam dobrą reputację",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "People trust me",
+      "new": "Ludzie mi ufają",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 18,
+      "old": "People instinctively like me",
+      "new": "Ludzie instynktownie mnie lubią",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "What is something you like about yourself that some people consider a character flaw?",
+      "new": "Co lubisz w sobie, choć niektórzy uznają to za wadę charakteru?"
+    },
+    {
+      "page": 19,
+      "old": "Gain a wild tag , like I know I'm gorgeous , or I'm the life of the party , or I'm convinced I'm the smartest person in the room .",
+      "new": "Zyskaj uniwersalny tag, na przykład wiem, że jestem olśniewający, jestem duszą towarzystwa albo jestem przekonany, że to ja jestem najmądrzejszą osobą w pokoju."
+    },
+    {
+      "page": 19,
+      "old": "You're ready to start playing",
+      "new": "Możecie zaczynać grę"
+    },
+    {
+      "page": 19,
+      "old": "I always have to be the best",
+      "new": "Zawsze muszę być najlepszy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I can charm anyone",
+      "new": "Potrafię oczarować każdego",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "Everyone loves me",
+      "new": "Wszyscy mnie kochają",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I'm very outspoken",
+      "new": "Mówię bardzo otwarcie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I'm very reserved",
+      "new": "Jestem bardzo powściągliwy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I'm lazy",
+      "new": "Jestem leniwy",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I'm the strongest guy here",
+      "new": "Jestem tu najsilniejszym gościem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I can whip anyone",
+      "new": "Mogę spuścić łomot każdemu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I'm invincible",
+      "new": "Jestem niezwyciężony",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I'll accept any dare",
+      "new": "Przyjmę każde wyzwanie",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I always defend my honor",
+      "new": "Zawsze bronię swojego honoru",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I treat everyone equally",
+      "new": "Traktuję wszystkich równo",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "No one would dare touch me",
+      "new": "Nikt nie odważyłby się mnie tknąć",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I'm secretive",
+      "new": "Jestem skryty",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I overshare",
+      "new": "Mówię o sobie za dużo",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I'm always the boss",
+      "new": "Zawsze to ja tu rządzę",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I'm impulsive",
+      "new": "Jestem impulsywny",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I always think things through",
+      "new": "Zawsze wszystko dokładnie przemyślam",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I have great luck",
+      "new": "Mam niezwykłe szczęście",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I love to talk to people",
+      "new": "Uwielbiam rozmawiać z ludźmi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I make friends easily",
+      "new": "Łatwo zaprzyjaźniam się z ludźmi",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I trust everyone",
+      "new": "Ufam wszystkim",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I trust no one",
+      "new": "Nie ufam nikomu",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I don't respect boundaries",
+      "new": "Nie szanuję granic",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I respect authority",
+      "new": "Szanuję autorytety",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I don't respect authority",
+      "new": "Nie szanuję autorytetów",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I don't answer questions",
+      "new": "Nie odpowiadam na pytania",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I ask a lot of questions",
+      "new": "Zadaję mnóstwo pytań",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I'm very talkative",
+      "new": "Jestem bardzo rozmowny",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I hate to talk",
+      "new": "Nienawidzę rozmawiać",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "Hubris",
+      "new": "Pycha",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I'm extroverted",
+      "new": "Jestem ekstrawertykiem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I'm introverted",
+      "new": "Jestem introwertykiem",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I love violence",
+      "new": "Kocham przemoc",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "People feel sorry for me",
+      "new": "Ludzie mi współczują",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    },
+    {
+      "page": 19,
+      "old": "I solve everyone's problems",
+      "new": "Rozwiązuję problemy wszystkich",
+      "font": "/System/Library/Fonts/Supplemental/Arial Narrow Italic.ttf"
+    }
+  ]
+}
