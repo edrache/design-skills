@@ -74,15 +74,18 @@ export function addPenalty(state, skills) {
   return { ...state, penalties };
 }
 
-export function pushReturn(state, id) {
-  return { ...state, returnStack: [...state.returnStack, id] };
+// Stos powrotu przechowuje nie tylko paragraf, ale i pozycję w nim (cursor),
+// żeby powrót mógł wznowić wykonanie za krokiem, który spowodował skok,
+// zamiast wykonywać paragraf od nowa.
+export function pushReturn(state, entryId, cursor = 0) {
+  return { ...state, returnStack: [...state.returnStack, { entryId, cursor }] };
 }
 
 export function popReturn(state) {
-  if (state.returnStack.length === 0) return { state, entryId: null };
+  if (state.returnStack.length === 0) return { state, entryId: null, cursor: 0 };
   const stack = [...state.returnStack];
-  const entryId = stack.pop();
-  return { state: { ...state, returnStack: stack }, entryId };
+  const top = stack.pop();
+  return { state: { ...state, returnStack: stack }, entryId: top.entryId, cursor: top.cursor };
 }
 
 export function serialize(state) {

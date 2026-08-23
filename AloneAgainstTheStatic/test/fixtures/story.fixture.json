@@ -1,0 +1,53 @@
+{
+  "extracted": [1, 11],
+  "start": 1,
+  "entries": {
+    "1": {
+      "id": 1,
+      "scene": "drive",
+      "text": ["e1.p1"],
+      "on": [{ "flag": "alex" }],
+      "choices": [
+        { "text": "e1.c1", "goto": 2 },
+        { "text": "e1.c2", "goto": 3 }
+      ]
+    },
+    "2": {
+      "id": 2,
+      "text": ["e2.p1"],
+      "on": [{ "roll": "Psychology", "onSuccess": { "goto": 4 }, "onFail": { "goto": 5 } }]
+    },
+    "3": {
+      "id": 3,
+      "text": ["e3.p1"],
+      "on": [{ "roll": "CON", "push": true, "onFail": [{ "flag": "touched_by_cold" }] }],
+      "choices": [{ "text": "e3.c1", "goto": 4 }]
+    },
+    "4": {
+      "id": 4,
+      "text": ["e4.p1"],
+      "guards": [{ "if": "touched_by_cold", "goto": 6 }],
+      "choices": [{ "text": "e4.c1", "goto": 7 }]
+    },
+    "5": { "id": 5, "text": ["e5.p1"], "choices": [{ "text": "e5.c1", "goto": 7 }] },
+    "6": { "id": 6, "text": ["e6.p1"], "on": [{ "hp": "1d6" }], "choices": [{ "text": "e6.c1", "goto": 7 }] },
+    "7": {
+      "id": 7,
+      "text": ["e7.p1"],
+      "choices": [
+        { "text": "e7.c1", "goto": 8, "once": true },
+        { "text": "e7.c2", "goto": 9, "once": true },
+        { "text": "e7.c3", "goto": 10 }
+      ]
+    },
+    "8": { "id": 8, "text": ["e8.p1"], "on": [{ "newDay": true }], "choices": [{ "text": "e8.c1", "goto": 7 }] },
+    "9": { "id": 9, "text": ["e9.p1"], "guards": [{ "if": ["touched_by_cold", { "visits": 1 }], "goto": 6 }], "choices": [{ "text": "e9.c1", "goto": 7 }] },
+    "10": { "id": 10, "text": ["e10.p1"], "end": true },
+    "11": { "id": 11, "text": ["e11.p1"], "on": [{ "san": "6" }], "choices": [{ "text": "e11.c1", "goto": 7 }] },
+    "324": { "id": 324, "text": ["e324.p1"], "end": true },
+    "325": { "id": 325, "text": ["e325.p1"], "on": [{ "goto": "@return" }] },
+    "329": { "id": 329, "text": ["e329.p1"], "on": [{ "bout": true }] },
+    "333": { "id": 333, "text": ["e333.p1"], "on": [{ "goto": "@return" }] },
+    "334": { "id": 334, "text": ["e334.p1"], "end": true }
+  }
+}
