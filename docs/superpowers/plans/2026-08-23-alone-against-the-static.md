@@ -1490,13 +1490,19 @@ Run:
 ```bash
 cd /Users/marek/OfflineDocuments/Repo/Antigravity/Design && node -e "
 const raw = require('./AloneAgainstTheStatic/tools/raw-entries.json');
-const md = require('fs').readFileSync('output/markdown/cha23181_-_alone_against_the_static_v6.md','utf8')
-  .replace(/Th /g,'Th').replace(/\s+/g,' ').toLowerCase();
+const words = s => s.toLowerCase().replace(/[^a-z ]/g,' ').split(/ +/).filter(w => w.length > 4);
+const md = ' ' + words(require('fs').readFileSync(
+  'output/markdown/cha23181_-_alone_against_the_static_v6.md', 'utf8'
+)).join(' ') + ' ';
 const missing = [];
 for (const [id, e] of Object.entries(raw)) {
   for (const p of e.paragraphs) {
-    const probe = p.toLowerCase().replace(/[^a-z ]/g,'').split(' ').filter(w=>w.length>4).slice(0,4).join(' ');
-    if (probe && !md.includes(probe)) missing.push([id, p.slice(0,60)]);
+    const content = words(p);
+    let found = content.length < 4;
+    for (let i = 0; !found && i <= content.length - 4; i += 1) {
+      found = md.includes(' ' + content.slice(i, i + 4).join(' ') + ' ');
+    }
+    if (!found) missing.push([id, p.slice(0,60)]);
   }
 }
 console.log('Fragmentów bez odpowiednika w markdownie:', missing.length);
