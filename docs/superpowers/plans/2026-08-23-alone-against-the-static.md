@@ -899,7 +899,7 @@ Rodzaje zdarzeń w `events`: `text`, `roll`, `flag`, `hp`, `san`, `redirect`, `c
         { "text": "e7.c3", "goto": 10 }
       ]
     },
-    "8": { "id": 8, "text": ["e8.p1"], "choices": [{ "text": "e8.c1", "goto": 7 }] },
+    "8": { "id": 8, "text": ["e8.p1"], "on": [{ "newDay": true }], "choices": [{ "text": "e8.c1", "goto": 7 }] },
     "9": { "id": 9, "text": ["e9.p1"], "guards": [{ "if": ["touched_by_cold", { "visits": 1 }], "goto": 6 }], "choices": [{ "text": "e9.c1", "goto": 7 }] },
     "10": { "id": 10, "text": ["e10.p1"], "end": true },
     "324": { "id": 324, "text": ["e324.p1"], "end": true },
@@ -1033,6 +1033,14 @@ test("goto @return wraca na odłożony paragraf", () => {
   assert.deepEqual(frame.state.returnStack, []);
 });
 
+test("krok newDay zeruje licznik Sanity utraconej w ciągu doby", () => {
+  const ctx = ctxWith([]);
+  let state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  state = { ...state, sanLostToday: 7 };
+  const frame = enter(ctx, state, 8);
+  assert.equal(frame.state.sanLostToday, 0);
+});
+
 test("paragraf z end kończy grę", () => {
   const frame = enter(ctxWith([]), createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) }), 10);
   assert.equal(frame.pending.type, "end");
@@ -1062,7 +1070,7 @@ import {
   hasFlag, setFlag, visit, visitCount, useChoice, isChoiceUsed,
   spendLuck, penaltyFor, popReturn, pushReturn, skillValue,
 } from "./state.js";
-import { applyDamage, applySanLoss, sanityCheck, resolveBout } from "./rules.js";
+import { applyDamage, applySanLoss, sanityCheck, resolveBout, resetDay } from "./rules.js";
 
 // Ramka opisuje wykonanie jednego paragrafu. Interpreter zatrzymuje się,
 // gdy potrzebuje decyzji gracza, i wznawia przez resume().
@@ -1123,6 +1131,12 @@ function runSteps(ctx, frame) {
     if (step.flag) {
       state = setFlag(state, step.flag);
       events.push({ kind: "flag", flag: step.flag });
+      continue;
+    }
+
+    // Próg indefinite insanity liczy się w obrębie jednego dnia scenariusza.
+    if (step.newDay) {
+      state = resetDay(state);
       continue;
     }
 
@@ -1318,7 +1332,7 @@ export function resume(ctx, frame, action) {
 - [ ] **Step 5: Uruchom test interpretera**
 
 Run: `node --test test/runner.test.js`
-Expected: PASS — 13 testów
+Expected: PASS — 14 testów
 
 - [ ] **Step 6: Uruchom wszystkie testy**
 
@@ -1612,6 +1626,7 @@ Otwórz `data/story.json` i dla każdej pozycji z listy „Do ręcznego sprawdze
 
 - „If Broken Heart is checked on the log sheet, you cannot stay calm. You must go to 24." → `guards: [{ "if": "broken_heart", "goto": 24 }]`
 - rzut z możliwością przepchnięcia („If you fail but wish to Push the Roll") → dopisz `"push": true` do kroku `roll`
+- paragraf, w którym bohaterowie budzą się rano → dopisz krok `{ "newDay": true }` na początku listy `on`; zeruje on licznik Sanity utraconej w ciągu doby, od którego zależy próg 328. W paragrafach 1–30 taki moment nie występuje (to jeden wieczór), ale przy rozszerzaniu ekstrakcji trzeba go dodać przy każdym przespanym nocy
 - teksty wprowadzające do wyborów, które konwerter uznał za prozę — zostaw jako prozę
 
 Po każdej poprawce uruchom `node tools/validate.mjs` (zadanie 7) i sprawdź, czy lista błędów maleje.
