@@ -79,7 +79,7 @@ AloneAgainstTheStatic/
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test test/",
+    "test": "node --test test/*.test.js",
     "validate": "node tools/validate.mjs"
   }
 }
@@ -276,7 +276,7 @@ export function rollDice(rng, notation) {
 
 - [ ] **Step 9: Uruchom wszystkie testy i potwierdź, że przechodzą**
 
-Run: `node --test test/`
+Run: `node --test test/*.test.js`
 Expected: PASS — 11 testów
 
 - [ ] **Step 10: Commit**
@@ -579,15 +579,18 @@ export function addPenalty(state, skills) {
   return { ...state, penalties };
 }
 
-export function pushReturn(state, id) {
-  return { ...state, returnStack: [...state.returnStack, id] };
+// Stos powrotu trzyma pozycję w paragrafie, żeby powrót wznawiał go za krokiem,
+// który spowodował skok, a nie od początku — inaczej krok utraty Sanity odpala się
+// drugi raz i gracz wpada w pętlę.
+export function pushReturn(state, entryId, cursor = 0) {
+  return { ...state, returnStack: [...state.returnStack, { entryId, cursor }] };
 }
 
 export function popReturn(state) {
-  if (state.returnStack.length === 0) return { state, entryId: null };
+  if (state.returnStack.length === 0) return { state, entryId: null, cursor: 0 };
   const stack = [...state.returnStack];
-  const entryId = stack.pop();
-  return { state: { ...state, returnStack: stack }, entryId };
+  const top = stack.pop();
+  return { state: { ...state, returnStack: stack }, entryId: top.entryId, cursor: top.cursor };
 }
 
 export function serialize(state) {
@@ -601,7 +604,7 @@ export function deserialize(raw) {
 
 - [ ] **Step 5: Uruchom testy i potwierdź, że przechodzą**
 
-Run: `node --test test/`
+Run: `node --test test/*.test.js`
 Expected: PASS — wszystkie testy z zadań 1 i 2
 
 - [ ] **Step 6: Commit**
@@ -824,7 +827,7 @@ export function sanityCheck(state, character, rng, notation) {
 
 - [ ] **Step 4: Uruchom testy i potwierdź, że przechodzą**
 
-Run: `node --test test/`
+Run: `node --test test/*.test.js`
 Expected: PASS — wszystkie testy z zadań 1–3
 
 - [ ] **Step 5: Commit**
@@ -848,6 +851,15 @@ git commit -m "Progi HP i SAN oraz bouts of madness"
 - Produces: `enter(ctx, state, entryId) -> Frame`, `resume(ctx, frame, action) -> Frame`
 
 `ctx` to `{story, character, rng}`. `Frame` to `{state, entryId, events, pending, cursor}`.
+
+> **Korekty wprowadzone w trakcie realizacji** (wiążące, zapisane w
+> `.superpowers/sdd/2026-08-23-alone-against-the-static/task-4-decisions.md`): fixture rozdziela
+> ścieżkę porażki od kaskady Sanity (paragraf 5 bez kroku `san`, nowy paragraf 11 z `san`,
+> `extracted: [1, 11]`); wydanie Luck jest dostępne przy każdym nieudanym rzucie, a nie tylko
+> tam gdzie paragraf oferuje push; koszt Luck liczy się od wymaganego progu trudności, nie od
+> pełnej wartości umiejętności; stos powrotu przechowuje pozycję w paragrafie, żeby powrót
+> wznawiał go za krokiem, który spowodował skok — bez tego krok utraty Sanity odpala się
+> ponownie i gracz krąży między paragrafem a 329.
 `pending` przyjmuje wartości: `null`, `{type:"rollDecision", roll, skill, canPush, luckCost}`, `{type:"choices", options}`, `{type:"end"}`.
 `action` przyjmuje: `{type:"push"}`, `{type:"luck"}`, `{type:"accept"}`, `{type:"choose", index}`.
 Rodzaje zdarzeń w `events`: `text`, `roll`, `flag`, `hp`, `san`, `redirect`, `choices`, `end`, `missing`.
@@ -858,7 +870,7 @@ Rodzaje zdarzeń w `events`: `text`, `roll`, `flag`, `hp`, `san`, `redirect`, `c
 
 ```json
 {
-  "extracted": [1, 10],
+  "extracted": [1, 11],
   "start": 1,
   "entries": {
     "1": {
@@ -888,7 +900,8 @@ Rodzaje zdarzeń w `events`: `text`, `roll`, `flag`, `hp`, `san`, `redirect`, `c
       "guards": [{ "if": "touched_by_cold", "goto": 6 }],
       "choices": [{ "text": "e4.c1", "goto": 7 }]
     },
-    "5": { "id": 5, "text": ["e5.p1"], "on": [{ "san": "6" }], "choices": [{ "text": "e5.c1", "goto": 7 }] },
+    "5": { "id": 5, "text": ["e5.p1"], "choices": [{ "text": "e5.c1", "goto": 7 }] },
+      "11": { "id": 11, "text": ["e11.p1"], "on": [{ "san": "6" }], "choices": [{ "text": "e11.c1", "goto": 7 }] },
     "6": { "id": 6, "text": ["e6.p1"], "on": [{ "hp": "1d6" }], "choices": [{ "text": "e6.c1", "goto": 7 }] },
     "7": {
       "id": 7,
@@ -1336,7 +1349,7 @@ Expected: PASS — 14 testów
 
 - [ ] **Step 6: Uruchom wszystkie testy**
 
-Run: `node --test test/`
+Run: `node --test test/*.test.js`
 Expected: PASS — wszystkie testy z zadań 1–4
 
 - [ ] **Step 7: Commit**
@@ -2972,7 +2985,7 @@ Narzędzie autorskie: <http://127.0.0.1:8080/AloneAgainstTheStatic/tools/dev.htm
 ## Testy i walidacja
 
     cd AloneAgainstTheStatic
-    node --test test/
+    node --test test/*.test.js
     node tools/validate.mjs
 
 ## Dane
@@ -3010,7 +3023,7 @@ i wpisujesz ścieżki do `data/media.json`. Brakujący plik nie psuje gry.
 
 Run:
 ```bash
-cd AloneAgainstTheStatic && node --test test/ && node tools/validate.mjs
+cd AloneAgainstTheStatic && node --test test/*.test.js && node tools/validate.mjs
 ```
 Expected: wszystkie testy przechodzą, walidator zwraca `0 błędów`
 
