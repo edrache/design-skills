@@ -2,6 +2,7 @@ import { createState } from "../engine/state.js";
 import { enter, resume } from "../engine/runner.js";
 import { createI18n } from "./i18n.js";
 import { clearJournal, renderEvents, renderRollDecision } from "./journal.js";
+import { clearSave, isSaveCompatible, loadGame, saveGame } from "./save.js";
 import { renderSheet } from "./sheet.js";
 
 const UI_COPY = {
@@ -165,6 +166,7 @@ function advance(next, originEntryId = null) {
   history.push({ entryId: frame.entryId, originEntryId, events: frame.events });
   const block = draw(history.at(-1), true);
   renderCharacterSheet();
+  saveGame({ characterId: ctx.character.id, frame, originEntryId });
   if (frame.pending?.type === "end") showEnd();
   else block.focus({ preventScroll: true });
 }
@@ -216,6 +218,7 @@ function startGame(characterId) {
   const character = characters[characterId];
   if (!character) return;
 
+  clearSave();
   ctx = { story, character, rng: Math.random };
   frame = null;
   history.length = 0;
@@ -302,6 +305,7 @@ compactSheet?.addEventListener?.("change", syncSheetDisclosure);
 
 dom.settingsToggle.addEventListener("click", () => showTemporaryStatus(labels().settingsPending));
 dom.restart.addEventListener("click", () => {
+  clearSave();
   frame = null;
   ctx = null;
   history.length = 0;
@@ -322,7 +326,18 @@ async function bootstrap() {
   story = loadedStory;
   i18n = createI18n({ en, pl }, storedLocale());
   updateChrome();
-  renderCharacterChoice({ focus: true });
+  const saved = loadGame();
+  const savedCharacter = saved ? characters[saved.characterId] : null;
+  if (saved && savedCharacter && isSaveCompatible(saved, story, savedCharacter)) {
+    ctx = { story, character: savedCharacter, rng: Math.random };
+    history.length = 0;
+    clearJournal(dom.journal);
+    showScreen("game");
+    advance(saved.frame, saved.originEntryId);
+  } else {
+    if (saved) clearSave();
+    renderCharacterChoice({ focus: true });
+  }
 }
 
 bootstrap().catch((error) => {
