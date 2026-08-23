@@ -44,6 +44,17 @@ REPLACEMENTS = [
     ("36o,", "369,"),  # s. 96, trace paragrafu 370: "(36o, 371)" -> "(369, 371)"
     ("17n)", "178)"),  # s. 52, trace paragrafu 180: "(17n)" -> "(178)"
     ("\x07o to ilm.", "Go to 367."),  # s. 95, uszkodzony cały wiersz odsyłacza paragrafu 366
+    # PyMuPDF zachowuje łącznik z końca wiersza, a kolejną linię dokleja po
+    # spacji. Poniższe formy zostały sprawdzone bezpośrednio na renderze PDF.
+    ("not- at-all-soft", "not-at-all-soft"),
+    ("white- water", "whitewater"),
+    ("half- heartedly", "half-heartedly"),
+    ("pine- coated", "pine-coated"),
+    ("half- second", "half-second"),
+    ("Ush- Tik-a", "Ush-Tik-a"),
+    ("sing- song", "sing-song"),
+    ("dis- integrating", "disintegrating"),
+    ("low- hanging", "low-hanging"),
 ]
 
 # W kilku blokach ta sama uszkodzona ligatura "Th" nie jest zwracana jako "!",
@@ -94,13 +105,15 @@ def block_tokens(raw_text: str) -> list[str]:
             continue
         if ENTRY_RE.match(line) or TRACE_RE.match(line):
             if buffer:
-                tokens.append(" ".join(buffer))
+                # Uruchom clean ponownie po sklejeniu linii, żeby naprawić
+                # artefakty dzielenia wyrazów na granicy wiersza (np. "half- second").
+                tokens.append(clean(" ".join(buffer)))
                 buffer = []
             tokens.append(line)
         else:
             buffer.append(line)
     if buffer:
-        tokens.append(" ".join(buffer))
+        tokens.append(clean(" ".join(buffer)))
     return tokens
 
 
