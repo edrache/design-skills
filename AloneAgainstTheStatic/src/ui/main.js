@@ -5,6 +5,7 @@ import { createI18n } from "./i18n.js";
 import { clearJournal, renderEvents, renderRollDecision } from "./journal.js";
 import { clearSave, isSaveCompatible, loadGame, saveGame } from "./save.js";
 import { createSettings } from "./settings.js";
+import { dreadLevel } from "./dread.js";
 import { renderSheet } from "./sheet.js";
 
 const UI_COPY = {
@@ -196,13 +197,10 @@ function draw(record, isLast) {
   return block;
 }
 
-// Rozpad obrazu rośnie wraz ze spadkiem Poczytalności: na starcie gra jest
-// praktycznie czystym drukiem.
+// Cienka warstwa zapisująca poziom rozpadu (patrz src/ui/dread.js) do
+// zmiennej CSS odczytywanej przez style tekstu.
 function setDread(state) {
-  const start = Number(state?.startingSan) || 0;
-  const current = Number(state?.san) || 0;
-  const dread = start > 0 ? 1 - current / start : 0;
-  document.documentElement.style.setProperty("--dread", String(Math.max(0, Math.min(1, dread))));
+  document.documentElement.style.setProperty("--dread", String(dreadLevel(state)));
 }
 
 function advance(next, originEntryId = null) {
