@@ -284,6 +284,14 @@ function renderCharacterChoice({ focus = false } = {}) {
     const occupation = occupationOf(character, locale);
     button.setAttribute("aria-label", `${character.name}, ${occupation}`);
 
+    const portrait = document.createElement("img");
+    portrait.className = "character-portrait";
+    portrait.src = `media/img/${character.id}.png`;
+    portrait.alt = "";
+    portrait.width = 456;
+    portrait.height = 596;
+    portrait.decoding = "async";
+
     const name = document.createElement("span");
     name.className = "character-name";
     name.textContent = character.name;
@@ -294,7 +302,7 @@ function renderCharacterChoice({ focus = false } = {}) {
     vitals.className = "character-vitals";
     vitals.textContent = `${text.sanShort} ${character.san} · ${text.hpShort} ${character.hp}`;
 
-    button.append(name, role, vitals);
+    button.append(portrait, name, role, vitals);
     button.addEventListener("click", () => startGame(character.id));
     dom.characterChoices.append(button);
   }
