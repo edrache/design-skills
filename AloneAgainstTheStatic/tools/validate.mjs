@@ -1,6 +1,8 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
+import { inspectMarkup, tagCounts } from "../src/ui/markup.js";
+import { isKnownTag } from "../src/ui/voices.js";
 
 const own = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
 
@@ -203,6 +205,39 @@ export function validate(story, textEn, textPl) {
     // numeryczne goto obecne w story.json.
     if (id >= 324 && id <= 334) continue;
     if (!reachable.has(id)) warning(`Paragraf ${id} jest nieosiągalny ze startów`);
+  }
+
+  // --- Znaczniki stylu tekstu ---
+  const checkMarkup = (locale, texts) => {
+    for (const [key, value] of Object.entries(texts ?? {})) {
+      // Klucze __en.* to podgląd oryginału w pliku polskim, nie treść gry.
+      if (key.startsWith("__en.") || typeof value !== "string") continue;
+
+      const { unclosed, stray } = inspectMarkup(value);
+      for (const name of unclosed) error(`${locale} ${key}: niedomknięty znacznik [${name}]`);
+      for (const name of stray) error(`${locale} ${key}: zamknięcie [/${name}] bez otwarcia`);
+
+      for (const name of Object.keys(tagCounts(value))) {
+        if (!isKnownTag(name)) warning(`${locale} ${key}: nieznany znacznik [${name}]`);
+      }
+    }
+  };
+
+  checkMarkup("en", textEn);
+  checkMarkup("pl", textPl);
+
+  // Znacznik zgubiony przy tłumaczeniu — najczęstszy błąd przepisywania zdania.
+  for (const [key, source] of Object.entries(textEn ?? {})) {
+    const target = textPl?.[key];
+    if (typeof source !== "string" || typeof target !== "string" || target.trim() === "") continue;
+
+    const here = tagCounts(source);
+    const there = tagCounts(target);
+    for (const name of new Set([...Object.keys(here), ...Object.keys(there)])) {
+      if ((here[name] ?? 0) !== (there[name] ?? 0)) {
+        warning(`${key}: znacznik [${name}] występuje ${here[name] ?? 0}× w en i ${there[name] ?? 0}× w pl`);
+      }
+    }
   }
 
   return { errors, warnings };

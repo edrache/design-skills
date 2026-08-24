@@ -104,3 +104,38 @@ test("prawdziwe dane gry przechodzą walidację bez błędów", () => {
   const out = validate(load("story.json"), load("text.en.json"), load("text.pl.json"));
   assert.deepEqual(out.errors, []);
 });
+
+test("niedomknięty znacznik jest błędem", () => {
+  const entries = { 1: { id: 1, text: ["e1.p1"], end: true } };
+  const out = validate(storyOf(entries), { "e1.p1": "[horror]Coś tu jest." }, {});
+  assert.ok(out.errors.some((error) => error.includes("horror")));
+});
+
+test("zamknięcie bez otwarcia jest błędem", () => {
+  const entries = { 1: { id: 1, text: ["e1.p1"], end: true } };
+  const out = validate(storyOf(entries), { "e1.p1": "Coś tu jest.[/horror]" }, {});
+  assert.ok(out.errors.some((error) => error.includes("horror")));
+});
+
+test("nieznany znacznik jest tylko ostrzeżeniem", () => {
+  const entries = { 1: { id: 1, text: ["e1.p1"], end: true } };
+  const out = validate(storyOf(entries), { "e1.p1": "[dream]sen[/dream]" }, {});
+  assert.equal(out.errors.length, 0);
+  assert.ok(out.warnings.some((warning) => warning.includes("dream")));
+});
+
+test("zgubiony znacznik w tłumaczeniu jest ostrzeżeniem", () => {
+  const entries = { 1: { id: 1, text: ["e1.p1"], end: true } };
+  const out = validate(
+    storyOf(entries),
+    { "e1.p1": '[charlie]"A."[/charlie]' },
+    { "e1.p1": '"A."' },
+  );
+  assert.ok(out.warnings.some((warning) => warning.includes("e1.p1") && warning.includes("charlie")));
+});
+
+test("puste tłumaczenie nie jest porównywane ze znacznikami oryginału", () => {
+  const entries = { 1: { id: 1, text: ["e1.p1"], end: true } };
+  const out = validate(storyOf(entries), { "e1.p1": '[charlie]"A."[/charlie]' }, { "e1.p1": "  " });
+  assert.ok(!out.warnings.some((warning) => warning.includes("charlie")));
+});
