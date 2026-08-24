@@ -149,14 +149,14 @@ test("unobserveAll na działającej instancji odpina elementy i zdejmuje filtr/-
 
     effects.observe(root);
     for (const element of elements) {
-      element.style.setProperty("filter", "url(#vhs-static)");
+      element.style.setProperty("--vhs-filter", "url(#vhs-static-0)");
       element.style.setProperty("--glitch", "1.000");
     }
 
     assert.doesNotThrow(() => effects.unobserveAll());
 
     for (const element of elements) {
-      assert.equal(element.hasProperty("filter"), false);
+      assert.equal(element.hasProperty("--vhs-filter"), false);
       assert.equal(element.hasProperty("--glitch"), false);
     }
 
@@ -165,4 +165,32 @@ test("unobserveAll na działającej instancji odpina elementy i zdejmuje filtr/-
   } finally {
     globalThis.requestAnimationFrame = previousRAF;
   }
+});
+
+import { createEffects, reliefWeight } from "../src/ui/effects.js";
+
+test("mysz daje ulgę trwałą, dotyk wygasającą", () => {
+  const mysz = { seen: true, touch: false, at: 0 };
+  assert.equal(reliefWeight(mysz, 0), 1);
+  assert.equal(reliefWeight(mysz, 999999), 1);
+
+  const dotyk = { seen: true, touch: true, at: 1000 };
+  assert.equal(reliefWeight(dotyk, 1000), 1);
+  assert.ok(reliefWeight(dotyk, 2250) > 0);
+  assert.ok(reliefWeight(dotyk, 2250) < 1);
+  assert.equal(reliefWeight(dotyk, 3500), 0);
+  assert.equal(reliefWeight(dotyk, 9999), 0);
+});
+
+test("brak wskaźnika to brak ulgi", () => {
+  assert.equal(reliefWeight({ seen: false, touch: false, at: 0 }, 0), 0);
+});
+
+test("brak DOM nie wywraca modułu", () => {
+  const effects = createEffects({ root: null, doc: null });
+  effects.observe(null);
+  effects.flash(null);
+  effects.unobserveAll();
+  effects.recompute();
+  effects.destroy();
 });

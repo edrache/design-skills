@@ -1,5 +1,6 @@
-// Warstwa efektów: jedna pętla rAF, jeden IntersectionObserver, jeden filtr SVG.
-// Elementy poza widokiem są wypisywane z pętli i mają zdejmowany filtr.
+// Warstwa efektów: jedna pętla rAF, jeden IntersectionObserver, cztery kubełki
+// filtra SVG (vhs-static-0…3, wybierane przez bucketFor). Elementy poza
+// widokiem są wypisywane z pętli i mają zdejmowany filtr.
 
 // Zakłócenie jest stanem domyślnym: nawet przy pełnej Poczytalności obraz lekko
 // drga. Spadek Poczytalności podnosi amplitudę powyżej progu wygodnego czytania,
@@ -11,7 +12,6 @@ export const CEILING_PX = 2.6;
 const RELIEF = 0.85;
 export const BUCKET_LEVELS = Object.freeze([0.4, 1.15, 1.9, 2.6]);
 
-const FILTER = "url(#vhs-static)";
 const PROXIMITY_RADIUS_PX = 220;
 const FLASH_MS = 400;
 
@@ -19,6 +19,9 @@ const BURST_SLOT_MS = 900;
 const BURST_LENGTH_MS = 140;
 const SEED_STEP_SLOW_MS = 220;
 const SEED_STEP_FAST_MS = 40;
+
+const RELIEF_TOUCH_MS = 2500;
+const AMPLITUDE_EPSILON = 0.02;
 
 const clamp01 = (value) => {
   const number = Number(value);
@@ -77,6 +80,16 @@ export function bucketFor(amplitude) {
   return best;
 }
 
+// Mysz daje ulgę trwałą, dopóki wskaźnik jest nad dziennikiem. Dotyk nie
+// zostaje na ekranie, więc jego ulga wygasa liniowo.
+export function reliefWeight(pointer, timeMs) {
+  if (!pointer?.seen) return 0;
+  if (!pointer.touch) return 1;
+  const elapsed = Number(timeMs) - Number(pointer.at);
+  if (!Number.isFinite(elapsed) || elapsed < 0) return 0;
+  return Math.max(0, 1 - elapsed / RELIEF_TOUCH_MS);
+}
+
 function readNumber(doc, name) {
   try {
     const raw = doc.defaultView?.getComputedStyle(doc.documentElement).getPropertyValue(name);
@@ -95,10 +108,13 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
   // unobserveAll() mogło odpiąć również te, które nigdy nie weszły do `active`.
   const observed = new Set();
   const active = new Set();
-  const pointer = { x: 0, y: 0, seen: false };
+  const pointer = { x: 0, y: 0, seen: false, touch: false, at: 0 };
   let running = false;
   let frameId = 0;
   const motionQuery = matchMedia?.("(prefers-reduced-motion: reduce)") ?? null;
+
+  // Źródło czasu odporne na brak `performance` (np. w środowisku testowym).
+  const now = () => globalThis.performance?.now?.() ?? 0;
 
   const observer = typeof globalThis.IntersectionObserver === "function"
     ? new globalThis.IntersectionObserver((records) => {
@@ -106,7 +122,7 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
           if (record.isIntersecting) active.add(record.target);
           else {
             active.delete(record.target);
-            record.target.style.removeProperty("filter");
+            record.target.style.removeProperty("--vhs-filter");
             record.target.style.removeProperty("--glitch");
           }
         }
@@ -118,6 +134,13 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
     pointer.x = event.clientX;
     pointer.y = event.clientY;
     pointer.seen = true;
+    pointer.touch = event.pointerType === "touch";
+    pointer.at = now();
+    start();
+  }
+
+  function onPointerLeave() {
+    pointer.seen = false;
     start();
   }
 
@@ -134,9 +157,11 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
     frameId = 0;
     running = false;
 
+    const time = now();
     const dread = readNumber(doc, "--dread");
     const textEffects = readNumber(doc, "--text-effects");
     const reducedMotion = Boolean(motionQuery?.matches);
+    const relief = reliefWeight(pointer, time);
 
     if (pointer.seen) {
       const box = root.getBoundingClientRect();
@@ -144,26 +169,35 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
       root.style.setProperty("--py", String((pointer.y - box.top) / (box.height || 1)));
     }
 
-    let peak = 0;
+    let anyVisible = false;
     for (const element of active) {
-      const amplitude = amplitudeFor({ dread, textEffects, proximity: proximityTo(element), reducedMotion });
-      peak = Math.max(peak, amplitude);
-      // Poniżej progu zdejmujemy filtr, a nie wyciszamy: zero kosztu renderowania.
-      if (amplitude < 0.05) {
-        element.style.removeProperty("filter");
+      const proximity = proximityTo(element) * relief;
+      const amplitude = amplitudeFor({ dread, textEffects, proximity, reducedMotion });
+      if (amplitude < AMPLITUDE_EPSILON) {
+        element.style.removeProperty("--vhs-filter");
         element.style.removeProperty("--glitch");
         continue;
       }
+      anyVisible = true;
       element.style.setProperty("--glitch", amplitude.toFixed(3));
-      element.style.filter = FILTER;
+      element.style.setProperty("--vhs-filter", `url(#vhs-static-${bucketFor(amplitude)})`);
     }
 
-    const displacement = doc.querySelector("#vhs-static feDisplacementMap");
-    if (displacement) displacement.setAttribute("scale", peak.toFixed(3));
+    const burst = burstAt(time, dread);
+    const { seed, frequencyY } = crawlAt(time, dread);
+    for (let index = 0; index < BUCKET_LEVELS.length; index += 1) {
+      const filter = doc.querySelector(`#vhs-static-${index}`);
+      if (!filter) continue;
+      filter.querySelector("feTurbulence")?.setAttribute("baseFrequency", `0.9 ${frequencyY.toFixed(4)}`);
+      filter.querySelector("feTurbulence")?.setAttribute("seed", String(seed));
+      filter.querySelector("feDisplacementMap")?.setAttribute("scale", (BUCKET_LEVELS[index] * burst).toFixed(3));
+    }
 
-    // Pętla NIE wznawia się sama: przy nieruchomym wskaźniku wartości byłyby
-    // identyczne w każdej klatce, więc dalsze rAF-y byłyby czystym marnotrawstwem.
-    // Budzi ją dopiero ruch wskaźnika (onPointer) albo zmiana widoczności (observer).
+    // Ta pętla MUSI się podtrzymywać, odwrotnie niż poprzednia wersja modułu.
+    // Wtedy nie było generatora zmiany w czasie, więc kolejne klatki byłyby
+    // identyczne. Teraz szum pełza i zrywa, więc zatrzymanie pętli zamroziłoby
+    // obraz. Gaśnie dopiero, gdy nie ma czego animować.
+    if (anyVisible && !reducedMotion) start();
   }
 
   function start() {
@@ -181,6 +215,7 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
 
   root.addEventListener("pointermove", onPointer, { passive: true });
   root.addEventListener("pointerdown", onPointer, { passive: true });
+  root.addEventListener("pointerleave", onPointerLeave, { passive: true });
   motionQuery?.addEventListener?.("change", onMotionChange);
 
   // Odpina wszystkie dotąd obserwowane elementy: przerywa obserwację, zdejmuje
@@ -190,7 +225,7 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
   function unobserveAll() {
     for (const element of observed) {
       observer?.unobserve(element);
-      element.style.removeProperty("filter");
+      element.style.removeProperty("--vhs-filter");
       element.style.removeProperty("--glitch");
     }
     observed.clear();
@@ -228,6 +263,7 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
     destroy() {
       root.removeEventListener("pointermove", onPointer);
       root.removeEventListener("pointerdown", onPointer);
+      root.removeEventListener("pointerleave", onPointerLeave);
       motionQuery?.removeEventListener?.("change", onMotionChange);
       unobserveAll();
       observer?.disconnect();
