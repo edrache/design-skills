@@ -88,3 +88,68 @@ test("bohater i mówca nieznany nie mają etykiety nad kwestią", () => {
 test("lista głosów obejmuje całą obsadę i bohatera", () => {
   assert.deepEqual([...VOICE_NAMES].sort(), ["alex", "charlie", "julie", "mark", "tom", "voice", "you"]);
 });
+
+import { readFileSync } from "node:fs";
+import { renderMarkup } from "../src/ui/render-markup.js";
+import { classesOf, createFakeDocument } from "./helpers/fake-dom.js";
+
+test("dialog w środku akapitu jest opakowany inline", () => {
+  const doc = createFakeDocument();
+  const p = renderMarkup(doc, "[charlie]„Cholera!”[/charlie] — warczy Charlie.");
+  assert.equal(p.tagName, "P");
+  assert.equal(p.className, "");
+  assert.ok(classesOf(p).includes("v-charlie"));
+  assert.equal(p.textContent, "„Cholera!” — warczy Charlie.");
+});
+
+test("akapit będący w całości kwestią dostaje układ blokowy", () => {
+  const doc = createFakeDocument();
+  const p = renderMarkup(doc, "[charlie]„Nie wysiadaj z auta.”[/charlie]");
+  assert.equal(p.className, "speech v-charlie");
+  assert.equal(p.dataset.who, "Charlie");
+  assert.equal(p.textContent, "„Nie wysiadaj z auta.”");
+});
+
+test("etykieta mówiącego nie trafia do treści", () => {
+  const doc = createFakeDocument();
+  const p = renderMarkup(doc, "[charlie]„A.”[/charlie]");
+  assert.ok(!p.textContent.includes("Charlie"));
+});
+
+test("kwestia bohatera nie dostaje etykiety", () => {
+  const doc = createFakeDocument();
+  const p = renderMarkup(doc, "[you]„Nie wiem.”[/you]");
+  assert.equal(p.className, "speech v-you");
+  assert.equal(p.dataset.who, undefined);
+});
+
+test("znacznik z efektem oznacza element atrybutem danych", () => {
+  const doc = createFakeDocument();
+  const p = renderMarkup(doc, "Coś [horror]tu jest[/horror].");
+  const span = p.children.find((node) => node.nodeType === 1);
+  assert.equal(span.className, "t-horror");
+  assert.equal(span.dataset.effect, "static");
+});
+
+test("nieznany znacznik renderuje zawartość bez opakowania", () => {
+  const doc = createFakeDocument();
+  const p = renderMarkup(doc, "[dream]sen[/dream]");
+  assert.deepEqual(classesOf(p), []);
+  assert.equal(p.textContent, "sen");
+});
+
+test("INWARIANT: render nie zmienia treści żadnego tekstu w danych", () => {
+  const doc = createFakeDocument();
+  const load = (name) => JSON.parse(readFileSync(new URL(`../data/${name}`, import.meta.url), "utf8"));
+
+  for (const file of ["text.pl.json", "text.en.json"]) {
+    for (const [key, value] of Object.entries(load(file))) {
+      if (typeof value !== "string") continue;
+      assert.equal(
+        renderMarkup(doc, value).textContent,
+        stripMarkup(value),
+        `${file} → ${key}`,
+      );
+    }
+  }
+});

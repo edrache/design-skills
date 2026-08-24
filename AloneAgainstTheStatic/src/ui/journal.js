@@ -1,4 +1,5 @@
 import { termName } from "./terms.js";
+import { renderMarkup } from "./render-markup.js";
 
 const COPY = {
   pl: {
@@ -160,7 +161,7 @@ function sealEntry(block) {
 }
 
 function appendEvent(block, event, doc, labels, i18n, handlers) {
-  if (event.kind === "text") block.append(el(doc, "p", null, i18n.t(event.key)));
+  if (event.kind === "text") block.append(renderMarkup(doc, i18n.t(event.key)));
   if (event.kind === "roll") block.append(renderRoll(doc, event, i18n));
   if (event.kind === "san") block.append(el(doc, "div", "event-note", labels.sanityLoss(event.amount)));
   if (event.kind === "hp") block.append(el(doc, "div", "event-note damage", labels.damage(event.amount)));
