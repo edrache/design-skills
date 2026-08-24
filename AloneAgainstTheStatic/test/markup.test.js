@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { inspectMarkup, parseMarkup, stripMarkup, tagCounts } from "../src/ui/markup.js";
+import { isKnownTag, tagInfo, TAGS, VOICE_NAMES } from "../src/ui/voices.js";
 
 test("tekst bez znaczników przechodzi bez zmian", () => {
   assert.deepEqual(parseMarkup("Zwykły opis."), [{ type: "text", value: "Zwykły opis." }]);
@@ -63,4 +64,27 @@ test("liczy wystąpienia znaczników do porównania tłumaczeń", () => {
 
 test("sąsiadujące fragmenty tekstu są scalane", () => {
   assert.deepEqual(parseMarkup("a[/x]b"), [{ type: "text", value: "a[/x]b" }]);
+});
+
+test("rejestr rozróżnia głosy i tony", () => {
+  assert.equal(tagInfo("charlie").kind, "voice");
+  assert.equal(tagInfo("horror").kind, "tone");
+  assert.equal(tagInfo("dream"), null);
+  assert.equal(isKnownTag("whisper"), true);
+  assert.equal(isKnownTag("dream"), false);
+});
+
+test("każdy znacznik ma unikalną klasę CSS", () => {
+  const classes = Object.values(TAGS).map((info) => info.className);
+  assert.equal(new Set(classes).size, classes.length);
+});
+
+test("bohater i mówca nieznany nie mają etykiety nad kwestią", () => {
+  assert.equal(tagInfo("you").label, undefined);
+  assert.equal(tagInfo("voice").label, undefined);
+  assert.equal(tagInfo("charlie").label, "Charlie");
+});
+
+test("lista głosów obejmuje całą obsadę i bohatera", () => {
+  assert.deepEqual([...VOICE_NAMES].sort(), ["alex", "charlie", "julie", "mark", "tom", "voice", "you"]);
 });
