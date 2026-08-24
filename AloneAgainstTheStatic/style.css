@@ -400,10 +400,13 @@ a:focus-visible {
 /* ::first-letter nie da się ukryć — spec CSS nie dopuszcza na nim `display`,
    przeglądarka po prostu tę deklarację ignoruje. Trzeba więc cofnąć każdą
    właściwość, którą nadaje reguła bazowa wyżej, sprowadzając ją do wartości
-   dziedziczonej z akapitu, żeby pierwsza litera zlała się z resztą tekstu. */
-.journal-entry p.speech:first-of-type::first-letter,
-.journal-entry p:first-of-type:has(> span[class^="v-"]:first-child)::first-letter,
-.journal-entry p:first-of-type:has(> span[class*=" v-"]:first-child)::first-letter {
+   dziedziczonej z akapitu, żeby pierwsza litera zlała się z resztą tekstu.
+   Oznaczenie data-opens="voice" nadaje renderer (src/ui/render-markup.js),
+   nie selektor CSS: tylko renderer widzi kolejność węzłów źródła i wie, czy
+   pierwszym znaczącym węzłem akapitu jest znacznik głosu, czy tekst przed
+   nim — :has(...:first-child) liczy tylko elementy i pomija węzły tekstowe,
+   więc błędnie łapał też akapity, w których kwestia stoi w środku prozy. */
+.journal-entry p:first-of-type[data-opens="voice"]::first-letter {
   float: none;
   margin: 0;
   color: inherit;

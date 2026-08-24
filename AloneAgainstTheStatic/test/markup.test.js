@@ -170,3 +170,33 @@ test("INWARIANT: render nie zmienia treści żadnego tekstu w danych", () => {
     }
   }
 });
+
+test("akapit blokowy (cała treść to kwestia) dostaje data-opens=voice", () => {
+  const doc = createFakeDocument();
+  const p = renderMarkup(doc, "[charlie]„Nie wysiadaj z auta.”[/charlie]");
+  assert.equal(p.dataset.opens, "voice");
+});
+
+test("akapit zaczynający się wtopioną kwestią dostaje data-opens=voice", () => {
+  const doc = createFakeDocument();
+  const p = renderMarkup(doc, "[charlie]„Cholera!”[/charlie] — warczy Charlie.");
+  assert.equal(p.dataset.opens, "voice");
+});
+
+test("akapit zaczynający się narracją z kwestią w środku nie dostaje data-opens", () => {
+  const doc = createFakeDocument();
+  const p = renderMarkup(doc, "Narracja na starcie, a " + '[charlie]„Cholera!”[/charlie]' + " w środku.");
+  assert.equal(p.dataset.opens, undefined);
+});
+
+test("akapit czysto narracyjny nie dostaje data-opens", () => {
+  const doc = createFakeDocument();
+  const p = renderMarkup(doc, "Coś [horror]tu jest[/horror].");
+  assert.equal(p.dataset.opens, undefined);
+});
+
+test("biały znak przed znacznikiem głosu nie psuje wykrycia otwarcia kwestią", () => {
+  const doc = createFakeDocument();
+  const p = renderMarkup(doc, "\n[charlie]„A.”[/charlie]\n");
+  assert.equal(p.dataset.opens, "voice");
+});
