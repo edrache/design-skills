@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { amplitudeFor, bucketFor, burstAt, crawlAt, BUCKET_LEVELS, CEILING_PX, FLOOR_PX } from "../src/ui/effects.js";
+import { amplitudeFor, bucketFor, burstAt, crawlAt, focusRelief, BUCKET_LEVELS, CEILING_PX, FLOOR_PX } from "../src/ui/effects.js";
 
 test("przy pełnej Poczytalności zakłócenie jest obecne, ale minimalne", () => {
   assert.equal(amplitudeFor({ dread: 0, textEffects: 1, proximity: 0 }), FLOOR_PX);
@@ -96,6 +96,28 @@ test("brak DOM nie wywraca modułu", async () => {
   effects.destroy();
 });
 
+test("focusRelief daje pełną ulgę wpisowi zawierającemu element aktywny", () => {
+  const activeElement = { tag: "button" };
+  const entry = { contains(node) { return node === activeElement; } };
+  assert.equal(focusRelief(entry, activeElement), 1);
+});
+
+test("focusRelief daje pełną ulgę, gdy sam wpis jest elementem aktywnym", () => {
+  const entry = { contains() { return false; } };
+  assert.equal(focusRelief(entry, entry), 1);
+});
+
+test("focusRelief zwraca zero, gdy wpis nie zawiera elementu aktywnego", () => {
+  const activeElement = { tag: "body" };
+  const entry = { contains() { return false; } };
+  assert.equal(focusRelief(entry, activeElement), 0);
+});
+
+test("focusRelief zwraca zero bez wpisu lub bez elementu aktywnego", () => {
+  assert.equal(focusRelief(null, { tag: "body" }), 0);
+  assert.equal(focusRelief({ contains() { return true; } }, null), 0);
+});
+
 function fakeElement() {
   const props = new Map();
   return {
@@ -106,7 +128,10 @@ function fakeElement() {
       set filter(value) { props.set("filter", value); },
     },
     hasProperty(name) { return props.has(name); },
+    getProperty(name) { return props.get(name); },
     getBoundingClientRect() { return { left: 0, right: 0, top: 0, bottom: 0, width: 0, height: 0 }; },
+    // Bez wpisu-rodzica: brak ulgi klawiaturowej dla tego elementu.
+    closest() { return null; },
   };
 }
 
@@ -186,11 +211,208 @@ test("brak wskaźnika to brak ulgi", () => {
   assert.equal(reliefWeight({ seen: false, touch: false, at: 0 }, 0), 0);
 });
 
-test("brak DOM nie wywraca modułu", () => {
-  const effects = createEffects({ root: null, doc: null });
-  effects.observe(null);
-  effects.flash(null);
-  effects.unobserveAll();
-  effects.recompute();
-  effects.destroy();
+// --- Kontrolowana atrapa requestAnimationFrame + testy pętli tick() ---
+//
+// Poprzednia atrapa (`() => 1`) nigdy nie wołała callbacku, więc tick() nie
+// wykonywał się w żadnym teście. Ta kolejkuje callbacki i udostępnia
+// `runFrame()`, które wykonuje dokładnie jedną klatkę — bez tego pętla,
+// która się podtrzymuje (`start()` wewnątrz `tick()`), wpadłaby w
+// nieskończoną rekurencję.
+function createRafStub() {
+  const queue = [];
+  let nextId = 1;
+  const raf = (callback) => {
+    queue.push(callback);
+    return nextId++;
+  };
+  raf.runFrame = (time = 0) => {
+    const callback = queue.shift();
+    if (callback) callback(time);
+  };
+  raf.pending = () => queue.length;
+  return raf;
+}
+
+function fakeFilterNode() {
+  const attrs = new Map();
+  return {
+    setAttribute(name, value) { attrs.set(name, value); },
+    getAttribute(name) { return attrs.get(name); },
+  };
+}
+
+function fakeFilterElement() {
+  const turbulence = fakeFilterNode();
+  const displacement = fakeFilterNode();
+  return {
+    turbulence,
+    displacement,
+    querySelector(selector) {
+      if (selector === "feTurbulence") return turbulence;
+      if (selector === "feDisplacementMap") return displacement;
+      return null;
+    },
+  };
+}
+
+// `cssVars` mapuje nazwę zmiennej CSS (np. "--dread") na jej wartość
+// tekstową; `filters` mapuje "#vhs-static-N" na fakeFilterElement().
+function fakeVarsDoc({ cssVars = {}, filters = {}, activeElement = null } = {}) {
+  return {
+    activeElement,
+    defaultView: {
+      getComputedStyle() {
+        return { getPropertyValue(name) { return cssVars[name] ?? "0"; } };
+      },
+    },
+    querySelector(selector) { return filters[selector] ?? null; },
+  };
+}
+
+function fakeMotionQuery(matches) {
+  return { matches, addEventListener() {}, removeEventListener() {} };
+}
+
+function fourFakeFilters() {
+  const filters = {};
+  for (let index = 0; index < 4; index += 1) filters[`#vhs-static-${index}`] = fakeFilterElement();
+  return filters;
+}
+
+test("klatka przy widocznym elemencie ustawia --vhs-filter i --glitch", () => {
+  const raf = createRafStub();
+  const previousRAF = globalThis.requestAnimationFrame;
+  globalThis.requestAnimationFrame = raf;
+  try {
+    const element = fakeElement();
+    const root = fakeRoot([element]);
+    const doc = fakeVarsDoc({ cssVars: { "--dread": "1", "--text-effects": "0.6" }, filters: fourFakeFilters() });
+    const effects = createEffects({ root, doc, matchMedia: () => fakeMotionQuery(false) });
+
+    effects.observe(root);
+    assert.equal(raf.pending(), 1);
+    raf.runFrame(0);
+
+    assert.ok(element.hasProperty("--glitch"));
+    assert.ok(element.hasProperty("--vhs-filter"));
+    assert.match(String(element.getProperty("--vhs-filter")), /^url\(#vhs-static-\d\)$/);
+  } finally {
+    globalThis.requestAnimationFrame = previousRAF;
+  }
+});
+
+test("klatka przy widocznym elemencie i niezerowej amplitudzie planuje kolejną klatkę", () => {
+  const raf = createRafStub();
+  const previousRAF = globalThis.requestAnimationFrame;
+  globalThis.requestAnimationFrame = raf;
+  try {
+    const element = fakeElement();
+    const root = fakeRoot([element]);
+    const doc = fakeVarsDoc({ cssVars: { "--dread": "1", "--text-effects": "0.6" }, filters: fourFakeFilters() });
+    const effects = createEffects({ root, doc, matchMedia: () => fakeMotionQuery(false) });
+
+    effects.observe(root);
+    raf.runFrame(0);
+
+    assert.equal(raf.pending(), 1, "amplituda niezerowa i brak reduced-motion muszą podtrzymać pętlę");
+  } finally {
+    globalThis.requestAnimationFrame = previousRAF;
+  }
+});
+
+test("klatka przy prefers-reduced-motion nie ustawia właściwości i nie planuje kolejnej", () => {
+  const raf = createRafStub();
+  const previousRAF = globalThis.requestAnimationFrame;
+  globalThis.requestAnimationFrame = raf;
+  try {
+    const element = fakeElement();
+    element.style.setProperty("--glitch", "1.000");
+    element.style.setProperty("--vhs-filter", "url(#vhs-static-3)");
+    const root = fakeRoot([element]);
+    const doc = fakeVarsDoc({ cssVars: { "--dread": "1", "--text-effects": "1" }, filters: fourFakeFilters() });
+    const effects = createEffects({ root, doc, matchMedia: () => fakeMotionQuery(true) });
+
+    effects.observe(root);
+    raf.runFrame(0);
+
+    assert.equal(element.hasProperty("--glitch"), false);
+    assert.equal(element.hasProperty("--vhs-filter"), false);
+    assert.equal(raf.pending(), 0, "brak ruchu do animowania nie może planować kolejnej klatki");
+  } finally {
+    globalThis.requestAnimationFrame = previousRAF;
+  }
+});
+
+test("klatka przy suwaku \"Efekty tekstu\" na zero zdejmuje właściwości i nie planuje kolejnej", () => {
+  const raf = createRafStub();
+  const previousRAF = globalThis.requestAnimationFrame;
+  globalThis.requestAnimationFrame = raf;
+  try {
+    const element = fakeElement();
+    element.style.setProperty("--glitch", "1.000");
+    element.style.setProperty("--vhs-filter", "url(#vhs-static-3)");
+    const root = fakeRoot([element]);
+    const doc = fakeVarsDoc({ cssVars: { "--dread": "1", "--text-effects": "0" }, filters: fourFakeFilters() });
+    const effects = createEffects({ root, doc, matchMedia: () => fakeMotionQuery(false) });
+
+    effects.observe(root);
+    raf.runFrame(0);
+
+    assert.equal(element.hasProperty("--glitch"), false);
+    assert.equal(element.hasProperty("--vhs-filter"), false);
+    assert.equal(raf.pending(), 0, "suwak na zero nie ma czego animować dalej");
+  } finally {
+    globalThis.requestAnimationFrame = previousRAF;
+  }
+});
+
+test("element wewnątrz ogniskowanego wpisu dostaje pełną ulgę jak spod wskaźnika", () => {
+  const raf = createRafStub();
+  const previousRAF = globalThis.requestAnimationFrame;
+  globalThis.requestAnimationFrame = raf;
+  try {
+    const activeElement = { tag: "article.journal-entry" };
+    const focusedElement = fakeElement();
+    focusedElement.closest = (selector) => (selector === ".journal-entry" ? activeElement : null);
+    const root = fakeRoot([focusedElement]);
+    const doc = fakeVarsDoc({
+      cssVars: { "--dread": "1", "--text-effects": "1" },
+      filters: fourFakeFilters(),
+      activeElement,
+    });
+    const effects = createEffects({ root, doc, matchMedia: () => fakeMotionQuery(false) });
+
+    effects.observe(root);
+    raf.runFrame(0);
+
+    // Pełna ulga (proximity=1) daje amplitude = CEILING_PX * (1 - 0.85) = 0.39,
+    // czyli najbliższy kubełek to indeks 0 (FLOOR_PX=0.4) — bez ulgi byłby to
+    // indeks 3 (CEILING_PX=2.6).
+    assert.equal(focusedElement.getProperty("--vhs-filter"), "url(#vhs-static-0)");
+  } finally {
+    globalThis.requestAnimationFrame = previousRAF;
+  }
+});
+
+test("zapisy scale trafiają na cztery filtry", () => {
+  const raf = createRafStub();
+  const previousRAF = globalThis.requestAnimationFrame;
+  globalThis.requestAnimationFrame = raf;
+  try {
+    const element = fakeElement();
+    const root = fakeRoot([element]);
+    const filters = fourFakeFilters();
+    const doc = fakeVarsDoc({ cssVars: { "--dread": "1", "--text-effects": "0.6" }, filters });
+    const effects = createEffects({ root, doc, matchMedia: () => fakeMotionQuery(false) });
+
+    effects.observe(root);
+    raf.runFrame(0);
+
+    for (const key of Object.keys(filters)) {
+      const scale = Number(filters[key].displacement.getAttribute("scale"));
+      assert.ok(Number.isFinite(scale) && scale > 0, `${key} powinien mieć ustawione scale`);
+    }
+  } finally {
+    globalThis.requestAnimationFrame = previousRAF;
+  }
 });

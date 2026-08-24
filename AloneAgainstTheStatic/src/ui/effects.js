@@ -90,6 +90,16 @@ export function reliefWeight(pointer, timeMs) {
   return Math.max(0, 1 - elapsed / RELIEF_TOUCH_MS);
 }
 
+// Kanał klawiaturowy dla ulgi: element wewnątrz ogniskowanego wpisu ma
+// dostawać pełną ulgę, tak samo jak spod wskaźnika. Czysta funkcja — bierze
+// już wyliczony węzeł wpisu (`element.closest(".journal-entry")`) i element
+// aktywny z dokumentu, żadnych zapytań DOM w środku.
+export function focusRelief(entry, activeElement) {
+  if (!entry || !activeElement) return 0;
+  if (entry === activeElement) return 1;
+  return typeof entry.contains === "function" && entry.contains(activeElement) ? 1 : 0;
+}
+
 function readNumber(doc, name) {
   try {
     const raw = doc.defaultView?.getComputedStyle(doc.documentElement).getPropertyValue(name);
@@ -115,6 +125,18 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
 
   // Źródło czasu odporne na brak `performance` (np. w środowisku testowym).
   const now = () => globalThis.performance?.now?.() ?? 0;
+
+  // Referencje do czterech filtrów SVG i ich węzłów wewnętrznych, zebrane raz
+  // przy tworzeniu instancji — zamiast 16 zapytań DOM na każdą klatkę pętli.
+  // Brak filtrów w dokumencie (np. w testach) nie wywraca modułu: wpis
+  // zostaje z samymi `null`, a pętla go po prostu przeskakuje.
+  const filterRefs = BUCKET_LEVELS.map((_, index) => {
+    const filter = doc.querySelector(`#vhs-static-${index}`);
+    return {
+      turbulence: filter?.querySelector("feTurbulence") ?? null,
+      displacement: filter?.querySelector("feDisplacementMap") ?? null,
+    };
+  });
 
   const observer = typeof globalThis.IntersectionObserver === "function"
     ? new globalThis.IntersectionObserver((records) => {
@@ -144,6 +166,10 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
     start();
   }
 
+  function onFocusChange() {
+    start();
+  }
+
   function proximityTo(element) {
     if (!pointer.seen) return 0;
     const box = element.getBoundingClientRect();
@@ -160,18 +186,27 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
     const time = now();
     const dread = readNumber(doc, "--dread");
     const textEffects = readNumber(doc, "--text-effects");
+    const textEffectsScale = clamp01(textEffects);
     const reducedMotion = Boolean(motionQuery?.matches);
-    const relief = reliefWeight(pointer, time);
+    const pointerRelief = reliefWeight(pointer, time);
+    const burst = burstAt(time, dread);
 
     if (pointer.seen) {
       const box = root.getBoundingClientRect();
-      root.style.setProperty("--px", String((pointer.x - box.left) / (box.width || 1)));
       root.style.setProperty("--py", String((pointer.y - box.top) / (box.height || 1)));
     }
 
     let anyVisible = false;
     for (const element of active) {
-      const proximity = proximityTo(element) * relief;
+      // Pomiar prostokąta jest kosztowny i bez sensu, gdy ulga ze wskaźnika
+      // jest zerowa — ale zerowa ulga ze wskaźnika nie znaczy zerowej ulgi
+      // w ogóle, bo ognisko klawiaturowe liczy się niezależnie (patrz niżej).
+      const pointerProximity = pointerRelief > 0 ? proximityTo(element) * pointerRelief : 0;
+      const entry = typeof element.closest === "function" ? element.closest(".journal-entry") : null;
+      const keyboardRelief = focusRelief(entry, doc.activeElement);
+      // Ulga ze wskaźnika i ulga z ogniskowania sumują się przez maksimum:
+      // wystarczy jedno z dwóch, żeby fragment się uspokoił.
+      const proximity = Math.max(pointerProximity, keyboardRelief);
       const amplitude = amplitudeFor({ dread, textEffects, proximity, reducedMotion });
       if (amplitude < AMPLITUDE_EPSILON) {
         element.style.removeProperty("--vhs-filter");
@@ -179,18 +214,25 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
         continue;
       }
       anyVisible = true;
-      element.style.setProperty("--glitch", amplitude.toFixed(3));
-      element.style.setProperty("--vhs-filter", `url(#vhs-static-${bucketFor(amplitude)})`);
+      // --glitch to drugi konsument amplitudy (text-shadow) — zryw musi go
+      // dotykać tak samo jak feDisplacementMap, inaczej litery skaczą, a
+      // rozszczepienie barwne stoi w miejscu. Próg wygaszenia wyżej sprawdza
+      // się na amplitudzie BEZ zrywu, żeby zryw nie ożywiał wygaszonych.
+      element.style.setProperty("--glitch", (amplitude * burst).toFixed(3));
+      // Kubełek wybieramy w przestrzeni poziomów (0.4–2.6), nie w przestrzeni
+      // po przeskalowaniu suwakiem — inaczej suwak działałby binarnie: tylko
+      // dokładne zero cokolwiek zmienia. `textEffectsScale` > 0 tutaj, bo
+      // amplitude >= AMPLITUDE_EPSILON > 0 wymaga scale > 0.
+      const bucketIndex = bucketFor(amplitude / textEffectsScale);
+      element.style.setProperty("--vhs-filter", `url(#vhs-static-${bucketIndex})`);
     }
 
-    const burst = burstAt(time, dread);
     const { seed, frequencyY } = crawlAt(time, dread);
     for (let index = 0; index < BUCKET_LEVELS.length; index += 1) {
-      const filter = doc.querySelector(`#vhs-static-${index}`);
-      if (!filter) continue;
-      filter.querySelector("feTurbulence")?.setAttribute("baseFrequency", `0.9 ${frequencyY.toFixed(4)}`);
-      filter.querySelector("feTurbulence")?.setAttribute("seed", String(seed));
-      filter.querySelector("feDisplacementMap")?.setAttribute("scale", (BUCKET_LEVELS[index] * burst).toFixed(3));
+      const { turbulence, displacement } = filterRefs[index];
+      turbulence?.setAttribute("baseFrequency", `0.9 ${frequencyY.toFixed(4)}`);
+      turbulence?.setAttribute("seed", String(seed));
+      displacement?.setAttribute("scale", (BUCKET_LEVELS[index] * textEffectsScale * burst).toFixed(3));
     }
 
     // Ta pętla MUSI się podtrzymywać, odwrotnie niż poprzednia wersja modułu.
@@ -216,6 +258,11 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
   root.addEventListener("pointermove", onPointer, { passive: true });
   root.addEventListener("pointerdown", onPointer, { passive: true });
   root.addEventListener("pointerleave", onPointerLeave, { passive: true });
+  // `focusin`/`focusout` bąbelkują (inaczej niż `focus`/`blur`), więc jedna
+  // para nasłuchów na kontenerze wystarcza, żeby budzić pętlę przy zmianie
+  // ogniskowania wewnątrz dowolnego wpisu dziennika.
+  root.addEventListener("focusin", onFocusChange);
+  root.addEventListener("focusout", onFocusChange);
   motionQuery?.addEventListener?.("change", onMotionChange);
 
   // Odpina wszystkie dotąd obserwowane elementy: przerywa obserwację, zdejmuje
@@ -264,6 +311,8 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
       root.removeEventListener("pointermove", onPointer);
       root.removeEventListener("pointerdown", onPointer);
       root.removeEventListener("pointerleave", onPointerLeave);
+      root.removeEventListener("focusin", onFocusChange);
+      root.removeEventListener("focusout", onFocusChange);
       motionQuery?.removeEventListener?.("change", onMotionChange);
       unobserveAll();
       observer?.disconnect();

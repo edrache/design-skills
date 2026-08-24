@@ -507,9 +507,12 @@ a:focus-visible {
   text-transform: uppercase;
 }
 
-/* Najsubtelniejszy z zestawu: blur rośnie z rozpadem i sumuje się ze szumem. */
+/* Najsubtelniejszy z zestawu: blur rośnie z rozpadem i sumuje się ze szumem.
+   Wyrażenie blur() jest wspólne z regułą złożoną niżej — wyprowadzone do
+   `--wrong-blur`, żeby obie kopie nie mogły się rozjechać. */
 .t-wrong {
-  filter: blur(calc(var(--dread) * var(--text-effects) * 0.9px)) var(--vhs-filter, );
+  --wrong-blur: calc(var(--dread) * var(--text-effects) * 0.9px);
+  filter: blur(var(--wrong-blur)) var(--vhs-filter, );
 }
 
 /* `[wrong]` ma w rejestrze `effect: "static"`, więc render-markup.js ustawia
@@ -523,7 +526,7 @@ a:focus-visible {
    powrotem do samego `.t-wrong`. `text-shadow` z `[data-effect="static"]`
    nie jest tu dotknięty, bo ta reguła zawiera tylko `filter`.  */
 .t-wrong[data-effect="static"] {
-  filter: blur(calc(var(--dread) * var(--text-effects) * 0.9px)) var(--vhs-filter, );
+  filter: blur(var(--wrong-blur)) var(--vhs-filter, );
 }
 
 .filter-defs {
@@ -545,11 +548,10 @@ a:focus-visible {
 }
 
 /* Pas błędu trackingu podąża za wskaźnikiem po bieżącym wpisie.
-   Wartości --px/--py ustawia effects.js na #journal; domyślne 0.5
-   siedzą tutaj (na kontenerze), żeby dziedziczenie do wpisu działało,
+   Wartość --py ustawia effects.js na #journal; domyślne 0.5
+   siedzi tutaj (na kontenerze), żeby dziedziczenie do wpisu działało,
    a przed pierwszym odczytem wskaźnika był sensowny fallback. */
 .journal {
-  --px: 0.5;
   --py: 0.5;
 }
 
