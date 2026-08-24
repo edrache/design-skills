@@ -58,3 +58,21 @@ test("imię będące fragmentem dłuższego wyrazu nie zostaje rozpoznane", () =
   const source = "„Cisza” — mówi Tomasz, poprawiając antenę.";
   assert.equal(suggestTags(source, NAMES), source);
 });
+
+test("atrybucja bez imienia, imię pada w następnym zdaniu — brak propozycji", () => {
+  const source = "„Jasne…” — mówisz. Charlie wstaje.";
+  assert.equal(suggestTags(source, NAMES), source);
+});
+
+test("imię w atrybucji zakończonej przecinkiem, zdanie trwa — propozycja jest", () => {
+  const source = "„Uważaj” — mówi Charlie, chowając latarkę.";
+  assert.equal(
+    suggestTags(source, NAMES),
+    "[charlie]„Uważaj”[/charlie] — mówi Charlie, chowając latarkę.",
+  );
+});
+
+test("angielska atrybucja bez myślnika — propozycja jest", () => {
+  const source = '"Wait." Mark whispers.';
+  assert.equal(suggestTags(source, NAMES), '[mark]"Wait."[/mark] Mark whispers.');
+});

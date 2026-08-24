@@ -9,6 +9,10 @@ import { VOICE_NAMES, TAGS } from "../src/ui/voices.js";
 // Ile znaków po zamknięciu cudzysłowu przeszukujemy w poszukiwaniu imienia.
 const ATTRIBUTION_WINDOW = 60;
 const QUOTE = /„[^„”]*”|"[^"]*"/g;
+// Myślnik i spacja(e) tuż za cudzysłowem — pomijane przy szukaniu końca zdania.
+const LEADING_DASH = /^\s*[—–-]?\s*/;
+// Pierwszy znak kończący zdanie: kropka, wykrzyknik, znak zapytania, wielokropek.
+const SENTENCE_END = /[.!?…]/;
 
 const NAMED = VOICE_NAMES.filter((name) => TAGS[name].label);
 
@@ -25,11 +29,20 @@ export function suggestTags(text, names = NAMED) {
     const match = quotes[i];
     const start = match.index;
     const end = start + match[0].length;
-    // Okno kończy się wcześniej z dwóch granic: po ATTRIBUTION_WINDOW znaków
-    // albo na początku następnej kwestii — inaczej sięgamy w jej atrybucję.
+    // Okno kończy się na najwcześniejszym z trzech zdarzeń: po
+    // ATTRIBUTION_WINDOW znaków, na początku następnej kwestii (inaczej
+    // sięgamy w jej atrybucję), albo na końcu pierwszego zdania po kwestii —
+    // gdy atrybucja nie wskazuje imienia wprost, milczymy, nie zgadujemy na
+    // podstawie dalszej narracji.
     const nextStart = quotes[i + 1]?.index ?? source.length;
-    const windowEnd = Math.min(end + ATTRIBUTION_WINDOW, nextStart);
-    const window = source.slice(end, windowEnd);
+    const outerEnd = Math.min(end + ATTRIBUTION_WINDOW, nextStart);
+    const outer = source.slice(end, outerEnd);
+    const lead = outer.match(LEADING_DASH)[0];
+    const rest = outer.slice(lead.length);
+    const sentenceEnd = SENTENCE_END.test(rest)
+      ? lead.length + rest.search(SENTENCE_END) + 1
+      : outer.length;
+    const window = outer.slice(0, sentenceEnd);
 
     // Z imion obecnych w oknie wybieramy to najbliższe kwestii, nie pierwsze
     // z listy — przy remisie zostaje to znalezione jako pierwsze (wcześniejsze
