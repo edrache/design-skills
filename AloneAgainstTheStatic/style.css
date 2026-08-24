@@ -383,12 +383,24 @@ a:focus-visible {
   text-wrap: pretty;
 }
 
+/* Inicjał oznacza otwarcie wpisu prozą narracyjną — akapit będący kwestią
+   (p.speech) ma już własne oznaczenie (kreska i imię), a akapit zaczynający
+   się od kwestii wtopionej ma już kropkę przed cudzysłowem. W obu przypadkach
+   inicjał jawnie wyłączamy, zamiast liczyć na przypadkowe zachowanie
+   przeglądarki (::first-letter i tak nie zadziała, gdy pierwszym dzieckiem
+   jest generowany inline-block, ale ma to być zapisane wprost). */
 .journal-entry p:first-of-type::first-letter {
   float: left;
   margin: 0.1rem 0.35rem 0 0;
   color: var(--paper);
   font-size: 3rem;
   line-height: 0.8;
+}
+
+.journal-entry p.speech:first-of-type::first-letter,
+.journal-entry p:first-of-type:has(> span[class^="v-"]:first-child)::first-letter,
+.journal-entry p:first-of-type:has(> span[class*=" v-"]:first-child)::first-letter {
+  display: none;
 }
 
 /* --- Warstwa stylu tekstu ------------------------------------------------ */
