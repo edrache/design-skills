@@ -512,6 +512,20 @@ a:focus-visible {
   filter: blur(calc(var(--dread) * var(--text-effects) * 0.9px)) var(--vhs-filter, );
 }
 
+/* `[wrong]` ma w rejestrze `effect: "static"`, więc render-markup.js ustawia
+   na tym samym elemencie i klasę `.t-wrong`, i `data-effect="static"`. Obie
+   reguły — ta wyżej i `[data-effect="static"]` niżej — mają identyczną
+   specyficzność (0,1,0) na tym samym elemencie, więc bez tej reguły o
+   wygranej decydowałaby tylko kolejność w pliku (krucho: porządkowanie
+   plików po cichu odwraca, która deklaracja `filter` wygrywa). Złożony
+   selektor `.t-wrong[data-effect="static"]` ma specyficzność (0,2,0) i
+   wygrywa niezależnie od położenia obu reguł — nie „upraszczać" go z
+   powrotem do samego `.t-wrong`. `text-shadow` z `[data-effect="static"]`
+   nie jest tu dotknięty, bo ta reguła zawiera tylko `filter`.  */
+.t-wrong[data-effect="static"] {
+  filter: blur(calc(var(--dread) * var(--text-effects) * 0.9px)) var(--vhs-filter, );
+}
+
 .filter-defs {
   position: absolute;
   width: 0;
@@ -575,7 +589,13 @@ a:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .journal-entry.tracking-flash { animation: none; }
   .journal-entry:not(.past)::after { display: none; }
-  .t-wrong { filter: none; }
+  /* Selektor złożony musi się tu powtórzyć: ma specyficzność (0,2,0), więc
+     bez niego przegrałby z regułą `.t-wrong[data-effect="static"]` powyżej
+     mimo bycia w @media — zerowanie filtra by się nie stosowało. */
+  .t-wrong,
+  .t-wrong[data-effect="static"] {
+    filter: none;
+  }
 }
 
 .entry-image {
