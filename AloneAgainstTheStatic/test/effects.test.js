@@ -1,29 +1,91 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { amplitudeFor, MAX_AMPLITUDE_PX } from "../src/ui/effects.js";
+import { amplitudeFor, bucketFor, burstAt, crawlAt, BUCKET_LEVELS, CEILING_PX, FLOOR_PX } from "../src/ui/effects.js";
 
-test("przy pełnej Poczytalności ruchu nie ma", () => {
-  assert.equal(amplitudeFor({ dread: 0, textEffects: 1, proximity: 1 }), 0);
+test("przy pełnej Poczytalności zakłócenie jest obecne, ale minimalne", () => {
+  assert.equal(amplitudeFor({ dread: 0, textEffects: 1, proximity: 0 }), FLOOR_PX);
 });
 
-test("amplituda rośnie z rozpadem i z bliskością wskaźnika", () => {
-  const far = amplitudeFor({ dread: 0.5, textEffects: 1, proximity: 0 });
-  const near = amplitudeFor({ dread: 0.5, textEffects: 1, proximity: 1 });
-  assert.ok(far > 0);
-  assert.ok(near > far);
+test("spadek Poczytalności podnosi amplitudę do sufitu", () => {
+  assert.equal(amplitudeFor({ dread: 1, textEffects: 1, proximity: 0 }), CEILING_PX);
+  const polowa = amplitudeFor({ dread: 0.5, textEffects: 1, proximity: 0 });
+  assert.ok(polowa > FLOOR_PX && polowa < CEILING_PX);
 });
 
-test("amplituda nigdy nie przekracza progu czytelności", () => {
-  assert.equal(amplitudeFor({ dread: 1, textEffects: 1, proximity: 1 }), MAX_AMPLITUDE_PX);
-  assert.ok(MAX_AMPLITUDE_PX <= 1.5);
+test("bliskość wskaźnika uspokaja zakłócenie zamiast je wzmacniać", () => {
+  const daleko = amplitudeFor({ dread: 1, textEffects: 1, proximity: 0 });
+  const blisko = amplitudeFor({ dread: 1, textEffects: 1, proximity: 1 });
+  assert.ok(blisko < daleko);
+  // Ulga zdejmuje 85% amplitudy — fragment staje się czytelny, nie znika.
+  assert.ok(blisko > 0);
+  assert.ok(Math.abs(blisko - daleko * 0.15) < 1e-9);
 });
 
-test("suwak na zero wyłącza ruch mimo pełnego rozpadu", () => {
-  assert.equal(amplitudeFor({ dread: 1, textEffects: 0, proximity: 1 }), 0);
+test("suwak na zero wyłącza wszystko mimo pełnego rozpadu", () => {
+  assert.equal(amplitudeFor({ dread: 1, textEffects: 0, proximity: 0 }), 0);
 });
 
-test("prefers-reduced-motion zeruje ruch niezależnie od suwaka", () => {
-  assert.equal(amplitudeFor({ dread: 1, textEffects: 1, proximity: 1, reducedMotion: true }), 0);
+test("prefers-reduced-motion zeruje ruch niezależnie od reszty", () => {
+  assert.equal(amplitudeFor({ dread: 1, textEffects: 1, proximity: 0, reducedMotion: true }), 0);
+});
+
+test("wejścia poza zakresem nie dają NaN ani wartości ujemnej", () => {
+  for (const zle of [NaN, -5, 7, "abc", null, undefined]) {
+    const wynik = amplitudeFor({ dread: zle, textEffects: zle, proximity: zle });
+    assert.ok(Number.isFinite(wynik), `dread=${String(zle)}`);
+    assert.ok(wynik >= 0);
+    assert.ok(wynik <= CEILING_PX);
+  }
+});
+
+test("zryw nigdy nie tłumi, a przy pełnej Poczytalności prawie nie występuje", () => {
+  let zrywy = 0;
+  for (let t = 0; t < 60000; t += 50) {
+    const m = burstAt(t, 0);
+    assert.ok(m >= 1);
+    if (m > 1.001) zrywy += 1;
+  }
+  const spokojne = zrywy;
+
+  zrywy = 0;
+  for (let t = 0; t < 60000; t += 50) {
+    const m = burstAt(t, 1);
+    assert.ok(m >= 1);
+    if (m > 1.001) zrywy += 1;
+  }
+  assert.ok(zrywy > spokojne, `przy rozpadzie ${zrywy} kontra ${spokojne} przy spokoju`);
+});
+
+test("zryw jest deterministyczny — ten sam czas daje ten sam wynik", () => {
+  assert.equal(burstAt(12345, 0.5), burstAt(12345, 0.5));
+});
+
+test("pełzanie przyspiesza wraz z rozpadem", () => {
+  const ziarna = (dread) => {
+    const zbior = new Set();
+    for (let t = 0; t < 2000; t += 20) zbior.add(crawlAt(t, dread).seed);
+    return zbior.size;
+  };
+  assert.ok(ziarna(1) > ziarna(0));
+});
+
+test("pełzanie faluje między przeskokami ziarna", () => {
+  const a = crawlAt(1000, 0.5).frequencyY;
+  const b = crawlAt(1060, 0.5).frequencyY;
+  assert.notEqual(a, b);
+  for (const t of [0, 500, 1234, 99999]) {
+    const { frequencyY } = crawlAt(t, 0.5);
+    assert.ok(frequencyY > 0 && frequencyY < 1);
+  }
+});
+
+test("kubełek dobiera najbliższy poziom filtra", () => {
+  assert.equal(bucketFor(0), 0);
+  assert.equal(bucketFor(FLOOR_PX), 0);
+  assert.equal(bucketFor(CEILING_PX), BUCKET_LEVELS.length - 1);
+  assert.equal(bucketFor(999), BUCKET_LEVELS.length - 1);
+  // Wartość między poziomami trafia do bliższego z nich.
+  assert.equal(bucketFor(1.1), 1);
 });
 
 test("brak DOM nie wywraca modułu", async () => {

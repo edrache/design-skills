@@ -1,19 +1,80 @@
 // Warstwa efektów: jedna pętla rAF, jeden IntersectionObserver, jeden filtr SVG.
 // Elementy poza widokiem są wypisywane z pętli i mają zdejmowany filtr.
 
-export const MAX_AMPLITUDE_PX = 1.5;
+// Zakłócenie jest stanem domyślnym: nawet przy pełnej Poczytalności obraz lekko
+// drga. Spadek Poczytalności podnosi amplitudę powyżej progu wygodnego czytania,
+// bo gracz ma zawsze sposób jej zniesienia — wskaźnik uspokaja fragment.
+export const FLOOR_PX = 0.4;
+export const CEILING_PX = 2.6;
+// Ulga pod wskaźnikiem zdejmuje 85% amplitudy: fragment staje się czytelny,
+// ale nie przestaje istnieć.
+const RELIEF = 0.85;
+export const BUCKET_LEVELS = Object.freeze([0.4, 1.15, 1.9, 2.6]);
+
 const FILTER = "url(#vhs-static)";
 const PROXIMITY_RADIUS_PX = 220;
 const FLASH_MS = 400;
 
+const BURST_SLOT_MS = 900;
+const BURST_LENGTH_MS = 140;
+const SEED_STEP_SLOW_MS = 220;
+const SEED_STEP_FAST_MS = 40;
+
+const clamp01 = (value) => {
+  const number = Number(value);
+  return Number.isFinite(number) ? Math.max(0, Math.min(1, number)) : 0;
+};
+
 // Czysta funkcja — cała logika natężenia w jednym miejscu, testowalna bez DOM.
 export function amplitudeFor({ dread = 0, textEffects = 0, proximity = 0, reducedMotion = false } = {}) {
   if (reducedMotion) return 0;
-  const clamp = (value) => Math.max(0, Math.min(1, Number(value) || 0));
-  const base = clamp(dread) * clamp(textEffects);
-  if (base === 0) return 0;
-  // Bliskość wskaźnika podwaja amplitudę, nie tworzy jej.
-  return Math.min(MAX_AMPLITUDE_PX, base * (1 + clamp(proximity)) * (MAX_AMPLITUDE_PX / 2));
+  const scale = clamp01(textEffects);
+  if (scale === 0) return 0;
+  const base = (FLOOR_PX + (CEILING_PX - FLOOR_PX) * clamp01(dread)) * scale;
+  return base * (1 - RELIEF * clamp01(proximity));
+}
+
+// Deterministyczny skrót slotu na liczbę 0–1. Determinizm jest celowy: pozwala
+// przetestować rozkład zrywów bez podstawiania generatora losowego.
+function slotNoise(slot) {
+  const value = Math.sin(slot * 12.9898) * 43758.5453;
+  return value - Math.floor(value);
+}
+
+// Zwraca mnożnik amplitudy: 1 poza zrywem, więcej w jego trakcie.
+export function burstAt(timeMs, dread = 0) {
+  const time = Number(timeMs);
+  if (!Number.isFinite(time) || time < 0) return 1;
+  const level = clamp01(dread);
+  const slot = Math.floor(time / BURST_SLOT_MS);
+  if (slotNoise(slot) >= 0.05 + 0.45 * level) return 1;
+
+  const into = time - slot * BURST_SLOT_MS;
+  if (into >= BURST_LENGTH_MS) return 1;
+  const envelope = Math.sin((into / BURST_LENGTH_MS) * Math.PI);
+  return 1 + 1.2 * level * envelope;
+}
+
+// Pełzanie szumu: ziarno przeskakuje skokowo, a częstotliwość faluje w sposób
+// ciągły, żeby obraz nie zamierał między przeskokami.
+export function crawlAt(timeMs, dread = 0) {
+  const time = Number.isFinite(Number(timeMs)) ? Math.max(0, Number(timeMs)) : 0;
+  const level = clamp01(dread);
+  const step = SEED_STEP_SLOW_MS + (SEED_STEP_FAST_MS - SEED_STEP_SLOW_MS) * level;
+  const seed = Math.floor(time / step) % 1000;
+  const rate = 0.0008 + 0.0052 * level;
+  const frequencyY = 0.04 + 0.03 * Math.sin(time * rate);
+  return { seed, frequencyY };
+}
+
+export function bucketFor(amplitude) {
+  const value = Number(amplitude);
+  if (!Number.isFinite(value)) return 0;
+  let best = 0;
+  for (let index = 1; index < BUCKET_LEVELS.length; index += 1) {
+    if (Math.abs(value - BUCKET_LEVELS[index]) < Math.abs(value - BUCKET_LEVELS[best])) best = index;
+  }
+  return best;
 }
 
 function readNumber(doc, name) {
