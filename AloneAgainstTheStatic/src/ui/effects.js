@@ -26,9 +26,13 @@ function readNumber(doc, name) {
 }
 
 export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMedia = globalThis.matchMedia } = {}) {
-  const noop = { observe() {}, flash() {}, destroy() {} };
+  const noop = { observe() {}, flash() {}, unobserveAll() {}, destroy() {} };
   if (!root || !doc || typeof globalThis.requestAnimationFrame !== "function") return noop;
 
+  // Wszystkie elementy kiedykolwiek przekazane do observe(), niezależnie od
+  // tego, czy są akurat w widoku (a więc w `active`) — potrzebne, żeby
+  // unobserveAll() mogło odpiąć również te, które nigdy nie weszły do `active`.
+  const observed = new Set();
   const active = new Set();
   const pointer = { x: 0, y: 0, seen: false };
   let running = false;
@@ -110,10 +114,25 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
   root.addEventListener("pointermove", onPointer, { passive: true });
   root.addEventListener("pointerdown", onPointer, { passive: true });
 
+  // Odpina wszystkie dotąd obserwowane elementy: przerywa obserwację, zdejmuje
+  // pozostawiony filtr/--glitch i czyści zbiory. Wspólna dla destroy() i dla
+  // wywołania z main.js przed przerysowaniem dziennika, żeby IntersectionObserver
+  // nie trzymał w nieskończoność referencji do odłączonych od DOM węzłów.
+  function unobserveAll() {
+    for (const element of observed) {
+      observer?.unobserve(element);
+      element.style.removeProperty("filter");
+      element.style.removeProperty("--glitch");
+    }
+    observed.clear();
+    active.clear();
+  }
+
   return {
     observe(block) {
       if (!block?.querySelectorAll) return;
       for (const element of block.querySelectorAll("[data-effect]")) {
+        observed.add(element);
         // Bez IntersectionObserver rezygnujemy z optymalizacji, nie z efektu.
         if (observer) observer.observe(element);
         else active.add(element);
@@ -128,12 +147,14 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
       globalThis.setTimeout?.(() => block.classList.remove("tracking-flash"), FLASH_MS);
     },
 
+    unobserveAll,
+
     destroy() {
       root.removeEventListener("pointermove", onPointer);
       root.removeEventListener("pointerdown", onPointer);
+      unobserveAll();
       observer?.disconnect();
       if (frameId) globalThis.cancelAnimationFrame?.(frameId);
-      active.clear();
     },
   };
 }

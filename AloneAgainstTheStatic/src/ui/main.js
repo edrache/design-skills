@@ -221,6 +221,7 @@ function advance(next, originEntryId = null) {
 }
 
 function redraw() {
+  effects?.unobserveAll();
   clearJournal(dom.journal);
   history.forEach((record, index) => draw(record, index === history.length - 1));
   renderCharacterSheet();
