@@ -44,7 +44,15 @@ export function renderMarkup(doc, source) {
     // Etykieta idzie do atrybutu, a nie do DOM: CSS wypisuje ją przez
     // content: attr(data-who), więc nie wchodzi do textContent.
     if (info.label) paragraph.dataset.who = info.label;
-    appendNodes(doc, paragraph, block.children);
+    // Renderujemy WSZYSTKIE węzły akapitu, nie tylko dzieci znacznika —
+    // białe znaki stojące poza samotnym znacznikiem głosu (spacja, nowa
+    // linia) też są częścią treści źródłowej i muszą trafić do textContent.
+    // Sama zawartość znacznika głosu idzie bez pośredniego <span>: klasa
+    // i etykieta mówiącego już są na <p>.
+    for (const node of nodes) {
+      if (node === block) appendNodes(doc, paragraph, block.children);
+      else appendNodes(doc, paragraph, [node]);
+    }
     return paragraph;
   }
 

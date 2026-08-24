@@ -138,6 +138,23 @@ test("nieznany znacznik renderuje zawartość bez opakowania", () => {
   assert.equal(p.textContent, "sen");
 });
 
+test("INWARIANT: render nie zmienia treści żadnego tekstu na ciągach syntetycznych", () => {
+  const doc = createFakeDocument();
+  const samples = [
+    "Zwykły tekst bez znaczników.",
+    " [charlie]„A.”[/charlie] ",
+    "\n[charlie]„A.”[/charlie]\n",
+    "[horror]Coś [whisper]szepcze[/whisper] w ciemności[/horror].",
+    "[dream]sen[/dream]",
+    "[charlie][/charlie]",
+    "[charlie]niedomknięty",
+  ];
+
+  for (const sample of samples) {
+    assert.equal(renderMarkup(doc, sample).textContent, stripMarkup(sample), sample);
+  }
+});
+
 test("INWARIANT: render nie zmienia treści żadnego tekstu w danych", () => {
   const doc = createFakeDocument();
   const load = (name) => JSON.parse(readFileSync(new URL(`../data/${name}`, import.meta.url), "utf8"));
