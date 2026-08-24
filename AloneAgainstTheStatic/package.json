@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test test/*.test.js",
-    "validate": "node tools/validate.mjs"
+    "validate": "node tools/validate.mjs",
+    "tag": "node tools/tag-dialogue.mjs"
   }
 }

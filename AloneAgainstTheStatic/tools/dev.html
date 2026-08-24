@@ -16,9 +16,10 @@
     <h1>Paragrafy</h1>
     <p>Lista wyekstrahowanych paragrafów z podglądem mechaniki. Służy do sprawdzania danych i podpinania mediów — nie jest częścią gry.</p>
     <p id="summary" class="muted"></p>
-    <table id="list"><thead><tr><th>#</th><th>Scena</th><th>Tekst</th><th>PL</th><th>Mechanika</th><th>Przejścia</th><th>Media</th></tr></thead><tbody></tbody></table>
+    <table id="list"><thead><tr><th>#</th><th>Scena</th><th>Tekst</th><th>PL</th><th>Znaczniki</th><th>Mechanika</th><th>Przejścia</th><th>Media</th></tr></thead><tbody></tbody></table>
 
     <script type="module">
+      import { tagCounts } from "../src/ui/markup.js";
       const base = new URL("../data/", import.meta.url);
       const load = (n) => fetch(new URL(n, base)).then((r) => r.json());
       const [story, en, pl, media] = await Promise.all([
@@ -43,11 +44,13 @@
         total += keys.length;
         const hasAudio = Boolean(media.entries?.[id]?.audio);
         const hasImage = Boolean(media.entries?.[id]?.image);
+        const tags = [...new Set(keys.flatMap((k) => Object.keys(tagCounts(pl[k] || en[k] || ""))))];
         row.innerHTML = `
           <td>${id}</td>
           <td>${entry.scene ?? "<span class='warn'>brak</span>"}</td>
           <td>${(entry.text ?? []).map((k) => (en[k] ? escape(en[k]) : `<span class='warn'>${k}</span>`)).join(" ").slice(0, 160)}…</td>
           <td>${done === keys.length ? "✓" : `<span class='warn'>${done}/${keys.length}</span>`}</td>
+          <td>${tags.join(" ") || "<span class='warn'>—</span>"}</td>
           <td>${escape(JSON.stringify(entry.on ?? []))}</td>
           <td>${targets.join(", ") || "—"}${entry.end ? " KONIEC" : ""}</td>
           <td>${hasAudio ? "♪" : "—"} ${hasImage ? "▣" : "—"}</td>`;
