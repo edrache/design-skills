@@ -28,6 +28,8 @@ const UI_COPY = {
     end: "KONIEC NAGRANIA",
     endTitle: "Taśma urywa się tutaj.",
     restart: "Przewiń i zacznij ponownie",
+    newGame: "Nowa gra",
+    newGameConfirm: "Zacząć od nowa? Zapis tej rozgrywki zostanie usunięty.",
     finalEntry: "Paragraf końcowy",
     flags: "Dziennik",
     sanShort: "P",
@@ -59,6 +61,8 @@ const UI_COPY = {
     end: "END OF RECORDING",
     endTitle: "The tape cuts out here.",
     restart: "Rewind and begin again",
+    newGame: "New game",
+    newGameConfirm: "Start over? This playthrough's save will be deleted.",
     finalEntry: "Final entry",
     flags: "Log sheet",
     sanShort: "SAN",
@@ -110,6 +114,7 @@ const dom = {
   settingsTitle: document.querySelector("#settings-title"),
   settingsClose: document.querySelector("#settings-close"),
   restart: document.querySelector("#restart"),
+  newGame: document.querySelector("#new-game"),
   skipLink: document.querySelector(".skip-link"),
   tools: document.querySelector(".topbar-actions"),
   journalHeading: document.querySelector("#screen-game h1"),
@@ -145,6 +150,7 @@ function labels() {
 
 function showScreen(name, { focus = false } = {}) {
   for (const [key, node] of Object.entries(dom.screens)) node.hidden = key !== name;
+  dom.newGame.hidden = name !== "game";
   dom.sheet.hidden = name !== "game";
   if (name !== "game") {
     dom.sheet.classList.remove("open");
@@ -309,6 +315,7 @@ function updateChrome() {
   document.querySelector("#screen-end .eyebrow").textContent = text.end;
   document.querySelector("#screen-end .screen-title").textContent = text.endTitle;
   dom.restart.textContent = text.restart;
+  dom.newGame.textContent = text.newGame;
   dom.skipLink.textContent = text.skip;
   dom.tools.setAttribute("aria-label", text.tools);
   dom.journalHeading.textContent = text.journal;
@@ -370,7 +377,7 @@ dom.settingsToggle.addEventListener("click", () => {
   dom.settingsToggle.setAttribute("aria-expanded", "true");
 });
 dom.settingsDialog.addEventListener("close", () => dom.settingsToggle.setAttribute("aria-expanded", "false"));
-dom.restart.addEventListener("click", () => {
+function startOver() {
   audio?.stopAll();
   clearSave();
   frame = null;
@@ -378,6 +385,13 @@ dom.restart.addEventListener("click", () => {
   history.length = 0;
   clearJournal(dom.journal);
   renderCharacterChoice({ focus: true });
+}
+
+dom.restart.addEventListener("click", startOver);
+dom.newGame.addEventListener("click", () => {
+  // W trakcie rozgrywki restart kasuje zapis, więc pytamy raz o potwierdzenie.
+  if (!window.confirm(labels().newGameConfirm)) return;
+  startOver();
 });
 
 async function bootstrap() {

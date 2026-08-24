@@ -19,6 +19,13 @@ python3 -m http.server 8080
 
 Moduły ES wymagają serwera HTTP — otwarcie `index.html` przez `file://` nie zadziała.
 
+## Rozgrywka
+
+Gra zapisuje się sama po każdej ramce i wznawia zapis przy wejściu na stronę.
+Przycisk **Nowa gra** w górnym pasku porzuca zapis i wraca do wyboru postaci —
+pyta o potwierdzenie, bo zapis jest tylko jeden. Przycisk pojawia się wyłącznie
+w trakcie rozgrywki.
+
 ## Testy i walidacja
 
 ```bash
