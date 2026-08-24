@@ -527,8 +527,11 @@ a:focus-visible {
     calc(var(--glitch) * 1px) 0 oklch(65% 0.1 200 / 0.45);
 }
 
-/* Pas błędu trackingu podąża za wskaźnikiem po bieżącym wpisie. */
-.journal-entry:not(.past) {
+/* Pas błędu trackingu podąża za wskaźnikiem po bieżącym wpisie.
+   Wartości --px/--py ustawia effects.js na #journal; domyślne 0.5
+   siedzą tutaj (na kontenerze), żeby dziedziczenie do wpisu działało,
+   a przed pierwszym odczytem wskaźnika był sensowny fallback. */
+.journal {
   --px: 0.5;
   --py: 0.5;
 }

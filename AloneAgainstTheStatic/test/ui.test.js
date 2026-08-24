@@ -1,7 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createI18n } from "../src/ui/i18n.js";
-import { rollPresentation, segmentEvents } from "../src/ui/journal.js";
+import { renderEvents, rollPresentation, segmentEvents } from "../src/ui/journal.js";
+import { stripMarkup } from "../src/ui/markup.js";
+import { classesOf, createFakeDocument } from "./helpers/fake-dom.js";
 
 test("puste tłumaczenie spada na angielski tekst", () => {
   const i18n = createI18n({ pl: { key: "  " }, en: { key: "Fallback" } }, "pl");
@@ -40,6 +42,22 @@ test("guard nie tworzy pustego wpisu dla niewidocznego redirectu", () => {
   ], { entryId: 363, originEntryId: 9 }), [
     { entryId: 363, events: [text] },
   ]);
+});
+
+test("renderEvents przechodzi przez appendEvent/renderMarkup i nie gubi znaczników głosu", () => {
+  const source = '[charlie]„Nie wysiadaj z auta.”[/charlie] Zamykasz drzwi.';
+  const i18n = createI18n({ pl: { "e1.p1": source }, en: {} }, "pl");
+  const doc = createFakeDocument();
+  const root = doc.createElement("div");
+
+  const block = renderEvents(root, [{ kind: "text", key: "e1.p1" }], i18n, {}, { entryId: 1 });
+
+  assert.equal(root.lastElementChild, block);
+  const paragraph = block.children.find((node) => node.tagName === "P");
+  assert.ok(paragraph, "renderEvents powinien dołożyć akapit z renderMarkup");
+  assert.ok(classesOf(paragraph).includes("v-charlie"));
+  // Inwariant niezmienności treści: textContent akapitu równy źródłu bez znaczników.
+  assert.equal(paragraph.textContent, stripMarkup(source));
 });
 
 test("prezentacja Luck zachowuje surowy i zakupiony wynik", () => {

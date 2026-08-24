@@ -273,6 +273,7 @@ function startGame(characterId) {
   ctx = { story, character, rng: Math.random };
   frame = null;
   history.length = 0;
+  effects?.unobserveAll();
   clearJournal(dom.journal);
   showScreen("game");
   const start = story.starts?.[character.id] ?? story.start;
@@ -409,6 +410,8 @@ function startOver() {
   frame = null;
   ctx = null;
   history.length = 0;
+  document.documentElement.style.setProperty("--dread", "0");
+  effects?.unobserveAll();
   clearJournal(dom.journal);
   renderCharacterChoice({ focus: true });
 }
@@ -436,6 +439,10 @@ async function bootstrap() {
   settings = createSettings();
   audio = createAudio(media, settings);
   effects = createEffects({ root: dom.journal });
+  // Suwak "Efekty tekstu" ustawia --text-effects, ale nic samo z siebie nie
+  // budzi pętli rAF w effects.js — bez tego zjazd na zero zostawiałby
+  // filtry na elementach aż do najbliższego ruchu wskaźnika po dzienniku.
+  settings.subscribe(() => effects?.recompute());
   connectSettingsControls();
   updateChrome();
   const saved = loadGame();

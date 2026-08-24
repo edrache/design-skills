@@ -78,7 +78,8 @@ wygląd i efekty. Głosy: `[charlie]` `[alex]` `[mark]` `[julie]` `[tom]`
 `[you]` `[voice]`. Tony: `[horror]` `[whisper]` `[shout]` `[thought]`
 `[radio]` `[sign]` `[wrong]`. Opis narracyjny nie ma znacznika — jest domyślny.
 
-Znaczniki zagnieżdżają się. `[[` to literalny nawias kwadratowy.
+Znaczniki zagnieżdżają się. `[[` to literalny nawias kwadratowy, a `]]` to
+literalne domknięcie `]`.
 
 Akapit będący w całości jedną kwestią dostaje układ scenariuszowy z kreską
 i nazwą mówiącego; kwestia w środku opisu zostaje inline.
@@ -100,6 +101,23 @@ sam — narzędzie ich nie zgaduje.
 Natężenie efektów rośnie wraz ze spadkiem Poczytalności i jest sterowane
 suwakiem **Efekty tekstu** w ustawieniach. `prefers-reduced-motion` wyłącza
 ruch automatycznie.
+
+### Edytor znaczników
+
+Lokalny edytor pozwala przechodzić po numerach paragrafów, zaznaczać fragmenty
+tekstu i nakładać znaczniki przyciskiem. Obok tekstu pokazuje podgląd z tego
+samego renderera co gra oraz wzornik wszystkich dostępnych efektów.
+
+```bash
+npm run tag:editor
+```
+
+Następnie otwórz `http://127.0.0.1:4174/tools/tag-editor.html`. Edytor domyślnie
+pracuje na `data/text.pl.json`; plik można przełączyć na angielski w prawym
+górnym rogu. Zmiany zapisuje przycisk **Zapisz** albo skrót `Ctrl+S`/`Cmd+S`.
+Przejście do innego paragrafu nie gubi niezapisanych zmian. Serwer odrzuca
+niedomknięte znaczniki i nie nadpisze tekstu, jeśli plik został w międzyczasie
+zmieniony przez inne narzędzie.
 
 ## Media
 

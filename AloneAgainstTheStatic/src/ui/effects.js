@@ -26,7 +26,7 @@ function readNumber(doc, name) {
 }
 
 export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMedia = globalThis.matchMedia } = {}) {
-  const noop = { observe() {}, flash() {}, unobserveAll() {}, destroy() {} };
+  const noop = { observe() {}, flash() {}, unobserveAll() {}, recompute() {}, destroy() {} };
   if (!root || !doc || typeof globalThis.requestAnimationFrame !== "function") return noop;
 
   // Wszystkie elementy kiedykolwiek przekazane do observe(), niezależnie od
@@ -111,8 +111,16 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
     frameId = globalThis.requestAnimationFrame(tick);
   }
 
+  // Zmiana ustawienia systemowego "prefers-reduced-motion" w locie musi też
+  // obudzić pętlę, inaczej efekty zostają w stanie sprzed zmiany aż do
+  // najbliższego ruchu wskaźnika.
+  function onMotionChange() {
+    start();
+  }
+
   root.addEventListener("pointermove", onPointer, { passive: true });
   root.addEventListener("pointerdown", onPointer, { passive: true });
+  motionQuery?.addEventListener?.("change", onMotionChange);
 
   // Odpina wszystkie dotąd obserwowane elementy: przerywa obserwację, zdejmuje
   // pozostawiony filtr/--glitch i czyści zbiory. Wspólna dla destroy() i dla
@@ -149,9 +157,17 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
 
     unobserveAll,
 
+    // Wymusza przeliczenie na najbliższej klatce, nawet gdy wskaźnik stoi
+    // w miejscu — potrzebne po zmianie ustawienia "Efekty tekstu" na suwaku,
+    // żeby filtry zdjęte przez zjazd do zera nie czekały na ruch wskaźnika.
+    recompute() {
+      start();
+    },
+
     destroy() {
       root.removeEventListener("pointermove", onPointer);
       root.removeEventListener("pointerdown", onPointer);
+      motionQuery?.removeEventListener?.("change", onMotionChange);
       unobserveAll();
       observer?.disconnect();
       if (frameId) globalThis.cancelAnimationFrame?.(frameId);
