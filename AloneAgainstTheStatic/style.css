@@ -507,9 +507,9 @@ a:focus-visible {
   text-transform: uppercase;
 }
 
-/* Najsubtelniejszy z zestawu: widoczny dopiero, gdy Poczytalność spada. */
+/* Najsubtelniejszy z zestawu: blur rośnie z rozpadem i sumuje się ze szumem. */
 .t-wrong {
-  filter: blur(calc(var(--dread) * var(--text-effects) * 0.9px));
+  filter: blur(calc(var(--dread) * var(--text-effects) * 0.9px)) var(--vhs-filter, );
 }
 
 .filter-defs {
@@ -519,9 +519,12 @@ a:focus-visible {
   pointer-events: none;
 }
 
-/* Rozszczepienie RGB skalowane amplitudą liczoną w effects.js. */
+/* Rozszczepienie RGB skalowane amplitudą liczoną w effects.js. Filtr wchodzi
+   przez zmienną, a nie przez styl inline, żeby dało się go składać z filtrami
+   zadeklarowanymi w CSS — patrz `.t-wrong` niżej. */
 [data-effect="static"] {
   --glitch: 0;
+  filter: var(--vhs-filter, none);
   text-shadow:
     calc(var(--glitch) * -1px) 0 oklch(60% 0.14 20 / 0.5),
     calc(var(--glitch) * 1px) 0 oklch(65% 0.1 200 / 0.45);

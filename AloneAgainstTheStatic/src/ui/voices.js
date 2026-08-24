@@ -2,8 +2,8 @@
 // wpis tutaj plus reguła w style.css. Pole `effect` jest w praktyce flagą:
 // effects.js szuka elementów przez querySelectorAll("[data-effect]") i nigdy
 // nie czyta wartości atrybutu, więc sama obecność pola włącza filtr statyki
-// ("url(#vhs-static)" wyżej pewnego progu amplitudy) — wartość "static" nie
-// jest dziś w żaden sposób rozróżniana od innej.
+// (przez zmienną `--vhs-filter`, składaną w CSS z resztą filtrów elementu) —
+// wartość "static" nie jest dziś w żaden sposób rozróżniana od innej.
 
 export const TAGS = Object.freeze({
   charlie: { kind: "voice", className: "v-charlie", label: "Charlie" },
@@ -22,10 +22,10 @@ export const TAGS = Object.freeze({
   thought: { kind: "tone", className: "t-thought" },
   radio: { kind: "tone", className: "t-radio", effect: "static" },
   sign: { kind: "tone", className: "t-sign" },
-  // Bez `effect`: [wrong] to sam blur (patrz `.t-wrong` w style.css), bez
-  // zmiany barwy. Dodanie tu "static" nakładałoby inline filtr statyki,
-  // który migotałby z blurem CSS zamiast się z nim składać.
-  wrong: { kind: "tone", className: "t-wrong" },
+  // `[wrong]` składa własny blur z przemieszczeniem szumu. Wcześniej efekt był
+  // tu wyłączony, bo JS pisał po `style.filter` i nadpisywał regułę blur;
+  // teraz JS ustawia `--vhs-filter`, a CSS składa oba w jednym `filter`.
+  wrong: { kind: "tone", className: "t-wrong", effect: "static" },
 });
 
 export function tagInfo(name) {

@@ -200,3 +200,17 @@ test("biały znak przed znacznikiem głosu nie psuje wykrycia otwarcia kwestią"
   const p = renderMarkup(doc, "\n[charlie]„A.”[/charlie]\n");
   assert.equal(p.dataset.opens, "voice");
 });
+
+test("wszystkie trzy znaczniki zakłóceń mają efekt", () => {
+  for (const nazwa of ["horror", "radio", "wrong"]) {
+    assert.equal(tagInfo(nazwa).effect, "static", nazwa);
+  }
+});
+
+test("znacznik [wrong] oznacza element atrybutem danych", () => {
+  const doc = createFakeDocument();
+  const p = renderMarkup(doc, "Coś [wrong]tu nie gra[/wrong].");
+  const span = p.children.find((node) => node.nodeType === 1);
+  assert.equal(span.className, "t-wrong");
+  assert.equal(span.dataset.effect, "static");
+});
