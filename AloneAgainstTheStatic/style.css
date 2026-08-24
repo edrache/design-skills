@@ -9,6 +9,15 @@
   --phosphor-deep: oklch(47% 0.055 143);
   --rec: oklch(55% 0.13 27);
   --rec-soft: oklch(72% 0.09 31);
+  --voice-charlie: oklch(78% 0.07 62);
+  --voice-alex: oklch(78% 0.07 205);
+  --voice-mark: oklch(76% 0.06 300);
+  --voice-julie: oklch(78% 0.065 340);
+  --voice-tom: oklch(76% 0.055 145);
+  /* Poziom rozpadu 0–1, ustawiany z Poczytalności w main.js. */
+  --dread: 0;
+  /* Mnożnik amplitudy z suwaka „Efekty tekstu". */
+  --text-effects: 0.6;
   --rule: oklch(38% 0.03 125);
   --shadow: oklch(8% 0.01 125 / 0.7);
   --font-prose: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
@@ -380,6 +389,104 @@ a:focus-visible {
   color: var(--paper);
   font-size: 3rem;
   line-height: 0.8;
+}
+
+/* --- Warstwa stylu tekstu ------------------------------------------------ */
+
+.v-charlie { --voice: var(--voice-charlie); }
+.v-alex { --voice: var(--voice-alex); }
+.v-mark { --voice: var(--voice-mark); }
+.v-julie { --voice: var(--voice-julie); }
+.v-tom { --voice: var(--voice-tom); }
+.v-unknown { --voice: var(--paper-dim); }
+/* Bohater zostaje neutralny: barwa znaczy „mówi ktoś inny". */
+.v-you { --voice: var(--paper); }
+
+.journal-entry p span[class^="v-"],
+.journal-entry p span[class*=" v-"] {
+  color: var(--voice);
+}
+
+/* Kropka przed kwestią wtopioną w opis — sygnał, że zaczyna się mowa. */
+.journal-entry p span[class^="v-"]::before,
+.journal-entry p span[class*=" v-"]::before {
+  content: "";
+  display: inline-block;
+  width: 0.3em;
+  height: 0.3em;
+  margin-right: 0.35em;
+  vertical-align: 0.12em;
+  background: var(--voice);
+}
+
+/* Akapit będący w całości kwestią: układ scenariuszowy. */
+.journal-entry p.speech {
+  margin-left: clamp(0.6rem, 3vw, 1.6rem);
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--voice);
+  color: var(--voice);
+}
+
+.journal-entry p.speech::before {
+  content: attr(data-who);
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--voice);
+  font: 400 0.6rem/1 var(--font-console);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+/* Bez data-who pseudoelement jest pusty — zdejmujemy pusty odstęp. */
+.journal-entry p.speech:not([data-who])::before { display: none; }
+
+.journal-entry p.speech span[class^="v-"]::before,
+.journal-entry p.speech span[class*=" v-"]::before { display: none; }
+
+.t-horror {
+  color: var(--rec-soft);
+  letter-spacing: 0.04em;
+}
+
+.t-whisper {
+  color: var(--paper-dim);
+  font-size: 0.92em;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+}
+
+.t-shout {
+  font-family: var(--font-console);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.t-thought {
+  color: var(--phosphor);
+  font-style: italic;
+}
+
+.t-radio {
+  font-family: var(--font-console);
+  color: var(--paper-dim);
+  letter-spacing: 0.03em;
+}
+
+.t-sign {
+  display: inline-block;
+  padding: 0.15em 0.5em;
+  border: 1px solid var(--rule);
+  background: oklch(20% 0.02 128 / 0.6);
+  font-family: var(--font-console);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Najsubtelniejszy z zestawu: widoczny dopiero, gdy Poczytalność spada. */
+.t-wrong {
+  filter: blur(calc(var(--dread) * var(--text-effects) * 0.9px));
 }
 
 .entry-image {
