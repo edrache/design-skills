@@ -17,17 +17,34 @@ export function suggestTags(text, names = NAMED) {
   // Tekst już oznaczony zostawiamy w spokoju — autor tam był.
   if (Object.keys(tagCounts(source)).length > 0) return source;
 
+  const quotes = [...source.matchAll(QUOTE)];
   let result = "";
   let cursor = 0;
 
-  for (const match of source.matchAll(QUOTE)) {
+  for (let i = 0; i < quotes.length; i += 1) {
+    const match = quotes[i];
     const start = match.index;
     const end = start + match[0].length;
-    const window = source.slice(end, end + ATTRIBUTION_WINDOW);
-    const name = names.find((candidate) => {
+    // Okno kończy się wcześniej z dwóch granic: po ATTRIBUTION_WINDOW znaków
+    // albo na początku następnej kwestii — inaczej sięgamy w jej atrybucję.
+    const nextStart = quotes[i + 1]?.index ?? source.length;
+    const windowEnd = Math.min(end + ATTRIBUTION_WINDOW, nextStart);
+    const window = source.slice(end, windowEnd);
+
+    // Z imion obecnych w oknie wybieramy to najbliższe kwestii, nie pierwsze
+    // z listy — przy remisie zostaje to znalezione jako pierwsze (wcześniejsze
+    // w tekście, bo szukamy po kolei od początku okna).
+    let name = null;
+    let bestIndex = Infinity;
+    for (const candidate of names) {
       const label = TAGS[candidate].label;
-      return label ? new RegExp(`\\b${label}\\b`).test(window) : false;
-    });
+      if (!label) continue;
+      const found = window.match(new RegExp(`\\b${label}\\b`));
+      if (found && found.index < bestIndex) {
+        name = candidate;
+        bestIndex = found.index;
+      }
+    }
 
     result += source.slice(cursor, start);
     result += name ? `[${name}]${match[0]}[/${name}]` : match[0];
