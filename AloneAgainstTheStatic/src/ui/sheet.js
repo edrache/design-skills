@@ -1,4 +1,5 @@
 import { penaltyFor } from "../engine/state.js";
+import { termName } from "./terms.js";
 
 const COPY = {
   en: {
@@ -21,11 +22,11 @@ const COPY = {
     background: "Background",
   },
   pl: {
-    hp: "PŻ",
+    hp: "PW",
     san: "Poczytalność",
     luck: "Szczęście",
-    majorWound: "Poważna rana",
-    indefinitelyInsane: "Trwałe zaburzenie",
+    majorWound: "Ciężka rana",
+    indefinitelyInsane: "Długotrwała niepoczytalność",
     log: "Dziennik",
     noFlags: "—",
     skills: "Umiejętności",
@@ -34,20 +35,20 @@ const COPY = {
     profile: "Parametry",
     mp: "PM",
     move: "Ruch",
-    build: "Budowa",
-    damageBonus: "Premia do obrażeń",
+    build: "Krzepa",
+    damageBonus: "Modyfikator Obrażeń",
     story: "Moja historia",
-    background: "Tło",
+    background: "Historia Badacza",
   },
 };
 
 const BACKSTORY_LABELS_PL = {
   "Personal Description": "Opis postaci",
-  Traits: "Cechy osobowości",
+  Traits: "Przymioty",
   "Ideology & Beliefs": "Ideologia i przekonania",
   "Significant People": "Ważne osoby",
-  "Meaningful Locations": "Ważne miejsca",
-  "Treasured Possessions": "Cenne przedmioty",
+  "Meaningful Locations": "Znaczące miejsca",
+  "Treasured Possessions": "Rzeczy osobiste",
 };
 
 function el(doc, tag, className, text) {
@@ -117,7 +118,7 @@ export function renderSheet(root, state, character, locale = "en") {
   );
 
   const content = el(doc, "div", "sheet-details");
-  content.append(heading(doc, `${character.name} · ${character.occupation}`));
+  content.append(heading(doc, `${character.name} · ${localized(character.occupation, locale)}`));
 
   if (state.majorWound || state.indefinitelyInsane) {
     const warnings = list(doc);
@@ -149,14 +150,14 @@ export function renderSheet(root, state, character, locale = "en") {
   for (const [name, value] of Object.entries(character.skills ?? {})) {
     const penalty = penaltyFor(state, name);
     const suffix = penalty ? ` (${text.penalty(penalty)})` : "";
-    skills.append(el(doc, "li", null, `${name} ${value}${suffix}`));
+    skills.append(el(doc, "li", null, `${termName(name, locale)} ${value}${suffix}`));
   }
   content.append(skills);
 
   content.append(heading(doc, text.characteristics));
   const characteristics = list(doc);
   for (const [name, value] of Object.entries(character.characteristics ?? {})) {
-    characteristics.append(el(doc, "li", null, `${name} ${value}`));
+    characteristics.append(el(doc, "li", null, `${termName(name, locale)} ${value}`));
   }
   content.append(characteristics);
 

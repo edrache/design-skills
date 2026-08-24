@@ -29,7 +29,9 @@ const UI_COPY = {
     endTitle: "Taśma urywa się tutaj.",
     restart: "Przewiń i zacznij ponownie",
     finalEntry: "Paragraf końcowy",
-    flags: "Log sheet",
+    flags: "Dziennik",
+    sanShort: "P",
+    hpShort: "PW",
     noFlags: "—",
     loadError: "Nie udało się odczytać taśmy. Sprawdź, czy gra działa przez lokalny serwer HTTP.",
     skip: "Przejdź do dziennika",
@@ -59,6 +61,8 @@ const UI_COPY = {
     restart: "Rewind and begin again",
     finalEntry: "Final entry",
     flags: "Log sheet",
+    sanShort: "SAN",
+    hpShort: "HP",
     noFlags: "—",
     loadError: "The tape could not be read. Make sure the game is running through a local HTTP server.",
     skip: "Skip to the journal",
@@ -253,25 +257,36 @@ function startGame(characterId) {
   advance(enter(ctx, createState(character, { rng: Math.random }), start));
 }
 
+// Zawód w karcie postaci jest wpisem {en, pl}; starsze dane mogą być stringiem.
+function occupationOf(character, locale) {
+  const field = character.occupation;
+  if (typeof field === "string") return field;
+  const preferred = field?.[locale];
+  if (typeof preferred === "string" && preferred.trim()) return preferred;
+  return typeof field?.en === "string" ? field.en : "";
+}
+
 function renderCharacterChoice({ focus = false } = {}) {
   const text = labels();
+  const locale = i18n?.locale ?? storedLocale();
   dom.characterChoices.replaceChildren();
 
   for (const character of Object.values(characters)) {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "character-choice";
-    button.setAttribute("aria-label", `${character.name}, ${character.occupation}`);
+    const occupation = occupationOf(character, locale);
+    button.setAttribute("aria-label", `${character.name}, ${occupation}`);
 
     const name = document.createElement("span");
     name.className = "character-name";
     name.textContent = character.name;
     const role = document.createElement("span");
     role.className = "character-role";
-    role.textContent = character.occupation;
+    role.textContent = occupation;
     const vitals = document.createElement("span");
     vitals.className = "character-vitals";
-    vitals.textContent = `SAN ${character.san} · HP ${character.hp}`;
+    vitals.textContent = `${text.sanShort} ${character.san} · ${text.hpShort} ${character.hp}`;
 
     button.append(name, role, vitals);
     button.addEventListener("click", () => startGame(character.id));

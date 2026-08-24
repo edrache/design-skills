@@ -1,20 +1,22 @@
+import { termName } from "./terms.js";
+
 const COPY = {
   pl: {
     entry: "Paragraf",
-    critical: "Krytyk",
-    extreme: "Sukces ekstremalny",
-    hard: "Sukces trudny",
-    regular: "Sukces",
+    critical: "Sukces krytyczny",
+    extreme: "Ekstremalny sukces",
+    hard: "Trudny sukces",
+    regular: "Normalny sukces",
     fail: "Porażka",
-    fumble: "Fatalna porażka",
-    pushed: "przepchnięty",
-    spentLuck: (amount) => `Wydano ${amount} pkt. Luck`,
-    sanityLoss: (amount) => `Utrata Sanity: ${amount}`,
+    fumble: "Pech",
+    pushed: "rzut forsowany",
+    spentLuck: (amount) => `Wydano ${amount} pkt. Szczęścia`,
+    sanityLoss: (amount) => `Utrata Poczytalności: ${amount}`,
     damage: (amount) => `Obrażenia: ${amount}`,
     flag: (flag) => `Zapisano: ${flag.replaceAll("_", " ")}`,
     missing: (id) => `Paragraf ${id} nie został jeszcze przepisany. Dalszy zapis taśmy jest niedostępny.`,
-    burnLuck: (amount) => `Spal ${amount} Luck`,
-    push: "Przepchnij rzut",
+    burnLuck: (amount) => `Wydaj ${amount} pkt. Szczęścia`,
+    push: "Forsuj rzut",
     accept: "Przyjmij porażkę",
   },
   en: {
@@ -99,12 +101,13 @@ function renderRoll(doc, event, i18n) {
   const labels = copy(i18n);
   const box = el(doc, "div", "rollbox");
   const target = Number(event.target ?? 0);
-  const head = `${event.skill} · ${target} / ${Math.floor(target / 2)} / ${Math.floor(target / 5)}`;
+  const skill = termName(event.skill, i18n.locale);
+  const head = `${skill} · ${target} / ${Math.floor(target / 2)} / ${Math.floor(target / 5)}`;
   box.append(el(doc, "div", "roll-head", event.pushed ? `${head} · ${labels.pushed}` : head));
 
   const presentation = rollPresentation(event);
   const dice = el(doc, "div", "roll-dice");
-  dice.setAttribute("aria-label", `${event.skill}: ${presentation.total.slice(2)}`);
+  dice.setAttribute("aria-label", `${skill}: ${presentation.total.slice(2)}`);
   for (const tens of event.tens ?? []) {
     const candidate = tens === 0 && event.units === 0 ? 100 : tens + event.units;
     const kept = candidate === presentation.rawResult;
