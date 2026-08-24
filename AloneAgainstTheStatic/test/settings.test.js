@@ -51,6 +51,7 @@ test("domyślne ustawienia działają bez localStorage i document", () => {
     musicVolume: 0.4,
     scanlines: 0.05,
     proseSize: 1.05,
+    textEffects: 0.6,
   });
   assert.equal(Object.isFrozen(settings.values), true);
 });
@@ -76,6 +77,7 @@ test("odczyt przycina liczby, odrzuca obce pola i stosuje CSS", () => {
     musicVolume: 0,
     scanlines: 0.15,
     proseSize: 0.9,
+    textEffects: 0.6,
   });
   assert.equal(doc.properties.get("--scanline-strength"), "0.15");
   assert.equal(doc.properties.get("--prose-size"), "0.9rem");
@@ -97,6 +99,7 @@ test("nieprawidłowe typy z magazynu spadają na wartości domyślne", () => {
     musicVolume: 0.4,
     scanlines: 0.05,
     proseSize: 1.05,
+    textEffects: 0.6,
   });
 });
 
@@ -152,4 +155,25 @@ test("unsubscribe zatrzymuje powiadomienia, a błąd odbiorcy jest izolowany", (
   settings.set("narrationVolume", 0.25);
 
   assert.deepEqual(observed, [0.5]);
+});
+
+test("suwak efektów tekstu ma domyślną wartość i zakres", () => {
+  defineGlobal("localStorage", memoryStorage());
+  const settings = createSettings();
+  assert.equal(settings.values.textEffects, 0.6);
+
+  settings.set("textEffects", 5);
+  assert.equal(settings.values.textEffects, 1);
+
+  settings.set("textEffects", -2);
+  assert.equal(settings.values.textEffects, 0);
+});
+
+test("efekty tekstu trafiają do zmiennej CSS", () => {
+  const properties = new Map();
+  defineGlobal("localStorage", memoryStorage());
+  defineGlobal("document", { documentElement: { style: { setProperty: (k, v) => properties.set(k, v) } } });
+
+  createSettings().set("textEffects", 0.25);
+  assert.equal(properties.get("--text-effects"), "0.25");
 });

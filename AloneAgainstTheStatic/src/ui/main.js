@@ -21,6 +21,7 @@ const UI_COPY = {
     musicVolume: "Głośność muzyki",
     scanlines: "Linie skanowania",
     proseSize: "Rozmiar tekstu",
+    textEffects: "Efekty tekstu",
     close: "Zamknij",
     choose: "NAGRANIE OSOBISTE / WYBIERZ PERSPEKTYWĘ",
     who: "Kim jesteś?",
@@ -54,6 +55,7 @@ const UI_COPY = {
     musicVolume: "Music volume",
     scanlines: "Scanlines",
     proseSize: "Text size",
+    textEffects: "Text effects",
     close: "Close",
     choose: "PERSONAL RECORD / CHOOSE A PERSPECTIVE",
     who: "Who are you?",
@@ -194,11 +196,21 @@ function draw(record, isLast) {
   return block;
 }
 
+// Rozpad obrazu rośnie wraz ze spadkiem Poczytalności: na starcie gra jest
+// praktycznie czystym drukiem.
+function setDread(state) {
+  const start = Number(state?.startingSan) || 0;
+  const current = Number(state?.san) || 0;
+  const dread = start > 0 ? 1 - current / start : 0;
+  document.documentElement.style.setProperty("--dread", String(Math.max(0, Math.min(1, dread))));
+}
+
 function advance(next, originEntryId = null) {
   frame = next;
   history.push({ entryId: frame.entryId, originEntryId, events: frame.events });
   const block = draw(history.at(-1), true);
   renderCharacterSheet();
+  setDread(frame.state);
   saveGame({ characterId: ctx.character.id, frame, originEntryId });
   audio?.playNarration(frame.entryId, i18n.locale);
   audio?.playScene(story.entries[String(frame.entryId)]?.scene);
@@ -335,6 +347,7 @@ function updateChrome() {
   document.querySelector("#label-music-volume").textContent = text.musicVolume;
   document.querySelector("#label-scanlines").textContent = text.scanlines;
   document.querySelector("#label-prose").textContent = text.proseSize;
+  document.querySelector("#label-text-effects").textContent = text.textEffects;
   dom.settingsClose.textContent = text.close;
 }
 
@@ -344,6 +357,7 @@ const settingControls = {
   musicVolume: [document.querySelector("#set-music-volume"), "value"],
   scanlines: [document.querySelector("#set-scanlines"), "value"],
   proseSize: [document.querySelector("#set-prose"), "value"],
+  textEffects: [document.querySelector("#set-text-effects"), "value"],
 };
 
 function connectSettingsControls() {

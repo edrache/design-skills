@@ -6,6 +6,7 @@ const DEFAULTS = Object.freeze({
   musicVolume: 0.4,
   scanlines: 0.05,
   proseSize: 1.05,
+  textEffects: 0.6,
 });
 
 const NUMERIC_RANGES = Object.freeze({
@@ -13,6 +14,7 @@ const NUMERIC_RANGES = Object.freeze({
   musicVolume: [0, 1],
   scanlines: [0, 0.15],
   proseSize: [0.9, 1.4],
+  textEffects: [0, 1],
 });
 
 function isRecord(value) {
@@ -67,6 +69,7 @@ function applyToDocument(values) {
     if (typeof style?.setProperty !== "function") return;
     style.setProperty("--scanline-strength", String(values.scanlines));
     style.setProperty("--prose-size", `${values.proseSize}rem`);
+    style.setProperty("--text-effects", String(values.textEffects));
   } catch {
     // Brak DOM lub nietypowy host nie może zablokować działania ustawień.
   }
