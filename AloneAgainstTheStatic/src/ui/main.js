@@ -7,6 +7,7 @@ import { clearSave, isSaveCompatible, loadGame, saveGame } from "./save.js";
 import { createSettings } from "./settings.js";
 import { dreadLevel } from "./dread.js";
 import { renderSheet } from "./sheet.js";
+import { createEffects } from "./effects.js";
 
 const UI_COPY = {
   pl: {
@@ -129,6 +130,7 @@ let media;
 let i18n;
 let settings;
 let audio;
+let effects = null;
 let ctx = null;
 let frame = null;
 const history = [];
@@ -209,6 +211,8 @@ function advance(next, originEntryId = null) {
   const block = draw(history.at(-1), true);
   renderCharacterSheet();
   setDread(frame.state);
+  effects?.observe(block);
+  effects?.flash(block);
   saveGame({ characterId: ctx.character.id, frame, originEntryId });
   audio?.playNarration(frame.entryId, i18n.locale);
   audio?.playScene(story.entries[String(frame.entryId)]?.scene);
@@ -220,6 +224,7 @@ function redraw() {
   clearJournal(dom.journal);
   history.forEach((record, index) => draw(record, index === history.length - 1));
   renderCharacterSheet();
+  for (const block of dom.journal.children) effects?.observe(block);
   if (frame.pending?.type === "end") renderEndSummary();
 }
 
@@ -429,6 +434,7 @@ async function bootstrap() {
   i18n = createI18n({ en, pl }, storedLocale());
   settings = createSettings();
   audio = createAudio(media, settings);
+  effects = createEffects({ root: dom.journal });
   connectSettingsControls();
   updateChrome();
   const saved = loadGame();
