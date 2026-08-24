@@ -397,10 +397,18 @@ a:focus-visible {
   line-height: 0.8;
 }
 
+/* ::first-letter nie da się ukryć — spec CSS nie dopuszcza na nim `display`,
+   przeglądarka po prostu tę deklarację ignoruje. Trzeba więc cofnąć każdą
+   właściwość, którą nadaje reguła bazowa wyżej, sprowadzając ją do wartości
+   dziedziczonej z akapitu, żeby pierwsza litera zlała się z resztą tekstu. */
 .journal-entry p.speech:first-of-type::first-letter,
 .journal-entry p:first-of-type:has(> span[class^="v-"]:first-child)::first-letter,
 .journal-entry p:first-of-type:has(> span[class*=" v-"]:first-child)::first-letter {
-  display: none;
+  float: none;
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 /* --- Warstwa stylu tekstu ------------------------------------------------ */
