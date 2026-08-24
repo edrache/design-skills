@@ -14,7 +14,7 @@
 
 - Wszystkie polecenia uruchamiasz z katalogu `AloneAgainstTheStatic/`.
 - Brak zależności zewnętrznych, brak kroku budowania. Nie dodawaj niczego do `package.json` poza ewentualnym skryptem `npm run`.
-- **Nigdy `innerHTML`, `outerHTML` ani `insertAdjacentHTML`.** Węzły powstają przez `document.createElement` i `document.createTextNode`.
+- **Nigdy `innerHTML`, `outerHTML` ani `insertAdjacentHTML` w kodzie gry** (`src/`). Węzły powstają przez `document.createElement` i `document.createTextNode`. Wyjątkiem jest `tools/dev.html` — narzędzie autorskie spoza gry, które używa `innerHTML` z własną funkcją `escape()` i tej konwencji nie zmieniamy.
 - **Inwariant niezmienności treści:** `textContent` wyrenderowanego akapitu równa się tekstowi źródłowemu po usunięciu znaczników, znak w znak. Nazwa mówiącego pojawia się wyłącznie przez `content: attr(...)` w CSS, bo treść generowana nie wchodzi do `textContent`.
 - Amplituda ruchu nigdy nie przekracza 1.5 px. Czytelność jest warunkiem nadrzędnym.
 - Komentarze w kodzie i komunikaty walidatora po polsku, zgodnie z resztą repozytorium. Nazwy znaczników, kluczy i identyfikatorów po angielsku.
