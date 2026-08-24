@@ -221,3 +221,15 @@ i Przekonania*, *Ważne osoby*, *Znaczące miejsca*, *Rzeczy osobiste*).
 
 Skrót Poczytalności na ekranie wyboru postaci to **P**, a Punktów
 Wytrzymałości — **PW**, zgodnie z Kartą Badacza.
+
+---
+
+## 6. Znaczniki stylu tekstu
+
+Znaczniki `[tag]…[/tag]` przenosi się do tłumaczenia bez zmian — razem
+z tekstem, którego dotyczą, nie osobno. Zestaw znaczników w polskiej wersji
+paragrafu powinien odpowiadać zestawowi w angielskim oryginale; walidator
+(`npm run validate`) zgłasza ostrzeżenie, gdy dla danego klucza liczba
+wystąpień jakiegoś znacznika różni się między `text.pl.json` i `text.en.json`.
+To ostrzeżenie, nie błąd — czasem różnica jest uzasadniona (inny szyk zdania
+przesuwa atrybucję), ale zwykle wart sprawdzenia.

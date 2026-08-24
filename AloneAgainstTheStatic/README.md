@@ -71,6 +71,36 @@ paragrafów na ścieżki postaci oraz terminologię mechaniczną według polskie
 Startera 7. edycji *Zewu Cthulhu* (Black Monk Games). Nazwy cech, umiejętności
 i stanów w panelu postaci pochodzą z tego samego źródła — patrz `src/ui/sheet.js`.
 
+## Znaczniki stylu tekstu
+
+Fragmenty tekstu można oznaczać znacznikami `[tag]…[/tag]`, które nadają im
+wygląd i efekty. Głosy: `[charlie]` `[alex]` `[mark]` `[julie]` `[tom]`
+`[you]` `[voice]`. Tony: `[horror]` `[whisper]` `[shout]` `[thought]`
+`[radio]` `[sign]` `[wrong]`. Opis narracyjny nie ma znacznika — jest domyślny.
+
+Znaczniki zagnieżdżają się. `[[` to literalny nawias kwadratowy.
+
+Akapit będący w całości jedną kwestią dostaje układ scenariuszowy z kreską
+i nazwą mówiącego; kwestia w środku opisu zostaje inline.
+
+Nowy efekt dodajesz wpisem w `src/ui/voices.js` i regułą w `style.css`.
+Nieznany znacznik jest ostrzeżeniem walidatora, a nie błędem — możesz go
+wpisać, zanim powstanie implementacja.
+
+```bash
+npm run tag           # propozycje znaczników dialogów, bez zapisu
+npm run tag -- --write
+```
+
+Narzędzie oznacza wyłącznie znaczniki głosów i tylko wtedy, gdy imię mówiącego
+pada w tej samej atrybucji co kwestia. Kwestie bohatera (`[you]`) i postaci
+nienazwanych (`[voice]`), a także wszystkie znaczniki tonu, autor dopisuje
+sam — narzędzie ich nie zgaduje.
+
+Natężenie efektów rośnie wraz ze spadkiem Poczytalności i jest sterowane
+suwakiem **Efekty tekstu** w ustawieniach. `prefers-reduced-motion` wyłącza
+ruch automatycznie.
+
 ## Media
 
 Pliki wrzucasz do `media/narration/`, `media/music/`, `media/img/`
