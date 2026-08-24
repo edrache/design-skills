@@ -103,6 +103,19 @@ function list(doc) {
   return el(doc, "ul");
 }
 
+function statRow(doc, label, value, suffix = "") {
+  const row = el(doc, "li", "sheet-stat-row");
+  const leader = el(doc, "span", "sheet-stat-leader");
+  leader.setAttribute("aria-hidden", "true");
+  row.append(
+    el(doc, "span", "sheet-stat-label", label),
+    leader,
+    el(doc, "span", "sheet-stat-value", String(value)),
+  );
+  if (suffix) row.append(el(doc, "span", "sheet-stat-note", suffix));
+  return row;
+}
+
 // The panel mirrors the engine state; it never changes state or applies rules.
 export function renderSheet(root, state, character, locale = "en") {
   const doc = root.ownerDocument ?? document;
@@ -135,7 +148,7 @@ export function renderSheet(root, state, character, locale = "en") {
   ].filter(([, value]) => value !== undefined && value !== null && value !== "");
   if (profile.length) {
     const profileList = list(doc);
-    for (const [label, value] of profile) profileList.append(el(doc, "li", null, `${label}: ${value}`));
+    for (const [label, value] of profile) profileList.append(statRow(doc, `${label}:`, value));
     content.append(heading(doc, text.profile), profileList);
   }
 
@@ -150,14 +163,14 @@ export function renderSheet(root, state, character, locale = "en") {
   for (const [name, value] of Object.entries(character.skills ?? {})) {
     const penalty = penaltyFor(state, name);
     const suffix = penalty ? ` (${text.penalty(penalty)})` : "";
-    skills.append(el(doc, "li", null, `${termName(name, locale)} ${value}${suffix}`));
+    skills.append(statRow(doc, termName(name, locale), value, suffix));
   }
   content.append(skills);
 
   content.append(heading(doc, text.characteristics));
   const characteristics = list(doc);
   for (const [name, value] of Object.entries(character.characteristics ?? {})) {
-    characteristics.append(el(doc, "li", null, `${termName(name, locale)} ${value}`));
+    characteristics.append(statRow(doc, termName(name, locale), value));
   }
   content.append(characteristics);
 

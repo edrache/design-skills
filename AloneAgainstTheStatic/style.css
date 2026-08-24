@@ -780,6 +780,30 @@ a:focus-visible {
 
 .sheet h2 { color: var(--paper); font-size: 0.73rem; letter-spacing: 0.14em; text-transform: uppercase; }
 .sheet ul { margin: 0; padding: 0; list-style: none; }
+.sheet-stat-row {
+  display: grid;
+  grid-template-columns: minmax(0, max-content) minmax(0.75rem, 1fr) max-content;
+  column-gap: 0.35rem;
+  align-items: baseline;
+}
+.sheet-stat-label { min-width: 0; }
+.sheet-stat-leader {
+  align-self: center;
+  min-width: 0.75rem;
+  border-bottom: 1px dashed oklch(72% 0.032 88 / 0.24);
+  transform: translateY(-0.08em);
+}
+.sheet-stat-value {
+  justify-self: end;
+  color: color-mix(in oklch, var(--paper-dim) 35%, var(--paper));
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.sheet-stat-note {
+  grid-column: 1 / -1;
+  color: var(--paper-dim);
+  font-size: 0.9em;
+}
 .meter { height: 3px; margin: 0.15rem 0 0.8rem; background: var(--rule); }
 .meter span { display: block; height: 100%; background: var(--phosphor-deep); }
 .meter.hp span { background: var(--rec); }
