@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node --test test/*.test.js",
     "validate": "node tools/validate.mjs",
-    "tag": "node tools/tag-dialogue.mjs"
+    "tag": "node tools/tag-dialogue.mjs",
+    "tag:editor": "node tools/tag-editor-server.mjs"
   }
 }

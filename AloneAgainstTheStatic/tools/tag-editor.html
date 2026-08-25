@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#171811" />
+    <title>Stół tagów — Alone Against the Static</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="tag-editor.css" />
+  </head>
+  <body class="tag-editor-body">
+    <a class="skip-link" href="#workspace">Przejdź do tekstu</a>
+    <div class="editor-noise" aria-hidden="true"></div>
+    <svg class="filter-defs" aria-hidden="true" focusable="false" width="0" height="0">
+      <filter id="vhs-static" x="-4%" y="-4%" width="108%" height="108%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9 0.04" numOctaves="2" seed="7" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </svg>
+
+    <header class="editor-header">
+      <div class="editor-brand">
+        <span class="editor-brand__rec" aria-hidden="true"></span>
+        <div>
+          <p>ARCHIWUM TEKSTU / STÓŁ MONTAŻOWY</p>
+          <h1>Alone Against the Static</h1>
+        </div>
+      </div>
+      <div class="transport" aria-label="Nawigacja między paragrafami">
+        <button id="previous-entry" class="transport__step" type="button" aria-label="Poprzedni paragraf">←</button>
+        <label for="entry-number">Paragraf</label>
+        <input id="entry-number" type="number" inputmode="numeric" />
+        <span id="entry-total" aria-hidden="true">/ —</span>
+        <button id="next-entry" class="transport__step" type="button" aria-label="Następny paragraf">→</button>
+      </div>
+      <div class="header-actions">
+        <label class="locale-control" for="locale">
+          <span>Plik</span>
+          <select id="locale">
+            <option value="pl">text.pl.json</option>
+            <option value="en">text.en.json</option>
+          </select>
+        </label>
+        <button id="save" class="save-button" type="button" disabled>
+          <span class="save-button__lamp" aria-hidden="true"></span>
+          <span id="save-label">Zapisano</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="workspace" class="editor-layout" tabindex="-1">
+      <nav class="entry-rail" aria-label="Lista paragrafów">
+        <div class="rail-heading">
+          <p>INDEKS TAŚMY</p>
+          <input id="entry-filter" type="search" placeholder="Numer lub scena…" aria-label="Filtruj paragrafy" />
+        </div>
+        <ol id="entry-list" class="entry-list"></ol>
+      </nav>
+
+      <section class="workbench" aria-labelledby="current-title">
+        <header class="workbench-heading">
+          <div>
+            <p id="entry-kicker" class="editor-kicker">PARAGRAF / —</p>
+            <h2 id="current-title">Ładowanie taśmy…</h2>
+          </div>
+          <p id="entry-meta" class="entry-meta"></p>
+        </header>
+
+        <div class="tag-deck" aria-label="Znaczniki stylu">
+          <div class="tag-group">
+            <span class="tag-group__label">Głosy</span>
+            <div id="voice-tags" class="tag-buttons"></div>
+          </div>
+          <div class="tag-group">
+            <span class="tag-group__label">Tony</span>
+            <div id="tone-tags" class="tag-buttons"></div>
+          </div>
+          <button id="remove-tag" class="remove-tag" type="button">Usuń tag</button>
+        </div>
+        <p id="selection-hint" class="selection-hint">Zaznacz fragment tekstu, a potem wybierz tag.</p>
+
+        <div id="text-blocks" class="text-blocks"></div>
+      </section>
+
+      <aside class="effect-atlas" aria-labelledby="atlas-title">
+        <header>
+          <p class="editor-kicker">MONITOR EFEKTÓW</p>
+          <h2 id="atlas-title">Wzornik tagów</h2>
+          <p>Karta pokazuje efekt dokładnie tak, jak pojawi się w dzienniku gry.</p>
+        </header>
+        <label class="dread-control" for="dread-level">
+          <span>Poczytalność / siła zakłóceń</span>
+          <input id="dread-level" type="range" min="0" max="1" step="0.05" value="0.85" />
+        </label>
+        <div id="tag-samples" class="tag-samples"></div>
+      </aside>
+    </main>
+
+    <template id="text-block-template">
+      <article class="text-block">
+        <header class="text-block__header">
+          <div>
+            <span class="text-block__type"></span>
+            <code class="text-block__key"></code>
+          </div>
+          <span class="text-block__state">bez zmian</span>
+        </header>
+        <details class="reference">
+          <summary>Tekst odniesienia</summary>
+          <p></p>
+        </details>
+        <label class="editor-field">
+          <span class="visually-hidden">Edytowany tekst</span>
+          <textarea rows="5" spellcheck="true"></textarea>
+        </label>
+        <div class="markup-message" aria-live="polite"></div>
+        <div class="live-preview">
+          <span class="live-preview__label">Podgląd</span>
+          <div class="journal-entry"></div>
+        </div>
+      </article>
+    </template>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="tag-editor.js"></script>
+  </body>
+</html>

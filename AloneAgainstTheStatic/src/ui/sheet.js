@@ -116,6 +116,26 @@ function statRow(doc, label, value, suffix = "") {
   return row;
 }
 
+export function portraitSourceFor(character, state) {
+  const id = typeof character?.id === "string" ? character.id : "";
+  if (!id) return "";
+
+  const base = `media/img/${id}.png`;
+  if (id !== "charlie") return base;
+
+  const maximum = Number.isFinite(state?.startingSan) && state.startingSan > 0
+    ? state.startingSan
+    : character.san;
+  if (!Number.isFinite(maximum) || maximum <= 0 || !Number.isFinite(state?.san)) return base;
+
+  const percent = Math.max(0, Math.min(100, (state.san / maximum) * 100));
+  if (percent <= 20) return `media/img/${id}_0.png`;
+  if (percent <= 40) return `media/img/${id}_25.png`;
+  if (percent <= 60) return `media/img/${id}_50.png`;
+  if (percent < 70) return `media/img/${id}_75.png`;
+  return base;
+}
+
 // The panel mirrors the engine state; it never changes state or applies rules.
 export function renderSheet(root, state, character, locale = "en") {
   const doc = root.ownerDocument ?? document;
@@ -124,11 +144,21 @@ export function renderSheet(root, state, character, locale = "en") {
 
   const summary = el(doc, "section", "sheet-summary");
   summary.setAttribute("aria-label", `${character.name}: ${text.hp}, ${text.san}, ${text.luck}`);
-  summary.append(
+
+  const portrait = el(doc, "img", "sheet-portrait");
+  portrait.src = portraitSourceFor(character, state);
+  portrait.alt = "";
+  portrait.width = 456;
+  portrait.height = 596;
+  portrait.decoding = "async";
+
+  const stats = el(doc, "div", "sheet-summary-stats");
+  stats.append(
     meter(doc, text.hp, state.hp, state.maxHp, "hp"),
     meter(doc, text.san, state.san, state.startingSan, "san"),
     meter(doc, text.luck, state.luck, 100, "luck"),
   );
+  summary.append(portrait, stats);
 
   const content = el(doc, "div", "sheet-details");
   content.append(heading(doc, `${character.name} · ${localized(character.occupation, locale)}`));

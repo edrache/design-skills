@@ -12,4 +12,12 @@ Original prompt: przy wyborze postaci w [AloneAgainstTheStatic](AloneAgainstTheS
 - Widok 1280×720: kafelki są wyrównane i mają identyczne wymiary.
 - Widok 390×844: oba kafelki mają dokładnie 353,21875 × 216 px, a oba portrety 105,296875 × 137,609375 px.
 - Wybór Alex nadal przechodzi do paragrafu 1 z dwoma aktywnymi wyborami; brak błędów konsoli.
+- Dodano portret wybranej postaci do stale widocznego podsumowania PW, Poczytalności i Szczęścia podczas rozgrywki.
+- Na telefonie portret pozostaje widoczny także przy zwiniętej karcie, a na desktopie znajduje się obok pionowego zestawu statystyk.
+- Po zmianie zaliczono 172/172 testy i walidację z 0 błędów.
+- Zweryfikowano desktopowy panel boczny oraz mobilną kartę w stanie zwiniętym i rozwiniętym; brak błędów konsoli.
+- Portret Charliego zmienia się względem procentu początkowego Sanity: `_0` ≤20%, `_25` ≤40%, `_50` ≤60%, `_75` <70%, a od 70% używany jest portret bazowy.
+- Alex pozostaje przy portrecie bazowym, ponieważ nie ma jeszcze wariantów zależnych od Sanity.
+- Testy: 197/197 zaliczonych; walidator danych: 0 błędów.
+- Playwright potwierdził w grze poprawne źródła portretów dla Sanity 60, 42, 41, 36, 24, 12 i 0 oraz brak błędów konsoli.
 - TODO: brak.

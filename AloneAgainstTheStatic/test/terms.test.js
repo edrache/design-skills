@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { termName } from "../src/ui/terms.js";
 import { renderEvents, renderRollDecision } from "../src/ui/journal.js";
-import { renderSheet } from "../src/ui/sheet.js";
+import { portraitSourceFor, renderSheet } from "../src/ui/sheet.js";
 import { createI18n } from "../src/ui/i18n.js";
 
 // Minimalna atrapa DOM: renderery potrzebują tylko drzewa węzłów z tekstem.
@@ -98,4 +98,22 @@ test("karta postaci pokazuje polskie nazwy umiejętności i cech", () => {
   assert.match(text, /PW 13\/13/);
   assert.match(text, /Modyfikator Obrażeń: 1d4/);
   assert.match(text, /Krzepa: 1/);
+});
+
+test("portret Charliego odpowiada procentowi pozostałego Sanity", () => {
+  const charlie = { id: "charlie", san: 60 };
+  const sourceAt = (san) => portraitSourceFor(charlie, { san, startingSan: 60 });
+
+  assert.equal(sourceAt(60), "media/img/charlie.png");
+  assert.equal(sourceAt(42), "media/img/charlie.png");
+  assert.equal(sourceAt(41), "media/img/charlie_75.png");
+  assert.equal(sourceAt(36), "media/img/charlie_50.png");
+  assert.equal(sourceAt(24), "media/img/charlie_25.png");
+  assert.equal(sourceAt(12), "media/img/charlie_0.png");
+  assert.equal(sourceAt(0), "media/img/charlie_0.png");
+});
+
+test("portret Alex pozostaje bazowy niezależnie od Sanity", () => {
+  const alex = { id: "alex", san: 50 };
+  assert.equal(portraitSourceFor(alex, { san: 0, startingSan: 50 }), "media/img/alex.png");
 });
