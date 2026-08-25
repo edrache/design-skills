@@ -91,6 +91,7 @@ wpisać, zanim powstanie implementacja.
 ```bash
 npm run tag           # propozycje znaczników dialogów, bez zapisu
 npm run tag -- --write
+npm run tag -- --from 81 --write  # tylko paragrafy od 81 wzwyż
 ```
 
 Narzędzie oznacza wyłącznie znaczniki głosów i tylko wtedy, gdy imię mówiącego

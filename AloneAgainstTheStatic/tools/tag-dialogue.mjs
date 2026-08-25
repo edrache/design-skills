@@ -69,6 +69,9 @@ export function suggestTags(text, names = NAMED) {
 
 function run() {
   const write = process.argv.includes("--write");
+  const fromIndex = process.argv.indexOf("--from");
+  const from = fromIndex >= 0 ? Number(process.argv[fromIndex + 1]) : 1;
+  if (!Number.isInteger(from) || from < 1) throw new Error("--from wymaga dodatniego numeru paragrafu");
   const files = ["text.en.json", "text.pl.json"];
   let changes = 0;
 
@@ -79,6 +82,8 @@ function run() {
 
     for (const [key, value] of Object.entries(data)) {
       if (key.startsWith("__en.") || typeof value !== "string") continue;
+      const entry = key.match(/^e(\d+)\./);
+      if (entry && Number(entry[1]) < from) continue;
       const suggestion = suggestTags(value);
       if (suggestion === value) continue;
 
