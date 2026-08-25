@@ -6,12 +6,12 @@ import { buildStory } from "../tools/build-story.mjs";
 const load = (name) => JSON.parse(readFileSync(new URL(name, import.meta.url), "utf8"));
 const raw = load("../tools/raw-entries.json");
 
-test("generator buduje deterministyczny zakres 1-230 z dwoma startami", () => {
+test("generator buduje deterministyczny komplet 1-371 z dwoma startami", () => {
   const first = buildStory(raw);
   const second = buildStory(raw);
   assert.deepEqual(first, second);
-  assert.deepEqual(first.story.extracted, [1, 230]);
-  assert.equal(Object.keys(first.story.entries).length, 230);
+  assert.deepEqual(first.story.extracted, [1, 371]);
+  assert.equal(Object.keys(first.story.entries).length, 371);
   assert.equal(first.story.start, 1);
   assert.deepEqual(first.story.starts, { alex: 1, charlie: 2 });
 });
@@ -64,6 +64,17 @@ test("jawna mechanika zachowuje trudne przypadki z obu partii ekstrakcji", () =>
   assert.deepEqual(story.entries[211].on, [{ if: "veterinarian", goto: 212 }, { goto: 215 }]);
   assert.deepEqual(story.entries[226].on[0].onPushedFail, { goto: 231 });
   assert.deepEqual(story.entries[229].on, [{ if: "arrival", goto: 250 }, { goto: 248 }]);
+  assert.deepEqual(story.entries[238].on, [{ nextRollDice: 1 }]);
+  assert.deepEqual(story.entries[248].on, [{ sanCheck: "0/1d6" }]);
+  assert.ok(story.entries[285].choices.slice(0, 4).every((item) => item.once));
+  assert.deepEqual(story.entries[325].on, [{
+    roll: "CON",
+    onSuccess: [{ goto: "@return" }],
+    onFail: { goto: 324 },
+  }]);
+  assert.deepEqual(story.entries[329].on, [{ bout: true }]);
+  assert.equal(story.entries[345].on[0].difficulty, "hard");
+  assert.equal(story.entries[368].on[0].difficulty, "hard");
 });
 
 test("proza zachowuje akapity, a urwane linie 5 i 8 są połączone", () => {
@@ -96,7 +107,7 @@ test("proza zachowuje akapity, a urwane linie 5 i 8 są połączone", () => {
   assert.equal(story.entries[226].text.length, 1);
   assert.ok(!Object.values(texts).some((value) => value.startsWith("If Broken Heart")));
   assert.ok(!Object.values(texts).some((value) => value.startsWith("Make a ")));
-  assert.equal(Object.values(texts).filter((value) => value.startsWith("To ")).length, 206);
+  assert.equal(Object.values(texts).filter((value) => value.startsWith("To ")).length, 304);
 });
 
 test("każdy wpis ma scenę i wszystkie klucze tekstów istnieją", () => {
@@ -127,4 +138,8 @@ test("każdy wpis ma scenę i wszystkie klucze tekstów istnieją", () => {
   assert.equal(story.entries[224].scene, "clearing");
   assert.equal(story.entries[229].scene, "forest");
   assert.equal(story.entries[230].scene, "cabin");
+  assert.equal(story.entries[241].scene, "cabin");
+  assert.equal(story.entries[298].scene, "forest");
+  assert.equal(story.entries[342].scene, "clearing");
+  assert.equal(story.entries[361].scene, "shed");
 });

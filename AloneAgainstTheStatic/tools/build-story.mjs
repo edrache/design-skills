@@ -1,11 +1,13 @@
-// Buduje deterministyczny pionowy plaster paragrafów 1-230.
+// Buduje deterministyczny komplet paragrafów 1-371.
 // Mechanika jest jawna: ponowne uruchomienie generatora nie nadpisuje ręcznych
 // poprawek, bo wszystkie wyjątki pozostają w tym pliku.
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
+import { CONFIG_231_300, proseOf231To300, sceneFor231To300 } from "./build-story-231-300.mjs";
+import { CONFIG_301_371, proseOf301To371, sceneFor301To371 } from "./build-story-301-371.mjs";
 
-const RANGE = [1, 230];
+const RANGE = [1, 371];
 
 const choice = (label, goto, extra = {}) => ({ label, goto, ...extra });
 const roll = (skill, onSuccess, onFail) => ({ roll: skill, onSuccess, onFail });
@@ -546,6 +548,8 @@ const CONFIG = {
   },
   229: { on: [{ if: "arrival", goto: 250 }, { goto: 248 }] },
   230: { choices: [choice("To try and slam the door against his arm", 235), choice("To let go of the door and try something else", 236)] },
+  ...CONFIG_231_300,
+  ...CONFIG_301_371,
 };
 
 const DRIVE = new Set([1, 2, 3, 4, 7, 8, 83, 96]);
@@ -561,6 +565,8 @@ const FOREST = new Set([
 ]);
 
 function sceneFor(id) {
+  if (id >= 231 && id <= 300) return sceneFor231To300(id);
+  if (id >= 301 && id <= 371) return sceneFor301To371(id);
   if (DRIVE.has(id)) return "drive";
   if (CLEARING.has(id)) return "clearing";
   if (ARRIVAL.has(id)) return "arrival";
@@ -571,6 +577,8 @@ function sceneFor(id) {
 }
 
 function proseOf(id, paragraphs) {
+  if (id >= 231 && id <= 300) return proseOf231To300(id, paragraphs);
+  if (id >= 301 && id <= 371) return proseOf301To371(id, paragraphs);
   if (id === 5) return [paragraphs[0], `${paragraphs[1]} ${paragraphs[2]}`, paragraphs[3]];
   if (id === 8) return [`${paragraphs[0]} ${paragraphs[1]}`, paragraphs[2]];
   if (id === 22) return paragraphs.slice(0, -2);

@@ -47,3 +47,9 @@ Original prompt: przy wyborze postaci w [AloneAgainstTheStatic](AloneAgainstTheS
 - `npm test`: 248/248 testów zaliczonych. `npm run validate`: 0 błędów; 920 ostrzeżeń (776 pustych tłumaczeń PL, 25 przejść poza zakres, 13 ostrzeżeń o flagach i 106 istniejących różnic znaczników).
 - Playwright potwierdził aktywne i zużyte kasety w 186, stratę 1K4 Poczytalności w 199, przejście `Veterinarian` 217 → 218, przyjęcie porażki 226 → 230 oraz strażnik 193 → 207 → 34; stan tekstowy zgadza się z ekranem, brak błędów konsoli.
 - Następny niewyodrębniony paragraf: 231. Wpisy 31–230 wymagają tłumaczenia PL (776 pustych kluczy).
+- Dokończono angielski scenariusz: dodano paragrafy 231–371. Aktualny zakres jest kompletny (1–371), łącznie 1422 klucze tekstowe (494 nowe w tej partii).
+- Zakodowano obronę chaty, walkę i ucieczkę przez las, spotkanie w obozowisku, wszystkie zakończenia oraz wpisy systemowe 324–334 dla poważnych ran, nieokreślonego obłędu i epizodów szaleństwa.
+- Silnik obsługuje teraz jednorazową kość do następnego rzutu (`nextRollDice`), a po nabyciu poważnej rany każde kolejne obrażenie ponawia test KON z paragrafu 325.
+- `npm test`: 258/258 testów zaliczonych. `npm run validate`: 0 błędów; 1377 ostrzeżeń (1270 pustych tłumaczeń PL, 1 nieużywana flaga `tinnitus` i 106 istniejących różnic znaczników).
+- Nie ma kolejnego niewyodrębnionego paragrafu. Cały oryginał EN jest dostępny w danych gry; wpisy 31–371 nadal wymagają tłumaczenia PL (1270 pustych kluczy).
+- Końcowy smoke test Playwright uruchomił grę przez HTTP, wybrał Alex i potwierdził paragraf 1 z dwoma aktywnymi wyborami; stan `render_game_to_text` zgadzał się z ekranem, bez błędów konsoli.
