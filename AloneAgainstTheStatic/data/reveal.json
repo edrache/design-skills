@@ -1,0 +1,15 @@
+{
+  "charsPerSecond": 45,
+  "punctuationPauseMs": {
+    ".": 240,
+    "!": 240,
+    "?": 240,
+    "…": 340,
+    ",": 100,
+    ";": 140,
+    ":": 140,
+    "—": 160
+  },
+  "choiceStaggerMs": 180,
+  "dieStaggerMs": 140
+}

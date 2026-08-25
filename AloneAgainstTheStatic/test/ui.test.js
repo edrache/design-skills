@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createI18n } from "../src/ui/i18n.js";
-import { renderEvents, rollPresentation, segmentEvents } from "../src/ui/journal.js";
+import { renderArchive, renderEvents, rollPresentation, segmentEvents } from "../src/ui/journal.js";
 import { stripMarkup } from "../src/ui/markup.js";
 import { classesOf, createFakeDocument } from "./helpers/fake-dom.js";
 
@@ -67,4 +67,23 @@ test("prezentacja Luck zachowuje surowy i zakupiony wynik", () => {
     total: "= 99 → 45",
   });
   assert.equal(rollPresentation({ result: 28 }).total, "= 28");
+});
+
+test("renderArchive odtwarza wszystkie przekazane ramki w kolejności czytania", () => {
+  const i18n = createI18n({ pl: { "e1.p1": "Pierwszy.", "e2.p1": "Drugi.", "e3.p1": "Trzeci." }, en: {} }, "pl");
+  const doc = createFakeDocument();
+  const root = doc.createElement("div");
+  const records = [
+    { entryId: 1, originEntryId: null, events: [{ kind: "text", key: "e1.p1" }] },
+    { entryId: 3, originEntryId: 1, events: [{ kind: "text", key: "e2.p1" }, { kind: "text", key: "e3.p1" }] },
+  ];
+
+  renderArchive(root, records, i18n, {});
+
+  assert.deepEqual(root.children.map((node) => node.dataset.entryId), ["1", "2", "3"]);
+  assert.ok(root.children[0].textContent.endsWith("Pierwszy."));
+
+  // Powtórne wywołanie nie dokłada duplikatów.
+  renderArchive(root, records, i18n, {});
+  assert.equal(root.children.length, 3);
 });

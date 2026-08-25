@@ -21,6 +21,8 @@ const COPY = {
     burnLuck: (amount) => `Wydaj ${amount} pkt. Szczęścia`,
     push: "Forsuj rzut",
     accept: "Przyjmij porażkę",
+    roll: "Rzuć",
+    next: "Dalej",
   },
   en: {
     entry: "Entry",
@@ -41,11 +43,19 @@ const COPY = {
     burnLuck: (amount) => `Spend ${amount} Luck`,
     push: "Push the roll",
     accept: "Accept failure",
+    roll: "Roll",
+    next: "Continue",
   },
 };
 
 function copy(i18n) {
   return COPY[i18n.locale] ?? COPY.en;
+}
+
+// Etykiety wpisu są potrzebne też odsłanianiu (reveal.js), które buduje wpis
+// krok po kroku, a nie przez renderEvents.
+export function entryLabels(i18n) {
+  return copy(i18n);
 }
 
 function el(doc, tag, className, text) {
@@ -102,13 +112,26 @@ export function rollPresentation(event) {
   };
 }
 
+// Nagłówek rzutu w jednym miejscu: używa go i gotowy wynik, i bramka, która
+// każe graczowi rzucić samemu.
+function rollHead(event, i18n) {
+  const labels = copy(i18n);
+  const target = Number(event.target ?? 0);
+  const skill = termName(event.skill, i18n.locale);
+  const head = `${skill} · ${target} / ${Math.floor(target / 2)} / ${Math.floor(target / 5)}`;
+  return event.pushed ? `${head} · ${labels.pushed}` : head;
+}
+
+export function rollGateLabel(event, i18n) {
+  return `${copy(i18n).roll}: ${rollHead(event, i18n)}`;
+}
+
 function renderRoll(doc, event, i18n) {
   const labels = copy(i18n);
   const box = el(doc, "div", "rollbox");
   const target = Number(event.target ?? 0);
   const skill = termName(event.skill, i18n.locale);
-  const head = `${skill} · ${target} / ${Math.floor(target / 2)} / ${Math.floor(target / 5)}`;
-  box.append(el(doc, "div", "roll-head", event.pushed ? `${head} · ${labels.pushed}` : head));
+  box.append(el(doc, "div", "roll-head", rollHead(event, i18n)));
 
   const presentation = rollPresentation(event);
   const dice = el(doc, "div", "roll-dice");
@@ -129,7 +152,7 @@ function renderRoll(doc, event, i18n) {
   return box;
 }
 
-function createEntry(doc, entryId, labels, media) {
+export function createEntryBlock(doc, entryId, labels, media) {
   const block = el(doc, "article", "journal-entry");
   block.tabIndex = -1;
 
@@ -158,36 +181,42 @@ function createEntry(doc, entryId, labels, media) {
   return block;
 }
 
-function sealEntry(block) {
+export function sealEntry(block) {
   if (!block?.classList?.contains("journal-entry")) return;
   block.classList.add("past");
   for (const button of block.querySelectorAll("button")) button.disabled = true;
 }
 
-function appendEvent(block, event, doc, labels, i18n, handlers) {
-  if (event.kind === "text") block.append(renderMarkup(doc, i18n.t(event.key)));
-  if (event.kind === "roll") block.append(renderRoll(doc, event, i18n));
-  if (event.kind === "san") block.append(el(doc, "div", "event-note", labels.sanityLoss(event.amount)));
-  if (event.kind === "hp") block.append(el(doc, "div", "event-note damage", labels.damage(event.amount)));
-  if (event.kind === "heal") block.append(el(doc, "div", "event-note", labels.healing(event.amount)));
-  if (event.kind === "luck") block.append(el(doc, "div", "event-note", labels.luckRestored(event.amount)));
-  if (event.kind === "flag") block.append(el(doc, "div", "event-note", labels.flag(event.flag)));
-
-  if (event.kind === "missing") {
-    block.append(el(doc, "div", "missing", labels.missing(event.entryId)));
-  }
+// Zwraca węzły jednego zdarzenia, bez wstawiania ich do wpisu. Dzięki temu
+// ten sam kod obsługuje rysowanie hurtem (renderEvents, renderArchive) i
+// odsłanianie krok po kroku (reveal.js).
+export function eventNodes(doc, event, labels, i18n, handlers = {}) {
+  if (event.kind === "text") return [renderMarkup(doc, i18n.t(event.key))];
+  if (event.kind === "roll") return [renderRoll(doc, event, i18n)];
+  if (event.kind === "san") return [el(doc, "div", "event-note", labels.sanityLoss(event.amount))];
+  if (event.kind === "hp") return [el(doc, "div", "event-note damage", labels.damage(event.amount))];
+  if (event.kind === "heal") return [el(doc, "div", "event-note", labels.healing(event.amount))];
+  if (event.kind === "luck") return [el(doc, "div", "event-note", labels.luckRestored(event.amount))];
+  if (event.kind === "flag") return [el(doc, "div", "event-note", labels.flag(event.flag))];
+  if (event.kind === "missing") return [el(doc, "div", "missing", labels.missing(event.entryId))];
 
   if (event.kind === "choices") {
-    for (const option of event.options) {
+    return event.options.map((option) => {
       const button = el(doc, "button", "choice", i18n.t(option.key));
       button.type = "button";
       button.disabled = option.used || option.blocked;
       if (option.used) button.dataset.reason = "used";
       if (option.blocked) button.dataset.reason = "blocked";
-      button.addEventListener("click", () => handlers.onChoose(option.index));
-      block.append(button);
-    }
+      button.addEventListener("click", () => handlers.onChoose?.(option.index));
+      return button;
+    });
   }
+
+  return [];
+}
+
+function appendEvent(block, event, doc, labels, i18n, handlers) {
+  for (const node of eventNodes(doc, event, labels, i18n, handlers)) block.append(node);
 }
 
 // Render only what the engine reports. Rules and state transitions stay in runner.js.
@@ -199,7 +228,7 @@ export function renderEvents(root, events, i18n, handlers, context = {}) {
   let block = null;
   for (const segment of segmentEvents(events, context)) {
     if (block) sealEntry(block);
-    block = createEntry(doc, segment.entryId, labels, context.media);
+    block = createEntryBlock(doc, segment.entryId, labels, context.media);
     for (const event of segment.events) appendEvent(block, event, doc, labels, i18n, handlers);
     root.append(block);
   }
@@ -236,6 +265,29 @@ export function renderRollDecision(block, pending, i18n, handlers) {
   const target = [...block.querySelectorAll(".rollbox")].at(-1) ?? block;
   target.append(actions);
   return actions;
+}
+
+// Archiwum: te same wpisy, tylko do czytania. Nie przewija ekranu i nie
+// podłącza akcji — przyciski wyborów zostają widoczne (są częścią tekstu
+// paragrafu), ale zapieczętowane jak wpisy przeszłe.
+export function renderArchive(root, records, i18n, context = {}) {
+  const doc = root.ownerDocument ?? document;
+  const labels = copy(i18n);
+  root.replaceChildren();
+
+  for (const record of records) {
+    const segments = segmentEvents(record.events, {
+      entryId: record.entryId,
+      originEntryId: record.originEntryId,
+    });
+    for (const segment of segments) {
+      const block = createEntryBlock(doc, segment.entryId, labels, context.media);
+      for (const event of segment.events) appendEvent(block, event, doc, labels, i18n, {});
+      sealEntry(block);
+      root.append(block);
+    }
+  }
+  return root;
 }
 
 export function clearJournal(root) {

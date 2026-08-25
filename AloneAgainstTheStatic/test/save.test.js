@@ -145,7 +145,7 @@ test("round-trip zachowuje dokładną ramkę oczekującą na wybór", () => {
   assert.equal(raw.characterId, "alex");
   assert.equal(raw.originEntryId, null);
   assert.deepEqual(raw.frame, frame);
-  assert.deepEqual(loadGame(), { characterId: "alex", originEntryId: null, frame });
+  assert.deepEqual(loadGame(), { characterId: "alex", originEntryId: null, frame, log: [] });
 });
 
 test("round-trip zachowuje decyzję po rzucie bez ponownego wykonania paragrafu", () => {
@@ -155,7 +155,7 @@ test("round-trip zachowuje decyzję po rzucie bez ponownego wykonania paragrafu"
 
   saveGame({ characterId: "alex", frame });
 
-  assert.deepEqual(loadGame(), { characterId: "alex", originEntryId: null, frame });
+  assert.deepEqual(loadGame(), { characterId: "alex", originEntryId: null, frame, log: [] });
 });
 
 test("round-trip zachowuje zdarzenia leczenia i odzyskania Luck", () => {
@@ -173,7 +173,7 @@ test("round-trip zachowuje zdarzenia leczenia i odzyskania Luck", () => {
   });
 
   saveGame({ characterId: "alex", frame });
-  assert.deepEqual(loadGame(), { characterId: "alex", originEntryId: null, frame });
+  assert.deepEqual(loadGame(), { characterId: "alex", originEntryId: null, frame, log: [] });
 });
 
 test("brak localStorage nie przerywa zapisu, odczytu ani czyszczenia", () => {
@@ -556,4 +556,22 @@ test("clearSave usuwa wyłącznie klucz autosave", () => {
 
   assert.equal(storage.getItem(KEY), null);
   assert.equal(storage.getItem("aats-locale"), "pl");
+});
+
+test("zapis przenosi archiwum dziennika i odrzuca niepoprawne wpisy", () => {
+  const storage = memoryStorage();
+  useStorage(storage);
+  const frame = choicesFrame();
+  const log = [{ entryId: 1, originEntryId: null, events: [{ kind: "text", key: "e1.p1" }] }];
+
+  saveGame({ characterId: "alex", frame, log });
+  assert.deepEqual(loadGame().log, log);
+
+  // Uszkodzone archiwum nie unieważnia ramki — dziennik startuje pusty.
+  const parsed = JSON.parse(storage.getItem(KEY));
+  parsed.log = [{ entryId: 0, events: [] }];
+  storage.setItem(KEY, JSON.stringify(parsed));
+  const restored = loadGame();
+  assert.deepEqual(restored.log, []);
+  assert.deepEqual(restored.frame, frame);
 });

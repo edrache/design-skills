@@ -1,0 +1,228 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { createI18n } from "../src/ui/i18n.js";
+import {
+  DEFAULTS, charTimeline, createReveal, normalizeConfig, stagger, visibleCount,
+} from "../src/ui/reveal.js";
+import { createFakeClock, createFakeDocument } from "./helpers/fake-dom.js";
+
+const CONFIG = normalizeConfig({
+  charsPerSecond: 100,
+  punctuationPauseMs: { ".": 500 },
+  choiceStaggerMs: 100,
+  dieStaggerMs: 50,
+});
+
+function setup(texts, { reducedMotion = false } = {}) {
+  const doc = createFakeDocument();
+  const root = doc.createElement("div");
+  const clock = createFakeClock();
+  const i18n = createI18n({ pl: texts, en: {} }, "pl");
+  const reveal = createReveal({
+    root,
+    config: CONFIG,
+    now: clock.now,
+    raf: clock.raf,
+    cancelRaf: clock.cancelRaf,
+    delay: clock.delay,
+    reducedMotion: () => reducedMotion,
+  });
+  return { doc, root, clock, i18n, reveal };
+}
+
+function textOf(root) {
+  return root.children.map((node) => node.textContent).join("");
+}
+
+test("konfiguracja odsłaniania odrzuca śmieci pole po polu", () => {
+  const config = normalizeConfig({
+    charsPerSecond: "szybko",
+    punctuationPauseMs: { ".": 200, ",": -5, "?": "dużo" },
+    choiceStaggerMs: 0,
+    dieStaggerMs: null,
+  });
+
+  assert.equal(config.charsPerSecond, DEFAULTS.charsPerSecond);
+  // Poprawne pauzy zostają, niepoprawne wypadają — bez zabierania reszty.
+  assert.deepEqual(config.punctuationPauseMs, { ".": 200 });
+  assert.equal(config.choiceStaggerMs, 0);
+  assert.equal(config.dieStaggerMs, DEFAULTS.dieStaggerMs);
+  assert.deepEqual(normalizeConfig(null), normalizeConfig(undefined));
+});
+
+test("oś czasu znaków dolicza pauzę po interpunkcji", () => {
+  const timeline = charTimeline("ab.c", CONFIG);
+  assert.deepEqual(timeline, [10, 20, 30, 540]);
+  assert.equal(visibleCount(timeline, 0), 0);
+  assert.equal(visibleCount(timeline, 25), 2);
+  assert.equal(visibleCount(timeline, 539), 3);
+  assert.equal(visibleCount(timeline, 540), 4);
+});
+
+test("akapit wypisuje się litera po literze i kończy na pełnym tekście", () => {
+  const { root, clock, i18n, reveal } = setup({ "e1.p1": "Dwanaście liter" });
+  reveal.start({ entryId: 1, originEntryId: null, events: [{ kind: "text", key: "e1.p1" }] }, { i18n });
+
+  assert.equal(reveal.phase(), "typing");
+  clock.tick(30);
+  assert.ok(textOf(root).endsWith("Dwa"), `oczekiwano prefiksu, jest: ${textOf(root)}`);
+  assert.equal(reveal.phase(), "typing");
+
+  clock.tick(1000);
+  assert.ok(textOf(root).endsWith("Dwanaście liter"));
+  assert.equal(reveal.phase(), "waiting");
+});
+
+test("po domknięciu akapitu miga wskaźnik, który gaśnie przy kolejnym kroku", () => {
+  const { root, clock, i18n, reveal } = setup({ "e1.p1": "Cisza.", "e1.p2": "Potem trzask." });
+  reveal.start({
+    entryId: 1,
+    originEntryId: null,
+    events: [
+      { kind: "text", key: "e1.p1" },
+      { kind: "flag", flag: "tape_played" },
+      { kind: "text", key: "e1.p2" },
+    ],
+  }, { i18n });
+
+  const first = root.querySelectorAll("p")[0];
+  assert.equal("awaiting" in first.dataset, false, "w trakcie pisania zachęty nie ma");
+  clock.tick(2000);
+  assert.equal("awaiting" in first.dataset, true);
+
+  // Notatka mechaniczna przejmuje wskaźnik, akapit go oddaje.
+  reveal.tap();
+  const note = root.querySelector(".event-note");
+  assert.equal("awaiting" in first.dataset, false);
+  assert.equal("awaiting" in note.dataset, true);
+
+  reveal.tap();
+  assert.equal("awaiting" in note.dataset, false, "zachęta znika, gdy tekst znów się pisze");
+  assert.equal(root.querySelectorAll("[data-awaiting]").length, 0);
+});
+
+test("klik w trakcie pisania domyka akapit, kolejny odsłania następny", () => {
+  const { root, clock, i18n, reveal } = setup({ "e1.p1": "Pierwszy akapit", "e1.p2": "Drugi" });
+  reveal.start({
+    entryId: 1,
+    originEntryId: null,
+    events: [{ kind: "text", key: "e1.p1" }, { kind: "text", key: "e1.p2" }],
+  }, { i18n });
+
+  clock.tick(20);
+  assert.equal(reveal.tap(), true);
+  assert.ok(textOf(root).includes("Pierwszy akapit"), "pierwszy klik domyka akapit");
+  assert.equal(reveal.phase(), "waiting");
+  assert.ok(!textOf(root).includes("Drugi"), "drugi akapit nie może wyprzedzić kliknięcia");
+
+  reveal.tap();
+  clock.tick(1000);
+  assert.ok(textOf(root).includes("Drugi"));
+});
+
+test("granica paragrafów daje przycisk dalej, który czyści ekran", () => {
+  const { root, clock, i18n, reveal } = setup({ "e1.p1": "Tu", "e2.p1": "Tam" });
+  reveal.start({
+    entryId: 2,
+    originEntryId: 1,
+    events: [{ kind: "text", key: "e1.p1" }, { kind: "text", key: "e2.p1" }],
+  }, { i18n });
+
+  clock.tick(1000);
+  reveal.tap();
+  assert.equal(reveal.phase(), "continue");
+  const next = root.querySelector(".continue");
+  assert.equal(next.textContent, "→");
+  assert.equal(next.getAttribute("aria-label"), "Dalej");
+
+  next.click();
+  // Poprzedni paragraf znika z ekranu: zostaje wyłącznie bieżący.
+  assert.equal(root.children.length, 1);
+  assert.equal(root.children[0].dataset.entryId, "2");
+  assert.ok(!textOf(root).includes("Tu"));
+});
+
+test("rzut czeka na kliknięcie gracza, a potem odsłania kości po kolei", () => {
+  const { root, clock, i18n, reveal } = setup({ "e1.p1": "Nasłuchujesz." });
+  let completed = false;
+  reveal.start({
+    entryId: 1,
+    originEntryId: null,
+    events: [
+      { kind: "text", key: "e1.p1" },
+      { kind: "roll", skill: "Spot Hidden", target: 60, tens: [40], units: 3, result: 43, level: "hard", success: true },
+    ],
+  }, { i18n, onComplete: () => { completed = true; } });
+
+  clock.tick(2000);
+  reveal.tap();
+
+  const gate = root.querySelector(".roll-gate");
+  assert.equal(reveal.phase(), "gate");
+  assert.match(gate.textContent, /^Rzuć: Spostrzegawczość · 60 \/ 30 \/ 12$/);
+  assert.equal(root.querySelector(".rollbox"), null, "wynik nie może pojawić się przed kliknięciem");
+
+  gate.click();
+  const box = root.querySelector(".rollbox");
+  assert.ok(box, "po kliknięciu pojawia się wynik");
+  assert.equal(root.querySelector(".roll-gate"), null, "bramka znika po rzucie");
+  const dice = box.querySelectorAll(".die, .roll-total, .roll-level");
+  assert.deepEqual(dice.map((die) => die.style.animationDelay), ["0ms", "50ms", "100ms", "150ms"]);
+
+  // Rzut kończący ramkę sam oddaje głos decyzjom, bez dodatkowego kliknięcia.
+  assert.equal(completed, false);
+  clock.tick(1000);
+  assert.equal(completed, true);
+  assert.equal(reveal.phase(), "done");
+});
+
+test("wybory wjeżdżają po kolei i zamykają ramkę", () => {
+  const { root, clock, i18n, reveal } = setup({ "e1.p1": "I co teraz?", "e1.c1": "Wyjść", "e1.c2": "Zostać" });
+  const chosen = [];
+  let completed = false;
+  reveal.start({
+    entryId: 1,
+    originEntryId: null,
+    events: [
+      { kind: "text", key: "e1.p1" },
+      {
+        kind: "choices",
+        options: [
+          { index: 0, key: "e1.c1", used: false, blocked: false },
+          { index: 1, key: "e1.c2", used: false, blocked: false },
+        ],
+      },
+    ],
+  }, { i18n, handlers: { onChoose: (index) => chosen.push(index) }, onComplete: () => { completed = true; } });
+
+  clock.tick(2000);
+  reveal.tap();
+
+  const choices = root.querySelectorAll(".choice");
+  assert.deepEqual(choices.map((button) => button.textContent), ["Wyjść", "Zostać"]);
+  assert.deepEqual(choices.map((button) => button.style.animationDelay), ["0ms", "100ms"]);
+  assert.ok(choices.every((button) => button.classList.contains("appearing")));
+  assert.equal(completed, true);
+  assert.equal(reveal.phase(), "done");
+
+  choices[1].click();
+  assert.deepEqual(chosen, [1]);
+  // Po decyzji klik w tło nie może już nic odsłaniać.
+  assert.equal(reveal.tap(), false);
+});
+
+test("prefers-reduced-motion wyłącza wypisywanie, ale nie bramki", () => {
+  const { root, i18n, reveal } = setup({ "e1.p1": "Bez animacji." }, { reducedMotion: true });
+  reveal.start({ entryId: 1, originEntryId: null, events: [{ kind: "text", key: "e1.p1" }] }, { i18n });
+
+  assert.ok(textOf(root).includes("Bez animacji."));
+  assert.equal(reveal.phase(), "waiting");
+});
+
+test("stagger zwraca łączny czas wejścia i oznacza elementy", () => {
+  const doc = createFakeDocument();
+  const nodes = [doc.createElement("button"), doc.createElement("button")];
+  assert.equal(stagger(nodes, 120), 240);
+  assert.deepEqual(nodes.map((node) => node.style.animationDelay), ["0ms", "120ms"]);
+  assert.ok(nodes.every((node) => node.classList.contains("appearing")));
+});

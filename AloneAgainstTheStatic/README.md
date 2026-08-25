@@ -21,7 +21,19 @@ Moduły ES wymagają serwera HTTP — otwarcie `index.html` przez `file://` nie 
 
 ## Rozgrywka
 
+Na ekranie widać wyłącznie bieżący paragraf. Tekst odsłania się akapit po
+akapicie: klik w tło (albo Enter/Spacja) domyka wypisywany akapit, kolejny
+odsłania następny. Gdy gra czeka na kliknięcie, na końcu odsłoniętego
+fragmentu miga `▶`. Po ostatnim akapicie pojawia się to, co należy — wybory,
+przyciski decyzji po rzucie, albo strzałka `→` prowadząca do następnego
+paragrafu. Rzut kośćmi wymaga świadomego kliknięcia w bramkę
+`RZUĆ: <TEST> · <próg>`; wynik jest już wyliczony przez silnik, bramka jest
+wyłącznie prezentacją. Wszystkie przeczytane paragrafy zostają w **Dzienniku**
+w górnym pasku — tylko do odczytu, w kolejności czytania.
+
 Gra zapisuje się sama po każdej ramce i wznawia zapis przy wejściu na stronę.
+Wznowiona ramka pojawia się od razu w całości: gracz ją już przeczytał, a stan
+odsłonięcia nie jest zapisywany.
 Przycisk **Nowa gra** w górnym pasku porzuca zapis i wraca do wyboru postaci —
 pyta o potwierdzenie, bo zapis jest tylko jeden. Przycisk pojawia się wyłącznie
 w trakcie rozgrywki.
@@ -47,6 +59,15 @@ Błędów ma być zero; ostrzeżenia są normalne, dopóki scenariusz nie jest p
 | `data/text.pl.json` | teksty polskie; klucze `__en.*` to podgląd oryginału |
 | `data/characters.json` | karty Alex i Charlie (pola `en`/`pl`) |
 | `data/media.json` | grafiki, lektor, muzyka scen |
+| `data/reveal.json` | rytm odsłaniania tekstu (prędkość, pauzy, wejścia) |
+
+`data/reveal.json` steruje tempem prezentacji: `charsPerSecond` (znaki na
+sekundę), `punctuationPauseMs` (dodatkowa pauza po znaku — klucz to sam znak),
+`choiceStaggerMs` (odstęp między pojawiającymi się wyborami) i `dieStaggerMs`
+(odstęp między odsłanianymi kośćmi). Każde pole waliduje się osobno — literówka
+w jednym nie psuje pozostałych, a brak pliku cofa grę do wartości domyślnych
+z `src/ui/reveal.js`. `prefers-reduced-motion` wyłącza samo wypisywanie liter;
+kliknięcia zostają, żeby ustawienie nie zmieniało rozgrywki.
 
 Pole `extracted` w `story.json` mówi, które paragrafy są już przepisane.
 Przejścia poza ten zakres to w grze zaślepka, a w walidatorze ostrzeżenie.

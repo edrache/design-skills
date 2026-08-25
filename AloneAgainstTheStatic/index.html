@@ -40,6 +40,7 @@
       <nav class="topbar-actions" aria-label="Sterowanie grą / Game controls">
         <button type="button" id="lang-toggle" class="transport-button" aria-label="Switch language to English">EN</button>
         <button type="button" id="new-game" class="transport-button" hidden>Nowa gra</button>
+        <button type="button" id="log-toggle" class="transport-button" aria-haspopup="dialog" aria-controls="log-dialog" hidden>Dziennik</button>
         <button type="button" id="sheet-toggle" class="transport-button" aria-expanded="false" aria-controls="sheet">Karta</button>
         <button type="button" id="settings-toggle" class="transport-button" aria-expanded="false" aria-controls="settings-dialog">Ustawienia</button>
       </nav>
@@ -74,6 +75,17 @@
       </section>
 
       <aside id="sheet" class="sheet" aria-label="Karta postaci / Character sheet" hidden></aside>
+
+      <dialog id="log-dialog" class="log" aria-labelledby="log-title">
+        <header class="log-head">
+          <div>
+            <p class="eyebrow" id="log-kicker">ARCHIWUM / ODCZYTANE PARAGRAFY</p>
+            <h2 id="log-title">Dziennik</h2>
+          </div>
+          <button type="button" id="log-close" class="transport-button">Zamknij</button>
+        </header>
+        <div id="log-entries" class="journal log-entries"></div>
+      </dialog>
 
       <dialog id="settings-dialog" class="settings" aria-labelledby="settings-title">
         <form method="dialog">

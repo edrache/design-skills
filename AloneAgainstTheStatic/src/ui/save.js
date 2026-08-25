@@ -79,6 +79,25 @@ function isEvent(event) {
   return true;
 }
 
+// Archiwum dziennika jest tylko do odczytu i nie wpływa na przebieg gry,
+// więc niepoprawny zapis odrzucamy w całości, ale bez unieważniania ramki.
+function isLogRecord(record) {
+  if (!isRecord(record)) return false;
+  if (record.entryId !== null && !(Number.isInteger(record.entryId) && record.entryId > 0)) return false;
+  if (record.originEntryId !== undefined && record.originEntryId !== null
+    && !(Number.isInteger(record.originEntryId) && record.originEntryId > 0)) return false;
+  return Array.isArray(record.events) && record.events.every(isEvent);
+}
+
+function sanitizeLog(value) {
+  if (!Array.isArray(value) || !value.every(isLogRecord)) return [];
+  return value.map((record) => ({
+    entryId: record.entryId,
+    originEntryId: record.originEntryId ?? null,
+    events: record.events,
+  }));
+}
+
 function isState(state, characterId) {
   if (!isRecord(state) || state.characterId !== characterId) return false;
 
@@ -255,7 +274,7 @@ function discard(storage) {
   }
 }
 
-export function saveGame({ characterId, frame, originEntryId = null }) {
+export function saveGame({ characterId, frame, originEntryId = null, log = [] }) {
   const storage = storageOrNull();
   try {
     const savedFrame = {
@@ -270,6 +289,7 @@ export function saveGame({ characterId, frame, originEntryId = null }) {
       characterId,
       originEntryId,
       frame: savedFrame,
+      log: sanitizeLog(log),
     }));
   } catch {
     // Quota errors and privacy settings disable autosave, not the game.
@@ -295,7 +315,12 @@ export function loadGame() {
 
     const frame = { ...parsed.frame, state: deserialize(parsed.frame.state) };
     if (!isFrame(frame, parsed.characterId)) throw new Error("invalid frame");
-    return { characterId: parsed.characterId, originEntryId: parsed.originEntryId, frame };
+    return {
+      characterId: parsed.characterId,
+      originEntryId: parsed.originEntryId,
+      frame,
+      log: sanitizeLog(parsed.log),
+    };
   } catch {
     discard(storage);
     return null;
