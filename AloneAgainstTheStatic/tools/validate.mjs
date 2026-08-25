@@ -12,7 +12,7 @@ function targetsOf(entry) {
   const walk = (step) => {
     if (!step || typeof step !== "object") return;
     if (typeof step.goto === "number") targets.push(step.goto);
-    for (const branch of ["onSuccess", "onFail"]) {
+    for (const branch of ["onSuccess", "onFail", "onPushedFail"]) {
       const value = step[branch];
       if (Array.isArray(value)) value.forEach(walk);
       else walk(value);
@@ -49,7 +49,11 @@ function flagsOf(entry) {
   const walk = (step) => {
     if (!step || typeof step !== "object") return;
     if (typeof step.flag === "string") set.add(step.flag);
-    for (const branch of ["onSuccess", "onFail"]) {
+    if (step.if) conditionFlags(step.if, requiredRead, allRead);
+    for (const modifier of step.diceIf ?? []) {
+      if (modifier.if) conditionFlags(modifier.if, requiredRead, allRead);
+    }
+    for (const branch of ["onSuccess", "onFail", "onPushedFail"]) {
       const value = step[branch];
       if (Array.isArray(value)) value.forEach(walk);
       else walk(value);
@@ -57,6 +61,7 @@ function flagsOf(entry) {
   };
 
   (entry.on ?? []).forEach(walk);
+  (entry.choices ?? []).forEach(walk);
   for (const guard of entry.guards ?? []) conditionFlags(guard.if, requiredRead, allRead);
   for (const choice of entry.choices ?? []) conditionFlags(choice.if, requiredRead, allRead);
   return { set, requiredRead, allRead };
@@ -73,6 +78,7 @@ function branchCanFallThrough(branch) {
   const effects = Array.isArray(branch) ? branch : [branch];
   for (const effect of effects) {
     if (!effect || typeof effect !== "object") continue;
+    if (effect.if) continue;
     if (isTerminalGoto(effect.goto)) return false;
   }
   return true;
@@ -83,6 +89,7 @@ function stepCanFallThrough(step) {
   // Runner zawsze kończy bieżący przebieg kroku bout: przekierowuje do
   // wylosowanego epizodu albo wraca na odłożoną pozycję.
   if (step.bout) return false;
+  if (step.if) return true;
   if (isTerminalGoto(step.goto)) return false;
   if (step.roll) {
     return branchCanFallThrough(step.onSuccess) || branchCanFallThrough(step.onFail);

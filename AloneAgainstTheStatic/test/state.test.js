@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { sequenceRng } from "../src/engine/dice.js";
 import {
   createState, skillValue, penaltyFor, hasFlag, setFlag, visit, visitCount,
-  useChoice, isChoiceUsed, spendLuck, addPenalty, pushReturn, popReturn,
+  useChoice, isChoiceUsed, spendLuck, restoreLuck, restoreHp, addPenalty, pushReturn, popReturn,
   serialize, deserialize,
 } from "../src/engine/state.js";
 
@@ -26,6 +26,8 @@ test("wartość umiejętności bierze się z karty, cechy z charakterystyk", () 
   const state = createState(characters.alex, { rng: sequenceRng([]) });
   assert.equal(skillValue(state, characters.alex, "Psychology"), 45);
   assert.equal(skillValue(state, characters.alex, "CON"), 60);
+  assert.equal(skillValue(state, characters.alex, "Occult"), 5);
+  assert.equal(skillValue(state, characters.alex, "Mechanical Repair"), 10);
 });
 
 test("nieznana umiejętność zgłasza błąd zamiast po cichu zwracać zero", () => {
@@ -60,6 +62,15 @@ test("wydawanie Luck nie schodzi poniżej zera", () => {
   const state = createState(characters.alex, { rng: sequenceRng([0.5, 0.5, 0.5]) });
   assert.equal(spendLuck(state, 10).luck, 50);
   assert.throws(() => spendLuck(state, 61), /Luck/);
+});
+
+test("leczenie i odzyskiwanie Luck nie przekraczają maksimum", () => {
+  const original = createState(characters.alex, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const wounded = { ...original, hp: 12, luck: 98 };
+  assert.equal(restoreHp(wounded, 4).hp, 13);
+  assert.equal(restoreLuck(wounded, 4).luck, 100);
+  assert.equal(wounded.hp, 12);
+  assert.equal(wounded.luck, 98);
 });
 
 test("kary z bouts of madness kumulują się", () => {

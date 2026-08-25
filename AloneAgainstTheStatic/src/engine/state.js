@@ -1,5 +1,12 @@
 import { rollDice } from "./dice.js";
 
+// Umiejętności niewypisane na skróconych kartach postaci zachowują bazową
+// wartość z Call of Cthulhu 7e. Dopisujemy je tu w miarę użycia w scenariuszu.
+const BASE_SKILLS = {
+  "Mechanical Repair": 10,
+  Occult: 5,
+};
+
 // Stan gry jest zwykłym obiektem — wszystkie operacje zwracają nowy,
 // dzięki czemu testy porównują stany zamiast śledzić efekty uboczne.
 export function createState(character, { rng }) {
@@ -26,6 +33,7 @@ export function createState(character, { rng }) {
 export function skillValue(state, character, skill) {
   if (skill in character.skills) return character.skills[skill];
   if (skill in character.characteristics) return character.characteristics[skill];
+  if (skill in BASE_SKILLS) return BASE_SKILLS[skill];
   if (skill === "Luck") return state.luck;
   if (skill === "Sanity") return state.san;
   throw new Error(`Postać ${character.id} nie ma umiejętności ani cechy: ${skill}`);
@@ -66,6 +74,14 @@ export function isChoiceUsed(state, id, index) {
 export function spendLuck(state, amount) {
   if (amount > state.luck) throw new Error(`Za mało punktów Luck: ${state.luck} < ${amount}`);
   return { ...state, luck: state.luck - amount };
+}
+
+export function restoreLuck(state, amount) {
+  return { ...state, luck: Math.min(100, state.luck + Math.max(0, amount)) };
+}
+
+export function restoreHp(state, amount) {
+  return { ...state, hp: Math.min(state.maxHp, state.hp + Math.max(0, amount)) };
 }
 
 export function addPenalty(state, skills) {

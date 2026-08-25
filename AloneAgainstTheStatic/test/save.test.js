@@ -103,7 +103,7 @@ function compatibleCharacter() {
     hp: 13,
     san: 50,
     mp: 10,
-    skills: { CON: 70 },
+    skills: { CON: 70, Occult: 5 },
     characteristics: {},
   };
 }
@@ -154,6 +154,24 @@ test("round-trip zachowuje decyzję po rzucie bez ponownego wykonania paragrafu"
 
   saveGame({ characterId: "alex", frame });
 
+  assert.deepEqual(loadGame(), { characterId: "alex", originEntryId: null, frame });
+});
+
+test("round-trip zachowuje zdarzenia leczenia i odzyskania Luck", () => {
+  const storage = memoryStorage();
+  useStorage(storage);
+  const options = [choice(0), choice(1)];
+  const frame = choicesFrame({
+    events: [
+      { kind: "text", key: "e12.p1" },
+      { kind: "heal", amount: 1, rolled: 1 },
+      { kind: "luck", amount: 2, rolled: 4 },
+      { kind: "choices", options },
+    ],
+    state: validState({ hp: 13, luck: 47 }),
+  });
+
+  saveGame({ characterId: "alex", frame });
   assert.deepEqual(loadGame(), { characterId: "alex", originEntryId: null, frame });
 });
 
@@ -409,6 +427,55 @@ test("semantyka rollDecision wiąże cursor i skill z krokiem story", async (t) 
       assert.equal(isSaveCompatible(saved, semanticStory, character), false);
     });
   }
+});
+
+test("autosave wiąże decyzję po rzucie z wyborem, który go uruchomił", () => {
+  const roll = {
+    tens: [50], units: 0, result: 50, target: 5,
+    difficulty: "regular", level: "fail", success: false,
+  };
+  const frame = {
+    entryId: 69,
+    events: [
+      { kind: "flag", flag: "razor_sharp" },
+      { kind: "roll", skill: "Occult", ...roll },
+    ],
+    pending: {
+      type: "rollDecision",
+      source: "choice",
+      choiceIndex: 0,
+      roll,
+      skill: "Occult",
+      canPush: false,
+      canLuck: true,
+      luckCost: 45,
+      stepIndex: 0,
+    },
+    cursor: 0,
+    state: validState({ flags: ["alex", "razor_sharp"], luck: 45 }),
+  };
+  const story = {
+    entries: {
+      69: {
+        id: 69,
+        choices: [{
+          text: "e69.c1",
+          goto: 69,
+          flag: "razor_sharp",
+          roll: "Occult",
+          onSuccess: { goto: 361 },
+          onFail: { goto: 362 },
+        }],
+      },
+    },
+  };
+  const saved = { characterId: "alex", originEntryId: null, frame };
+  assert.equal(isSaveCompatible(saved, story, compatibleCharacter()), true);
+
+  const tampered = clone(saved);
+  tampered.frame.pending.choiceIndex = 1;
+  tampered.frame.pending.stepIndex = 1;
+  assert.equal(isSaveCompatible(tampered, story, compatibleCharacter()), false);
 });
 
 test("semantyka end i missing odpowiada stanowi story", () => {

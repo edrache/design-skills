@@ -3,7 +3,7 @@ import { serialize, deserialize, skillValue } from "../engine/state.js";
 const KEY = "aats-save";
 const VERSION = 2;
 const PENDING_TYPES = new Set(["rollDecision", "choices", "end", "missing"]);
-const EVENT_TYPES = new Set(["text", "roll", "san", "hp", "flag", "missing", "choices", "redirect", "end"]);
+const EVENT_TYPES = new Set(["text", "roll", "san", "hp", "heal", "luck", "flag", "missing", "choices", "redirect", "end"]);
 
 function storageOrNull() {
   try {
@@ -49,7 +49,10 @@ function isPending(pending) {
   }
 
   if (pending.type === "rollDecision") {
-    return isRecord(pending.roll)
+    const sourceValid = pending.source === undefined
+      || (pending.source === "choice" && isNonNegativeInteger(pending.choiceIndex));
+    return sourceValid
+      && isRecord(pending.roll)
       && isFiniteNumber(pending.roll.target)
       && isFiniteNumber(pending.roll.result)
       && typeof pending.roll.difficulty === "string"
@@ -169,9 +172,15 @@ function compatibleChoices(frame, entry) {
 
 function compatibleRoll(frame, entry, character) {
   const pending = frame.pending;
-  const step = entry?.on?.[frame.cursor];
+  const fromChoice = pending.source === "choice";
+  const step = fromChoice
+    ? entry?.choices?.[pending.choiceIndex]
+    : entry?.on?.[frame.cursor];
   if (!isRecord(step) || typeof step.roll !== "string") return false;
-  if (pending.stepIndex !== frame.cursor || pending.skill !== step.roll) return false;
+  if (fromChoice) {
+    if (frame.cursor !== 0 || pending.stepIndex !== pending.choiceIndex) return false;
+  } else if (pending.stepIndex !== frame.cursor) return false;
+  if (pending.skill !== step.roll) return false;
   if (pending.canPush !== Boolean(step.push)) return false;
   if (pending.roll.difficulty !== (step.difficulty ?? "regular")) return false;
 

@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { sequenceRng } from "../src/engine/dice.js";
-import { createState, hasFlag, visitCount, penaltyFor } from "../src/engine/state.js";
+import { createState, hasFlag, visitCount, penaltyFor, setFlag } from "../src/engine/state.js";
 import { enter, resume } from "../src/engine/runner.js";
 
 const characters = JSON.parse(readFileSync(new URL("../data/characters.json", import.meta.url)));
@@ -84,6 +84,78 @@ test("przepchnięty rzut nie pozwala już wydać Luck", () => {
   assert.equal(pushed.pending.type, "choices");
 });
 
+test("porażka forsowanego rzutu może mieć osobny skutek", () => {
+  const pushedStory = {
+    entries: {
+      1: {
+        id: 1,
+        text: ["e1.p1"],
+        on: [{
+          roll: "DEX",
+          push: true,
+          onSuccess: { goto: 2 },
+          onFail: { goto: 3 },
+          onPushedFail: { goto: 4 },
+        }],
+      },
+      2: { id: 2, text: ["e2.p1"], end: true },
+      3: { id: 3, text: ["e3.p1"], end: true },
+      4: { id: 4, text: ["e4.p1"], end: true },
+    },
+  };
+  const ctx = { story: pushedStory, character, rng: sequenceRng([0.0, 0.9, 0.0, 0.8]) };
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const pending = enter(ctx, state, 1);
+  const frame = resume(ctx, pending, { type: "push" });
+  assert.equal(frame.entryId, 4);
+});
+
+test("warunkowy krok sprawdza flagę ustawioną wcześniej w tym samym paragrafie", () => {
+  const conditionalStory = {
+    entries: {
+      1: {
+        id: 1,
+        text: ["e1.p1"],
+        on: [{ flag: "toolkit" }, { if: "toolkit", goto: 2 }, { goto: 3 }],
+      },
+      2: { id: 2, text: ["e2.p1"], end: true },
+      3: { id: 3, text: ["e3.p1"], end: true },
+    },
+  };
+  const ctx = { story: conditionalStory, character, rng: sequenceRng([]) };
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const frame = enter(ctx, state, 1);
+  assert.equal(frame.entryId, 2);
+  assert.equal(hasFlag(frame.state, "toolkit"), true);
+});
+
+test("wybór może ustawić flagę i bezpośrednio uruchomić rzut", () => {
+  const choiceRollStory = {
+    entries: {
+      1: {
+        id: 1,
+        text: ["e1.p1"],
+        choices: [{
+          text: "e1.c1",
+          goto: 1,
+          flag: "razor_sharp",
+          roll: "Occult",
+          onSuccess: { goto: 2 },
+          onFail: { goto: 3 },
+        }],
+      },
+      2: { id: 2, text: ["e2.p1"], end: true },
+      3: { id: 3, text: ["e3.p1"], end: true },
+    },
+  };
+  const ctx = { story: choiceRollStory, character, rng: sequenceRng([0.1, 0.0]) };
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const frame = resume(ctx, enter(ctx, state, 1), { type: "choose", index: 0 });
+  assert.equal(frame.entryId, 2);
+  assert.equal(hasFlag(frame.state, "razor_sharp"), true);
+  assert.ok(frame.events.some((event) => event.kind === "roll" && event.skill === "Occult"));
+});
+
 test("strażnik przekierowuje, gdy flaga jest zapalona", () => {
   const ctx = ctxWith([0.0, 0.9]);
   let state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
@@ -141,6 +213,63 @@ test("krok newDay zeruje licznik Sanity utraconej w ciągu doby", () => {
   state = { ...state, sanLostToday: 7 };
   const frame = enter(ctx, state, 8);
   assert.equal(frame.state.sanLostToday, 0);
+});
+
+test("leczenie i odzyskiwanie Luck emitują rzeczywiście odzyskane wartości", () => {
+  const recoveryStory = {
+    entries: {
+      1: { id: 1, text: ["e1.p1"], on: [{ heal: "1" }, { luck: "1d4" }, { goto: 2 }] },
+      2: { id: 2, text: ["e2.p1"], end: true },
+    },
+  };
+  const ctx = { story: recoveryStory, character, rng: sequenceRng([0.99]) };
+  const initial = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const frame = enter(ctx, { ...initial, hp: 12, luck: 98 }, 1);
+  assert.equal(frame.state.hp, 13);
+  assert.equal(frame.state.luck, 100);
+  assert.ok(frame.events.some((event) => event.kind === "heal" && event.amount === 1 && event.rolled === 1));
+  assert.ok(frame.events.some((event) => event.kind === "luck" && event.amount === 2 && event.rolled === 4));
+});
+
+test("warunkowe kości bonusowe i karne zależą od flag i wzajemnie się znoszą", () => {
+  const modifierStory = {
+    entries: {
+      1: {
+        id: 1,
+        text: ["e1.p1"],
+        on: [{
+          roll: "CON",
+          diceIf: [{ if: "comfortable", dice: 1 }, { if: "touched_by_cold", dice: -1 }],
+          onSuccess: { goto: 2 },
+          onFail: { goto: 3 },
+        }],
+      },
+      2: { id: 2, text: ["e2.p1"], end: true },
+      3: { id: 3, text: ["e3.p1"], end: true },
+    },
+  };
+  const initial = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+
+  const bonus = enter(
+    { story: modifierStory, character, rng: sequenceRng([0.0, 0.8, 0.2]) },
+    setFlag(initial, "comfortable"),
+    1,
+  );
+  assert.equal(bonus.events.find((event) => event.kind === "roll").result, 20);
+
+  const penalty = enter(
+    { story: modifierStory, character, rng: sequenceRng([0.0, 0.8, 0.2]) },
+    setFlag(initial, "touched_by_cold"),
+    1,
+  );
+  assert.equal(penalty.events.find((event) => event.kind === "roll").result, 80);
+
+  const cancelled = enter(
+    { story: modifierStory, character, rng: sequenceRng([0.0, 0.8]) },
+    setFlag(setFlag(initial, "comfortable"), "touched_by_cold"),
+    1,
+  );
+  assert.equal(cancelled.events.find((event) => event.kind === "roll").tens.length, 1);
 });
 
 test("paragraf z end kończy grę", () => {

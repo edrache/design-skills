@@ -61,6 +61,22 @@ test("uwzględnia flagi z guards i choice.if, lecz negacja nie wymaga settera", 
   assert.ok(!out.warnings.some((warning) => warning.includes("ustawiona") && warning.includes("nigdzie nie jest czytana")));
 });
 
+test("uwzględnia flagi sterujące warunkowymi kośćmi rzutu", () => {
+  const entries = {
+    1: {
+      id: 1,
+      text: ["e1.p1"],
+      on: [
+        { flag: "wygodnie" },
+        { roll: "CON", diceIf: [{ if: "wygodnie", dice: 1 }], onSuccess: { goto: 2 }, onFail: { goto: 2 } },
+      ],
+    },
+    2: { id: 2, text: ["e2.p1"], end: true },
+  };
+  const out = validate(storyOf(entries), textsFor(entries), {});
+  assert.ok(!out.warnings.some((warning) => warning.includes("wygodnie") && warning.includes("nigdzie nie jest czytana")));
+});
+
 test("rozpoznaje brak wyjścia po fall-through rzutu, ale @return jest wyjściem", () => {
   const dangling = { 1: { id: 1, text: ["e1.p1"], on: [{ roll: "DEX", onSuccess: { flag: "x" }, onFail: { flag: "y" } }] } };
   const danglingOut = validate(storyOf(dangling), textsFor(dangling), {});

@@ -14,6 +14,8 @@ const COPY = {
     spentLuck: (amount) => `Wydano ${amount} pkt. Szczęścia`,
     sanityLoss: (amount) => `Utrata Poczytalności: ${amount}`,
     damage: (amount) => `Obrażenia: ${amount}`,
+    healing: (amount) => `Odzyskane PW: ${amount}`,
+    luckRestored: (amount) => `Odzyskane Szczęście: ${amount}`,
     flag: (flag) => `Zapisano: ${flag.replaceAll("_", " ")}`,
     missing: (id) => `Paragraf ${id} nie został jeszcze przepisany. Dalszy zapis taśmy jest niedostępny.`,
     burnLuck: (amount) => `Wydaj ${amount} pkt. Szczęścia`,
@@ -32,6 +34,8 @@ const COPY = {
     spentLuck: (amount) => `${amount} Luck spent`,
     sanityLoss: (amount) => `Sanity loss: ${amount}`,
     damage: (amount) => `Damage: ${amount}`,
+    healing: (amount) => `Hit points restored: ${amount}`,
+    luckRestored: (amount) => `Luck restored: ${amount}`,
     flag: (flag) => `Recorded: ${flag.replaceAll("_", " ")}`,
     missing: (id) => `Entry ${id} has not been transcribed yet. The rest of the tape is unavailable.`,
     burnLuck: (amount) => `Spend ${amount} Luck`,
@@ -165,6 +169,8 @@ function appendEvent(block, event, doc, labels, i18n, handlers) {
   if (event.kind === "roll") block.append(renderRoll(doc, event, i18n));
   if (event.kind === "san") block.append(el(doc, "div", "event-note", labels.sanityLoss(event.amount)));
   if (event.kind === "hp") block.append(el(doc, "div", "event-note damage", labels.damage(event.amount)));
+  if (event.kind === "heal") block.append(el(doc, "div", "event-note", labels.healing(event.amount)));
+  if (event.kind === "luck") block.append(el(doc, "div", "event-note", labels.luckRestored(event.amount)));
   if (event.kind === "flag") block.append(el(doc, "div", "event-note", labels.flag(event.flag)));
 
   if (event.kind === "missing") {

@@ -1,7 +1,7 @@
 import { rollDice, skillCheck, successLevel } from "./dice.js";
 import {
   hasFlag, setFlag, visit, visitCount, useChoice, isChoiceUsed,
-  spendLuck, penaltyFor, popReturn, pushReturn, skillValue,
+  spendLuck, restoreLuck, restoreHp, penaltyFor, popReturn, pushReturn, skillValue,
 } from "./state.js";
 import { applyDamage, applySanLoss, sanityCheck, resolveBout, resetDay } from "./rules.js";
 
@@ -31,6 +31,16 @@ function guardMatches(state, condition) {
     if ("not" in part) return !hasFlag(state, part.not);
     throw new Error(`Nieznany warunek strażnika: ${JSON.stringify(part)}`);
   });
+}
+
+// Doraźne kości bonusowe i karne zapisujemy przy konkretnym rzucie. Wartości
+// sumują się, więc przeciwne modyfikatory znoszą się zgodnie z zasadami gry.
+function diceFor(state, step) {
+  const conditional = (step.diceIf ?? []).reduce(
+    (sum, modifier) => sum + (guardMatches(state, modifier.if) ? modifier.dice : 0),
+    0,
+  );
+  return (step.dice ?? 0) + conditional + penaltyFor(state, step.roll);
 }
 
 export function enter(ctx, state, entryId) {
@@ -79,6 +89,20 @@ function applyEffect(ctx, state, events, entryId, effect, cursor) {
     return { state: out.state };
   }
 
+  if (effect.heal) {
+    const rolled = rollDice(ctx.rng, effect.heal);
+    const nextState = restoreHp(state, rolled);
+    events.push({ kind: "heal", amount: nextState.hp - state.hp, rolled });
+    return { state: nextState };
+  }
+
+  if (effect.luck) {
+    const rolled = rollDice(ctx.rng, effect.luck);
+    const nextState = restoreLuck(state, rolled);
+    events.push({ kind: "luck", amount: nextState.luck - state.luck, rolled });
+    return { state: nextState };
+  }
+
   if (effect.san) {
     const amount = rollDice(ctx.rng, effect.san);
     const out = applySanLoss(state, amount, ctx.character, ctx.rng);
@@ -92,6 +116,11 @@ function applyEffect(ctx, state, events, entryId, effect, cursor) {
     events.push({ kind: "san", amount: out.lost, roll: out.roll });
     if (out.redirect) return { frame: jump(ctx, out.state, events, entryId, out.redirect, cursor) };
     return { state: out.state };
+  }
+
+  if (effect.if && effect.goto) {
+    if (!guardMatches(state, effect.if)) return { state };
+    return { frame: continueAt(ctx, state, events, effect.goto) };
   }
 
   if (effect.goto) {
@@ -134,7 +163,7 @@ function runSteps(ctx, frame) {
 
     if (step.roll) {
       const target = skillValue(state, ctx.character, step.roll);
-      const dice = (step.dice ?? 0) + penaltyFor(state, step.roll);
+      const dice = diceFor(state, step);
       const check = skillCheck(ctx.rng, target, { dice, difficulty: step.difficulty ?? "regular" });
       events.push({ kind: "roll", skill: step.roll, ...check });
 
@@ -250,13 +279,57 @@ export function resume(ctx, frame, action) {
     const option = frame.pending?.options?.[action.index];
     if (!option) throw new Error(`Paragraf ${frame.entryId} nie ma wyboru o numerze ${action.index}`);
     if (option.used || option.blocked) throw new Error(`Wybór ${action.index} jest niedostępny`);
-    const state = option.used ? frame.state : useChoice(frame.state, frame.entryId, action.index);
-    return continueAt(ctx, state, [], option.goto);
+    let state = option.used ? frame.state : useChoice(frame.state, frame.entryId, action.index);
+    const entry = entryOf(ctx, frame.entryId);
+    const choice = entry?.choices?.[action.index];
+    const events = [];
+
+    if (choice?.flag) {
+      state = setFlag(state, choice.flag);
+      events.push({ kind: "flag", flag: choice.flag });
+    }
+
+    // Niektóre decyzje (np. zabranie sztyletu w paragrafie 69) od razu
+    // uruchamiają test. Zachowujemy źródło rzutu w pending, aby autosave mógł
+    // odtworzyć decyzję o wydaniu Luck lub forsowaniu bez zgadywania.
+    if (choice?.roll) {
+      const target = skillValue(state, ctx.character, choice.roll);
+      const dice = diceFor(state, choice);
+      const check = skillCheck(ctx.rng, target, { dice, difficulty: choice.difficulty ?? "regular" });
+      events.push({ kind: "roll", skill: choice.roll, ...check });
+      if (check.success) {
+        return applyBranch(ctx, state, events, frame.entryId, choice, "onSuccess", (entry.on ?? []).length);
+      }
+
+      const threshold = requiredThreshold(target, choice.difficulty ?? "regular");
+      const luckCost = check.result - threshold;
+      const canLuck = choice.roll !== "Sanity" && choice.roll !== "Luck" && state.luck >= luckCost && luckCost > 0;
+      if (choice.push || canLuck) {
+        const pending = {
+          type: "rollDecision",
+          source: "choice",
+          choiceIndex: action.index,
+          roll: check,
+          skill: choice.roll,
+          canPush: Boolean(choice.push),
+          canLuck,
+          luckCost,
+          stepIndex: action.index,
+        };
+        return frameOf(state, frame.entryId, events, pending, 0);
+      }
+      return applyBranch(ctx, state, events, frame.entryId, choice, "onFail", (entry.on ?? []).length);
+    }
+
+    return continueAt(ctx, state, events, option.goto);
   }
 
   const entry = entryOf(ctx, frame.entryId);
-  const step = (entry.on ?? [])[frame.cursor];
-  const cursor = frame.cursor + 1;
+  const fromChoice = frame.pending?.source === "choice";
+  const step = fromChoice
+    ? (entry.choices ?? [])[frame.pending.choiceIndex]
+    : (entry.on ?? [])[frame.cursor];
+  const cursor = fromChoice ? (entry.on ?? []).length : frame.cursor + 1;
 
   if (action.type === "luck") {
     const state = spendLuck(frame.state, frame.pending.luckCost);
@@ -270,10 +343,10 @@ export function resume(ctx, frame, action) {
 
   if (action.type === "push") {
     const target = skillValue(frame.state, ctx.character, step.roll);
-    const dice = (step.dice ?? 0) + penaltyFor(frame.state, step.roll);
+    const dice = diceFor(frame.state, step);
     const check = skillCheck(ctx.rng, target, { dice, difficulty: step.difficulty ?? "regular" });
     const events = [{ kind: "roll", skill: step.roll, pushed: true, ...check }];
-    const branch = check.success ? "onSuccess" : "onFail";
+    const branch = check.success ? "onSuccess" : (step.onPushedFail ? "onPushedFail" : "onFail");
     return applyBranch(ctx, frame.state, events, frame.entryId, step, branch, cursor);
   }
 
