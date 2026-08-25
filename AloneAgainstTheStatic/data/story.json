@@ -1,7 +1,7 @@
 {
   "extracted": [
     1,
-    30
+    230
   ],
   "start": 1,
   "starts": {
@@ -744,6 +744,4744 @@
       "on": [
         {
           "goto": 31
+        }
+      ]
+    },
+    "31": {
+      "id": 31,
+      "scene": "cabin",
+      "text": [
+        "e31.p1",
+        "e31.p2",
+        "e31.p3",
+        "e31.p4",
+        "e31.p5"
+      ],
+      "from": [
+        24,
+        30
+      ],
+      "guards": [
+        {
+          "if": "broken_heart",
+          "goto": 33
+        },
+        {
+          "if": "blame_game",
+          "goto": 33
+        }
+      ],
+      "choices": [
+        {
+          "text": "e31.c1",
+          "goto": 32
+        },
+        {
+          "text": "e31.c2",
+          "goto": 33
+        }
+      ]
+    },
+    "32": {
+      "id": 32,
+      "scene": "cabin",
+      "text": [
+        "e32.p1",
+        "e32.p2",
+        "e32.p3",
+        "e32.p4",
+        "e32.p5"
+      ],
+      "from": [
+        31
+      ],
+      "on": [
+        {
+          "goto": 34
+        }
+      ]
+    },
+    "33": {
+      "id": 33,
+      "scene": "cabin",
+      "text": [
+        "e33.p1",
+        "e33.p2",
+        "e33.p3",
+        "e33.p4",
+        "e33.p5",
+        "e33.p6"
+      ],
+      "from": [
+        31
+      ],
+      "on": [
+        {
+          "flag": "nyctophobe"
+        },
+        {
+          "goto": 34
+        }
+      ]
+    },
+    "34": {
+      "id": 34,
+      "scene": "cabin",
+      "text": [
+        "e34.p1",
+        "e34.p2",
+        "e34.p3",
+        "e34.p4",
+        "e34.p5"
+      ],
+      "from": [
+        32,
+        33,
+        205,
+        207
+      ],
+      "on": [
+        {
+          "newDay": true
+        }
+      ],
+      "choices": [
+        {
+          "text": "e34.c1",
+          "goto": 35
+        },
+        {
+          "text": "e34.c2",
+          "goto": 37
+        }
+      ]
+    },
+    "35": {
+      "id": 35,
+      "scene": "cabin",
+      "text": [
+        "e35.p1",
+        "e35.p2",
+        "e35.p3"
+      ],
+      "from": [
+        34
+      ],
+      "choices": [
+        {
+          "text": "e35.c1",
+          "goto": 36
+        },
+        {
+          "text": "e35.c2",
+          "goto": 41
+        }
+      ]
+    },
+    "36": {
+      "id": 36,
+      "scene": "forest",
+      "text": [
+        "e36.p1",
+        "e36.p2"
+      ],
+      "from": [
+        35
+      ],
+      "choices": [
+        {
+          "text": "e36.c1",
+          "goto": 39
+        },
+        {
+          "text": "e36.c2",
+          "goto": 40
+        }
+      ]
+    },
+    "37": {
+      "id": 37,
+      "scene": "forest",
+      "text": [
+        "e37.p1",
+        "e37.p2",
+        "e37.p3",
+        "e37.p4"
+      ],
+      "from": [
+        34
+      ],
+      "choices": [
+        {
+          "text": "e37.c1",
+          "goto": 38
+        },
+        {
+          "text": "e37.c2",
+          "goto": 39
+        }
+      ]
+    },
+    "38": {
+      "id": 38,
+      "scene": "forest",
+      "text": [
+        "e38.p1"
+      ],
+      "from": [
+        37,
+        42
+      ],
+      "on": [
+        {
+          "roll": "Natural World",
+          "onSuccess": {
+            "goto": 77
+          },
+          "onFail": {
+            "goto": 104
+          }
+        }
+      ]
+    },
+    "39": {
+      "id": 39,
+      "scene": "forest",
+      "text": [
+        "e39.p1",
+        "e39.p2"
+      ],
+      "from": [
+        36,
+        37,
+        42
+      ],
+      "choices": [
+        {
+          "text": "e39.c1",
+          "goto": 44
+        },
+        {
+          "text": "e39.c2",
+          "goto": 49
+        }
+      ]
+    },
+    "40": {
+      "id": 40,
+      "scene": "forest",
+      "text": [
+        "e40.p1",
+        "e40.p2",
+        "e40.p3"
+      ],
+      "from": [
+        36
+      ],
+      "choices": [
+        {
+          "text": "e40.c1",
+          "goto": 44
+        },
+        {
+          "text": "e40.c2",
+          "goto": 49
+        }
+      ]
+    },
+    "41": {
+      "id": 41,
+      "scene": "forest",
+      "text": [
+        "e41.p1",
+        "e41.p2"
+      ],
+      "from": [
+        35
+      ],
+      "on": [
+        {
+          "roll": "Spot Hidden",
+          "onSuccess": {
+            "goto": 42
+          },
+          "onFail": {
+            "goto": 43
+          }
+        }
+      ]
+    },
+    "42": {
+      "id": 42,
+      "scene": "forest",
+      "text": [
+        "e42.p1",
+        "e42.p2",
+        "e42.p3",
+        "e42.p4",
+        "e42.p5",
+        "e42.p6"
+      ],
+      "from": [
+        41
+      ],
+      "on": [
+        {
+          "flag": "lumberjack"
+        }
+      ],
+      "choices": [
+        {
+          "text": "e42.c1",
+          "goto": 38
+        },
+        {
+          "text": "e42.c2",
+          "goto": 39
+        }
+      ]
+    },
+    "43": {
+      "id": 43,
+      "scene": "forest",
+      "text": [
+        "e43.p1",
+        "e43.p2",
+        "e43.p3",
+        "e43.p4"
+      ],
+      "from": [
+        41
+      ],
+      "choices": [
+        {
+          "text": "e43.c1",
+          "goto": 44
+        },
+        {
+          "text": "e43.c2",
+          "goto": 49
+        }
+      ]
+    },
+    "44": {
+      "id": 44,
+      "scene": "stream",
+      "text": [
+        "e44.p1",
+        "e44.p2"
+      ],
+      "from": [
+        39,
+        40,
+        43,
+        77,
+        104
+      ],
+      "guards": [
+        {
+          "if": "the_flowers_in_the_stream",
+          "goto": 48
+        }
+      ],
+      "choices": [
+        {
+          "text": "e44.c1",
+          "goto": 45
+        },
+        {
+          "text": "e44.c2",
+          "goto": 50
+        }
+      ]
+    },
+    "45": {
+      "id": 45,
+      "scene": "stream",
+      "text": [
+        "e45.p1",
+        "e45.p2"
+      ],
+      "from": [
+        44
+      ],
+      "on": [
+        {
+          "roll": "Listen",
+          "onSuccess": {
+            "goto": 46
+          },
+          "onFail": {
+            "goto": 51
+          }
+        }
+      ]
+    },
+    "46": {
+      "id": 46,
+      "scene": "stream",
+      "text": [
+        "e46.p1",
+        "e46.p2",
+        "e46.p3",
+        "e46.p4"
+      ],
+      "from": [
+        45,
+        50
+      ],
+      "on": [
+        {
+          "roll": "Natural World",
+          "push": true,
+          "onSuccess": {
+            "goto": 47
+          },
+          "onFail": {
+            "goto": 53
+          },
+          "onPushedFail": {
+            "goto": 54
+          }
+        }
+      ]
+    },
+    "47": {
+      "id": 47,
+      "scene": "stream",
+      "text": [
+        "e47.p1",
+        "e47.p2",
+        "e47.p3",
+        "e47.p4"
+      ],
+      "from": [
+        46
+      ],
+      "on": [
+        {
+          "flag": "veterinarian"
+        },
+        {
+          "goto": 55
+        }
+      ]
+    },
+    "48": {
+      "id": 48,
+      "scene": "stream",
+      "text": [
+        "e48.p1",
+        "e48.p2",
+        "e48.p3"
+      ],
+      "from": [
+        44
+      ],
+      "on": [
+        {
+          "goto": 49
+        }
+      ]
+    },
+    "49": {
+      "id": 49,
+      "scene": "forest",
+      "text": [
+        "e49.p1",
+        "e49.p2",
+        "e49.p3"
+      ],
+      "from": [
+        39,
+        40,
+        43,
+        48,
+        51,
+        77,
+        104
+      ],
+      "choices": [
+        {
+          "text": "e49.c1",
+          "goto": 56
+        },
+        {
+          "text": "e49.c2",
+          "goto": 79
+        }
+      ]
+    },
+    "50": {
+      "id": 50,
+      "scene": "stream",
+      "text": [
+        "e50.p1"
+      ],
+      "from": [
+        44
+      ],
+      "on": [
+        {
+          "roll": "Listen",
+          "onSuccess": {
+            "goto": 46
+          },
+          "onFail": {
+            "goto": 51
+          }
+        }
+      ]
+    },
+    "51": {
+      "id": 51,
+      "scene": "stream",
+      "text": [
+        "e51.p1",
+        "e51.p2"
+      ],
+      "from": [
+        45,
+        50
+      ],
+      "choices": [
+        {
+          "text": "e51.c1",
+          "goto": 52
+        },
+        {
+          "text": "e51.c2",
+          "goto": 49
+        }
+      ]
+    },
+    "52": {
+      "id": 52,
+      "scene": "stream",
+      "text": [
+        "e52.p1",
+        "e52.p2",
+        "e52.p3",
+        "e52.p4"
+      ],
+      "from": [
+        51
+      ],
+      "on": [
+        {
+          "goto": 55
+        }
+      ]
+    },
+    "53": {
+      "id": 53,
+      "scene": "stream",
+      "text": [
+        "e53.p1",
+        "e53.p2"
+      ],
+      "from": [
+        46
+      ],
+      "on": [
+        {
+          "goto": 55
+        }
+      ]
+    },
+    "54": {
+      "id": 54,
+      "scene": "stream",
+      "text": [
+        "e54.p1",
+        "e54.p2",
+        "e54.p3",
+        "e54.p4",
+        "e54.p5"
+      ],
+      "from": [
+        46
+      ],
+      "on": [
+        {
+          "hp": "1d4"
+        },
+        {
+          "goto": 55
+        }
+      ]
+    },
+    "55": {
+      "id": 55,
+      "scene": "forest",
+      "text": [
+        "e55.p1",
+        "e55.p2",
+        "e55.p3",
+        "e55.p4"
+      ],
+      "from": [
+        47,
+        52,
+        53,
+        54
+      ],
+      "choices": [
+        {
+          "text": "e55.c1",
+          "goto": 56
+        },
+        {
+          "text": "e55.c2",
+          "goto": 79
+        }
+      ]
+    },
+    "56": {
+      "id": 56,
+      "scene": "shed",
+      "text": [
+        "e56.p1",
+        "e56.p2",
+        "e56.p3"
+      ],
+      "from": [
+        49,
+        55
+      ],
+      "guards": [
+        {
+          "if": "nyctophobe",
+          "goto": 80
+        }
+      ],
+      "choices": [
+        {
+          "text": "e56.c1",
+          "goto": 79
+        },
+        {
+          "text": "e56.c2",
+          "goto": 57
+        }
+      ]
+    },
+    "57": {
+      "id": 57,
+      "scene": "shed",
+      "text": [
+        "e57.p1",
+        "e57.p2"
+      ],
+      "from": [
+        56,
+        59,
+        60,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        74,
+        82
+      ],
+      "choices": [
+        {
+          "text": "e57.c1",
+          "goto": 58,
+          "once": true
+        },
+        {
+          "text": "e57.c2",
+          "goto": 62,
+          "once": true
+        },
+        {
+          "text": "e57.c3",
+          "goto": 65,
+          "once": true
+        },
+        {
+          "text": "e57.c4",
+          "goto": 78
+        }
+      ]
+    },
+    "58": {
+      "id": 58,
+      "scene": "shed",
+      "text": [
+        "e58.p1",
+        "e58.p2"
+      ],
+      "from": [
+        57
+      ],
+      "on": [
+        {
+          "roll": "Spot Hidden",
+          "push": true,
+          "onSuccess": {
+            "goto": 59
+          },
+          "onFail": {
+            "goto": 60
+          },
+          "onPushedFail": {
+            "goto": 61
+          }
+        }
+      ]
+    },
+    "59": {
+      "id": 59,
+      "scene": "shed",
+      "text": [
+        "e59.p1",
+        "e59.p2",
+        "e59.p3"
+      ],
+      "from": [
+        58
+      ],
+      "on": [
+        {
+          "flag": "the_quiet_in_the_evening"
+        },
+        {
+          "goto": 57
+        }
+      ]
+    },
+    "60": {
+      "id": 60,
+      "scene": "shed",
+      "text": [
+        "e60.p1",
+        "e60.p2"
+      ],
+      "from": [
+        58
+      ],
+      "on": [
+        {
+          "goto": 57
+        }
+      ]
+    },
+    "61": {
+      "id": 61,
+      "scene": "shed",
+      "text": [
+        "e61.p1",
+        "e61.p2",
+        "e61.p3",
+        "e61.p4",
+        "e61.p5"
+      ],
+      "from": [
+        58
+      ],
+      "on": [
+        {
+          "goto": 85
+        }
+      ]
+    },
+    "62": {
+      "id": 62,
+      "scene": "shed",
+      "text": [
+        "e62.p1"
+      ],
+      "from": [
+        57
+      ],
+      "choices": [
+        {
+          "text": "e62.c1",
+          "goto": 63
+        },
+        {
+          "text": "e62.c2",
+          "goto": 64
+        },
+        {
+          "text": "e62.c3",
+          "goto": 57
+        }
+      ]
+    },
+    "63": {
+      "id": 63,
+      "scene": "shed",
+      "text": [
+        "e63.p1",
+        "e63.p2"
+      ],
+      "from": [
+        62
+      ],
+      "on": [
+        {
+          "flag": "in_case_of_emergency"
+        },
+        {
+          "goto": 57
+        }
+      ]
+    },
+    "64": {
+      "id": 64,
+      "scene": "shed",
+      "text": [
+        "e64.p1",
+        "e64.p2"
+      ],
+      "from": [
+        62
+      ],
+      "on": [
+        {
+          "flag": "toolkit"
+        },
+        {
+          "if": "tech_support",
+          "goto": 76
+        },
+        {
+          "goto": 57
+        }
+      ]
+    },
+    "65": {
+      "id": 65,
+      "scene": "shed",
+      "text": [
+        "e65.p1",
+        "e65.p2"
+      ],
+      "from": [
+        57
+      ],
+      "choices": [
+        {
+          "text": "e65.c1",
+          "goto": 66
+        },
+        {
+          "text": "e65.c2",
+          "goto": 57
+        }
+      ]
+    },
+    "66": {
+      "id": 66,
+      "scene": "shed",
+      "text": [
+        "e66.p1",
+        "e66.p2"
+      ],
+      "from": [
+        65,
+        67,
+        68,
+        69,
+        70,
+        71,
+        73,
+        75
+      ],
+      "guards": [
+        {
+          "if": [
+            "unsettled",
+            {
+              "visits": 1
+            }
+          ],
+          "goto": 67
+        }
+      ],
+      "choices": [
+        {
+          "text": "e66.c1",
+          "goto": 68,
+          "once": true
+        },
+        {
+          "text": "e66.c2",
+          "goto": 69,
+          "once": true
+        },
+        {
+          "text": "e66.c3",
+          "goto": 70,
+          "once": true
+        },
+        {
+          "text": "e66.c4",
+          "goto": 57
+        }
+      ]
+    },
+    "67": {
+      "id": 67,
+      "scene": "shed",
+      "text": [
+        "e67.p1",
+        "e67.p2"
+      ],
+      "from": [
+        66
+      ],
+      "on": [
+        {
+          "roll": "POW",
+          "onSuccess": {
+            "goto": 66
+          },
+          "onFail": [
+            {
+              "san": "1"
+            },
+            {
+              "goto": 57
+            }
+          ]
+        }
+      ]
+    },
+    "68": {
+      "id": 68,
+      "scene": "shed",
+      "text": [
+        "e68.p1",
+        "e68.p2"
+      ],
+      "from": [
+        66
+      ],
+      "on": [
+        {
+          "goto": 66
+        }
+      ]
+    },
+    "69": {
+      "id": 69,
+      "scene": "shed",
+      "text": [
+        "e69.p1",
+        "e69.p2"
+      ],
+      "from": [
+        66
+      ],
+      "choices": [
+        {
+          "text": "e69.c1",
+          "goto": 69,
+          "flag": "razor_sharp",
+          "roll": "Occult",
+          "onSuccess": {
+            "goto": 361
+          },
+          "onFail": {
+            "goto": 362
+          }
+        },
+        {
+          "text": "e69.c2",
+          "goto": 66
+        }
+      ]
+    },
+    "70": {
+      "id": 70,
+      "scene": "shed",
+      "text": [
+        "e70.p1",
+        "e70.p2"
+      ],
+      "from": [
+        66
+      ],
+      "choices": [
+        {
+          "text": "e70.c1",
+          "goto": 71
+        },
+        {
+          "text": "e70.c2",
+          "goto": 66
+        }
+      ]
+    },
+    "71": {
+      "id": 71,
+      "scene": "shed",
+      "text": [
+        "e71.p1"
+      ],
+      "from": [
+        70
+      ],
+      "on": [
+        {
+          "flag": "tech_support"
+        },
+        {
+          "if": "toolkit",
+          "goto": 72
+        },
+        {
+          "goto": 66
+        }
+      ]
+    },
+    "72": {
+      "id": 72,
+      "scene": "shed",
+      "text": [
+        "e72.p1"
+      ],
+      "from": [
+        71
+      ],
+      "on": [
+        {
+          "roll": "Mechanical Repair",
+          "push": true,
+          "onSuccess": {
+            "goto": 73
+          },
+          "onFail": {
+            "goto": 74
+          },
+          "onPushedFail": {
+            "goto": 75
+          }
+        }
+      ]
+    },
+    "73": {
+      "id": 73,
+      "scene": "shed",
+      "text": [
+        "e73.p1",
+        "e73.p2",
+        "e73.p3"
+      ],
+      "from": [
+        72,
+        76
+      ],
+      "on": [
+        {
+          "flag": "the_couple_who_came_to_the_cabin"
+        },
+        {
+          "goto": 66
+        }
+      ]
+    },
+    "74": {
+      "id": 74,
+      "scene": "shed",
+      "text": [
+        "e74.p1",
+        "e74.p2"
+      ],
+      "from": [
+        72,
+        76
+      ],
+      "on": [
+        {
+          "goto": 57
+        }
+      ]
+    },
+    "75": {
+      "id": 75,
+      "scene": "shed",
+      "text": [
+        "e75.p1",
+        "e75.p2",
+        "e75.p3",
+        "e75.p4"
+      ],
+      "from": [
+        72,
+        76
+      ],
+      "on": [
+        {
+          "hp": "1"
+        },
+        {
+          "flag": "red_handed"
+        },
+        {
+          "goto": 66
+        }
+      ]
+    },
+    "76": {
+      "id": 76,
+      "scene": "shed",
+      "text": [
+        "e76.p1",
+        "e76.p2"
+      ],
+      "from": [
+        64
+      ],
+      "on": [
+        {
+          "roll": "Mechanical Repair",
+          "push": true,
+          "onSuccess": {
+            "goto": 73
+          },
+          "onFail": {
+            "goto": 74
+          },
+          "onPushedFail": {
+            "goto": 75
+          }
+        }
+      ]
+    },
+    "77": {
+      "id": 77,
+      "scene": "forest",
+      "text": [
+        "e77.p1",
+        "e77.p2",
+        "e77.p3"
+      ],
+      "from": [
+        38
+      ],
+      "choices": [
+        {
+          "text": "e77.c1",
+          "goto": 44
+        },
+        {
+          "text": "e77.c2",
+          "goto": 49
+        }
+      ]
+    },
+    "78": {
+      "id": 78,
+      "scene": "forest",
+      "text": [
+        "e78.p1",
+        "e78.p2"
+      ],
+      "from": [
+        57
+      ],
+      "on": [
+        {
+          "goto": 84
+        }
+      ]
+    },
+    "79": {
+      "id": 79,
+      "scene": "forest",
+      "text": [
+        "e79.p1",
+        "e79.p2"
+      ],
+      "from": [
+        49,
+        55,
+        56,
+        82
+      ],
+      "on": [
+        {
+          "goto": 84
+        }
+      ]
+    },
+    "80": {
+      "id": 80,
+      "scene": "shed",
+      "text": [
+        "e80.p1"
+      ],
+      "from": [
+        56
+      ],
+      "on": [
+        {
+          "roll": "Sanity",
+          "onSuccess": {
+            "goto": 82
+          },
+          "onFail": {
+            "goto": 81
+          }
+        }
+      ]
+    },
+    "81": {
+      "id": 81,
+      "scene": "forest",
+      "text": [
+        "e81.p1",
+        "e81.p2",
+        "e81.p3",
+        "e81.p4"
+      ],
+      "from": [
+        80
+      ],
+      "on": [
+        {
+          "san": "1"
+        },
+        {
+          "goto": 84
+        }
+      ]
+    },
+    "82": {
+      "id": 82,
+      "scene": "shed",
+      "text": [
+        "e82.p1"
+      ],
+      "from": [
+        80
+      ],
+      "choices": [
+        {
+          "text": "e82.c1",
+          "goto": 57
+        },
+        {
+          "text": "e82.c2",
+          "goto": 79
+        }
+      ]
+    },
+    "83": {
+      "id": 83,
+      "scene": "drive",
+      "text": [
+        "e83.p1",
+        "e83.p2",
+        "e83.p3",
+        "e83.p4"
+      ],
+      "from": [
+        2
+      ],
+      "on": [
+        {
+          "goto": 103
+        }
+      ]
+    },
+    "84": {
+      "id": 84,
+      "scene": "cabin",
+      "text": [
+        "e84.p1",
+        "e84.p2",
+        "e84.p3"
+      ],
+      "from": [
+        78,
+        79,
+        81
+      ],
+      "guards": [
+        {
+          "if": "occupied",
+          "goto": 86
+        }
+      ],
+      "on": [
+        {
+          "goto": 87
+        }
+      ]
+    },
+    "85": {
+      "id": 85,
+      "scene": "cabin",
+      "text": [
+        "e85.p1",
+        "e85.p2",
+        "e85.p3",
+        "e85.p4"
+      ],
+      "from": [
+        61
+      ],
+      "guards": [
+        {
+          "if": "occupied",
+          "goto": 86
+        }
+      ],
+      "on": [
+        {
+          "san": "1"
+        },
+        {
+          "goto": 87
+        }
+      ]
+    },
+    "86": {
+      "id": 86,
+      "scene": "cabin",
+      "text": [
+        "e86.p1",
+        "e86.p2",
+        "e86.p3"
+      ],
+      "from": [
+        84,
+        85
+      ],
+      "choices": [
+        {
+          "text": "e86.c1",
+          "goto": 90
+        },
+        {
+          "text": "e86.c2",
+          "goto": 92
+        }
+      ]
+    },
+    "87": {
+      "id": 87,
+      "scene": "cabin",
+      "text": [
+        "e87.p1",
+        "e87.p2",
+        "e87.p3",
+        "e87.p4",
+        "e87.p5"
+      ],
+      "from": [
+        84,
+        85
+      ],
+      "on": [
+        {
+          "roll": "Sanity",
+          "onSuccess": {
+            "goto": 88
+          },
+          "onFail": {
+            "goto": 89
+          }
+        }
+      ]
+    },
+    "88": {
+      "id": 88,
+      "scene": "cabin",
+      "text": [
+        "e88.p1",
+        "e88.p2"
+      ],
+      "from": [
+        87
+      ],
+      "on": [
+        {
+          "goto": 91
+        }
+      ]
+    },
+    "89": {
+      "id": 89,
+      "scene": "cabin",
+      "text": [
+        "e89.p1",
+        "e89.p2",
+        "e89.p3",
+        "e89.p4"
+      ],
+      "from": [
+        87
+      ],
+      "on": [
+        {
+          "san": "1"
+        },
+        {
+          "goto": 91
+        }
+      ]
+    },
+    "90": {
+      "id": 90,
+      "scene": "cabin",
+      "text": [
+        "e90.p1",
+        "e90.p2"
+      ],
+      "from": [
+        86
+      ],
+      "on": [
+        {
+          "heal": "1"
+        },
+        {
+          "luck": "1d4"
+        },
+        {
+          "goto": 92
+        }
+      ]
+    },
+    "91": {
+      "id": 91,
+      "scene": "cabin",
+      "text": [
+        "e91.p1"
+      ],
+      "from": [
+        88,
+        89
+      ],
+      "choices": [
+        {
+          "text": "e91.c1",
+          "goto": 93,
+          "flag": "practical"
+        },
+        {
+          "text": "e91.c2",
+          "goto": 93,
+          "flag": "comfortable"
+        }
+      ]
+    },
+    "92": {
+      "id": 92,
+      "scene": "cabin",
+      "text": [
+        "e92.p1"
+      ],
+      "from": [
+        86,
+        90
+      ],
+      "choices": [
+        {
+          "text": "e92.c1",
+          "goto": 93,
+          "flag": "practical"
+        },
+        {
+          "text": "e92.c2",
+          "goto": 93,
+          "flag": "comfortable"
+        }
+      ]
+    },
+    "93": {
+      "id": 93,
+      "scene": "cabin",
+      "text": [
+        "e93.p1",
+        "e93.p2"
+      ],
+      "from": [
+        91,
+        92
+      ],
+      "choices": [
+        {
+          "text": "e93.c1",
+          "goto": 94
+        },
+        {
+          "text": "e93.c2",
+          "goto": 95
+        },
+        {
+          "text": "e93.c3",
+          "goto": 368
+        }
+      ]
+    },
+    "94": {
+      "id": 94,
+      "scene": "cabin",
+      "text": [
+        "e94.p1",
+        "e94.p2"
+      ],
+      "from": [
+        93,
+        97,
+        98,
+        101,
+        109
+      ],
+      "on": [
+        {
+          "flag": "well_fed"
+        },
+        {
+          "if": "survivalist",
+          "goto": 102
+        }
+      ],
+      "choices": [
+        {
+          "text": "e94.c1",
+          "goto": 106
+        },
+        {
+          "text": "e94.c2",
+          "goto": 107
+        }
+      ]
+    },
+    "95": {
+      "id": 95,
+      "scene": "cabin",
+      "text": [
+        "e95.p1"
+      ],
+      "from": [
+        93,
+        102,
+        106,
+        107
+      ],
+      "on": [
+        {
+          "roll": "Spot Hidden",
+          "push": true,
+          "onSuccess": {
+            "goto": 97
+          },
+          "onFail": {
+            "goto": 98
+          },
+          "onPushedFail": {
+            "goto": 99
+          }
+        }
+      ]
+    },
+    "96": {
+      "id": 96,
+      "scene": "drive",
+      "text": [
+        "e96.p1",
+        "e96.p2"
+      ],
+      "from": [
+        2
+      ],
+      "on": [
+        {
+          "goto": 103
+        }
+      ]
+    },
+    "97": {
+      "id": 97,
+      "scene": "cabin",
+      "text": [
+        "e97.p1",
+        "e97.p2",
+        "e97.p3",
+        "e97.p4"
+      ],
+      "from": [
+        95
+      ],
+      "on": [
+        {
+          "flag": "fully_charged"
+        },
+        {
+          "if": "well_fed",
+          "goto": 108
+        },
+        {
+          "goto": 94
+        }
+      ]
+    },
+    "98": {
+      "id": 98,
+      "scene": "cabin",
+      "text": [
+        "e98.p1",
+        "e98.p2"
+      ],
+      "from": [
+        95
+      ],
+      "on": [
+        {
+          "flag": "running_on_empty"
+        },
+        {
+          "if": "well_fed",
+          "goto": 108
+        },
+        {
+          "goto": 94
+        }
+      ]
+    },
+    "99": {
+      "id": 99,
+      "scene": "cabin",
+      "text": [
+        "e99.p1",
+        "e99.p2",
+        "e99.p3",
+        "e99.p4",
+        "e99.p5",
+        "e99.p6"
+      ],
+      "from": [
+        95
+      ],
+      "on": [
+        {
+          "flag": "running_on_empty"
+        },
+        {
+          "roll": "Dodge",
+          "onSuccess": {
+            "goto": 109
+          },
+          "onFail": {
+            "goto": 100
+          }
+        }
+      ]
+    },
+    "100": {
+      "id": 100,
+      "scene": "cabin",
+      "text": [
+        "e100.p1"
+      ],
+      "from": [
+        99
+      ],
+      "on": [
+        {
+          "hp": "1d4"
+        },
+        {
+          "goto": 101
+        }
+      ]
+    },
+    "101": {
+      "id": 101,
+      "scene": "cabin",
+      "text": [
+        "e101.p1",
+        "e101.p2",
+        "e101.p3"
+      ],
+      "from": [
+        100
+      ],
+      "on": [
+        {
+          "roll": "First Aid",
+          "onSuccess": {
+            "heal": "1"
+          }
+        },
+        {
+          "if": "well_fed",
+          "goto": 108
+        },
+        {
+          "goto": 94
+        }
+      ]
+    },
+    "102": {
+      "id": 102,
+      "scene": "cabin",
+      "text": [
+        "e102.p1",
+        "e102.p2",
+        "e102.p3",
+        "e102.p4"
+      ],
+      "from": [
+        94
+      ],
+      "guards": [
+        {
+          "if": "fully_charged",
+          "goto": 108
+        },
+        {
+          "if": "running_on_empty",
+          "goto": 108
+        }
+      ],
+      "on": [
+        {
+          "goto": 95
+        }
+      ]
+    },
+    "103": {
+      "id": 103,
+      "scene": "arrival",
+      "text": [
+        "e103.p1",
+        "e103.p2",
+        "e103.p3"
+      ],
+      "from": [
+        83,
+        96
+      ],
+      "on": [
+        {
+          "roll": "CON",
+          "onFail": {
+            "flag": "touched_by_cold"
+          }
+        }
+      ],
+      "choices": [
+        {
+          "text": "e103.c1",
+          "goto": 105
+        },
+        {
+          "text": "e103.c2",
+          "goto": 111
+        }
+      ]
+    },
+    "104": {
+      "id": 104,
+      "scene": "forest",
+      "text": [
+        "e104.p1",
+        "e104.p2",
+        "e104.p3",
+        "e104.p4"
+      ],
+      "from": [
+        38
+      ],
+      "on": [
+        {
+          "flag": "survivalist"
+        }
+      ],
+      "choices": [
+        {
+          "text": "e104.c1",
+          "goto": 44
+        },
+        {
+          "text": "e104.c2",
+          "goto": 49
+        }
+      ]
+    },
+    "105": {
+      "id": 105,
+      "scene": "arrival",
+      "text": [
+        "e105.p1",
+        "e105.p2",
+        "e105.p3"
+      ],
+      "from": [
+        103
+      ],
+      "on": [
+        {
+          "goto": 327
+        }
+      ]
+    },
+    "106": {
+      "id": 106,
+      "scene": "cabin",
+      "text": [
+        "e106.p1",
+        "e106.p2"
+      ],
+      "from": [
+        94
+      ],
+      "guards": [
+        {
+          "if": "fully_charged",
+          "goto": 108
+        },
+        {
+          "if": "running_on_empty",
+          "goto": 108
+        }
+      ],
+      "on": [
+        {
+          "goto": 95
+        }
+      ]
+    },
+    "107": {
+      "id": 107,
+      "scene": "cabin",
+      "text": [
+        "e107.p1"
+      ],
+      "from": [
+        94
+      ],
+      "on": [
+        {
+          "roll": "Sanity",
+          "onFail": {
+            "san": "1"
+          }
+        },
+        {
+          "if": "fully_charged",
+          "goto": 108
+        },
+        {
+          "if": "running_on_empty",
+          "goto": 108
+        },
+        {
+          "goto": 95
+        }
+      ]
+    },
+    "108": {
+      "id": 108,
+      "scene": "cabin",
+      "text": [
+        "e108.p1"
+      ],
+      "from": [
+        97,
+        98,
+        101,
+        102,
+        106,
+        107,
+        109
+      ],
+      "on": [
+        {
+          "roll": "Listen",
+          "push": true,
+          "onSuccess": {
+            "goto": 110
+          },
+          "onFail": {
+            "goto": 113
+          },
+          "onPushedFail": {
+            "goto": 112
+          }
+        }
+      ]
+    },
+    "109": {
+      "id": 109,
+      "scene": "cabin",
+      "text": [
+        "e109.p1",
+        "e109.p2"
+      ],
+      "from": [
+        99
+      ],
+      "guards": [
+        {
+          "if": "well_fed",
+          "goto": 108
+        }
+      ],
+      "on": [
+        {
+          "goto": 94
+        }
+      ]
+    },
+    "110": {
+      "id": 110,
+      "scene": "cabin",
+      "text": [
+        "e110.p1",
+        "e110.p2",
+        "e110.p3"
+      ],
+      "from": [
+        108
+      ],
+      "choices": [
+        {
+          "text": "e110.c1",
+          "goto": 140
+        },
+        {
+          "text": "e110.c2",
+          "goto": 121
+        }
+      ]
+    },
+    "111": {
+      "id": 111,
+      "scene": "arrival",
+      "text": [
+        "e111.p1",
+        "e111.p2",
+        "e111.p3"
+      ],
+      "from": [
+        103
+      ],
+      "on": [
+        {
+          "goto": 327
+        }
+      ]
+    },
+    "112": {
+      "id": 112,
+      "scene": "cabin",
+      "text": [
+        "e112.p1",
+        "e112.p2"
+      ],
+      "from": [
+        108
+      ],
+      "on": [
+        {
+          "goto": 139
+        }
+      ]
+    },
+    "113": {
+      "id": 113,
+      "scene": "cabin",
+      "text": [
+        "e113.p1",
+        "e113.p2",
+        "e113.p3",
+        "e113.p4",
+        "e113.p5"
+      ],
+      "from": [
+        108
+      ],
+      "choices": [
+        {
+          "text": "e113.c1",
+          "goto": 114
+        },
+        {
+          "text": "e113.c2",
+          "goto": 122
+        }
+      ]
+    },
+    "114": {
+      "id": 114,
+      "scene": "cabin",
+      "text": [
+        "e114.p1",
+        "e114.p2"
+      ],
+      "from": [
+        113,
+        121
+      ],
+      "on": [
+        {
+          "roll": "Spot Hidden",
+          "onSuccess": {
+            "goto": 115
+          },
+          "onFail": {
+            "goto": 118
+          }
+        }
+      ]
+    },
+    "115": {
+      "id": 115,
+      "scene": "cabin",
+      "text": [
+        "e115.p1"
+      ],
+      "from": [
+        114
+      ],
+      "on": [
+        {
+          "goto": 118
+        }
+      ]
+    },
+    "116": {
+      "id": 116,
+      "scene": "cabin",
+      "text": [
+        "e116.p1",
+        "e116.p2",
+        "e116.p3"
+      ],
+      "from": [
+        118,
+        122
+      ],
+      "choices": [
+        {
+          "text": "e116.c1",
+          "goto": 132
+        },
+        {
+          "text": "e116.c2",
+          "goto": 117
+        }
+      ]
+    },
+    "117": {
+      "id": 117,
+      "scene": "cabin",
+      "text": [
+        "e117.p1",
+        "e117.p2",
+        "e117.p3"
+      ],
+      "from": [
+        116,
+        118,
+        122,
+        123,
+        132
+      ],
+      "choices": [
+        {
+          "text": "e117.c1",
+          "goto": 117,
+          "roll": "Intimidate",
+          "onSuccess": {
+            "goto": 119
+          },
+          "onFail": {
+            "goto": 130
+          }
+        },
+        {
+          "text": "e117.c2",
+          "goto": 117,
+          "roll": "Persuade",
+          "onSuccess": {
+            "goto": 125
+          },
+          "onFail": {
+            "goto": 136
+          }
+        },
+        {
+          "text": "e117.c3",
+          "goto": 128
+        }
+      ]
+    },
+    "118": {
+      "id": 118,
+      "scene": "cabin",
+      "text": [
+        "e118.p1",
+        "e118.p2"
+      ],
+      "from": [
+        114,
+        115
+      ],
+      "choices": [
+        {
+          "text": "e118.c1",
+          "goto": 116
+        },
+        {
+          "text": "e118.c2",
+          "goto": 117
+        },
+        {
+          "text": "e118.c3",
+          "goto": 128
+        }
+      ]
+    },
+    "119": {
+      "id": 119,
+      "scene": "cabin",
+      "text": [
+        "e119.p1",
+        "e119.p2",
+        "e119.p3",
+        "e119.p4"
+      ],
+      "from": [
+        117
+      ],
+      "choices": [
+        {
+          "text": "e119.c1",
+          "goto": 138
+        },
+        {
+          "text": "e119.c2",
+          "goto": 120
+        }
+      ]
+    },
+    "120": {
+      "id": 120,
+      "scene": "cabin",
+      "text": [
+        "e120.p1",
+        "e120.p2"
+      ],
+      "from": [
+        119,
+        125,
+        130,
+        136,
+        138,
+        140
+      ],
+      "on": [
+        {
+          "flag": "lockdown"
+        },
+        {
+          "goto": 142
+        }
+      ]
+    },
+    "121": {
+      "id": 121,
+      "scene": "cabin",
+      "text": [
+        "e121.p1",
+        "e121.p2",
+        "e121.p3",
+        "e121.p4"
+      ],
+      "from": [
+        110
+      ],
+      "choices": [
+        {
+          "text": "e121.c1",
+          "goto": 114
+        },
+        {
+          "text": "e121.c2",
+          "goto": 122
+        }
+      ]
+    },
+    "122": {
+      "id": 122,
+      "scene": "cabin",
+      "text": [
+        "e122.p1",
+        "e122.p2"
+      ],
+      "from": [
+        113,
+        121
+      ],
+      "choices": [
+        {
+          "text": "e122.c1",
+          "goto": 116
+        },
+        {
+          "text": "e122.c2",
+          "goto": 123
+        },
+        {
+          "text": "e122.c3",
+          "goto": 117
+        }
+      ]
+    },
+    "123": {
+      "id": 123,
+      "scene": "cabin",
+      "text": [
+        "e123.p1",
+        "e123.p2",
+        "e123.p3",
+        "e123.p4"
+      ],
+      "from": [
+        122
+      ],
+      "choices": [
+        {
+          "text": "e123.c1",
+          "goto": 117
+        },
+        {
+          "text": "e123.c2",
+          "goto": 128
+        }
+      ]
+    },
+    "124": {
+      "id": 124,
+      "scene": "cabin",
+      "text": [
+        "e124.p1",
+        "e124.p2",
+        "e124.p3"
+      ],
+      "from": [
+        327
+      ],
+      "on": [
+        {
+          "roll": "Psychology",
+          "onSuccess": {
+            "goto": 127
+          },
+          "onFail": {
+            "goto": 129
+          }
+        }
+      ]
+    },
+    "125": {
+      "id": 125,
+      "scene": "cabin",
+      "text": [
+        "e125.p1",
+        "e125.p2",
+        "e125.p3"
+      ],
+      "from": [
+        117
+      ],
+      "choices": [
+        {
+          "text": "e125.c1",
+          "goto": 138
+        },
+        {
+          "text": "e125.c2",
+          "goto": 120
+        }
+      ]
+    },
+    "126": {
+      "id": 126,
+      "scene": "cabin",
+      "text": [
+        "e126.p1",
+        "e126.p2",
+        "e126.p3",
+        "e126.p4",
+        "e126.p5",
+        "e126.p6"
+      ],
+      "from": [
+        327
+      ],
+      "on": [
+        {
+          "flag": "occupied"
+        },
+        {
+          "roll": "Psychology",
+          "onSuccess": {
+            "goto": 127
+          },
+          "onFail": {
+            "goto": 129
+          }
+        }
+      ]
+    },
+    "127": {
+      "id": 127,
+      "scene": "cabin",
+      "text": [
+        "e127.p1"
+      ],
+      "from": [
+        124,
+        126
+      ],
+      "on": [
+        {
+          "goto": 234
+        }
+      ]
+    },
+    "128": {
+      "id": 128,
+      "scene": "cabin",
+      "text": [
+        "e128.p1",
+        "e128.p2"
+      ],
+      "from": [
+        117,
+        118,
+        123,
+        132
+      ],
+      "choices": [
+        {
+          "text": "e128.c1",
+          "goto": 139
+        },
+        {
+          "text": "e128.c2",
+          "goto": 140
+        }
+      ]
+    },
+    "129": {
+      "id": 129,
+      "scene": "cabin",
+      "text": [
+        "e129.p1",
+        "e129.p2",
+        "e129.p3"
+      ],
+      "from": [
+        124,
+        126
+      ],
+      "on": [
+        {
+          "goto": 234
+        }
+      ]
+    },
+    "130": {
+      "id": 130,
+      "scene": "cabin",
+      "text": [
+        "e130.p1",
+        "e130.p2",
+        "e130.p3",
+        "e130.p4",
+        "e130.p5"
+      ],
+      "from": [
+        117
+      ],
+      "on": [
+        {
+          "roll": "Sanity",
+          "onFail": {
+            "san": "1"
+          }
+        }
+      ],
+      "choices": [
+        {
+          "text": "e130.c1",
+          "goto": 138
+        },
+        {
+          "text": "e130.c2",
+          "goto": 120
+        }
+      ]
+    },
+    "131": {
+      "id": 131,
+      "scene": "cabin",
+      "text": [
+        "e131.p1",
+        "e131.p2",
+        "e131.p3",
+        "e131.p4",
+        "e131.p5"
+      ],
+      "from": [
+        234
+      ],
+      "on": [
+        {
+          "flag": "the_flowers_in_the_stream"
+        }
+      ],
+      "choices": [
+        {
+          "text": "e131.c1",
+          "goto": 135
+        },
+        {
+          "text": "e131.c2",
+          "goto": 137
+        }
+      ]
+    },
+    "132": {
+      "id": 132,
+      "scene": "cabin",
+      "text": [
+        "e132.p1",
+        "e132.p2"
+      ],
+      "from": [
+        116
+      ],
+      "choices": [
+        {
+          "text": "e132.c1",
+          "goto": 117
+        },
+        {
+          "text": "e132.c2",
+          "goto": 128
+        }
+      ]
+    },
+    "133": {
+      "id": 133,
+      "scene": "cabin",
+      "text": [
+        "e133.p1",
+        "e133.p2",
+        "e133.p3",
+        "e133.p4",
+        "e133.p5",
+        "e133.p6"
+      ],
+      "from": [
+        234
+      ],
+      "choices": [
+        {
+          "text": "e133.c1",
+          "goto": 135
+        },
+        {
+          "text": "e133.c2",
+          "goto": 137
+        }
+      ]
+    },
+    "134": {
+      "id": 134,
+      "scene": "cabin",
+      "text": [
+        "e134.p1",
+        "e134.p2",
+        "e134.p3"
+      ],
+      "from": [
+        9
+      ],
+      "end": true
+    },
+    "135": {
+      "id": 135,
+      "scene": "cabin",
+      "text": [
+        "e135.p1",
+        "e135.p2"
+      ],
+      "from": [
+        131,
+        133
+      ],
+      "on": [
+        {
+          "goto": 145
+        }
+      ]
+    },
+    "136": {
+      "id": 136,
+      "scene": "cabin",
+      "text": [
+        "e136.p1",
+        "e136.p2",
+        "e136.p3",
+        "e136.p4",
+        "e136.p5"
+      ],
+      "from": [
+        117
+      ],
+      "on": [
+        {
+          "roll": "Sanity",
+          "onFail": {
+            "san": "1"
+          }
+        }
+      ],
+      "choices": [
+        {
+          "text": "e136.c1",
+          "goto": 138
+        },
+        {
+          "text": "e136.c2",
+          "goto": 120
+        }
+      ]
+    },
+    "137": {
+      "id": 137,
+      "scene": "cabin",
+      "text": [
+        "e137.p1",
+        "e137.p2",
+        "e137.p3"
+      ],
+      "from": [
+        131,
+        133
+      ],
+      "on": [
+        {
+          "flag": "broken_heart"
+        },
+        {
+          "goto": 145
+        }
+      ]
+    },
+    "138": {
+      "id": 138,
+      "scene": "forest",
+      "text": [
+        "e138.p1",
+        "e138.p2"
+      ],
+      "from": [
+        119,
+        125,
+        130,
+        136,
+        140
+      ],
+      "choices": [
+        {
+          "text": "e138.c1",
+          "goto": 120
+        },
+        {
+          "text": "e138.c2",
+          "goto": 141
+        }
+      ]
+    },
+    "139": {
+      "id": 139,
+      "scene": "cabin",
+      "text": [
+        "e139.p1",
+        "e139.p2"
+      ],
+      "from": [
+        112,
+        128
+      ],
+      "on": [
+        {
+          "heal": "1"
+        },
+        {
+          "flag": "well_rested"
+        },
+        {
+          "goto": 142
+        }
+      ]
+    },
+    "140": {
+      "id": 140,
+      "scene": "cabin",
+      "text": [
+        "e140.p1",
+        "e140.p2"
+      ],
+      "from": [
+        110,
+        128
+      ],
+      "choices": [
+        {
+          "text": "e140.c1",
+          "goto": 138
+        },
+        {
+          "text": "e140.c2",
+          "goto": 120
+        }
+      ]
+    },
+    "141": {
+      "id": 141,
+      "scene": "forest",
+      "text": [
+        "e141.p1"
+      ],
+      "from": [
+        138
+      ],
+      "on": [
+        {
+          "roll": "Stealth",
+          "push": true,
+          "diceIf": [
+            {
+              "if": "comfortable",
+              "dice": 1
+            }
+          ],
+          "onSuccess": {
+            "goto": 144
+          },
+          "onFail": {
+            "goto": 146
+          },
+          "onPushedFail": {
+            "goto": 147
+          }
+        }
+      ],
+      "choices": [
+        {
+          "text": "e141.c1",
+          "goto": 143
+        }
+      ]
+    },
+    "142": {
+      "id": 142,
+      "scene": "forest",
+      "text": [
+        "e142.p1",
+        "e142.p2",
+        "e142.p3",
+        "e142.p4"
+      ],
+      "from": [
+        120,
+        139,
+        157,
+        163
+      ],
+      "choices": [
+        {
+          "text": "e142.c1",
+          "goto": 183
+        },
+        {
+          "text": "e142.c2",
+          "goto": 176
+        }
+      ]
+    },
+    "143": {
+      "id": 143,
+      "scene": "forest",
+      "text": [
+        "e143.p1",
+        "e143.p2"
+      ],
+      "from": [
+        141
+      ],
+      "on": [
+        {
+          "goto": 152
+        }
+      ]
+    },
+    "144": {
+      "id": 144,
+      "scene": "forest",
+      "text": [
+        "e144.p1",
+        "e144.p2"
+      ],
+      "from": [
+        141
+      ],
+      "choices": [
+        {
+          "text": "e144.c1",
+          "goto": 155
+        },
+        {
+          "text": "e144.c2",
+          "goto": 163
+        }
+      ]
+    },
+    "145": {
+      "id": 145,
+      "scene": "cabin",
+      "text": [
+        "e145.p1",
+        "e145.p2",
+        "e145.p3",
+        "e145.p4",
+        "e145.p5",
+        "e145.p6"
+      ],
+      "from": [
+        135,
+        137
+      ],
+      "on": [
+        {
+          "roll": "Sanity",
+          "onFail": [
+            {
+              "san": "1"
+            },
+            {
+              "flag": "unsettled"
+            }
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "text": "e145.c1",
+          "goto": 154
+        },
+        {
+          "text": "e145.c2",
+          "goto": 158
+        }
+      ]
+    },
+    "146": {
+      "id": 146,
+      "scene": "forest",
+      "text": [
+        "e146.p1"
+      ],
+      "from": [
+        141
+      ],
+      "on": [
+        {
+          "goto": 152
+        }
+      ]
+    },
+    "147": {
+      "id": 147,
+      "scene": "forest",
+      "text": [
+        "e147.p1",
+        "e147.p2",
+        "e147.p3",
+        "e147.p4",
+        "e147.p5"
+      ],
+      "from": [
+        141
+      ],
+      "on": [
+        {
+          "roll": "DEX",
+          "difficulty": "hard",
+          "onSuccess": {
+            "goto": 148
+          },
+          "onFail": {
+            "goto": 149
+          }
+        }
+      ]
+    },
+    "148": {
+      "id": 148,
+      "scene": "forest",
+      "text": [
+        "e148.p1",
+        "e148.p2",
+        "e148.p3",
+        "e148.p4"
+      ],
+      "from": [
+        147,
+        153
+      ],
+      "on": [
+        {
+          "goto": 170
+        }
+      ]
+    },
+    "149": {
+      "id": 149,
+      "scene": "forest",
+      "text": [
+        "e149.p1",
+        "e149.p2",
+        "e149.p3"
+      ],
+      "from": [
+        147
+      ],
+      "on": [
+        {
+          "hp": "1d4"
+        },
+        {
+          "roll": "Fighting (Brawl)",
+          "onSuccess": {
+            "goto": 151
+          },
+          "onFail": {
+            "goto": 150
+          }
+        }
+      ]
+    },
+    "150": {
+      "id": 150,
+      "scene": "forest",
+      "text": [
+        "e150.p1",
+        "e150.p2",
+        "e150.p3"
+      ],
+      "from": [
+        149
+      ],
+      "end": true
+    },
+    "151": {
+      "id": 151,
+      "scene": "forest",
+      "text": [
+        "e151.p1",
+        "e151.p2",
+        "e151.p3"
+      ],
+      "from": [
+        149
+      ],
+      "on": [
+        {
+          "goto": 170
+        }
+      ]
+    },
+    "152": {
+      "id": 152,
+      "scene": "forest",
+      "text": [
+        "e152.p1"
+      ],
+      "from": [
+        143,
+        146
+      ],
+      "choices": [
+        {
+          "text": "e152.c1",
+          "goto": 163
+        },
+        {
+          "text": "e152.c2",
+          "goto": 153
+        }
+      ]
+    },
+    "153": {
+      "id": 153,
+      "scene": "forest",
+      "text": [
+        "e153.p1",
+        "e153.p2",
+        "e153.p3"
+      ],
+      "from": [
+        152
+      ],
+      "on": [
+        {
+          "roll": "DEX",
+          "difficulty": "hard",
+          "onSuccess": {
+            "goto": 148
+          },
+          "onFail": {
+            "goto": 149
+          }
+        }
+      ]
+    },
+    "154": {
+      "id": 154,
+      "scene": "cabin",
+      "text": [
+        "e154.p1",
+        "e154.p2",
+        "e154.p3",
+        "e154.p4",
+        "e154.p5",
+        "e154.p6",
+        "e154.p7"
+      ],
+      "from": [
+        145
+      ],
+      "guards": [
+        {
+          "if": "broken_heart",
+          "goto": 160
+        }
+      ],
+      "choices": [
+        {
+          "text": "e154.c1",
+          "goto": 160
+        },
+        {
+          "text": "e154.c2",
+          "goto": 174
+        }
+      ]
+    },
+    "155": {
+      "id": 155,
+      "scene": "forest",
+      "text": [
+        "e155.p1",
+        "e155.p2",
+        "e155.p3",
+        "e155.p4"
+      ],
+      "from": [
+        144
+      ],
+      "choices": [
+        {
+          "text": "e155.c1",
+          "goto": 164
+        },
+        {
+          "text": "e155.c2",
+          "goto": 156
+        }
+      ]
+    },
+    "156": {
+      "id": 156,
+      "scene": "forest",
+      "text": [
+        "e156.p1"
+      ],
+      "from": [
+        155
+      ],
+      "on": [
+        {
+          "roll": "Navigate",
+          "push": true,
+          "onSuccess": {
+            "goto": 157
+          },
+          "onFail": {
+            "goto": 159
+          },
+          "onPushedFail": {
+            "goto": 162
+          }
+        }
+      ]
+    },
+    "157": {
+      "id": 157,
+      "scene": "forest",
+      "text": [
+        "e157.p1",
+        "e157.p2"
+      ],
+      "from": [
+        156
+      ],
+      "on": [
+        {
+          "goto": 142
+        }
+      ]
+    },
+    "158": {
+      "id": 158,
+      "scene": "cabin",
+      "text": [
+        "e158.p1",
+        "e158.p2",
+        "e158.p3",
+        "e158.p4",
+        "e158.p5"
+      ],
+      "from": [
+        145
+      ],
+      "guards": [
+        {
+          "if": "broken_heart",
+          "goto": 160
+        }
+      ],
+      "choices": [
+        {
+          "text": "e158.c1",
+          "goto": 160
+        },
+        {
+          "text": "e158.c2",
+          "goto": 174
+        }
+      ]
+    },
+    "159": {
+      "id": 159,
+      "scene": "forest",
+      "text": [
+        "e159.p1",
+        "e159.p2",
+        "e159.p3"
+      ],
+      "from": [
+        156
+      ],
+      "on": [
+        {
+          "roll": "CON",
+          "diceIf": [
+            {
+              "if": "touched_by_cold",
+              "dice": -1
+            },
+            {
+              "if": "practical",
+              "dice": 1
+            }
+          ],
+          "onFail": {
+            "hp": "1d4"
+          }
+        },
+        {
+          "goto": 170
+        }
+      ]
+    },
+    "160": {
+      "id": 160,
+      "scene": "cabin",
+      "text": [
+        "e160.p1",
+        "e160.p2",
+        "e160.p3",
+        "e160.p4",
+        "e160.p5"
+      ],
+      "from": [
+        154,
+        158
+      ],
+      "on": [
+        {
+          "flag": "blame_game"
+        },
+        {
+          "goto": 193
+        }
+      ]
+    },
+    "161": {
+      "id": 161,
+      "scene": "forest",
+      "text": [
+        "e161.p1",
+        "e161.p2"
+      ],
+      "from": [
+        162
+      ],
+      "on": [
+        {
+          "goto": 170
+        }
+      ]
+    },
+    "162": {
+      "id": 162,
+      "scene": "forest",
+      "text": [
+        "e162.p1",
+        "e162.p2"
+      ],
+      "from": [
+        156
+      ],
+      "on": [
+        {
+          "roll": "CON",
+          "diceIf": [
+            {
+              "if": "touched_by_cold",
+              "dice": -1
+            },
+            {
+              "if": "practical",
+              "dice": 1
+            }
+          ],
+          "onFail": {
+            "hp": "1d6"
+          }
+        },
+        {
+          "goto": 161
+        }
+      ]
+    },
+    "163": {
+      "id": 163,
+      "scene": "cabin",
+      "text": [
+        "e163.p1",
+        "e163.p2"
+      ],
+      "from": [
+        144,
+        152
+      ],
+      "on": [
+        {
+          "goto": 142
+        }
+      ]
+    },
+    "164": {
+      "id": 164,
+      "scene": "forest",
+      "text": [
+        "e164.p1",
+        "e164.p2",
+        "e164.p3"
+      ],
+      "from": [
+        155
+      ],
+      "choices": [
+        {
+          "text": "e164.c1",
+          "goto": 172
+        },
+        {
+          "text": "e164.c2",
+          "goto": 165
+        }
+      ]
+    },
+    "165": {
+      "id": 165,
+      "scene": "forest",
+      "text": [
+        "e165.p1",
+        "e165.p2",
+        "e165.p3",
+        "e165.p4"
+      ],
+      "from": [
+        164
+      ],
+      "on": [
+        {
+          "flag": "wrong_turn"
+        },
+        {
+          "roll": "Sanity",
+          "onSuccess": {
+            "goto": 173
+          },
+          "onFail": {
+            "goto": 166
+          }
+        }
+      ]
+    },
+    "166": {
+      "id": 166,
+      "scene": "forest",
+      "text": [
+        "e166.p1"
+      ],
+      "from": [
+        165,
+        172
+      ],
+      "on": [
+        {
+          "san": "1d4"
+        },
+        {
+          "hp": "1d4"
+        }
+      ],
+      "choices": [
+        {
+          "text": "e166.c1",
+          "goto": 167
+        },
+        {
+          "text": "e166.c2",
+          "goto": 171
+        }
+      ]
+    },
+    "167": {
+      "id": 167,
+      "scene": "forest",
+      "text": [
+        "e167.p1"
+      ],
+      "from": [
+        166,
+        173,
+        175
+      ],
+      "on": [
+        {
+          "roll": "Navigate",
+          "onSuccess": {
+            "goto": 168
+          },
+          "onFail": {
+            "goto": 169
+          }
+        }
+      ]
+    },
+    "168": {
+      "id": 168,
+      "scene": "forest",
+      "text": [
+        "e168.p1",
+        "e168.p2"
+      ],
+      "from": [
+        167
+      ],
+      "on": [
+        {
+          "goto": 170
+        }
+      ]
+    },
+    "169": {
+      "id": 169,
+      "scene": "forest",
+      "text": [
+        "e169.p1",
+        "e169.p2",
+        "e169.p3"
+      ],
+      "from": [
+        167
+      ],
+      "on": [
+        {
+          "roll": "CON",
+          "diceIf": [
+            {
+              "if": "touched_by_cold",
+              "dice": -1
+            },
+            {
+              "if": "practical",
+              "dice": 1
+            }
+          ],
+          "onFail": {
+            "hp": "1d4"
+          }
+        },
+        {
+          "goto": 170
+        }
+      ]
+    },
+    "170": {
+      "id": 170,
+      "scene": "cabin",
+      "text": [
+        "e170.p1",
+        "e170.p2",
+        "e170.p3"
+      ],
+      "from": [
+        148,
+        151,
+        159,
+        161,
+        168
+      ],
+      "choices": [
+        {
+          "text": "e170.c1",
+          "goto": 184
+        },
+        {
+          "text": "e170.c2",
+          "goto": 185
+        }
+      ]
+    },
+    "171": {
+      "id": 171,
+      "scene": "forest",
+      "text": [
+        "e171.p1",
+        "e171.p2",
+        "e171.p3",
+        "e171.p4",
+        "e171.p5",
+        "e171.p6",
+        "e171.p7"
+      ],
+      "from": [
+        166,
+        175
+      ],
+      "end": true
+    },
+    "172": {
+      "id": 172,
+      "scene": "forest",
+      "text": [
+        "e172.p1",
+        "e172.p2",
+        "e172.p3",
+        "e172.p4"
+      ],
+      "from": [
+        164
+      ],
+      "on": [
+        {
+          "roll": "Sanity",
+          "onSuccess": {
+            "goto": 173
+          },
+          "onFail": {
+            "goto": 166
+          }
+        }
+      ]
+    },
+    "173": {
+      "id": 173,
+      "scene": "forest",
+      "text": [
+        "e173.p1",
+        "e173.p2"
+      ],
+      "from": [
+        165,
+        172
+      ],
+      "on": [
+        {
+          "hp": "1"
+        }
+      ],
+      "choices": [
+        {
+          "text": "e173.c1",
+          "goto": 167
+        },
+        {
+          "text": "e173.c2",
+          "goto": 175
+        }
+      ]
+    },
+    "174": {
+      "id": 174,
+      "scene": "cabin",
+      "text": [
+        "e174.p1",
+        "e174.p2",
+        "e174.p3",
+        "e174.p4",
+        "e174.p5",
+        "e174.p6",
+        "e174.p7"
+      ],
+      "from": [
+        154,
+        158
+      ],
+      "on": [
+        {
+          "goto": 193
+        }
+      ]
+    },
+    "175": {
+      "id": 175,
+      "scene": "cabin",
+      "text": [
+        "e175.p1",
+        "e175.p2"
+      ],
+      "from": [
+        173
+      ],
+      "on": [
+        {
+          "san": "1d4"
+        },
+        {
+          "hp": "1d4"
+        }
+      ],
+      "choices": [
+        {
+          "text": "e175.c1",
+          "goto": 167
+        },
+        {
+          "text": "e175.c2",
+          "goto": 171
+        }
+      ]
+    },
+    "176": {
+      "id": 176,
+      "scene": "cabin",
+      "text": [
+        "e176.p1",
+        "e176.p2"
+      ],
+      "from": [
+        142
+      ],
+      "on": [
+        {
+          "roll": "Sanity",
+          "onFail": {
+            "san": "1"
+          }
+        },
+        {
+          "if": "lumberjack",
+          "goto": 177
+        }
+      ],
+      "choices": [
+        {
+          "text": "e176.c1",
+          "goto": 181
+        },
+        {
+          "text": "e176.c2",
+          "goto": 178
+        }
+      ]
+    },
+    "177": {
+      "id": 177,
+      "scene": "cabin",
+      "text": [
+        "e177.p1",
+        "e177.p2"
+      ],
+      "from": [
+        176
+      ],
+      "on": [
+        {
+          "flag": "close_to_hand"
+        },
+        {
+          "goto": 182
+        }
+      ]
+    },
+    "178": {
+      "id": 178,
+      "scene": "cabin",
+      "text": [
+        "e178.p1",
+        "e178.p2"
+      ],
+      "from": [
+        176
+      ],
+      "on": [
+        {
+          "roll": "Sanity",
+          "onSuccess": {
+            "goto": 180
+          },
+          "onFail": {
+            "goto": 179
+          }
+        }
+      ]
+    },
+    "179": {
+      "id": 179,
+      "scene": "cabin",
+      "text": [
+        "e179.p1"
+      ],
+      "from": [
+        178
+      ],
+      "on": [
+        {
+          "san": "1"
+        },
+        {
+          "goto": 181
+        }
+      ]
+    },
+    "180": {
+      "id": 180,
+      "scene": "cabin",
+      "text": [
+        "e180.p1",
+        "e180.p2"
+      ],
+      "from": [
+        178
+      ],
+      "on": [
+        {
+          "goto": 181
+        }
+      ]
+    },
+    "181": {
+      "id": 181,
+      "scene": "cabin",
+      "text": [
+        "e181.p1",
+        "e181.p2",
+        "e181.p3",
+        "e181.p4"
+      ],
+      "from": [
+        176,
+        179,
+        180
+      ],
+      "choices": [
+        {
+          "text": "e181.c1",
+          "goto": 184
+        },
+        {
+          "text": "e181.c2",
+          "goto": 185
+        }
+      ]
+    },
+    "182": {
+      "id": 182,
+      "scene": "cabin",
+      "text": [
+        "e182.p1",
+        "e182.p2",
+        "e182.p3",
+        "e182.p4"
+      ],
+      "from": [
+        177
+      ],
+      "on": [
+        {
+          "flag": "lockdown"
+        }
+      ],
+      "choices": [
+        {
+          "text": "e182.c1",
+          "goto": 184
+        },
+        {
+          "text": "e182.c2",
+          "goto": 185
+        }
+      ]
+    },
+    "183": {
+      "id": 183,
+      "scene": "cabin",
+      "text": [
+        "e183.p1",
+        "e183.p2",
+        "e183.p3"
+      ],
+      "from": [
+        142
+      ],
+      "choices": [
+        {
+          "text": "e183.c1",
+          "goto": 184
+        },
+        {
+          "text": "e183.c2",
+          "goto": 185
+        }
+      ]
+    },
+    "184": {
+      "id": 184,
+      "scene": "cabin",
+      "text": [
+        "e184.p1",
+        "e184.p2",
+        "e184.p3",
+        "e184.p4"
+      ],
+      "from": [
+        170,
+        181,
+        182,
+        183
+      ],
+      "on": [
+        {
+          "goto": 186
+        }
+      ]
+    },
+    "185": {
+      "id": 185,
+      "scene": "cabin",
+      "text": [
+        "e185.p1",
+        "e185.p2"
+      ],
+      "from": [
+        170,
+        181,
+        182,
+        183
+      ],
+      "on": [
+        {
+          "goto": 186
+        }
+      ]
+    },
+    "186": {
+      "id": 186,
+      "scene": "cabin",
+      "text": [
+        "e186.p1"
+      ],
+      "from": [
+        184,
+        185,
+        187,
+        188,
+        191,
+        192,
+        194,
+        195,
+        196,
+        198,
+        199,
+        201,
+        203,
+        204,
+        206,
+        214,
+        216,
+        220,
+        221
+      ],
+      "choices": [
+        {
+          "text": "e186.c1",
+          "goto": 187,
+          "if": "the_quiet_in_the_evening",
+          "once": true
+        },
+        {
+          "text": "e186.c2",
+          "goto": 196,
+          "if": "the_couple_who_came_to_the_cabin",
+          "once": true
+        },
+        {
+          "text": "e186.c3",
+          "goto": 208,
+          "once": true
+        },
+        {
+          "text": "e186.c4",
+          "goto": 223
+        }
+      ]
+    },
+    "187": {
+      "id": 187,
+      "scene": "cabin",
+      "text": [
+        "e187.p1",
+        "e187.p2"
+      ],
+      "from": [
+        186
+      ],
+      "choices": [
+        {
+          "text": "e187.c1",
+          "goto": 188
+        },
+        {
+          "text": "e187.c2",
+          "goto": 186
+        }
+      ]
+    },
+    "188": {
+      "id": 188,
+      "scene": "cabin",
+      "text": [
+        "e188.p1",
+        "e188.p2",
+        "e188.p3",
+        "e188.p4",
+        "e188.p5",
+        "e188.p6",
+        "e188.p7",
+        "e188.p8",
+        "e188.p9",
+        "e188.p10"
+      ],
+      "from": [
+        187
+      ],
+      "choices": [
+        {
+          "text": "e188.c1",
+          "goto": 189
+        },
+        {
+          "text": "e188.c2",
+          "goto": 186
+        }
+      ]
+    },
+    "189": {
+      "id": 189,
+      "scene": "cabin",
+      "text": [
+        "e189.p1",
+        "e189.p2"
+      ],
+      "from": [
+        188
+      ],
+      "on": [
+        {
+          "roll": "Listen",
+          "push": true,
+          "onSuccess": {
+            "goto": 190
+          },
+          "onFail": {
+            "goto": 192
+          },
+          "onPushedFail": {
+            "goto": 195
+          }
+        }
+      ]
+    },
+    "190": {
+      "id": 190,
+      "scene": "cabin",
+      "text": [
+        "e190.p1",
+        "e190.p2",
+        "e190.p3",
+        "e190.p4"
+      ],
+      "from": [
+        189
+      ],
+      "on": [
+        {
+          "roll": "Sanity",
+          "onSuccess": {
+            "goto": 191
+          },
+          "onFail": {
+            "goto": 194
+          }
+        }
+      ]
+    },
+    "191": {
+      "id": 191,
+      "scene": "cabin",
+      "text": [
+        "e191.p1"
+      ],
+      "from": [
+        190
+      ],
+      "on": [
+        {
+          "san": "1"
+        },
+        {
+          "goto": 186
+        }
+      ]
+    },
+    "192": {
+      "id": 192,
+      "scene": "cabin",
+      "text": [
+        "e192.p1",
+        "e192.p2",
+        "e192.p3",
+        "e192.p4",
+        "e192.p5"
+      ],
+      "from": [
+        189
+      ],
+      "on": [
+        {
+          "goto": 186
+        }
+      ]
+    },
+    "193": {
+      "id": 193,
+      "scene": "cabin",
+      "text": [
+        "e193.p1",
+        "e193.p2",
+        "e193.p3",
+        "e193.p4",
+        "e193.p5",
+        "e193.p6"
+      ],
+      "from": [
+        160,
+        174
+      ],
+      "guards": [
+        {
+          "if": "broken_heart",
+          "goto": 207
+        },
+        {
+          "if": "blame_game",
+          "goto": 207
+        }
+      ],
+      "choices": [
+        {
+          "text": "e193.c1",
+          "goto": 205
+        },
+        {
+          "text": "e193.c2",
+          "goto": 207
+        }
+      ]
+    },
+    "194": {
+      "id": 194,
+      "scene": "cabin",
+      "text": [
+        "e194.p1",
+        "e194.p2",
+        "e194.p3"
+      ],
+      "from": [
+        190
+      ],
+      "on": [
+        {
+          "san": "1d4"
+        },
+        {
+          "goto": 186
+        }
+      ]
+    },
+    "195": {
+      "id": 195,
+      "scene": "cabin",
+      "text": [
+        "e195.p1",
+        "e195.p2"
+      ],
+      "from": [
+        189
+      ],
+      "on": [
+        {
+          "flag": "tinnitus"
+        },
+        {
+          "goto": 186
+        }
+      ]
+    },
+    "196": {
+      "id": 196,
+      "scene": "cabin",
+      "text": [
+        "e196.p1",
+        "e196.p2"
+      ],
+      "from": [
+        186
+      ],
+      "choices": [
+        {
+          "text": "e196.c1",
+          "goto": 197
+        },
+        {
+          "text": "e196.c2",
+          "goto": 186
+        }
+      ]
+    },
+    "197": {
+      "id": 197,
+      "scene": "cabin",
+      "text": [
+        "e197.p1",
+        "e197.p2",
+        "e197.p3",
+        "e197.p4",
+        "e197.p5",
+        "e197.p6",
+        "e197.p7",
+        "e197.p8",
+        "e197.p9",
+        "e197.p10"
+      ],
+      "from": [
+        196
+      ],
+      "on": [
+        {
+          "roll": "Sanity",
+          "onSuccess": {
+            "goto": 198
+          },
+          "onFail": {
+            "goto": 199
+          }
+        }
+      ]
+    },
+    "198": {
+      "id": 198,
+      "scene": "cabin",
+      "text": [
+        "e198.p1",
+        "e198.p2",
+        "e198.p3"
+      ],
+      "from": [
+        197
+      ],
+      "on": [
+        {
+          "san": "1"
+        }
+      ],
+      "choices": [
+        {
+          "text": "e198.c1",
+          "goto": 200
+        },
+        {
+          "text": "e198.c2",
+          "goto": 186
+        }
+      ]
+    },
+    "199": {
+      "id": 199,
+      "scene": "cabin",
+      "text": [
+        "e199.p1",
+        "e199.p2"
+      ],
+      "from": [
+        197
+      ],
+      "on": [
+        {
+          "san": "1d4"
+        }
+      ],
+      "choices": [
+        {
+          "text": "e199.c1",
+          "goto": 200
+        },
+        {
+          "text": "e199.c2",
+          "goto": 186
+        }
+      ]
+    },
+    "200": {
+      "id": 200,
+      "scene": "cabin",
+      "text": [
+        "e200.p1",
+        "e200.p2"
+      ],
+      "from": [
+        198,
+        199
+      ],
+      "on": [
+        {
+          "roll": "Spot Hidden",
+          "push": true,
+          "onSuccess": {
+            "goto": 202
+          },
+          "onFail": {
+            "goto": 201
+          },
+          "onPushedFail": {
+            "goto": 203
+          }
+        }
+      ]
+    },
+    "201": {
+      "id": 201,
+      "scene": "cabin",
+      "text": [
+        "e201.p1",
+        "e201.p2",
+        "e201.p3"
+      ],
+      "from": [
+        200
+      ],
+      "on": [
+        {
+          "goto": 186
+        }
+      ]
+    },
+    "202": {
+      "id": 202,
+      "scene": "cabin",
+      "text": [
+        "e202.p1",
+        "e202.p2",
+        "e202.p3",
+        "e202.p4",
+        "e202.p5"
+      ],
+      "from": [
+        200
+      ],
+      "on": [
+        {
+          "roll": "Sanity",
+          "onSuccess": {
+            "goto": 204
+          },
+          "onFail": {
+            "goto": 206
+          }
+        }
+      ]
+    },
+    "203": {
+      "id": 203,
+      "scene": "cabin",
+      "text": [
+        "e203.p1",
+        "e203.p2"
+      ],
+      "from": [
+        200
+      ],
+      "on": [
+        {
+          "san": "1d4"
+        },
+        {
+          "goto": 289
+        }
+      ]
+    },
+    "204": {
+      "id": 204,
+      "scene": "cabin",
+      "text": [
+        "e204.p1",
+        "e204.p2",
+        "e204.p3"
+      ],
+      "from": [
+        202
+      ],
+      "on": [
+        {
+          "goto": 186
+        }
+      ]
+    },
+    "205": {
+      "id": 205,
+      "scene": "cabin",
+      "text": [
+        "e205.p1",
+        "e205.p2",
+        "e205.p3",
+        "e205.p4"
+      ],
+      "from": [
+        193
+      ],
+      "on": [
+        {
+          "goto": 34
+        }
+      ]
+    },
+    "206": {
+      "id": 206,
+      "scene": "cabin",
+      "text": [
+        "e206.p1",
+        "e206.p2",
+        "e206.p3"
+      ],
+      "from": [
+        202
+      ],
+      "on": [
+        {
+          "san": "1d4"
+        },
+        {
+          "goto": 186
+        }
+      ]
+    },
+    "207": {
+      "id": 207,
+      "scene": "cabin",
+      "text": [
+        "e207.p1",
+        "e207.p2",
+        "e207.p3",
+        "e207.p4",
+        "e207.p5"
+      ],
+      "from": [
+        193
+      ],
+      "on": [
+        {
+          "flag": "nyctophobe"
+        },
+        {
+          "goto": 34
+        }
+      ]
+    },
+    "208": {
+      "id": 208,
+      "scene": "cabin",
+      "text": [
+        "e208.p1",
+        "e208.p2",
+        "e208.p3",
+        "e208.p4"
+      ],
+      "from": [
+        186
+      ],
+      "on": [
+        {
+          "flag": "familiar_face"
+        }
+      ],
+      "choices": [
+        {
+          "text": "e208.c1",
+          "goto": 222
+        },
+        {
+          "text": "e208.c2",
+          "goto": 209
+        }
+      ]
+    },
+    "209": {
+      "id": 209,
+      "scene": "cabin",
+      "text": [
+        "e209.p1",
+        "e209.p2",
+        "e209.p3",
+        "e209.p4"
+      ],
+      "from": [
+        208
+      ],
+      "choices": [
+        {
+          "text": "e209.c1",
+          "goto": 210
+        },
+        {
+          "text": "e209.c2",
+          "goto": 217
+        }
+      ]
+    },
+    "210": {
+      "id": 210,
+      "scene": "cabin",
+      "text": [
+        "e210.p1",
+        "e210.p2",
+        "e210.p3",
+        "e210.p4",
+        "e210.p5"
+      ],
+      "from": [
+        209,
+        222
+      ],
+      "choices": [
+        {
+          "text": "e210.c1",
+          "goto": 213
+        },
+        {
+          "text": "e210.c2",
+          "goto": 211
+        }
+      ]
+    },
+    "211": {
+      "id": 211,
+      "scene": "cabin",
+      "text": [
+        "e211.p1"
+      ],
+      "from": [
+        210
+      ],
+      "on": [
+        {
+          "if": "veterinarian",
+          "goto": 212
+        },
+        {
+          "goto": 215
+        }
+      ]
+    },
+    "212": {
+      "id": 212,
+      "scene": "cabin",
+      "text": [
+        "e212.p1",
+        "e212.p2"
+      ],
+      "from": [
+        211,
+        213
+      ],
+      "on": [
+        {
+          "goto": 215
+        }
+      ]
+    },
+    "213": {
+      "id": 213,
+      "scene": "cabin",
+      "text": [
+        "e213.p1",
+        "e213.p2",
+        "e213.p3"
+      ],
+      "from": [
+        210
+      ],
+      "on": [
+        {
+          "if": "veterinarian",
+          "goto": 212
+        },
+        {
+          "goto": 215
+        }
+      ]
+    },
+    "214": {
+      "id": 214,
+      "scene": "cabin",
+      "text": [
+        "e214.p1",
+        "e214.p2",
+        "e214.p3"
+      ],
+      "from": [
+        215
+      ],
+      "on": [
+        {
+          "goto": 186
+        }
+      ]
+    },
+    "215": {
+      "id": 215,
+      "scene": "cabin",
+      "text": [
+        "e215.p1",
+        "e215.p2",
+        "e215.p3",
+        "e215.p4",
+        "e215.p5"
+      ],
+      "from": [
+        211,
+        212,
+        213,
+        217,
+        218
+      ],
+      "on": [
+        {
+          "roll": "Sanity",
+          "onSuccess": {
+            "goto": 214
+          },
+          "onFail": {
+            "goto": 216
+          }
+        }
+      ]
+    },
+    "216": {
+      "id": 216,
+      "scene": "cabin",
+      "text": [
+        "e216.p1",
+        "e216.p2",
+        "e216.p3",
+        "e216.p4"
+      ],
+      "from": [
+        215
+      ],
+      "on": [
+        {
+          "san": "1d4"
+        },
+        {
+          "goto": 186
+        }
+      ]
+    },
+    "217": {
+      "id": 217,
+      "scene": "cabin",
+      "text": [
+        "e217.p1",
+        "e217.p2",
+        "e217.p3",
+        "e217.p4"
+      ],
+      "from": [
+        209,
+        222
+      ],
+      "on": [
+        {
+          "if": "veterinarian",
+          "goto": 218
+        }
+      ],
+      "choices": [
+        {
+          "text": "e217.c1",
+          "goto": 219
+        },
+        {
+          "text": "e217.c2",
+          "goto": 215
+        }
+      ]
+    },
+    "218": {
+      "id": 218,
+      "scene": "cabin",
+      "text": [
+        "e218.p1",
+        "e218.p2",
+        "e218.p3"
+      ],
+      "from": [
+        217
+      ],
+      "choices": [
+        {
+          "text": "e218.c1",
+          "goto": 219
+        },
+        {
+          "text": "e218.c2",
+          "goto": 215
+        }
+      ]
+    },
+    "219": {
+      "id": 219,
+      "scene": "cabin",
+      "text": [
+        "e219.p1",
+        "e219.p2",
+        "e219.p3",
+        "e219.p4",
+        "e219.p5",
+        "e219.p6",
+        "e219.p7"
+      ],
+      "from": [
+        217,
+        218
+      ],
+      "on": [
+        {
+          "roll": "Sanity",
+          "onSuccess": {
+            "goto": 220
+          },
+          "onFail": {
+            "goto": 221
+          }
+        }
+      ]
+    },
+    "220": {
+      "id": 220,
+      "scene": "cabin",
+      "text": [
+        "e220.p1",
+        "e220.p2",
+        "e220.p3"
+      ],
+      "from": [
+        219
+      ],
+      "on": [
+        {
+          "san": "1"
+        },
+        {
+          "goto": 186
+        }
+      ]
+    },
+    "221": {
+      "id": 221,
+      "scene": "cabin",
+      "text": [
+        "e221.p1",
+        "e221.p2"
+      ],
+      "from": [
+        219
+      ],
+      "on": [
+        {
+          "san": "1d4"
+        },
+        {
+          "goto": 186
+        }
+      ]
+    },
+    "222": {
+      "id": 222,
+      "scene": "cabin",
+      "text": [
+        "e222.p1",
+        "e222.p2",
+        "e222.p3",
+        "e222.p4",
+        "e222.p5",
+        "e222.p6",
+        "e222.p7",
+        "e222.p8"
+      ],
+      "from": [
+        208
+      ],
+      "choices": [
+        {
+          "text": "e222.c1",
+          "goto": 210
+        },
+        {
+          "text": "e222.c2",
+          "goto": 217
+        }
+      ]
+    },
+    "223": {
+      "id": 223,
+      "scene": "cabin",
+      "text": [
+        "e223.p1"
+      ],
+      "from": [
+        186
+      ],
+      "choices": [
+        {
+          "text": "e223.c1",
+          "goto": 255
+        },
+        {
+          "text": "e223.c2",
+          "goto": 224
+        }
+      ]
+    },
+    "224": {
+      "id": 224,
+      "scene": "clearing",
+      "text": [
+        "e224.p1",
+        "e224.p2",
+        "e224.p3",
+        "e224.p4"
+      ],
+      "from": [
+        223
+      ],
+      "on": [
+        {
+          "roll": "Listen",
+          "onSuccess": {
+            "goto": 225
+          },
+          "onFail": {
+            "goto": 228
+          }
+        }
+      ]
+    },
+    "225": {
+      "id": 225,
+      "scene": "clearing",
+      "text": [
+        "e225.p1"
+      ],
+      "from": [
+        224,
+        292
+      ],
+      "choices": [
+        {
+          "text": "e225.c1",
+          "goto": 233
+        },
+        {
+          "text": "e225.c2",
+          "goto": 226
+        }
+      ]
+    },
+    "226": {
+      "id": 226,
+      "scene": "clearing",
+      "text": [
+        "e226.p1"
+      ],
+      "from": [
+        225
+      ],
+      "on": [
+        {
+          "roll": "DEX",
+          "push": true,
+          "onSuccess": {
+            "goto": 227
+          },
+          "onFail": {
+            "goto": 230
+          },
+          "onPushedFail": {
+            "goto": 231
+          }
+        }
+      ]
+    },
+    "227": {
+      "id": 227,
+      "scene": "cabin",
+      "text": [
+        "e227.p1",
+        "e227.p2"
+      ],
+      "from": [
+        226,
+        233
+      ],
+      "choices": [
+        {
+          "text": "e227.c1",
+          "goto": 237
+        },
+        {
+          "text": "e227.c2",
+          "goto": 241
+        },
+        {
+          "text": "e227.c3",
+          "goto": 239
+        }
+      ]
+    },
+    "228": {
+      "id": 228,
+      "scene": "cabin",
+      "text": [
+        "e228.p1",
+        "e228.p2"
+      ],
+      "from": [
+        224,
+        292
+      ],
+      "choices": [
+        {
+          "text": "e228.c1",
+          "goto": 237
+        },
+        {
+          "text": "e228.c2",
+          "goto": 241
+        },
+        {
+          "text": "e228.c3",
+          "goto": 239
+        }
+      ]
+    },
+    "229": {
+      "id": 229,
+      "scene": "forest",
+      "text": [
+        "e229.p1",
+        "e229.p2",
+        "e229.p3"
+      ],
+      "from": [
+        277
+      ],
+      "on": [
+        {
+          "if": "arrival",
+          "goto": 250
+        },
+        {
+          "goto": 248
+        }
+      ]
+    },
+    "230": {
+      "id": 230,
+      "scene": "cabin",
+      "text": [
+        "e230.p1"
+      ],
+      "from": [
+        226,
+        233
+      ],
+      "choices": [
+        {
+          "text": "e230.c1",
+          "goto": 235
+        },
+        {
+          "text": "e230.c2",
+          "goto": 236
         }
       ]
     }

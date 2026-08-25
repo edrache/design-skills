@@ -26,9 +26,9 @@ to wystarcza, żeby rozstrzygnąć rodzaj gramatyczny:
 
 | Paragrafy | Gra się jako | Partner w tekście |
 |---|---|---|
-| 1, 3–8, 11–30 | Alex (kobieta) | Charlie (mężczyzna) |
-| 2 | Charlie (mężczyzna) | Alex (kobieta) |
-| 9, 10, 27 | dowolna z dwóch | „partner" bez imienia |
+| 1, 3–8, 11–82, 84–95, 97–102, 104, 106–110, 112–123, 125, 128, 130, 132, 136, 138–144, 146–153, 155–157, 159, 161–173, 175–192, 194, 196–204, 206, 208–228, 230 | Alex (kobieta) | Charlie (mężczyzna) |
+| 2, 83, 96, 103, 105, 111, 124, 126–127, 129, 131, 133, 135, 137, 145, 154, 158, 160, 174, 193, 205, 207, 229 | Charlie (mężczyzna) | Alex (kobieta) |
+| 9, 10, 27, 134 | dowolna z dwóch | „partner" bez imienia |
 
 Paragraf 7 wspomina oba imiona, bo Charlie zwraca się tam do Alex po imieniu —
 to nadal ścieżka Alex.
@@ -43,7 +43,7 @@ być po polsku. Czas teraźniejszy nie ujawnia rodzaju, więc problem znika sam:
 
 Gdy zdania nie da się uratować czasem teraźniejszym, przepisz je bezosobowo
 (*trzeba*, *da się*, *nie ma jak*) zamiast wybierać rodzaj. Dotyczy to zwłaszcza
-paragrafów **9, 10 i 27**, gdzie bohaterem może być każda z dwóch postaci:
+paragrafów **9, 10, 27 i 134**, gdzie bohaterem może być każda z dwóch postaci:
 
 - „How could you possibly hurt it?" → *Bo jak w ogóle **dałoby się** ją zranić?*
   (**nie**: *mógłbyś* / *mogłabyś*)
@@ -193,7 +193,7 @@ Nazwy umiejętności i cech piszemy z wielkiej litery, tak jak w podręczniku.
 
 | Oryginał | Tłumaczenie |
 |---|---|
-| your partner (paragrafy 9, 10, 27) | **ukochana osoba** |
+| your partner (paragrafy 9, 10, 27, 134) | **ukochana osoba** |
 | your partner (imię znane) | Charlie / Alex |
 | the cabin | chata |
 | the clearing | polana |

@@ -21,3 +21,29 @@ Original prompt: przy wyborze postaci w [AloneAgainstTheStatic](AloneAgainstTheS
 - Testy: 197/197 zaliczonych; walidator danych: 0 błędów.
 - Playwright potwierdził w grze poprawne źródła portretów dla Sanity 60, 42, 41, 36, 24, 12 i 0 oraz brak błędów konsoli.
 - TODO: brak.
+- Przed rozszerzeniem gotowy zakres EN obejmował paragrafy 1–30 (152 klucze tekstowe).
+- Dodano kolejnych 50 paragrafów EN: 31–80. Aktualny zakres to 1–80, łącznie 338 kluczy tekstowych (186 nowych).
+- Zakodowano przejścia, rzuty, rzuty forsowane, obrażenia, utratę Poczytalności, flagi i jednorazowe wybory dla paragrafów 31–80.
+- Silnik obsługuje teraz osobny skutek porażki rzutu forsowanego, warunkowe kroki po ustawieniu flagi oraz rzut uruchamiany bezpośrednio wyborem.
+- Bazowe wartości niewypisanych umiejętności użytych w nowym zakresie: Okultyzm 5 i Mechanika 10.
+- `npm test`: 243/243 testy zaliczone. `npm run validate`: 0 błędów; ostrzeżenia dotyczą pustych tłumaczeń PL, przejść poza zakres 1–80 i flag używanych w dalszej części scenariusza.
+- Playwright zweryfikował EN 31 → 32 → 34 oraz porażkę forsowanego rzutu 46 → 54 → 55 (PW 13 → 9); stan tekstowy zgadza się z ekranem, brak błędów konsoli.
+- Następny niewyodrębniony paragraf: 81. Nowe wpisy 31–80 nadal wymagają tłumaczenia PL (186 pustych kluczy).
+- Dodano kolejną partię 50 paragrafów EN: 81–130. Aktualny zakres to 1–130, łącznie 522 klucze tekstowe (184 nowe w tej partii).
+- Zakodowano ścieżkę Charlie rozpoczynającą się w 83/96, powrót ze spaceru, sekwencję w chacie oraz rozmowę z nieznajomym do paragrafu 130.
+- Silnik obsługuje teraz leczenie PW i odzyskiwanie Szczęścia z ograniczeniem do maksimum; oba efekty są widoczne w dzienniku i zgodne z autosave.
+- `npm test`: 246/246 testów zaliczonych. `npm run validate`: 0 błędów; 512 ostrzeżeń (370 pustych tłumaczeń PL, 22 przejścia poza zakres, 14 flag używanych dalej i 106 istniejących różnic znaczników).
+- Playwright potwierdził leczenie i Szczęście w 86 → 90 → 92 oraz wybór z testem Zastraszania w 117, jego odtworzenie po autosave i przejście do 130; brak błędów konsoli.
+- Następny niewyodrębniony paragraf: 131. Wpisy 31–130 wymagają tłumaczenia PL (370 pustych kluczy).
+- Dodano kolejną partię 50 paragrafów EN: 131–180. Aktualny zakres to 1–180, łącznie 712 kluczy tekstowych (190 nowych w tej partii).
+- Zakodowano śledzenie nieznajomego, rzuty forsowane i trudne, obrażenia oraz utratę Poczytalności, warunkowe flagi i zakończenia w paragrafach 134, 150 i 171.
+- Silnik obsługuje teraz warunkowe kości bonusowe i karne (`diceIf`); przeciwne modyfikatory znoszą się, a walidator uwzględnia używane przez nie flagi.
+- `npm test`: 248/248 testów zaliczonych. `npm run validate`: 0 błędów; 699 ostrzeżeń (560 pustych tłumaczeń PL, 20 przejść poza zakres, 13 ostrzeżeń o flagach i 106 istniejących różnic znaczników).
+- Playwright potwierdził kość bonusową w 141, przyjęcie porażki i przejście 146 → 152, obrażenia w 173, straty w 175 oraz zakończenie w 171; stan tekstowy zgadza się z ekranem, brak błędów konsoli.
+- Następny niewyodrębniony paragraf: 181. Wpisy 31–180 wymagają tłumaczenia PL (560 pustych kluczy).
+- Dodano kolejną partię 50 paragrafów EN: 181–230. Aktualny zakres to 1–230, łącznie 928 kluczy tekstowych (216 nowych w tej partii).
+- Zakodowano sekwencję oglądania trzech kaset, jednorazowe opcje w 186, testy forsowane, utratę Poczytalności, warunki `Veterinarian`/`Arrival` oraz początek ataku na chatę.
+- Poprawiono oczywistą literówkę OCR w paragrafie 229: przejście `h50` oznacza paragraf 250, zgodnie z równoległymi odwołaniami w źródle.
+- `npm test`: 248/248 testów zaliczonych. `npm run validate`: 0 błędów; 920 ostrzeżeń (776 pustych tłumaczeń PL, 25 przejść poza zakres, 13 ostrzeżeń o flagach i 106 istniejących różnic znaczników).
+- Playwright potwierdził aktywne i zużyte kasety w 186, stratę 1K4 Poczytalności w 199, przejście `Veterinarian` 217 → 218, przyjęcie porażki 226 → 230 oraz strażnik 193 → 207 → 34; stan tekstowy zgadza się z ekranem, brak błędów konsoli.
+- Następny niewyodrębniony paragraf: 231. Wpisy 31–230 wymagają tłumaczenia PL (776 pustych kluczy).
