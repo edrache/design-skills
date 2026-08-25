@@ -96,6 +96,7 @@ function isState(state, characterId) {
     Array.isArray(choices) && choices.every(isNonNegativeInteger)
   ))) return false;
   if (!isNumberMap(state.penalties, isNonNegativeInteger)) return false;
+  if (state.nextRollDice !== undefined && !Number.isInteger(state.nextRollDice)) return false;
 
   if (!Array.isArray(state.returnStack) || !state.returnStack.every((frame) => (
     isRecord(frame)

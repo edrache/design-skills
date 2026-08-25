@@ -272,6 +272,25 @@ test("warunkowe kości bonusowe i karne zależą od flag i wzajemnie się znosz�
   assert.equal(cancelled.events.find((event) => event.kind === "roll").tens.length, 1);
 });
 
+test("bonus fabularny działa tylko na najbliższy rzut", () => {
+  const bonusStory = {
+    entries: {
+      1: { id: 1, text: ["e1.p1"], on: [{ nextRollDice: 1 }, { goto: 2 }] },
+      2: { id: 2, text: ["e2.p1"], on: [{ roll: "DEX", onSuccess: { goto: 3 }, onFail: { goto: 3 } }] },
+      3: { id: 3, text: ["e3.p1"], on: [{ roll: "DEX", onSuccess: { goto: 4 }, onFail: { goto: 4 } }] },
+      4: { id: 4, text: ["e4.p1"], end: true },
+    },
+  };
+  const ctx = { story: bonusStory, character, rng: sequenceRng([0.0, 0.8, 0.2, 0.0, 0.3]) };
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const frame = enter(ctx, state, 1);
+  const rolls = frame.events.filter((event) => event.kind === "roll");
+  assert.equal(rolls[0].tens.length, 2);
+  assert.equal(rolls[0].result, 20);
+  assert.equal(rolls[1].tens.length, 1);
+  assert.equal(frame.state.nextRollDice, 0);
+});
+
 test("paragraf z end kończy grę", () => {
   const frame = enter(ctxWith([]), createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) }), 10);
   assert.equal(frame.pending.type, "end");

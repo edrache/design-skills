@@ -2,6 +2,7 @@ import { rollDice, skillCheck, successLevel } from "./dice.js";
 import {
   hasFlag, setFlag, visit, visitCount, useChoice, isChoiceUsed,
   spendLuck, restoreLuck, restoreHp, penaltyFor, popReturn, pushReturn, skillValue,
+  addNextRollDice, takeNextRollDice,
 } from "./state.js";
 import { applyDamage, applySanLoss, sanityCheck, resolveBout, resetDay } from "./rules.js";
 
@@ -103,6 +104,10 @@ function applyEffect(ctx, state, events, entryId, effect, cursor) {
     return { state: nextState };
   }
 
+  if (effect.nextRollDice) {
+    return { state: addNextRollDice(state, effect.nextRollDice) };
+  }
+
   if (effect.san) {
     const amount = rollDice(ctx.rng, effect.san);
     const out = applySanLoss(state, amount, ctx.character, ctx.rng);
@@ -163,7 +168,9 @@ function runSteps(ctx, frame) {
 
     if (step.roll) {
       const target = skillValue(state, ctx.character, step.roll);
-      const dice = diceFor(state, step);
+      const queued = takeNextRollDice(state);
+      state = queued.state;
+      const dice = diceFor(state, step) + queued.dice;
       const check = skillCheck(ctx.rng, target, { dice, difficulty: step.difficulty ?? "regular" });
       events.push({ kind: "roll", skill: step.roll, ...check });
 
@@ -294,7 +301,9 @@ export function resume(ctx, frame, action) {
     // odtworzyć decyzję o wydaniu Luck lub forsowaniu bez zgadywania.
     if (choice?.roll) {
       const target = skillValue(state, ctx.character, choice.roll);
-      const dice = diceFor(state, choice);
+      const queued = takeNextRollDice(state);
+      state = queued.state;
+      const dice = diceFor(state, choice) + queued.dice;
       const check = skillCheck(ctx.rng, target, { dice, difficulty: choice.difficulty ?? "regular" });
       events.push({ kind: "roll", skill: choice.roll, ...check });
       if (check.success) {

@@ -21,6 +21,13 @@ test("obrażenia równe połowie maksymalnych HP to major wound", () => {
   assert.equal(out.redirect, SYSTEM_ENTRIES.majorWound);
 });
 
+test("po major wound każde kolejne obrażenie ponawia test z paragrafu 325", () => {
+  const wounded = applyDamage(fresh(), 7).state;
+  const out = applyDamage(wounded, 1);
+  assert.equal(out.state.hp, 5);
+  assert.equal(out.redirect, SYSTEM_ENTRIES.majorWound);
+});
+
 test("zero HP ma pierwszeństwo przed major wound", () => {
   const out = applyDamage(fresh(), 13);
   assert.equal(out.state.hp, 0);

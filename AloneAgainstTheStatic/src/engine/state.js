@@ -22,6 +22,9 @@ export function createState(character, { rng }) {
     visits: {},
     usedChoices: {},
     penalties: {},
+    // Doraźna kość przyznana przez fabułę (np. paragraf 238) jest
+    // zużywana przez najbliższy rzut, niezależnie od użytej umiejętności.
+    nextRollDice: 0,
     returnStack: [],
     sanLostToday: 0,
     majorWound: false,
@@ -90,6 +93,16 @@ export function addPenalty(state, skills) {
   return { ...state, penalties };
 }
 
+export function addNextRollDice(state, dice) {
+  return { ...state, nextRollDice: (state.nextRollDice ?? 0) + dice };
+}
+
+export function takeNextRollDice(state) {
+  const dice = state.nextRollDice ?? 0;
+  if (dice === 0) return { state, dice: 0 };
+  return { state: { ...state, nextRollDice: 0 }, dice };
+}
+
 // Stos powrotu przechowuje nie tylko paragraf, ale i pozycję w nim (cursor),
 // żeby powrót mógł wznowić wykonanie za krokiem, który spowodował skok,
 // zamiast wykonywać paragraf od nowa.
@@ -109,5 +122,6 @@ export function serialize(state) {
 }
 
 export function deserialize(raw) {
+  // Starsze zapisy nie mają nextRollDice; odczyty traktują jego brak jak 0.
   return { ...raw };
 }

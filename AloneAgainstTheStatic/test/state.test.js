@@ -5,6 +5,7 @@ import { sequenceRng } from "../src/engine/dice.js";
 import {
   createState, skillValue, penaltyFor, hasFlag, setFlag, visit, visitCount,
   useChoice, isChoiceUsed, spendLuck, restoreLuck, restoreHp, addPenalty, pushReturn, popReturn,
+  addNextRollDice, takeNextRollDice,
   serialize, deserialize,
 } from "../src/engine/state.js";
 
@@ -81,6 +82,17 @@ test("kary z bouts of madness kumulują się", () => {
   state = addPenalty(state, ["Listen", "Spot Hidden"]);
   assert.equal(penaltyFor(state, "Listen"), -2);
   assert.equal(penaltyFor(state, "Spot Hidden"), -1);
+});
+
+test("doraźna kość do następnego rzutu kumuluje się i jest zużywana raz", () => {
+  const original = createState(characters.alex, { rng: sequenceRng([]) });
+  const granted = addNextRollDice(addNextRollDice(original, 1), -1);
+  assert.equal(granted.nextRollDice, 0);
+  const withBonus = addNextRollDice(granted, 1);
+  const taken = takeNextRollDice(withBonus);
+  assert.equal(taken.dice, 1);
+  assert.equal(taken.state.nextRollDice, 0);
+  assert.equal(withBonus.nextRollDice, 1);
 });
 
 test("stos powrotu działa jak stos", () => {

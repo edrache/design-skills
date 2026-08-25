@@ -25,7 +25,11 @@ export function applyDamage(state, amount) {
   const next = { ...state, hp, majorWound: state.majorWound || major };
   // Zero HP ma pierwszeństwo przed major wound.
   if (hp === 0) return { state: next, redirect: SYSTEM_ENTRIES.zeroHp };
-  if (major) return { state: next, redirect: SYSTEM_ENTRIES.majorWound };
+  // Po pierwszej poważnej ranie każde następne obrażenie wymaga ponownego
+  // testu CON z paragrafu 325, zgodnie z instrukcją scenariusza.
+  if (major || (state.majorWound && amount > 0)) {
+    return { state: next, redirect: SYSTEM_ENTRIES.majorWound };
+  }
   return { state: next, redirect: null };
 }
 

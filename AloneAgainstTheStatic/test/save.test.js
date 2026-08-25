@@ -36,6 +36,7 @@ function validState(overrides = {}) {
     visits: { 1: 1 },
     usedChoices: { 1: [0] },
     penalties: { Listen: 1 },
+    nextRollDice: 0,
     returnStack: [{ entryId: 1, cursor: 2 }],
     sanLostToday: 3,
     majorWound: false,
@@ -253,6 +254,7 @@ test("stan o niebezpiecznym kształcie nie trafia do silnika", async (t) => {
     ["nieprawidłowy licznik wizyt", { visits: { 1: -1 } }],
     ["nieprawidłowe wybory", { usedChoices: { 1: ["0"] } }],
     ["nieprawidłowa kara", { penalties: { Listen: -1 } }],
+    ["nieprawidłowa kość następnego rzutu", { nextRollDice: "1" }],
     ["stara postać stosu powrotu", { returnStack: [1] }],
     ["brak flagi major wound", { majorWound: undefined }],
   ];
