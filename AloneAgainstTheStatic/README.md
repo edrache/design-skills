@@ -40,6 +40,25 @@ Przycisk **Nowa gra** w górnym pasku porzuca zapis i wraca do wyboru postaci �
 pyta o potwierdzenie, bo zapis jest tylko jeden. Przycisk pojawia się wyłącznie
 w trakcie rozgrywki.
 
+## Pamięć poznanych paragrafów
+
+Gra pamięta — ponad pojedynczą rozgrywką — co gracz już widział. Pamięć siedzi
+w osobnym wpisie `localStorage` (`aats-progress`), więc **Nowa gra** jej nie
+kasuje; robi to dopiero **Wyczyść poznane paragrafy** w ustawieniach.
+
+- Paragraf odwiedzony wcześniej: proza w alfie 70%, nagłówek „PARAGRAF *n*”
+  w żółtej ramce.
+- Opcja wyboru podjęta wcześniej: alfa 50%, nadal klikalna. To osobny stan od
+  opcji `once` i zablokowanych guardem, które są wyszarzone i nieaktywne.
+- Test rozgałęziający się na różne paragrafy: przy bramce `RZUĆ:` wypisane
+  gałęzie, które gracz już przeszedł (`Już było: Sukces · Porażka`). Po rzucie
+  ta sama informacja zostaje pod kośćmi.
+
+Paragraf liczy się w chwili, gdy trafia na ekran, a nie po doczytaniu. Dziennik
+pokazuje stan z chwili wejścia w paragraf, nie bieżący — flaga jedzie w rekordzie
+archiwum. Silnik o tej pamięci nic nie wie: gałąź rzutu wylicza się w
+`src/ui/progress.js` ze zdarzenia, które i tak renderuje dziennik.
+
 ## Testy i walidacja
 
 ```bash

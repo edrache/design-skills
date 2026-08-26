@@ -23,6 +23,8 @@ const COPY = {
     accept: "Przyjmij porażkę",
     roll: "Rzuć",
     next: "Dalej",
+    rollHistory: "Już było",
+    branch: { success: "Sukces", fail: "Porażka", pushedFail: "Porażka forsowana" },
   },
   en: {
     entry: "Entry",
@@ -45,6 +47,8 @@ const COPY = {
     accept: "Accept failure",
     roll: "Roll",
     next: "Continue",
+    rollHistory: "Seen before",
+    branch: { success: "Success", fail: "Failure", pushedFail: "Pushed failure" },
   },
 };
 
@@ -126,7 +130,32 @@ export function rollGateLabel(event, i18n) {
   return `${copy(i18n).roll}: ${rollHead(event, i18n)}`;
 }
 
-function renderRoll(doc, event, i18n) {
+// Pamięć poznanych gałęzi trafia tu z zewnątrz (main.js przez `handlers`,
+// dziennik przez rekord), więc journal.js nie wie nic o localStorage.
+// Źródłem może być lista gałęzi, mapa `skill → lista` albo funkcja zdarzenia;
+// brak źródła znaczy brak historii.
+function listFrom(source, event) {
+  if (!source) return [];
+  if (typeof source === "function") return listFrom(source(event), event);
+  if (Array.isArray(source)) return source;
+  if (typeof source === "object") return listFrom(source[event?.skill] ?? null, event);
+  return [];
+}
+
+function renderRollHistory(doc, event, labels, source) {
+  const branches = listFrom(source, event).filter((branch) => labels.branch?.[branch]);
+  if (branches.length === 0) return null;
+  const names = branches.map((branch) => labels.branch[branch]).join(" · ");
+  return el(doc, "div", "roll-history", `${labels.rollHistory}: ${names}`);
+}
+
+// Bramka rzutu (reveal.js) powstaje przed kośćmi, a historia jest najbardziej
+// przydatna właśnie wtedy — zanim gracz zdecyduje, czy rzucać.
+export function rollHistoryNode(doc, event, i18n, source) {
+  return renderRollHistory(doc, event, copy(i18n), source);
+}
+
+function renderRoll(doc, event, i18n, rollHistory) {
   const labels = copy(i18n);
   const box = el(doc, "div", "rollbox");
   const target = Number(event.target ?? 0);
@@ -149,12 +178,19 @@ function renderRoll(doc, event, i18n) {
   box.append(dice);
 
   if (event.spentLuck) box.append(el(doc, "div", "roll-head", labels.spentLuck(event.spentLuck)));
+
+  const history = renderRollHistory(doc, event, labels, rollHistory);
+  if (history) box.append(history);
   return box;
 }
 
-export function createEntryBlock(doc, entryId, labels, media) {
+// `options.seenBefore` znaczy: ten paragraf gracz widział w którejś
+// wcześniejszej rozgrywce. Argument jest opcjonalny, więc starsze wywołania
+// (reveal.js) zostają bez zmian i nic nie oznaczają.
+export function createEntryBlock(doc, entryId, labels, media, options = {}) {
   const block = el(doc, "article", "journal-entry");
   block.tabIndex = -1;
+  if (options?.seenBefore) block.dataset.seen = "true";
 
   if (entryId !== undefined && entryId !== null) {
     block.dataset.entryId = String(entryId);
@@ -192,7 +228,7 @@ export function sealEntry(block) {
 // odsłanianie krok po kroku (reveal.js).
 export function eventNodes(doc, event, labels, i18n, handlers = {}) {
   if (event.kind === "text") return [renderMarkup(doc, i18n.t(event.key))];
-  if (event.kind === "roll") return [renderRoll(doc, event, i18n)];
+  if (event.kind === "roll") return [renderRoll(doc, event, i18n, handlers.rollHistory)];
   if (event.kind === "san") return [el(doc, "div", "event-note", labels.sanityLoss(event.amount))];
   if (event.kind === "hp") return [el(doc, "div", "event-note damage", labels.damage(event.amount))];
   if (event.kind === "heal") return [el(doc, "div", "event-note", labels.healing(event.amount))];
@@ -201,12 +237,16 @@ export function eventNodes(doc, event, labels, i18n, handlers = {}) {
   if (event.kind === "missing") return [el(doc, "div", "missing", labels.missing(event.entryId))];
 
   if (event.kind === "choices") {
+    // Lista indeksów wybranych kiedykolwiek wcześniej. Stan niezależny od
+    // `used`/`blocked`: opcja zostaje klikalna, tylko przygaszona.
+    const taken = listFrom(handlers.takenChoices, event);
     return event.options.map((option) => {
       const button = el(doc, "button", "choice", i18n.t(option.key));
       button.type = "button";
       button.disabled = option.used || option.blocked;
       if (option.used) button.dataset.reason = "used";
       if (option.blocked) button.dataset.reason = "blocked";
+      if (taken.includes(option.index)) button.dataset.taken = "true";
       button.addEventListener("click", () => handlers.onChoose?.(option.index));
       return button;
     });
@@ -225,10 +265,18 @@ export function renderEvents(root, events, i18n, handlers, context = {}) {
   const labels = copy(i18n);
   sealEntry(root.lastElementChild);
 
+  // `context.seenBefore`: flaga dla całej ramki albo predykat numeru
+  // paragrafu, gdy ramka przeszła przez kilka paragrafów naraz.
+  const seenBefore = typeof context.seenBefore === "function"
+    ? context.seenBefore
+    : () => Boolean(context.seenBefore);
+
   let block = null;
   for (const segment of segmentEvents(events, context)) {
     if (block) sealEntry(block);
-    block = createEntryBlock(doc, segment.entryId, labels, context.media);
+    block = createEntryBlock(doc, segment.entryId, labels, context.media, {
+      seenBefore: seenBefore(segment.entryId),
+    });
     for (const event of segment.events) appendEvent(block, event, doc, labels, i18n, handlers);
     root.append(block);
   }
@@ -280,9 +328,15 @@ export function renderArchive(root, records, i18n, context = {}) {
       entryId: record.entryId,
       originEntryId: record.originEntryId,
     });
+    // Oznaczenia archiwum biorą się z rekordu, nie z bieżącej pamięci: wpis
+    // był „widziany wcześniej" w chwili wejścia w paragraf, nie teraz.
+    // Brak pól w rekordzie = brak oznaczeń (stare zapisy).
+    const handlers = { rollHistory: record.rollHistory };
     for (const segment of segments) {
-      const block = createEntryBlock(doc, segment.entryId, labels, context.media);
-      for (const event of segment.events) appendEvent(block, event, doc, labels, i18n, {});
+      const block = createEntryBlock(doc, segment.entryId, labels, context.media, {
+        seenBefore: record.seenBefore,
+      });
+      for (const event of segment.events) appendEvent(block, event, doc, labels, i18n, handlers);
       sealEntry(block);
       root.append(block);
     }

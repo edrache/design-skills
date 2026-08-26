@@ -4,7 +4,9 @@ import { createAudio } from "./audio.js";
 import { createI18n } from "./i18n.js";
 import { clearJournal, renderArchive, renderEvents, renderRollDecision } from "./journal.js";
 import { clearSave, isSaveCompatible, loadGame, saveGame } from "./save.js";
-import { createSettings } from "./settings.js";
+import { connectProgressReset, createSettings } from "./settings.js";
+import { readProgress, markChoice, resetProgress } from "./progress.js";
+import { frameMemory, recordFrame } from "./memory.js";
 import { dreadLevel } from "./dread.js";
 import { renderSheet } from "./sheet.js";
 import { createEffects } from "./effects.js";
@@ -34,6 +36,8 @@ const UI_COPY = {
     restart: "Przewiń i zacznij ponownie",
     newGame: "Nowa gra",
     newGameConfirm: "Zacząć od nowa? Zapis tej rozgrywki zostanie usunięty.",
+    clearProgress: "Wyczyść poznane paragrafy",
+    clearProgressConfirm: "Wyczyścić pamięć poznanych paragrafów? Bieżąca rozgrywka toczy się dalej.",
     finalEntry: "Paragraf końcowy",
     flags: "Dziennik",
     log: "Dziennik",
@@ -72,6 +76,8 @@ const UI_COPY = {
     restart: "Rewind and begin again",
     newGame: "New game",
     newGameConfirm: "Start over? This playthrough's save will be deleted.",
+    clearProgress: "Clear discovered entries",
+    clearProgressConfirm: "Clear the memory of discovered entries? The current playthrough continues.",
     finalEntry: "Final entry",
     flags: "Log sheet",
     log: "Log",
@@ -126,6 +132,7 @@ const dom = {
   settingsKicker: document.querySelector("#settings-kicker"),
   settingsTitle: document.querySelector("#settings-title"),
   settingsClose: document.querySelector("#settings-close"),
+  clearProgress: document.querySelector("#clear-progress"),
   restart: document.querySelector("#restart"),
   newGame: document.querySelector("#new-game"),
   logToggle: document.querySelector("#log-toggle"),
@@ -206,10 +213,15 @@ function renderCharacterSheet() {
 }
 
 function draw(record, isLast) {
-  const block = renderEvents(dom.journal, record.events, i18n, { onChoose: choose }, {
+  const block = renderEvents(dom.journal, record.events, i18n, {
+    onChoose: choose,
+    takenChoices: record.takenChoices,
+    rollHistory: record.rollHistory,
+  }, {
     entryId: record.entryId,
     originEntryId: record.originEntryId,
     media,
+    seenBefore: (entryId) => Boolean(record.seenEntries?.[entryId]),
   });
   if (isLast && frame.pending?.type === "rollDecision") {
     renderRollDecision(block, frame.pending, i18n, {
@@ -263,10 +275,16 @@ function finishFrame() {
 
 function presentCurrent() {
   effects?.unobserveAll();
-  reveal.start(history.at(-1), {
+  const record = history.at(-1);
+  reveal.start(record, {
     i18n,
     media,
-    handlers: { onChoose: choose },
+    seenBefore: (entryId) => Boolean(record.seenEntries?.[entryId]),
+    handlers: {
+      onChoose: choose,
+      takenChoices: record.takenChoices,
+      rollHistory: record.rollHistory,
+    },
     onParagraph: onParagraphShown,
     onComplete: finishFrame,
   });
@@ -276,7 +294,13 @@ function presentCurrent() {
 // a stan odsłonięcia nie jest zapisywany.
 function advance(next, originEntryId = null, { animate = true } = {}) {
   frame = next;
-  history.push({ entryId: frame.entryId, originEntryId, events: frame.events });
+  // Pamięć poznanych paragrafów idzie do rekordu, żeby dziennik pokazywał stan
+  // z chwili wejścia w paragraf, a nie bieżący. Wznowiony zapis jest już
+  // policzony w magazynie, więc nie liczymy tej wizyty drugi raz.
+  const record = { entryId: frame.entryId, originEntryId, events: frame.events };
+  Object.assign(record, frameMemory(record, readProgress(), { revisit: !animate }));
+  history.push(record);
+  if (animate) recordFrame(record);
   renderCharacterSheet();
   setDread(frame.state);
   refreshLog();
@@ -321,6 +345,7 @@ function refreshLog() {
 
 function choose(index) {
   const originEntryId = frame.entryId;
+  markChoice(originEntryId, index);
   advance(resume(ctx, frame, { type: "choose", index }), originEntryId);
 }
 
@@ -449,6 +474,7 @@ function updateChrome() {
   document.querySelector("#label-prose").textContent = text.proseSize;
   document.querySelector("#label-text-effects").textContent = text.textEffects;
   dom.settingsClose.textContent = text.close;
+  dom.clearProgress.textContent = text.clearProgress;
 }
 
 const settingControls = {
@@ -583,6 +609,12 @@ async function bootstrap() {
   // filtry na elementach aż do najbliższego ruchu wskaźnika po dzienniku.
   settings.subscribe(() => effects?.recompute());
   connectSettingsControls();
+  connectProgressReset({
+    button: dom.clearProgress,
+    confirm: (message) => window.confirm(message),
+    message: () => labels().clearProgressConfirm,
+    reset: resetProgress,
+  });
   updateChrome();
   const saved = loadGame();
   const savedCharacter = saved ? characters[saved.characterId] : null;

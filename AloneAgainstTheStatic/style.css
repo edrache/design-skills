@@ -18,6 +18,10 @@
   --dread: 0;
   /* Mnożnik amplitudy z suwaka „Efekty tekstu". */
   --text-effects: 0.6;
+  /* Znacznik pamięci: paragraf/opcja poznane w poprzedniej rozgrywce.
+     Żółć taśmowej naklejki — obok fosforu i czerwieni REC, ale nie myli się
+     z żadnym z głosów. */
+  --seen: oklch(78% 0.11 92);
   --rule: oklch(38% 0.03 125);
   --shadow: oklch(8% 0.01 125 / 0.7);
   --font-prose: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
@@ -191,6 +195,7 @@ a:focus-visible {
 .journal-register,
 .entry-number,
 .roll-head,
+.roll-history,
 .event-note,
 .missing,
 .choice-meta {
@@ -381,6 +386,29 @@ a:focus-visible {
 .journal-entry p {
   margin: 0 0 1.05rem;
   text-wrap: pretty;
+}
+
+/* Paragraf poznany w poprzedniej rozgrywce. Przygaszona jest wyłącznie proza
+   — stąd selektor dziecka bezpośredniego: `.event-note`, `.rollbox`,
+   `.missing` i `.choice` to informacja o stanie, nie tekst do czytania, i
+   zostają w pełnej sile. Sama opacity, bez ruchu, więc nie ma czego wyłączać
+   przy prefers-reduced-motion. */
+.journal-entry[data-seen] > p { opacity: 0.7; }
+
+/* Żółta ramka wokół całego „PARAGRAF n". Kreska łącząca nagłówek z linią
+   marginesu (.entry-number::before) odsuwa się o wewnętrzny margines ramki,
+   żeby nadal dobijać do krawędzi pudełka, a nie do tekstu. */
+.journal-entry[data-seen] .entry-number {
+  --seen-pad: 0.55rem;
+  width: fit-content;
+  padding: 0.3rem var(--seen-pad);
+  border: 1px solid var(--seen);
+  color: var(--seen);
+}
+
+.journal-entry[data-seen] .entry-number::before {
+  left: calc(-1 * clamp(1.1rem, 5vw, 3rem) - var(--seen-pad) - 1px);
+  background: var(--seen);
 }
 
 /* Inicjał oznacza otwarcie wpisu prozą narracyjną — akapit będący kwestią
@@ -663,6 +691,16 @@ a:focus-visible {
   text-transform: uppercase;
 }
 
+/* Gałęzie tego testu, które padły w poprzednich rozgrywkach. Drobne i ciche
+   jak .roll-head — to przypis, nie wynik. */
+.roll-history {
+  margin: 0.7rem 0 0;
+  color: var(--seen);
+  font-size: 0.57rem;
+  line-height: 1.4;
+  opacity: 0.75;
+}
+
 .roll-level.ok { color: var(--phosphor); }
 .roll-level.bad { color: var(--rec-soft); }
 
@@ -712,6 +750,14 @@ a:focus-visible {
   text-decoration: line-through;
 }
 
+/* Opcja podjęta w poprzedniej rozgrywce: przygaszona, ale nadal klikalna —
+   stan zupełnie osobny od :disabled. Najechanie i klawiatura przywracają
+   pełną czytelność, żeby nie utrudniać czytania tego, co się wybiera. */
+.choice[data-taken] { opacity: 0.5; }
+
+.choice[data-taken]:hover:not(:disabled),
+.choice[data-taken]:focus-visible { opacity: 1; }
+
 .action {
   min-height: 2.75rem;
   padding: 0.55rem 0.8rem;
@@ -749,15 +795,26 @@ a:focus-visible {
 
 /* --- Odsłanianie tekstu (src/ui/reveal.js) ------------------------------ */
 
-/* Kropka przed kwestią i etykieta mówiącego milkną, dopóki maszyna nie dojdzie
-   do ich tekstu — inaczej znaczniki całego akapitu pojawiłyby się od razu. */
-.journal-entry p span[class^="v-"][data-pending]::before,
-.journal-entry p span[class*=" v-"][data-pending]::before { content: none; }
+/* Kotara: nieodsłonięta reszta akapitu. `visibility` zamiast `display`, bo
+   ukryty tekst musi nadal zajmować miejsce — to on trzyma finalne łamanie
+   wierszy, dzięki czemu słowa nie przeskakują w trakcie pisania. */
+.veil { visibility: hidden; }
 
-.journal-entry p[data-typing]::after {
+/* Kropka przed kwestią milczy, dopóki maszyna nie dojdzie do jej tekstu, ale
+   nie znika z układu — `content: none` przesuwałoby tekst w trakcie pisania. */
+.journal-entry p span[class^="v-"][data-pending]::before,
+.journal-entry p span[class*=" v-"][data-pending]::before { visibility: hidden; }
+
+/* Kursor stoi na styku odsłoniętego i ukrytego tekstu. `position: absolute`
+   bez left/top zostawia go na pozycji statycznej — dokładnie tam, gdzie
+   wypadłby w tekście — więc nie zajmuje miejsca i nie rusza łamania wierszy.
+   Podanie współrzędnych byłoby błędem: kotara rozciąga się na wiele linii,
+   a jej pudełko to suma fragmentów. */
+.journal-entry p[data-typing] .veil[data-cursor]::before {
   content: "▍";
-  margin-left: 0.06em;
+  position: absolute;
   color: var(--phosphor);
+  visibility: visible;
   animation: caret 900ms steps(2, end) infinite;
 }
 
@@ -840,7 +897,7 @@ a:focus-visible {
   .appearing,
   .continue { animation: none; opacity: 1; transform: none; }
   /* Wskaźnik zostaje — to informacja, że gra czeka; gaśnie tylko miganie. */
-  .journal-entry p[data-typing]::after,
+  .journal-entry p[data-typing] .veil[data-cursor]::before,
   .journal-entry [data-awaiting]::after { animation: none; }
 }
 

@@ -575,3 +575,55 @@ test("zapis przenosi archiwum dziennika i odrzuca niepoprawne wpisy", () => {
   assert.deepEqual(restored.log, []);
   assert.deepEqual(restored.frame, frame);
 });
+
+test("rekord dziennika przenosi pamięć poznanych paragrafów i toleruje jej brak", () => {
+  const storage = memoryStorage();
+  useStorage(storage);
+  const frame = choicesFrame();
+  const remembered = {
+    entryId: 31,
+    originEntryId: null,
+    events: [{ kind: "text", key: "e31.p1" }],
+    seenBefore: true,
+    seenEntries: { 31: true },
+    takenChoices: [0, 2],
+    rollHistory: { Intimidate: ["success", "fail"] },
+  };
+  const plain = { entryId: 1, originEntryId: null, events: [{ kind: "text", key: "e1.p1" }] };
+
+  saveGame({ characterId: "alex", frame, log: [remembered, plain] });
+  const loaded = loadGame().log;
+
+  assert.deepEqual(loaded[0], remembered);
+  // Starsze zapisy nie mają nowych pól i mają wczytywać się bez zmian.
+  assert.deepEqual(loaded[1], plain);
+  assert.equal(loaded[1].seenBefore, undefined);
+  assert.equal(loaded[1].takenChoices ?? null, null);
+});
+
+test("pamięć rekordu o niepoprawnym kształcie znika, a archiwum zostaje", () => {
+  const storage = memoryStorage();
+  useStorage(storage);
+  const frame = choicesFrame();
+
+  saveGame({
+    characterId: "alex",
+    frame,
+    log: [{
+      entryId: 7,
+      originEntryId: null,
+      events: [{ kind: "text", key: "e7.p1" }],
+      seenBefore: "tak",
+      seenEntries: { 7: "tak" },
+      takenChoices: ["pierwszy"],
+      rollHistory: { Listen: [3] },
+    }],
+  });
+  const record = loadGame().log[0];
+
+  assert.deepEqual(record, {
+    entryId: 7,
+    originEntryId: null,
+    events: [{ kind: "text", key: "e7.p1" }],
+  });
+});

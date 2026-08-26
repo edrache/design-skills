@@ -107,3 +107,19 @@ export function createSettings() {
   };
 }
 
+// Pamięć poznanych paragrafów żyje poza ustawieniami (src/ui/progress.js),
+// ale kasuje się z ich panelu. Zależności wchodzą argumentem, więc moduł
+// nadal nie dotyka DOM-u ani localStorage gry.
+export function connectProgressReset({ button, confirm, message, reset }) {
+  if (typeof button?.addEventListener !== "function") return () => false;
+
+  const handler = () => {
+    // Kasowania nie da się cofnąć, więc pytamy raz — jak przy „Nowej grze”.
+    if (!confirm(message())) return false;
+    reset();
+    return true;
+  };
+
+  button.addEventListener("click", handler);
+  return handler;
+}

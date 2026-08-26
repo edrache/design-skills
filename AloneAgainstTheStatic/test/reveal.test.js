@@ -34,6 +34,15 @@ function textOf(root) {
   return root.children.map((node) => node.textContent).join("");
 }
 
+// Tekst faktycznie widoczny: pomija kotary (nieodsłonięta reszta akapitu
+// siedzi w DOM przez cały czas, żeby trzymać finalne łamanie wierszy).
+function visibleText(node) {
+  if (typeof node === "string") return node;
+  if (node.nodeType === 3) return node.textContent;
+  if (node.classList?.contains("veil")) return "";
+  return (node.children ?? []).map(visibleText).join("");
+}
+
 test("konfiguracja odsłaniania odrzuca śmieci pole po polu", () => {
   const config = normalizeConfig({
     charsPerSecond: "szybko",
@@ -65,12 +74,37 @@ test("akapit wypisuje się litera po literze i kończy na pełnym tekście", () 
 
   assert.equal(reveal.phase(), "typing");
   clock.tick(30);
-  assert.ok(textOf(root).endsWith("Dwa"), `oczekiwano prefiksu, jest: ${textOf(root)}`);
+  assert.ok(visibleText(root).endsWith("Dwa"), `oczekiwano prefiksu, jest: ${visibleText(root)}`);
+  // Cały tekst jest w DOM od pierwszej klatki — to on trzyma łamanie wierszy.
+  assert.ok(textOf(root).endsWith("Dwanaście liter"));
   assert.equal(reveal.phase(), "typing");
 
   clock.tick(1000);
-  assert.ok(textOf(root).endsWith("Dwanaście liter"));
+  assert.ok(visibleText(root).endsWith("Dwanaście liter"));
   assert.equal(reveal.phase(), "waiting");
+  // Po odsłonięciu kotary schodzą: DOM wygląda jak po rysowaniu hurtem.
+  assert.equal(root.querySelectorAll(".veil").length, 0);
+});
+
+test("kotara trzyma pełny tekst w układzie, zanim zostanie odsłonięty", () => {
+  const source = "Zdanie z [charlie]kwestią[/charlie] w środku.";
+  const { root, clock, i18n, reveal } = setup({ "e1.p1": source });
+  reveal.start({ entryId: 1, originEntryId: null, events: [{ kind: "text", key: "e1.p1" }] }, { i18n });
+
+  const paragraph = root.querySelectorAll("p")[0];
+  const plain = "Zdanie z kwestią w środku.";
+
+  clock.tick(20);
+  assert.equal(paragraph.textContent, plain, "pełna treść jest w DOM od początku");
+  assert.equal(visibleText(paragraph), plain.slice(0, 2));
+  // Znacznik kwestii jeszcze milczy, ale nie znika z układu (CSS: visibility).
+  const voice = paragraph.querySelector(".v-charlie");
+  assert.equal("pending" in voice.dataset, true);
+
+  clock.tick(5000);
+  assert.equal(paragraph.textContent, plain);
+  assert.equal(visibleText(paragraph), plain);
+  assert.equal("pending" in voice.dataset, false);
 });
 
 test("po domknięciu akapitu miga wskaźnik, który gaśnie przy kolejnym kroku", () => {
@@ -111,13 +145,13 @@ test("klik w trakcie pisania domyka akapit, kolejny odsłania następny", () => 
 
   clock.tick(20);
   assert.equal(reveal.tap(), true);
-  assert.ok(textOf(root).includes("Pierwszy akapit"), "pierwszy klik domyka akapit");
+  assert.ok(visibleText(root).includes("Pierwszy akapit"), "pierwszy klik domyka akapit");
   assert.equal(reveal.phase(), "waiting");
   assert.ok(!textOf(root).includes("Drugi"), "drugi akapit nie może wyprzedzić kliknięcia");
 
   reveal.tap();
   clock.tick(1000);
-  assert.ok(textOf(root).includes("Drugi"));
+  assert.ok(visibleText(root).includes("Drugi"));
 });
 
 test("granica paragrafów daje przycisk dalej, który czyści ekran", () => {
@@ -215,7 +249,8 @@ test("prefers-reduced-motion wyłącza wypisywanie, ale nie bramki", () => {
   const { root, i18n, reveal } = setup({ "e1.p1": "Bez animacji." }, { reducedMotion: true });
   reveal.start({ entryId: 1, originEntryId: null, events: [{ kind: "text", key: "e1.p1" }] }, { i18n });
 
-  assert.ok(textOf(root).includes("Bez animacji."));
+  assert.ok(visibleText(root).includes("Bez animacji."));
+  assert.equal(root.querySelectorAll(".veil").length, 0);
   assert.equal(reveal.phase(), "waiting");
 });
 
@@ -225,4 +260,50 @@ test("stagger zwraca łączny czas wejścia i oznacza elementy", () => {
   assert.equal(stagger(nodes, 120), 240);
   assert.deepEqual(nodes.map((node) => node.style.animationDelay), ["0ms", "120ms"]);
   assert.ok(nodes.every((node) => node.classList.contains("appearing")));
+});
+
+// Pamięć poznanych paragrafów dociera do żywego renderu tą samą drogą co do
+// dziennika: predykatem, bo ramka może przejść przez kilka paragrafów.
+test("odsłanianie oznacza paragraf widziany wcześniej", () => {
+  const { i18n, reveal } = setup({ "e1.p1": "Tekst." });
+  const block = reveal.start(
+    { entryId: 1, originEntryId: null, events: [{ kind: "text", key: "e1.p1" }] },
+    { i18n, seenBefore: (entryId) => entryId === 1 },
+  );
+  assert.equal(block.dataset.seen, "true");
+});
+
+test("odsłanianie bez pamięci nie oznacza paragrafu", () => {
+  const { i18n, reveal } = setup({ "e1.p1": "Tekst." });
+  const block = reveal.start(
+    { entryId: 1, originEntryId: null, events: [{ kind: "text", key: "e1.p1" }] },
+    { i18n },
+  );
+  assert.equal(block.dataset.seen, undefined);
+});
+
+// Historia gałęzi jest decyzją, więc stoi przy bramce, a nie dopiero przy
+// kościach. Po rzucie znika, żeby rollbox nie powtarzał jej dwa razy.
+test("bramka rzutu pokazuje wcześniej uzyskane gałęzie i gubi je po rzucie", () => {
+  const { root, i18n, reveal, clock } = setup({ "e3.p1": "A." });
+  reveal.start({
+    entryId: 3,
+    originEntryId: null,
+    events: [
+      { kind: "text", key: "e3.p1" },
+      { kind: "roll", skill: "Psychology", target: 45, result: 30, level: "regular", success: true, tens: [30], units: 0 },
+    ],
+  }, { i18n, handlers: { rollHistory: { Psychology: ["success", "fail"] } } });
+
+  clock.tick(5000);
+  reveal.tap();
+  reveal.tap();
+
+  const history = root.querySelector(".roll-history");
+  assert.ok(history, "historia ma być widoczna przy bramce");
+  assert.match(history.textContent, /Sukces · Porażka/);
+
+  reveal.tap();
+  clock.tick(5000);
+  assert.equal(root.querySelectorAll(".roll-history").length, 1, "po rzucie zostaje tylko wersja z rollboxa");
 });

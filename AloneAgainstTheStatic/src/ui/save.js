@@ -89,9 +89,40 @@ function isLogRecord(record) {
   return Array.isArray(record.events) && record.events.every(isEvent);
 }
 
+// Pamięć poznanych paragrafów dopisana do rekordu jest dodatkiem do archiwum:
+// brak pola znaczy „nic nie było”, a nie uszkodzony zapis. Dlatego wersja
+// zapisu nie rośnie i starsze taśmy wczytują się bez zmian.
+function seenMap(value) {
+  if (!isRecord(value)) return {};
+  return Object.fromEntries(Object.entries(value).filter(([, seen]) => seen === true));
+}
+
+function listMap(value, itemIsValid) {
+  if (!isRecord(value)) return {};
+  const clean = {};
+  for (const [key, list] of Object.entries(value)) {
+    if (Array.isArray(list) && list.length > 0 && list.every(itemIsValid)) clean[key] = [...list];
+  }
+  return clean;
+}
+
+function withMemory(record, clean) {
+  const seenEntries = seenMap(record.seenEntries);
+  const takenChoices = Array.isArray(record.takenChoices)
+    ? record.takenChoices.filter(isNonNegativeInteger)
+    : [];
+  const rollHistory = listMap(record.rollHistory, (branch) => typeof branch === "string");
+
+  if (record.seenBefore === true) clean.seenBefore = true;
+  if (Object.keys(seenEntries).length) clean.seenEntries = seenEntries;
+  if (takenChoices.length) clean.takenChoices = takenChoices;
+  if (Object.keys(rollHistory).length) clean.rollHistory = rollHistory;
+  return clean;
+}
+
 function sanitizeLog(value) {
   if (!Array.isArray(value) || !value.every(isLogRecord)) return [];
-  return value.map((record) => ({
+  return value.map((record) => withMemory(record, {
     entryId: record.entryId,
     originEntryId: record.originEntryId ?? null,
     events: record.events,

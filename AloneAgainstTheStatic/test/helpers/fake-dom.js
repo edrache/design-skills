@@ -42,6 +42,13 @@ class FakeElement {
     this.children = [];
     this.append(...nodes);
   }
+  insertBefore(node, reference) {
+    if (node instanceof FakeElement) node.parent = this;
+    const index = reference === null ? -1 : this.children.indexOf(reference);
+    if (index < 0) this.children.push(node);
+    else this.children.splice(index, 0, node);
+    return node;
+  }
   remove() {
     if (!this.parent) return;
     this.parent.children = this.parent.children.filter((child) => child !== this);

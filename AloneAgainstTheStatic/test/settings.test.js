@@ -1,6 +1,6 @@
 import test, { afterEach } from "node:test";
 import assert from "node:assert/strict";
-import { createSettings } from "../src/ui/settings.js";
+import { connectProgressReset, createSettings } from "../src/ui/settings.js";
 
 const originalStorage = Object.getOwnPropertyDescriptor(globalThis, "localStorage");
 const originalDocument = Object.getOwnPropertyDescriptor(globalThis, "document");
@@ -176,4 +176,38 @@ test("efekty tekstu trafiają do zmiennej CSS", () => {
 
   createSettings().set("textEffects", 0.25);
   assert.equal(properties.get("--text-effects"), "0.25");
+});
+
+function fakeButton() {
+  const clicks = [];
+  return {
+    clicks,
+    addEventListener(type, handler) { if (type === "click") clicks.push(handler); },
+    click() { return clicks.map((handler) => handler()).at(-1); },
+  };
+}
+
+test("reset pamięci paragrafów pyta o potwierdzenie i dopiero wtedy kasuje", () => {
+  const button = fakeButton();
+  const asked = [];
+  let cleared = 0;
+  connectProgressReset({
+    button,
+    confirm: (message) => { asked.push(message); return asked.length > 1; },
+    message: () => "Wyczyścić pamięć?",
+    reset: () => { cleared += 1; },
+  });
+
+  assert.equal(button.click(), false);
+  assert.equal(cleared, 0);
+  assert.equal(button.click(), true);
+  assert.equal(cleared, 1);
+  assert.deepEqual(asked, ["Wyczyścić pamięć?", "Wyczyścić pamięć?"]);
+});
+
+test("brak przycisku resetu nie przerywa startu gry", () => {
+  assert.doesNotThrow(() => {
+    const noop = connectProgressReset({ button: null, confirm: () => true, message: () => "", reset: () => {} });
+    assert.equal(noop(), false);
+  });
 });

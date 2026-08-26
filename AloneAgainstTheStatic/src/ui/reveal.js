@@ -1,4 +1,6 @@
-import { createEntryBlock, entryLabels, eventNodes, rollGateLabel, segmentEvents } from "./journal.js";
+import {
+  createEntryBlock, entryLabels, eventNodes, rollGateLabel, rollHistoryNode, segmentEvents,
+} from "./journal.js";
 
 // Prędkość i rytm odsłaniania są danymi, nie kodem — patrz data/reveal.json.
 // Tu zostają tylko wartości awaryjne, gdyby pliku nie dało się wczytać.
@@ -96,19 +98,31 @@ function writeText(node, value) {
   else node.value = value;
 }
 
+function nextSiblingOf(parent, node) {
+  if ("nextSibling" in node) return node.nextSibling;
+  const kids = childNodesOf(parent);
+  return kids[[...kids].indexOf(node) + 1] ?? null;
+}
+
 // Zbiera węzły tekstowe wraz z ich pozycją w akapicie oraz elementy, których
 // pseudoelementy (kropka przed kwestią) muszą milczeć, dopóki maszyna nie
 // dojdzie do ich tekstu.
+//
+// Za każdym węzłem tekstowym staje "kotara": span z jeszcze nieodsłoniętą
+// resztą, ukryty przez `visibility: hidden`. Ukryty tekst nadal zajmuje
+// miejsce, więc łamanie wierszy jest od pierwszej klatki takie, jak dla
+// pełnego akapitu — słowa nie przeskakują w trakcie pisania.
 export function scanParagraph(paragraph) {
+  const doc = paragraph.ownerDocument ?? globalThis.document;
   const texts = [];
   const marks = [];
   let offset = 0;
 
   const walk = (node) => {
-    for (const child of childNodesOf(node)) {
+    for (const child of [...childNodesOf(node)]) {
       if (isTextNode(child)) {
         const full = readText(child);
-        texts.push({ node: child, full, start: offset });
+        texts.push({ node: child, parent: node, full, start: offset });
         offset += full.length;
         continue;
       }
@@ -118,17 +132,52 @@ export function scanParagraph(paragraph) {
   };
 
   walk(paragraph);
+
+  for (const text of texts) {
+    // Węzeł z samych białych znaków nie ma czego chować: spacja i tak jest
+    // niewidoczna, a kotara na końcu akapitu psułaby miejsce kursora.
+    if (text.full.trim() === "") continue;
+    const veil = doc.createElement("span");
+    veil.className = "veil";
+    veil.append(doc.createTextNode(text.full));
+    text.parent.insertBefore(veil, nextSiblingOf(text.parent, text.node));
+    text.veil = veil;
+    text.veilText = childNodesOf(veil)[0];
+  }
+
   return { texts, marks, total: offset };
 }
 
 export function applyVisible(scan, count) {
+  let cursorPlaced = false;
   for (const text of scan.texts) {
     const visible = Math.max(0, Math.min(text.full.length, count - text.start));
     writeText(text.node, text.full.slice(0, visible));
+    if (!text.veil) continue;
+    const rest = text.full.slice(visible);
+    writeText(text.veilText, rest);
+    // Kursor stoi na pierwszej kotarze, która jeszcze coś zasłania.
+    if (!cursorPlaced && rest.trim() !== "") {
+      text.veil.dataset.cursor = "";
+      cursorPlaced = true;
+    } else {
+      delete text.veil.dataset.cursor;
+    }
   }
   for (const mark of scan.marks) {
     if (count > mark.start) delete mark.element.dataset.pending;
     else mark.element.dataset.pending = "";
+  }
+}
+
+// Po odsłonięciu całości kotary schodzą: w DOM zostaje dokładnie to, co
+// renderuje rysowanie hurtem.
+export function dropVeils(scan) {
+  for (const text of scan.texts) {
+    writeText(text.node, text.full);
+    text.veil?.remove?.();
+    text.veil = null;
+    text.veilText = null;
   }
 }
 
@@ -194,6 +243,7 @@ export function createReveal({
     if (!session?.typing) return;
     const { paragraph, scan } = session.typing;
     applyVisible(scan, scan.total);
+    dropVeils(scan);
     delete paragraph.dataset.typing;
     paragraph.removeAttribute?.("aria-hidden");
     session.typing = null;
@@ -267,11 +317,16 @@ export function createReveal({
   function gateRoll(event) {
     const gate = el("button", "roll-gate", rollGateLabel(event, session.i18n));
     gate.type = "button";
+    // Gałęzie znane z wcześniejszych rozgrywek stoją przy bramce, bo dopiero
+    // wtedy są decyzją. Po rzucie znika razem z bramką — powtarza je rollbox.
+    const history = rollHistoryNode(doc, event, session.i18n, session.handlers.rollHistory);
     gate.addEventListener("click", () => {
       if (session?.phase !== "gate") return;
       gate.remove();
+      history?.remove();
       revealRoll(event);
     });
+    if (history) session.block.append(history);
     session.block.append(gate);
     session.gate = gate;
     session.phase = "gate";
@@ -339,7 +394,9 @@ export function createReveal({
     session.steps = paragraph.events;
     session.stepIndex = 0;
     session.typing = null;
-    session.block = createEntryBlock(doc, paragraph.entryId, session.labels, session.media);
+    session.block = createEntryBlock(doc, paragraph.entryId, session.labels, session.media, {
+      seenBefore: session.seenBefore?.(paragraph.entryId),
+    });
     root.append(session.block);
     session.onParagraph?.(session.block);
     nextStep();
@@ -347,7 +404,7 @@ export function createReveal({
 
   return {
     // Odsłania ramkę od początku: paragraf po paragrafie, akapit po akapicie.
-    start(record, { i18n, media, handlers, onParagraph, onComplete } = {}) {
+    start(record, { i18n, media, handlers, seenBefore, onParagraph, onComplete } = {}) {
       clearTimers();
       session = {
         i18n,
@@ -358,6 +415,9 @@ export function createReveal({
           entryId: record.entryId,
           originEntryId: record.originEntryId,
         }),
+        // Pamięć poznanych paragrafów przychodzi z main.js jako predykat, bo
+        // jedna ramka może przejść przez kilka paragrafów o różnej historii.
+        seenBefore,
         onParagraph,
         onComplete,
         phase: "idle",
