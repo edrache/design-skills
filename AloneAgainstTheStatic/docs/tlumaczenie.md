@@ -26,9 +26,9 @@ to wystarcza, żeby rozstrzygnąć rodzaj gramatyczny:
 
 | Paragrafy | Gra się jako | Partner w tekście |
 |---|---|---|
-| 1, 3–8, 11–82, 84–95, 97–102, 104, 106–110, 112–123, 125, 128, 130, 132, 136, 138–144, 146–153, 155–157, 159, 161–173, 175–192, 194, 196–204, 206, 208–228, 230 | Alex (kobieta) | Charlie (mężczyzna) |
-| 2, 83, 96, 103, 105, 111, 124, 126–127, 129, 131, 133, 135, 137, 145, 154, 158, 160, 174, 193, 205, 207, 229 | Charlie (mężczyzna) | Alex (kobieta) |
-| 9, 10, 27, 134 | dowolna z dwóch | „partner" bez imienia |
+| 1, 3–8, 11–82, 84–95, 97–102, 104, 106–110, 112–123, 125, 128, 130, 132, 136, 138–144, 146–153, 155–157, 159, 161–173, 175–192, 194, 196–204, 206, 208–228, 230, 336, 342–349, 351–352, 361–362 | Alex (kobieta) | Charlie (mężczyzna) |
+| 2, 83, 96, 103, 105, 111, 124, 126–127, 129, 131, 133, 135, 137, 145, 154, 158, 160, 174, 193, 205, 207, 229, 234, 242, 248, 250, 276–277, 279–281, 285, 327 | Charlie (mężczyzna) | Alex (kobieta) |
+| 9, 10, 27, 134 oraz wszystkie paragrafy 231–371 niewymienione wyżej | dowolna z dwóch | „partner" bez imienia |
 
 Paragraf 7 wspomina oba imiona, bo Charlie zwraca się tam do Alex po imieniu —
 to nadal ścieżka Alex.
@@ -42,8 +42,8 @@ być po polsku. Czas teraźniejszy nie ujawnia rodzaju, więc problem znika sam:
 - **nie**: *Wyciągnąłeś rękę* (przeszły, ujawnia rodzaj i łamie konwencję).
 
 Gdy zdania nie da się uratować czasem teraźniejszym, przepisz je bezosobowo
-(*trzeba*, *da się*, *nie ma jak*) zamiast wybierać rodzaj. Dotyczy to zwłaszcza
-paragrafów **9, 10, 27 i 134**, gdzie bohaterem może być każda z dwóch postaci:
+(*trzeba*, *da się*, *nie ma jak*) zamiast wybierać rodzaj. Dotyczy to wszystkich
+paragrafów wspólnych, gdzie bohaterem może być każda z dwóch postaci:
 
 - „How could you possibly hurt it?" → *Bo jak w ogóle **dałoby się** ją zranić?*
   (**nie**: *mógłbyś* / *mogłabyś*)
@@ -193,18 +193,59 @@ Nazwy umiejętności i cech piszemy z wielkiej litery, tak jak w podręczniku.
 
 | Oryginał | Tłumaczenie |
 |---|---|
-| your partner (paragrafy 9, 10, 27, 134) | **ukochana osoba** |
+| your partner (paragraf wspólny) | **ukochana osoba** |
 | your partner (imię znane) | Charlie / Alex |
+| the stranger | nieznajomy |
 | the cabin | chata |
 | the clearing | polana |
+| tree line | skraj lasu |
+| the shed | szopa |
+| the stream | strumień |
+| walking trail | ścieżka spacerowa |
+| highway | szosa |
+| blueberry bush / blueberries | krzak borówki / borówki |
+| wood pile / firewood pile | stos drewna opałowego |
 | the Child | Dziecię |
+| the Child of the Forest | Dziecię Lasu |
+| Mother Earth | Matka Ziemia |
 | The Flowers in the Stream | „Kwiaty w strumieniu” |
+| The Quiet in the Evening | „Wieczorna cisza” |
+| The Sun with the Trees | „Słońce pośród drzew” |
+| Hoping It Erupts | „W nadziei, że wybuchnie” |
+| The Way She Moves in the Night | „Sposób, w jaki porusza się nocą” |
+| The Cry of the Children | „Płacz dzieci” |
+| The Couple Who Came to the Cabin | „Para, która przyjechała do chaty” |
 | Ush-Tik-a | Usz-Tik-a |
 | pine trees | sosny |
+| mound of freshly turned earth | kopiec świeżo rozkopanej ziemi |
+| white noise | biały szum |
 | gravel driveway | żwirowy podjazd |
 | headlights | reflektory |
 | flashlight | latarka |
+| mini flashlight | niewielka latarka |
+| heavy-duty flashlight | porządna latarka |
 | trunk (samochodu) | bagażnik |
+| camcorder | kamera |
+| home movie | domowe nagranie |
+| tracking (VHS) | regulacja obrazu |
+| cameraman | kamerzysta |
+| campfire | ognisko |
+| campsite | obozowisko |
+| firepit / dormant firepit | palenisko / wygaszone palenisko |
+| tent flap | klapa namiotu |
+| tentacle | macka |
+| living darkness | żywa ciemność |
+| manilla folder | kartonowa teczka |
+| pustules | ropne krosty |
+| porch | ganek |
+| peeping Tom | podglądacz |
+| axe | siekiera |
+| steak knife | nóż do steków |
+| blade of rite | ostrze rytuału |
+| water heater | podgrzewacz wody |
+| (bed) slat | listwa stelaża |
+| bathroom door latch | zasuwka |
+| front-door deadbolt | rygiel |
 | icebox | lodówka turystyczna |
 | john (toaleta) | kibel |
 

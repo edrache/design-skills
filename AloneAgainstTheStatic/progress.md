@@ -63,3 +63,23 @@ Original prompt: przy wyborze postaci w [AloneAgainstTheStatic](AloneAgainstTheS
 - `prefers-reduced-motion` wyłącza wypisywanie liter, ale nie bramki; wypisywany akapit jest schowany przed czytnikami ekranu i ogłaszany dopiero w całości.
 - Domknięty akapit zapala migający wskaźnik `▶` (znak PLAY z magnetowidu) na ostatnim odsłoniętym węźle — inline po tekście, pod spodem przy rzucie i notatce. Wskaźnik wędruje z krokiem na krok i gaśnie, gdy pojawia się bramka, wybory albo „→"; przy `prefers-reduced-motion` zostaje, ale przestaje migać.
 - `npm test`: 270/270 testów zaliczonych (nowy `test/reveal.test.js`). `npm run validate`: 0 błędów; 1 ostrzeżenie (nieużywana flaga `tinnitus`).
+- Przetłumaczono na polski kolejnych 50 paragrafów: 31–80, czyli 186 kluczy tekstowych. Kompletny zakres PL obejmuje teraz paragrafy 1–80 (338 kluczy).
+- Ujednolicono powtarzalne nazwy miejsc, przedmiotów i tytuły kaset; nowe ustalenia dopisano do `docs/tlumaczenie.md`.
+- Kontrola zakresu 31–80: 0 pustych kluczy i 0 różnic w liczbie znaczników względem EN. Następny nieprzetłumaczony paragraf: 81; pozostało 291 paragrafów i 1084 klucze.
+- `npm test`: 258/258 testów zaliczonych. `npm run validate`: 0 błędów; 1085 ostrzeżeń (1084 oczekiwane puste tłumaczenia od paragrafu 81 oraz istniejąca nieużywana flaga `tinnitus`).
+- Przetłumaczono na polski kolejnych 50 paragrafów: 81–130, czyli 184 klucze tekstowe. Kompletny zakres PL obejmuje teraz paragrafy 1–130 (522 klucze).
+- Ujednolicono nazewnictwo nieznajomego, białego szumu, latarek, podgrzewacza wody, elementów łóżka oraz zamknięć drzwi; ustalenia dopisano do `docs/tlumaczenie.md`.
+- Kontrola zakresu 81–130: 0 pustych kluczy i 0 różnic w liczbie znaczników względem EN. Następny nieprzetłumaczony paragraf: 131; pozostało 241 paragrafów i 900 kluczy.
+- `npm test`: 258/258 testów zaliczonych. `npm run validate`: 0 błędów; 901 ostrzeżeń (900 oczekiwanych pustych tłumaczeń od paragrafu 131 oraz istniejąca nieużywana flaga `tinnitus`).
+- Przetłumaczono na polski kolejnych 50 paragrafów: 131–180, czyli 190 kluczy tekstowych. Kompletny zakres PL obejmuje teraz paragrafy 1–180 (712 kluczy).
+- Ujednolicono lustrzane sceny z wcześniejszymi paragrafami oraz nazewnictwo skraju lasu, domowych nagrań, podglądacza, siekiery i kopca świeżo rozkopanej ziemi; ustalenia dopisano do `docs/tlumaczenie.md`.
+- Kontrola zakresu 131–180: 0 pustych kluczy i 0 różnic w liczbie znaczników względem EN. Następny nieprzetłumaczony paragraf: 181; pozostało 191 paragrafów i 710 kluczy.
+- `npm test`: 260/260 testów zaliczonych. `npm run validate`: 0 błędów; 711 ostrzeżeń (710 oczekiwanych pustych tłumaczeń od paragrafu 181 oraz istniejąca nieużywana flaga `tinnitus`).
+- Przetłumaczono na polski kolejnych 50 paragrafów: 181–230, czyli 216 kluczy tekstowych. Kompletny zakres PL obejmuje teraz paragrafy 1–230 (928 kluczy).
+- Ujednolicono terminologię nagrań VHS, obozowiska, kartonowej teczki, ropnych krost, kamerzysty i ganku; ustalenia dopisano do `docs/tlumaczenie.md`.
+- Kontrola zakresu 181–230: 0 pustych kluczy i 0 różnic w liczbie znaczników względem EN. Następny nieprzetłumaczony paragraf: 231; pozostało 141 paragrafów i 494 klucze.
+- `npm test`: 260/260 testów zaliczonych. `npm run validate`: 0 błędów; 495 ostrzeżeń (494 oczekiwane puste tłumaczenia od paragrafu 231 oraz istniejąca nieużywana flaga `tinnitus`).
+- Dokończono polskie tłumaczenie scenariusza: paragrafy 231–371, czyli ostatnie 494 klucze tekstowe. Zakres PL jest kompletny — paragrafy 1–371, 1422/1422 kluczy.
+- Rozszerzono mapę ścieżek Alex, Charliego i paragrafów wspólnych oraz ujednolicono terminologię zakończeń, obozowiska, Dziecięcia Lasu, macek, ostrza rytuału i zasilania chaty w `docs/tlumaczenie.md`.
+- Końcowa kontrola całego pliku: 0 pustych kluczy, 0 dodatkowych kluczy i 0 różnic w liczbie znaczników względem EN.
+- `npm test`: 270/270 testów zaliczonych. `npm run validate`: 0 błędów; 1 istniejące ostrzeżenie o nieużywanej fladze `tinnitus`.
