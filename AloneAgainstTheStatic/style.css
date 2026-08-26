@@ -758,10 +758,10 @@ a:focus-visible {
 /* Opcja podjęta w poprzedniej rozgrywce: przygaszona, ale nadal klikalna —
    stan zupełnie osobny od :disabled. Najechanie i klawiatura przywracają
    pełną czytelność, żeby nie utrudniać czytania tego, co się wybiera. */
-.choice[data-taken] { opacity: 0.5; }
+.choice[data-taken] { opacity: 0.5; --appear-opacity: 0.5; }
 
 .choice[data-taken]:hover:not(:disabled),
-.choice[data-taken]:focus-visible { opacity: 1; }
+.choice[data-taken]:focus-visible { opacity: 1; --appear-opacity: 1; }
 
 .action {
   min-height: 2.75rem;
@@ -964,9 +964,12 @@ a:focus-visible {
   50%, 100% { opacity: 1; }
 }
 
+/* Klatka końcowa oddaje alfę elementowi: `.appearing` zostaje na nim po
+   animacji, a `fill-mode: both` utrwala tę klatkę ponad zwykłymi regułami —
+   twarde `opacity: 1` kasowałoby przygaszenie podjętego wyboru. */
 @keyframes appear {
   from { opacity: 0; transform: translateY(0.4rem); }
-  to { opacity: 1; transform: none; }
+  to { opacity: var(--appear-opacity, 1); transform: none; }
 }
 
 .appearing { animation: appear 320ms cubic-bezier(0.22, 1, 0.36, 1) both; }

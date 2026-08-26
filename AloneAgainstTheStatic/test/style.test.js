@@ -67,6 +67,22 @@ test("opcja podjęta wcześniej jest przygaszona, ale wraca do pełni pod kursor
   assert.match(css, /\.choice\[data-taken\]:hover[^{]*\{[^}]*opacity:\s*1/);
 });
 
+// Klasa .appearing zostaje na przycisku po animacji, a `fill-mode: both`
+// utrwala ostatnią klatkę. Wartość animowana bije w kaskadzie każdą zwykłą
+// deklarację, więc twarde `opacity: 1` w klatce końcowej kasowałoby
+// przygaszenie podjętego wyboru — i robiło to po cichu, bo reguła w pliku jest.
+test("animacja wejścia nie kasuje przygaszenia podjętego wyboru", () => {
+  const frames = css.match(/@keyframes appear\s*\{([\s\S]*?)\n\}/);
+  assert.ok(frames, "brak klatek animacji appear");
+  const end = frames[1].match(/to\s*\{([^}]*)\}/);
+  assert.ok(end, "animacja appear nie ma klatki końcowej");
+  assert.match(end[1], /opacity:\s*var\(--appear-opacity/, "klatka końcowa musi oddawać alfę elementowi");
+
+  const taken = rule(".choice[data-taken]");
+  assert.match(taken, /--appear-opacity:\s*0?\.5\s*;/, "podjęty wybór musi obniżyć alfę także dla animacji");
+  assert.match(css, /\.choice\[data-taken\]:hover[^{]*\{[^}]*--appear-opacity:\s*1/);
+});
+
 test("historia rzutu jest cicha i nieruchoma", () => {
   const history = rule(".roll-history");
   assert.ok(history, "brak reguły .roll-history");
