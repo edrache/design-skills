@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alone Against the Static — drzewo paragrafów</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --panel: #12161b;
+    --line: #232a33;
+    --ink: #d8dee6;
+    --muted: #7d8895;
+    --accent: #e0b25a;
+    --anc: #f2c14e;
+    --desc: #5aa9e6;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 13px/1.5 "Iosevka", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    display: grid;
+    grid-template-columns: 1fr 330px;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+    overflow: hidden;
+  }
+  header {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--line);
+    background: var(--panel);
+  }
+  h1 { font-size: 14px; margin: 0; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+  .stats { color: var(--muted); }
+  .controls { display: flex; gap: 8px; align-items: center; margin-left: auto; }
+  input[type="search"] {
+    background: #0b0e12; border: 1px solid var(--line); color: var(--ink);
+    padding: 5px 8px; width: 150px; font: inherit; border-radius: 3px;
+  }
+  button {
+    background: #1a2029; border: 1px solid var(--line); color: var(--ink);
+    padding: 5px 10px; font: inherit; border-radius: 3px; cursor: pointer;
+  }
+  button:hover { border-color: var(--accent); color: var(--accent); }
+  label.toggle { display: flex; align-items: center; gap: 5px; color: var(--muted); cursor: pointer; }
+  #stage { position: relative; overflow: hidden; cursor: grab; }
+  #stage.dragging { cursor: grabbing; }
+  svg { display: block; width: 100%; height: 100%; }
+  .edge { fill: none; stroke-width: 1.1; opacity: 0.35; }
+  .edge.choice { stroke: #8d97a5; }
+  .edge.auto { stroke: #4b5563; }
+  .edge.success { stroke: #4c9a68; }
+  .edge.fail { stroke: #b0524f; }
+  .edge.pushed { stroke: #7d3f6d; stroke-dasharray: 2 3; }
+  .edge.guard { stroke: #3f7d8c; stroke-dasharray: 5 3; }
+  .edge.cond { stroke: #7c6bb0; stroke-dasharray: 5 3; }
+  .edge.book { stroke: #4a4a4a; stroke-dasharray: 1 4; }
+  .node rect { stroke-width: 1; }
+  .node text { font-size: 11px; fill: #0b0d10; text-anchor: middle; dominant-baseline: central; font-weight: 600; pointer-events: none; }
+  .node { cursor: pointer; }
+  .node.end rect { stroke: #e05c5c; stroke-width: 2; }
+  .node.system rect { stroke-dasharray: 3 2; }
+  .node.start rect { stroke: var(--accent); stroke-width: 2.5; }
+  .layer-label { fill: #39424e; font-size: 10px; }
+
+  /* Tryb skupienia: wygaszamy wszystko poza podświetlonym poddrzewem. */
+  svg.focused .edge { opacity: 0.05; }
+  svg.focused .node { opacity: 0.18; }
+  svg.focused .node.anc, svg.focused .node.self, svg.focused .node.desc { opacity: 1; }
+  svg.focused .edge.hl-anc { opacity: 0.95; stroke-width: 2; }
+  svg.focused .edge.hl-desc { opacity: 0.5; stroke-width: 1.4; stroke: var(--desc); }
+  svg.focused .node.anc rect { stroke: var(--anc); stroke-width: 2; }
+  svg.focused .node.desc rect { stroke: var(--desc); stroke-width: 1.5; }
+  svg.focused .node.self rect { stroke: #fff; stroke-width: 3; }
+
+  aside {
+    border-left: 1px solid var(--line);
+    background: var(--panel);
+    padding: 14px;
+    overflow-y: auto;
+  }
+  aside h2 { font-size: 12px; margin: 0 0 6px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+  aside h3 { font-size: 11px; margin: 16px 0 6px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .snippet { color: var(--muted); font-size: 12px; border-left: 2px solid var(--line); padding-left: 8px; margin: 8px 0; }
+  .rel { margin: 3px 0; display: flex; gap: 6px; align-items: baseline; }
+  .rel .num { color: var(--accent); cursor: pointer; text-decoration: underline dotted; }
+  .rel .lbl { color: var(--muted); font-size: 11px; }
+  .path { line-height: 1.9; word-break: break-word; }
+  .path .num { color: var(--anc); cursor: pointer; }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 6px; color: var(--muted); font-size: 11px; }
+  .legend i { display: inline-block; width: 16px; height: 0; border-top: 2px solid; margin-right: 4px; vertical-align: middle; }
+  .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+  .hint { color: #5b6673; font-size: 11px; margin-top: 10px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Alone Against the Static — drzewo paragrafów</h1>
+  <span class="stats" id="stats"></span>
+  <div class="controls">
+    <label class="toggle"><input type="checkbox" id="down"> pokaż też w dół</label>
+    <input type="search" id="search" placeholder="nr paragrafu…" inputmode="numeric">
+    <button id="fit">dopasuj</button>
+    <button id="clear">wyczyść</button>
+  </div>
+</header>
+<div id="stage"><svg id="svg"></svg></div>
+<aside id="panel"></aside>
+
+<script>
+const DATA = /*__DATA__*/null;
+
+const NS = "http://www.w3.org/2000/svg";
+const NODE_W = 42, NODE_H = 24, GAP_X = 16, ROW_H = 78;
+const KINDS = {
+  choice: "wybór gracza",
+  auto: "przejście automatyczne",
+  success: "udany rzut",
+  fail: "nieudany rzut",
+  pushed: "przepchnięty rzut",
+  guard: "strażnik na wejściu",
+  cond: "skok warunkowy",
+  book: "połączenie z książki",
+};
+const KIND_COLOR = {
+  choice: "#8d97a5", auto: "#4b5563", success: "#4c9a68", fail: "#b0524f",
+  pushed: "#7d3f6d", guard: "#3f7d8c", cond: "#7c6bb0", book: "#4a4a4a",
+};
+const SCENE_COLOR = {
+  drive: "#c9b18a", arrival: "#b9c98a", clearing: "#8ac9a8",
+  cabin: "#9fb6cf", shed: "#c99fb6", forest: "#8fa2c9", stream: "#8ac6c9",
+};
+
+const nodes = DATA.nodes;
+const edges = DATA.edges;
+const byId = new Map(nodes.map((n) => [n.id, n]));
+const startIds = [...new Set(Object.values(DATA.starts))].filter((id) => byId.has(id));
+
+const out = new Map(), inc = new Map();
+for (const n of nodes) { out.set(n.id, []); inc.set(n.id, []); }
+for (const e of edges) {
+  if (!byId.has(e.from) || !byId.has(e.to)) continue;
+  out.get(e.from).push(e);
+  inc.get(e.to).push(e);
+}
+
+/* ---------- warstwy ---------- */
+// Główny graf układamy od paragrafów startowych. Paragrafy systemowe (rany,
+// poczytalność, atak szału) nie mają dojścia z fabuły — silnik wchodzi w nie
+// z reguł gry, więc lądują w osobnej kolumnie z boku, zamiast zaśmiecać
+// pierwsze poziomy drzewa.
+const depth = new Map();
+const bfs = (roots) => {
+  for (const root of roots) {
+    if (depth.has(root)) continue;
+    depth.set(root, 0);
+    const queue = [root];
+    while (queue.length) {
+      const id = queue.shift();
+      for (const e of out.get(id)) {
+        if (depth.has(e.to)) continue;
+        depth.set(e.to, depth.get(id) + 1);
+        queue.push(e.to);
+      }
+    }
+  }
+};
+bfs(startIds);
+const mainIds = nodes.map((n) => n.id).filter((id) => depth.has(id));
+const asideIds = nodes.map((n) => n.id).filter((id) => !depth.has(id));
+bfs([...asideIds].sort((a, b) => inc.get(a).length - inc.get(b).length || a - b));
+
+// Prolog Alexa i prolog Charliego biegną osobno, aż zejdą się w tym samym
+// paragrafie. Rozdzielamy je na pasma: wyłączne dla Alexa po lewej, wspólny
+// trzon w środku, wyłączne dla Charliego po prawej.
+const reachFrom = (root) => {
+  const seen = new Set([root]);
+  const queue = [root];
+  while (queue.length) {
+    const id = queue.shift();
+    for (const e of out.get(id)) {
+      if (seen.has(e.to)) continue;
+      seen.add(e.to);
+      queue.push(e.to);
+    }
+  }
+  return seen;
+};
+const branchNames = Object.keys(DATA.starts);
+const reachA = startIds[0] !== undefined ? reachFrom(startIds[0]) : new Set();
+const reachC = startIds[1] !== undefined ? reachFrom(startIds[1]) : new Set();
+const bandOf = (id) => {
+  if (reachA.has(id) && !reachC.has(id)) return 0;
+  if (reachC.has(id) && !reachA.has(id)) return 2;
+  return 1;
+};
+
+const buildLayers = (ids) => {
+  if (!ids.length) return [];
+  const max = Math.max(...ids.map((id) => depth.get(id)));
+  const result = Array.from({ length: max + 1 }, () => []);
+  for (const id of ids) result[depth.get(id)].push(id);
+  return result;
+};
+
+// Kilka przebiegów barycentrycznych, żeby ograniczyć plątaninę krawędzi.
+const order = new Map();
+const orderLayers = (layers) => {
+  const reindex = () => layers.forEach((layer) => layer.forEach((id, i) => order.set(id, i)));
+  reindex();
+  for (let pass = 0; pass < 12; pass += 1) {
+    const down = pass % 2 === 0;
+    const seq = layers.map((_, i) => (down ? i : layers.length - 1 - i));
+    for (const li of seq) {
+      const keys = new Map(layers[li].map((id) => {
+        const vals = (down ? inc.get(id).map((e) => e.from) : out.get(id).map((e) => e.to))
+          .filter((other) => depth.get(other) === (down ? li - 1 : li + 1))
+          .map((other) => order.get(other))
+          .filter((value) => value !== undefined);
+        return [id, vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : order.get(id)];
+      }));
+      layers[li].sort((a, b) => bandOf(a) - bandOf(b) || keys.get(a) - keys.get(b) || a - b);
+      reindex();
+    }
+  }
+  return layers;
+};
+
+const layers = orderLayers(buildLayers(mainIds));
+const asideLayers = orderLayers(buildLayers(asideIds));
+
+const COL = NODE_W + GAP_X;
+const BAND_GAP = 90;
+
+// Szerokość pasma wyznacza najszersza warstwa w tym paśmie.
+const bandWidth = [0, 1, 2].map((band) =>
+  Math.max(0, ...layers.map((layer) => layer.filter((id) => bandOf(id) === band).length)) * COL);
+const bandX = [40];
+bandX[1] = bandX[0] + bandWidth[0] + (bandWidth[0] ? BAND_GAP : 0);
+bandX[2] = bandX[1] + bandWidth[1] + (bandWidth[2] ? BAND_GAP : 0);
+const mainW = bandX[2] + bandWidth[2] + 40;
+const asideW = asideLayers.length ? Math.max(...asideLayers.map((l) => l.length)) * COL + 80 : 0;
+const asideX = mainW + 120;
+
+const pos = new Map();
+layers.forEach((layer, li) => {
+  for (const band of [0, 1, 2]) {
+    const group = layer.filter((id) => bandOf(id) === band);
+    if (!group.length) continue;
+    const startX = bandX[band] + (bandWidth[band] - group.length * COL) / 2;
+    group.forEach((id, i) => pos.set(id, { x: startX + i * COL, y: 60 + li * ROW_H }));
+  }
+});
+asideLayers.forEach((layer, li) => {
+  const startX = asideX + (asideW - layer.length * COL) / 2;
+  layer.forEach((id, i) => pos.set(id, { x: startX + i * COL, y: 60 + li * ROW_H }));
+});
+
+const stageW = mainW + (asideW ? 120 + asideW : 0);
+const stageH = 60 + Math.max(layers.length, asideLayers.length) * ROW_H;
+
+/* ---------- rysowanie ---------- */
+const svg = document.getElementById("svg");
+const defs = document.createElementNS(NS, "defs");
+for (const [kind, color] of Object.entries(KIND_COLOR)) {
+  const marker = document.createElementNS(NS, "marker");
+  marker.setAttribute("id", `arrow-${kind}`);
+  marker.setAttribute("viewBox", "0 0 8 8");
+  marker.setAttribute("refX", "7"); marker.setAttribute("refY", "4");
+  marker.setAttribute("markerWidth", "5"); marker.setAttribute("markerHeight", "5");
+  marker.setAttribute("orient", "auto-start-reverse");
+  const path = document.createElementNS(NS, "path");
+  path.setAttribute("d", "M0,1 L8,4 L0,7 z");
+  path.setAttribute("fill", color);
+  marker.appendChild(path);
+  defs.appendChild(marker);
+}
+svg.appendChild(defs);
+
+const viewport = document.createElementNS(NS, "g");
+svg.appendChild(viewport);
+const gLabels = document.createElementNS(NS, "g");
+const gEdges = document.createElementNS(NS, "g");
+const gNodes = document.createElementNS(NS, "g");
+viewport.append(gLabels, gEdges, gNodes);
+
+const bandLabels = [
+  branchNames[0] ? `tylko ${branchNames[0]}` : null,
+  "wspólne",
+  branchNames[1] ? `tylko ${branchNames[1]}` : null,
+];
+bandLabels.forEach((text, band) => {
+  if (!text || !bandWidth[band]) return;
+  const label = document.createElementNS(NS, "text");
+  label.setAttribute("class", "layer-label");
+  label.setAttribute("x", bandX[band] + bandWidth[band] / 2);
+  label.setAttribute("y", 36);
+  label.setAttribute("text-anchor", "middle");
+  label.textContent = text;
+  gLabels.appendChild(label);
+});
+
+if (asideLayers.length) {
+  const divider = document.createElementNS(NS, "line");
+  divider.setAttribute("x1", asideX - 60); divider.setAttribute("x2", asideX - 60);
+  divider.setAttribute("y1", 20); divider.setAttribute("y2", stageH);
+  divider.setAttribute("stroke", "#232a33"); divider.setAttribute("stroke-dasharray", "4 6");
+  gLabels.appendChild(divider);
+  const caption = document.createElementNS(NS, "text");
+  caption.setAttribute("class", "layer-label");
+  caption.setAttribute("x", asideX);
+  caption.setAttribute("y", 36);
+  caption.textContent = "paragrafy systemowe — wywoływane przez zasady gry";
+  gLabels.appendChild(caption);
+}
+
+layers.forEach((layer, li) => {
+  if (!layer.length) return;
+  const label = document.createElementNS(NS, "text");
+  label.setAttribute("class", "layer-label");
+  label.setAttribute("x", "8");
+  label.setAttribute("y", 60 + li * ROW_H + NODE_H / 2);
+  label.textContent = `poz. ${li}`;
+  gLabels.appendChild(label);
+});
+
+const edgeEls = [];
+const edgePath = (e) => {
+  const a = pos.get(e.from), b = pos.get(e.to);
+  const x1 = a.x + NODE_W / 2, x2 = b.x + NODE_W / 2;
+  if (b.y > a.y) {
+    const y1 = a.y + NODE_H, y2 = b.y;
+    const dy = (y2 - y1) * 0.45;
+    return `M${x1},${y1} C${x1},${y1 + dy} ${x2},${y2 - dy} ${x2},${y2}`;
+  }
+  // Krawędź wsteczna albo w poziomie: prowadzimy ją łukiem obok kolumn.
+  const y1 = a.y + NODE_H / 2, y2 = b.y + NODE_H / 2;
+  const bow = 60 + Math.abs(y1 - y2) * 0.25;
+  const dir = x2 >= x1 ? 1 : -1;
+  return `M${x1},${y1} C${x1 + dir * bow},${y1 + 30} ${x2 + dir * bow},${y2 - 30} ${x2},${y2}`;
+};
+for (const e of edges) {
+  if (!pos.has(e.from) || !pos.has(e.to)) continue;
+  const path = document.createElementNS(NS, "path");
+  path.setAttribute("class", `edge ${e.kind}`);
+  path.setAttribute("d", edgePath(e));
+  path.setAttribute("marker-end", `url(#arrow-${e.kind})`);
+  gEdges.appendChild(path);
+  edgeEls.push({ el: path, e });
+}
+
+const nodeEls = new Map();
+for (const n of nodes) {
+  const p = pos.get(n.id);
+  const g = document.createElementNS(NS, "g");
+  const classes = ["node"];
+  if (n.end) classes.push("end");
+  if (n.system) classes.push("system");
+  if (startIds.includes(n.id)) classes.push("start");
+  g.setAttribute("class", classes.join(" "));
+  g.setAttribute("transform", `translate(${p.x},${p.y})`);
+  const rect = document.createElementNS(NS, "rect");
+  rect.setAttribute("width", NODE_W); rect.setAttribute("height", NODE_H);
+  rect.setAttribute("rx", "4");
+  rect.setAttribute("fill", SCENE_COLOR[n.scene] ?? "#9aa3ad");
+  rect.setAttribute("stroke", "#0b0d10");
+  const label = document.createElementNS(NS, "text");
+  label.setAttribute("x", NODE_W / 2); label.setAttribute("y", NODE_H / 2);
+  label.textContent = n.id;
+  g.append(rect, label);
+  g.addEventListener("mouseenter", () => { if (!pinned) focus(n.id); });
+  g.addEventListener("mouseleave", () => { if (!pinned) clearFocus(); });
+  g.addEventListener("click", (event) => { event.stopPropagation(); pinned = n.id; focus(n.id); });
+  gNodes.appendChild(g);
+  nodeEls.set(n.id, g);
+}
+
+/* ---------- podświetlanie ---------- */
+let pinned = null;
+const walk = (id, map, key) => {
+  const seen = new Set([id]);
+  const queue = [id];
+  while (queue.length) {
+    const current = queue.shift();
+    for (const e of map.get(current)) {
+      const next = e[key];
+      if (seen.has(next)) continue;
+      seen.add(next);
+      queue.push(next);
+    }
+  }
+  seen.delete(id);
+  return seen;
+};
+
+const clearFocus = () => {
+  svg.classList.remove("focused");
+  nodeEls.forEach((el) => el.classList.remove("anc", "desc", "self"));
+  edgeEls.forEach(({ el }) => el.classList.remove("hl-anc", "hl-desc"));
+  if (!pinned) renderPanel(null);
+};
+
+const focus = (id) => {
+  clearFocus();
+  svg.classList.add("focused");
+  const anc = walk(id, inc, "from");
+  const desc = document.getElementById("down").checked ? walk(id, out, "to") : new Set();
+  anc.forEach((a) => nodeEls.get(a)?.classList.add("anc"));
+  desc.forEach((d) => { if (!anc.has(d)) nodeEls.get(d)?.classList.add("desc"); });
+  nodeEls.get(id)?.classList.add("self");
+  for (const { el, e } of edgeEls) {
+    if (anc.has(e.from) && (anc.has(e.to) || e.to === id)) el.classList.add("hl-anc");
+    else if (desc.size && (desc.has(e.to) || e.to === id) && (desc.has(e.from) || e.from === id)) el.classList.add("hl-desc");
+  }
+  renderPanel(id, anc, desc);
+};
+
+/* ---------- panel ---------- */
+const shortestPath = (target) => {
+  const prev = new Map();
+  const queue = [...startIds];
+  const seen = new Set(startIds);
+  while (queue.length) {
+    const id = queue.shift();
+    if (id === target) break;
+    for (const e of out.get(id)) {
+      if (seen.has(e.to)) continue;
+      seen.add(e.to);
+      prev.set(e.to, e);
+      queue.push(e.to);
+    }
+  }
+  if (!seen.has(target)) return null;
+  const chain = [];
+  let cursor = target;
+  while (prev.has(cursor)) {
+    const e = prev.get(cursor);
+    chain.unshift(e);
+    cursor = e.from;
+  }
+  return { start: cursor, chain };
+};
+
+const esc = (value) => String(value).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+const startName = (id) => {
+  const key = Object.entries(DATA.starts).find(([, value]) => value === id)?.[0];
+  return key ? ` (start: ${key})` : "";
+};
+const numLink = (id) => `<span class="num" data-goto="${id}">${id}</span>`;
+
+const panel = document.getElementById("panel");
+const legendHtml = () => `
+  <h3>Rodzaje połączeń</h3>
+  <div class="legend">${Object.entries(KINDS).map(([k, v]) =>
+    `<span><i style="border-color:${KIND_COLOR[k]}"></i>${v}</span>`).join("")}</div>
+  <h3>Sceny</h3>
+  <div class="legend">${Object.entries(SCENE_COLOR).map(([k, v]) =>
+    `<span><i class="swatch" style="background:${v};border:0;height:10px"></i>${k}</span>`).join("")}</div>
+  <p class="hint">Najedź na numer — podświetli się całe drzewo dojść do tego paragrafu.
+  Kliknij, żeby przypiąć widok (Esc albo „wyczyść” zdejmuje). Kółko myszy przybliża, przeciąganie przesuwa.
+  Czerwona ramka to zakończenie, przerywana — paragraf systemowy (rany, poczytalność).</p>`;
+
+function renderPanel(id, anc = new Set(), desc = new Set()) {
+  if (id === null) { panel.innerHTML = `<h2>Paragrafy</h2>${legendHtml()}`; return; }
+  const n = byId.get(id);
+  const parents = inc.get(id);
+  const children = out.get(id);
+  const path = shortestPath(id);
+  const rel = (list, key) => list.length
+    ? list.map((e) => `<div class="rel">${numLink(e[key])}<span class="lbl">${esc(e.label || KINDS[e.kind])}</span></div>`).join("")
+    : `<div class="rel"><span class="lbl">—</span></div>`;
+
+  panel.innerHTML = `
+    <h2>Paragraf ${id}</h2>
+    <div class="lbl" style="color:var(--muted)">scena: ${esc(n.scene)}${n.end ? " · zakończenie" : ""}${n.system ? " · systemowy" : ""}${n.roll ? " · rzut" : ""}</div>
+    <div class="snippet">${esc(n.snippet)}</div>
+    ${n.trigger ? `<div class="lbl" style="color:var(--muted)">wywoływany przez zasady: ${esc(n.trigger)}</div>` : ""}
+    <h3>Najkrótsza droga od startu</h3>
+    <div class="path">${path
+      ? [`${numLink(path.start)}<span class="lbl">${startName(path.start)}</span>`, ...path.chain.map((e) => `<span class="lbl">${esc(e.kind === "choice" ? "wybór" : KINDS[e.kind])}</span> → ${numLink(e.to)}`)].join(" ")
+      : "<span class=\"lbl\">brak drogi od paragrafu startowego (wejście przez zasady gry)</span>"}</div>
+    <h3>Wchodzi z (${parents.length}) · przodków: ${anc.size}</h3>
+    ${rel(parents, "from")}
+    <h3>Prowadzi do (${children.length})${desc.size ? ` · potomków: ${desc.size}` : ""}</h3>
+    ${rel(children, "to")}
+    ${legendHtml()}`;
+}
+
+panel.addEventListener("click", (event) => {
+  const target = event.target.closest("[data-goto]");
+  if (!target) return;
+  const id = Number(target.dataset.goto);
+  pinned = id;
+  focus(id);
+  centerOn(id);
+});
+
+/* ---------- zoom i przesuwanie ---------- */
+let scale = 0.75, tx = 0, ty = 0, touched = false;
+const apply = () => viewport.setAttribute("transform", `translate(${tx},${ty}) scale(${scale})`);
+const stage = document.getElementById("stage");
+
+const fit = () => {
+  touched = true;
+  const box = stage.getBoundingClientRect();
+  if (!box.width || !box.height) { requestAnimationFrame(fit); return; }
+  scale = Math.max(0.05, Math.min(box.width / stageW, box.height / stageH) * 0.95);
+  tx = (box.width - stageW * scale) / 2;
+  ty = 10;
+  apply();
+};
+const centerOn = (id) => {
+  const p = pos.get(id);
+  if (!p) return;
+  touched = true;
+  const box = stage.getBoundingClientRect();
+  if (!box.width || !box.height) { requestAnimationFrame(() => centerOn(id)); return; }
+  if (scale < 0.7) scale = 1;
+  tx = box.width / 2 - (p.x + NODE_W / 2) * scale;
+  ty = box.height / 2 - (p.y + NODE_H / 2) * scale;
+  apply();
+};
+
+stage.addEventListener("wheel", (event) => {
+  event.preventDefault();
+  const box = stage.getBoundingClientRect();
+  const mx = event.clientX - box.left, my = event.clientY - box.top;
+  touched = true;
+  const next = Math.min(4, Math.max(0.08, scale * Math.exp(-event.deltaY * 0.0015)));
+  tx = mx - (mx - tx) * (next / scale);
+  ty = my - (my - ty) * (next / scale);
+  scale = next;
+  apply();
+}, { passive: false });
+
+let drag = null;
+stage.addEventListener("pointerdown", (event) => {
+  touched = true;
+  drag = { x: event.clientX - tx, y: event.clientY - ty };
+  stage.classList.add("dragging");
+  stage.setPointerCapture(event.pointerId);
+});
+stage.addEventListener("pointermove", (event) => {
+  if (!drag) return;
+  tx = event.clientX - drag.x; ty = event.clientY - drag.y;
+  apply();
+});
+stage.addEventListener("pointerup", () => { drag = null; stage.classList.remove("dragging"); });
+stage.addEventListener("click", (event) => {
+  if (event.target.closest(".node")) return;
+  pinned = null;
+  clearFocus();
+});
+
+/* ---------- sterowanie ---------- */
+document.getElementById("fit").addEventListener("click", fit);
+document.getElementById("clear").addEventListener("click", () => { pinned = null; clearFocus(); });
+document.getElementById("down").addEventListener("change", () => { if (pinned) focus(pinned); });
+document.getElementById("search").addEventListener("keydown", (event) => {
+  if (event.key !== "Enter") return;
+  const id = Number(event.currentTarget.value.trim());
+  if (!byId.has(id)) return;
+  pinned = id;
+  focus(id);
+  centerOn(id);
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") { pinned = null; clearFocus(); }
+});
+
+document.getElementById("stats").textContent =
+  `${nodes.length} paragrafów · ${edges.length} połączeń · ${layers.length} poziomów · ${nodes.filter((n) => n.end).length} zakończeń`;
+
+renderPanel(null);
+// Start: widok od pierwszego paragrafu w czytelnej skali; „dopasuj” pokazuje całość.
+requestAnimationFrame(() => {
+  if (touched) return;
+  const box = stage.getBoundingClientRect();
+  if (!box.width) { requestAnimationFrame(fit); return; }
+  scale = 1;
+  tx = box.width / 2 - (pos.get(startIds[0]).x + NODE_W / 2) * scale;
+  ty = 40;
+  apply();
+});
+</script>
+</body>
+</html>
