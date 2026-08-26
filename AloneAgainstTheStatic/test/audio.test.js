@@ -4,6 +4,7 @@ import { createAudio } from "../src/ui/audio.js";
 
 const originals = {
   Audio: Object.getOwnPropertyDescriptor(globalThis, "Audio"),
+  document: Object.getOwnPropertyDescriptor(globalThis, "document"),
   setInterval: globalThis.setInterval,
   clearInterval: globalThis.clearInterval,
 };
@@ -12,6 +13,7 @@ let intervals;
 let nextTimer;
 let audioInstances;
 let playMode;
+let listeners;
 
 class FakeAudio {
   constructor(src) {
@@ -19,9 +21,20 @@ class FakeAudio {
     this.volume = 1;
     this.loop = false;
     this.paused = false;
+    this.duration = 60;
+    this.currentTime = 0;
     this.playCalls = 0;
     this.pauseCalls = 0;
+    this.handlers = new Map();
     audioInstances.push(this);
+  }
+
+  addEventListener(name, handler) {
+    this.handlers.set(name, handler);
+  }
+
+  emit(name) {
+    this.handlers.get(name)?.();
   }
 
   play() {
@@ -39,27 +52,34 @@ class FakeAudio {
 }
 
 function fakeSettings(overrides = {}) {
-  const listeners = [];
-  const settings = {
+  const subscribers = [];
+  return {
     values: {
       narration: true,
       narrationVolume: 0.9,
       musicVolume: 0.4,
       ...overrides,
     },
-    subscribe(listener) { listeners.push(listener); },
+    subscribe(listener) { subscribers.push(listener); },
     update(values) {
       this.values = { ...this.values, ...values };
-      for (const listener of listeners) listener(this.values);
+      for (const listener of subscribers) listener(this.values);
     },
   };
-  return settings;
 }
 
+// Jeden tick timera = 50 ms; przewijamy też pozycję odtwarzania utworów.
 function tick(count = 1) {
   for (let index = 0; index < count; index += 1) {
+    for (const node of audioInstances) {
+      if (!node.paused) node.currentTime = Math.min(node.duration, node.currentTime + 0.05);
+    }
     for (const callback of [...intervals.values()]) callback();
   }
+}
+
+function music(tracks = ["media/music/a.mp3", "media/music/b.mp3", "media/music/c.mp3"]) {
+  return tracks;
 }
 
 beforeEach(() => {
@@ -67,7 +87,15 @@ beforeEach(() => {
   nextTimer = 1;
   audioInstances = [];
   playMode = "resolve";
+  listeners = new Map();
   Object.defineProperty(globalThis, "Audio", { configurable: true, value: FakeAudio });
+  Object.defineProperty(globalThis, "document", {
+    configurable: true,
+    value: {
+      addEventListener(name, handler) { listeners.set(name, handler); },
+      removeEventListener(name) { listeners.delete(name); },
+    },
+  });
   globalThis.setInterval = (callback) => {
     const id = nextTimer++;
     intervals.set(id, callback);
@@ -77,27 +105,26 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  if (originals.Audio) Object.defineProperty(globalThis, "Audio", originals.Audio);
-  else delete globalThis.Audio;
+  for (const key of ["Audio", "document"]) {
+    if (originals[key]) Object.defineProperty(globalThis, key, originals[key]);
+    else delete globalThis[key];
+  }
   globalThis.setInterval = originals.setInterval;
   globalThis.clearInterval = originals.clearInterval;
 });
 
 test("brak zasobu oznacza ciszę bez tworzenia Audio", () => {
-  const audio = createAudio({ entries: {}, scenes: {} }, fakeSettings());
+  const audio = createAudio({ entries: {} }, fakeSettings());
 
   assert.doesNotThrow(() => audio.playNarration(1, "pl"));
-  assert.doesNotThrow(() => audio.playScene("drive"));
+  assert.doesNotThrow(() => audio.startMusic([]));
   assert.deepEqual(audioInstances, []);
   assert.equal(intervals.size, 0);
 });
 
 test("lektor zatrzymuje poprzedni wpis i reaguje na ustawienia", () => {
   const settings = fakeSettings();
-  const audio = createAudio({
-    entries: { 1: { audio: { en: "media/narration/1-en.mp3" } } },
-    scenes: {},
-  }, settings);
+  const audio = createAudio({ entries: { 1: { audio: { en: "media/narration/1-en.mp3" } } } }, settings);
 
   audio.playNarration(1, "en");
   const narration = audioInstances[0];
@@ -113,137 +140,162 @@ test("lektor zatrzymuje poprzedni wpis i reaguje na ustawienia", () => {
   assert.equal(audioInstances.length, 1);
 });
 
-test("brak kolejnego nagrania ucisza poprzednie", () => {
-  const audio = createAudio({
-    entries: { 1: { audio: { en: "media/narration/1-en.mp3" } } },
-    scenes: {},
-  }, fakeSettings());
+test("muzyka rusza od razu i narasta do poziomu suwaka", () => {
+  const audio = createAudio({}, fakeSettings());
+  audio.startMusic(music());
 
-  audio.playNarration(1, "en");
   const first = audioInstances[0];
-  audio.playNarration(2, "en");
+  assert.equal(first.playCalls, 1);
+  assert.equal(first.loop, false);
+  assert.equal(first.volume, 0);
 
-  assert.equal(first.paused, true);
-  assert.equal(audioInstances.length, 1);
+  tick(60);
+  assert.ok(first.volume > 0 && first.volume < 0.4);
+  tick(60);
+  assert.ok(Math.abs(first.volume - 0.4) < 1e-9);
 });
 
-test("crossfade używa timerów przypisanych do konkretnych utworów", () => {
-  const audio = createAudio({ entries: {}, scenes: {
-    drive: "media/music/drive.mp3",
-    cabin: "media/music/cabin.mp3",
-  } }, fakeSettings());
+test("kolejny utwór wchodzi przenikaniem na 6 sekund przed końcem", () => {
+  const audio = createAudio({}, fakeSettings());
+  audio.startMusic(music());
 
-  audio.playScene("drive");
-  const drive = audioInstances[0];
-  tick(10);
-  const driveBeforeSwitch = drive.volume;
-
-  audio.playScene("cabin");
-  const cabin = audioInstances[1];
+  const first = audioInstances[0];
+  tick(120);
+  first.currentTime = first.duration - 6.01;
   tick(1);
 
-  assert.ok(drive.volume < driveBeforeSwitch);
-  assert.ok(cabin.volume > 0);
+  assert.equal(audioInstances.length, 2);
+  const second = audioInstances[1];
+  assert.notEqual(second.src, first.src);
+
   tick(60);
-  assert.equal(drive.paused, true);
-  assert.equal(cabin.paused, false);
-  assert.ok(Math.abs(cabin.volume - 0.4) < 1e-9);
+  assert.ok(first.volume < 0.4 && first.volume > 0, "poprzedni utwór wygasa");
+  assert.ok(second.volume > 0 && second.volume < 0.4, "nowy utwór narasta");
+
+  tick(61);
+  assert.equal(first.paused, true);
+  assert.equal(second.paused, false);
+  assert.ok(Math.abs(second.volume - 0.4) < 1e-9);
 });
 
-test("szybka trzecia scena nie pozwala timerowi drugiej sterować trzecią", () => {
-  const audio = createAudio({ entries: {}, scenes: {
-    one: "media/music/one.mp3",
-    two: "media/music/two.mp3",
-    three: "media/music/three.mp3",
-  } }, fakeSettings());
+test("zdarzenie ended przełącza utwór, gdy długość jest nieznana", () => {
+  const audio = createAudio({}, fakeSettings());
+  audio.startMusic(music());
 
-  audio.playScene("one");
-  tick(5);
-  audio.playScene("two");
-  tick(3);
-  const two = audioInstances[1];
-  audio.playScene("three");
-  const three = audioInstances[2];
-  tick(60);
+  const first = audioInstances[0];
+  first.duration = Number.NaN;
+  tick(200);
+  assert.equal(audioInstances.length, 1);
 
-  assert.equal(two.paused, true);
-  assert.equal(three.paused, false);
-  assert.ok(Math.abs(three.volume - 0.4) < 1e-9);
+  first.emit("ended");
+  assert.equal(audioInstances.length, 2);
+  assert.equal(audioInstances[1].playCalls, 1);
 });
 
-test("zmiana musicVolume aktualizuje aktualny utwór i kończy fade", () => {
+test("zmiana głośności w trakcie przenikania skaluje obie ścieżki i nie przerywa fade'u", () => {
   const settings = fakeSettings();
-  const audio = createAudio({ entries: {}, scenes: { drive: "media/music/drive.mp3" } }, settings);
+  const audio = createAudio({}, settings);
+  audio.startMusic(music());
 
-  audio.playScene("drive");
-  tick(5);
-  const music = audioInstances[0];
-  assert.ok(music.volume < 0.4);
+  const first = audioInstances[0];
+  tick(120);
+  first.currentTime = first.duration - 6.01;
+  tick(31);
+  const second = audioInstances[1];
+  const before = { first: first.volume, second: second.volume };
 
-  settings.update({ musicVolume: 0.7 });
-  assert.equal(music.volume, 0.7);
-  assert.equal(intervals.size, 0);
+  settings.update({ musicVolume: 0.8 });
+  assert.ok(Math.abs(first.volume - before.first * 2) < 1e-9);
+  assert.ok(Math.abs(second.volume - before.second * 2) < 1e-9);
+
+  tick(1);
+  assert.ok(first.volume < before.first * 2, "wygaszanie trwa dalej");
+  assert.ok(second.volume > before.second * 2, "narastanie trwa dalej");
 });
 
-test("stopAll czyści wszystkie timery i zatrzymuje także wygaszane węzły", () => {
-  const audio = createAudio({
-    entries: { 1: { audio: { en: "media/narration/1-en.mp3" } } },
-    scenes: { drive: "media/music/drive.mp3", cabin: "media/music/cabin.mp3" },
-  }, fakeSettings());
+test("zerowa głośność pauzuje muzykę, podniesienie suwaka ją wznawia", () => {
+  const settings = fakeSettings();
+  const audio = createAudio({}, settings);
+  audio.startMusic(music());
+  tick(120);
+  const first = audioInstances[0];
 
-  audio.playNarration(1, "en");
-  audio.playScene("drive");
-  tick(3);
-  audio.playScene("cabin");
+  settings.update({ musicVolume: 0 });
+  assert.equal(first.paused, true);
+  assert.equal(intervals.size, 0);
+
+  settings.update({ musicVolume: 0.5 });
+  assert.equal(first.paused, false);
+  assert.equal(first.playCalls, 2);
   assert.ok(intervals.size > 0);
-
-  audio.stopAll();
-
-  assert.equal(intervals.size, 0);
-  assert.ok(audioInstances.every((node) => node.paused));
-  audio.playScene("cabin");
-  assert.equal(audioInstances.length, 4);
 });
 
-test("odrzucone play i niedostępne Audio są ciche", () => {
-  playMode = "reject";
-  const audio = createAudio({ entries: { 1: { audio: { en: "x.mp3" } } }, scenes: {} }, fakeSettings());
-  assert.doesNotThrow(() => audio.playNarration(1, "en"));
+test("start przy wyciszonym suwaku czeka na podniesienie głośności", () => {
+  const settings = fakeSettings({ musicVolume: 0 });
+  const audio = createAudio({}, settings);
+  audio.startMusic(music());
 
-  delete globalThis.Audio;
-  const silent = createAudio({ entries: { 1: { audio: { en: "x.mp3" } } }, scenes: {} }, fakeSettings());
-  assert.doesNotThrow(() => silent.playNarration(1, "en"));
+  assert.deepEqual(audioInstances, []);
+  settings.update({ musicVolume: 0.4 });
+  assert.equal(audioInstances.length, 1);
+  assert.equal(audioInstances[0].playCalls, 1);
 });
 
-test("odrzucone music.play czyści scenę i pozwala ponowić ją po interakcji", async () => {
-  const audio = createAudio({ entries: {}, scenes: { drive: "media/music/drive.mp3" } }, fakeSettings());
+test("zablokowany autoplay wraca przy pierwszym geście gracza", async () => {
   playMode = "reject";
+  const audio = createAudio({}, fakeSettings());
+  audio.startMusic(music());
 
-  audio.playScene("drive");
-  const rejected = audioInstances[0];
+  const blocked = audioInstances[0];
   await Promise.resolve();
   await Promise.resolve();
 
-  assert.equal(rejected.paused, true);
+  assert.equal(blocked.paused, true);
   assert.equal(intervals.size, 0);
+  assert.ok(listeners.has("pointerdown"));
 
   playMode = "resolve";
-  audio.playScene("drive");
+  listeners.get("pointerdown")();
+
   assert.equal(audioInstances.length, 2);
   assert.equal(audioInstances[1].playCalls, 1);
   assert.ok(intervals.size > 0);
+  assert.equal(listeners.size, 0);
 });
 
-test("synchroniczny błąd music.play również pozwala ponowić tę samą scenę", () => {
-  const audio = createAudio({ entries: {}, scenes: { cabin: "media/music/cabin.mp3" } }, fakeSettings());
+test("synchroniczny błąd play nie zapętla prób", () => {
   playMode = "throw";
+  const audio = createAudio({}, fakeSettings());
 
-  assert.doesNotThrow(() => audio.playScene("cabin"));
+  assert.doesNotThrow(() => audio.startMusic(music()));
+  assert.equal(audioInstances.length, 1);
   assert.equal(audioInstances[0].paused, true);
   assert.equal(intervals.size, 0);
+});
 
-  playMode = "resolve";
-  audio.playScene("cabin");
-  assert.equal(audioInstances.length, 2);
+test("niedostępne Audio jest ciche", () => {
+  delete globalThis.Audio;
+  const audio = createAudio({ entries: { 1: { audio: { en: "x.mp3" } } } }, fakeSettings());
+
+  assert.doesNotThrow(() => audio.playNarration(1, "en"));
+  assert.doesNotThrow(() => audio.startMusic(music()));
+  assert.equal(intervals.size, 0);
+});
+
+test("stopMusic i stopAll zatrzymują wszystko i czyszczą timery", () => {
+  const audio = createAudio({ entries: { 1: { audio: { en: "media/narration/1-en.mp3" } } } }, fakeSettings());
+  audio.playNarration(1, "en");
+  audio.startMusic(music());
+  tick(10);
   assert.ok(intervals.size > 0);
+
+  audio.stopMusic();
+  assert.equal(intervals.size, 0);
+  assert.ok(audioInstances.slice(1).every((node) => node.paused));
+
+  audio.startMusic(music());
+  tick(5);
+  audio.stopAll();
+  assert.equal(intervals.size, 0);
+  assert.ok(audioInstances.every((node) => node.paused));
 });

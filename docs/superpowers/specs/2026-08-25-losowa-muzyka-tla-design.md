@@ -32,8 +32,10 @@ uruchomienia jako CLI.
 Skrypty npm:
 
 - `npm run music` — regeneracja na żądanie,
-- `pretest` — ta sama regeneracja przed `npm test`, żeby spis nie zdążył się
-  zdezaktualizować.
+- `npm test` — regeneruje spis przed uruchomieniem testów, żeby nie zdążył się
+  zdezaktualizować. Regeneracja siedzi wprost w komendzie `test`, a nie w haku
+  `pretest`: npm z `ignore-scripts=true` (tak jest skonfigurowany ten host)
+  pominąłby hak.
 
 ### `src/ui/playlist.js`
 

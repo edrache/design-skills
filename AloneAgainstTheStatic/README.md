@@ -24,7 +24,9 @@ Moduły ES wymagają serwera HTTP — otwarcie `index.html` przez `file://` nie 
 Na ekranie widać wyłącznie bieżący paragraf. Tekst odsłania się akapit po
 akapicie: klik w tło (albo Enter/Spacja) domyka wypisywany akapit, kolejny
 odsłania następny. Gdy gra czeka na kliknięcie, na końcu odsłoniętego
-fragmentu miga `▶`. Po ostatnim akapicie pojawia się to, co należy — wybory,
+fragmentu miga `▶`. Nieodsłonięta reszta akapitu jest w DOM od początku,
+tylko ukryta (`visibility: hidden`) — dzięki temu słowa od pierwszej klatki
+stoją na docelowych pozycjach i nie przeskakują przy zawijaniu wierszy. Po ostatnim akapicie pojawia się to, co należy — wybory,
 przyciski decyzji po rzucie, albo strzałka `→` prowadząca do następnego
 paragrafu. Rzut kośćmi wymaga świadomego kliknięcia w bramkę
 `RZUĆ: <TEST> · <próg>`; wynik jest już wyliczony przez silnik, bramka jest
@@ -58,7 +60,8 @@ Błędów ma być zero; ostrzeżenia są normalne, dopóki scenariusz nie jest p
 | `data/text.en.json` | teksty angielskie |
 | `data/text.pl.json` | teksty polskie; klucze `__en.*` to podgląd oryginału |
 | `data/characters.json` | karty Alex i Charlie (pola `en`/`pl`) |
-| `data/media.json` | grafiki, lektor, muzyka scen |
+| `data/media.json` | grafiki i lektor paragrafów |
+| `data/music.json` | spis utworów tła (generowany, patrz „Media") |
 | `data/reveal.json` | rytm odsłaniania tekstu (prędkość, pauzy, wejścia) |
 
 `data/reveal.json` steruje tempem prezentacji: `charsPerSecond` (znaki na
@@ -143,9 +146,26 @@ zmieniony przez inne narzędzie.
 
 ## Media
 
-Pliki wrzucasz do `media/narration/`, `media/music/`, `media/img/`
-i wpisujesz ścieżki do `data/media.json`. Brakujący plik nie psuje gry:
-grafika usuwa się sama, a dźwięk po prostu nie zagra.
+Grafiki i lektora wrzucasz do `media/img/` i `media/narration/`, a ścieżki
+wpisujesz do `data/media.json`. Brakujący plik nie psuje gry: grafika usuwa się
+sama, a dźwięk po prostu nie zagra.
+
+Muzyka tła działa bez wpisywania czegokolwiek — wystarczy wrzucić pliki do
+`media/music/` i uruchomić:
+
+```bash
+npm run music
+```
+
+Skrypt spisuje katalog do `data/music.json` (robi to też `npm test`, przez
+`pretest`). Gra tasuje pulę, odtwarza każdy utwór raz na rundę i przenika
+między nimi przez 6 sekund; po wyczerpaniu puli tasuje ją od nowa i nigdy nie
+puszcza tego samego kawałka dwa razy pod rząd. Głośnością steruje suwak
+**Głośność muzyki** w ustawieniach — zero pauzuje muzykę. Jeśli przeglądarka
+zablokuje autoodtwarzanie, muzyka wchodzi przy pierwszym kliknięciu gracza.
+
+Same pliki dźwiękowe są w `.gitignore`, więc do repozytorium trafia tylko spis.
+Na maszynie bez tych plików gra po prostu milczy.
 
 ## Narzędzie autorskie
 

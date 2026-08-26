@@ -4,9 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test test/*.test.js",
+    "test": "node tools/build-music.mjs && node --test test/*.test.js",
     "validate": "node tools/validate.mjs",
     "tag": "node tools/tag-dialogue.mjs",
-    "tag:editor": "node tools/tag-editor-server.mjs"
+    "tag:editor": "node tools/tag-editor-server.mjs",
+    "graph": "node tools/build-graph.mjs",
+    "music": "node tools/build-music.mjs"
   }
 }

@@ -282,7 +282,6 @@ function advance(next, originEntryId = null, { animate = true } = {}) {
   refreshLog();
   saveGame({ characterId: ctx.character.id, frame, originEntryId, log: history.slice(0, -1) });
   audio?.playNarration(frame.entryId, i18n.locale);
-  audio?.playScene(story.entries[String(frame.entryId)]?.scene);
 
   if (animate) {
     presentCurrent();
@@ -555,7 +554,7 @@ dom.newGame.addEventListener("click", () => {
 });
 
 async function bootstrap() {
-  const [loadedCharacters, loadedStory, en, pl, loadedMedia, loadedReveal] = await Promise.all([
+  const [loadedCharacters, loadedStory, en, pl, loadedMedia, loadedReveal, loadedMusic] = await Promise.all([
     load("characters.json"),
     load("story.json"),
     load("text.en.json"),
@@ -564,6 +563,9 @@ async function bootstrap() {
     // Brak pliku z rytmem odsłaniania nie może zatrzymać gry — zostają
     // wartości domyślne z reveal.js.
     load("reveal.json").catch(() => null),
+    // Spis utworów powstaje skryptem `npm run music`; jego brak oznacza ciszę,
+    // a nie zatrzymanie gry.
+    load("music.json").catch(() => null),
   ]);
 
   characters = loadedCharacters;
@@ -572,6 +574,7 @@ async function bootstrap() {
   i18n = createI18n({ en, pl }, storedLocale());
   settings = createSettings();
   audio = createAudio(media, settings);
+  audio.startMusic(loadedMusic?.tracks);
   effects = createEffects({ root: dom.journal });
   revealConfig = normalizeConfig(loadedReveal);
   reveal = createReveal({ root: dom.journal, config: revealConfig });
