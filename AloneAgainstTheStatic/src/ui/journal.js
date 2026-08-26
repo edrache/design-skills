@@ -24,6 +24,9 @@ const COPY = {
     roll: "Rzuć",
     next: "Dalej",
     rollHistory: "Już było",
+    cheatToSuccess: "A może jednak się udało?",
+    cheatToFail: "A może jednak test się nie udał?",
+    cheated: "zapis poprawiony",
     branch: { success: "Sukces", fail: "Porażka", pushedFail: "Porażka forsowana" },
   },
   en: {
@@ -48,6 +51,9 @@ const COPY = {
     roll: "Roll",
     next: "Continue",
     rollHistory: "Seen before",
+    cheatToSuccess: "Or did it succeed after all?",
+    cheatToFail: "Or did the roll fail after all?",
+    cheated: "record amended",
     branch: { success: "Success", fail: "Failure", pushedFail: "Pushed failure" },
   },
 };
@@ -174,8 +180,16 @@ function renderRoll(doc, event, i18n, rollHistory) {
   }
   dice.append(el(doc, "span", "die", String(event.units ?? 0)));
   dice.append(el(doc, "span", "roll-total", presentation.total));
+  // Odwrócony werdykt nie ukrywa oryginału: przekreślony wynik stoi obok
+  // nowego, żeby dziennik nie kłamał nawet wtedy, gdy gracz skłamał.
+  if (event.cheated && event.cheatedFrom) {
+    const original = labels[event.cheatedFrom.level] ?? event.cheatedFrom.level;
+    dice.append(el(doc, "span", "roll-level cheated-from", original));
+  }
   dice.append(el(doc, "span", `roll-level ${event.success ? "ok" : "bad"}`, labels[event.level] ?? event.level));
   box.append(dice);
+
+  if (event.cheated) box.append(el(doc, "div", "roll-head cheat-note", labels.cheated));
 
   if (event.spentLuck) box.append(el(doc, "div", "roll-head", labels.spentLuck(event.spentLuck)));
 
@@ -313,6 +327,22 @@ export function renderRollDecision(block, pending, i18n, handlers) {
   const target = [...block.querySelectorAll(".rollbox")].at(-1) ?? block;
   target.append(actions);
   return actions;
+}
+
+// Nawrót: przy stole nikt nie zabroni poprawić kości. Przycisk jest celowo
+// ledwo widoczny — trzeba go poszukać, a wtedy zapala się na czerwono.
+// Staje tuż pod kośćmi, przed ewentualnymi decyzjami o Szczęściu i
+// forsowaniu, bo dotyczy tego wyniku, a nie tego, co dalej. `target` może być
+// pudełkiem rzutu albo całym wpisem — wtedy bierzemy ostatnie pudełko.
+export function renderCheat(target, rewind, i18n, onCheat) {
+  const doc = target.ownerDocument ?? document;
+  const labels = copy(i18n);
+  const button = el(doc, "button", "cheat", rewind.event?.success ? labels.cheatToFail : labels.cheatToSuccess);
+  button.type = "button";
+  button.addEventListener("click", onCheat);
+  const box = target.className === "rollbox" ? target : ([...target.querySelectorAll(".rollbox")].at(-1) ?? target);
+  box.append(button);
+  return button;
 }
 
 // Archiwum: te same wpisy, tylko do czytania. Nie przewija ekranu i nie

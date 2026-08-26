@@ -627,3 +627,51 @@ test("pamięć rekordu o niepoprawnym kształcie znika, a archiwum zostaje", () 
     events: [{ kind: "text", key: "e7.p1" }],
   });
 });
+
+// --- Nawrót (spec 2026-08-26-cheat-reroll-design.md) --------------------
+
+test("licznik nawrotów przechodzi przez zapis, a jego brak nie unieważnia starych zapisów", () => {
+  useStorage(memoryStorage());
+  const frame = choicesFrame({ state: validState({ cheats: 3 }) });
+  saveGame({ characterId: "alex", frame });
+  assert.equal(loadGame().frame.state.cheats, 3);
+
+  useStorage(memoryStorage());
+  const legacy = validState();
+  delete legacy.cheats;
+  saveGame({ characterId: "alex", frame: choicesFrame({ state: legacy }) });
+  assert.ok(loadGame(), "stary zapis bez licznika ma nadal się wczytywać");
+});
+
+test("licznik nawrotów o złym kształcie odrzuca zapis", () => {
+  useStorage(memoryStorage());
+  saveGame({ characterId: "alex", frame: choicesFrame({ state: validState({ cheats: -1 }) }) });
+  assert.equal(loadGame(), null);
+});
+
+test("punkt cofnięcia nie trafia do zapisu — odświeżenie strony zamyka okazję", () => {
+  useStorage(memoryStorage());
+  const frame = rollFrame();
+  frame.rewind = { state: validState(), entryId: 5, eventCount: 0, cursor: 1, stepIndex: 0, event: frame.events[0] };
+  saveGame({ characterId: "alex", frame });
+  assert.equal(loadGame().frame.rewind, undefined);
+});
+
+test("odwrócony rzut przechodzi przez zapis razem ze znacznikami", () => {
+  useStorage(memoryStorage());
+  const frame = choicesFrame({
+    events: [
+      {
+        kind: "roll", skill: "CON", tens: [90], units: 0, result: 90, target: 70,
+        difficulty: "regular", level: "regular", success: true,
+        cheated: true, cheatedFrom: { level: "fail", success: false },
+      },
+      { kind: "text", key: "e12.p1" },
+      { kind: "choices", options: [choice(0), choice(1)] },
+    ],
+  });
+  saveGame({ characterId: "alex", frame });
+  const loaded = loadGame();
+  assert.equal(loaded.frame.events[0].cheated, true);
+  assert.deepEqual(loaded.frame.events[0].cheatedFrom, { level: "fail", success: false });
+});

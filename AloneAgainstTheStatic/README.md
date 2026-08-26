@@ -59,6 +59,28 @@ pokazuje stan z chwili wejścia w paragraf, nie bieżący — flaga jedzie w rek
 archiwum. Silnik o tej pamięci nic nie wie: gałąź rzutu wylicza się w
 `src/ui/progress.js` ze zdarzenia, które i tak renderuje dziennik.
 
+## Nawrót
+
+Przy stole nikt nie zabroni graczowi przymknąć oka na kość. Po ogłoszeniu
+wyniku testu pod kośćmi stoi przycisk — w spoczynku ledwo widoczny, po
+najechaniu zapalony na czerwono i pełen szumu — który odwraca werdykt:
+„A może jednak się udało?” po porażce, „A może jednak test się nie udał?”
+po sukcesie.
+
+- Odwrócić da się **tylko ostatni rzut w bieżącym paragrafie** i **tylko raz**.
+- Kości zostają nietknięte. Zmienia się sam werdykt: na ekranie widnieje 87
+  i napis SUKCES. Paragraf liczy się od nowa od punktu tuż przed rzutem, więc
+  wszystko, co po nim nastąpiło, znika.
+- Nawrót obejmuje wyłącznie rzuty rozgałęziające (`roll` w kroku albo
+  w wyborze). Testy Poczytalności, ataki i rzuty z `rules.js` go nie dostają.
+- Znika po dopłacie Szczęściem i po przyjęciu porażki — to decyzje zamykające
+  sprawę. Przepchnięcie daje nowy rzut, więc i nową okazję.
+- Nie przeżywa odświeżenia strony: punkt cofnięcia nie trafia do zapisu.
+
+Taśma to pamięta. Każde odwrócenie trwale podnosi rozpad obrazu (`state.cheats`
+karmi `dreadLevel`, do +0.5), a w dzienniku przy rzucie zostaje przekreślony
+oryginalny werdykt i przypis „zapis poprawiony”.
+
 ## Testy i walidacja
 
 ```bash

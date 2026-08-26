@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createI18n } from "../src/ui/i18n.js";
-import { createEntryBlock, entryLabels, eventNodes, renderArchive, renderEvents, rollPresentation, segmentEvents } from "../src/ui/journal.js";
+import { createEntryBlock, entryLabels, eventNodes, renderArchive, renderCheat, renderEvents, renderRollDecision, rollPresentation, segmentEvents } from "../src/ui/journal.js";
 import { stripMarkup } from "../src/ui/markup.js";
 import { classesOf, createFakeDocument } from "./helpers/fake-dom.js";
 import { frameMemory, recordFrame } from "../src/ui/memory.js";
@@ -302,4 +302,98 @@ test("pamięć ramki jest zdjęciem sprzed wizyty, a zapis obejmuje wszystkie pa
     takenChoices: [],
     rollHistory: {},
   });
+});
+
+// --- Nawrót w dzienniku (spec 2026-08-26-cheat-reroll-design.md) --------
+
+function rollBoxOf(doc, event) {
+  const i18n = createI18n({}, "pl");
+  const block = createEntryBlock(doc, 2, entryLabels(i18n), null);
+  for (const node of eventNodes(doc, event, entryLabels(i18n), i18n, {})) block.append(node);
+  return block;
+}
+
+test("odwrócony werdykt zostawia w dzienniku przekreślony oryginał", () => {
+  const doc = createFakeDocument();
+  const event = {
+    kind: "roll",
+    skill: "Psychology",
+    target: 60,
+    difficulty: "regular",
+    result: 90,
+    units: 0,
+    tens: [90],
+    level: "regular",
+    success: true,
+    cheated: true,
+    cheatedFrom: { level: "fail", success: false },
+  };
+  const block = rollBoxOf(doc, event);
+  const levels = [...block.querySelectorAll(".roll-level")];
+  assert.equal(levels.length, 2);
+  assert.equal(levels[0].className, "roll-level cheated-from");
+  assert.equal(levels[0].textContent, "Porażka");
+  assert.equal(levels[1].textContent, "Normalny sukces");
+  assert.ok(block.querySelector(".cheat-note"), "brak przypisu o poprawionym zapisie");
+});
+
+test("zwykły rzut nie dostaje ani przekreślenia, ani przypisu", () => {
+  const doc = createFakeDocument();
+  const block = rollBoxOf(doc, {
+    kind: "roll", skill: "Psychology", target: 60, difficulty: "regular",
+    result: 20, units: 0, tens: [20], level: "hard", success: true,
+  });
+  assert.equal(block.querySelectorAll(".roll-level").length, 1);
+  assert.equal(block.querySelector(".cheat-note"), null);
+});
+
+test("przycisk nawrotu proponuje werdykt przeciwny do tego, który padł", () => {
+  const doc = createFakeDocument();
+  const i18n = createI18n({}, "pl");
+  const failed = rollBoxOf(doc, {
+    kind: "roll", skill: "Psychology", target: 60, difficulty: "regular",
+    result: 90, units: 0, tens: [90], level: "fail", success: false,
+  });
+  const toSuccess = renderCheat(failed, { event: { success: false } }, i18n, () => {});
+  assert.equal(toSuccess.textContent, "A może jednak się udało?");
+  assert.ok(classesOf(toSuccess).includes("cheat"));
+  assert.ok(failed.querySelector(".rollbox").children.includes(toSuccess), "nawrót stoi pod kośćmi");
+
+  const won = rollBoxOf(doc, {
+    kind: "roll", skill: "Psychology", target: 60, difficulty: "regular",
+    result: 20, units: 0, tens: [20], level: "hard", success: true,
+  });
+  const toFail = renderCheat(won, { event: { success: true } }, i18n, () => {});
+  assert.equal(toFail.textContent, "A może jednak test się nie udał?");
+});
+
+test("nawrót staje pod kośćmi, przed decyzjami o Szczęściu i forsowaniu", () => {
+  const doc = createFakeDocument();
+  const i18n = createI18n({}, "pl");
+  const block = rollBoxOf(doc, {
+    kind: "roll", skill: "Psychology", target: 60, difficulty: "regular",
+    result: 90, units: 0, tens: [90], level: "fail", success: false,
+  });
+  const box = block.querySelector(".rollbox");
+  const button = renderCheat(box, { event: { success: false } }, i18n, () => {});
+  renderRollDecision(block, {
+    type: "rollDecision", roll: { result: 90, target: 60, difficulty: "regular" },
+    skill: "Psychology", canPush: true, canLuck: true, luckCost: 30, stepIndex: 0,
+  }, i18n, { onLuck() {}, onPush() {}, onAccept() {} });
+
+  const order = box.children.map((node) => node.className);
+  assert.deepEqual(order.slice(-2), ["cheat", "roll-actions"]);
+  assert.ok(box.children.includes(button));
+});
+
+test("kliknięcie nawrotu woła podany uchwyt dokładnie raz", () => {
+  const doc = createFakeDocument();
+  let calls = 0;
+  const block = rollBoxOf(doc, {
+    kind: "roll", skill: "Psychology", target: 60, difficulty: "regular",
+    result: 90, units: 0, tens: [90], level: "fail", success: false,
+  });
+  const button = renderCheat(block, { event: { success: false } }, createI18n({}, "pl"), () => { calls += 1; });
+  button.click();
+  assert.equal(calls, 1);
 });

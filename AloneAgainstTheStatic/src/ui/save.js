@@ -147,6 +147,8 @@ function isState(state, characterId) {
   ))) return false;
   if (!isNumberMap(state.penalties, isNonNegativeInteger)) return false;
   if (state.nextRollDice !== undefined && !Number.isInteger(state.nextRollDice)) return false;
+  // Starsze zapisy nie mają licznika odwróconych werdyktów; brak = zero.
+  if (state.cheats !== undefined && !isNonNegativeInteger(state.cheats)) return false;
 
   if (!Array.isArray(state.returnStack) || !state.returnStack.every((frame) => (
     isRecord(frame)

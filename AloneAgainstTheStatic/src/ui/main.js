@@ -2,7 +2,7 @@ import { createState } from "../engine/state.js";
 import { enter, resume } from "../engine/runner.js";
 import { createAudio } from "./audio.js";
 import { createI18n } from "./i18n.js";
-import { clearJournal, renderArchive, renderEvents, renderRollDecision } from "./journal.js";
+import { clearJournal, renderArchive, renderCheat, renderEvents, renderRollDecision } from "./journal.js";
 import { clearSave, isSaveCompatible, loadGame, saveGame } from "./save.js";
 import { connectProgressReset, createSettings } from "./settings.js";
 import { readProgress, markChoice, resetProgress } from "./progress.js";
@@ -212,6 +212,17 @@ function renderCharacterSheet() {
   syncSheetDisclosure();
 }
 
+// Pudełko rzutu, którego dotyczy punkt cofnięcia. Przy odtworzeniu ramki
+// z zapisu nie ma zdarzeń do porównania po tożsamości, więc szukamy po
+// wyniku; ostatnie pudełko jest ostatecznością.
+function rollBoxOf(block, rewind) {
+  const boxes = [...block.querySelectorAll(".rollbox")];
+  const wanted = `= ${rewind.event?.result}`;
+  return boxes.findLast((box) => box.querySelector(".roll-total")?.textContent === wanted)
+    ?? boxes.at(-1)
+    ?? block;
+}
+
 function draw(record, isLast) {
   const block = renderEvents(dom.journal, record.events, i18n, {
     onChoose: choose,
@@ -230,6 +241,7 @@ function draw(record, isLast) {
       onAccept: () => decide("accept"),
     });
   }
+  if (isLast && frame.rewind) renderCheat(rollBoxOf(block, frame.rewind), frame.rewind, i18n, cheat);
   return block;
 }
 
@@ -286,19 +298,25 @@ function presentCurrent() {
       rollHistory: record.rollHistory,
     },
     onParagraph: onParagraphShown,
+    // Nawrót staje przy tych kościach, których dotyczy — a nie na końcu
+    // ramki, która potrafi ciągnąć się przez kilka paragrafów dalej.
+    onRoll: (event, box) => {
+      if (frame.rewind?.event === event) renderCheat(box, frame.rewind, i18n, cheat);
+    },
     onComplete: finishFrame,
   });
 }
 
 // `animate: false` służy wznowieniu zapisu: gracz tę ramkę już przeczytał,
 // a stan odsłonięcia nie jest zapisywany.
-function advance(next, originEntryId = null, { animate = true } = {}) {
+function advance(next, originEntryId = null, { animate = true, replace = false } = {}) {
   frame = next;
   // Pamięć poznanych paragrafów idzie do rekordu, żeby dziennik pokazywał stan
   // z chwili wejścia w paragraf, a nie bieżący. Wznowiony zapis jest już
   // policzony w magazynie, więc nie liczymy tej wizyty drugi raz.
   const record = { entryId: frame.entryId, originEntryId, events: frame.events };
   Object.assign(record, frameMemory(record, readProgress(), { revisit: !animate }));
+  if (replace) history.pop();
   history.push(record);
   if (animate) recordFrame(record);
   renderCharacterSheet();
@@ -352,6 +370,14 @@ function choose(index) {
 function decide(type) {
   const originEntryId = frame.entryId;
   advance(resume(ctx, frame, { type }), originEntryId);
+}
+
+// Nawrót przelicza ten sam paragraf od nowa, więc zastępuje ostatni rekord
+// zamiast dopisywać kolejny — w dzienniku ma zostać jedna wersja zdarzeń,
+// ta z przekreślonym oryginalnym werdyktem.
+function cheat() {
+  const record = history.at(-1);
+  advance(resume(ctx, frame, { type: "cheat" }), record?.originEntryId ?? null, { replace: true });
 }
 
 function detailRow(term, value) {

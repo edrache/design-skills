@@ -617,6 +617,11 @@ a:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Bez ruchu zostaje sama treść efektu: kontrast i czerwony outline. */
+  .cheat:hover,
+  .cheat:focus-visible { animation: none; }
+  .cheat::before,
+  .cheat::after { display: none; }
   .journal-entry.tracking-flash { animation: none; }
   .journal-entry:not(.past)::after { display: none; }
   /* Selektor złożony musi się tu powtórzyć: ma specyficzność (0,2,0), więc
@@ -769,6 +774,116 @@ a:focus-visible {
 .action:hover { border-color: var(--phosphor-deep); color: var(--phosphor); }
 
 .action-danger:hover { border-color: var(--rec); color: var(--rec-soft); }
+
+/* --- Nawrót (oszukiwanie przy rzucie) ----------------------------------
+   Przycisk ma być prawie niewidoczny: gracz musi go poszukać, tak jak przy
+   stole trzeba świadomie sięgnąć po kość jeszcze raz. Po najechaniu zapala
+   się na czerwono i dostaje własny szum — bez SVG, samą animacją tła, bo
+   filtry VHS sterowane z JS obsługują tekst wpisu, nie kontrolki. */
+.cheat {
+  position: relative;
+  overflow: hidden;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--paper);
+  font: 700 0.64rem/1.15 var(--font-console);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-align: left;
+  opacity: 0.07;
+  cursor: pointer;
+  transition: opacity 220ms ease, border-color 220ms ease, color 220ms ease;
+}
+
+/* Poza .roll-actions przycisk stoi sam pod kośćmi i potrzebuje własnego
+   odstępu — w rzędzie decyzji margines dałby wyrwę. */
+.rollbox > .cheat { display: block; margin-top: 1rem; }
+
+.cheat:hover,
+.cheat:focus-visible {
+  border-color: var(--rec);
+  color: var(--rec-soft);
+  opacity: 1;
+  animation: cheat-jitter 320ms steps(8, end) infinite;
+}
+
+/* Szum: dwie warstwy powtarzalnego gradientu przesuwane w przeciwne strony
+   dają ruchome pasmo zakłóceń bez żadnego zasobu graficznego. */
+.cheat::before,
+.cheat::after {
+  content: "";
+  position: absolute;
+  inset: -50% -10%;
+  opacity: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.cheat::before {
+  background: repeating-linear-gradient(
+    0deg,
+    oklch(72% 0.09 31 / 0.35) 0 1px,
+    transparent 1px 3px
+  );
+}
+
+.cheat::after {
+  background: repeating-linear-gradient(
+    93deg,
+    transparent 0 7px,
+    oklch(80% 0.02 120 / 0.28) 7px 8px,
+    transparent 8px 19px
+  );
+}
+
+.cheat:hover::before,
+.cheat:focus-visible::before {
+  opacity: 0.75;
+  animation: cheat-scan 420ms linear infinite;
+}
+
+.cheat:hover::after,
+.cheat:focus-visible::after {
+  opacity: 0.6;
+  animation: cheat-drift 1.1s steps(9, end) infinite;
+}
+
+@keyframes cheat-scan {
+  from { transform: translateY(0); }
+  to { transform: translateY(4px); }
+}
+
+@keyframes cheat-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-19px); }
+}
+
+@keyframes cheat-jitter {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-1px); }
+  50% { transform: translateX(1px); }
+  75% { transform: translateX(-0.5px); }
+  100% { transform: translateX(0); }
+}
+
+/* Werdykt sprzed poprawki i przypis pod kośćmi — dziennik nie udaje, że
+   rzut zawsze tak wyglądał. */
+.roll-level.cheated-from {
+  color: var(--rule);
+  text-decoration: line-through;
+}
+
+.cheat-note {
+  margin: 0.65rem 0 0;
+  color: var(--rec-soft);
+  font-size: 0.57rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
 
 .action-primary {
   margin-top: 1.4rem;

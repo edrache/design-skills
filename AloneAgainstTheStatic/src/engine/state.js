@@ -27,6 +27,9 @@ export function createState(character, { rng }) {
     nextRollDice: 0,
     returnStack: [],
     sanLostToday: 0,
+    // Ile razy gracz odwrócił werdykt rzutu. Licznik nie znika przy przejściu
+    // dalej — karmi rozpad obrazu do końca rozgrywki.
+    cheats: 0,
     majorWound: false,
     indefinitelyInsane: false,
     visitedBouts: [],
@@ -106,6 +109,10 @@ export function takeNextRollDice(state) {
 // Stos powrotu przechowuje nie tylko paragraf, ale i pozycję w nim (cursor),
 // żeby powrót mógł wznowić wykonanie za krokiem, który spowodował skok,
 // zamiast wykonywać paragraf od nowa.
+export function countCheat(state) {
+  return { ...state, cheats: (state.cheats ?? 0) + 1 };
+}
+
 export function pushReturn(state, entryId, cursor = 0) {
   return { ...state, returnStack: [...state.returnStack, { entryId, cursor }] };
 }

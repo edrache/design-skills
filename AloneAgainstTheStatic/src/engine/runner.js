@@ -2,7 +2,7 @@ import { rollDice, skillCheck, successLevel } from "./dice.js";
 import {
   hasFlag, setFlag, visit, visitCount, useChoice, isChoiceUsed,
   spendLuck, restoreLuck, restoreHp, penaltyFor, popReturn, pushReturn, skillValue,
-  addNextRollDice, takeNextRollDice,
+  addNextRollDice, takeNextRollDice, countCheat,
 } from "./state.js";
 import { applyDamage, applySanLoss, sanityCheck, resolveBout, resetDay } from "./rules.js";
 
@@ -22,6 +22,59 @@ function requiredThreshold(target, difficulty = "regular") {
   if (difficulty === "hard") return Math.floor(target / 2);
   if (difficulty === "extreme") return Math.floor(target / 5);
   return target;
+}
+
+// Punkt cofnięcia ostatniego rzutu rozgałęziającego: tyle, ile trzeba, żeby
+// przeliczyć paragraf od nowa z przeciwnym werdyktem. Gałęzie wewnętrzne
+// (rzut po rzucie) nadpisują zewnętrzne, bo cofnąć da się tylko ostatni rzut.
+function withRewind(frame, rewind) {
+  return frame.rewind ? frame : { ...frame, rewind };
+}
+
+// Sklejenie zdarzeń bieżącego paragrafu ze zdarzeniami paragrafu, do którego
+// właśnie przeszliśmy. Punkt cofnięcia jedzie razem z nimi — inaczej każdy
+// `goto` po rzucie kasowałby okazję do nawrotu — a jego indeks przesuwa się
+// o długość prefiksu, bo `eventCount` wskazuje pozycję w sklejonej liście.
+function mergeForward(events, forward) {
+  const merged = frameOf(
+    forward.state, forward.entryId, [...events, ...forward.events], forward.pending, forward.cursor,
+  );
+  if (!forward.rewind) return merged;
+  return { ...merged, rewind: { ...forward.rewind, eventCount: events.length + forward.rewind.eventCount } };
+}
+
+// Punkt cofnięcia po decyzji gracza (Szczęście, przepchnięcie, przyjęcie
+// wyniku). Krok jest ten sam co przy pierwszym rzucie, zmienia się tylko
+// werdykt, który gracz mógłby chcieć odwrócić.
+function rewindFor(frame, state, cursor, event) {
+  const fromChoice = frame.pending?.source === "choice";
+  return {
+    state,
+    entryId: frame.entryId,
+    eventCount: 0,
+    cursor,
+    stepIndex: fromChoice ? frame.pending.choiceIndex : frame.cursor,
+    source: frame.pending?.source,
+    choiceIndex: frame.pending?.choiceIndex,
+    event,
+  };
+}
+
+// Odwrócony werdykt tego samego rzutu. Kości zostają nietknięte — na ekranie
+// ma zostać widoczne kłamstwo, nie nowy rzut.
+function invertedRoll(event) {
+  const from = { level: event.level, success: event.success };
+  if (event.success) {
+    return { ...event, level: "fail", success: false, cheated: true, cheatedFrom: from };
+  }
+  const threshold = requiredThreshold(event.target, event.difficulty ?? "regular");
+  return {
+    ...event,
+    level: successLevel(threshold, event.target),
+    success: true,
+    cheated: true,
+    cheatedFrom: from,
+  };
 }
 
 function guardMatches(state, condition) {
@@ -61,7 +114,7 @@ export function enter(ctx, state, entryId) {
     if (guardMatches(next, condition)) {
       events.push({ kind: "redirect", to: guard.goto });
       const forward = enter(ctx, next, guard.goto);
-      return frameOf(forward.state, forward.entryId, [...events, ...forward.events], forward.pending, forward.cursor);
+      return mergeForward(events, forward);
     }
   }
 
@@ -172,9 +225,15 @@ function runSteps(ctx, frame) {
       state = queued.state;
       const dice = diceFor(state, step) + queued.dice;
       const check = skillCheck(ctx.rng, target, { dice, difficulty: step.difficulty ?? "regular" });
-      events.push({ kind: "roll", skill: step.roll, ...check });
+      const event = { kind: "roll", skill: step.roll, ...check };
+      const rewind = {
+        state, entryId: frame.entryId, eventCount: events.length, cursor, stepIndex: cursor - 1, event,
+      };
+      events.push(event);
 
-      if (check.success) return applyBranch(ctx, state, events, frame.entryId, step, "onSuccess", cursor);
+      if (check.success) {
+        return withRewind(applyBranch(ctx, state, events, frame.entryId, step, "onSuccess", cursor), rewind);
+      }
 
       // Wydanie Luck jest dostępne przy każdym nieudanym rzucie, na który gracza
       // stać — niezależnie od tego, czy paragraf oferuje przepchnięcie — z wyjątkiem
@@ -195,9 +254,9 @@ function runSteps(ctx, frame) {
         stepIndex: cursor - 1,
       };
       if (pendingDecision.canPush || canLuck) {
-        return frameOf(state, frame.entryId, events, pendingDecision, cursor - 1);
+        return withRewind(frameOf(state, frame.entryId, events, pendingDecision, cursor - 1), rewind);
       }
-      return applyBranch(ctx, state, events, frame.entryId, step, "onFail", cursor);
+      return withRewind(applyBranch(ctx, state, events, frame.entryId, step, "onFail", cursor), rewind);
     }
 
     // Pozostałe rodzaje kroków (flag, hp, san, sanCheck, goto) dzielą logikę
@@ -240,13 +299,12 @@ function jump(ctx, state, events, fromEntryId, toEntryId, cursor) {
   const withReturn = pushReturn(state, fromEntryId, cursor);
   events.push({ kind: "redirect", to: toEntryId });
   const forward = enter(ctx, withReturn, toEntryId);
-  return frameOf(forward.state, forward.entryId, [...events, ...forward.events], forward.pending, forward.cursor);
+  return mergeForward(events, forward);
 }
 
 function continueAt(ctx, state, events, entryId) {
   if (entryId === null) return finish(ctx, state, null, events);
-  const forward = enter(ctx, state, entryId);
-  return frameOf(forward.state, forward.entryId, [...events, ...forward.events], forward.pending, forward.cursor);
+  return mergeForward(events, enter(ctx, state, entryId));
 }
 
 // Powrót na odłożony paragraf: wznawiamy za krokiem, który spowodował skok,
@@ -305,9 +363,22 @@ export function resume(ctx, frame, action) {
       state = queued.state;
       const dice = diceFor(state, choice) + queued.dice;
       const check = skillCheck(ctx.rng, target, { dice, difficulty: choice.difficulty ?? "regular" });
-      events.push({ kind: "roll", skill: choice.roll, ...check });
+      const event = { kind: "roll", skill: choice.roll, ...check };
+      const rewind = {
+        state,
+        entryId: frame.entryId,
+        eventCount: events.length,
+        cursor: (entry.on ?? []).length,
+        source: "choice",
+        choiceIndex: action.index,
+        event,
+      };
+      events.push(event);
       if (check.success) {
-        return applyBranch(ctx, state, events, frame.entryId, choice, "onSuccess", (entry.on ?? []).length);
+        return withRewind(
+          applyBranch(ctx, state, events, frame.entryId, choice, "onSuccess", (entry.on ?? []).length),
+          rewind,
+        );
       }
 
       const threshold = requiredThreshold(target, choice.difficulty ?? "regular");
@@ -325,12 +396,33 @@ export function resume(ctx, frame, action) {
           luckCost,
           stepIndex: action.index,
         };
-        return frameOf(state, frame.entryId, events, pending, 0);
+        return withRewind(frameOf(state, frame.entryId, events, pending, 0), rewind);
       }
-      return applyBranch(ctx, state, events, frame.entryId, choice, "onFail", (entry.on ?? []).length);
+      return withRewind(
+        applyBranch(ctx, state, events, frame.entryId, choice, "onFail", (entry.on ?? []).length),
+        rewind,
+      );
     }
 
     return continueAt(ctx, state, events, option.goto);
+  }
+
+  // Nawrót: gracz odwraca werdykt ostatniego rzutu. Paragraf liczy się od nowa
+  // od punktu tuż przed rzutem, więc wszystko, co po nim nastąpiło, znika.
+  if (action.type === "cheat") {
+    const rewind = frame.rewind;
+    if (!rewind) throw new Error("Nie ma rzutu, który dałoby się odwrócić");
+    const source = entryOf(ctx, rewind.entryId);
+    const step = rewind.source === "choice"
+      ? (source.choices ?? [])[rewind.choiceIndex]
+      : (source.on ?? [])[rewind.stepIndex];
+    const event = invertedRoll(rewind.event);
+    const events = [...frame.events.slice(0, rewind.eventCount), event];
+    const state = countCheat(rewind.state);
+    const branch = event.success
+      ? "onSuccess"
+      : (rewind.event.pushed && step.onPushedFail ? "onPushedFail" : "onFail");
+    return applyBranch(ctx, state, events, rewind.entryId, step, branch, rewind.cursor);
   }
 
   const entry = entryOf(ctx, frame.entryId);
@@ -346,19 +438,25 @@ export function resume(ctx, frame, action) {
     const threshold = requiredThreshold(frame.pending.roll.target, frame.pending.roll.difficulty);
     const level = successLevel(threshold, frame.pending.roll.target);
     const check = { ...frame.pending.roll, result: threshold, level, success: true, spentLuck: frame.pending.luckCost };
-    const events = [{ kind: "roll", skill: step.roll, ...check }];
-    return applyBranch(ctx, state, events, frame.entryId, step, "onSuccess", cursor);
+    // Dopłata Szczęściem to jedyny nawrót usankcjonowany przez zasady, więc
+    // drugiego, cichego, już nie proponujemy.
+    return applyBranch(ctx, state, [{ kind: "roll", skill: step.roll, ...check }], frame.entryId, step, "onSuccess", cursor);
   }
 
   if (action.type === "push") {
     const target = skillValue(frame.state, ctx.character, step.roll);
     const dice = diceFor(frame.state, step);
     const check = skillCheck(ctx.rng, target, { dice, difficulty: step.difficulty ?? "regular" });
-    const events = [{ kind: "roll", skill: step.roll, pushed: true, ...check }];
+    const event = { kind: "roll", skill: step.roll, pushed: true, ...check };
     const branch = check.success ? "onSuccess" : (step.onPushedFail ? "onPushedFail" : "onFail");
-    return applyBranch(ctx, frame.state, events, frame.entryId, step, branch, cursor);
+    return withRewind(
+      applyBranch(ctx, frame.state, [event], frame.entryId, step, branch, cursor),
+      rewindFor(frame, frame.state, cursor, event),
+    );
   }
 
+  // Przyjęcie porażki zamyka sprawę: nawrót stał obok tego przycisku i gracz
+  // z niego nie skorzystał. Kości i tak znikają z ekranu razem z paragrafem.
   if (action.type === "accept") {
     return applyBranch(ctx, frame.state, [], frame.entryId, step, "onFail", cursor);
   }

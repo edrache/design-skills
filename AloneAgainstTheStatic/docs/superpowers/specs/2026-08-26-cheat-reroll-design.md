@@ -22,12 +22,21 @@ Przy rzucie rozgałęziającym (`step.roll`, `choice.roll` — nie `bout`,
 nie `sanCheck`, nie rzuty z `rules.js`) ramka dostaje checkpoint:
 
 ```
-frame.rewind = { state, entryId, eventCount, cursor, stepIndex, source, choiceIndex, check }
+frame.rewind = { state, entryId, eventCount, cursor, stepIndex, source, choiceIndex, event }
 ```
 
 - `state` — stan po pobraniu kości doraźnych, przed gałęzią.
-- `eventCount` — długość listy zdarzeń przed dopisaniem rzutu.
+- `eventCount` — pozycja rzutu na liście zdarzeń ramki.
+- `event` — to samo zdarzenie, które trafiło do `frame.events`; tożsamość
+  obiektu pozwala UI dokleić przycisk do właściwego pudełka kości.
 - Checkpoint późniejszego rzutu wygrywa z wcześniejszym: w ramce zostaje ostatni.
+- Skok po rzucie (`goto` w gałęzi) sklejał zdarzenia i gubił checkpoint —
+  robi to teraz `mergeForward`, które przenosi go razem z nimi i przesuwa
+  `eventCount` o długość prefiksu.
+
+Punkt cofnięcia znika po dopłacie Szczęściem i po przyjęciu porażki: to są
+decyzje zamykające sprawę, a kości i tak nie zostają na ekranie. Przepchnięcie
+daje nowy rzut, więc dostaje własny punkt cofnięcia.
 
 Nowa akcja `resume(ctx, frame, { type: "cheat" })`:
 
@@ -53,9 +62,11 @@ Odwrócony werdykt:
 
 ## UI
 
-Przycisk dokleja się do ostatniego `.rollbox`, obok `roll-actions` albo sam,
-gdy rzut nie miał decyzji o Szczęściu ani przepchnięciu. Pojawia się przy
-domknięciu ramki, po odsłonięciu kości.
+Przycisk staje w pudełku rzutu, tuż pod kośćmi i przed ewentualnym rzędem
+decyzji o Szczęściu i przepchnięciu. Odsłanianie (`reveal.js`) woła `onRoll`
+z rzutem i jego pudełkiem, a `main.js` porównuje zdarzenie z `frame.rewind.event`
+po tożsamości. Doklejanie na końcu ramki nie wchodziło w grę: ramka bywa
+dłuższa niż jeden paragraf, więc kości byłyby wtedy dawno powyżej.
 
 - po porażce: „A może jednak się udało?”
 - po sukcesie: „A może jednak test się nie udał?”

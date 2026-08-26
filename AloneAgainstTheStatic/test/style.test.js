@@ -75,3 +75,44 @@ test("historia rzutu jest cicha i nieruchoma", () => {
     assert.ok(!/animation|transition/.test(body), "oznaczenia pamięci nie animują się");
   }
 });
+
+// Nawrót (spec 2026-08-26-cheat-reroll-design.md). Cały efekt tego przycisku
+// jest w CSS, więc test pilnuje tego, co go definiuje: że w spoczynku jest
+// prawie niewidoczny, że po najechaniu dostaje czerwony outline i pełną
+// widoczność, i że pod prefers-reduced-motion nic się nie rusza.
+test("przycisk nawrotu jest w spoczynku ledwo widoczny i bez ramki", () => {
+  const body = rule(".cheat");
+  assert.ok(body, "brak reguły .cheat");
+  const opacity = body.match(/opacity:\s*([\d.]+)\s*;/);
+  assert.ok(opacity, ".cheat nie ustawia opacity");
+  assert.ok(Number(opacity[1]) <= 0.1, `nawrót ma być ledwo widoczny, jest ${opacity[1]}`);
+  assert.match(body, /border:\s*1px solid transparent\s*;/);
+});
+
+test("najechany nawrót zapala się czerwienią i pełną widocznością", () => {
+  const body = rule(".cheat:hover,\n.cheat:focus-visible");
+  assert.ok(body, "brak wspólnej reguły dla hover i focus-visible");
+  assert.match(body, /border-color:\s*var\(--rec\)\s*;/);
+  assert.match(body, /opacity:\s*1\s*;/);
+  assert.match(body, /animation:\s*cheat-jitter/);
+});
+
+test("szum nawrotu ma obie warstwy i obie animacje", () => {
+  for (const layer of ["cheat-scan", "cheat-drift", "cheat-jitter"]) {
+    assert.ok(new RegExp(`@keyframes\\s+${layer}\\s*\\{`).test(css), `brak @keyframes ${layer}`);
+  }
+  assert.ok(rule(".cheat::before,\n.cheat::after"), "brak wspólnej reguły warstw szumu");
+});
+
+test("prefers-reduced-motion zdejmuje z nawrotu ruch, zostawiając kontrast", () => {
+  const block = css.match(/@media \(prefers-reduced-motion: reduce\) \{([\s\S]*?)\n\}/);
+  assert.ok(block, "brak bloku prefers-reduced-motion");
+  assert.match(block[1], /\.cheat:hover,\s*\n\s*\.cheat:focus-visible\s*\{\s*animation:\s*none;\s*\}/);
+  assert.match(block[1], /\.cheat::before,\s*\n\s*\.cheat::after\s*\{\s*display:\s*none;\s*\}/);
+});
+
+test("werdykt sprzed poprawki jest przekreślony i wygaszony", () => {
+  const body = rule(".roll-level.cheated-from");
+  assert.ok(body, "brak reguły dla przekreślonego werdyktu");
+  assert.match(body, /text-decoration:\s*line-through\s*;/);
+});

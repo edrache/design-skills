@@ -326,3 +326,158 @@ test("wybór spoza zakresu zgłasza czytelny błąd", () => {
   const frame = enter(ctx, state, 1);
   assert.throws(() => resume(ctx, frame, { type: "choose", index: 9 }), /nie ma wyboru/);
 });
+
+// --- Nawrót: odwracanie werdyktu ostatniego rzutu -----------------------
+// Patrz docs/superpowers/specs/2026-08-26-cheat-reroll-design.md.
+
+test("nawrót po porażce prowadzi na gałąź sukcesu, nie ruszając kości", () => {
+  const ctx = ctxWith([0.0, 0.9]); // Psychology 90 przy progu 60 — porażka
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const failed = enter(ctx, state, 2);
+  assert.equal(failed.pending.type, "rollDecision");
+  assert.equal(failed.rewind.event.success, false);
+
+  const cheated = resume(ctx, failed, { type: "cheat" });
+  assert.equal(cheated.entryId, 4);
+
+  const roll = cheated.events.find((event) => event.kind === "roll");
+  assert.equal(roll.success, true);
+  assert.equal(roll.cheated, true);
+  assert.equal(roll.result, 90, "kości zostają nietknięte — zmienia się sam werdykt");
+  assert.deepEqual(roll.tens, failed.rewind.event.tens);
+  assert.deepEqual(roll.cheatedFrom, { level: "fail", success: false });
+  assert.equal(cheated.state.cheats, 1);
+});
+
+test("nawrót po sukcesie prowadzi na gałąź porażki", () => {
+  const ctx = ctxWith([0.0, 0.2]); // Psychology 20 przy progu 60 — sukces
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const won = enter(ctx, state, 2);
+  assert.equal(won.entryId, 4);
+  assert.equal(won.rewind.event.success, true);
+
+  const cheated = resume(ctx, won, { type: "cheat" });
+  assert.equal(cheated.entryId, 5);
+  const roll = cheated.events.find((event) => event.kind === "roll");
+  assert.equal(roll.success, false);
+  assert.equal(roll.level, "fail");
+  assert.equal(roll.result, 20);
+  assert.deepEqual(roll.cheatedFrom, { level: "hard", success: true });
+});
+
+test("nawrót zachowuje zdarzenia sprzed rzutu i nie powiela tych po nim", () => {
+  const ctx = ctxWith([0.0, 0.2]);
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const won = enter(ctx, state, 2);
+  const cheated = resume(ctx, won, { type: "cheat" });
+  assert.deepEqual(kinds(won), ["text", "roll", "text", "choices"]);
+  assert.deepEqual(kinds(cheated), ["text", "roll", "text", "choices"]);
+  assert.equal(cheated.events[0].key, "e2.p1");
+  assert.equal(cheated.events[2].key, "e5.p1");
+});
+
+test("nawrót działa raz — drugi nie ma już punktu cofnięcia", () => {
+  const ctx = ctxWith([0.0, 0.2]);
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const cheated = resume(ctx, enter(ctx, state, 2), { type: "cheat" });
+  assert.equal(cheated.rewind, undefined);
+  assert.throws(() => resume(ctx, cheated, { type: "cheat" }), /odwrócić/);
+});
+
+// Nawrót ma zawsze stać pod widocznymi kośćmi. Po przyjęciu porażki i po
+// dopłacie Szczęściem gracz jest już w innym miejscu paragrafu, więc punkt
+// cofnięcia znika razem z rzutem, do którego się odnosił.
+test("przyjęcie porażki zamyka okazję do nawrotu", () => {
+  const ctx = ctxWith([0.0, 0.9]);
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const decision = enter(ctx, state, 2);
+  assert.ok(decision.rewind, "przy decyzji nawrót ma być dostępny");
+
+  const accepted = resume(ctx, decision, { type: "accept" });
+  assert.equal(accepted.entryId, 5);
+  assert.equal(accepted.rewind, undefined);
+});
+
+test("dopłata Szczęściem zamyka okazję do nawrotu", () => {
+  const ctx = ctxWith([0.0, 0.9]);
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const lucky = resume(ctx, enter(ctx, state, 2), { type: "luck" });
+  assert.equal(lucky.entryId, 4);
+  assert.equal(lucky.rewind, undefined);
+});
+
+test("nawrót po przepchnięciu odnosi się do nowego rzutu", () => {
+  const ctx = ctxWith([0.0, 0.9, 0.0, 0.8]); // CON 90, po przepchnięciu 80
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const pushed = resume(ctx, enter(ctx, state, 3), { type: "push" });
+  assert.equal(pushed.rewind.event.result, 80);
+
+  const cheated = resume(ctx, pushed, { type: "cheat" });
+  assert.equal(cheated.events.find((event) => event.kind === "roll").success, true);
+  assert.equal(cheated.state.cheats, 1);
+});
+
+test("rzuty spoza rozgałęzień (bout) nie dają punktu cofnięcia", () => {
+  const ctx = ctxWith([0.0, 0.9]);
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const frame = enter(ctx, state, 329);
+  assert.ok(frame.events.some((event) => event.kind === "roll"));
+  assert.equal(frame.rewind, undefined);
+});
+
+// Punkt cofnięcia musi przetrwać `goto` po rzucie — a przetrwać znaczy też
+// wskazywać właściwe miejsce w sklejonej liście zdarzeń. Regresja: sklejanie
+// zdarzeń w continueAt/jump gubiło rewind, więc nawrót znikał wszędzie tam,
+// gdzie gałąź rzutu prowadziła do innego paragrafu (czyli prawie zawsze).
+test("punkt cofnięcia przeżywa skok do innego paragrafu i wskazuje ten rzut", () => {
+  const ctx = ctxWith([0.0, 0.2]);
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const frame = enter(ctx, state, 2);
+  assert.equal(frame.entryId, 4, "sukces prowadzi do innego paragrafu");
+  assert.ok(frame.rewind, "nawrót nie może ginąć przy skoku");
+  assert.equal(frame.events[frame.rewind.eventCount], frame.rewind.event);
+});
+
+// Ten sam warunek na całym scenariuszu, nie na atrapie: każda ramka z rzutem
+// rozgałęziającym ma punkt cofnięcia, a jego indeks trafia w ten rzut.
+test("każda ramka z rzutem rozgałęziającym ma sprawny punkt cofnięcia", () => {
+  const fullStory = JSON.parse(readFileSync(new URL("../data/story.json", import.meta.url)));
+  const branchSkills = new Set();
+  for (const entry of Object.values(fullStory.entries)) {
+    for (const step of entry.on ?? []) if (step.roll) branchSkills.add(step.roll);
+    for (const choice of entry.choices ?? []) if (choice.roll) branchSkills.add(choice.roll);
+  }
+
+  // Deterministyczny generator: ten sam przebieg przy każdym uruchomieniu.
+  let seed = 12345;
+  const rng = () => {
+    seed = (seed * 1103515245 + 12345) % 2147483648;
+    return seed / 2147483648;
+  };
+  const ctx = { story: fullStory, character, rng };
+
+  let seen = 0;
+  for (let run = 0; run < 10; run += 1) {
+    let frame = enter(ctx, createState(character, { rng }), fullStory.start);
+    for (let step = 0; step < 150; step += 1) {
+      if (frame.events.some((event) => event.kind === "roll" && branchSkills.has(event.skill))) {
+        seen += 1;
+        assert.ok(frame.rewind, `paragraf ${frame.entryId} zgubił punkt cofnięcia`);
+        assert.equal(
+          frame.events[frame.rewind.eventCount],
+          frame.rewind.event,
+          `paragraf ${frame.entryId} wskazuje nie ten rzut`,
+        );
+      }
+      if (frame.pending?.type === "end" || frame.pending?.type === "missing") break;
+      if (frame.pending?.type === "rollDecision") {
+        frame = resume(ctx, frame, { type: "accept" });
+        continue;
+      }
+      const open = frame.pending.options.filter((option) => !option.used && !option.blocked);
+      if (open.length === 0) break;
+      frame = resume(ctx, frame, { type: "choose", index: open[Math.floor(rng() * open.length)].index });
+    }
+  }
+  assert.ok(seen > 20, `przebieg za płytki, żeby cokolwiek sprawdzić (${seen})`);
+});

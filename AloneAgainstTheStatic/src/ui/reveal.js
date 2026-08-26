@@ -292,6 +292,11 @@ export function createReveal({
     session.block.append(box);
     const dice = box.querySelectorAll?.(".die, .roll-total, .roll-level") ?? [];
     const total = stagger(dice, config.dieStaggerMs);
+    // Cokolwiek ma stanąć przy samych kościach (dziś: nawrót) dostaje ten
+    // rzut i jego pudełko od razu, razem z pudełkiem. Ramka bywa dłuższa niż
+    // jeden paragraf, więc doklejanie na jej końcu trafiłoby w próżnię, a
+    // odkładanie na timer ginęłoby przy szybkim klikaniu (clearTimers).
+    session.onRoll?.(event, box);
 
     // Ostatni krok ramki nie każe klikać jeszcze raz: przyciski decyzji po
     // rzucie są jego naturalnym ciągiem dalszym, więc pojawiają się same,
@@ -404,7 +409,7 @@ export function createReveal({
 
   return {
     // Odsłania ramkę od początku: paragraf po paragrafie, akapit po akapicie.
-    start(record, { i18n, media, handlers, seenBefore, onParagraph, onComplete } = {}) {
+    start(record, { i18n, media, handlers, seenBefore, onParagraph, onRoll, onComplete } = {}) {
       clearTimers();
       session = {
         i18n,
@@ -419,6 +424,7 @@ export function createReveal({
         // jedna ramka może przejść przez kilka paragrafów o różnej historii.
         seenBefore,
         onParagraph,
+        onRoll,
         onComplete,
         phase: "idle",
         paragraphIndex: -1,
