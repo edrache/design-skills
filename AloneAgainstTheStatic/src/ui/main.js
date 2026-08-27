@@ -6,7 +6,7 @@ import { clearJournal, opensNewParagraph, renderArchive, renderEvents, renderRol
 import { clearSave, isSaveCompatible, loadGame, saveGame } from "./save.js";
 import { connectProgressReset, createSettings } from "./settings.js";
 import { readProgress, markChoice, resetProgress } from "./progress.js";
-import { frameMemory, recordFrame } from "./memory.js";
+import { frameMemory, recordFrame, recordRolls } from "./memory.js";
 import { dreadLevel } from "./dread.js";
 import { renderSheet } from "./sheet.js";
 import { createEffects } from "./effects.js";
@@ -390,11 +390,30 @@ function decide(type) {
   // Gra została w tym samym paragrafie: przyrost dopisujemy do wpisu, który
   // gracz ma na ekranie, i pokazujemy od razu — tekst jest już przeczytany,
   // powtórne wypisywanie go byłoby cofnięciem lektury.
+  //
+  // Zapis natychmiastowy pomija recordFrame, więc gałęzie rzutów z przyrostu
+  // zapisujemy tu osobno — na samym przyroście, żeby ten sam rzut nie trafił
+  // do magazynu dwa razy razem ze scalonym wpisem.
+  recordRolls({ entryId: next.entryId, originEntryId: null, events: next.events });
   advance(
     { ...next, events: [...record.events, ...next.events] },
     record?.originEntryId ?? null,
     { animate: false, replace: true },
   );
+  cascadeInstantRoll(dom.journal.lastElementChild);
+}
+
+// Rysowanie hurtem stawia kości i panel od razu w całości, więc kaskada, którą
+// na ścieżce animowanej daje reveal.js, musi się tu powtórzyć ręcznie —
+// inaczej wynik forsowania czy nawrotu wyskakiwałby bez odsłaniania.
+function cascadeInstantRoll(block) {
+  if (typeof block?.querySelectorAll !== "function") return;
+  const box = [...block.querySelectorAll(".rollbox")].at(-1);
+  if (box) {
+    stagger(box.querySelectorAll?.(".die, .roll-total, .roll-level") ?? [], revealConfig.dieStaggerMs);
+  }
+  const actions = block.querySelector(".roll-actions");
+  if (actions) stagger(actions.children, revealConfig.choiceStaggerMs);
 }
 
 function detailRow(term, value) {

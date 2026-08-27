@@ -5,7 +5,7 @@ import { createI18n } from "../src/ui/i18n.js";
 import { createEntryBlock, entryLabels, eventNodes, opensNewParagraph, renderArchive, renderEvents, renderRollDecision, rollPresentation, segmentEvents } from "../src/ui/journal.js";
 import { stripMarkup } from "../src/ui/markup.js";
 import { classesOf, createFakeDocument } from "./helpers/fake-dom.js";
-import { frameMemory, recordFrame } from "../src/ui/memory.js";
+import { frameMemory, recordFrame, recordRolls } from "../src/ui/memory.js";
 import { markChoice, readProgress, resetProgress } from "../src/ui/progress.js";
 
 const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
@@ -305,6 +305,31 @@ test("pamięć ramki jest zdjęciem sprzed wizyty, a zapis obejmuje wszystkie pa
     takenChoices: [],
     rollHistory: {},
   });
+});
+
+test("przyrost po decyzji zapisuje gałąź rzutu, ale nie liczy wizyty w paragrafie", (t) => {
+  t.after(restoreStorage);
+  useStorage(memoryStorage());
+
+  const shown = { entryId: 5, originEntryId: null, events: [{ kind: "text", key: "e5.p1" }] };
+  recordFrame(shown);
+  const afterFirstVisit = readProgress().entries["5"];
+
+  // Przyrost po forsowaniu: sam skutek, bez tekstu paragrafu.
+  recordRolls({
+    entryId: 5,
+    originEntryId: null,
+    events: [{ kind: "roll", skill: "Intimidate", success: false, pushed: true }, { kind: "san", amount: 1 }],
+  });
+
+  const progress = readProgress();
+  assert.deepEqual(progress.rolls["5:Intimidate"], ["pushedFail"]);
+  assert.equal(progress.entries["5"], afterFirstVisit);
+  assert.deepEqual(frameMemory(shown, progress).rollHistory, {});
+  assert.deepEqual(
+    frameMemory({ ...shown, events: [...shown.events, { kind: "roll", skill: "Intimidate" }] }, progress).rollHistory,
+    { Intimidate: ["pushedFail"] },
+  );
 });
 
 // --- Nawrót w dzienniku (spec 2026-08-26-cheat-reroll-design.md) --------

@@ -59,3 +59,17 @@ export function recordFrame(record) {
     }
   }
 }
+
+// Przyrost zdarzeń po decyzji o rzucie: wizyta w paragrafie jest już policzona
+// (gracz go czyta od poprzedniej ramki), więc markEntry celowo tu nie pada —
+// zapisujemy wyłącznie gałęzie rzutów, bo bez tego forsowanie, Szczęście
+// i nawrót nigdy nie trafiłyby do podpowiedzi „Już było".
+export function recordRolls(record) {
+  for (const segment of segmentsOf(record)) {
+    if (!hasId(segment)) continue;
+    for (const event of segment.events) {
+      if (event.kind !== "roll" || typeof event.skill !== "string") continue;
+      markRoll(segment.entryId, event.skill, rollBranch(event));
+    }
+  }
+}
