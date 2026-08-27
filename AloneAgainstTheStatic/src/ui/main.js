@@ -10,6 +10,7 @@ import { frameMemory, recordFrame } from "./memory.js";
 import { dreadLevel } from "./dread.js";
 import { renderSheet } from "./sheet.js";
 import { createEffects } from "./effects.js";
+import { createPointerStatic } from "./pointer-static.js";
 import { createReveal, normalizeConfig, stagger } from "./reveal.js";
 
 const UI_COPY = {
@@ -27,6 +28,7 @@ const UI_COPY = {
     scanlines: "Linie skanowania",
     proseSize: "Rozmiar tekstu",
     textEffects: "Efekty tekstu",
+    pointerStatic: "Zakłócenia kursora",
     close: "Zamknij",
     choose: "NAGRANIE OSOBISTE / WYBIERZ PERSPEKTYWĘ",
     who: "Kim jesteś?",
@@ -67,6 +69,7 @@ const UI_COPY = {
     scanlines: "Scanlines",
     proseSize: "Text size",
     textEffects: "Text effects",
+    pointerStatic: "Cursor interference",
     close: "Close",
     choose: "PERSONAL RECORD / CHOOSE A PERSPECTIVE",
     who: "Who are you?",
@@ -153,6 +156,7 @@ let i18n;
 let settings;
 let audio;
 let effects = null;
+let pointerStatic = null;
 let reveal = null;
 let revealConfig = normalizeConfig(null);
 let ctx = null;
@@ -257,9 +261,16 @@ function setDread(state) {
 function showCurrentInstantly() {
   reveal?.stop();
   effects?.unobserveAll();
+  // Klony widmowe wiszą na wpisach, które clearJournal właśnie wyrzuci —
+  // bez tego mapa modułu trzymałaby je do końca sesji.
+  pointerStatic?.dropAll();
   clearJournal(dom.journal);
   const block = draw(history.at(-1), true);
-  for (const node of dom.journal.children) effects?.observe(node);
+  for (const node of dom.journal.children) {
+    effects?.observe(node);
+    // Rysowanie hurtem daje wpis od razu w całości — klon może powstać teraz.
+    pointerStatic?.syncEntry(node);
+  }
   return block;
 }
 
@@ -280,13 +291,22 @@ function finishFrame() {
       onAccept: () => decide("accept"),
     });
     stagger(actions.children, revealConfig.choiceStaggerMs);
+    // Przyciski decyzji zmieniły DOM wpisu, więc klon jest już nieaktualny —
+    // odświeżenie musi być w tej gałęzi, nie po niej, bo ta wychodzi wcześniej.
+    pointerStatic?.syncEntry(reveal.block());
     return;
   }
+  // Druga gałąź domknięcia: wybory dokłada samo odsłanianie, zaraz przed tym
+  // wywołaniem, więc klon musi się odświeżyć także tutaj.
+  pointerStatic?.syncEntry(reveal.block());
   if (frame.pending?.type === "end") showEnd();
 }
 
 function presentCurrent() {
   effects?.unobserveAll();
+  // Odsłanianie zaczyna od czystego dziennika, więc klony poprzedniej ramki
+  // nie mają już do czego przylegać.
+  pointerStatic?.dropAll();
   const record = history.at(-1);
   reveal.start(record, {
     i18n,
@@ -298,10 +318,16 @@ function presentCurrent() {
       rollHistory: record.rollHistory,
     },
     onParagraph: onParagraphShown,
+    // Klon widmowy powstaje dopiero po domknięciu akapitu: do tej chwili
+    // reveal.js przepisuje jego węzły tekstowe co klatkę.
+    onParagraphDone: (paragraph) => pointerStatic?.syncEntry(paragraph.parentElement),
     // Nawrót staje przy tych kościach, których dotyczy — a nie na końcu
     // ramki, która potrafi ciągnąć się przez kilka paragrafów dalej.
     onRoll: (event, box) => {
       if (frame.rewind?.event === event) renderCheat(box, frame.rewind, i18n, cheat);
+      // Kości i przycisk nawrotu wchodzą do wpisu długo po domknięciu akapitu,
+      // więc klon zbudowany wtedy pokazywałby wpis bez nich.
+      pointerStatic?.syncEntry(box.parentElement);
     },
     onComplete: finishFrame,
   });
@@ -416,6 +442,7 @@ function startGame(characterId) {
   history.length = 0;
   reveal?.stop();
   effects?.unobserveAll();
+  pointerStatic?.dropAll();
   clearJournal(dom.journal);
   showScreen("game");
   const start = story.starts?.[character.id] ?? story.start;
@@ -499,6 +526,7 @@ function updateChrome() {
   document.querySelector("#label-scanlines").textContent = text.scanlines;
   document.querySelector("#label-prose").textContent = text.proseSize;
   document.querySelector("#label-text-effects").textContent = text.textEffects;
+  document.querySelector("#label-pointer-static").textContent = text.pointerStatic;
   dom.settingsClose.textContent = text.close;
   dom.clearProgress.textContent = text.clearProgress;
 }
@@ -510,6 +538,7 @@ const settingControls = {
   scanlines: [document.querySelector("#set-scanlines"), "value"],
   proseSize: [document.querySelector("#set-prose"), "value"],
   textEffects: [document.querySelector("#set-text-effects"), "value"],
+  pointerStatic: [document.querySelector("#set-pointer-static"), "value"],
 };
 
 function connectSettingsControls() {
@@ -593,6 +622,7 @@ function startOver() {
   document.documentElement.style.setProperty("--dread", "0");
   reveal?.stop();
   effects?.unobserveAll();
+  pointerStatic?.dropAll();
   clearJournal(dom.journal);
   dom.logEntries.replaceChildren();
   renderCharacterChoice({ focus: true });
@@ -628,12 +658,22 @@ async function bootstrap() {
   audio = createAudio(media, settings);
   audio.startMusic(loadedMusic?.tracks);
   effects = createEffects({ root: dom.journal });
+  pointerStatic = createPointerStatic({ root: dom.journal });
   revealConfig = normalizeConfig(loadedReveal);
   reveal = createReveal({ root: dom.journal, config: revealConfig });
   // Suwak "Efekty tekstu" ustawia --text-effects, ale nic samo z siebie nie
   // budzi pętli rAF w effects.js — bez tego zjazd na zero zostawiałby
   // filtry na elementach aż do najbliższego ruchu wskaźnika po dzienniku.
-  settings.subscribe(() => effects?.recompute());
+  settings.subscribe(() => {
+    effects?.recompute();
+    pointerStatic?.recompute();
+    // Zjazd suwaka zakłóceń do zera zdejmuje wszystkie klony, więc podniesienie
+    // go z powrotem nie ma już czego pokazać — sama pętla nie odtworzy tego, co
+    // usunęła. Wpisy leżące w dzienniku trzeba zsynchronizować ponownie;
+    // przy sile 0 syncEntry sprawdza wygaszenie i wychodzi, więc suwak
+    // stojący na zerze nic nie kosztuje.
+    for (const node of [...dom.journal.children]) pointerStatic?.syncEntry(node);
+  });
   connectSettingsControls();
   connectProgressReset({
     button: dom.clearProgress,

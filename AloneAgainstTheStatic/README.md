@@ -185,6 +185,27 @@ Przejście do innego paragrafu nie gubi niezapisanych zmian. Serwer odrzuca
 niedomknięte znaczniki i nie nadpisze tekstu, jeśli plik został w międzyczasie
 zmieniony przez inne narzędzie.
 
+## Zakłócenia pod wskaźnikiem
+
+Proza paragrafów zniekształca się lokalnie tam, gdzie stoi wskaźnik: litery
+falują, poziome pasma jadą w bok, na glify siada ziarno. Kliknięcie wypuszcza
+z punktu uderzenia rozchodzący się pierścień mocniejszego zniekształcenia; na
+dotyku zostaje sam pierścień, bo nie ma czego śledzić. Siłę reguluje suwak
+**Zakłócenia kursora** w ustawieniach (0 gasi efekt całkowicie), a
+`prefers-reduced-motion` wyłącza go bezwarunkowo.
+
+Technicznie: nad każdym wpisem leży `aria-hidden inert` klon (`.static-ghost`),
+zniekształcony filtrem `#pointer-static` i przycięty maską dysku wokół
+wskaźnika; oryginalne akapity noszą maskę odwrotną, więc w dysku widać
+wyłącznie klon. Klon przebudowuje się tylko wtedy, gdy DOM wpisu naprawdę się
+zmienił: po domknięciu akapitu, po dołożeniu kości albo przycisków wyborów
+i decyzji, po przerysowaniu wpisu w całości oraz po ruchu suwaka. Akapit
+aktualnie wypisywany jest z efektu wyłączony, bo `reveal.js` przepisuje jego
+węzły tekstowe co klatkę — w klonie zostaje wygaszony widocznością, żeby układ
+wierszy zgadzał się z oryginałem co do piksela. To osobny kanał od szumu
+z Poczytalności (`src/ui/effects.js`), gdzie wskaźnik działa odwrotnie:
+uspokaja tekst.
+
 ## Media
 
 Grafiki i lektora wrzucasz do `media/img/` i `media/narration/`, a ścieżki
