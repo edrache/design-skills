@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {
   DISC_CORE, DISC_RADIUS_PX, GRAIN_OPACITY, LETTER_PX, SLICE_PX,
   WAVE_GAIN, WAVE_LIFE_MS, WAVE_REACH_PX, WAVE_SPEED_PX_MS, WAVE_THICKNESS_PX,
-  discFalloff, discMask, staticScale, waveAt,
+  createPointerStatic, discFalloff, discMask, ringMask, staticScale, waveAt,
 } from "../src/ui/pointer-static.js";
 
 test("dysk trzyma pełną siłę w rdzeniu i gaśnie do zera na promieniu", () => {
@@ -100,4 +100,27 @@ test("maska odwrotna przecina warstwy i ma dopełniające stopnie", () => {
 test("grubość pierścienia i zasięg fali są spójne ze stałymi", () => {
   assert.equal(WAVE_REACH_PX, WAVE_SPEED_PX_MS * WAVE_LIFE_MS);
   assert.ok(WAVE_THICKNESS_PX > 0);
+});
+
+test("brak DOM daje instancję no-op o pełnym kształcie", () => {
+  const noop = createPointerStatic({ root: null });
+  for (const name of ["syncEntry", "dropEntry", "dropAll", "recompute", "destroy"]) {
+    assert.equal(typeof noop[name], "function", `no-op nie ma metody ${name}`);
+  }
+  // Żadne wywołanie nie może rzucić — main.js woła je bezwarunkowo.
+  noop.syncEntry({});
+  noop.dropEntry({});
+  noop.dropAll();
+  noop.recompute();
+  noop.destroy();
+});
+
+test("maska samego pierścienia ma jedną warstwę i dopełniające się składanie", () => {
+  const direct = ringMask({ x: 30, y: 40, radius: 200 }, false);
+  assert.equal(direct.image.split("radial-gradient").length - 1, 1, "pierścień to jedna warstwa");
+  assert.match(direct.image, /30px 40px/);
+  assert.equal(direct.composite, "add");
+  const inverse = ringMask({ x: 30, y: 40, radius: 200 }, true);
+  assert.equal(inverse.composite, "intersect");
+  assert.notEqual(inverse.image, direct.image, "kolejność kolorów jest odwrócona");
 });

@@ -89,3 +89,261 @@ export function discMask({ x = 0, y = 0, radius = DISC_RADIUS_PX, wave = null, i
   // ¬(dysk ∪ pierścień) = ¬dysk ∩ ¬pierścień.
   return { image: layers.join(", "), composite: invert ? "intersect" : "add" };
 }
+
+// Maska samego pierścienia, bez warstwy dysku. Potrzebna w dwóch sytuacjach:
+// gdy dysku nie ma (wskaźnik poza dziennikiem albo dotyk, który nie najeżdża),
+// oraz gdy przeglądarka nie umie składać warstw maski i pierścień musi dysk
+// ZASTĄPIĆ. Współrzędne poza pudełkiem elementu wystarczą — warstwy dysku
+// nie da się „wypchnąć w nieskończoność", bo `Infinitypx` to niepoprawny CSS
+// i przeglądarka odrzuciłaby całą deklarację maski razem z pierścieniem.
+export function ringMask(ring, invert = false) {
+  const { x = 0, y = 0, radius = 0 } = ring ?? {};
+  return {
+    image: ringLayer(Number(x) || 0, Number(y) || 0, Number(radius) || 0, invert),
+    composite: invert ? "intersect" : "add",
+  };
+}
+
+function readNumber(doc, name) {
+  try {
+    const raw = doc.defaultView?.getComputedStyle(doc.documentElement).getPropertyValue(name);
+    return Number(raw) || 0;
+  } catch {
+    return 0;
+  }
+}
+
+// `mask-composite` jest warunkiem sumowania dysku z pierścieniem. Gdy go nie
+// ma, pierścień ZASTĘPUJE dysk na czas fali — efekt zostaje, traci tylko
+// nakładanie się obu obszarów. Bez tego sprawdzenia druga warstwa maski
+// w takiej przeglądarce zsumowałaby się także w wariancie odwróconym,
+// czyli oryginał przeświecałby pod klonem.
+function supportsComposite() {
+  try {
+    return Boolean(globalThis.CSS?.supports?.("mask-composite", "add"));
+  } catch {
+    return false;
+  }
+}
+
+// Kolejność zapisu jest bezpieczna: przeliczenie stylu następuje dopiero po
+// wyjściu ze skryptu, więc przeglądarka nigdy nie widzi nowego `mask-image`
+// ze starym `mask-composite`.
+function writeMask(element, { image, composite }) {
+  const { style } = element;
+  style.setProperty("mask-image", image);
+  style.setProperty("-webkit-mask-image", image);
+  style.setProperty("mask-composite", composite);
+}
+
+function clearMask(element) {
+  for (const property of ["mask-image", "-webkit-mask-image", "mask-composite"]) {
+    element.style.removeProperty(property);
+  }
+}
+
+export function createPointerStatic({ root, doc = root?.ownerDocument ?? null, matchMedia = globalThis.matchMedia } = {}) {
+  const noop = {
+    syncEntry() {}, dropEntry() {}, dropAll() {}, recompute() {}, destroy() {},
+  };
+  if (!root || !doc || typeof globalThis.requestAnimationFrame !== "function") return noop;
+
+  // entry → { ghost, prose }: kontener klonu i akapity prozy ORYGINAŁU,
+  // którym trzeba zdejmować maskę odwrotną.
+  const ghosts = new Map();
+  const pointer = { x: 0, y: 0, seen: false };
+  let wave = null;
+  let frameId = 0;
+  const composite = supportsComposite();
+  const motionQuery = matchMedia?.("(prefers-reduced-motion: reduce)") ?? null;
+  const now = () => globalThis.performance?.now?.() ?? 0;
+
+  // Referencje do węzłów filtra zebrane raz, wzorem `filterRefs` z effects.js.
+  // Brak filtra w dokumencie (np. w testach) zostawia same `null`, a pętla
+  // przepisuje wtedy tylko maski.
+  const filter = doc.querySelector("#pointer-static");
+  const nodes = {
+    letter: filter?.querySelector('[result="letter-noise"]') ?? null,
+    wobble: filter?.querySelector('[result="wobbled"]') ?? null,
+    slice: filter?.querySelector('[result="slice-noise"]') ?? null,
+    sliced: filter?.querySelector('[result="sliced"]') ?? null,
+    grain: filter?.querySelector('[result="grain"]') ?? null,
+  };
+
+  function strength() {
+    return readNumber(doc, "--pointer-static");
+  }
+
+  function silenced() {
+    return strength() <= 0 || Boolean(motionQuery?.matches);
+  }
+
+  // Zdjęcie maski znaczy „widać wszystko", a nie „nie widać nic", więc sam
+  // clearMask na klonie pokazałby cały wpis zniekształcony. Klon gasimy
+  // widocznością i dopiero potem porządkujemy maski.
+  function conceal(record) {
+    record.ghost.style.visibility = "hidden";
+    clearMask(record.ghost);
+    for (const paragraph of record.prose) clearMask(paragraph);
+  }
+
+  function dropEntry(entry) {
+    const record = ghosts.get(entry);
+    if (!record) return;
+    record.ghost.remove?.();
+    for (const paragraph of record.prose) clearMask(paragraph);
+    ghosts.delete(entry);
+  }
+
+  function dropAll() {
+    for (const entry of [...ghosts.keys()]) dropEntry(entry);
+  }
+
+  // Klon powstaje od zera przy każdej synchronizacji: DOM wpisu zmienia się
+  // rzadko (domknięty akapit, dołożone wybory, przerysowanie), a próba
+  // łatania klonu w miejscu kosztowałaby więcej niż ponowne sklonowanie.
+  function syncEntry(entry) {
+    if (!entry?.cloneNode) return;
+    dropEntry(entry);
+    if (silenced()) return;
+
+    // Akapit wypisywany jest z efektu wyłączony: reveal.js przepisuje jego
+    // węzły tekstowe co klatkę, więc klon nie miałby szans nadążyć — a maska
+    // odwrotna wygryzłaby w oryginale dziurę wypełnioną nieaktualnym tekstem.
+    const prose = [...entry.children].filter((node) => node.tagName === "P" && node.dataset?.typing === undefined);
+    if (prose.length === 0) return;
+
+    const ghost = doc.createElement("div");
+    ghost.className = "static-ghost";
+    ghost.setAttribute("aria-hidden", "true");
+    // `inert` trzyma klon poza kolejnością tabulacji i poza czytnikiem ekranu.
+    ghost.setAttribute("inert", "");
+    // Do pierwszej klatki pętli klon jest niewidoczny: nie ma jeszcze maski,
+    // a atrybuty filtra pamiętają poprzednią klatkę.
+    ghost.style.visibility = "hidden";
+    const copy = entry.cloneNode(true);
+    // Klon nie może zawierać drugiego klonu ani niczego, co się ogniskuje.
+    for (const nested of copy.querySelectorAll?.(".static-ghost") ?? []) nested.remove();
+    // Kopia akapitu wypisywanego pokazywałaby w dysku nieaktualny tekst.
+    // Gasimy ją widocznością, nie usuwamy — układ klonu musi zostać co do
+    // piksela taki jak oryginału.
+    for (const typing of copy.querySelectorAll?.("[data-typing]") ?? []) typing.style.visibility = "hidden";
+    ghost.append(copy);
+    entry.append(ghost);
+    ghosts.set(entry, { ghost, prose });
+    start();
+  }
+
+  function onPointerMove(event) {
+    if (event.pointerType === "touch") return;
+    pointer.x = event.clientX;
+    pointer.y = event.clientY;
+    pointer.seen = true;
+    start();
+  }
+
+  function onPointerLeave() {
+    pointer.seen = false;
+    start();
+  }
+
+  // Dotyk nie ma najechania, więc na telefonie zostaje sam pierścień.
+  function onPointerDown(event) {
+    wave = { x: event.clientX, y: event.clientY, at: now() };
+    start();
+  }
+
+  // Jedna ścieżka liczenia maski dla kontenera klonu i dla akapitów oryginału:
+  // różni je wyłącznie prostokąt odniesienia i odwrócenie. Współrzędne
+  // gradientu liczą się względem pudełka MASKOWANEGO elementu, więc każdy
+  // poziom przelicza te same współrzędne ekranowe osobno — i dzięki temu obie
+  // maski się zgadzają.
+  function maskFor(box, active, invert) {
+    const ring = active ? { x: wave.x - box.left, y: wave.y - box.top, radius: active.radius } : null;
+    if (!pointer.seen || (ring && !composite)) return ringMask(ring, invert);
+    return discMask({ x: pointer.x - box.left, y: pointer.y - box.top, wave: ring, invert });
+  }
+
+  function tick() {
+    frameId = 0;
+    if (silenced()) {
+      dropAll();
+      return;
+    }
+
+    const time = now();
+    const active = waveAt(time, wave);
+    if (!active) wave = null;
+
+    const scale = staticScale({ strength: strength(), waveGain: active?.gain ?? 1 });
+    const seed = Math.floor(time / 60) % 1000;
+    nodes.letter?.setAttribute("seed", String(seed));
+    nodes.slice?.setAttribute("seed", String((seed * 7) % 1000));
+    nodes.wobble?.setAttribute("scale", scale.letter.toFixed(3));
+    nodes.sliced?.setAttribute("scale", scale.slice.toFixed(3));
+    nodes.grain?.querySelector?.("feFuncA")?.setAttribute("slope", scale.grain.toFixed(3));
+
+    // Dysk chodzi za wskaźnikiem, fala żyje niezależnie od niego. Gdy nie ma
+    // ani jednego, ani drugiego, nie ma czego odsłaniać w żadnym wpisie.
+    const visible = pointer.seen || Boolean(active);
+
+    for (const [entry, record] of [...ghosts]) {
+      // Wpis wyrzucony z dokumentu bez dropEntry trzymałby referencję w mapie
+      // do końca sesji — pętla zbiera takie po sobie.
+      if (entry.isConnected === false) {
+        dropEntry(entry);
+        continue;
+      }
+      if (!visible) {
+        conceal(record);
+        continue;
+      }
+
+      record.ghost.style.visibility = "";
+      record.ghost.style.setProperty("--ghost-split", scale.letter.toFixed(3));
+      writeMask(record.ghost, maskFor(entry.getBoundingClientRect(), active, false));
+      for (const paragraph of record.prose) {
+        writeMask(paragraph, maskFor(paragraph.getBoundingClientRect(), active, true));
+      }
+    }
+
+    // Pętla podtrzymuje się, dopóki jest co animować: szum pełza w czasie,
+    // więc zatrzymanie jej zamroziłoby obraz pod nieruchomym wskaźnikiem.
+    // Gaśnie sama, gdy nie ma klonów albo gdy zniknął i dysk, i fala.
+    if (ghosts.size > 0 && (pointer.seen || wave)) start();
+  }
+
+  function start() {
+    if (frameId) return;
+    frameId = globalThis.requestAnimationFrame(tick);
+  }
+
+  function onMotionChange() {
+    start();
+  }
+
+  root.addEventListener("pointermove", onPointerMove, { passive: true });
+  root.addEventListener("pointerdown", onPointerDown, { passive: true });
+  root.addEventListener("pointerleave", onPointerLeave, { passive: true });
+  motionQuery?.addEventListener?.("change", onMotionChange);
+
+  return {
+    syncEntry,
+    dropEntry,
+    dropAll,
+
+    // Wymusza przeliczenie na najbliższej klatce, nawet gdy wskaźnik stoi
+    // w miejscu — potrzebne po ruchu suwaka, żeby zjazd do zera zdjął klony
+    // bez czekania na ruch wskaźnika.
+    recompute: start,
+
+    destroy() {
+      root.removeEventListener("pointermove", onPointerMove);
+      root.removeEventListener("pointerdown", onPointerDown);
+      root.removeEventListener("pointerleave", onPointerLeave);
+      motionQuery?.removeEventListener?.("change", onMotionChange);
+      dropAll();
+      if (frameId) globalThis.cancelAnimationFrame?.(frameId);
+    },
+  };
+}
