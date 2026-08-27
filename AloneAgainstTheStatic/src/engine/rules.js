@@ -55,13 +55,18 @@ export function resetDay(state) {
   return { ...state, sanLostToday: 0 };
 }
 
-// Paragraf 329. Nieudany rzut INT oznacza, że umysł zamyka się na grozę.
-export function resolveBout(state, character, rng) {
-  const check = skillCheck(rng, skillValue(state, character, "INT"));
-  if (!check.success) return { state, redirect: null, check };
+// Paragraf 329. Rzut oddzielony od skutku, bo gracz może odwrócić jego werdykt
+// (cheat), zanim kara zdąży się nałożyć.
+export function rollBout(state, character, rng) {
+  return skillCheck(rng, skillValue(state, character, "INT"));
+}
+
+// Udany rzut INT oznacza, że umysł zamyka się na grozę i dostaje trwałą karę.
+export function applyBout(state, check, rng) {
+  if (!check.success) return { state, redirect: null };
 
   const remaining = BOUT_ENTRIES.filter((id) => !state.visitedBouts.includes(id));
-  if (remaining.length === 0) return { state, redirect: SYSTEM_ENTRIES.zeroSan, check };
+  if (remaining.length === 0) return { state, redirect: SYSTEM_ENTRIES.zeroSan };
 
   const rolled = BOUT_ENTRIES[rollDice(rng, "1d4") - 1];
   const target = remaining.includes(rolled) ? rolled : remaining[0];
@@ -69,14 +74,28 @@ export function resolveBout(state, character, rng) {
     { ...state, visitedBouts: [...state.visitedBouts, target] },
     BOUT_PENALTIES[target],
   );
-  return { state: next, redirect: target, check };
+  return { state: next, redirect: target };
 }
 
-// Notacja "X/Y": X przy udanym rzucie przeciw Sanity, Y przy nieudanym.
-export function sanityCheck(state, character, rng, notation) {
+export function resolveBout(state, character, rng) {
+  const check = rollBout(state, character, rng);
+  return { ...applyBout(state, check, rng), check };
+}
+
+export function rollSanity(state, rng) {
+  return skillCheck(rng, state.san);
+}
+
+// Notacja typu "X/Y": X przy udanym rzucie przeciw Sanity, Y przy nieudanym.
+// Werdykt przychodzi z zewnątrz, bo cheat potrafi go odwrócić po rzucie.
+export function applySanityCheck(state, check, notation, character, rng) {
   const [onSuccess, onFail] = String(notation).split("/");
-  const check = skillCheck(rng, state.san);
   const lost = rollDice(rng, check.success ? onSuccess : onFail);
   const outcome = applySanLoss(state, lost, character, rng);
-  return { state: outcome.state, redirect: outcome.redirect, roll: check, lost };
+  return { state: outcome.state, redirect: outcome.redirect, lost };
+}
+
+export function sanityCheck(state, character, rng, notation) {
+  const check = rollSanity(state, rng);
+  return { ...applySanityCheck(state, check, notation, character, rng), roll: check };
 }

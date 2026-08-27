@@ -3,7 +3,18 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { sequenceRng } from "../src/engine/dice.js";
 import { createState, penaltyFor } from "../src/engine/state.js";
-import { applyDamage, applySanLoss, resolveBout, sanityCheck, resetDay, SYSTEM_ENTRIES } from "../src/engine/rules.js";
+import {
+  applyDamage,
+  applySanLoss,
+  resolveBout,
+  sanityCheck,
+  resetDay,
+  SYSTEM_ENTRIES,
+  rollSanity,
+  applySanityCheck,
+  rollBout,
+  applyBout,
+} from "../src/engine/rules.js";
 
 const characters = JSON.parse(readFileSync(new URL("../data/characters.json", import.meta.url)));
 const fresh = () => createState(characters.charlie, { rng: sequenceRng([0.5, 0.5, 0.5]) }); // Luck 60
@@ -127,4 +138,49 @@ test("po resecie dnia próg indefinite insanity liczy się od nowa", () => {
   state = resetDay(state);
   const out = applySanLoss(state, 5, characters.charlie, sequenceRng([]));
   assert.equal(out.redirect, null, "10 punktów sprzed resetu nie liczy się do progu");
+});
+
+test("rzut Sanity i jego skutek dają to samo co jedno wywołanie", () => {
+  const state = fresh();
+  const split = (() => {
+    const rng = sequenceRng([0.0, 0.1, 0.3]);
+    const check = rollSanity(state, rng);
+    return { check, ...applySanityCheck(state, check, "1/1d4", characters.charlie, rng) };
+  })();
+  const joined = (() => {
+    const out = sanityCheck(state, characters.charlie, sequenceRng([0.0, 0.1, 0.3]), "1/1d4");
+    return { check: out.roll, state: out.state, redirect: out.redirect, lost: out.lost };
+  })();
+  assert.deepEqual(split.check, joined.check);
+  assert.equal(split.lost, joined.lost);
+  assert.equal(split.state.san, joined.state.san);
+  assert.equal(split.redirect, joined.redirect);
+});
+
+test("skutek testu Sanity idzie za werdyktem podanym z zewnątrz, nie za kośćmi", () => {
+  const state = fresh();
+  const rng = sequenceRng([0.0, 0.9]); // rzut 90 — porażka przy Sanity 60
+  const check = rollSanity(state, rng);
+  assert.equal(check.success, false);
+  // Odwrócony werdykt (cheat) musi zabrać stratę z gałęzi sukcesu.
+  const flipped = applySanityCheck(state, { ...check, success: true }, "1/1d4", characters.charlie, sequenceRng([0.5]));
+  assert.equal(flipped.lost, 1);
+});
+
+test("rzut INT ataku obłędu i jego skutek dają to samo co resolveBout", () => {
+  const state = fresh();
+  const rng = sequenceRng([0.0, 0.1, 0.9]);
+  const check = rollBout(state, characters.charlie, rng);
+  const split = { check, ...applyBout(state, check, rng) };
+  const joined = resolveBout(state, characters.charlie, sequenceRng([0.0, 0.1, 0.9]));
+  assert.deepEqual(split.check, joined.check);
+  assert.equal(split.redirect, joined.redirect);
+  assert.deepEqual(split.state.penalties, joined.state.penalties);
+});
+
+test("nieudany rzut INT nie nakłada kary i nie przekierowuje", () => {
+  const state = fresh();
+  const out = applyBout(state, { success: false }, sequenceRng([0.5]));
+  assert.equal(out.redirect, null);
+  assert.equal(out.state, state);
 });
