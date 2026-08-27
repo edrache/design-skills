@@ -29,6 +29,23 @@
         <feTurbulence type="fractalNoise" baseFrequency="0.9 0.04" numOctaves="2" seed="7" result="noise" />
         <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" />
       </filter>
+      <!-- Zakłócenia pod wskaźnikiem (src/ui/pointer-static.js). Jeden filtr
+           dla wszystkich klonów: lokalizację robi maska, nie amplituda.
+           Wartości scale/seed/krycie przepisuje pętla rAF modułu. -->
+      <filter id="pointer-static" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8 0.5" numOctaves="2" seed="3" result="letter-noise" />
+        <feDisplacementMap in="SourceGraphic" in2="letter-noise" scale="0" xChannelSelector="R" yChannelSelector="G" result="wobbled" />
+        <!-- Zmienność praktycznie tylko po Y: całe poziome pasma jadą w bok. -->
+        <feTurbulence type="fractalNoise" baseFrequency="0.001 0.08" numOctaves="1" seed="11" result="slice-noise" />
+        <feDisplacementMap in="wobbled" in2="slice-noise" scale="0" xChannelSelector="R" yChannelSelector="A" result="sliced" />
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="19" result="grain-noise" />
+        <feComponentTransfer in="grain-noise" result="grain">
+          <feFuncA type="linear" slope="0" intercept="0" />
+        </feComponentTransfer>
+        <!-- Śnieg siada wyłącznie na literach: przycięcie alfą źródła. -->
+        <feComposite in="grain" in2="sliced" operator="in" result="grain-on-glyphs" />
+        <feBlend in="sliced" in2="grain-on-glyphs" mode="screen" />
+      </filter>
     </svg>
 
     <header class="topbar" aria-labelledby="topbar-title">
@@ -97,6 +114,7 @@
           <label><span id="label-scanlines">Linie skanowania</span><input type="range" id="set-scanlines" min="0" max="0.15" step="0.01" /></label>
           <label><span id="label-prose">Rozmiar tekstu</span><input type="range" id="set-prose" min="0.9" max="1.4" step="0.05" /></label>
           <label><span id="label-text-effects">Efekty tekstu</span><input type="range" id="set-text-effects" min="0" max="1" step="0.05" /></label>
+          <label><span id="label-pointer-static">Zakłócenia kursora</span><input type="range" id="set-pointer-static" min="0" max="1" step="0.05" /></label>
           <button type="button" id="clear-progress" class="action">Wyczyść poznane paragrafy</button>
           <button type="submit" id="settings-close" class="action action-primary">Zamknij</button>
         </form>

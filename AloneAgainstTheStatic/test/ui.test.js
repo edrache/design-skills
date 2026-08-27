@@ -1,11 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { createI18n } from "../src/ui/i18n.js";
 import { createEntryBlock, entryLabels, eventNodes, renderArchive, renderCheat, renderEvents, renderRollDecision, rollPresentation, segmentEvents } from "../src/ui/journal.js";
 import { stripMarkup } from "../src/ui/markup.js";
 import { classesOf, createFakeDocument } from "./helpers/fake-dom.js";
 import { frameMemory, recordFrame } from "../src/ui/memory.js";
 import { markChoice, readProgress, resetProgress } from "../src/ui/progress.js";
+
+const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
 
 test("puste tłumaczenie spada na angielski tekst", () => {
   const i18n = createI18n({ pl: { key: "  " }, en: { key: "Fallback" } }, "pl");
@@ -396,4 +399,27 @@ test("kliknięcie nawrotu woła podany uchwyt dokładnie raz", () => {
   const button = renderCheat(block, { event: { success: false } }, createI18n({}, "pl"), () => { calls += 1; });
   button.click();
   assert.equal(calls, 1);
+});
+
+test("index.html ma filtr zakłóceń pod wskaźnikiem z trzema kanałami", () => {
+  const match = html.match(/<filter id="pointer-static"[\s\S]*?<\/filter>/);
+  assert.ok(match, "brak filtra #pointer-static");
+  const filter = match[0];
+  // Trzy kanały ze specyfikacji: falowanie liter, poziome cięcia, ziarno.
+  for (const result of ["letter-noise", "wobbled", "slice-noise", "sliced", "grain-noise", "grain"]) {
+    assert.match(filter, new RegExp(`result="${result}"`), `brak węzła result="${result}"`);
+  }
+  // Ziarno musi siadać na literach, nie na całym prostokącie akapitu.
+  assert.match(filter, /operator="in"[^>]*|in2="SourceAlpha"/);
+  // Cięcia przesuwają tylko w poziomie: kanał Y wskazuje na płaski składnik.
+  assert.match(filter, /result="sliced"[\s\S]{0,200}|xChannelSelector="R"/);
+});
+
+test("index.html ma suwak siły zakłóceń kursora", () => {
+  assert.match(html, /id="label-pointer-static"/);
+  const input = html.match(/<input[^>]*id="set-pointer-static"[^>]*>/);
+  assert.ok(input, "brak suwaka #set-pointer-static");
+  assert.match(input[0], /type="range"/);
+  assert.match(input[0], /min="0"/);
+  assert.match(input[0], /max="1"/);
 });
