@@ -28,9 +28,10 @@ test("wybór prowadzi do kolejnego paragrafu", () => {
   const ctx = ctxWith([0.0, 0.2]); // rzut Psychology 20 - sukces przy 60
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
   const first = enter(ctx, state, 1);
-  const second = resume(ctx, first, { type: "choose", index: 0 });
+  const rolled = resume(ctx, first, { type: "choose", index: 0 });
+  assert.ok(rolled.events.some((e) => e.kind === "roll" && e.success === true));
+  const second = resume(ctx, rolled, { type: "accept" });
   assert.equal(second.entryId, 4);
-  assert.ok(second.events.some((e) => e.kind === "roll" && e.success === true));
 });
 
 test("nieudany rzut czeka na decyzję, a po jej odrzuceniu idzie ścieżką porażki", () => {
@@ -75,13 +76,21 @@ test("wydanie Luck zamienia porażkę w sukces", () => {
   assert.equal(hasFlag(done.state, "touched_by_cold"), false);
 });
 
-test("przepchnięty rzut nie pozwala już wydać Luck", () => {
+test("przepchnięty rzut nie pozwala forsować po raz drugi", () => {
   const ctx = ctxWith([0.0, 0.9, 0.0, 0.8]); // pierwszy 90, przepchnięty 80
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
   const pending = resume(ctx, enter(ctx, state, 1), { type: "choose", index: 1 });
   const pushed = resume(ctx, pending, { type: "push" });
-  assert.equal(hasFlag(pushed.state, "touched_by_cold"), true);
-  assert.equal(pushed.pending.type, "choices");
+  assert.equal(pushed.pending.type, "rollDecision");
+  assert.equal(pushed.pending.pushed, true);
+  assert.equal(pushed.pending.canPush, false);
+  // Dopłata Szczęściem zostaje dostępna także po forsowaniu — decyduje o tym
+  // sam koszt progu, nie historia rzutu (patrz decision.js).
+  assert.equal(pushed.pending.canLuck, true);
+  assert.equal(pushed.pending.luckCost, 10); // 80 - 70
+  const done = resume(ctx, pushed, { type: "accept" });
+  assert.equal(hasFlag(done.state, "touched_by_cold"), true);
+  assert.equal(done.pending.type, "choices");
 });
 
 test("porażka forsowanego rzutu może mieć osobny skutek", () => {
@@ -106,7 +115,8 @@ test("porażka forsowanego rzutu może mieć osobny skutek", () => {
   const ctx = { story: pushedStory, character, rng: sequenceRng([0.0, 0.9, 0.0, 0.8]) };
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
   const pending = enter(ctx, state, 1);
-  const frame = resume(ctx, pending, { type: "push" });
+  const pushed = resume(ctx, pending, { type: "push" });
+  const frame = resume(ctx, pushed, { type: "accept" });
   assert.equal(frame.entryId, 4);
 });
 
@@ -150,10 +160,13 @@ test("wybór może ustawić flagę i bezpośrednio uruchomić rzut", () => {
   };
   const ctx = { story: choiceRollStory, character, rng: sequenceRng([0.1, 0.0]) };
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
-  const frame = resume(ctx, enter(ctx, state, 1), { type: "choose", index: 0 });
+  const rolled = resume(ctx, enter(ctx, state, 1), { type: "choose", index: 0 });
+  assert.equal(rolled.pending.source, "choice");
+  assert.equal(rolled.pending.choiceIndex, 0);
+  assert.ok(rolled.events.some((event) => event.kind === "roll" && event.skill === "Occult"));
+  const frame = resume(ctx, rolled, { type: "accept" });
   assert.equal(frame.entryId, 2);
   assert.equal(hasFlag(frame.state, "razor_sharp"), true);
-  assert.ok(frame.events.some((event) => event.kind === "roll" && event.skill === "Occult"));
 });
 
 test("strażnik przekierowuje, gdy flaga jest zapalona", () => {
@@ -180,8 +193,9 @@ test("wybory jednorazowe znikają po użyciu", () => {
 test("strata Sanity powyżej pięciu punktów prowadzi przez bout of madness i wraca", () => {
   const ctx = ctxWith([0.0, 0.2, 0.99]); // rzut INT 20 - sukces; 1D4 = 4 -> paragraf 333
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
-  const frame = enter(ctx, state, 11);
-  assert.ok(frame.events.some((e) => e.kind === "redirect" && e.to === 329));
+  const rolled = enter(ctx, state, 11);
+  assert.ok(rolled.events.some((e) => e.kind === "redirect" && e.to === 329));
+  const frame = resume(ctx, rolled, { type: "accept" });
   assert.ok(frame.events.some((e) => e.kind === "text" && e.key === "e333.p1"));
   assert.equal(penaltyFor(frame.state, "Listen"), -1);
   assert.equal(frame.entryId, 11, "po epizodzie wracamy do paragrafu, w którym byliśmy");
@@ -192,7 +206,7 @@ test("strata Sanity powyżej pięciu punktów prowadzi przez bout of madness i w
 test("powrót wznawia paragraf za krokiem, który spowodował skok", () => {
   const ctx = ctxWith([0.0, 0.9]); // rzut INT 90 - porażka, wracamy bez epizodu
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
-  const frame = enter(ctx, state, 11);
+  const frame = resume(ctx, enter(ctx, state, 11), { type: "accept" });
   assert.equal(frame.entryId, 11);
   assert.equal(frame.state.san, 54, "krok utraty Sanity nie wykonuje się drugi raz");
   assert.equal(frame.pending.type, "choices");
@@ -283,12 +297,15 @@ test("bonus fabularny działa tylko na najbliższy rzut", () => {
   };
   const ctx = { story: bonusStory, character, rng: sequenceRng([0.0, 0.8, 0.2, 0.0, 0.3]) };
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
-  const frame = enter(ctx, state, 1);
-  const rolls = frame.events.filter((event) => event.kind === "roll");
-  assert.equal(rolls[0].tens.length, 2);
-  assert.equal(rolls[0].result, 20);
-  assert.equal(rolls[1].tens.length, 1);
-  assert.equal(frame.state.nextRollDice, 0);
+  const first = enter(ctx, state, 1);
+  const firstRoll = first.events.find((event) => event.kind === "roll");
+  assert.equal(firstRoll.tens.length, 2);
+  assert.equal(firstRoll.result, 20);
+  assert.equal(first.state.nextRollDice, 0);
+  const second = resume(ctx, first, { type: "accept" });
+  const secondRoll = second.events.find((event) => event.kind === "roll");
+  assert.equal(secondRoll.tens.length, 1);
+  assert.equal(second.state.nextRollDice, 0);
 });
 
 test("paragraf z end kończy grę", () => {
@@ -307,8 +324,10 @@ test("przejście poza wyekstrahowany zakres daje zdarzenie missing", () => {
 test("nie można wydać Luck na nieudanym rzucie Luck", () => {
   const ctx = ctxWith([0.0, 0.9]); // rzut 90 przy Luck 60 - porażka
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
-  const frame = enter(ctx, state, 12);
-  assert.equal(frame.pending.type, "choices", "silnik nie proponuje decyzji");
+  const rolled = enter(ctx, state, 12);
+  assert.equal(rolled.pending.type, "rollDecision");
+  assert.equal(rolled.pending.canLuck, false, "silnik nie proponuje dopłaty");
+  const frame = resume(ctx, rolled, { type: "accept" });
   assert.equal(hasFlag(frame.state, "unlucky"), true);
   assert.equal(frame.state.luck, 60, "punkty Luck nie zostały wydane");
 });
@@ -327,15 +346,17 @@ test("wybór spoza zakresu zgłasza czytelny błąd", () => {
   assert.throws(() => resume(ctx, frame, { type: "choose", index: 9 }), /nie ma wyboru/);
 });
 
-// --- Nawrót: odwracanie werdyktu ostatniego rzutu -----------------------
-// Patrz docs/superpowers/specs/2026-08-26-cheat-reroll-design.md.
+// --- Nawrót: odwracanie werdyktu w chwili rzutu -------------------------
+// Patrz docs/superpowers/specs/2026-08-26-cheat-reroll-design.md. Nawrót nie
+// cofa już paragrafu po fakcie: gra staje na rzucie, więc poprawiony zapis
+// jest jedną z decyzji obok przyjęcia wyniku.
 
 test("nawrót po porażce prowadzi na gałąź sukcesu, nie ruszając kości", () => {
   const ctx = ctxWith([0.0, 0.9]); // Psychology 90 przy progu 60 — porażka
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
   const failed = enter(ctx, state, 2);
   assert.equal(failed.pending.type, "rollDecision");
-  assert.equal(failed.rewind.event.success, false);
+  assert.equal(failed.pending.roll.success, false);
 
   const cheated = resume(ctx, failed, { type: "cheat" });
   assert.equal(cheated.entryId, 4);
@@ -344,7 +365,7 @@ test("nawrót po porażce prowadzi na gałąź sukcesu, nie ruszając kości", (
   assert.equal(roll.success, true);
   assert.equal(roll.cheated, true);
   assert.equal(roll.result, 90, "kości zostają nietknięte — zmienia się sam werdykt");
-  assert.deepEqual(roll.tens, failed.rewind.event.tens);
+  assert.deepEqual(roll.tens, failed.pending.roll.tens);
   assert.deepEqual(roll.cheatedFrom, { level: "fail", success: false });
   assert.equal(cheated.state.cheats, 1);
 });
@@ -353,8 +374,8 @@ test("nawrót po sukcesie prowadzi na gałąź porażki", () => {
   const ctx = ctxWith([0.0, 0.2]); // Psychology 20 przy progu 60 — sukces
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
   const won = enter(ctx, state, 2);
-  assert.equal(won.entryId, 4);
-  assert.equal(won.rewind.event.success, true);
+  assert.equal(won.pending.type, "rollDecision");
+  assert.equal(won.pending.roll.success, true);
 
   const cheated = resume(ctx, won, { type: "cheat" });
   assert.equal(cheated.entryId, 5);
@@ -365,37 +386,40 @@ test("nawrót po sukcesie prowadzi na gałąź porażki", () => {
   assert.deepEqual(roll.cheatedFrom, { level: "hard", success: true });
 });
 
-test("nawrót zachowuje zdarzenia sprzed rzutu i nie powiela tych po nim", () => {
+test("nawrót nie powiela zdarzeń paragrafu, w którym padł rzut", () => {
   const ctx = ctxWith([0.0, 0.2]);
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
   const won = enter(ctx, state, 2);
   const cheated = resume(ctx, won, { type: "cheat" });
-  assert.deepEqual(kinds(won), ["text", "roll", "text", "choices"]);
-  assert.deepEqual(kinds(cheated), ["text", "roll", "text", "choices"]);
-  assert.equal(cheated.events[0].key, "e2.p1");
-  assert.equal(cheated.events[2].key, "e5.p1");
+  assert.deepEqual(kinds(won), ["text", "roll"]);
+  assert.equal(won.events[0].key, "e2.p1");
+  // Ramka decyzji zostaje na ekranie, więc wznowienie dokłada tylko skłamany
+  // rzut i to, co po nim — tekstu paragrafu 2 nie emitujemy po raz drugi.
+  assert.deepEqual(kinds(cheated), ["roll", "text", "choices"]);
+  assert.equal(cheated.events[1].key, "e5.p1");
 });
 
-test("nawrót działa raz — drugi nie ma już punktu cofnięcia", () => {
+test("nawrót działa raz — po decyzji gra ruszyła dalej", () => {
   const ctx = ctxWith([0.0, 0.2]);
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
   const cheated = resume(ctx, enter(ctx, state, 2), { type: "cheat" });
-  assert.equal(cheated.rewind, undefined);
-  assert.throws(() => resume(ctx, cheated, { type: "cheat" }), /odwrócić/);
+  assert.equal(cheated.pending.type, "choices");
+  assert.throws(() => resume(ctx, cheated, { type: "cheat" }), /Nieznana akcja/);
 });
 
 // Nawrót ma zawsze stać pod widocznymi kośćmi. Po przyjęciu porażki i po
-// dopłacie Szczęściem gracz jest już w innym miejscu paragrafu, więc punkt
-// cofnięcia znika razem z rzutem, do którego się odnosił.
+// dopłacie Szczęściem gracz jest już w innym miejscu paragrafu, więc okazja
+// znika razem z rzutem, do którego się odnosiła.
 test("przyjęcie porażki zamyka okazję do nawrotu", () => {
   const ctx = ctxWith([0.0, 0.9]);
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
   const decision = enter(ctx, state, 2);
-  assert.ok(decision.rewind, "przy decyzji nawrót ma być dostępny");
+  assert.equal(decision.pending.canCheat, true, "przy decyzji nawrót ma być dostępny");
 
   const accepted = resume(ctx, decision, { type: "accept" });
   assert.equal(accepted.entryId, 5);
-  assert.equal(accepted.rewind, undefined);
+  assert.equal(accepted.pending.type, "choices");
+  assert.throws(() => resume(ctx, accepted, { type: "cheat" }), /Nieznana akcja/);
 });
 
 test("dopłata Szczęściem zamyka okazję do nawrotu", () => {
@@ -403,50 +427,54 @@ test("dopłata Szczęściem zamyka okazję do nawrotu", () => {
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
   const lucky = resume(ctx, enter(ctx, state, 2), { type: "luck" });
   assert.equal(lucky.entryId, 4);
-  assert.equal(lucky.rewind, undefined);
+  assert.equal(lucky.pending.type, "choices");
+  assert.throws(() => resume(ctx, lucky, { type: "cheat" }), /Nieznana akcja/);
 });
 
 test("nawrót po przepchnięciu odnosi się do nowego rzutu", () => {
   const ctx = ctxWith([0.0, 0.9, 0.0, 0.8]); // CON 90, po przepchnięciu 80
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
   const pushed = resume(ctx, enter(ctx, state, 3), { type: "push" });
-  assert.equal(pushed.rewind.event.result, 80);
+  assert.equal(pushed.pending.roll.result, 80);
 
   const cheated = resume(ctx, pushed, { type: "cheat" });
   assert.equal(cheated.events.find((event) => event.kind === "roll").success, true);
   assert.equal(cheated.state.cheats, 1);
 });
 
-test("rzuty spoza rozgałęzień (bout) nie dają punktu cofnięcia", () => {
-  const ctx = ctxWith([0.0, 0.9]);
+// Dawniej rzut INT ataku obłędu leciał bez pytania, bo nie rozgałęział
+// paragrafu. Teraz zatrzymuje grę jak każdy inny i da się go poprawić.
+test("nawrót na rzucie ataku obłędu nakłada karę, której porażka nie nakładała", () => {
+  const ctx = ctxWith([0.0, 0.9, 0.99]); // INT 90 — porażka; po nawrocie 1d4 = 4 -> 333
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
-  const frame = enter(ctx, state, 329);
-  assert.ok(frame.events.some((event) => event.kind === "roll"));
-  assert.equal(frame.rewind, undefined);
+  const rolled = enter(ctx, state, 329);
+  assert.equal(rolled.pending.type, "rollDecision");
+  assert.equal(rolled.pending.kind, "bout");
+  assert.equal(rolled.pending.canCheat, true);
+
+  const cheated = resume(ctx, rolled, { type: "cheat" });
+  assert.equal(penaltyFor(cheated.state, "Listen"), -1);
+  assert.equal(cheated.state.cheats, 1);
 });
 
-// Punkt cofnięcia musi przetrwać `goto` po rzucie — a przetrwać znaczy też
-// wskazywać właściwe miejsce w sklejonej liście zdarzeń. Regresja: sklejanie
-// zdarzeń w continueAt/jump gubiło rewind, więc nawrót znikał wszędzie tam,
-// gdzie gałąź rzutu prowadziła do innego paragrafu (czyli prawie zawsze).
-test("punkt cofnięcia przeżywa skok do innego paragrafu i wskazuje ten rzut", () => {
+// Każdy rzut musi zatrzymać grę przed skutkiem — także wtedy, gdy gałąź
+// prowadzi do innego paragrafu. Regresja: dawniej sukces stosował się od razu
+// i decyzja gracza przelatywała razem ze skokiem.
+test("rzut zatrzymuje grę przed skokiem do innego paragrafu", () => {
   const ctx = ctxWith([0.0, 0.2]);
   const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
   const frame = enter(ctx, state, 2);
-  assert.equal(frame.entryId, 4, "sukces prowadzi do innego paragrafu");
-  assert.ok(frame.rewind, "nawrót nie może ginąć przy skoku");
-  assert.equal(frame.events[frame.rewind.eventCount], frame.rewind.event);
+  assert.equal(frame.entryId, 2, "gra jeszcze nie ruszyła na gałąź sukcesu");
+  assert.equal(frame.pending.type, "rollDecision");
+  assert.equal(frame.pending.canCheat, true);
+  assert.equal(resume(ctx, frame, { type: "accept" }).entryId, 4);
 });
 
-// Ten sam warunek na całym scenariuszu, nie na atrapie: każda ramka z rzutem
-// rozgałęziającym ma punkt cofnięcia, a jego indeks trafia w ten rzut.
-test("każda ramka z rzutem rozgałęziającym ma sprawny punkt cofnięcia", () => {
+// Ten sam warunek na całym scenariuszu, nie na atrapie: żadna ramka z rzutem
+// nie przelatuje bez pytania, a decyzja dotyczy dokładnie tego rzutu, który
+// gracz widzi w zdarzeniach.
+test("żaden rzut w całym scenariuszu nie przelatuje bez decyzji", () => {
   const fullStory = JSON.parse(readFileSync(new URL("../data/story.json", import.meta.url)));
-  const branchSkills = new Set();
-  for (const entry of Object.values(fullStory.entries)) {
-    for (const step of entry.on ?? []) if (step.roll) branchSkills.add(step.roll);
-    for (const choice of entry.choices ?? []) if (choice.roll) branchSkills.add(choice.roll);
-  }
 
   // Deterministyczny generator: ten sam przebieg przy każdym uruchomieniu.
   let seed = 12345;
@@ -460,14 +488,17 @@ test("każda ramka z rzutem rozgałęziającym ma sprawny punkt cofnięcia", () 
   for (let run = 0; run < 10; run += 1) {
     let frame = enter(ctx, createState(character, { rng }), fullStory.start);
     for (let step = 0; step < 150; step += 1) {
-      if (frame.events.some((event) => event.kind === "roll" && branchSkills.has(event.skill))) {
-        seen += 1;
-        assert.ok(frame.rewind, `paragraf ${frame.entryId} zgubił punkt cofnięcia`);
+      const rolls = frame.events.filter((event) => event.kind === "roll");
+      if (rolls.length > 0) {
+        seen += rolls.length;
         assert.equal(
-          frame.events[frame.rewind.eventCount],
-          frame.rewind.event,
-          `paragraf ${frame.entryId} wskazuje nie ten rzut`,
+          frame.pending?.type,
+          "rollDecision",
+          `paragraf ${frame.entryId} zastosował rzut bez pytania`,
         );
+        assert.equal(rolls.length, 1, `paragraf ${frame.entryId} skleił dwa rzuty w jedną decyzję`);
+        assert.equal(rolls[0].result, frame.pending.roll.result, `paragraf ${frame.entryId} pyta o inny rzut`);
+        assert.equal(frame.pending.canCheat, true);
       }
       if (frame.pending?.type === "end" || frame.pending?.type === "missing") break;
       if (frame.pending?.type === "rollDecision") {
@@ -480,4 +511,134 @@ test("każda ramka z rzutem rozgałęziającym ma sprawny punkt cofnięcia", () 
     }
   }
   assert.ok(seen > 20, `przebieg za płytki, żeby cokolwiek sprawdzić (${seen})`);
+});
+
+// --- Pauza na każdym rzucie ---------------------------------------------
+
+test("udany rzut też zatrzymuje grę i czeka na przyjęcie wyniku", () => {
+  const ctx = ctxWith([0.0, 0.2]); // 20 — sukces przy 60
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const rolled = resume(ctx, enter(ctx, state, 1), { type: "choose", index: 0 });
+  assert.equal(rolled.pending.type, "rollDecision");
+  assert.equal(rolled.pending.roll.success, true);
+  assert.equal(rolled.pending.canPush, false);
+  assert.equal(rolled.pending.canLuck, false);
+  assert.equal(rolled.pending.canCheat, true);
+  const accepted = resume(ctx, rolled, { type: "accept" });
+  assert.equal(accepted.entryId, 4);
+});
+
+test("nieudany rzut bez forsowania i bez stać-na-Szczęście nadal czeka na decyzję", () => {
+  const ctx = ctxWith([0.0, 0.9]);
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const poor = { ...state, luck: 0 };
+  const rolled = resume(ctx, enter(ctx, poor, 1), { type: "choose", index: 0 });
+  assert.equal(rolled.pending.type, "rollDecision");
+  assert.equal(rolled.pending.canPush, false);
+  assert.equal(rolled.pending.canLuck, false);
+  assert.equal(rolled.pending.canCheat, true);
+  assert.equal(resume(ctx, rolled, { type: "accept" }).entryId, 5);
+});
+
+test("cheat odwraca werdykt przed skutkami i nie rusza kości", () => {
+  const ctx = ctxWith([0.0, 0.9]);
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const rolled = resume(ctx, enter(ctx, state, 1), { type: "choose", index: 0 });
+  const cheated = resume(ctx, rolled, { type: "cheat" });
+  const event = cheated.events.find((e) => e.kind === "roll");
+  assert.equal(event.result, rolled.pending.roll.result);
+  assert.equal(event.success, true);
+  assert.equal(event.cheated, true);
+  assert.deepEqual(event.cheatedFrom, { level: rolled.pending.roll.level, success: false });
+  assert.equal(cheated.state.cheats, state.cheats + 1);
+  assert.equal(cheated.entryId, 4);
+});
+
+test("każdy rzut ramki dostaje własną decyzję, żaden nie przelatuje bez pytania", () => {
+  // Dwa rzuty w jednym paragrafie: po przyjęciu pierwszego gra dochodzi do
+  // drugiego kroku i znów pyta, zamiast wykonać oba na raz.
+  const twoRolls = {
+    entries: {
+      1: {
+        text: ["e1.p1"],
+        on: [
+          { roll: "Psychology", onFail: { goto: 2 } },
+          { roll: "Listen", onFail: { goto: 2 } },
+        ],
+        choices: [{ text: "e1.c1", goto: 2 }],
+      },
+      2: { text: ["e2.p1"], end: true },
+    },
+  };
+  const ctx = { story: twoRolls, character, rng: sequenceRng([0.0, 0.2, 0.0, 0.9]) };
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const first = enter(ctx, state, 1);
+  assert.equal(first.pending.type, "rollDecision");
+  assert.equal(first.pending.skill, "Psychology");
+  const second = resume(ctx, first, { type: "accept" });
+  assert.equal(second.pending.type, "rollDecision");
+  assert.equal(second.pending.skill, "Listen");
+  assert.notEqual(second.pending.roll.result, first.pending.roll.result);
+});
+
+test("forsowanie znika po jednym użyciu", () => {
+  const entry = {
+    entries: {
+      1: {
+        text: ["e1.p1"],
+        on: [{ roll: "Listen", push: true, onFail: { goto: 2 } }],
+        choices: [{ text: "e1.c1", goto: 2 }],
+      },
+      2: { text: ["e2.p1"], end: true },
+    },
+  };
+  const ctx = { story: entry, character, rng: sequenceRng([0.0, 0.9, 0.0, 0.9]) };
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const rolled = enter(ctx, state, 1);
+  assert.equal(rolled.pending.canPush, true);
+  const pushed = resume(ctx, rolled, { type: "push" });
+  assert.equal(pushed.pending.type, "rollDecision");
+  assert.equal(pushed.pending.pushed, true);
+  assert.equal(pushed.pending.canPush, false);
+});
+
+test("test Sanity zatrzymuje grę przed utratą poczytalności i daje cheat", () => {
+  const story = {
+    entries: {
+      1: { text: ["e1.p1"], on: [{ sanCheck: "1/1d4" }], choices: [{ text: "e1.c1", goto: 2 }] },
+      2: { text: ["e2.p1"], end: true },
+    },
+  };
+  const ctx = { story, character, rng: sequenceRng([0.0, 0.9, 0.5]) };
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const rolled = enter(ctx, state, 1);
+  assert.equal(rolled.pending.type, "rollDecision");
+  assert.equal(rolled.pending.kind, "sanCheck");
+  assert.equal(rolled.pending.notation, "1/1d4");
+  assert.equal(rolled.pending.canLuck, false);
+  assert.equal(rolled.pending.canPush, false);
+  assert.equal(rolled.pending.canCheat, true);
+  const san = state.san;
+  const cheated = resume(ctx, rolled, { type: "cheat" });
+  assert.equal(cheated.state.san, san - 1); // gałąź sukcesu notacji "1/1d4"
+  assert.equal(cheated.pending.type, "choices");
+});
+
+test("rzut INT ataku obłędu zatrzymuje grę i pozwala go poprawić", () => {
+  // Do paragrafu 329 wchodzimy tak, jak robi to gra: przez stratę Sanity,
+  // która odkłada powrót na stos — inaczej nieudany rzut nie miałby gdzie wrócić.
+  const story = {
+    entries: {
+      1: { text: ["e1.p1"], on: [{ san: "6" }], choices: [{ text: "e1.c1", goto: 2 }] },
+      2: { text: ["e2.p1"], end: true },
+      329: { text: ["e329.p1"], on: [{ bout: true }] },
+    },
+  };
+  const ctx = { story, character, rng: sequenceRng([0.0, 0.9]) };
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const rolled = enter(ctx, state, 1);
+  assert.equal(rolled.pending.kind, "bout");
+  assert.equal(rolled.pending.skill, "INT");
+  assert.equal(rolled.pending.canCheat, true);
+  assert.equal(resume(ctx, rolled, { type: "accept" }).entryId, 1);
 });

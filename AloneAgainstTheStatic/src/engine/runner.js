@@ -1,10 +1,14 @@
 import { rollDice, skillCheck, successLevel } from "./dice.js";
+import { requiredThreshold, decisionFor } from "./decision.js";
 import {
   hasFlag, setFlag, visit, visitCount, useChoice, isChoiceUsed,
   spendLuck, restoreLuck, restoreHp, penaltyFor, popReturn, pushReturn, skillValue,
   addNextRollDice, takeNextRollDice, countCheat,
 } from "./state.js";
-import { applyDamage, applySanLoss, sanityCheck, resolveBout, resetDay } from "./rules.js";
+import {
+  applyDamage, applySanLoss, resetDay,
+  rollSanity, applySanityCheck, rollBout, applyBout,
+} from "./rules.js";
 
 // Ramka opisuje wykonanie jednego paragrafu. Interpreter zatrzymuje się,
 // gdy potrzebuje decyzji gracza, i wznawia przez resume().
@@ -16,48 +20,12 @@ function entryOf(ctx, id) {
   return ctx.story.entries[String(id)] ?? null;
 }
 
-// Ile trzeba dobić, żeby trafić w wymagany próg — przy Hard i Extreme
-// próg jest niższy niż pełna wartość umiejętności.
-function requiredThreshold(target, difficulty = "regular") {
-  if (difficulty === "hard") return Math.floor(target / 2);
-  if (difficulty === "extreme") return Math.floor(target / 5);
-  return target;
-}
-
-// Punkt cofnięcia ostatniego rzutu rozgałęziającego: tyle, ile trzeba, żeby
-// przeliczyć paragraf od nowa z przeciwnym werdyktem. Gałęzie wewnętrzne
-// (rzut po rzucie) nadpisują zewnętrzne, bo cofnąć da się tylko ostatni rzut.
-function withRewind(frame, rewind) {
-  return frame.rewind ? frame : { ...frame, rewind };
-}
-
 // Sklejenie zdarzeń bieżącego paragrafu ze zdarzeniami paragrafu, do którego
-// właśnie przeszliśmy. Punkt cofnięcia jedzie razem z nimi — inaczej każdy
-// `goto` po rzucie kasowałby okazję do nawrotu — a jego indeks przesuwa się
-// o długość prefiksu, bo `eventCount` wskazuje pozycję w sklejonej liście.
+// właśnie przeszliśmy.
 function mergeForward(events, forward) {
-  const merged = frameOf(
+  return frameOf(
     forward.state, forward.entryId, [...events, ...forward.events], forward.pending, forward.cursor,
   );
-  if (!forward.rewind) return merged;
-  return { ...merged, rewind: { ...forward.rewind, eventCount: events.length + forward.rewind.eventCount } };
-}
-
-// Punkt cofnięcia po decyzji gracza (Szczęście, przepchnięcie, przyjęcie
-// wyniku). Krok jest ten sam co przy pierwszym rzucie, zmienia się tylko
-// werdykt, który gracz mógłby chcieć odwrócić.
-function rewindFor(frame, state, cursor, event) {
-  const fromChoice = frame.pending?.source === "choice";
-  return {
-    state,
-    entryId: frame.entryId,
-    eventCount: 0,
-    cursor,
-    stepIndex: fromChoice ? frame.pending.choiceIndex : frame.cursor,
-    source: frame.pending?.source,
-    choiceIndex: frame.pending?.choiceIndex,
-    event,
-  };
 }
 
 // Odwrócony werdykt tego samego rzutu. Kości zostają nietknięte — na ekranie
@@ -169,13 +137,6 @@ function applyEffect(ctx, state, events, entryId, effect, cursor) {
     return { state: out.state };
   }
 
-  if (effect.sanCheck) {
-    const out = sanityCheck(state, ctx.character, ctx.rng, effect.sanCheck);
-    events.push({ kind: "san", amount: out.lost, roll: out.roll });
-    if (out.redirect) return { frame: jump(ctx, out.state, events, entryId, out.redirect, cursor) };
-    return { state: out.state };
-  }
-
   if (effect.if && effect.goto) {
     if (!guardMatches(state, effect.if)) return { state };
     return { frame: continueAt(ctx, state, events, effect.goto) };
@@ -190,6 +151,29 @@ function applyEffect(ctx, state, events, entryId, effect, cursor) {
   }
 
   return null;
+}
+
+// Każdy rzut zatrzymuje grę, zanim skutek zdąży się wykonać: dopiero wtedy
+// gracz wybiera, czy wynik przyjmuje, forsuje, dopłaca Szczęściem, czy poprawia
+// zapis. Pending nosi wszystko, co potrzebne do wznowienia, więc cheat nie
+// wymaga już cofania paragrafu po fakcie.
+function pauseOnRoll(state, entryId, events, check, context) {
+  const pending = {
+    type: "rollDecision",
+    kind: context.kind,
+    roll: check,
+    skill: context.skill,
+    stepIndex: context.stepIndex,
+    cursor: context.cursor,
+    pushed: Boolean(context.pushed),
+    ...decisionFor(state, check, context),
+  };
+  if (context.source === "choice") {
+    pending.source = "choice";
+    pending.choiceIndex = context.choiceIndex;
+  }
+  if (context.notation !== undefined) pending.notation = context.notation;
+  return frameOf(state, entryId, events, pending, context.cursor);
 }
 
 // Wykonuje kroki z pola "on" od pozycji cursor, aż do końca albo do decyzji gracza.
@@ -209,14 +193,20 @@ function runSteps(ctx, frame) {
     }
 
     if (step.bout) {
-      const out = resolveBout(state, ctx.character, ctx.rng);
-      state = out.state;
-      events.push({ kind: "roll", skill: "INT", ...out.check });
-      if (out.redirect) return continueAt(ctx, state, events, out.redirect);
-      // Nieudany rzut INT: paragraf 329 mówi wprost, że wracamy tam, skąd
-      // przyszliśmy — ale za krokiem, który spowodował skok (patrz returnTo).
-      const back = popReturn(state);
-      return returnTo(ctx, back.state, events, back.entryId, back.cursor);
+      const check = rollBout(state, ctx.character, ctx.rng);
+      events.push({ kind: "roll", skill: "INT", ...check });
+      return pauseOnRoll(state, frame.entryId, events, check, {
+        kind: "bout", skill: "INT", stepIndex: cursor - 1, cursor,
+      });
+    }
+
+    if (step.sanCheck) {
+      const check = rollSanity(state, ctx.rng);
+      events.push({ kind: "roll", skill: "Sanity", ...check });
+      return pauseOnRoll(state, frame.entryId, events, check, {
+        kind: "sanCheck", skill: "Sanity", notation: step.sanCheck,
+        stepIndex: cursor - 1, cursor,
+      });
     }
 
     if (step.roll) {
@@ -225,41 +215,14 @@ function runSteps(ctx, frame) {
       state = queued.state;
       const dice = diceFor(state, step) + queued.dice;
       const check = skillCheck(ctx.rng, target, { dice, difficulty: step.difficulty ?? "regular" });
-      const event = { kind: "roll", skill: step.roll, ...check };
-      const rewind = {
-        state, entryId: frame.entryId, eventCount: events.length, cursor, stepIndex: cursor - 1, event,
-      };
-      events.push(event);
-
-      if (check.success) {
-        return withRewind(applyBranch(ctx, state, events, frame.entryId, step, "onSuccess", cursor), rewind);
-      }
-
-      // Wydanie Luck jest dostępne przy każdym nieudanym rzucie, na który gracza
-      // stać — niezależnie od tego, czy paragraf oferuje przepchnięcie — z wyjątkiem
-      // rzutów na Sanity (nie ratuje samej siebie) i na Luck (nie można ratować
-      // rzutu Luck wydaniem punktów Luck). Koszt liczymy od progu wymaganego przez
-      // difficulty, nie od pełnej umiejętności, bo przy Hard/Extreme dałoby to
-      // zaniżony albo ujemny koszt.
-      const threshold = requiredThreshold(target, step.difficulty ?? "regular");
-      const luckCost = check.result - threshold;
-      const canLuck = step.roll !== "Sanity" && step.roll !== "Luck" && state.luck >= luckCost && luckCost > 0;
-      const pendingDecision = {
-        type: "rollDecision",
-        roll: check,
-        skill: step.roll,
-        canPush: Boolean(step.push),
-        canLuck,
-        luckCost,
-        stepIndex: cursor - 1,
-      };
-      if (pendingDecision.canPush || canLuck) {
-        return withRewind(frameOf(state, frame.entryId, events, pendingDecision, cursor - 1), rewind);
-      }
-      return withRewind(applyBranch(ctx, state, events, frame.entryId, step, "onFail", cursor), rewind);
+      events.push({ kind: "roll", skill: step.roll, ...check });
+      return pauseOnRoll(state, frame.entryId, events, check, {
+        kind: "skill", skill: step.roll, pushable: Boolean(step.push),
+        stepIndex: cursor - 1, cursor,
+      });
     }
 
-    // Pozostałe rodzaje kroków (flag, hp, san, sanCheck, goto) dzielą logikę
+    // Pozostałe rodzaje kroków (flag, hp, san, goto) dzielą logikę
     // z gałęziami onSuccess/onFail — patrz applyEffect.
     const outcome = applyEffect(ctx, state, events, frame.entryId, step, cursor);
     if (outcome) {
@@ -355,110 +318,100 @@ export function resume(ctx, frame, action) {
     }
 
     // Niektóre decyzje (np. zabranie sztyletu w paragrafie 69) od razu
-    // uruchamiają test. Zachowujemy źródło rzutu w pending, aby autosave mógł
-    // odtworzyć decyzję o wydaniu Luck lub forsowaniu bez zgadywania.
+    // uruchamiają test. Źródło rzutu zostaje w pending, żeby wznowienie
+    // wiedziało, którego kroku dotyczy decyzja.
     if (choice?.roll) {
       const target = skillValue(state, ctx.character, choice.roll);
       const queued = takeNextRollDice(state);
       state = queued.state;
       const dice = diceFor(state, choice) + queued.dice;
       const check = skillCheck(ctx.rng, target, { dice, difficulty: choice.difficulty ?? "regular" });
-      const event = { kind: "roll", skill: choice.roll, ...check };
-      const rewind = {
-        state,
-        entryId: frame.entryId,
-        eventCount: events.length,
+      events.push({ kind: "roll", skill: choice.roll, ...check });
+      return pauseOnRoll(state, frame.entryId, events, check, {
+        kind: "skill", skill: choice.roll, pushable: Boolean(choice.push),
+        source: "choice", choiceIndex: action.index, stepIndex: action.index,
         cursor: (entry.on ?? []).length,
-        source: "choice",
-        choiceIndex: action.index,
-        event,
-      };
-      events.push(event);
-      if (check.success) {
-        return withRewind(
-          applyBranch(ctx, state, events, frame.entryId, choice, "onSuccess", (entry.on ?? []).length),
-          rewind,
-        );
-      }
-
-      const threshold = requiredThreshold(target, choice.difficulty ?? "regular");
-      const luckCost = check.result - threshold;
-      const canLuck = choice.roll !== "Sanity" && choice.roll !== "Luck" && state.luck >= luckCost && luckCost > 0;
-      if (choice.push || canLuck) {
-        const pending = {
-          type: "rollDecision",
-          source: "choice",
-          choiceIndex: action.index,
-          roll: check,
-          skill: choice.roll,
-          canPush: Boolean(choice.push),
-          canLuck,
-          luckCost,
-          stepIndex: action.index,
-        };
-        return withRewind(frameOf(state, frame.entryId, events, pending, 0), rewind);
-      }
-      return withRewind(
-        applyBranch(ctx, state, events, frame.entryId, choice, "onFail", (entry.on ?? []).length),
-        rewind,
-      );
+      });
     }
 
     return continueAt(ctx, state, events, option.goto);
   }
 
-  // Nawrót: gracz odwraca werdykt ostatniego rzutu. Paragraf liczy się od nowa
-  // od punktu tuż przed rzutem, więc wszystko, co po nim nastąpiło, znika.
-  if (action.type === "cheat") {
-    const rewind = frame.rewind;
-    if (!rewind) throw new Error("Nie ma rzutu, który dałoby się odwrócić");
-    const source = entryOf(ctx, rewind.entryId);
-    const step = rewind.source === "choice"
-      ? (source.choices ?? [])[rewind.choiceIndex]
-      : (source.on ?? [])[rewind.stepIndex];
-    const event = invertedRoll(rewind.event);
-    const events = [...frame.events.slice(0, rewind.eventCount), event];
-    const state = countCheat(rewind.state);
-    const branch = event.success
-      ? "onSuccess"
-      : (rewind.event.pushed && step.onPushedFail ? "onPushedFail" : "onFail");
-    return applyBranch(ctx, state, events, rewind.entryId, step, branch, rewind.cursor);
+  if (frame.pending?.type !== "rollDecision") throw new Error(`Nieznana akcja: ${action.type}`);
+  return decideRoll(ctx, frame, action);
+}
+
+function stepOfPending(ctx, frame) {
+  const entry = entryOf(ctx, frame.entryId);
+  const pending = frame.pending;
+  if (pending.source === "choice") return (entry.choices ?? [])[pending.choiceIndex];
+  return (entry.on ?? [])[pending.stepIndex];
+}
+
+// Zastosowanie werdyktu — tego, który wypadł, albo tego, który gracz wybrał.
+// Rodzaj rzutu decyduje, co znaczy „skutek": gałąź paragrafu, utrata
+// poczytalności albo kara ataku obłędu.
+function applyRolled(ctx, frame, state, events, check) {
+  const pending = frame.pending;
+
+  if (pending.kind === "sanCheck") {
+    const out = applySanityCheck(state, check, pending.notation, ctx.character, ctx.rng);
+    events.push({ kind: "san", amount: out.lost });
+    if (out.redirect) return jump(ctx, out.state, events, frame.entryId, out.redirect, pending.cursor);
+    return runSteps(ctx, frameOf(out.state, frame.entryId, events, null, pending.cursor));
   }
 
-  const entry = entryOf(ctx, frame.entryId);
-  const fromChoice = frame.pending?.source === "choice";
-  const step = fromChoice
-    ? (entry.choices ?? [])[frame.pending.choiceIndex]
-    : (entry.on ?? [])[frame.cursor];
-  const cursor = fromChoice ? (entry.on ?? []).length : frame.cursor + 1;
+  if (pending.kind === "bout") {
+    const out = applyBout(state, check, ctx.rng);
+    if (out.redirect) return continueAt(ctx, out.state, events, out.redirect);
+    // Paragraf 329 mówi wprost, że po nieudanym rzucie INT wracamy tam, skąd
+    // przyszliśmy — za krok, który spowodował skok (patrz returnTo).
+    const back = popReturn(out.state);
+    return returnTo(ctx, back.state, events, back.entryId, back.cursor);
+  }
+
+  const step = stepOfPending(ctx, frame);
+  const branch = check.success
+    ? "onSuccess"
+    : (pending.pushed && step.onPushedFail ? "onPushedFail" : "onFail");
+  return applyBranch(ctx, state, events, frame.entryId, step, branch, pending.cursor);
+}
+
+function decideRoll(ctx, frame, action) {
+  const pending = frame.pending;
+
+  if (action.type === "accept") {
+    return applyRolled(ctx, frame, frame.state, [], pending.roll);
+  }
+
+  // Poprawiony zapis: kości zostają nietknięte, na ekranie ma zostać widoczne
+  // kłamstwo, nie nowy rzut.
+  if (action.type === "cheat") {
+    const check = invertedRoll(pending.roll);
+    const state = countCheat(frame.state);
+    return applyRolled(ctx, frame, state, [{ kind: "roll", skill: pending.skill, ...check }], check);
+  }
 
   if (action.type === "luck") {
-    const state = spendLuck(frame.state, frame.pending.luckCost);
+    const state = spendLuck(frame.state, pending.luckCost);
     // Po dopłacie Luck rzut ląduje dokładnie na wymaganym progu, nie na pełnej umiejętności.
-    const threshold = requiredThreshold(frame.pending.roll.target, frame.pending.roll.difficulty);
-    const level = successLevel(threshold, frame.pending.roll.target);
-    const check = { ...frame.pending.roll, result: threshold, level, success: true, spentLuck: frame.pending.luckCost };
-    // Dopłata Szczęściem to jedyny nawrót usankcjonowany przez zasady, więc
-    // drugiego, cichego, już nie proponujemy.
-    return applyBranch(ctx, state, [{ kind: "roll", skill: step.roll, ...check }], frame.entryId, step, "onSuccess", cursor);
+    const threshold = requiredThreshold(pending.roll.target, pending.roll.difficulty);
+    const level = successLevel(threshold, pending.roll.target);
+    const check = { ...pending.roll, result: threshold, level, success: true, spentLuck: pending.luckCost };
+    return applyRolled(ctx, frame, state, [{ kind: "roll", skill: pending.skill, ...check }], check);
   }
 
   if (action.type === "push") {
+    const step = stepOfPending(ctx, frame);
     const target = skillValue(frame.state, ctx.character, step.roll);
     const dice = diceFor(frame.state, step);
     const check = skillCheck(ctx.rng, target, { dice, difficulty: step.difficulty ?? "regular" });
-    const event = { kind: "roll", skill: step.roll, pushed: true, ...check };
-    const branch = check.success ? "onSuccess" : (step.onPushedFail ? "onPushedFail" : "onFail");
-    return withRewind(
-      applyBranch(ctx, frame.state, [event], frame.entryId, step, branch, cursor),
-      rewindFor(frame, frame.state, cursor, event),
-    );
-  }
-
-  // Przyjęcie porażki zamyka sprawę: nawrót stał obok tego przycisku i gracz
-  // z niego nie skorzystał. Kości i tak znikają z ekranu razem z paragrafem.
-  if (action.type === "accept") {
-    return applyBranch(ctx, frame.state, [], frame.entryId, step, "onFail", cursor);
+    const events = [{ kind: "roll", skill: step.roll, pushed: true, ...check }];
+    return pauseOnRoll(frame.state, frame.entryId, events, check, {
+      kind: "skill", skill: step.roll, pushable: Boolean(step.push), pushed: true,
+      source: pending.source, choiceIndex: pending.choiceIndex,
+      stepIndex: pending.stepIndex, cursor: pending.cursor,
+    });
   }
 
   throw new Error(`Nieznana akcja: ${action.type}`);
