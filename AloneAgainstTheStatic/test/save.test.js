@@ -1,5 +1,8 @@
 import test, { afterEach } from "node:test";
 import assert from "node:assert/strict";
+import { sequenceRng } from "../src/engine/dice.js";
+import { createState, serialize } from "../src/engine/state.js";
+import { enter, resume } from "../src/engine/runner.js";
 import { segmentEvents } from "../src/ui/journal.js";
 import { clearSave, isSaveCompatible, loadGame, saveGame } from "../src/ui/save.js";
 
@@ -65,29 +68,6 @@ function choicesFrame(overrides = {}) {
   };
 }
 
-function rollFrame(overrides = {}) {
-  const roll = {
-    tens: [90], units: 0, result: 90, target: 70,
-    difficulty: "regular", level: "fail", success: false,
-  };
-  return {
-    entryId: 5,
-    events: [{ kind: "roll", skill: "CON", ...roll }],
-    pending: {
-      type: "rollDecision",
-      roll,
-      skill: "CON",
-      canPush: true,
-      canLuck: true,
-      luckCost: 20,
-      stepIndex: 0,
-    },
-    cursor: 0,
-    state: validState(),
-    ...overrides,
-  };
-}
-
 function storedPayload(frame = choicesFrame(), overrides = {}) {
   return JSON.stringify({
     version: 2,
@@ -105,8 +85,62 @@ function compatibleCharacter() {
     san: 50,
     mp: 10,
     skills: { CON: 70, Occult: 5 },
-    characteristics: {},
+    characteristics: { INT: 60 },
   };
+}
+
+// Paragrafy zatrzymujące się na każdym rodzaju rzutu i na każdej trudności —
+// ramki do walidacji budujemy silnikiem, nie ręcznie.
+const engineStory = {
+  entries: {
+    5: { id: 5, on: [{ roll: "CON", difficulty: "regular", push: true }] },
+    6: { id: 6, on: [{ roll: "CON" }] },
+    7: { id: 7, on: [{ sanCheck: "1/1d4" }], choices: [{ text: "e7.c1", goto: 6 }] },
+    8: { id: 8, on: [{ bout: true }] },
+    9: {
+      id: 9,
+      choices: [{
+        text: "e9.c1", goto: 9, flag: "razor_sharp", roll: "Occult",
+        onSuccess: { goto: 6 }, onFail: { goto: 6 },
+      }],
+    },
+    51: { id: 51, on: [{ roll: "CON", difficulty: "hard", push: true }] },
+    52: { id: 52, on: [{ roll: "CON", difficulty: "extreme", push: true }] },
+    53: { id: 53, on: [{ roll: "Sanity" }] },
+    54: { id: 54, on: [{ roll: "Luck" }] },
+  },
+};
+
+// Ręcznie pisany pending przechodzi walidację, kłamiąc o kształcie — dokładnie
+// tak ten plik zapewniał, że wczytanie zapisu działa, gdy padało na każdej
+// pauzie rzutu. Dlatego ramki bierzemy wprost z silnika.
+function engineFrame(entryId, rolls, stateOverrides = {}) {
+  const character = compatibleCharacter();
+  const ctx = { story: engineStory, character, rng: sequenceRng(rolls) };
+  const base = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) }); // Luck 60
+  return enter(ctx, { ...base, ...stateOverrides }, entryId);
+}
+
+function savedFrom(frame) {
+  return {
+    characterId: "alex",
+    originEntryId: null,
+    frame: { ...frame, state: serialize(frame.state) },
+  };
+}
+
+function savedWithRollDecision({ canPush = true, canLuck = true, success = false } = {}) {
+  return savedFrom(engineFrame(canPush ? 5 : 6, success ? [0.0, 0.1] : [0.0, 0.9], {
+    luck: canLuck ? 60 : 0,
+  }));
+}
+
+function savedWithSanCheckDecision() {
+  return savedFrom(engineFrame(7, [0.0, 0.9, 0.5]));
+}
+
+function savedWithBoutDecision() {
+  return savedFrom(engineFrame(8, [0.0, 0.9]));
 }
 
 function compatibleStory() {
@@ -151,7 +185,7 @@ test("round-trip zachowuje dokładną ramkę oczekującą na wybór", () => {
 test("round-trip zachowuje decyzję po rzucie bez ponownego wykonania paragrafu", () => {
   const storage = memoryStorage();
   useStorage(storage);
-  const frame = rollFrame();
+  const frame = engineFrame(5, [0.0, 0.9]);
 
   saveGame({ characterId: "alex", frame });
 
@@ -358,15 +392,20 @@ test("blocked wyboru jest przeliczany z choice.if tak samo jak w runnerze", asyn
   }
 });
 
-test("semantyka rollDecision wiąże cursor i skill z krokiem story", async (t) => {
-  const story = compatibleStory();
+test("semantyka rollDecision wiąże krok story z dostępnością decyzji", async (t) => {
+  const story = engineStory;
   const character = compatibleCharacter();
-  const valid = { characterId: "alex", originEntryId: null, frame: rollFrame() };
+  const valid = savedWithRollDecision();
   assert.equal(isSaveCompatible(valid, story, character), true);
 
-  await t.test("odrzuca cursor poza krokiem rzutu", () => {
+  await t.test("odrzuca kursor rozjechany z pending", () => {
     const saved = clone(valid);
-    saved.frame.cursor = 1;
+    saved.frame.cursor = saved.frame.pending.cursor + 1;
+    assert.equal(isSaveCompatible(saved, story, character), false);
+  });
+
+  await t.test("odrzuca stepIndex poza krokami paragrafu", () => {
+    const saved = clone(valid);
     saved.frame.pending.stepIndex = 1;
     assert.equal(isSaveCompatible(saved, story, character), false);
   });
@@ -385,99 +424,118 @@ test("semantyka rollDecision wiąże cursor i skill z krokiem story", async (t) 
     assert.equal(isSaveCompatible(saved, story, character), false);
   });
 
-  for (const [difficulty, luck, luckCost] of [["hard", 60, 55], ["extreme", 80, 76]]) {
+  for (const [entryId, difficulty, luck, luckCost] of [[51, "hard", 60, 55], [52, "extreme", 80, 76]]) {
     await t.test(`przelicza próg ${difficulty} i koszt Luck`, () => {
-      const saved = clone(valid);
-      const semanticStory = compatibleStory();
-      semanticStory.entries[5].on[0].difficulty = difficulty;
-      saved.frame.state.luck = luck;
-      saved.frame.pending.roll.difficulty = difficulty;
-      saved.frame.pending.luckCost = luckCost;
-      saved.frame.events[0].difficulty = difficulty;
-      assert.equal(isSaveCompatible(saved, semanticStory, character), true);
+      const saved = savedFrom(engineFrame(entryId, [0.0, 0.9], { luck }));
+      assert.equal(saved.frame.pending.luckCost, luckCost);
+      assert.equal(isSaveCompatible(saved, story, character), true);
 
       saved.frame.pending.luckCost -= 1;
-      assert.equal(isSaveCompatible(saved, semanticStory, character), false);
+      assert.equal(isSaveCompatible(saved, story, character), false);
     });
   }
 
   await t.test("canLuck uwzględnia liczbę dostępnych punktów", () => {
-    const saved = clone(valid);
-    saved.frame.state.luck = 10;
-    saved.frame.pending.canLuck = false;
+    const saved = savedWithRollDecision({ canLuck: false });
+    assert.equal(saved.frame.pending.canLuck, false);
     assert.equal(isSaveCompatible(saved, story, character), true);
 
     saved.frame.pending.canLuck = true;
     assert.equal(isSaveCompatible(saved, story, character), false);
   });
 
-  for (const skill of ["Sanity", "Luck"]) {
+  for (const [entryId, skill] of [[53, "Sanity"], [54, "Luck"]]) {
     await t.test(`${skill} nie pozwala ratować rzutu punktami Luck`, () => {
-      const saved = clone(valid);
-      const semanticStory = compatibleStory();
-      const target = skill === "Sanity" ? saved.frame.state.san : saved.frame.state.luck;
-      semanticStory.entries[5].on[0].roll = skill;
-      saved.frame.pending.skill = skill;
-      saved.frame.pending.roll.target = target;
-      saved.frame.pending.luckCost = saved.frame.pending.roll.result - target;
-      saved.frame.pending.canLuck = false;
-      saved.frame.events[0].skill = skill;
-      saved.frame.events[0].target = target;
-      assert.equal(isSaveCompatible(saved, semanticStory, character), true);
+      const saved = savedFrom(engineFrame(entryId, [0.0, 0.9]));
+      assert.equal(saved.frame.pending.skill, skill);
+      assert.equal(saved.frame.pending.canLuck, false);
+      assert.equal(isSaveCompatible(saved, story, character), true);
 
       saved.frame.pending.canLuck = true;
-      assert.equal(isSaveCompatible(saved, semanticStory, character), false);
+      assert.equal(isSaveCompatible(saved, story, character), false);
     });
   }
+
+  await t.test("forsowany rzut nie daje drugiej deski ratunku", () => {
+    const ctx = { story, character, rng: sequenceRng([0.0, 0.9, 0.0, 0.8]) };
+    const base = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+    const pushed = resume(ctx, enter(ctx, base, 5), { type: "push" });
+    const saved = savedFrom(pushed);
+    assert.equal(saved.frame.pending.pushed, true);
+    assert.equal(isSaveCompatible(saved, story, character), true);
+
+    saved.frame.pending.canLuck = true;
+    assert.equal(isSaveCompatible(saved, story, character), false);
+  });
+});
+
+// Reguła „pending musi oferować push albo Luck" zniknęła świadomie: przy
+// sukcesie, teście Sanity i ataku obłędu zostaje samo przyjęcie wyniku i cheat.
+// Walidacja pilnuje więc zgodności dostępności z danymi, nie jej istnienia.
+test("zapis każdej decyzji po rzucie jest zgodny", async (t) => {
+  const story = engineStory;
+  const character = compatibleCharacter();
+
+  await t.test("zostaje tylko przyjęcie wyniku i cheat", () => {
+    const saved = savedWithRollDecision({ canPush: false, canLuck: false });
+    assert.deepEqual(
+      [saved.frame.pending.canPush, saved.frame.pending.canLuck, saved.frame.pending.canCheat],
+      [false, false, true],
+    );
+    assert.equal(isSaveCompatible(saved, story, character), true);
+  });
+
+  await t.test("decyzja po udanym rzucie", () => {
+    const saved = savedWithRollDecision({ success: true });
+    assert.equal(saved.frame.pending.roll.success, true);
+    assert.equal(isSaveCompatible(saved, story, character), true);
+  });
+
+  await t.test("decyzja po teście Sanity", () => {
+    const saved = savedWithSanCheckDecision();
+    assert.equal(saved.frame.pending.kind, "sanCheck");
+    assert.equal(isSaveCompatible(saved, story, character), true);
+  });
+
+  await t.test("decyzja po rzucie ataku obłędu", () => {
+    const saved = savedWithBoutDecision();
+    assert.equal(saved.frame.pending.kind, "bout");
+    assert.equal(isSaveCompatible(saved, story, character), true);
+  });
+
+  await t.test("odrzuca podmieniony rodzaj rzutu", () => {
+    const saved = savedWithRollDecision({ canPush: false, canLuck: false });
+    saved.frame.pending.kind = "bout";
+    assert.equal(isSaveCompatible(saved, story, character), false);
+  });
+
+  await t.test("odrzuca zawyżoną dostępność forsowania", () => {
+    const saved = savedWithRollDecision({ canPush: false, canLuck: false });
+    saved.frame.pending.canPush = true;
+    assert.equal(isSaveCompatible(saved, story, character), false);
+  });
+
+  await t.test("odrzuca test Sanity z podmienioną notacją", () => {
+    const saved = savedWithSanCheckDecision();
+    saved.frame.pending.notation = "1/1d10";
+    assert.equal(isSaveCompatible(saved, story, character), false);
+  });
 });
 
 test("autosave wiąże decyzję po rzucie z wyborem, który go uruchomił", () => {
-  const roll = {
-    tens: [50], units: 0, result: 50, target: 5,
-    difficulty: "regular", level: "fail", success: false,
-  };
-  const frame = {
-    entryId: 69,
-    events: [
-      { kind: "flag", flag: "razor_sharp" },
-      { kind: "roll", skill: "Occult", ...roll },
-    ],
-    pending: {
-      type: "rollDecision",
-      source: "choice",
-      choiceIndex: 0,
-      roll,
-      skill: "Occult",
-      canPush: false,
-      canLuck: true,
-      luckCost: 45,
-      stepIndex: 0,
-    },
-    cursor: 0,
-    state: validState({ flags: ["alex", "razor_sharp"], luck: 45 }),
-  };
-  const story = {
-    entries: {
-      69: {
-        id: 69,
-        choices: [{
-          text: "e69.c1",
-          goto: 69,
-          flag: "razor_sharp",
-          roll: "Occult",
-          onSuccess: { goto: 361 },
-          onFail: { goto: 362 },
-        }],
-      },
-    },
-  };
-  const saved = { characterId: "alex", originEntryId: null, frame };
-  assert.equal(isSaveCompatible(saved, story, compatibleCharacter()), true);
+  const character = compatibleCharacter();
+  const ctx = { story: engineStory, character, rng: sequenceRng([0.0, 0.9]) };
+  const base = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const frame = resume(ctx, enter(ctx, base, 9), { type: "choose", index: 0 });
+  const saved = savedFrom(frame);
+
+  assert.equal(saved.frame.pending.source, "choice");
+  assert.equal(isSaveCompatible(saved, engineStory, character), true);
 
   const tampered = clone(saved);
   tampered.frame.pending.choiceIndex = 1;
   tampered.frame.pending.stepIndex = 1;
-  assert.equal(isSaveCompatible(tampered, story, compatibleCharacter()), false);
+  assert.equal(isSaveCompatible(tampered, engineStory, character), false);
 });
 
 test("semantyka end i missing odpowiada stanowi story", () => {
@@ -649,10 +707,13 @@ test("licznik nawrotów o złym kształcie odrzuca zapis", () => {
   assert.equal(loadGame(), null);
 });
 
-test("punkt cofnięcia nie trafia do zapisu — odświeżenie strony zamyka okazję", () => {
+// Pola `rewind` silnik już nie wypuszcza, ale zapis nadal ma przenosić tylko
+// znane pola ramki: inaczej taśma ze starszej wersji gry wniosłaby do niej
+// stan, którego dzisiejszy silnik nie rozumie.
+test("nieznane pole ramki nie trafia do zapisu", () => {
   useStorage(memoryStorage());
-  const frame = rollFrame();
-  frame.rewind = { state: validState(), entryId: 5, eventCount: 0, cursor: 1, stepIndex: 0, event: frame.events[0] };
+  const frame = engineFrame(5, [0.0, 0.9]);
+  frame.rewind = { entryId: 5, eventCount: 0, cursor: 1, stepIndex: 0 };
   saveGame({ characterId: "alex", frame });
   assert.equal(loadGame().frame.rewind, undefined);
 });

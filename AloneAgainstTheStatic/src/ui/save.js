@@ -1,8 +1,10 @@
 import { serialize, deserialize, skillValue } from "../engine/state.js";
+import { decisionFor } from "../engine/decision.js";
 
 const KEY = "aats-save";
 const VERSION = 2;
 const PENDING_TYPES = new Set(["rollDecision", "choices", "end", "missing"]);
+const ROLL_KINDS = new Set(["skill", "sanCheck", "bout"]);
 const EVENT_TYPES = new Set(["text", "roll", "san", "hp", "heal", "luck", "flag", "missing", "choices", "redirect", "end"]);
 
 function storageOrNull() {
@@ -51,17 +53,25 @@ function isPending(pending) {
   if (pending.type === "rollDecision") {
     const sourceValid = pending.source === undefined
       || (pending.source === "choice" && isNonNegativeInteger(pending.choiceIndex));
+    const notationValid = pending.kind === "sanCheck"
+      ? typeof pending.notation === "string" && pending.notation.includes("/")
+      : pending.notation === undefined;
     return sourceValid
+      && notationValid
+      && ROLL_KINDS.has(pending.kind)
       && isRecord(pending.roll)
       && isFiniteNumber(pending.roll.target)
       && isFiniteNumber(pending.roll.result)
       && typeof pending.roll.difficulty === "string"
+      && typeof pending.roll.success === "boolean"
       && typeof pending.skill === "string"
       && typeof pending.canPush === "boolean"
       && typeof pending.canLuck === "boolean"
-      && isNonNegativeInteger(pending.luckCost)
+      && typeof pending.canCheat === "boolean"
+      && typeof pending.pushed === "boolean"
+      && isFiniteNumber(pending.luckCost)
       && isNonNegativeInteger(pending.stepIndex)
-      && (pending.canPush || pending.canLuck);
+      && isNonNegativeInteger(pending.cursor);
   }
 
   return true;
@@ -195,12 +205,6 @@ function guardMatches(state, condition) {
   });
 }
 
-function requiredThreshold(target, difficulty) {
-  if (difficulty === "hard") return Math.floor(target / 2);
-  if (difficulty === "extreme") return Math.floor(target / 5);
-  return target;
-}
-
 function compatibleChoices(frame, entry) {
   const source = entry?.choices;
   const options = frame.pending.options;
@@ -223,35 +227,51 @@ function compatibleChoices(frame, entry) {
     && sameChoices(choiceEvents[0].options, options);
 }
 
+// Pending musi dać się odtworzyć z danych: krok, do którego wraca, wciąż ma
+// ten sam rodzaj rzutu, a dostępność decyzji wychodzi z tego samego modułu,
+// z którego liczy ją silnik.
 function compatibleRoll(frame, entry, character) {
   const pending = frame.pending;
   const fromChoice = pending.source === "choice";
   const step = fromChoice
     ? entry?.choices?.[pending.choiceIndex]
-    : entry?.on?.[frame.cursor];
-  if (!isRecord(step) || typeof step.roll !== "string") return false;
+    : entry?.on?.[pending.stepIndex];
+  if (!isRecord(step)) return false;
+  if (frame.cursor !== pending.cursor) return false;
   if (fromChoice) {
-    if (frame.cursor !== 0 || pending.stepIndex !== pending.choiceIndex) return false;
-  } else if (pending.stepIndex !== frame.cursor) return false;
-  if (pending.skill !== step.roll) return false;
-  if (pending.canPush !== Boolean(step.push)) return false;
-  if (pending.roll.difficulty !== (step.difficulty ?? "regular")) return false;
+    if (pending.kind !== "skill" || pending.stepIndex !== pending.choiceIndex) return false;
+    if (pending.cursor !== (entry?.on ?? []).length) return false;
+  }
 
   let target;
+  let pushable = false;
   try {
-    target = skillValue(frame.state, character, step.roll);
+    if (pending.kind === "skill") {
+      if (typeof step.roll !== "string" || step.roll !== pending.skill) return false;
+      if (pending.roll.difficulty !== (step.difficulty ?? "regular")) return false;
+      target = skillValue(frame.state, character, step.roll);
+      pushable = Boolean(step.push);
+    } else if (pending.kind === "sanCheck") {
+      if (step.sanCheck !== pending.notation || pending.skill !== "Sanity") return false;
+      if (pending.roll.difficulty !== "regular") return false;
+      target = frame.state.san;
+    } else {
+      if (!step.bout || pending.skill !== "INT") return false;
+      if (pending.roll.difficulty !== "regular") return false;
+      target = skillValue(frame.state, character, "INT");
+    }
   } catch {
     return false;
   }
   if (pending.roll.target !== target) return false;
 
-  const threshold = requiredThreshold(target, pending.roll.difficulty);
-  const luckCost = pending.roll.result - threshold;
-  const canLuck = step.roll !== "Sanity"
-    && step.roll !== "Luck"
-    && frame.state.luck >= luckCost
-    && luckCost > 0;
-  if (pending.luckCost !== luckCost || pending.canLuck !== canLuck) return false;
+  const expected = decisionFor(frame.state, pending.roll, {
+    kind: pending.kind, skill: pending.skill, pushable, pushed: pending.pushed,
+  });
+  if (pending.canPush !== expected.canPush
+    || pending.canLuck !== expected.canLuck
+    || pending.luckCost !== expected.luckCost
+    || pending.canCheat !== expected.canCheat) return false;
 
   const rollEvents = frame.events.filter((event) => event.kind === "roll");
   const event = rollEvents.at(-1);
