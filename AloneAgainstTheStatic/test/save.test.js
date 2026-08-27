@@ -104,6 +104,7 @@ const engineStory = {
         onSuccess: { goto: 6 }, onFail: { goto: 6 },
       }],
     },
+    10: { id: 10, on: [{ roll: "CON", push: true }, { hp: "-3" }, { flag: "hurt" }] },
     51: { id: 51, on: [{ roll: "CON", difficulty: "hard", push: true }] },
     52: { id: 52, on: [{ roll: "CON", difficulty: "extreme", push: true }] },
     53: { id: 53, on: [{ roll: "Sanity" }] },
@@ -512,6 +513,41 @@ test("zapis każdej decyzji po rzucie jest zgodny", async (t) => {
   await t.test("odrzuca zawyżoną dostępność forsowania", () => {
     const saved = savedWithRollDecision({ canPush: false, canLuck: false });
     saved.frame.pending.canPush = true;
+    assert.equal(isSaveCompatible(saved, story, character), false);
+  });
+
+  // Wszystko, co da się przeliczyć z danych, musi być przeliczone: inaczej
+  // podrobiona taśma wnosi do gry stan, którego silnik nigdy by nie wypuścił.
+  await t.test("odrzuca dorobiony sukces nieudanego rzutu", () => {
+    const saved = savedWithRollDecision();
+    assert.equal(saved.frame.pending.roll.success, false);
+    saved.frame.pending.roll.success = true;
+    Object.assign(saved.frame.pending, { canPush: false, canLuck: false, luckCost: 0, canCheat: true });
+    assert.equal(isSaveCompatible(saved, story, character), false);
+
+    // Także wtedy, gdy taśma dokłada spójny poziom sukcesu — poziom też liczymy sami.
+    saved.frame.pending.roll.level = "regular";
+    saved.frame.events[0].level = "regular";
+    saved.frame.events[0].success = true;
+    assert.equal(isSaveCompatible(saved, story, character), false);
+  });
+
+  await t.test("odrzuca kursor przeskakujący kroki za rzutem", () => {
+    const saved = savedFrom(engineFrame(10, [0.0, 0.9]));
+    assert.deepEqual([saved.frame.pending.stepIndex, saved.frame.pending.cursor], [0, 1]);
+    assert.equal(isSaveCompatible(saved, story, character), true);
+
+    saved.frame.pending.cursor = 3;
+    saved.frame.cursor = 3;
+    assert.equal(isSaveCompatible(saved, story, character), false);
+  });
+
+  await t.test("odrzuca dorobiony znacznik forsowania", () => {
+    // Rzut udany: dostępność decyzji nie zależy od forsowania, więc kłamstwo
+    // wychodzi wyłącznie z porównania ze zdarzeniem rzutu.
+    const saved = savedWithRollDecision({ success: true });
+    assert.equal(saved.frame.pending.pushed, false);
+    saved.frame.pending.pushed = true;
     assert.equal(isSaveCompatible(saved, story, character), false);
   });
 

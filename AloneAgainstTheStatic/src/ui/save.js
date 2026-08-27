@@ -1,4 +1,5 @@
 import { serialize, deserialize, skillValue } from "../engine/state.js";
+import { meetsDifficulty, successLevel } from "../engine/dice.js";
 import { decisionFor } from "../engine/decision.js";
 
 const KEY = "aats-save";
@@ -63,6 +64,7 @@ function isPending(pending) {
       && isFiniteNumber(pending.roll.target)
       && isFiniteNumber(pending.roll.result)
       && typeof pending.roll.difficulty === "string"
+      && typeof pending.roll.level === "string"
       && typeof pending.roll.success === "boolean"
       && typeof pending.skill === "string"
       && typeof pending.canPush === "boolean"
@@ -241,6 +243,10 @@ function compatibleRoll(frame, entry, character) {
   if (fromChoice) {
     if (pending.kind !== "skill" || pending.stepIndex !== pending.choiceIndex) return false;
     if (pending.cursor !== (entry?.on ?? []).length) return false;
+  } else if (pending.cursor !== pending.stepIndex + 1) {
+    // Pauza na kroku zawsze wraca za ten krok. Kursor przesunięty dalej kazałby
+    // po wczytaniu pominąć kroki między nimi — obrażenia, flagi, skoki.
+    return false;
   }
 
   let target;
@@ -265,6 +271,13 @@ function compatibleRoll(frame, entry, character) {
   }
   if (pending.roll.target !== target) return false;
 
+  // Werdykt wynika z wyniku, progu i trudności, więc go przeliczamy: sam
+  // `success` przestawiony na `true` przepuszczałby zapis, który po wczytaniu
+  // idzie gałęzią sukcesu, bo `decisionFor` kończy wtedy na kształcie sukcesu.
+  const level = successLevel(pending.roll.result, target);
+  if (pending.roll.level !== level) return false;
+  if (pending.roll.success !== meetsDifficulty(level, pending.roll.difficulty)) return false;
+
   const expected = decisionFor(frame.state, pending.roll, {
     kind: pending.kind, skill: pending.skill, pushable, pushed: pending.pushed,
   });
@@ -279,7 +292,11 @@ function compatibleRoll(frame, entry, character) {
     && event.skill === pending.skill
     && event.result === pending.roll.result
     && event.target === pending.roll.target
-    && event.difficulty === pending.roll.difficulty;
+    && event.difficulty === pending.roll.difficulty
+    // Znacznik forsowania nosi tylko zdarzenie rzutu przepchniętego, więc brak
+    // pola znaczy „nieforsowany". Bez tego porównania zapis mógłby dorobić
+    // sobie gałąź onPushedFail albo odzyskać zużyte forsowanie.
+    && Boolean(event.pushed) === pending.pushed;
 }
 
 // Structural validation belongs to loadGame; this second pass ties the frame to
