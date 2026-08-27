@@ -132,3 +132,44 @@ test("werdykt sprzed poprawki jest przekreślony i wygaszony", () => {
   assert.ok(body, "brak reguły dla przekreślonego werdyktu");
   assert.match(body, /text-decoration:\s*line-through\s*;/);
 });
+
+// Warstwa klonu widmowego (spec 2026-08-27-pointer-static.md). Klon leży
+// nad oryginalnym wpisem, zniekształcony filtrem SVG i przycięty maską
+// dysku wokół wskaźnika (fabryka z Zadania 6 dopisuje maski i --ghost-split
+// bezpośrednio w element.style). Testy pilnują tego, co da się zepsuć po
+// cichu w CSS: że klon nie przechwytuje kliknięć, że układ klonu jest
+// identyczny z oryginałem (visibility, nie display), i że reduced-motion
+// go gasi.
+test("klon widmowy leży nad wpisem, nie łapie zdarzeń i nie zmienia układu", () => {
+  const ghost = rule(".static-ghost");
+  assert.ok(ghost, "brak reguły .static-ghost");
+  assert.match(ghost, /position:\s*absolute/);
+  assert.match(ghost, /inset:\s*0/);
+  // Klon nie może przechwytywać kliknięć — pod nim są wybory i bramka rzutu.
+  assert.match(ghost, /pointer-events:\s*none/);
+  assert.match(ghost, /filter:\s*url\(#pointer-static\)/);
+});
+
+test("wpis dziennika jest kontekstem pozycjonowania dla klonu", () => {
+  const entry = rule(".journal-entry");
+  assert.ok(entry, "brak reguły .journal-entry");
+  assert.match(entry, /position:\s*relative/);
+});
+
+test("w klonie widać wyłącznie prozę", () => {
+  // Wszystko poza akapitami prozy jest ukryte przez visibility, nie display:
+  // układ musi zostać identyczny z oryginałem, inaczej wiersze się rozjadą.
+  const hidden = rule(".static-ghost .journal-entry > *:not(p)");
+  assert.ok(hidden, "brak reguły ukrywającej niebędące prozą elementy klonu");
+  assert.match(hidden, /visibility:\s*hidden/);
+});
+
+test("rozszczepienie barwne na klonie jest sterowane zmienną", () => {
+  const prose = rule(".static-ghost p");
+  assert.ok(prose, "brak reguły .static-ghost p");
+  assert.match(prose, /text-shadow:[\s\S]*var\(--ghost-split/);
+});
+
+test("reduced-motion gasi klon widmowy", () => {
+  assert.match(css, /prefers-reduced-motion:\s*reduce[\s\S]*\.static-ghost\s*\{[^}]*display:\s*none/);
+});

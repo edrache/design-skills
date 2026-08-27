@@ -564,6 +564,31 @@ a:focus-visible {
   pointer-events: none;
 }
 
+/* Klon widmowy: kopia wpisu leżąca nad oryginałem, zniekształcona filtrem
+   i przycięta maską dysku wokół wskaźnika (src/ui/pointer-static.js).
+   Oryginalne akapity prozy noszą maskę odwrotną, więc w dysku widać
+   wyłącznie klon — bez zjawy podwójnych liter. */
+.static-ghost {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  filter: url(#pointer-static);
+  --ghost-split: 0;
+  --ghost-grain: 0;
+}
+
+/* Układ klonu MUSI być identyczny z oryginałem, więc niebędące prozą
+   elementy gasimy widocznością, nie wyrzucamy z układu. */
+.static-ghost .journal-entry > *:not(p) {
+  visibility: hidden;
+}
+
+.static-ghost p {
+  text-shadow:
+    calc(var(--ghost-split) * -1px) 0 oklch(60% 0.14 20 / 0.5),
+    calc(var(--ghost-split) * 1px) 0 oklch(65% 0.1 200 / 0.45);
+}
+
 /* Rozszczepienie RGB skalowane amplitudą liczoną w effects.js. Filtr wchodzi
    przez zmienną, a nie przez styl inline, żeby dało się go składać z filtrami
    zadeklarowanymi w CSS — patrz `.t-wrong` niżej. */
@@ -631,6 +656,7 @@ a:focus-visible {
   .t-wrong[data-effect="static"] {
     filter: none;
   }
+  .static-ghost { display: none; }
 }
 
 .entry-image {
