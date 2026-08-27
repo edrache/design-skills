@@ -321,6 +321,7 @@ a:focus-visible {
 
 .journal-register {
   display: flex;
+  align-items: center;
   gap: 1.2rem;
   margin: 0 0 clamp(2.8rem, 8vw, 5rem);
   padding-bottom: 0.5rem;
@@ -329,7 +330,52 @@ a:focus-visible {
   font-size: 0.61rem;
 }
 
-.journal-register span:last-child { margin-left: auto; }
+#tape-counter { margin-left: auto; }
+
+.journal-playback-controls {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.register-toggle {
+  min-height: 1.65rem;
+  padding: 0.18rem 0.48rem;
+  border: 1px solid color-mix(in srgb, var(--phosphor) 38%, transparent);
+  background: transparent;
+  color: color-mix(in srgb, var(--phosphor) 48%, transparent);
+  font: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  transition: border-color 140ms ease, color 140ms ease, background-color 140ms ease;
+}
+
+.register-toggle::before {
+  content: "○";
+  margin-right: 0.35rem;
+}
+
+.register-toggle[aria-pressed="true"] {
+  border-color: var(--phosphor);
+  background: color-mix(in srgb, var(--phosphor) 8%, transparent);
+  color: var(--phosphor);
+}
+
+.register-toggle[aria-pressed="true"]::before { content: "●"; }
+
+.register-toggle:hover,
+.register-toggle:focus-visible {
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
+@media (max-width: 30rem) {
+  .journal-register { gap: 0.55rem; }
+  #tape-counter { display: none; }
+  .journal-playback-controls { margin-left: auto; }
+  .register-toggle { padding-inline: 0.38rem; }
+}
 
 .journal-entry {
   position: relative;

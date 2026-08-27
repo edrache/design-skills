@@ -1,0 +1,2896 @@
+{
+  "e1.p1": [
+    {
+      "speaker": "charlie",
+      "text": "[frustrated] [straining] [suddenly alarmed] [shouts] \"Dammit!\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[tense] [urgent] [fast-paced] Charlie growls, struggling to fold an impractically large map over your car's steering wheel [with mounting alarm] and avoid veering offroad into a tree at the same time."
+    }
+  ],
+  "e1.p2": [
+    {
+      "speaker": "alex",
+      "text": "[patient] [trying to stay calm] [gently exasperated] \"Can you just let me hold the map?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[restrained tension] you ask."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[defensive] [stubborn] [with forced confidence] \"No. [firmly] I can do this just fine,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[tense] [with growing concern] Charlie says, then"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[suddenly alarmed] [sharp and urgent] slams on the brakes"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[breathless] [tense] to round another tight bend."
+    }
+  ],
+  "e1.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [quietly ominous] [slow and atmospheric] It is late afternoon on a rural backroad deep within the Black Hills of South Dakota. [uneasy] The sun is high, but the air is cold. [with growing isolation] You've seen nothing but pine trees and two narrow winding lanes for over an hour."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[subdued] [uneasy] Your car's radio is getting weaker. [with gathering dread] It splutters out a Neil Diamond song laced with static."
+    }
+  ],
+  "e3.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[cautious and searching, with irritation under the surface] You reach forward and turn the dial."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cautious and searching, with irritation under the surface] [through a crackling car radio] The speakers vomit static"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cautious and searching, with irritation under the surface] while you scan for a signal."
+    }
+  ],
+  "e3.p2": [
+    {
+      "speaker": "charlie",
+      "text": "[irritated, sharp, and clipped] \"Please,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[irritated, sharp, and clipped] Charlie barks, and turns the radio off."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[irritated, sharp, and clipped] \"I can't think with all that noise.\""
+    }
+  ],
+  "e3.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[awkward and chastened, with hurt held back] You raise your hands defensively."
+    },
+    {
+      "speaker": "alex",
+      "text": "[awkward and chastened, with hurt held back] \"Sorry,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[awkward and chastened, with hurt held back] you say, but Charlie ignores you. You stare at them for a few seconds, then sigh and turn to stare out the window. You watch the muddy green blur of passing trees for several minutes."
+    }
+  ],
+  "e3.p4": [
+    {
+      "speaker": "charlie",
+      "text": "[briefly relieved, still tightly wound] \"Finally,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[briefly relieved, still tightly wound] Charlie says. They jab a finger down at the still tangled map."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[briefly relieved, still tightly wound] \"It's the next left.\""
+    }
+  ],
+  "e3.p5": [
+    {
+      "speaker": "narrator",
+      "text": "[quiet and restrained, with unresolved tension] You peer ahead and spot a tiny unpaved road cutting deeper into the forest. Charlie pulls onto it and the two of you weave through the trees in silence."
+    }
+  ],
+  "e7.p1": [
+    {
+      "speaker": "alex",
+      "text": "[gently corrective, trying not to provoke] \"We're off of I-90, remember?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[gently corrective, trying not to provoke] you say."
+    }
+  ],
+  "e7.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[sulky and resentful, spoken under the breath] After a few moments of sulking, Charlie mutters a response,"
+    },
+    {
+      "speaker": "charlie",
+      "text": "[sulky and resentful, spoken under the breath] [whispering] \"I remember.\""
+    }
+  ],
+  "e7.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[tense and escalating, then withdrawing into bitter silence] You reach over."
+    },
+    {
+      "speaker": "alex",
+      "text": "[tense and escalating, then withdrawing into bitter silence] \"Here, lemme help with tha-\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[tense and escalating, then withdrawing into bitter silence] \"No!\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[tense and escalating, then withdrawing into bitter silence] Charlie yanks the map away."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[tense and escalating, then withdrawing into bitter silence] \"Alex, just let me, okay?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[tense and escalating, then withdrawing into bitter silence] You put your hands up defensively and roll your eyes. Charlie drives on determinedly for a few more minutes before spotting a tiny unpaved road cutting deeper into the forest. Charlie pulls onto it, and the two of you weave through the trees in silence."
+    }
+  ],
+  "e4.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[tender and conciliatory, with cautious hope] Charlie seems agitated. It's been over three hours in the car, so that's understandable. You reach over, put a hand on their leg, and squeeze. You see them smile just a little in response."
+    }
+  ],
+  "e4.p2": [
+    {
+      "speaker": "charlie",
+      "text": "[softly reassuring, gradually turning cold and ominous] \"Not far now,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[softly reassuring, gradually turning cold and ominous] Charlie says. \"Good. I can't wait to stretch my legs.\" You continue deeper into the forest. The little road you're on winds erratically, dipping up and down as it dodges between hills. The sky gets lost in the branches of pine trees. As the evening shadows lengthen, you feel cold seeping in from outside."
+    }
+  ],
+  "e8.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[weary and bitter, resentment simmering beneath the words] Charlie's sulking. This vacation is turning out exactly like you thought it would. Charlie always insists on driving, gets lost, and then refuses to ask for help."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[weary and bitter, resentment simmering beneath the words] [quietly, introspectively] The weekend is shaping up to be a nightmare."
+    }
+  ],
+  "e8.p2": [
+    {
+      "speaker": "charlie",
+      "text": "[defensive and forced-casual, with gathering unease] \"Anyways,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[defensive and forced-casual, with gathering unease] Charlie says,"
+    },
+    {
+      "speaker": "charlie",
+      "text": "[defensive and forced-casual, with gathering unease] \"it's not far now.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[defensive and forced-casual, with gathering unease] Charlie drives deeper into the forest. The little road you're on winds erratically, dipping up and down as it weaves between hills. Above you, thick gray clouds obscure the sunlight. Soon, the sky gets lost in the branches of pine trees. You feel the cold seeping in from outside."
+    }
+  ],
+  "e5.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[cinematic and foreboding, slowly building dread] After a few minutes, a few more turns, and a few miles' travel deeper into the forest, the sun sets. Your car's headlights cut into the darkness, revealing the road ahead just a few feet at a time. Eventually, the lights drift over the front of a cabin, reflecting off two windows on either side of a front door, which seem to"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic and foreboding, slowly building dread] [uneasy, uncanny] stare back at you, ominously"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic and foreboding, slowly building dread] ."
+    }
+  ],
+  "e5.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[weary relief overtaken by a sudden visceral chill] The car stops and the headlights shut off."
+    },
+    {
+      "speaker": "alex",
+      "text": "[weary relief overtaken by a sudden visceral chill] \"Finally,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[weary relief overtaken by a sudden visceral chill] you sigh, and step out onto the gravel driveway. As you walk around to the trunk to help with the suitcases, the cold night air"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[weary relief overtaken by a sudden visceral chill] [tense, frightened, ominous] seizes around you like a vice"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[weary relief overtaken by a sudden visceral chill] ."
+    }
+  ],
+  "e5.p3": [
+    {
+      "speaker": "charlie",
+      "text": "[casual on the surface, shivering underneath] \"Are you hungry?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[casual on the surface, shivering underneath] Charlie asks, while you try to keep from shivering."
+    }
+  ],
+  "e6.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[tired but agreeable, seeking ordinary comfort] You nod."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[tired but agreeable, seeking ordinary comfort] [whispering] \"Sure. Hamburgers?\""
+    }
+  ],
+  "e6.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[light and domestic, with the cold lingering at the edges] [whispering] \"Hamburgers it is.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[light and domestic, with the cold lingering at the edges] You take a brown grocery bag from the car's trunk, grab your suitcase, and walk to the cabin door. Charlie opens it up and steps inside. You follow, closing the door behind you to keep the chill out."
+    }
+  ],
+  "e12.p1": [
+    {
+      "speaker": "alex",
+      "text": "[matter-of-fact and tired] \"Not especially,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[matter-of-fact and tired] you say."
+    }
+  ],
+  "e12.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[hungry and conversational, settling into routine] \"All right, let's eat soon though. I'm starved.\" You take a brown grocery bag from the car's trunk, grab your suitcase, and walk to the cabin door. Charlie opens it up and steps inside. You follow, closing the door behind you to keep the chill out."
+    }
+  ],
+  "e11.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[observant and dry, with claustrophobic unease slowly creeping in] The cabin isn't very big; it's just one central room with a double bed, a chest of drawers, and a corner set up to serve as a kitchen. There's no microwave; both the oven and stove use gas. You see two doors: one goes to the rear of the cabin while another leads to a small bathroom."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[observant and dry, with claustrophobic unease slowly creeping in] [quietly, introspectively] You just know it's going to be freezing in there."
+    }
+  ],
+  "e11.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[hushed and uncanny, lingering on the half-light] On the wall opposite the bed is a TV and VCR unit sitting on top of a cupboard. The whole cabin is lit by muted yellow bulbs."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[hushed and uncanny, lingering on the half-light] [uneasy, uncanny] It's not dark but it's not quite light either."
+    }
+  ],
+  "e11.p3": [
+    {
+      "speaker": "charlie",
+      "text": "[casual, then subtly isolated] \"I'll be in the john,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[casual, then subtly isolated] Charlie says, then steps inside the small bathroom and shuts the door. You are left alone."
+    }
+  ],
+  "e11.p4": [
+    {
+      "speaker": "narrator",
+      "text": "[wryly observant, with faint mechanical menace] You put your suitcase on the bed, take out a few essentials, then move to the kitchen and unpack your groceries. There is a gas fridge and icebox that, judging by the steady and not-at-all-soft hum emanating from it, was installed sometime in the 1970s."
+    }
+  ],
+  "e13.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[methodical and domestic, ending in puzzled unease] You unpack ingredients for hamburgers. You find matches in a drawer, hold a lit one to the stove's gas burner, and turn the dial."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[methodical and domestic, ending in puzzled unease] [uneasy, uncanny] Nothing happens."
+    }
+  ],
+  "e13.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[muttering in annoyance, then briskly relieved] [whispering] \"Damn thing.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[muttering in annoyance, then briskly relieved] You ignore the front-left burner and use the front-right instead. It lights up super quick."
+    }
+  ],
+  "e13.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[relaxed and mundane, with comic relief] You've got patties frying and are chopping tomatoes when you hear the toilet flush. Charlie emerges from the bathroom soon after, sighing contentedly."
+    }
+  ],
+  "e13.p4": [
+    {
+      "speaker": "narrator",
+      "text": "[embarrassed, comic, and conspiratorial] [whispering] \"Woof… sorry. I've been holding onto that one since we left Pierre.\""
+    }
+  ],
+  "e13.p5": [
+    {
+      "speaker": "narrator",
+      "text": "[dryly amused, softening into vulnerable intimacy] \"How charming,\" you mutter. Charlie comes up behind you and wraps their arms around your waist. You feel their breath on your neck, then the brush of a kiss against your cheek."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[dryly amused, softening into vulnerable intimacy] \"I love you,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[dryly amused, softening into vulnerable intimacy] Charlie whispers."
+    }
+  ],
+  "e16.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[quietly introspective and doubtful, with old hurt underneath] There's a little round table in the corner of the kitchen. You sit at it and rest your head in your hands. You wonder how much Mark—Charlie's brother—paid for this place, and"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[quietly introspective and doubtful, with old hurt underneath] [quietly, introspectively] whether it had been worth it"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[quietly introspective and doubtful, with old hurt underneath] considering he's never out here. You also wonder"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[quietly introspective and doubtful, with old hurt underneath] [quietly, introspectively] if the cabin fixed his marriage"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[quietly introspective and doubtful, with old hurt underneath] like it's supposed to be helping you and Charlie's relationship. Somehow, you doubt it."
+    }
+  ],
+  "e16.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[embarrassed and playfully crude, breaking the tension] Charlie emerges from the bathroom, sighing contentedly."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[embarrassed and playfully crude, breaking the tension] \""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[embarrassed and playfully crude, breaking the tension] [whispering] Woof…"
+    },
+    {
+      "speaker": "charlie",
+      "text": "[embarrassed and playfully crude, breaking the tension] sorry. I've been holding onto that one since we left Pierre.\""
+    }
+  ],
+  "e16.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[guarded sarcasm melting into tender vulnerability] \"How charming,\" you mutter. Charlie comes up behind you and wraps their arms around your waist. You feel their breath on your neck, then the brush of a kiss against your cheek."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[guarded sarcasm melting into tender vulnerability] \"I love you,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[guarded sarcasm melting into tender vulnerability] Charlie whispers."
+    }
+  ],
+  "e14.p1": [
+    {
+      "speaker": "charlie",
+      "text": "[warm, affectionate, and playfully practical] \"I love you, too.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[warm, affectionate, and playfully practical] You turn your head toward Charlie and kiss back. \"Now scoot! I need to finish dinner.\""
+    }
+  ],
+  "e14.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[easy and hopeful, savoring a fragile moment] You busy yourself in the kitchen while Charlie flops onto the bed."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[easy and hopeful, savoring a fragile moment] \"I'm so glad we're here.\""
+    }
+  ],
+  "e14.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[gentle but emotionally cautious, hope shadowed by doubt] \"Me too.\" \"I think it'll be really good for us; you know?\" \"Yeah.\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[gentle but emotionally cautious, hope shadowed by doubt] \"Like Doctor O'Brien told us,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[gentle but emotionally cautious, hope shadowed by doubt] Charlie says, staring at the cabin's warped reflection in the mirror black TV screen, \"getting away from everything to just focus on us will be great. I think it could be really healing…\""
+    }
+  ],
+  "e17.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[carefully neutral, avoiding emotional intimacy] \"How do you want your burger?\""
+    }
+  ],
+  "e17.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[stiff and awkward, then cautiously hopeful] \"Erm. Medium, I guess.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[stiff and awkward, then cautiously hopeful] \"Okay. Thanks.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[stiff and awkward, then cautiously hopeful] You stay in the kitchen. Charlie hovers uncertainly for a moment, then walks away and flops down on the bed."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[stiff and awkward, then cautiously hopeful] \"I'm so glad we're here.\""
+    }
+  ],
+  "e17.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[gentle but emotionally distant, hope sounding rehearsed] \"Me too.\" \"I think it'll be really good for us; you know?\" \"Yeah.\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[gentle but emotionally distant, hope sounding rehearsed] \"Like Doctor O'Brien told us,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[gentle but emotionally distant, hope sounding rehearsed] Charlie says, staring at the cabin's warped reflection in the mirror black TV screen, \"getting away from everything to just focus on us will be great. I think it could be really healing…\""
+    }
+  ],
+  "e18.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[tentative, quietly asking for reassurance] \"You still wanna go on a hike with me tomorrow?\""
+    }
+  ],
+  "e18.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[strained and awkward, forcing cheerfulness after a brittle laugh] Charlie chuckles."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[strained and awkward, forcing cheerfulness after a brittle laugh] \"Yeah, sure. I mean, what else we gonna do, right?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[strained and awkward, forcing cheerfulness after a brittle laugh] [uneasy, uncanny] Their laughter hangs awkwardly in the air for a moment."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[strained and awkward, forcing cheerfulness after a brittle laugh] Then Charlie coughs and quickly changes tone."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[strained and awkward, forcing cheerfulness after a brittle laugh] \"It's beautiful here though, really.\""
+    }
+  ],
+  "e18.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[subdued and lonely, silence carrying the emotional weight] \"Yeah.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[subdued and lonely, silence carrying the emotional weight] \"I can't wait to see the sunrise.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[subdued and lonely, silence carrying the emotional weight] After a few minutes, you serve up the burgers. Dinner passes in near total silence."
+    }
+  ],
+  "e18.p4": [
+    {
+      "speaker": "charlie",
+      "text": "[carefully upbeat, trying to rescue the evening] \"What about tonight though?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[carefully upbeat, trying to rescue the evening] Charlie asks. You swallow your last mouthful of food. \"What about it?\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[carefully upbeat, trying to rescue the evening] \"It's been a long day. How about we catch a flick?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[carefully upbeat, trying to rescue the evening] Charlie gestures at the TV."
+    }
+  ],
+  "e15.p1": [
+    {
+      "speaker": "alex",
+      "text": "[softly reassuring, with determination that is not quite convincing] \"Yeah,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[softly reassuring, with determination that is not quite convincing] you say with a faint smile."
+    },
+    {
+      "speaker": "alex",
+      "text": "[softly reassuring, with determination that is not quite convincing] \"It'll be great. I know it.\""
+    }
+  ],
+  "e15.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[quietly uneasy and reflective, letting the darkness feel unnatural] A few minutes pass, then you serve up the burgers. You and Charlie sit and eat silently."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[quietly uneasy and reflective, letting the darkness feel unnatural] [uneasy, uncanny] You find the cabin's nearby window strange."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[quietly uneasy and reflective, letting the darkness feel unnatural] Outside it's so dark that all you can see is your own reflection."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[quietly uneasy and reflective, letting the darkness feel unnatural] [uneasy, uncanny] It's like looking into a mirror."
+    }
+  ],
+  "e15.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[casual and intimate, with a trace of fatigue] \"What do you wanna do tonight?\" you ask, mouth half-full. Charlie raises an eyebrow. You roll your eyes. \"Seriously.\" \"Well, you wanna go on a hike tomorrow, right?\" You nod."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[casual and intimate, with a trace of fatigue] \"How about we just fire up a movie and take it easy?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[casual and intimate, with a trace of fatigue] Charlie gestures at the TV."
+    }
+  ],
+  "e19.p1": [
+    {
+      "speaker": "alex",
+      "text": "[agreeable and low-key] \"Sure,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[agreeable and low-key] you say."
+    }
+  ],
+  "e19.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[relaxed and domestic] Charlie grins, then takes the dishes and heads over to the sink to clean them. You walk over to the TV unit."
+    }
+  ],
+  "e19.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[curious, lightly skeptical, and conversational] It's a relatively cheap model from the late 1980s sitting on top of a dusty VCR player. You switch both on and open a cabinet beneath them, wondering what videos Charlie's brother and his wife left behind."
+    }
+  ],
+  "e19.p4": [
+    {
+      "speaker": "alex",
+      "text": "[wryly dismissive, with playful disgust] \"He sure likes scary movies,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[wryly dismissive, with playful disgust] you say, looking over the titles. Fifteen different tapes, and you're sure that covers pretty much every major slasher film of the last decade."
+    },
+    {
+      "speaker": "alex",
+      "text": "[wryly dismissive, with playful disgust] \"God, none of these looks good.\""
+    }
+  ],
+  "e19.p5": [
+    {
+      "speaker": "charlie",
+      "text": "[calling out lightly from across the room] \"There's not even a single comedy?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[calling out lightly from across the room] Charlie asks from the kitchen."
+    }
+  ],
+  "e25.p1": [
+    {
+      "speaker": "alex",
+      "text": "[dryly sarcastic, frustration barely disguised as humor] \"Wow, I love to drive for five hours just to sit and watch TV like we do at home.\""
+    }
+  ],
+  "e25.p2": [
+    {
+      "speaker": "charlie",
+      "text": "[defensive but coaxing, trying to keep the peace] \"Oh c'mon. It was a long drive. Let's relax. Here, let me.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[defensive but coaxing, trying to keep the peace] Charlie takes the finished dishes and starts cleaning up. \"Julie and Mark came here a bunch. He said there's plenty of movies in the cabinet. You can pick whatever one you want. I'm sure you'll see something you love.\""
+    }
+  ],
+  "e25.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[skeptical, then cautiously humoring the suggestion] \"Oh yeah?\" you ask, skeptical."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[skeptical, then cautiously humoring the suggestion] \"I promise.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[skeptical, then cautiously humoring the suggestion] Charlie nods toward the TV. \"Go on.\" You get up and go and sit in front of the TV cabinet across from the bed. It's a relatively cheap unit from the late 80s sitting on top of a dusty VCR player. You switch both on, then open a cabinet beneath, looking for videos."
+    }
+  ],
+  "e25.p4": [
+    {
+      "speaker": "alex",
+      "text": "[mocking and playful, with a dark joke landing uneasily] \"Can't see anything but horror movies,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[mocking and playful, with a dark joke landing uneasily] you say, looking over the titles. Pretty much every major slasher film of the last decade."
+    },
+    {
+      "speaker": "alex",
+      "text": "[mocking and playful, with a dark joke landing uneasily] \"None of these look any good. Unless you brought me here to"
+    },
+    {
+      "speaker": "alex",
+      "text": "[mocking and playful, with a dark joke landing uneasily] [tense, frightened, ominous] murder"
+    },
+    {
+      "speaker": "alex",
+      "text": "[mocking and playful, with a dark joke landing uneasily] me.\""
+    }
+  ],
+  "e25.p5": [
+    {
+      "speaker": "charlie",
+      "text": "[insistent and reassuring from across the room] \"No, there's got to be a comedy in there somewhere,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[insistent and reassuring from across the room] Charlie says from the kitchen."
+    }
+  ],
+  "e26.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[curious and investigative, slowly sharpening into uncanny discovery] As you're leafing through the tapes, you notice something at the back of the cabinet. You reach inside and pull it out. It's an empty slipcase for a VHS tape."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[curious and investigative, slowly sharpening into uncanny discovery] [uneasy, uncanny] It's flimsy."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[curious and investigative, slowly sharpening into uncanny discovery] Someone has scrawled a title on it in black marker:"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[curious and investigative, slowly sharpening into uncanny discovery] The Flowers in the Stream."
+    }
+  ],
+  "e26.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[puzzled and intrigued, keeping the exchange natural] You incredulously read the name aloud."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[puzzled and intrigued, keeping the exchange natural] \"What's that?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[puzzled and intrigued, keeping the exchange natural] Charlie says. \"Empty case.\" Charlie walks over, wiping their wet hands on their pants. \"I've never even heard of that movie.\""
+    }
+  ],
+  "e26.p3": [
+    {
+      "speaker": "alex",
+      "text": "[dryly disappointed, with suspicion growing] \"Should have stopped at Blockbuster,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[dryly disappointed, with suspicion growing] you mutter."
+    },
+    {
+      "speaker": "alex",
+      "text": "[dryly disappointed, with suspicion growing] \"It looks like a bootleg. This is just the box though; I can't find the tape.\""
+    }
+  ],
+  "e26.p4": [
+    {
+      "speaker": "charlie",
+      "text": "[tentatively hopeful, listening closely to the machine] \"Maybe it's still in the VCR?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[tentatively hopeful, listening closely to the machine] Charlie leans over and presses the eject button. There is a whirring of internal mechanisms, then the unit spits out a tape."
+    }
+  ],
+  "e26.p5": [
+    {
+      "speaker": "charlie",
+      "text": "[briefly triumphant and playful, willing to take the risk] \"Ah-hah!\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[briefly triumphant and playful, willing to take the risk] Charlie says. You nod. \"Okay. Well, rewind it and we'll take our chances. It can't be worse than any of these.\" You gesture at the smattering of schlocky horror tapes."
+    }
+  ],
+  "e20.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[playfully disgusted and performative] You take out the tapes and go through them one by one, rolling your eyes and performatively gagging at each cover as you go."
+    }
+  ],
+  "e20.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[companionable and mildly rueful] Charlie walks over and joins you."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[companionable and mildly rueful] \"Maybe we should have stopped by a Blockbuster on the way.\""
+    }
+  ],
+  "e20.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[skeptical, teasing, and conversational] \"You're telling me. These covers all look cheap. Think they're bootlegged?\""
+    }
+  ],
+  "e20.p4": [
+    {
+      "speaker": "charlie",
+      "text": "[casual and dismissive, trying to remember] \"Probably.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[casual and dismissive, trying to remember] Charlie shrugs. \"I could have sworn he said there was more than just horror. He said they watched something that sounded like a chick flick last time they came up.\""
+    }
+  ],
+  "e20.p5": [
+    {
+      "speaker": "charlie",
+      "text": "[curious and expectant, with mechanical tension underneath] \"Maybe it's still in the VCR?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[curious and expectant, with mechanical tension underneath] Charlie leans over and presses the eject button on the machine. There is a whirring of mechanical internals then the unit spits out a tape."
+    }
+  ],
+  "e20.p6": [
+    {
+      "speaker": "charlie",
+      "text": "[small triumphant laugh, then reckless amusement] \"Ah-hah!\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[small triumphant laugh, then reckless amusement] Charlie says. \"Is it blank?\" you ask. \"Nothing written on it. But they're bootlegs, right?\" You shrug. \"Whatever. Rewind it and we'll take our chances. It can't be worse than any of these.\""
+    }
+  ],
+  "e21.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[casual at first, then quietly unsettled by the reflection] You grab your bag with one hand and head for the bathroom."
+    },
+    {
+      "speaker": "alex",
+      "text": "[casual at first, then quietly unsettled by the reflection] \"I'll be right back,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[casual at first, then quietly unsettled by the reflection] you say, and slip inside. It's even colder in the bathroom. You set the bag on the sink and blink at your reflection"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[casual at first, then quietly unsettled by the reflection] [uneasy, uncanny] staring back at you from a nearby mirror"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[casual at first, then quietly unsettled by the reflection] ."
+    }
+  ],
+  "e21.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[slow-building unease, startled by the creak, then annoyed at oneself] The door"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[slow-building unease, startled by the creak, then annoyed at oneself] [tense, frightened, ominous] creaks open just a little"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[slow-building unease, startled by the creak, then annoyed at oneself] . You sigh and push it closed again but it doesn't take. You look closer and see a little latch at head height. The door obviously can't hold itself shut unless it's locked. You roll your eyes, ignore the door, and brush your teeth."
+    }
+  ],
+  "e21.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[relieved to return, warm and domestic] A few minutes later you return to the main room and change while Charlie waits patiently on the bed. The movie is all set up, paused at the beginning. You climb up onto the bed and settle in as well."
+    }
+  ],
+  "e21.p4": [
+    {
+      "speaker": "charlie",
+      "text": "[playful and teasing] \"Ready for the random, hopefully-not-horror film?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[playful and teasing] Charlie asks."
+    }
+  ],
+  "e21.p5": [
+    {
+      "speaker": "alex",
+      "text": "[bright and eager, settling in comfortably] \"Sure am, start it up!\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[bright and eager, settling in comfortably] You smile and slip under the blankets. Charlie presses"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[bright and eager, settling in comfortably] play"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[bright and eager, settling in comfortably] on the remote."
+    }
+  ],
+  "e28.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[relaxed, tired, and physically comfortable] You flop onto the bed and stretch your legs. Charlie rewinds the tape, takes the VCR remote, then lays down next to you."
+    }
+  ],
+  "e28.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[cozy and playful, with easy affection] \"Cozy?\" \"Yep,\" you say."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[cozy and playful, with easy affection] \"Alright. Wildcard movie is go.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cozy and playful, with easy affection] Charlie smiles, then hits play."
+    }
+  ],
+  "e22.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[hushed curiosity sliding into subtle wrongness] When the film begins, the screen is black. There is faint music but"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[hushed curiosity sliding into subtle wrongness] [uneasy, uncanny] no opening credits"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[hushed curiosity sliding into subtle wrongness] . Then, the screen cuts to blurry footage that was clearly recorded on a hand-held camera."
+    }
+  ],
+  "e22.p2": [
+    {
+      "speaker": "alex",
+      "text": "[puzzled, then embarrassed and lightly amused] \"Is this one of Mark's home movies?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[puzzled, then embarrassed and lightly amused] you ask. Charlie laughs then reaches for the remote."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[puzzled, then embarrassed and lightly amused] \"Oh wow. I'm sorry.\""
+    }
+  ],
+  "e22.p3": [
+    {
+      "speaker": "alex",
+      "text": "[suddenly alert, recognition dawning] \"Wait a second, that looks familiar,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[suddenly alert, recognition dawning] you say, pointing at the TV. Charlie hesitates."
+    }
+  ],
+  "e22.p4": [
+    {
+      "speaker": "narrator",
+      "text": "[cinematic and watchful, steadily tightening the suspense] On screen, you see a wall of tall forest trees. Leaves and pine needles crunch under the feet of whoever's filming. The camera pans across the landscape, creating a blur of greens and browns. Suddenly, you spot Mark's cabin, standing alone in its little clearing. A dull red sedan is parked out front."
+    }
+  ],
+  "e22.p5": [
+    {
+      "speaker": "charlie",
+      "text": "[recognizing and nostalgic at first, then disturbed by the abrasive sound] \"That's Julie's car,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[recognizing and nostalgic at first, then disturbed by the abrasive sound] Charlie says. \"This must have been after their wedding.\" The camera is shaky. Wind rushes against the microphone, causing a brief flurry of horrid scraping from the speakers. There's movement near the red car. A woman, Julie, is taking bags from the trunk. She's smiling."
+    }
+  ],
+  "e22.p6": [
+    {
+      "speaker": "charlie",
+      "text": "[matter-of-fact, thinking aloud] \"Yeah,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[matter-of-fact, thinking aloud] Charlie says. \"This is at least five, six years ago.\""
+    }
+  ],
+  "e22.p7": [
+    {
+      "speaker": "narrator",
+      "text": "[quietly uncanny, lingering on the unheard exchange] Julie turns as the cabin door opens. Mark steps out, walks over, and takes one of the bags from her. They smile and"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[quietly uncanny, lingering on the unheard exchange] [uneasy, uncanny] exchange unheard words"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[quietly uncanny, lingering on the unheard exchange] ."
+    }
+  ],
+  "e22.p8": [
+    {
+      "speaker": "narrator",
+      "text": "[shocked realization escalating rapidly into sensory panic and unbearable dread] [uneasy, uncanny] You sit bolt upright."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[shocked realization escalating rapidly into sensory panic and unbearable dread] \"What the hell?\" \"What's wrong? It's only Mark.\" \"Yeah, so who's filming?\" Charlie stammers and blinks. On the screen, Mark and Julie go inside and close the door behind them. The camera zooms in toward the window. The picture is a grainy blur of colors. You see movement in the cabin. The camera zooms even closer. Then, harsh wind picks up and"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[shocked realization escalating rapidly into sensory panic and unbearable dread] [through a crackling car radio] howls through the speakers"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[shocked realization escalating rapidly into sensory panic and unbearable dread] . The image smashes to a slurry of loud static."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[shocked realization escalating rapidly into sensory panic and unbearable dread] [through a crackling car radio] White noise booms out into the room."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[shocked realization escalating rapidly into sensory panic and unbearable dread] The sound drills into your skull."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[shocked realization escalating rapidly into sensory panic and unbearable dread] [tense, frightened, ominous] You feel like it's going to make your head explode."
+    }
+  ],
+  "e29.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[panicked and disoriented, fighting through overwhelming noise] You clamp your hands hard over your ears but somehow"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[panicked and disoriented, fighting through overwhelming noise] [through a crackling car radio] the static still seeps in"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[panicked and disoriented, fighting through overwhelming noise] . Charlie, next to you, does the same."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[panicked and disoriented, fighting through overwhelming noise] [uneasy, uncanny] Their lips are moving, but you can't tell what they're saying."
+    }
+  ],
+  "e29.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[shouting in desperation, nearly swallowed by the sound] [shouting] You yell something about the remote"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[shouting in desperation, nearly swallowed by the sound] , but even your own voice is lost, hidden beneath"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[shouting in desperation, nearly swallowed by the sound] [through a crackling car radio] the TV's digital wailing"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[shouting in desperation, nearly swallowed by the sound] ."
+    }
+  ],
+  "e29.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[frantic and hallucinatory, accelerating toward a raw scream] Charlie pulls one hand down and fiddles with the remote."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[frantic and hallucinatory, accelerating toward a raw scream] [through a crackling car radio] The screeching continues."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[frantic and hallucinatory, accelerating toward a raw scream] Charlie snarls, tosses the remote aside, then staggers over to the TV. You watch them go. The TV looks reflected somehow in the windows behind it. Pine trees stand guard on the Black Hills outside, but they're riddled with static."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[frantic and hallucinatory, accelerating toward a raw scream] [through a crackling car radio] Riddled with static."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[frantic and hallucinatory, accelerating toward a raw scream] Static."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[frantic and hallucinatory, accelerating toward a raw scream] [shouting] STATIC!"
+    }
+  ],
+  "e29.p4": [
+    {
+      "speaker": "narrator",
+      "text": "[breathless and shaken, the sudden silence ringing painfully] You clamp your eyes shut. Charlie turns the dial on the TV and kills the noise. The screen goes black."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[breathless and shaken, the sudden silence ringing painfully] [through a crackling car radio] A blaring ring"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[breathless and shaken, the sudden silence ringing painfully] lingers a little in your ears."
+    }
+  ],
+  "e29.p5": [
+    {
+      "speaker": "alex",
+      "text": "[gasping, angry, and confused] \"What in the hell was that?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[gasping, angry, and confused] you ask. Charlie catches their breath for a moment, then shrugs."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[gasping, angry, and confused] \"I dunno...\""
+    }
+  ],
+  "e29.p6": [
+    {
+      "speaker": "narrator",
+      "text": "[rattled sarcasm used to cover fear] \"How the hell was it so damn loud?\" \"Top of the range speakers?\" You roll your eyes."
+    },
+    {
+      "speaker": "alex",
+      "text": "[rattled sarcasm used to cover fear] \"Great. At least there's a top TV to watch a creepy peeping Tom video on.\""
+    }
+  ],
+  "e29.p7": [
+    {
+      "speaker": "charlie",
+      "text": "[dismissive but uneasy, arguing against the implication] \"Oh, c'mon. That wasn't a peeping Tom.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[dismissive but uneasy, arguing against the implication] Charlie gestures to the TV cabinet. \"Why would Mark and Julie have the tape?\""
+    }
+  ],
+  "e23.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[urgent and physically distressed by the noise] You dart from the bed, grimacing at the"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[urgent and physically distressed by the noise] [through a crackling car radio] ear-splitting noise"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[urgent and physically distressed by the noise] . You switch the dial and kill the TV."
+    }
+  ],
+  "e23.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[breathless comic irritation after the shock] Charlie is sitting on the bed with their hands clamped over their ears like a dope."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[breathless comic irritation after the shock] \"Sorry, it's only a remote for the VCR. There's no volume control.\""
+    }
+  ],
+  "e23.p3": [
+    {
+      "speaker": "alex",
+      "text": "[angry, shaken, and demanding an answer] \"What the hell was that?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[angry, shaken, and demanding an answer] you ask angrily as you step away and slump back onto the bed."
+    }
+  ],
+  "e23.p4": [
+    {
+      "speaker": "narrator",
+      "text": "[deflecting with nervous humor, refusing to dwell on the fear] Charlie shrugs. \"I dunno.\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[deflecting with nervous humor, refusing to dwell on the fear] \"Mark and Julie came out here with someone else?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[deflecting with nervous humor, refusing to dwell on the fear] Charlie laughs. \"I don't really want to think about what my brother and his wife might get up to when they're out here.\""
+    }
+  ],
+  "e23.p5": [
+    {
+      "speaker": "narrator",
+      "text": "[disgusted and unsettled, emphasizing the violation] You roll your eyes."
+    },
+    {
+      "speaker": "alex",
+      "text": "[disgusted and unsettled, emphasizing the violation] \"That was creepy. It was like a"
+    },
+    {
+      "speaker": "alex",
+      "text": "[disgusted and unsettled, emphasizing the violation] [uneasy, uncanny] peeping Tom"
+    },
+    {
+      "speaker": "alex",
+      "text": "[disgusted and unsettled, emphasizing the violation] .\""
+    }
+  ],
+  "e23.p6": [
+    {
+      "speaker": "charlie",
+      "text": "[firmly dismissive, trying to rationalize what happened] \"Well, we know it's not.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[firmly dismissive, trying to rationalize what happened] Charlie gestures to the TV cabinet. \"Why would Mark and Julie have the tape?\""
+    }
+  ],
+  "e24.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[coldly resentful, anger breaking through exhaustion] You sigh."
+    },
+    {
+      "speaker": "alex",
+      "text": "[coldly resentful, anger breaking through exhaustion] \"Whatever. You always know best, right?\""
+    }
+  ],
+  "e24.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[defensive and escalating, then shutting the argument down] Charlie frowns."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[defensive and escalating, then shutting the argument down] \"What's that supposed to mean?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[defensive and escalating, then shutting the argument down] You remember the car ride up. The way Charlie was reading the map while driving, refusing your help, and getting lost over and over."
+    },
+    {
+      "speaker": "alex",
+      "text": "[defensive and escalating, then shutting the argument down] \"Never mind,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[defensive and escalating, then shutting the argument down] you say, then roll over in bed."
+    },
+    {
+      "speaker": "alex",
+      "text": "[defensive and escalating, then shutting the argument down] \"Can you get the light?\""
+    }
+  ],
+  "e24.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[hurt and withdrawn, voice tight with finality] \"You don't want to watch a movie anymore?\""
+    },
+    {
+      "speaker": "alex",
+      "text": "[hurt and withdrawn, voice tight with finality] \"No,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[hurt and withdrawn, voice tight with finality] you say, and pull the blanket tight around yourself."
+    },
+    {
+      "speaker": "alex",
+      "text": "[hurt and withdrawn, voice tight with finality] \"I just want to sleep.\""
+    }
+  ],
+  "e24.p4": [
+    {
+      "speaker": "narrator",
+      "text": "[frustrated resignation, conflict still hanging unfinished] Charlie sighs,"
+    },
+    {
+      "speaker": "charlie",
+      "text": "[frustrated resignation, conflict still hanging unfinished] \"Fine.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[frustrated resignation, conflict still hanging unfinished] You feel the bed shift as they stand. \"I just think that—\""
+    }
+  ],
+  "e24.p5": [
+    {
+      "speaker": "narrator",
+      "text": "[sudden explosive terror, frantic and nearly overwhelmed by the sound] [through a crackling car radio] The TV set blares to life again."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[sudden explosive terror, frantic and nearly overwhelmed by the sound] It bellows static throughout the cabin."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[sudden explosive terror, frantic and nearly overwhelmed by the sound] [through a crackling car radio] Thunderous scraping and coughing bounces off the walls."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[sudden explosive terror, frantic and nearly overwhelmed by the sound] You thrash and cover your ears. Charlie swears but you can hardly hear it. The noise builds to a frenetic peak. It's almost unbearable. Then, just as quickly as it began, the noise stops and the TV falls silent."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[sudden explosive terror, frantic and nearly overwhelmed by the sound] [uneasy, uncanny] All the lights in the cabin go dead."
+    }
+  ],
+  "e24.p6": [
+    {
+      "speaker": "narrator",
+      "text": "[hushed and stunned, letting the final fact land] [uneasy, uncanny] The power is out."
+    }
+  ],
+  "e30.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[shaken but deliberately calming down, forcing the fear aside] You shake your head and take a deep breath."
+    },
+    {
+      "speaker": "alex",
+      "text": "[shaken but deliberately calming down, forcing the fear aside] \"You're right. It's stupid. Let's just forget about… whatever the hell that was.\""
+    }
+  ],
+  "e30.p2": [
+    {
+      "speaker": "charlie",
+      "text": "[tentatively playful, rebuilding a sense of normality] \"You still wanna watch a movie?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[tentatively playful, rebuilding a sense of normality] Charlie asks. \"Sure. Whatever is fine. One of those schlocky flicks…,\" you say. Charlie gets up. \"My pick?\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[tentatively playful, rebuilding a sense of normality] \"Your pick.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[tentatively playful, rebuilding a sense of normality] Charlie smiles and looks over the tapes in the cabinet. \"Ooh! This is a good one.\" You lean forward to look at a tape that has a guy wearing a pumpkin on his head as the cover. \"I think even you'll like it, babe.\""
+    }
+  ],
+  "e30.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[warm teasing and animated storytelling, cut off mid-thought] \"Somehow, I doubt it.\" You smile."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[warm teasing and animated storytelling, cut off mid-thought] \"No, seriously,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[warm teasing and animated storytelling, cut off mid-thought] Charlie says, and slips the tape from the case."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[warm teasing and animated storytelling, cut off mid-thought] \"It's about this guy who's a writer, and he drives up to this secluded town in Maine, right?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[warm teasing and animated storytelling, cut off mid-thought] Charlie hits eject on the VCR. \"And anyway, when he—\""
+    }
+  ],
+  "e30.p4": [
+    {
+      "speaker": "narrator",
+      "text": "[sudden violent alarm, loud and disorienting] [tense, frightened, ominous] The TV set blares to life."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[sudden violent alarm, loud and disorienting] It bellows static through the cabin."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[sudden violent alarm, loud and disorienting] [through a crackling car radio] Thunderous scraping and coughing bounces off the walls."
+    }
+  ],
+  "e30.p5": [
+    {
+      "speaker": "narrator",
+      "text": "[frantic sensory panic collapsing into stunned silence] You thrash and cover your ears. Charlie swears but you can hardly hear it."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[frantic sensory panic collapsing into stunned silence] [through a crackling car radio] The noise builds to a frenetic peak."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[frantic sensory panic collapsing into stunned silence] [tense, frightened, ominous] It's almost unbearable."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[frantic sensory panic collapsing into stunned silence] Then, just as quick as it began, the noise stops, and the TV falls silent. All the lights in the cabin go dead."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[frantic sensory panic collapsing into stunned silence] [uneasy, uncanny] The power is out."
+    }
+  ],
+  "e31.p1": [
+    {
+      "speaker": "alex",
+      "text": "[small and uncertain, calling cautiously into total darkness] \"Charlie?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[small and uncertain, calling cautiously into total darkness] you ask the darkness."
+    }
+  ],
+  "e31.p2": [
+    {
+      "speaker": "charlie",
+      "text": "[hushed and disoriented, fumbling for a practical explanation] \"Yeah?\""
+    },
+    {
+      "speaker": "alex",
+      "text": "[hushed and disoriented, fumbling for a practical explanation] \"What was that?\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[hushed and disoriented, fumbling for a practical explanation] \"Power's out, I think.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[hushed and disoriented, fumbling for a practical explanation] You hear scrambling in the darkness as Charlie shuffles along the floor, one hand touching the wall. They flick the light switch several times."
+    }
+  ],
+  "e31.p3": [
+    {
+      "speaker": "alex",
+      "text": "[anxious questioning answered with uneasy uncertainty] \"I thought this place was on solar power?\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[anxious questioning answered with uneasy uncertainty] \"Well, I guess solar power still runs out.\""
+    },
+    {
+      "speaker": "alex",
+      "text": "[anxious questioning answered with uneasy uncertainty] \"Is there a back-up or anything?\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[anxious questioning answered with uneasy uncertainty] \"I dunno. I guess I'll have to head into town and call Mark in the morning.\""
+    }
+  ],
+  "e31.p4": [
+    {
+      "speaker": "alex",
+      "text": "[bitterly frustrated, then forcing resignation] \"Oh, that's just great.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[bitterly frustrated, then forcing resignation] You pull your legs to your chest."
+    },
+    {
+      "speaker": "alex",
+      "text": "[bitterly frustrated, then forcing resignation] \"Okay, whatever.\""
+    }
+  ],
+  "e31.p5": [
+    {
+      "speaker": "narrator",
+      "text": "[slow and intimate, anxiety steadily tightening in the chest] You're not used to this level of dark. The city doesn't get dark like this. You raise your hand in front of your face. You can't even see its outline. You feel anxiety rising in your chest."
+    }
+  ],
+  "e32.p1": [
+    {
+      "speaker": "alex",
+      "text": "[vulnerable and quietly pleading for closeness] \"Charlie, can you come to bed?\""
+    }
+  ],
+  "e32.p2": [
+    {
+      "speaker": "charlie",
+      "text": "[gentle and reassuring, every tiny sound unnaturally vivid] \"Sure.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[gentle and reassuring, every tiny sound unnaturally vivid] The bedframe creaks as Charlie crawls onto it. In the silence following the outburst from the TV, even the slightest sound rings deafeningly loud in the quiet. You feel Charlie cuddle up close to you."
+    }
+  ],
+  "e32.p3": [
+    {
+      "speaker": "charlie",
+      "text": "[soft, apologetic, and tender] \"I'm sorry,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[soft, apologetic, and tender] Charlie says."
+    },
+    {
+      "speaker": "alex",
+      "text": "[soft, apologetic, and tender] \"Don't be.\""
+    }
+  ],
+  "e32.p4": [
+    {
+      "speaker": "charlie",
+      "text": "[calmly reassuring, trying to make the danger feel ordinary] \"Must just be an old shoddy set. I think Mark has had it since the 80s. We'll fix it tomorrow.\""
+    }
+  ],
+  "e32.p5": [
+    {
+      "speaker": "narrator",
+      "text": "[hushed and soothing, gradually drifting into sleep with faint unease outside] You murmur softly in agreement. Charlie wraps an arm around you. You feel their breathing on the back of your neck. It slows quickly and soon fades into the gentle rumble of sleep. The sound is steady and calming. Before long, you drift off, too. The only sound that disturbs you is the faint creaking of pines echoing softly through the Black Hills."
+    }
+  ],
+  "e33.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[irritable and uncomfortable, emotionally shut down] This cabin sucks. You shift around on the lumpy bed and try to get comfortable. Charlie joins you before long. The bedframe creaks when they settle onto it."
+    }
+  ],
+  "e33.p2": [
+    {
+      "speaker": "charlie",
+      "text": "[tentative concern met with tired, defensive anger] \"…Babe?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[tentative concern met with tired, defensive anger] Charlie says."
+    },
+    {
+      "speaker": "alex",
+      "text": "[tentative concern met with tired, defensive anger] \"What?\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[tentative concern met with tired, defensive anger] \"Are you going to sleep?\""
+    },
+    {
+      "speaker": "alex",
+      "text": "[tentative concern met with tired, defensive anger] \"What else am I supposed to do? The power is out and we're in the middle of the woods.\""
+    }
+  ],
+  "e33.p3": [
+    {
+      "speaker": "charlie",
+      "text": "[hurt and subdued, afraid to disturb the silence] \"Okay, sorry.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[hurt and subdued, afraid to disturb the silence] Charlie rolls over. At least you think they do. It's hard to tell in the dark. After a few moments, they speak again."
+    }
+  ],
+  "e33.p4": [
+    {
+      "speaker": "charlie",
+      "text": "[quietly rationalizing, trying to offer reassurance] \"Must just be an old shoddy TV. I think Mark has had it since the 80s.\""
+    }
+  ],
+  "e33.p5": [
+    {
+      "speaker": "alex",
+      "text": "[cold and impatient, masking fear with irritation] \"I don't care. Can we just make sure the power is back tomorrow?\""
+    }
+  ],
+  "e33.p6": [
+    {
+      "speaker": "charlie",
+      "text": "[strained and lonely, insomnia deepening into nocturnal dread before exhausted relief] \"Yeah. I'll do everything I can.\""
+    },
+    {
+      "speaker": "alex",
+      "text": "[strained and lonely, insomnia deepening into nocturnal dread before exhausted relief] \"Fine. Goodnight then,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[strained and lonely, insomnia deepening into nocturnal dread before exhausted relief] you say."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[strained and lonely, insomnia deepening into nocturnal dread before exhausted relief] \"Goodnight.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[strained and lonely, insomnia deepening into nocturnal dread before exhausted relief] Charlie doesn't stay awake long. You hear their breathing slow quickly and fade into the gentle rumble of sleep. For you, sleep comes much later. The creaking of pines, the howl of cold wind, and other strange and unidentifiable sounds echo through the Black Hills around you."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[strained and lonely, insomnia deepening into nocturnal dread before exhausted relief] [tense, frightened, ominous] The anxiety in your chest burns as you lie silently in the dark."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[strained and lonely, insomnia deepening into nocturnal dread before exhausted relief] It's a relief when you finally fall asleep."
+    }
+  ],
+  "e34.p1": {
+    "alex": [
+      {
+        "speaker": "narrator",
+        "text": "[hushed and stark, letting the loneliness land] When you wake in the morning you are alone."
+      }
+    ],
+    "charlie": [
+      {
+        "speaker": "narrator",
+        "text": "[hushed] [ominous simplicity] When you wake in the morning you are alone."
+      }
+    ]
+  },
+  "e34.p2": {
+    "alex": [
+      {
+        "speaker": "narrator",
+        "text": "[groggy at first, then quietly concerned] You stir in the bed and sit up."
+      },
+      {
+        "speaker": "alex",
+        "text": "[groggy at first, then quietly concerned] \"Babe?\""
+      }
+    ],
+    "charlie": [
+      {
+        "speaker": "narrator",
+        "text": "[quiet morning stillness] [subtly uneasy] You stir in the bed and sit up."
+      },
+      {
+        "speaker": "charlie",
+        "text": "[groggy] [growing concerned] \"Babe?\""
+      }
+    ]
+  },
+  "e34.p3": {
+    "alex": [
+      {
+        "speaker": "narrator",
+        "text": "[watchful and uneasy beneath a deceptively gentle morning calm] There's no answer. The only sound is the wind outside, carrying with it a gentle morning birdsong. You get up and cross to the kitchen. There's a note taped to the chunky refrigerator, which is written in familiar handwriting:"
+      }
+    ],
+    "charlie": [
+      {
+        "speaker": "narrator",
+        "text": "[quietly uneasy] [listening into the silence] There's no answer. The only sound is the wind outside, carrying with it a gentle morning birdsong. You get up and cross to the kitchen. There's a note taped to the chunky refrigerator, which is written in familiar handwriting:"
+      }
+    ]
+  },
+  "e34.p4": {
+    "alex": [
+      {
+        "speaker": "narrator",
+        "text": "[reading softly and intimately, with regret and affection] \"Sorry again. Just want this weekend to be special. Gone to town to get help fixing power. Back ASAP. Love you.\""
+      }
+    ],
+    "charlie": [
+      {
+        "speaker": "narrator",
+        "text": "[apologetic] [softly] \"Sorry again. Just want this weekend to be special. Gone to town to get help fixing power. Back ASAP. Love you.\""
+      }
+    ]
+  },
+  "e34.p5": {
+    "alex": [
+      {
+        "speaker": "narrator",
+        "text": "[subdued and thoughtful, uneasy solitude lingering underneath] You set the note down. Looks like you have a few hours to yourself."
+      }
+    ],
+    "charlie": [
+      {
+        "speaker": "narrator",
+        "text": "[reflective] [faintly unsettled] You set the note down. Looks like you have a few hours to yourself."
+      }
+    ]
+  },
+  "e2.p1": [
+    {
+      "speaker": "alex",
+      "text": "[absent-minded] [playful] \"Buzz…,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[contained irritation] [dryly observant] Alex mutters absent-mindedly, opening and closing the car's electric window for the tenth time in two minutes."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[contained irritation] [dryly observant] [uneasy, uncanny] You grit your teeth."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[contained irritation] [dryly observant] You only just got back on the road after your truck stop break, and Alex has already fiddled with every button within reach. You're left to steer the car and navigate using a ridiculously oversized map. Alex gets bored of the window, sighs, then turns to you."
+    },
+    {
+      "speaker": "alex",
+      "text": "[patient] [gently exasperated] \"Can you just let me hold the map?\""
+    }
+  ],
+  "e2.p2": [
+    {
+      "speaker": "charlie",
+      "text": "[defensive] [stubborn] \"No. I can do this just fine,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[contained irritation] [dryly observant] you reply. The two of you already missed one turnoff this trip because Alex lost track of your route."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[contained irritation] [dryly observant] [tense, frightened, ominous] It's better for you to just take care of everything."
+    }
+  ],
+  "e2.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[absent-minded] [playful] It is late afternoon on a rural backroad deep within the Black Hills. The sun is high, but the air is cold. Tall pine trees and rolling valleys stretch as far as you can see in every direction. Crisp autumn air drifts in through Alex's open window. Then, you hear an electronic buzz for a moment. Suddenly it appears again. On and off. On and off. You bite your tongue and keep silent. Alex turns on the radio. You hear"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[sensory overload] [with escalating panic] [through a crackling car radio] a harsh screech of static"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[contained irritation] [dryly observant] as they start scanning through different frequencies. This is all pointless. You're way out of signal range. The only song you can pick up is"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[contained irritation] [dryly observant] [through a crackling car radio] a heavily distorted Neil Diamond single"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[contained irritation] [dryly observant] ."
+    }
+  ],
+  "e83.p1": [
+    {
+      "speaker": "charlie",
+      "text": "[pleading] [trying to stay calm] \"Please.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[brittle tension] [restrained] You reach over and turn the radio off."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[irritated] [sharply controlled] \"I can't think with that noise.\""
+    }
+  ],
+  "e83.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[brittle tension] [restrained] Alex raises up their hands defensively."
+    },
+    {
+      "speaker": "alex",
+      "text": "[apologetic] [softly] \"Sorry,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[brittle tension] [restrained] they mutter, then turn back to the window. You look back to the road. In your peripheral vision, you notice Alex shoot an irritated glance your way. The longer this trip lasts, the tenser the atmosphere in the car seems to get."
+    }
+  ],
+  "e83.p3": [
+    {
+      "speaker": "charlie",
+      "text": "[impatient] [sharply controlled] \"It's the next left,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[brittle tension] [restrained] you say, and try to smile reassuringly. Alex doesn't answer."
+    }
+  ],
+  "e83.p4": [
+    {
+      "speaker": "narrator",
+      "text": "[brittle tension] [restrained] You continue deeper into the forest. The little road you're on winds erratically, dipping up and down as it weaves between hills. The sky gets lost in the branches of pine trees. As the evening shadows lengthen, you"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[brittle tension] [restrained] [tense, frightened, ominous] feel cold seeping in from outside"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[brittle tension] [restrained] ."
+    }
+  ],
+  "e96.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[tentatively hopeful] [gently warming] You ignore the droning radio and do your best to focus on driving. Alex shifts about in their seat. They fidget, read out passing signs, and make minor small talk. You remember to answer every question with more than a single word. Doctor O'Brien told you both that communication was the most important part of a relationship. You were skeptical, but Alex seems happier after just a few minutes of conversation. The two of you joke about watching for a wandering deer that might suddenly stagger out in front of your car. At one point, Alex presses their hand against your knee and squeezes affectionately. You can't help but smile."
+    }
+  ],
+  "e96.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[reassuring] [quietly hopeful] \"Not far now,\" you say. \"Good, I can't wait to stretch my legs.\" You continue deeper into the forest. The little road you're on winds erratically, dipping up and down as it weaves between hills. The sky gets lost in the branches of pine trees. As the evening shadows lengthen, you feel cold seeping in from outside."
+    }
+  ],
+  "e103.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[hushed] [with mounting fear] The sun gradually sets. Your car's headlights cut into the darkness, revealing the road ahead, just a few feet at a time. Finally, they drift over the front of a cabin, reflecting off two windows on either side of a front door,"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[quietly ominous] [with a chill] [uneasy, uncanny] glaring back at you like watchful eyes"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [quietly ominous] . You pull up and park."
+    }
+  ],
+  "e103.p2": [
+    {
+      "speaker": "alex",
+      "text": "[weary relief] [casual] \"Finally.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [quietly ominous] Alex sighs, stepping out onto the gravel driveway. You haul yourself out of the seat, stretch your back, and walk around to the trunk to get your bags. It's cold here."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [quietly ominous] [tense, frightened, ominous] The cold night air seizes around you like a vice."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [quietly ominous] You weren't expecting it to be this chilly."
+    }
+  ],
+  "e103.p3": [
+    {
+      "speaker": "alex",
+      "text": "[weary relief] [casual] \"Are you hungry?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [quietly ominous] Alex asks, while you try to keep from shivering."
+    }
+  ],
+  "e105.p1": [
+    {
+      "speaker": "charlie",
+      "text": "[pleading] [trying to stay calm] \"Please. Burgers?\""
+    }
+  ],
+  "e105.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[weary but easing] [domestic warmth] Alex smiles."
+    },
+    {
+      "speaker": "alex",
+      "text": "[warm] [agreeable] \"Sure.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[weary but easing] [domestic warmth] You drag the bags to the cabin and unlock the door. You stick one hand inside, feel for the light switch, then flick it on."
+    }
+  ],
+  "e105.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[weary but easing] [domestic warmth] Alex peeks inside and nods approvingly."
+    },
+    {
+      "speaker": "alex",
+      "text": "[pleasantly surprised] [warm] \"Wow. Super cozy.\""
+    }
+  ],
+  "e111.p1": [
+    {
+      "speaker": "charlie",
+      "text": "[flat] [unenthusiastic] \"Not especially.\""
+    }
+  ],
+  "e111.p2": [
+    {
+      "speaker": "alex",
+      "text": "[hungry] [matter-of-fact] \"I'm starved,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[tired] [dryly resigned] Alex says, and brushes past you. You roll your eyes. Looks like you're having dinner then…"
+    }
+  ],
+  "e111.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[tired] [dryly resigned] You drag the bags to the cabin and unlock the door. You stick one hand inside, feel for the light switch, then flick it on. Alex peeks their head inside and nods approvingly."
+    },
+    {
+      "speaker": "alex",
+      "text": "[pleasantly surprised] [warm] \"Wow. Super cozy.\""
+    }
+  ],
+  "e124.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[reflective] [quietly determined] There's no sense in brooding. You came out here for a reason. You love Alex. You want to make this work. You can spend all day guessing how things will end up, but it won't change anything. All you can do is be the kindest and most loving person you can. Whether or not that will be enough is out of your hands."
+    }
+  ],
+  "e124.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[reflective] [quietly determined] You walk out of the bathroom, smile, and try cracking a joke."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[apologetic] [softly] \"Woof… sorry. I've been holding onto that one since we left Pierre.\""
+    }
+  ],
+  "e124.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[reflective] [quietly determined] Alex snorts, but you catch the slightest hint of a smirk. They're standing in the kitchen, chopping up vegetables. You walk over and do your best to help. Before long, you're both seated at the small dining table, eating together. Alex is not saying much. It's difficult to tell what they're thinking."
+    }
+  ],
+  "e126.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[dejected] [emotionally exhausted] This cabin sucks. Mark always seems so excited when he talks about it, but really, it's kind of a dump. Maybe it feels nicer when you're visiting with somebody you love. You and Alex haven't been that close in months. This is just one more failed attempt at reconciliation that you can add to the pile. At least you can look back on it as proof you really tried fixing things before the inevitable implosion."
+    }
+  ],
+  "e126.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[dejected] [emotionally exhausted] You stay in the bathroom for a while, glumly staring into the mirror. Minutes crawl past. You don't want to go back out there and face Alex. While you stand, waiting, you notice"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[dejected] [emotionally exhausted] [uneasy, uncanny] the bathroom door creak open just a little"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[dejected] [emotionally exhausted] . Seems like the latch is old. You lean forward and quickly pull the door shut. When you lock it, it stays in place."
+    }
+  ],
+  "e126.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[dejected] [emotionally exhausted] Eventually, you admit you can't hide away in the bathroom any longer, so force yourself to walk back out of the bathroom with a fake smile plastered across your face."
+    }
+  ],
+  "e126.p4": [
+    {
+      "speaker": "charlie",
+      "text": "[apologetic] [softly] \"Woof… sorry. I've been holding onto that one since we left Pierre.\""
+    }
+  ],
+  "e126.p5": [
+    {
+      "speaker": "narrator",
+      "text": "[dejected] [emotionally exhausted] Alex doesn't look up. They just roll their eyes. They're standing in the kitchen now, chopping up vegetables. You cross over to the bed and lie down on it. All your muscles ache from the long drive. They don't feel better when you stretch. Alex says nothing. You want to talk to them but can't think of anything to say. What was it that Doctor O'Brien said the two of you should do if you were feeling distant? You can't remember."
+    }
+  ],
+  "e126.p6": [
+    {
+      "speaker": "narrator",
+      "text": "[dejected] [emotionally exhausted] Soon, Alex serves up dinner. The two of you huddle at the small kitchen table and eat. Alex remains silent. It's difficult to tell what they're thinking."
+    }
+  ],
+  "e127.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[introspective] [anxiously rationalizing] Alex is confused. That's the only time they ever go quiet. You watch them pick at their food half-heartedly. They're probably turning things over in their head just like you are. As much as you want to blurt out questions, to talk things through, you force yourself to keep silent. Alex doesn't like that kind of direct conversation. If you start asking questions, you'll probably just annoy them. The best thing you can do is just relax. Focus on doing the things you enjoy as a couple. It will remind them of how good things can be. That's the best way forward."
+    }
+  ],
+  "e129.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[guarded] [uncomfortable] Alex keeps dodging your gaze. It's impossible to tell what's going on in their head if they won't have a conversation or even meet your gaze. They just pick at their food half-heartedly and say nothing. Maybe it's best to be blunt."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[careful] [emotionally vulnerable] \"How are you feeling?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[guarded] [uncomfortable] you ask."
+    }
+  ],
+  "e129.p2": [
+    {
+      "speaker": "alex",
+      "text": "[curt] [emotionally closed] \"Fine,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[guarded] [uncomfortable] Alex replies, almost as soon as you finish talking. Silence hangs in the air for several long seconds afterwards."
+    }
+  ],
+  "e129.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[bitterly] [frustrated] Great. Well, if Alex doesn't want to talk right now so be it. You may as well look for something else to do."
+    }
+  ],
+  "e131.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[curious] [tentatively brightening] As you're leafing through the tapes, you notice something at the back of the cabinet. You reach inside and pull it out. It's an empty slipcase for a VHS tape. It's flimsy. Someone has scrawled a title on it in black marker pen:"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[curious] [tentatively brightening] The Flowers in the Stream."
+    }
+  ],
+  "e131.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[curious] [tentatively brightening] You incredulously read the name aloud."
+    },
+    {
+      "speaker": "alex",
+      "text": "[playful] [reconnecting] \"What's that?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[curious] [tentatively brightening] Alex asks, coming out of the bathroom."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[dryly amused] [softening] \"Empty case. We should have stopped at a video store. I think these are all bootlegs.\""
+    }
+  ],
+  "e131.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[curious] [tentatively brightening] Alex walks over to you. They're smiling. Maybe they did some soul searching in the bathroom, too."
+    }
+  ],
+  "e131.p4": [
+    {
+      "speaker": "alex",
+      "text": "[playful] [reconnecting] \"Is the tape still in the VCR?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[curious] [tentatively brightening] they ask. You lean over and press the eject button. There is a whirring of mechanical internals, then the unit spits out a tape."
+    }
+  ],
+  "e131.p5": [
+    {
+      "speaker": "alex",
+      "text": "[triumphant] [playful] \"Ah-hah!\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[curious] [tentatively brightening] Alex says, stepping forward to pull you into a hug. \"Thank you, Charlie,\" they say. They rest their head on your shoulder for a second while you stand there holding the tape, sighing,"
+    },
+    {
+      "speaker": "charlie",
+      "text": "[tender] [emotionally vulnerable] \"I love you.\""
+    }
+  ],
+  "e133.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[lightly playful] [growing warmth] You take out the tapes and go through them one by one, rolling your eyes and performatively gagging at each cover as you go."
+    }
+  ],
+  "e133.p2": [
+    {
+      "speaker": "alex",
+      "text": "[affectionate] [vulnerable] \"Anything good?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[lightly playful] [growing warmth] Alex asks, coming out of the bathroom."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[wry] [playful] \"Not really. I could have sworn Mark said there was a romance or something. He said they watched it when they were here last summer.\""
+    }
+  ],
+  "e133.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[lightly playful] [growing warmth] Alex crosses the cabin and comes over to you. You realize they're smiling. Maybe they got stuck, soul-searching in the bathroom mirror, too."
+    }
+  ],
+  "e133.p4": [
+    {
+      "speaker": "alex",
+      "text": "[affectionate] [vulnerable] \"Is the tape still in the VCR?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[lightly playful] [growing warmth] they ask. You lean over and press the eject button. There is a whirring of mechanical internals, then the unit spits out a tape."
+    }
+  ],
+  "e133.p5": [
+    {
+      "speaker": "charlie",
+      "text": "[triumphant] [playful] \"Ah-hah!\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[lightly playful] [growing warmth] you say, lifting the tape up heroically. Alex claps their hands together in mock applause, then giggles, tilts their head, and considers you."
+    }
+  ],
+  "e133.p6": [
+    {
+      "speaker": "alex",
+      "text": "[tender] [emotionally vulnerable] \"I love you,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[lightly playful] [growing warmth] Alex says."
+    }
+  ],
+  "e135.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[tender] [relieved] You smile at Alex before replying,"
+    },
+    {
+      "speaker": "charlie",
+      "text": "[tender] [emotionally vulnerable] \"I love you, too.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[tender] [relieved] The two of you stay quiet for a moment afterwards and enjoy the silence. Then, you bustle over to the VCR and get everything ready. Before long, the two of you are set up in bed, looking towards the TV, with the tape paused and ready to go."
+    }
+  ],
+  "e135.p2": [
+    {
+      "speaker": "charlie",
+      "text": "[affectionate] [genuinely hopeful] \"Ready to start?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[tender] [relieved] you ask Alex. They nod."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[brightly] [playful] \"Lights, camera, action!\""
+    }
+  ],
+  "e137.p1": [
+    {
+      "speaker": "charlie",
+      "text": "[awkward] [deflecting] \"I'm just going to brush my teeth before the movie,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[heavy with guilt] [emotionally avoidant] you mutter. You try to act like you just didn't hear what they said. You don't think they buy it. You catch a flash of hurt in their eyes as you shuffle back towards the bathroom with your bag. You don't feel good about it, but you can't bring yourself to lie straight to their face. You crush the feeling of guilt and remorse deep down inside and focus on what you're doing."
+    }
+  ],
+  "e137.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[heavy with guilt] [emotionally avoidant] Once you're changed and ready for bed, you come back out and join Alex. You can hear the VCR humming."
+    }
+  ],
+  "e137.p3": [
+    {
+      "speaker": "charlie",
+      "text": "[awkward] [deflecting] \"Ready to go?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[heavy with guilt] [emotionally avoidant] you ask. Alex nods. They're trying to look calm, but you can see their eyes are puffy."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[forced cheer] [covering hurt] \"Lights, camera, action!\""
+    }
+  ],
+  "e145.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] When the film begins, the screen is black. There is faint music but no opening credits. Then, the screen cuts to blurry footage that was clearly recorded on a hand-held camera."
+    }
+  ],
+  "e145.p2": [
+    {
+      "speaker": "charlie",
+      "text": "[increasingly alarmed] [suspicious] \"Wow, is this one of Mark's home movies?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] you ask. Alex laughs then reaches for the remote."
+    },
+    {
+      "speaker": "alex",
+      "text": "[apologetic] [softly] \"Oh. I'm sorry.\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[increasingly alarmed] [suspicious] \"Wait a second, that looks familiar,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] you say, pointing at the TV. Alex hesitates."
+    }
+  ],
+  "e145.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] On screen, you see a wall of tall forest trees. Leaves and pine needles crunch under the feet of whoever's filming. The camera pans across the landscape, creating a blur of greens and browns. Suddenly, you spot Mark's cabin,"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] [uneasy, uncanny] standing alone in its little clearing"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] . A dull red sedan is parked out front."
+    }
+  ],
+  "e145.p4": [
+    {
+      "speaker": "alex",
+      "text": "[uneasy curiosity] [trying to rationalize] \"That's Julie's car,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] Alex says."
+    },
+    {
+      "speaker": "alex",
+      "text": "[uneasy curiosity] [trying to rationalize] \"This must have been after their wedding.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] The camera is shaky. Wind rushes against the microphone, causing"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] [through a crackling car radio] a brief flurry of horrid scraping from the speakers"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] . There's movement near the red car. A woman, Julie, is taking bags from the trunk. She is smiling."
+    }
+  ],
+  "e145.p5": [
+    {
+      "speaker": "alex",
+      "text": "[uneasy curiosity] [trying to rationalize] \"Yeah,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] Alex says."
+    },
+    {
+      "speaker": "alex",
+      "text": "[uneasy curiosity] [trying to rationalize] \"This must be at least five, six years ago.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] Julie turns as the cabin door opens. Mark steps out, walks over, and takes one of the bags from her. They smile and exchange unheard words."
+    }
+  ],
+  "e145.p6": [
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] You sit bolt upright."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[shocked] [demanding] [shouting] \"What the hell?\""
+    },
+    {
+      "speaker": "alex",
+      "text": "[uneasy curiosity] [trying to rationalize] \"What's wrong? It's only Mark.\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[suddenly suspicious] [alarmed] \"Yeah, so who's filming?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] Alex stammers and blinks. On the screen, Mark and Julie go inside and close the door behind them. The camera zooms in toward the window. The picture is a grainy blur of colors. You see movement in the cabin. The camera zooms even closer. Then, harsh wind picks up and howls through the speakers. The image smashes to"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[sensory overload] [with escalating panic] [through a crackling car radio] a slurry of loud static"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] . White noise booms out into the room."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] [tense, frightened, ominous] The sound drills into your skull."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [slow-building dread] You feel like it's going to make your head explode."
+    }
+  ],
+  "e154.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[sensory overload] [with escalating panic] You clamp your hands hard over your ears but, somehow, the static still seeps in. Alex, next to you, does the same. Their lips are moving, but you can't tell what they're saying."
+    }
+  ],
+  "e154.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[sensory overload] [with escalating panic] You yell something about the remote, but even your own voice is lost, hidden beneath the TV's digital wailing."
+    }
+  ],
+  "e154.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[sensory overload] [with escalating panic] Alex pulls one hand down and fiddles with the remote. The screeching continues. Alex snarls, tosses the remote aside, then staggers over to the TV. You watch them go. The TV looks somehow reflected in the windows behind it. Pine trees stand guard in the Black Hills outside, but they're riddled with static."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[sensory overload] [with escalating panic] [uneasy, uncanny] Riddled with static. Static. STATIC!"
+    }
+  ],
+  "e154.p4": [
+    {
+      "speaker": "narrator",
+      "text": "[frantic] [sensory overload] You clamp your eyes shut. Alex turns the dial on the TV and kills the noise. The screen goes blank."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[frantic] [sensory overload] [tense, frightened, ominous] A blaring ring lingers in your ears."
+    }
+  ],
+  "e154.p5": [
+    {
+      "speaker": "charlie",
+      "text": "[shocked] [demanding] \"What in the hell was that?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[frantic] [sensory overload] you ask. Alex catches their breath for a moment, then shrugs."
+    },
+    {
+      "speaker": "alex",
+      "text": "[breathless] [defensive] \"I have no idea...\""
+    }
+  ],
+  "e154.p6": [
+    {
+      "speaker": "charlie",
+      "text": "[shaken] [angry] \"How the hell was it so damn loud?\""
+    },
+    {
+      "speaker": "alex",
+      "text": "[breathless] [defensive] \"These must be really good speakers.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[frantic] [sensory overload] You roll your eyes."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[bitterly] [frustrated] \"Great. At least there's a top TV to watch a creepy peeping Tom video on.\""
+    }
+  ],
+  "e154.p7": [
+    {
+      "speaker": "alex",
+      "text": "[breathless] [defensive] \"Oh, c'mon. That wasn't a peeping Tom.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[frantic] [sensory overload] Alex gestures to the TV cabinet."
+    },
+    {
+      "speaker": "alex",
+      "text": "[breathless] [defensive] \"Why would Mark and Julie have the tape?\""
+    }
+  ],
+  "e158.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[breathless] [agitated] You dart from the bed, grimacing at the"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[sensory overload] [with escalating panic] [through a crackling car radio] ear-splitting noise"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[breathless] [agitated] . You switch the dial and kill the TV."
+    }
+  ],
+  "e158.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[breathless] [agitated] Alex is sitting on the bed with their hands clamped over their ears like a dope."
+    },
+    {
+      "speaker": "alex",
+      "text": "[apologetic] [softly] \"Sorry, it's only a remote for the VCR. There's no volume control.\""
+    }
+  ],
+  "e158.p3": [
+    {
+      "speaker": "charlie",
+      "text": "[shocked] [demanding] \"What the hell was that?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[breathless] [agitated] you ask angrily. Alex shrugs."
+    },
+    {
+      "speaker": "alex",
+      "text": "[uneasy] [deflecting with humor] \"I dunno.\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[angry] [deeply unsettled] \"Mark and Julie came out here with someone else?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[breathless] [agitated] Alex laughs."
+    },
+    {
+      "speaker": "alex",
+      "text": "[uneasy] [deflecting with humor] \"I don't really wanna think about what your brother and his wife might get up to when they're out here.\""
+    }
+  ],
+  "e158.p4": [
+    {
+      "speaker": "narrator",
+      "text": "[breathless] [agitated] You roll your eyes."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[angry] [deeply unsettled] \"That was creepy. It was like a peeping Tom.\""
+    }
+  ],
+  "e158.p5": [
+    {
+      "speaker": "alex",
+      "text": "[uneasy] [deflecting with humor] \"Well, we know it's not.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[breathless] [agitated] Alex gestures to the TV cabinet."
+    },
+    {
+      "speaker": "alex",
+      "text": "[uneasy] [deflecting with humor] \"Why would Mark and Julie have the tape?\""
+    }
+  ],
+  "e160.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[bitter tension] [tight restraint] You sigh."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[resentful] [emotionally shut down] \"Whatever. You always know best, right?\""
+    }
+  ],
+  "e160.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[bitter tension] [tight restraint] Alex frowns."
+    },
+    {
+      "speaker": "alex",
+      "text": "[hurt] [defensive] \"What's that supposed to mean?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[bitter tension] [tight restraint] You remember the car ride up. How Alex left you to do all the work while they daydreamed and stared out the window."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[resentful] [emotionally shut down] \"Never mind,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[bitter tension] [tight restraint] you say, then roll over in bed."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[coldly] [dismissive] \"Can you get the light?\""
+    }
+  ],
+  "e160.p3": [
+    {
+      "speaker": "alex",
+      "text": "[hurt] [defensive] \"You don't wanna watch a movie anymore?\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[resentful] [emotionally shut down] \"No,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[bitter tension] [tight restraint] you say, turning your back to Alex."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[weary] [emotionally shut down] \"I just want to sleep.\""
+    }
+  ],
+  "e160.p4": [
+    {
+      "speaker": "narrator",
+      "text": "[bitter tension] [tight restraint] Alex sighs."
+    },
+    {
+      "speaker": "alex",
+      "text": "[curt] [defensive] \"Fine.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[bitter tension] [tight restraint] You feel the bed shift as they stand."
+    },
+    {
+      "speaker": "alex",
+      "text": "[hurt] [defensive] \"I just think that—\""
+    }
+  ],
+  "e160.p5": [
+    {
+      "speaker": "narrator",
+      "text": "[bitter tension] [tight restraint] The TV set blares to life again."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[sensory overload] [with escalating panic] [through a crackling car radio] It bellows static through the cabin."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[bitter tension] [tight restraint] Thunderous scraping and coughing bounces off the walls. You thrash and cover your ears. Alex swears but you can hardly hear it."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[bitter tension] [tight restraint] [tense, frightened, ominous] The noise builds to a frenetic peak. It's almost unbearable."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[bitter tension] [tight restraint] Then, just as quick as it began, the noise stops. The TV falls silent. All the lights in the cabin go dead."
+    }
+  ],
+  "e174.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[fragile calm] [trying to move on] You shake your head and take a deep breath. \"You're right. It's stupid. Let's just forget about… whatever the hell that was.\""
+    }
+  ],
+  "e174.p2": [
+    {
+      "speaker": "alex",
+      "text": "[playful] [eager to repair the mood] \"You still wanna watch a movie?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[fragile calm] [trying to move on] Alex asks."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[curt] [defensive] \"Sure. Whatever is fine. One of those schlocky flicks…,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[fragile calm] [trying to move on] you say. Alex gets up."
+    },
+    {
+      "speaker": "alex",
+      "text": "[playful] [eager to repair the mood] \"My pick?\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[wry] [reluctantly warming] \"Your pick.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[fragile calm] [trying to move on] Alex smiles and looks over the tapes in the cabinet."
+    },
+    {
+      "speaker": "alex",
+      "text": "[playful] [eager to repair the mood] \"Ooh! This is a good one.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[fragile calm] [trying to move on] You lean forward to look at a tape that has a guy wearing a pumpkin on his head on the cover."
+    },
+    {
+      "speaker": "alex",
+      "text": "[playful] [eager to repair the mood] \"I think even you'll like it, babe.\""
+    }
+  ],
+  "e174.p3": [
+    {
+      "speaker": "charlie",
+      "text": "[wry] [reluctantly warming] \"Somehow, I doubt it.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[fragile calm] [trying to move on] You smile."
+    },
+    {
+      "speaker": "alex",
+      "text": "[playful] [eager to repair the mood] \"No, seriously,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[fragile calm] [trying to move on] Alex says, and slips the tape from the case."
+    },
+    {
+      "speaker": "alex",
+      "text": "[playful] [eager to repair the mood] \"It's about this guy who's a writer, and he drives up to this secluded town in Maine, right?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[fragile calm] [trying to move on] Alex hits eject on the VCR."
+    },
+    {
+      "speaker": "alex",
+      "text": "[playful] [eager to repair the mood] \"And anyway, when he—\""
+    }
+  ],
+  "e174.p4": [
+    {
+      "speaker": "narrator",
+      "text": "[fragile calm] [trying to move on] The TV set blares to life."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[sensory overload] [with escalating panic] [through a crackling car radio] It bellows static through the cabin."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[fragile calm] [trying to move on] Thunderous scraping and coughing bounces off the walls."
+    }
+  ],
+  "e174.p5": [
+    {
+      "speaker": "narrator",
+      "text": "[fragile calm] [trying to move on] You thrash and cover your ears. Alex is swearing but you can barely hear it."
+    }
+  ],
+  "e174.p6": [
+    {
+      "speaker": "narrator",
+      "text": "[fragile calm] [trying to move on] The TV falls silent, and with it all the lights in the cabin go dark."
+    }
+  ],
+  "e174.p7": [
+    {
+      "speaker": "narrator",
+      "text": "[stunned] [with dawning dread] The power is out."
+    }
+  ],
+  "e193.p1": [
+    {
+      "speaker": "charlie",
+      "text": "[frightened] [frustrated] \"Alex?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[hushed] [with mounting fear] you ask the darkness."
+    }
+  ],
+  "e193.p2": [
+    {
+      "speaker": "alex",
+      "text": "[uncertain] [trying to stay practical] \"Yeah?\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[frightened] [frustrated] \"What was that?\""
+    },
+    {
+      "speaker": "alex",
+      "text": "[uncertain] [trying to stay practical] \"I think the power's out.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[hushed] [with mounting fear] You hear scrambling in the darkness as Alex shuffles along the floor, one hand touching the wall. They flick the light switch several times."
+    }
+  ],
+  "e193.p3": [
+    {
+      "speaker": "charlie",
+      "text": "[frightened] [frustrated] \"I thought this place was on solar power?\""
+    },
+    {
+      "speaker": "alex",
+      "text": "[uncertain] [trying to stay practical] \"That's what they said. Maybe something is broken.\""
+    }
+  ],
+  "e193.p4": [
+    {
+      "speaker": "charlie",
+      "text": "[frightened] [frustrated] \"Do you think there's a backup?\""
+    },
+    {
+      "speaker": "alex",
+      "text": "[uncertain] [trying to stay practical] \"No idea. I guess we'll need to go into town tomorrow and call Mark to ask him.\""
+    }
+  ],
+  "e193.p5": [
+    {
+      "speaker": "charlie",
+      "text": "[bitterly] [frustrated] \"Great.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[hushed] [claustrophobic] You press your fists against your brow."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[bitterly] [frustrated] \"That's just great.\""
+    }
+  ],
+  "e193.p6": [
+    {
+      "speaker": "narrator",
+      "text": "[hushed] [with mounting fear] Your heart is still racing after that last burst of noise. You take your hands away from your face, but it doesn't get any lighter. It's pitch black in the cabin. You feel"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[hushed] [with mounting fear] [tense, frightened, ominous] anxiety start to build in your chest"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[hushed] [claustrophobic] ."
+    }
+  ],
+  "e205.p1": [
+    {
+      "speaker": "charlie",
+      "text": "[vulnerable] [quietly shaken] \"That was really loud,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[hushed intimacy] [slowly calming] you say. You can hear a waver in your voice. Alex clearly does too."
+    }
+  ],
+  "e205.p2": [
+    {
+      "speaker": "alex",
+      "text": "[curt] [defensive] \"Yeah. Don't worry about it. It's fine.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[hushed intimacy] [slowly calming] You hear approaching footsteps, then the bedframe creaks as Alex crawls onto it. In the silence following the outburst from the TV, even the slightest sound rings deafeningly loud in the quiet. You feel Alex cuddle up close to you."
+    }
+  ],
+  "e205.p3": [
+    {
+      "speaker": "alex",
+      "text": "[apologetic] [softly] \"I'm sorry,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[hushed intimacy] [slowly calming] Alex says."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[vulnerable] [quietly shaken] \"Don't be.\""
+    },
+    {
+      "speaker": "alex",
+      "text": "[gentle] [reassuring] \"Don't worry about the TV. We'll fix it tomorrow. If not, we can just go hiking instead.\""
+    }
+  ],
+  "e205.p4": [
+    {
+      "speaker": "narrator",
+      "text": "[hushed intimacy] [slowly calming] You murmur softly in agreement. Alex wraps an arm around you. You feel their breathing on the back of your neck. It slows quickly and fades into the gentle rumble of sleep. The sound is steady and calming. Before long, you drift off too. The only sound that disturbs you is the faint creaking of pines echoing softly through the Black Hills."
+    }
+  ],
+  "e207.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[cold distance] [uneasy silence] You thump your pillow, settle into it, and try to get comfortable so you can sleep. Alex heads back over to the bed, hesitates, then crawls in."
+    }
+  ],
+  "e207.p2": [
+    {
+      "speaker": "alex",
+      "text": "[groggy] [growing concerned] \"…Babe?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cold distance] [uneasy silence] Alex says."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[irritable] [shut down] \"What?\""
+    },
+    {
+      "speaker": "alex",
+      "text": "[tentative] [afraid of rejection] \"Are you going to sleep?\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[stunned] [with dawning dread] \"What else am I supposed to do? The power is out and we're in the middle of the woods.\""
+    }
+  ],
+  "e207.p3": [
+    {
+      "speaker": "alex",
+      "text": "[apologetic] [softly] \"Okay, sorry.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cold distance] [uneasy silence] The bedframe creaks as Alex rolls over and faces away from you."
+    }
+  ],
+  "e207.p4": [
+    {
+      "speaker": "alex",
+      "text": "[hurt] [tentative] \"We should be able to fix the TV tomorrow.\""
+    },
+    {
+      "speaker": "charlie",
+      "text": "[weary] [emotionally shut down] \"I don't care. Let's just get some sleep.\""
+    },
+    {
+      "speaker": "alex",
+      "text": "[hurt] [tentative] \"Okay—\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cold distance] [uneasy silence] Alex's voice trails off. Neither of you say anything else."
+    }
+  ],
+  "e207.p5": [
+    {
+      "speaker": "narrator",
+      "text": "[cold distance] [uneasy silence] Alex doesn't stay awake long. You hear their breathing slow quickly and fade into the gentle rumble of sleep. For you, sleep comes much later. The creaking of pines, the howl of cold wind, and other strange indescribable sounds echo through the Black Hills around you."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[hushed] [with mounting fear] [tense, frightened, ominous] The anxiety in your chest burns"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[cold distance] [uneasy silence] as you lie silently in the dark. It's a relief when you finally fall asleep."
+    }
+  ],
+  "e234.p1": [
+    {
+      "speaker": "charlie",
+      "text": "[gently hopeful] [testing the waters] \"Hey, do you want to watch a movie?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[nostalgic] [tentatively hopeful] you ask."
+    }
+  ],
+  "e234.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[nostalgic] [tentatively hopeful] Alex hesitates. The two of you used to fall asleep to movies almost every night when you were first dating. Alex chews the idea over for a moment, then nods."
+    }
+  ],
+  "e234.p3": [
+    {
+      "speaker": "alex",
+      "text": "[guarded but receptive] [soft] \"Sure.\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[nostalgic] [tentatively hopeful] You take the dishes over to the sink and wash them up while Alex brushes their hair. When you're done, you head over to the TV unit."
+    }
+  ],
+  "e234.p4": [
+    {
+      "speaker": "narrator",
+      "text": "[nostalgic] [tentatively hopeful] It's a relatively cheap model from the late 80s sitting on top of a dusty VCR player. You switch both on, then open a cabinet beneath, looking for videos."
+    }
+  ],
+  "e234.p5": [
+    {
+      "speaker": "charlie",
+      "text": "[gently inviting] [trying to reconnect] \"Mark sure likes scary movies,\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[nostalgic] [tentatively hopeful] you say, looking over the titles. Fifteen different tapes, and you're sure that covers pretty much every major slasher film of the last decade."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[gently inviting] [trying to reconnect] \"God, none of these looks good.\""
+    }
+  ],
+  "e234.p6": [
+    {
+      "speaker": "alex",
+      "text": "[guarded but receptive] [soft] \"There aren't any comedies?\""
+    },
+    {
+      "speaker": "narrator",
+      "text": "[nostalgic] [tentatively hopeful] Alex asks from the bathroom."
+    }
+  ],
+  "e327.p1": [
+    {
+      "speaker": "narrator",
+      "text": "[weary] [atmospheric] The cabin isn't very big. Your brother Mark, who owns the place, really exaggerated how luxurious it was. There's only one main room, with a double bed, a chest of drawers, and a corner set up to serve as a kitchen. There's no microwave; both the oven and stove use gas. You see two doors: one leading to the rear of the cabin while another leads to a tiny bathroom. You just know it's going to be freezing in there."
+    }
+  ],
+  "e327.p2": [
+    {
+      "speaker": "narrator",
+      "text": "[weary] [atmospheric] On the wall opposite the bed is a TV and VCR unit sitting on top of a cupboard. The whole cabin is lit by muted yellow bulbs. It's not dark but it's not quite light either."
+    }
+  ],
+  "e327.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[weary] [atmospheric] The sight of the bathroom reminds you that you've just spent several hours driving. You excuse yourself and dart inside. While you're washing your hands, you catch sight of yourself in the mirror. There are bags under your eyes. You stop and sigh. A weekend getaway…"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[quietly introspective] [doubtful] [quietly, introspectively] Is this really going to solve all your and Alex's problems?"
+    }
+  ]
+}

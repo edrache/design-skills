@@ -23,6 +23,10 @@ const UI_COPY = {
     settingsKicker: "OBRAZ / DŹWIĘK",
     settingsTitle: "Ustawienia odtwarzania",
     narration: "Lektor",
+    autoplayEnable: "Włącz automatyczne odtwarzanie akapitów",
+    autoplayDisable: "Wyłącz automatyczne odtwarzanie akapitów",
+    voEnable: "Włącz lektora",
+    voDisable: "Wyłącz lektora",
     narrationVolume: "Głośność lektora",
     musicVolume: "Głośność muzyki",
     scanlines: "Linie skanowania",
@@ -64,6 +68,10 @@ const UI_COPY = {
     settingsKicker: "PICTURE / SOUND",
     settingsTitle: "Playback settings",
     narration: "Narration",
+    autoplayEnable: "Enable automatic paragraph playback",
+    autoplayDisable: "Disable automatic paragraph playback",
+    voEnable: "Enable voice-over",
+    voDisable: "Disable voice-over",
     narrationVolume: "Narration volume",
     musicVolume: "Music volume",
     scanlines: "Scanlines",
@@ -147,6 +155,8 @@ const dom = {
   skipLink: document.querySelector(".skip-link"),
   tools: document.querySelector(".topbar-actions"),
   journalHeading: document.querySelector("#screen-game h1"),
+  autoplayToggle: document.querySelector("#autoplay-toggle"),
+  voToggle: document.querySelector("#vo-toggle"),
 };
 
 let characters;
@@ -161,6 +171,7 @@ let reveal = null;
 let revealConfig = normalizeConfig(null);
 let ctx = null;
 let frame = null;
+let currentNarration = null;
 const history = [];
 const compactSheet = globalThis.matchMedia?.("(max-width: 61.999rem)") ?? null;
 
@@ -171,6 +182,7 @@ globalThis.render_game_to_text = () => JSON.stringify({
   entryId: frame?.entryId ?? null,
   pending: frame?.pending?.type ?? null,
   reveal: reveal?.phase() ?? null,
+  playback: settings ? { autoplay: settings.values.autoplay, vo: settings.values.narration } : null,
   choices: frame?.pending?.options?.filter((option) => !option.used && !option.blocked).map((option) => option.index) ?? [],
   stats: frame ? { hp: frame.state.hp, san: frame.state.san, luck: frame.state.luck } : null,
 });
@@ -180,6 +192,33 @@ globalThis.advanceTime = () => {};
 
 function labels() {
   return UI_COPY[i18n?.locale ?? storedLocale()] ?? UI_COPY.pl;
+}
+
+function updatePlaybackControls(values = settings?.values) {
+  if (!values) return;
+  const text = labels();
+  dom.autoplayToggle.setAttribute("aria-pressed", String(values.autoplay));
+  dom.autoplayToggle.setAttribute("aria-label", values.autoplay ? text.autoplayDisable : text.autoplayEnable);
+  dom.autoplayToggle.title = values.autoplay ? text.autoplayDisable : text.autoplayEnable;
+  dom.voToggle.setAttribute("aria-pressed", String(values.narration));
+  dom.voToggle.setAttribute("aria-label", values.narration ? text.voDisable : text.voEnable);
+  dom.voToggle.title = values.narration ? text.voDisable : text.voEnable;
+}
+
+function playCurrentNarration(key, paragraph, done, locale = i18n.locale) {
+  const active = { key, paragraph, done };
+  currentNarration = active;
+  const playback = audio?.playNarration(key, locale, ctx?.character?.id);
+  if (!playback?.then) {
+    if (currentNarration === active) currentNarration = null;
+    done();
+    return;
+  }
+  playback.then(() => {
+    if (currentNarration !== active) return;
+    currentNarration = null;
+    done();
+  });
 }
 
 function showScreen(name, { focus = false } = {}) {
@@ -248,6 +287,8 @@ function setDread(state) {
 // wyłącznie w dzienniku (#log-dialog), żeby nie dało się przewinąć wzrokiem
 // do treści, której gracz nie powinien już czytać.
 function showCurrentInstantly() {
+  currentNarration = null;
+  audio?.stopNarration();
   reveal?.stop();
   effects?.unobserveAll();
   // Klony widmowe wiszą na wpisach, które clearJournal właśnie wyrzuci —
@@ -294,6 +335,7 @@ function finishFrame() {
 
 function presentCurrent() {
   effects?.unobserveAll();
+  currentNarration = null;
   // Odsłanianie zaczyna od czystego dziennika, więc klony poprzedniej ramki
   // nie mają już do czego przylegać.
   pointerStatic?.dropAll();
@@ -308,6 +350,13 @@ function presentCurrent() {
       rollHistory: record.rollHistory,
     },
     onParagraph: onParagraphShown,
+    onTextStart: (event, paragraph, done) => {
+      playCurrentNarration(event.key, paragraph, done);
+    },
+    onTextSkip: (paragraph) => {
+      if (currentNarration?.paragraph === paragraph) currentNarration = null;
+      audio?.stopNarration();
+    },
     // Klon widmowy powstaje dopiero po domknięciu akapitu: do tej chwili
     // reveal.js przepisuje jego węzły tekstowe co klatkę.
     onParagraphDone: (paragraph) => pointerStatic?.syncEntry(paragraph.parentElement),
@@ -336,7 +385,6 @@ function advance(next, originEntryId = null, { animate = true, replace = false }
   setDread(frame.state);
   refreshLog();
   saveGame({ characterId: ctx.character.id, frame, originEntryId, log: history.slice(0, -1) });
-  audio?.playNarration(frame.entryId, i18n.locale);
 
   if (animate) {
     presentCurrent();
@@ -449,6 +497,7 @@ function startGame(characterId) {
   clearSave();
   ctx = { story, character, rng: Math.random };
   frame = null;
+  currentNarration = null;
   history.length = 0;
   reveal?.stop();
   effects?.unobserveAll();
@@ -530,6 +579,7 @@ function updateChrome() {
   dom.sheet.setAttribute("aria-label", text.sheetLabel);
   dom.settingsKicker.textContent = text.settingsKicker;
   dom.settingsTitle.textContent = text.settingsTitle;
+  updatePlaybackControls();
   document.querySelector("#label-narration").textContent = text.narration;
   document.querySelector("#label-narration-volume").textContent = text.narrationVolume;
   document.querySelector("#label-music-volume").textContent = text.musicVolume;
@@ -560,6 +610,20 @@ function connectSettingsControls() {
   }
 }
 
+function syncSettingControls(values) {
+  for (const [key, [input, property]] of Object.entries(settingControls)) {
+    input[property] = values[key];
+  }
+}
+
+dom.autoplayToggle.addEventListener("click", () => {
+  settings?.set("autoplay", !settings.values.autoplay);
+});
+
+dom.voToggle.addEventListener("click", () => {
+  settings?.set("narration", !settings.values.narration);
+});
+
 dom.langToggle.addEventListener("click", () => {
   const next = (i18n?.locale ?? storedLocale()) === "pl" ? "en" : "pl";
   if (i18n) i18n.setLocale(next);
@@ -570,8 +634,10 @@ dom.langToggle.addEventListener("click", () => {
     const title = dom.screens.loading.querySelector(".screen-title");
     if (title.classList.contains("error-state")) title.textContent = labels().loadError;
   } else if (frame) {
+    const narration = currentNarration;
     redraw();
-    audio?.playNarration(frame.entryId, next);
+    currentNarration = narration;
+    if (narration?.key) playCurrentNarration(narration.key, narration.paragraph, narration.done, next);
   }
   else if (characters) renderCharacterChoice();
 });
@@ -627,6 +693,7 @@ function startOver() {
   audio?.stopAll();
   clearSave();
   frame = null;
+  currentNarration = null;
   ctx = null;
   history.length = 0;
   document.documentElement.style.setProperty("--dread", "0");
@@ -671,10 +738,14 @@ async function bootstrap() {
   pointerStatic = createPointerStatic({ root: dom.journal });
   revealConfig = normalizeConfig(loadedReveal);
   reveal = createReveal({ root: dom.journal, config: revealConfig });
+  reveal.setAutoplay(settings.values.autoplay);
   // Suwak "Efekty tekstu" ustawia --text-effects, ale nic samo z siebie nie
   // budzi pętli rAF w effects.js — bez tego zjazd na zero zostawiałby
   // filtry na elementach aż do najbliższego ruchu wskaźnika po dzienniku.
-  settings.subscribe(() => {
+  settings.subscribe((values) => {
+    reveal?.setAutoplay(values.autoplay);
+    syncSettingControls(values);
+    updatePlaybackControls(values);
     effects?.recompute();
     pointerStatic?.recompute();
     // Zjazd suwaka zakłóceń do zera zdejmuje wszystkie klony, więc podniesienie

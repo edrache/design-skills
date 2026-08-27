@@ -1,6 +1,7 @@
 const KEY = "aats-settings";
 
 const DEFAULTS = Object.freeze({
+  autoplay: false,
   narration: true,
   narrationVolume: 0.9,
   musicVolume: 0.4,
@@ -32,7 +33,7 @@ function storageOrNull() {
 }
 
 function normalizeValue(key, value, fallback) {
-  if (key === "narration") return typeof value === "boolean" ? value : fallback;
+  if (key === "autoplay" || key === "narration") return typeof value === "boolean" ? value : fallback;
 
   const range = NUMERIC_RANGES[key];
   if (!range || typeof value !== "number" || !Number.isFinite(value)) return fallback;

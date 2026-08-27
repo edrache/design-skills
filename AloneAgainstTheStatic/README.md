@@ -22,9 +22,13 @@ Moduły ES wymagają serwera HTTP — otwarcie `index.html` przez `file://` nie 
 ## Rozgrywka
 
 Na ekranie widać wyłącznie bieżący paragraf. Tekst odsłania się akapit po
-akapicie: klik w tło (albo Enter/Spacja) domyka wypisywany akapit, kolejny
-odsłania następny. Gdy gra czeka na kliknięcie, na końcu odsłoniętego
-fragmentu miga `▶`. Nieodsłonięta reszta akapitu jest w DOM od początku,
+akapicie. W trybie ręcznym klik w tło (albo Enter/Spacja) domyka wypisywany
+akapit, a kolejny przechodzi dalej — także wtedy, gdy VO jeszcze gra; stare
+nagranie jest wówczas urywane i zaczyna się nowe. Przełącznik **AUTOPLAY**
+sam prowadzi przez akapity, ignoruje próby przewijania kliknięciem i zatrzymuje
+się na końcu numerowanego paragrafu lub przy interakcji. **VO** natychmiast
+włącza albo wyłącza lektora. Gdy gra czeka na ręczne kliknięcie, na końcu
+odsłoniętego fragmentu miga `▶`. Nieodsłonięta reszta akapitu jest w DOM od początku,
 tylko ukryta (`visibility: hidden`) — dzięki temu słowa od pierwszej klatki
 stoją na docelowych pozycjach i nie przeskakują przy zawijaniu wierszy. Po ostatnim akapicie pojawia się to, co należy — wybory,
 przyciski decyzji po rzucie, albo strzałka `→` prowadząca do następnego
@@ -211,6 +215,58 @@ uspokaja tekst.
 Grafiki i lektora wrzucasz do `media/img/` i `media/narration/`, a ścieżki
 wpisujesz do `data/media.json`. Brakujący plik nie psuje gry: grafika usuwa się
 sama, a dźwięk po prostu nie zagra.
+
+Lektor działa **akapit po akapicie**. Klucz `e1.p1` wskazuje osobny plik.
+W trybie ręcznym gracz może poczekać na koniec VO albo przerwać je kolejnym
+kliknięciem i od razu uruchomić następny akapit. W trybie **AUTOPLAY** gra czeka
+na zakończenie pisania i VO, po czym sama przechodzi dalej, ale nie przekracza
+granicy numerowanego paragrafu. Wyłączony lektor, brak pliku lub błąd
+odtwarzania zwalnia bramkę od razu, więc audio nigdy nie może zatrzymać gry.
+
+Domyślne uruchomienie generatora obejmuje pilota Alex (wpisy 1, 3 i 7) i jest
+wyłącznie kosztorysem — nie wykonuje płatnych żądań:
+
+```bash
+npm run narration
+```
+
+Do generowania ustaw lokalnie klucz i identyfikatory trzech głosów. Możesz
+zapisać je w ignorowanym przez Git pliku `AloneAgainstTheStatic/.env`. Klucza
+API nie wpisuj do śledzonych plików projektu ani do kodu przeglądarki.
+
+```bash
+ELEVENLABS_API_KEY="..."
+ELEVENLABS_VOICE_NARRATOR="..."
+ELEVENLABS_VOICE_ALEX="..."
+ELEVENLABS_VOICE_CHARLIE="..."
+```
+
+Następnie:
+
+```bash
+npm run narration -- --confirm
+```
+
+Generator zapisuje `media/narration/pl/e1.p1.mp3` itd. i aktualizuje sekcję
+`narration` w `data/media.json`. Istniejące pliki pomija, żeby przypadkowe
+ponowne uruchomienie nie zużywało środków; świadoma regeneracja wymaga
+`--force`. Angielski pilot uruchamiasz przez `--locale en`, oba języki przez
+`--locale all`. `--require-script` wymaga tagów emocjonalnych dla każdego
+klipu, a `--concurrency 3` uruchamia do trzech żądań równolegle i ponawia
+chwilowe błędy limitu.
+
+Angielski prolog do wspólnego paragrafu 34 ma 229 kluczy i 234 warianty VO:
+128 dla Alex oraz 106 dla Charlie. Przy `--variant` pliki trafiają do katalogu
+bohatera (`media/narration/en/alex/` albo `.../charlie/`), a wspólny paragraf
+34 wybiera właściwy głos `[you]` zgodnie z aktywną postacią.
+
+Emocjonalne wersje wejścia dla Eleven v3 można zapisać w
+`data/narration.pl.json` lub `data/narration.en.json`. Każdy klucz zawiera
+osobne tury mówców z instrukcjami
+audio w nawiasach kwadratowych, np. `[tense]` lub `[whispers]`. Generator
+sprawdza przed wysłaniem, czy skrypt nie zmienił mówcy, liczby tur ani żadnego
+wypowiadanego słowa. Tagi są używane wyłącznie do nagrania i nie pojawiają się
+w tekście wyświetlanym graczowi.
 
 Muzyka tła działa bez wpisywania czegokolwiek — wystarczy wrzucić pliki do
 `media/music/` i uruchomić:

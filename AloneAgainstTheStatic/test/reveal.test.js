@@ -154,6 +154,89 @@ test("klik w trakcie pisania domyka akapit, kolejny odsłania następny", () => 
   assert.ok(visibleText(root).includes("Drugi"));
 });
 
+test("tryb ręczny pozwala kliknięciem przerwać VO i przejść do następnego akapitu", () => {
+  const { root, clock, i18n, reveal } = setup({ "e1.p1": "Pierwszy.", "e1.p2": "Drugi." });
+  const started = [];
+  const finish = new Map();
+  const skipped = [];
+  reveal.start({
+    entryId: 1,
+    originEntryId: null,
+    events: [
+      { kind: "text", key: "e1.p1" },
+      { kind: "text", key: "e1.p2" },
+    ],
+  }, {
+    i18n,
+    onTextStart(event, paragraph, done) {
+      started.push(event.key);
+      finish.set(event.key, done);
+    },
+    onTextSkip(paragraph) {
+      skipped.push(paragraph.textContent);
+    },
+  });
+
+  clock.tick(5000);
+  assert.equal(reveal.phase(), "narrating");
+  assert.deepEqual(started, ["e1.p1"]);
+
+  reveal.tap();
+  assert.deepEqual(started, ["e1.p1", "e1.p2"]);
+  assert.deepEqual(skipped, ["Pierwszy."]);
+  assert.equal(reveal.phase(), "typing");
+
+  finish.get("e1.p1")();
+  assert.equal(reveal.phase(), "typing", "spóźnione zakończenie starego VO nie rusza nowego akapitu");
+});
+
+test("Autoplay ignoruje przewijające kliki i zatrzymuje się na granicy paragrafu", () => {
+  const { root, clock, i18n, reveal } = setup({
+    "e1.p1": "Pierwszy akapit.",
+    "e1.p2": "Drugi akapit.",
+    "e2.p1": "Następny paragraf.",
+  });
+  const started = [];
+  const finish = new Map();
+  reveal.setAutoplay(true);
+  reveal.start({
+    entryId: 2,
+    originEntryId: 1,
+    events: [
+      { kind: "text", key: "e1.p1" },
+      { kind: "text", key: "e1.p2" },
+      { kind: "text", key: "e2.p1" },
+    ],
+  }, {
+    i18n,
+    onTextStart(event, paragraph, done) {
+      started.push(event.key);
+      finish.set(event.key, done);
+    },
+  });
+
+  clock.tick(20);
+  const prefix = visibleText(root);
+  assert.equal(reveal.tap(), true);
+  assert.equal(visibleText(root), prefix, "klik nie domyka tekstu w Autoplay");
+
+  clock.tick(5000);
+  assert.equal(reveal.phase(), "narrating");
+  reveal.tap();
+  assert.deepEqual(started, ["e1.p1"], "klik nie przerywa VO w Autoplay");
+
+  finish.get("e1.p1")();
+  clock.tick(1);
+  assert.deepEqual(started, ["e1.p1", "e1.p2"]);
+
+  clock.tick(5000);
+  finish.get("e1.p2")();
+  clock.tick(1);
+  assert.equal(reveal.phase(), "continue");
+  assert.ok(root.querySelector(".continue"), "granica numerowanego paragrafu zostaje bramką");
+  assert.deepEqual(started, ["e1.p1", "e1.p2"], "Autoplay nie otwiera kolejnego paragrafu");
+});
+
 test("granica paragrafów daje przycisk dalej, który czyści ekran", () => {
   const { root, clock, i18n, reveal } = setup({ "e1.p1": "Tu", "e2.p1": "Tam" });
   reveal.start({

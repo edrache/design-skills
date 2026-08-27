@@ -22,6 +22,7 @@ export function createAudio(media, settings) {
   let narration = null;
   let playlist = null;
   let current = null;
+  let narrationDone = null;
   let ticker = null;
   let halted = false;
   let awaitingGesture = false;
@@ -188,9 +189,43 @@ export function createAudio(media, settings) {
     halted = false;
   }
 
-  function stopNarration() {
+  function resolveNarration() {
+    const done = narrationDone;
+    narrationDone = null;
+    done?.();
+  }
+
+  function finishNarration(node) {
+    // Zdarzenie ze starego, już zatrzymanego elementu Audio nie może zwolnić
+    // bramki klipu, który zaczął grać po nim.
+    if (node && node !== narration) return;
+    if (node === narration) {
+      pause(node);
+      narration = null;
+    }
+    resolveNarration();
+  }
+
+  function stopNarration({ complete = true } = {}) {
     pause(narration);
     narration = null;
+    if (complete) resolveNarration();
+    else narrationDone = null;
+  }
+
+  function narrationSource(textKey, locale, character) {
+    const key = String(textKey ?? "");
+    const direct = media?.narration?.[key]?.[locale];
+    if (typeof direct === "string" && direct.trim()) return direct;
+    if (direct && typeof direct === "object") {
+      const variant = direct[character] ?? direct.default;
+      if (typeof variant === "string" && variant.trim()) return variant;
+    }
+
+    // Zgodność ze starym manifestem, w którym jeden plik przypadał na cały
+    // numerowany wpis. Generator akapitowy zapisuje już wyłącznie `narration`.
+    if (/^\d+$/.test(key)) return media?.entries?.[key]?.audio?.[locale] ?? null;
+    return null;
   }
 
   settings.subscribe?.((values) => {
@@ -206,17 +241,25 @@ export function createAudio(media, settings) {
   });
 
   return {
-    playNarration(entryId, locale) {
-      stopNarration();
-      if (!settings.values.narration) return;
-      const src = media?.entries?.[String(entryId)]?.audio?.[locale];
+    playNarration(textKey, locale, character) {
+      stopNarration({ complete: false });
+      const src = narrationSource(textKey, locale, character);
+      if (!settings.values.narration || !src) return Promise.resolve(false);
       const node = makeNode(src);
-      if (!node) return;
+      if (!node) return Promise.resolve(false);
       narration = node;
       node.volume = volume(settings.values.narrationVolume, 0.9);
+      const completion = new Promise((resolve) => { narrationDone = () => resolve(true); });
+      node.addEventListener?.("ended", () => finishNarration(node));
+      node.addEventListener?.("error", () => finishNarration(node));
       try {
-        node.play()?.catch?.(() => {});
-      } catch { /* Cisza jest dopuszczalnym wynikiem. */ }
+        node.play()?.catch?.(() => finishNarration(node));
+      } catch { finishNarration(node); }
+      return completion;
+    },
+
+    stopNarration() {
+      stopNarration();
     },
 
     startMusic(tracks) {
@@ -241,6 +284,7 @@ export function createAudio(media, settings) {
       }
       nodes.clear();
       narration = null;
+      narrationDone = null;
     },
   };
 }

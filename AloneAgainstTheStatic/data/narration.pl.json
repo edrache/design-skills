@@ -1,0 +1,48 @@
+{
+  "e1.p1": [
+    {
+      "speaker": "charlie",
+      "text": "[frustrated] [straining] [suddenly alarmed] [shouts] „Cholera!”"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[tense] [urgent] [fast-paced] — warczy Charlie, próbując jednocześnie złożyć niepraktycznie wielką mapę nad kierownicą twojego samochodu [with mounting alarm] i nie wjechać przy tym w drzewo."
+    }
+  ],
+  "e1.p2": [
+    {
+      "speaker": "alex",
+      "text": "[patient] [trying to stay calm] [gently exasperated] „Może po prostu dasz mi tę mapę potrzymać?”"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[restrained tension] — pytasz."
+    },
+    {
+      "speaker": "charlie",
+      "text": "[defensive] [stubborn] [with forced confidence] „Nie. [firmly] Radzę sobie doskonale”"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[tense] [with growing concern] — mówi Charlie i"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[suddenly alarmed] [sharp and urgent] wciska hamulec"
+    },
+    {
+      "speaker": "narrator",
+      "text": "[breathless] [tense] przed kolejnym ciasnym zakrętem."
+    }
+  ],
+  "e1.p3": [
+    {
+      "speaker": "narrator",
+      "text": "[cinematic] [quietly ominous] [slow and atmospheric] Późne popołudnie, wiejska droga w głębi Black Hills w Dakocie Południowej. [uneasy] Słońce stoi wysoko, ale powietrze jest zimne. [with growing isolation] Od ponad godziny nie widzisz nic poza sosnami i dwoma wąskimi, wijącymi się pasmami asfaltu."
+    },
+    {
+      "speaker": "narrator",
+      "text": "[subdued] [uneasy] Radio w samochodzie słabnie. [with gathering dread] Wypluwa kawałek Neila Diamonda przetykany szumem."
+    }
+  ]
+}

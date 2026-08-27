@@ -46,6 +46,7 @@ test("domyślne ustawienia działają bez localStorage i document", () => {
   let settings;
   assert.doesNotThrow(() => { settings = createSettings(); });
   assert.deepEqual(settings.values, {
+    autoplay: false,
     narration: true,
     narrationVolume: 0.9,
     musicVolume: 0.4,
@@ -73,6 +74,7 @@ test("odczyt przycina liczby, odrzuca obce pola i stosuje CSS", () => {
   const settings = createSettings();
 
   assert.deepEqual(settings.values, {
+    autoplay: false,
     narration: false,
     narrationVolume: 1,
     musicVolume: 0,
@@ -96,6 +98,7 @@ test("nieprawidłowe typy z magazynu spadają na wartości domyślne", () => {
   }));
 
   assert.deepEqual(createSettings().values, {
+    autoplay: false,
     narration: true,
     narrationVolume: 0.9,
     musicVolume: 0.4,
@@ -116,12 +119,14 @@ test("set przycina zakres, zapisuje wyłącznie znany schemat i aktualizuje CSS"
   assert.equal(settings.set("scanlines", 9), true);
   assert.equal(settings.set("proseSize", 0), true);
   assert.equal(settings.set("musicVolume", -1), true);
+  assert.equal(settings.set("autoplay", true), true);
   assert.equal(settings.set("unknown", 4), false);
   assert.equal(settings.set("narration", "false"), false);
 
   assert.equal(settings.values.scanlines, 0.15);
   assert.equal(settings.values.proseSize, 0.9);
   assert.equal(settings.values.musicVolume, 0);
+  assert.equal(settings.values.autoplay, true);
   assert.equal(doc.properties.get("--scanline-strength"), "0.15");
   assert.equal(doc.properties.get("--prose-size"), "0.9rem");
   assert.deepEqual(Object.keys(JSON.parse(storage.read("aats-settings"))).sort(), Object.keys(settings.values).sort());

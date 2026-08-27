@@ -140,6 +140,73 @@ test("lektor zatrzymuje poprzedni wpis i reaguje na ustawienia", () => {
   assert.equal(audioInstances.length, 1);
 });
 
+test("osobny klip akapitu kończy bramkę dopiero po zdarzeniu ended", async () => {
+  const audio = createAudio({
+    narration: {
+      "e1.p1": { pl: "media/narration/pl/e1.p1.mp3" },
+      "e1.p2": { pl: "media/narration/pl/e1.p2.mp3" },
+    },
+  }, fakeSettings());
+
+  let finished = false;
+  const completion = audio.playNarration("e1.p1", "pl").then(() => { finished = true; });
+  assert.match(audioInstances[0].src, /media\/narration\/pl\/e1\.p1\.mp3$/);
+  await Promise.resolve();
+  assert.equal(finished, false);
+
+  audioInstances[0].emit("ended");
+  await completion;
+  assert.equal(finished, true);
+
+  audio.playNarration("e1.p2", "pl");
+  assert.equal(audioInstances.length, 2);
+  assert.equal(audioInstances[0].paused, true);
+});
+
+test("brak klipu akapitu od razu zwalnia bramkę", async () => {
+  const audio = createAudio({ narration: {} }, fakeSettings());
+  assert.equal(await audio.playNarration("e1.p1", "pl"), false);
+  assert.deepEqual(audioInstances, []);
+});
+
+test("wspólny akapit wybiera wariant nagrania zgodny z bohaterem", () => {
+  const audio = createAudio({
+    narration: {
+      "e34.p2": {
+        en: {
+          alex: "media/narration/en/alex/e34.p2.mp3",
+          charlie: "media/narration/en/charlie/e34.p2.mp3",
+        },
+      },
+    },
+  }, fakeSettings());
+
+  audio.playNarration("e34.p2", "en", "charlie");
+  assert.match(audioInstances[0].src, /media\/narration\/en\/charlie\/e34\.p2\.mp3$/);
+});
+
+test("opóźnione ended starego klipu nie kończy nowego akapitu", async () => {
+  const audio = createAudio({
+    narration: {
+      "e1.p1": { pl: "media/narration/pl/e1.p1.mp3" },
+      "e1.p2": { pl: "media/narration/pl/e1.p2.mp3" },
+    },
+  }, fakeSettings());
+
+  audio.playNarration("e1.p1", "pl");
+  const first = audioInstances[0];
+  let secondDone = false;
+  const second = audio.playNarration("e1.p2", "pl").then(() => { secondDone = true; });
+
+  first.emit("ended");
+  await Promise.resolve();
+  assert.equal(secondDone, false);
+
+  audioInstances[1].emit("ended");
+  await second;
+  assert.equal(secondDone, true);
+});
+
 test("muzyka rusza od razu i narasta do poziomu suwaka", () => {
   const audio = createAudio({}, fakeSettings());
   audio.startMusic(music());

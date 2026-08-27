@@ -1,3 +1,1169 @@
 {
-  "entries": {}
+  "entries": {},
+  "narration": {
+    "e1.p1": {
+      "pl": "media/narration/pl/e1.p1.mp3",
+      "en": {
+        "default": "media/narration/en/e1.p1.mp3",
+        "alex": "media/narration/en/e1.p1.mp3"
+      }
+    },
+    "e1.p2": {
+      "pl": "media/narration/pl/e1.p2.mp3",
+      "en": {
+        "default": "media/narration/en/e1.p2.mp3",
+        "alex": "media/narration/en/e1.p2.mp3"
+      }
+    },
+    "e1.p3": {
+      "pl": "media/narration/pl/e1.p3.mp3",
+      "en": {
+        "default": "media/narration/en/e1.p3.mp3",
+        "alex": "media/narration/en/e1.p3.mp3"
+      }
+    },
+    "e3.p1": {
+      "pl": "media/narration/pl/e3.p1.mp3",
+      "en": {
+        "alex": "media/narration/en/alex/e3.p1.mp3"
+      }
+    },
+    "e3.p2": {
+      "pl": "media/narration/pl/e3.p2.mp3",
+      "en": {
+        "alex": "media/narration/en/alex/e3.p2.mp3"
+      }
+    },
+    "e3.p3": {
+      "pl": "media/narration/pl/e3.p3.mp3",
+      "en": {
+        "alex": "media/narration/en/alex/e3.p3.mp3"
+      }
+    },
+    "e3.p4": {
+      "pl": "media/narration/pl/e3.p4.mp3",
+      "en": {
+        "alex": "media/narration/en/alex/e3.p4.mp3"
+      }
+    },
+    "e3.p5": {
+      "pl": "media/narration/pl/e3.p5.mp3",
+      "en": {
+        "alex": "media/narration/en/alex/e3.p5.mp3"
+      }
+    },
+    "e7.p1": {
+      "pl": "media/narration/pl/e7.p1.mp3",
+      "en": {
+        "alex": "media/narration/en/alex/e7.p1.mp3"
+      }
+    },
+    "e7.p2": {
+      "pl": "media/narration/pl/e7.p2.mp3",
+      "en": {
+        "alex": "media/narration/en/alex/e7.p2.mp3"
+      }
+    },
+    "e7.p3": {
+      "pl": "media/narration/pl/e7.p3.mp3",
+      "en": {
+        "alex": "media/narration/en/alex/e7.p3.mp3"
+      }
+    },
+    "e4.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e4.p1.mp3"
+      }
+    },
+    "e4.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e4.p2.mp3"
+      }
+    },
+    "e5.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e5.p1.mp3"
+      }
+    },
+    "e5.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e5.p3.mp3"
+      }
+    },
+    "e5.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e5.p2.mp3"
+      }
+    },
+    "e6.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e6.p1.mp3"
+      }
+    },
+    "e6.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e6.p2.mp3"
+      }
+    },
+    "e8.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e8.p1.mp3"
+      }
+    },
+    "e8.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e8.p2.mp3"
+      }
+    },
+    "e11.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e11.p3.mp3"
+      }
+    },
+    "e11.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e11.p2.mp3"
+      }
+    },
+    "e11.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e11.p1.mp3"
+      }
+    },
+    "e12.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e12.p1.mp3"
+      }
+    },
+    "e12.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e12.p2.mp3"
+      }
+    },
+    "e11.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e11.p4.mp3"
+      }
+    },
+    "e13.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e13.p1.mp3"
+      }
+    },
+    "e13.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e13.p2.mp3"
+      }
+    },
+    "e13.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e13.p4.mp3"
+      }
+    },
+    "e13.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e13.p3.mp3"
+      }
+    },
+    "e14.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e14.p2.mp3"
+      }
+    },
+    "e14.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e14.p1.mp3"
+      }
+    },
+    "e13.p5": {
+      "en": {
+        "alex": "media/narration/en/alex/e13.p5.mp3"
+      }
+    },
+    "e15.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e15.p1.mp3"
+      }
+    },
+    "e14.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e14.p3.mp3"
+      }
+    },
+    "e15.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e15.p2.mp3"
+      }
+    },
+    "e15.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e15.p3.mp3"
+      }
+    },
+    "e16.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e16.p2.mp3"
+      }
+    },
+    "e17.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e17.p1.mp3"
+      }
+    },
+    "e16.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e16.p3.mp3"
+      }
+    },
+    "e16.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e16.p1.mp3"
+      }
+    },
+    "e18.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e18.p1.mp3"
+      }
+    },
+    "e17.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e17.p2.mp3"
+      }
+    },
+    "e17.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e17.p3.mp3"
+      }
+    },
+    "e18.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e18.p2.mp3"
+      }
+    },
+    "e18.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e18.p3.mp3"
+      }
+    },
+    "e19.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e19.p1.mp3"
+      }
+    },
+    "e18.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e18.p4.mp3"
+      }
+    },
+    "e19.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e19.p2.mp3"
+      }
+    },
+    "e19.p5": {
+      "en": {
+        "alex": "media/narration/en/alex/e19.p5.mp3"
+      }
+    },
+    "e19.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e19.p3.mp3"
+      }
+    },
+    "e19.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e19.p4.mp3"
+      }
+    },
+    "e20.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e20.p1.mp3"
+      }
+    },
+    "e20.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e20.p2.mp3"
+      }
+    },
+    "e20.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e20.p3.mp3"
+      }
+    },
+    "e20.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e20.p4.mp3"
+      }
+    },
+    "e20.p5": {
+      "en": {
+        "alex": "media/narration/en/alex/e20.p5.mp3"
+      }
+    },
+    "e20.p6": {
+      "en": {
+        "alex": "media/narration/en/alex/e20.p6.mp3"
+      }
+    },
+    "e21.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e21.p1.mp3"
+      }
+    },
+    "e21.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e21.p3.mp3"
+      }
+    },
+    "e21.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e21.p2.mp3"
+      }
+    },
+    "e21.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e21.p4.mp3"
+      }
+    },
+    "e21.p5": {
+      "en": {
+        "alex": "media/narration/en/alex/e21.p5.mp3"
+      }
+    },
+    "e22.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e22.p1.mp3"
+      }
+    },
+    "e22.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e22.p3.mp3"
+      }
+    },
+    "e22.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e22.p2.mp3"
+      }
+    },
+    "e22.p6": {
+      "en": {
+        "alex": "media/narration/en/alex/e22.p6.mp3"
+      }
+    },
+    "e22.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e22.p4.mp3"
+      }
+    },
+    "e22.p7": {
+      "en": {
+        "alex": "media/narration/en/alex/e22.p7.mp3"
+      }
+    },
+    "e22.p5": {
+      "en": {
+        "alex": "media/narration/en/alex/e22.p5.mp3"
+      }
+    },
+    "e23.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e23.p1.mp3"
+      }
+    },
+    "e23.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e23.p2.mp3"
+      }
+    },
+    "e23.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e23.p3.mp3"
+      }
+    },
+    "e23.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e23.p4.mp3"
+      }
+    },
+    "e23.p5": {
+      "en": {
+        "alex": "media/narration/en/alex/e23.p5.mp3"
+      }
+    },
+    "e23.p6": {
+      "en": {
+        "alex": "media/narration/en/alex/e23.p6.mp3"
+      }
+    },
+    "e24.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e24.p1.mp3"
+      }
+    },
+    "e22.p8": {
+      "en": {
+        "alex": "media/narration/en/alex/e22.p8.mp3"
+      }
+    },
+    "e24.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e24.p3.mp3"
+      }
+    },
+    "e24.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e24.p4.mp3"
+      }
+    },
+    "e24.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e24.p2.mp3"
+      }
+    },
+    "e24.p6": {
+      "en": {
+        "alex": "media/narration/en/alex/e24.p6.mp3"
+      }
+    },
+    "e25.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e25.p1.mp3"
+      }
+    },
+    "e25.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e25.p2.mp3"
+      }
+    },
+    "e24.p5": {
+      "en": {
+        "alex": "media/narration/en/alex/e24.p5.mp3"
+      }
+    },
+    "e25.p5": {
+      "en": {
+        "alex": "media/narration/en/alex/e25.p5.mp3"
+      }
+    },
+    "e25.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e25.p3.mp3"
+      }
+    },
+    "e25.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e25.p4.mp3"
+      }
+    },
+    "e26.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e26.p2.mp3"
+      }
+    },
+    "e26.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e26.p3.mp3"
+      }
+    },
+    "e26.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e26.p1.mp3"
+      }
+    },
+    "e26.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e26.p4.mp3"
+      }
+    },
+    "e28.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e28.p1.mp3"
+      }
+    },
+    "e26.p5": {
+      "en": {
+        "alex": "media/narration/en/alex/e26.p5.mp3"
+      }
+    },
+    "e28.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e28.p2.mp3"
+      }
+    },
+    "e29.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e29.p1.mp3"
+      }
+    },
+    "e29.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e29.p2.mp3"
+      }
+    },
+    "e29.p5": {
+      "en": {
+        "alex": "media/narration/en/alex/e29.p5.mp3"
+      }
+    },
+    "e29.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e29.p4.mp3"
+      }
+    },
+    "e29.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e29.p3.mp3"
+      }
+    },
+    "e29.p6": {
+      "en": {
+        "alex": "media/narration/en/alex/e29.p6.mp3"
+      }
+    },
+    "e29.p7": {
+      "en": {
+        "alex": "media/narration/en/alex/e29.p7.mp3"
+      }
+    },
+    "e30.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e30.p1.mp3"
+      }
+    },
+    "e30.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e30.p4.mp3"
+      }
+    },
+    "e30.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e30.p3.mp3"
+      }
+    },
+    "e31.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e31.p1.mp3"
+      }
+    },
+    "e30.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e30.p2.mp3"
+      }
+    },
+    "e30.p5": {
+      "en": {
+        "alex": "media/narration/en/alex/e30.p5.mp3"
+      }
+    },
+    "e31.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e31.p2.mp3"
+      }
+    },
+    "e31.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e31.p4.mp3"
+      }
+    },
+    "e31.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e31.p3.mp3"
+      }
+    },
+    "e32.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e32.p1.mp3"
+      }
+    },
+    "e31.p5": {
+      "en": {
+        "alex": "media/narration/en/alex/e31.p5.mp3"
+      }
+    },
+    "e32.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e32.p3.mp3"
+      }
+    },
+    "e32.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e32.p4.mp3"
+      }
+    },
+    "e32.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e32.p2.mp3"
+      }
+    },
+    "e33.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e33.p1.mp3"
+      }
+    },
+    "e33.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e33.p2.mp3"
+      }
+    },
+    "e32.p5": {
+      "en": {
+        "alex": "media/narration/en/alex/e32.p5.mp3"
+      }
+    },
+    "e33.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e33.p3.mp3"
+      }
+    },
+    "e33.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e33.p4.mp3"
+      }
+    },
+    "e33.p5": {
+      "en": {
+        "alex": "media/narration/en/alex/e33.p5.mp3"
+      }
+    },
+    "e34.p1": {
+      "en": {
+        "alex": "media/narration/en/alex/e34.p1.mp3",
+        "charlie": "media/narration/en/charlie/e34.p1.mp3"
+      }
+    },
+    "e34.p2": {
+      "en": {
+        "alex": "media/narration/en/alex/e34.p2.mp3",
+        "charlie": "media/narration/en/charlie/e34.p2.mp3"
+      }
+    },
+    "e34.p4": {
+      "en": {
+        "alex": "media/narration/en/alex/e34.p4.mp3",
+        "charlie": "media/narration/en/charlie/e34.p4.mp3"
+      }
+    },
+    "e34.p3": {
+      "en": {
+        "alex": "media/narration/en/alex/e34.p3.mp3",
+        "charlie": "media/narration/en/charlie/e34.p3.mp3"
+      }
+    },
+    "e34.p5": {
+      "en": {
+        "alex": "media/narration/en/alex/e34.p5.mp3",
+        "charlie": "media/narration/en/charlie/e34.p5.mp3"
+      }
+    },
+    "e33.p6": {
+      "en": {
+        "alex": "media/narration/en/alex/e33.p6.mp3"
+      }
+    },
+    "e2.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e2.p2.mp3"
+      }
+    },
+    "e83.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e83.p1.mp3"
+      }
+    },
+    "e2.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e2.p1.mp3"
+      }
+    },
+    "e83.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e83.p2.mp3"
+      }
+    },
+    "e83.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e83.p3.mp3"
+      }
+    },
+    "e2.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e2.p3.mp3"
+      }
+    },
+    "e83.p4": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e83.p4.mp3"
+      }
+    },
+    "e96.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e96.p2.mp3"
+      }
+    },
+    "e103.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e103.p1.mp3"
+      }
+    },
+    "e96.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e96.p1.mp3"
+      }
+    },
+    "e103.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e103.p2.mp3"
+      }
+    },
+    "e105.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e105.p1.mp3"
+      }
+    },
+    "e103.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e103.p3.mp3"
+      }
+    },
+    "e111.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e111.p1.mp3"
+      }
+    },
+    "e105.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e105.p3.mp3"
+      }
+    },
+    "e105.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e105.p2.mp3"
+      }
+    },
+    "e111.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e111.p2.mp3"
+      }
+    },
+    "e111.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e111.p3.mp3"
+      }
+    },
+    "e124.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e124.p2.mp3"
+      }
+    },
+    "e124.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e124.p1.mp3"
+      }
+    },
+    "e124.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e124.p3.mp3"
+      }
+    },
+    "e126.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e126.p3.mp3"
+      }
+    },
+    "e126.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e126.p1.mp3"
+      }
+    },
+    "e126.p4": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e126.p4.mp3"
+      }
+    },
+    "e126.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e126.p2.mp3"
+      }
+    },
+    "e126.p6": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e126.p6.mp3"
+      }
+    },
+    "e126.p5": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e126.p5.mp3"
+      }
+    },
+    "e129.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e129.p1.mp3"
+      }
+    },
+    "e129.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e129.p2.mp3"
+      }
+    },
+    "e129.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e129.p3.mp3"
+      }
+    },
+    "e127.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e127.p1.mp3"
+      }
+    },
+    "e131.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e131.p3.mp3"
+      }
+    },
+    "e131.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e131.p1.mp3"
+      }
+    },
+    "e131.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e131.p2.mp3"
+      }
+    },
+    "e131.p4": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e131.p4.mp3"
+      }
+    },
+    "e133.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e133.p1.mp3"
+      }
+    },
+    "e131.p5": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e131.p5.mp3"
+      }
+    },
+    "e133.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e133.p3.mp3"
+      }
+    },
+    "e133.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e133.p2.mp3"
+      }
+    },
+    "e133.p6": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e133.p6.mp3"
+      }
+    },
+    "e133.p4": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e133.p4.mp3"
+      }
+    },
+    "e133.p5": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e133.p5.mp3"
+      }
+    },
+    "e135.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e135.p2.mp3"
+      }
+    },
+    "e137.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e137.p2.mp3"
+      }
+    },
+    "e135.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e135.p1.mp3"
+      }
+    },
+    "e137.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e137.p1.mp3"
+      }
+    },
+    "e137.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e137.p3.mp3"
+      }
+    },
+    "e145.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e145.p1.mp3"
+      }
+    },
+    "e145.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e145.p2.mp3"
+      }
+    },
+    "e145.p4": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e145.p4.mp3"
+      }
+    },
+    "e145.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e145.p3.mp3"
+      }
+    },
+    "e145.p5": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e145.p5.mp3"
+      }
+    },
+    "e154.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e154.p1.mp3"
+      }
+    },
+    "e154.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e154.p2.mp3"
+      }
+    },
+    "e154.p4": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e154.p4.mp3"
+      }
+    },
+    "e154.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e154.p3.mp3"
+      }
+    },
+    "e145.p6": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e145.p6.mp3"
+      }
+    },
+    "e154.p5": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e154.p5.mp3"
+      }
+    },
+    "e154.p6": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e154.p6.mp3"
+      }
+    },
+    "e154.p7": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e154.p7.mp3"
+      }
+    },
+    "e158.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e158.p1.mp3"
+      }
+    },
+    "e158.p4": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e158.p4.mp3"
+      }
+    },
+    "e158.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e158.p2.mp3"
+      }
+    },
+    "e160.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e160.p1.mp3"
+      }
+    },
+    "e158.p5": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e158.p5.mp3"
+      }
+    },
+    "e158.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e158.p3.mp3"
+      }
+    },
+    "e160.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e160.p3.mp3"
+      }
+    },
+    "e160.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e160.p2.mp3"
+      }
+    },
+    "e160.p4": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e160.p4.mp3"
+      }
+    },
+    "e174.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e174.p1.mp3"
+      }
+    },
+    "e160.p5": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e160.p5.mp3"
+      }
+    },
+    "e174.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e174.p2.mp3"
+      }
+    },
+    "e174.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e174.p3.mp3"
+      }
+    },
+    "e174.p5": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e174.p5.mp3"
+      }
+    },
+    "e174.p4": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e174.p4.mp3"
+      }
+    },
+    "e174.p7": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e174.p7.mp3"
+      }
+    },
+    "e174.p6": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e174.p6.mp3"
+      }
+    },
+    "e193.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e193.p1.mp3"
+      }
+    },
+    "e193.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e193.p3.mp3"
+      }
+    },
+    "e193.p4": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e193.p4.mp3"
+      }
+    },
+    "e193.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e193.p2.mp3"
+      }
+    },
+    "e193.p5": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e193.p5.mp3"
+      }
+    },
+    "e205.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e205.p1.mp3"
+      }
+    },
+    "e193.p6": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e193.p6.mp3"
+      }
+    },
+    "e205.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e205.p2.mp3"
+      }
+    },
+    "e205.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e205.p3.mp3"
+      }
+    },
+    "e207.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e207.p1.mp3"
+      }
+    },
+    "e205.p4": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e205.p4.mp3"
+      }
+    },
+    "e207.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e207.p2.mp3"
+      }
+    },
+    "e207.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e207.p3.mp3"
+      }
+    },
+    "e234.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e234.p1.mp3"
+      }
+    },
+    "e207.p4": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e207.p4.mp3"
+      }
+    },
+    "e234.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e234.p2.mp3"
+      }
+    },
+    "e234.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e234.p3.mp3"
+      }
+    },
+    "e207.p5": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e207.p5.mp3"
+      }
+    },
+    "e234.p6": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e234.p6.mp3"
+      }
+    },
+    "e234.p4": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e234.p4.mp3"
+      }
+    },
+    "e234.p5": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e234.p5.mp3"
+      }
+    },
+    "e327.p2": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e327.p2.mp3"
+      }
+    },
+    "e327.p1": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e327.p1.mp3"
+      }
+    },
+    "e327.p3": {
+      "en": {
+        "charlie": "media/narration/en/charlie/e327.p3.mp3"
+      }
+    }
+  }
 }

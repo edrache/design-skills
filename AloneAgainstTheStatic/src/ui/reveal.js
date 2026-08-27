@@ -206,6 +206,7 @@ export function createReveal({
 }) {
   const doc = root.ownerDocument ?? globalThis.document;
   let session = null;
+  let autoplayEnabled = false;
 
   function clearTimers() {
     if (session?.rafHandle !== undefined) {
@@ -238,6 +239,29 @@ export function createReveal({
     session.phase = "waiting";
   }
 
+  function scheduleAutoplay(node = null) {
+    if (!session || !autoplayEnabled) return false;
+    const active = session;
+    clearWaiting();
+    active.autoNode = node;
+    active.phase = "autoplay";
+    delay(() => {
+      if (session !== active || !autoplayEnabled || active.phase !== "autoplay") return;
+      active.autoNode = null;
+      nextStep();
+    }, 0);
+    return true;
+  }
+
+  function settleText(paragraph) {
+    if (!session || session.typing) return;
+    if (session.narration?.paragraph === paragraph && !session.narration.done) {
+      session.phase = "narrating";
+      return;
+    }
+    if (!scheduleAutoplay(paragraph)) waitFor(paragraph);
+  }
+
   function finishTyping() {
     clearTimers();
     if (!session?.typing) return;
@@ -250,13 +274,29 @@ export function createReveal({
     // Klon widmowy (src/ui/pointer-static.js) można zbudować dopiero teraz:
     // do tej pory applyVisible przepisywał węzły tekstowe co klatkę.
     session.onParagraphDone?.(paragraph);
-    waitFor(paragraph);
+    settleText(paragraph);
   }
 
-  function typeParagraph(paragraph) {
+  function finishNarration(paragraph) {
+    if (!session || session.narration?.paragraph !== paragraph || session.narration.done) return;
+    session.narration.done = true;
+    if (!session.typing) settleText(paragraph);
+  }
+
+  function typeParagraph(paragraph, event) {
     const scan = scanParagraph(paragraph);
     const text = scan.texts.map((entry) => entry.full).join("");
     session.typing = { paragraph, scan };
+    session.narration = { paragraph, done: false };
+
+    // Lektor jest opcjonalną bramką tego samego akapitu. Callback musi dostać
+    // jawne `done`, bo brak pliku, wyłączona narracja i błąd autoplay mają
+    // odblokować zwykły rytm kliknięć zamiast zatrzymać grę na zawsze.
+    if (session.onTextStart) {
+      session.onTextStart(event, paragraph, () => finishNarration(paragraph));
+    } else {
+      finishNarration(paragraph);
+    }
 
     if (reducedMotion() || scan.total === 0) {
       finishTyping();
@@ -355,7 +395,7 @@ export function createReveal({
     if (event.kind === "text") {
       const [paragraph] = nodesFor(event);
       session.block.append(paragraph);
-      typeParagraph(paragraph);
+      typeParagraph(paragraph, event);
       return;
     }
     if (event.kind === "roll") {
@@ -372,7 +412,7 @@ export function createReveal({
       session.block.append(node);
       last = node;
     }
-    waitFor(last);
+    if (!scheduleAutoplay(last)) waitFor(last);
   }
 
   function endOfParagraph() {
@@ -412,7 +452,9 @@ export function createReveal({
 
   return {
     // Odsłania ramkę od początku: paragraf po paragrafie, akapit po akapicie.
-    start(record, { i18n, media, handlers, seenBefore, onParagraph, onParagraphDone, onRoll, onComplete } = {}) {
+    start(record, {
+      i18n, media, handlers, seenBefore, onParagraph, onTextStart, onTextSkip, onParagraphDone, onRoll, onComplete,
+    } = {}) {
       clearTimers();
       session = {
         i18n,
@@ -427,12 +469,15 @@ export function createReveal({
         // jedna ramka może przejść przez kilka paragrafów o różnej historii.
         seenBefore,
         onParagraph,
+        onTextStart,
+        onTextSkip,
         onParagraphDone,
         onRoll,
         onComplete,
         phase: "idle",
         paragraphIndex: -1,
         typing: null,
+        narration: null,
       };
       openParagraph(0);
       return session.block;
@@ -442,6 +487,13 @@ export function createReveal({
     // kolejny odsłania następny krok.
     tap() {
       if (!session) return false;
+      if (autoplayEnabled && session.phase !== "done") {
+        // Autoplay przejmuje rytm prezentacji. Klik w tło ani Enter/Spacja
+        // nie mogą wtedy przewinąć tekstu, urwać nagrania ani ominąć bramki.
+        // Same przyciski nadal działają, bo main.js nie przekazuje ich klików
+        // do tap().
+        return true;
+      }
       if (session.phase === "typing") {
         finishTyping();
         return true;
@@ -458,7 +510,29 @@ export function createReveal({
         openParagraph(session.paragraphIndex + 1);
         return true;
       }
+      if (session.phase === "narrating") {
+        const paragraph = session.narration?.paragraph;
+        if (session.narration) session.narration.done = true;
+        session.onTextSkip?.(paragraph);
+        nextStep();
+        return true;
+      }
       return false;
+    },
+
+    setAutoplay(enabled) {
+      autoplayEnabled = Boolean(enabled);
+      if (autoplayEnabled && session?.phase === "waiting") scheduleAutoplay(session.awaiting);
+      else if (!autoplayEnabled && session?.phase === "autoplay") {
+        const node = session.autoNode;
+        session.autoNode = null;
+        waitFor(node);
+      }
+      return autoplayEnabled;
+    },
+
+    autoplay() {
+      return autoplayEnabled;
     },
 
     stop() {

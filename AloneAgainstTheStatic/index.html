@@ -78,8 +78,13 @@
 
       <section id="screen-game" class="screen game-screen" hidden>
         <h1 class="visually-hidden">Dziennik rozgrywki</h1>
-        <div class="journal-register" aria-hidden="true">
-          <span>PLAY</span><span>SP</span><span id="tape-counter">00:00:00</span>
+        <div class="journal-register">
+          <span aria-hidden="true">PLAY</span><span aria-hidden="true">SP</span>
+          <span id="tape-counter" aria-hidden="true">00:00:00</span>
+          <div class="journal-playback-controls" aria-label="Sterowanie odtwarzaniem / Playback controls">
+            <button type="button" id="autoplay-toggle" class="register-toggle" aria-pressed="false">AUTOPLAY</button>
+            <button type="button" id="vo-toggle" class="register-toggle" aria-pressed="true">VO</button>
+          </div>
         </div>
         <div id="journal" class="journal" aria-live="polite" aria-atomic="false"></div>
       </section>
