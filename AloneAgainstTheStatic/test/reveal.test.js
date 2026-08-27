@@ -307,3 +307,27 @@ test("bramka rzutu pokazuje wcześniej uzyskane gałęzie i gubi je po rzucie", 
   clock.tick(5000);
   assert.equal(root.querySelectorAll(".roll-history").length, 1, "po rzucie zostaje tylko wersja z rollboxa");
 });
+
+test("domknięcie akapitu zgłasza się przez onParagraphDone dokładnie raz", () => {
+  const { clock, i18n, reveal } = setup({ "e1.p1": "Krótko.", "e1.p2": "I jeszcze raz." });
+  const done = [];
+
+  reveal.start(
+    {
+      entryId: 1,
+      originEntryId: null,
+      events: [{ kind: "text", key: "e1.p1" }, { kind: "text", key: "e1.p2" }],
+    },
+    { i18n, onParagraphDone: (paragraph) => done.push(paragraph) },
+  );
+
+  clock.tick(2000);
+  assert.equal(done.length, 1, "pierwszy akapit domknięty raz");
+  assert.equal(done[0].tagName, "P");
+
+  // Kliknięcie domyka bieżący akapit i odsłania następny.
+  reveal.tap();
+  clock.tick(2000);
+  assert.equal(done.length, 2, "drugi akapit też się zgłasza");
+  assert.notEqual(done[0], done[1], "to dwa różne akapity");
+});

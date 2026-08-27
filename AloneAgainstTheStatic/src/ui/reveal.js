@@ -247,6 +247,9 @@ export function createReveal({
     delete paragraph.dataset.typing;
     paragraph.removeAttribute?.("aria-hidden");
     session.typing = null;
+    // Klon widmowy (src/ui/pointer-static.js) można zbudować dopiero teraz:
+    // do tej pory applyVisible przepisywał węzły tekstowe co klatkę.
+    session.onParagraphDone?.(paragraph);
     waitFor(paragraph);
   }
 
@@ -409,7 +412,7 @@ export function createReveal({
 
   return {
     // Odsłania ramkę od początku: paragraf po paragrafie, akapit po akapicie.
-    start(record, { i18n, media, handlers, seenBefore, onParagraph, onRoll, onComplete } = {}) {
+    start(record, { i18n, media, handlers, seenBefore, onParagraph, onParagraphDone, onRoll, onComplete } = {}) {
       clearTimers();
       session = {
         i18n,
@@ -424,6 +427,7 @@ export function createReveal({
         // jedna ramka może przejść przez kilka paragrafów o różnej historii.
         seenBefore,
         onParagraph,
+        onParagraphDone,
         onRoll,
         onComplete,
         phase: "idle",
