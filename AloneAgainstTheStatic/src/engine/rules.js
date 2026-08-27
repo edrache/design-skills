@@ -77,11 +77,6 @@ export function applyBout(state, check, rng) {
   return { state: next, redirect: target };
 }
 
-export function resolveBout(state, character, rng) {
-  const check = rollBout(state, character, rng);
-  return { ...applyBout(state, check, rng), check };
-}
-
 export function rollSanity(state, rng) {
   return skillCheck(rng, state.san);
 }
@@ -93,9 +88,4 @@ export function applySanityCheck(state, check, notation, character, rng) {
   const lost = rollDice(rng, check.success ? onSuccess : onFail);
   const outcome = applySanLoss(state, lost, character, rng);
   return { state: outcome.state, redirect: outcome.redirect, lost };
-}
-
-export function sanityCheck(state, character, rng, notation) {
-  const check = rollSanity(state, rng);
-  return { ...applySanityCheck(state, check, notation, character, rng), roll: check };
 }
