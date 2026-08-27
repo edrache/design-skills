@@ -393,6 +393,10 @@ function decideRoll(ctx, frame, action) {
   }
 
   if (action.type === "luck") {
+    // Bramka jest po stronie silnika, nie interfejsu: `luckCost` liczy się także
+    // dla rzutów, których Szczęściem ratować nie wolno (Sanity, atak obłędu),
+    // więc bez tego sprawdzenia akcja spoza listy wykonałaby się po cichu.
+    if (!pending.canLuck) throw new Error("Akcja niedostępna: luck");
     const state = spendLuck(frame.state, pending.luckCost);
     // Po dopłacie Luck rzut ląduje dokładnie na wymaganym progu, nie na pełnej umiejętności.
     const threshold = requiredThreshold(pending.roll.target, pending.roll.difficulty);
@@ -402,6 +406,7 @@ function decideRoll(ctx, frame, action) {
   }
 
   if (action.type === "push") {
+    if (!pending.canPush) throw new Error("Akcja niedostępna: push");
     const step = stepOfPending(ctx, frame);
     const target = skillValue(frame.state, ctx.character, step.roll);
     const dice = diceFor(frame.state, step);

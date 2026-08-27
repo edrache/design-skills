@@ -11,7 +11,8 @@ export function requiredThreshold(target, difficulty = "regular") {
 // Przy sukcesie zostaje samo przyjęcie wyniku i cheat — forsować i dopłacać
 // nie ma czego. Przy porażce koszt Szczęścia liczymy od progu wymaganego
 // przez difficulty, nie od pełnej umiejętności: przy Hard/Extreme pełna
-// wartość dałaby koszt zaniżony albo ujemny.
+// wartość dałaby koszt zaniżony albo ujemny. Forsowanego rzutu Szczęściem się
+// nie ratuje — zasady 7e dają graczowi jedną deskę ratunku na test, nie dwie.
 export function decisionFor(state, check, context) {
   if (check.success) return { canPush: false, canLuck: false, luckCost: 0, canCheat: true };
 
@@ -19,6 +20,7 @@ export function decisionFor(state, check, context) {
   const luckCost = check.result - threshold;
   const skillRoll = context.kind === "skill";
   const canLuck = skillRoll
+    && !context.pushed
     && context.skill !== "Sanity"
     && context.skill !== "Luck"
     && luckCost > 0

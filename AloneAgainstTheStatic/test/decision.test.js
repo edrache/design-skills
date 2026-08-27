@@ -60,3 +60,13 @@ test("forsowanie tylko raz i tylko gdy krok je oferuje", () => {
   assert.equal(again.canPush, false);
   assert.equal(never.canPush, false);
 });
+
+test("forsowanego rzutu nie ratuje się Szczęściem, choć koszt zostaje policzony", () => {
+  const out = decisionFor(stateWith(99), check(), {
+    kind: "skill", skill: "Listen", pushable: true, pushed: true,
+  });
+  assert.equal(out.canLuck, false);
+  assert.equal(out.luckCost, 30);
+  assert.equal(out.canPush, false);
+  assert.equal(out.canCheat, true);
+});

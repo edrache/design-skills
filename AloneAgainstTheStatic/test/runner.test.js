@@ -84,10 +84,12 @@ test("przepchnięty rzut nie pozwala forsować po raz drugi", () => {
   assert.equal(pushed.pending.type, "rollDecision");
   assert.equal(pushed.pending.pushed, true);
   assert.equal(pushed.pending.canPush, false);
-  // Dopłata Szczęściem zostaje dostępna także po forsowaniu — decyduje o tym
-  // sam koszt progu, nie historia rzutu (patrz decision.js).
-  assert.equal(pushed.pending.canLuck, true);
+  assert.throws(() => resume(ctx, pushed, { type: "push" }), /Akcja niedostępna: push/);
+  // Zasady 7e dają na jeden test jedną deskę ratunku: po forsowaniu Szczęścia
+  // już się nie dopłaca, choć koszt progu zostaje policzony.
+  assert.equal(pushed.pending.canLuck, false);
   assert.equal(pushed.pending.luckCost, 10); // 80 - 70
+  assert.throws(() => resume(ctx, pushed, { type: "luck" }), /Akcja niedostępna: luck/);
   const done = resume(ctx, pushed, { type: "accept" });
   assert.equal(hasFlag(done.state, "touched_by_cold"), true);
   assert.equal(done.pending.type, "choices");
@@ -641,4 +643,40 @@ test("rzut INT ataku obłędu zatrzymuje grę i pozwala go poprawić", () => {
   assert.equal(rolled.pending.skill, "INT");
   assert.equal(rolled.pending.canCheat, true);
   assert.equal(resume(ctx, rolled, { type: "accept" }).entryId, 1);
+});
+
+// Niedostępna akcja musi padać głośno. `luckCost` liczy się także tam, gdzie
+// dopłacać nie wolno, więc brak bramki oznaczałby, że rzut Sanity albo ataku
+// obłędu daje się kupić za punkty Szczęścia.
+test("dopłata Szczęściem na rzucie ataku obłędu jest odrzucana", () => {
+  const ctx = ctxWith([0.0, 0.9]); // INT 90 — porażka
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const rolled = enter(ctx, state, 329);
+  assert.equal(rolled.pending.kind, "bout");
+  assert.equal(rolled.pending.canLuck, false);
+  assert.ok(rolled.pending.luckCost > 0, "koszt jest policzony, choć akcji nie ma");
+  assert.throws(() => resume(ctx, rolled, { type: "luck" }), /Akcja niedostępna: luck/);
+  assert.equal(rolled.state.luck, state.luck, "punkty Szczęścia zostają nietknięte");
+});
+
+test("dopłata Szczęściem na teście Sanity jest odrzucana", () => {
+  const story = {
+    entries: {
+      1: { text: ["e1.p1"], on: [{ sanCheck: "1/1d4" }], choices: [{ text: "e1.c1", goto: 2 }] },
+      2: { text: ["e2.p1"], end: true },
+    },
+  };
+  const ctx = { story, character, rng: sequenceRng([0.0, 0.9, 0.5]) };
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const rolled = enter(ctx, state, 1);
+  assert.equal(rolled.pending.canLuck, false);
+  assert.throws(() => resume(ctx, rolled, { type: "luck" }), /Akcja niedostępna: luck/);
+});
+
+test("forsowanie rzutu, którego paragraf nie oferuje, jest odrzucane", () => {
+  const ctx = ctxWith([0.0, 0.9]); // Psychology 90 — porażka, paragraf 2 nie ma push
+  const state = createState(character, { rng: sequenceRng([0.5, 0.5, 0.5]) });
+  const rolled = enter(ctx, state, 2);
+  assert.equal(rolled.pending.canPush, false);
+  assert.throws(() => resume(ctx, rolled, { type: "push" }), /Akcja niedostępna: push/);
 });
