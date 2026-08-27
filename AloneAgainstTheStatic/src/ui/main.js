@@ -2,7 +2,7 @@ import { createState } from "../engine/state.js";
 import { enter, resume } from "../engine/runner.js";
 import { createAudio } from "./audio.js";
 import { createI18n } from "./i18n.js";
-import { clearJournal, opensNewParagraph, renderArchive, renderEvents, renderRollDecision } from "./journal.js";
+import { clearJournal, lastRollBox, opensNewParagraph, renderArchive, renderEvents, renderRollDecision } from "./journal.js";
 import { clearSave, isSaveCompatible, loadGame, saveGame } from "./save.js";
 import { connectProgressReset, createSettings } from "./settings.js";
 import { readProgress, markChoice, resetProgress } from "./progress.js";
@@ -455,12 +455,11 @@ function decide(type) {
 // na ścieżce animowanej daje reveal.js, musi się tu powtórzyć ręcznie —
 // inaczej wynik forsowania czy nawrotu wyskakiwałby bez odsłaniania.
 function cascadeInstantRoll(block) {
-  if (typeof block?.querySelectorAll !== "function") return;
-  const box = [...block.querySelectorAll(".rollbox")].at(-1);
-  if (box) {
-    stagger(box.querySelectorAll?.(".die, .roll-total, .roll-level") ?? [], revealConfig.dieStaggerMs);
-  }
-  const actions = block.querySelector(".roll-actions");
+  // Kaskada musi trafić w prawdziwe kości, nie w ich kopię z klonu widmowego.
+  const box = lastRollBox(block);
+  if (!box) return;
+  stagger(box.querySelectorAll?.(".die, .roll-total, .roll-level") ?? [], revealConfig.dieStaggerMs);
+  const actions = box.querySelector?.(".roll-actions");
   if (actions) stagger(actions.children, revealConfig.choiceStaggerMs);
 }
 

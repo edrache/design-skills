@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createI18n } from "../src/ui/i18n.js";
-import { createEntryBlock, entryLabels, eventNodes, opensNewParagraph, renderArchive, renderEvents, renderRollDecision, rollPresentation, segmentEvents } from "../src/ui/journal.js";
+import { createEntryBlock, entryLabels, eventNodes, lastRollBox, opensNewParagraph, renderArchive, renderEvents, renderRollDecision, rollPresentation, segmentEvents } from "../src/ui/journal.js";
 import { stripMarkup } from "../src/ui/markup.js";
 import { classesOf, createFakeDocument } from "./helpers/fake-dom.js";
 import { frameMemory, recordFrame, recordRolls } from "../src/ui/memory.js";
@@ -452,6 +452,37 @@ test("kliknięcie cheata woła podany uchwyt dokładnie raz", () => {
   renderRollDecision(block, pending, { locale: "pl" }, { ...noopHandlers, onCheat: () => { calls += 1; } });
   block.querySelector(".cheat").click();
   assert.equal(calls, 1);
+});
+
+test("panel decyzji omija kopię kości z klonu widmowego", () => {
+  const { block, box, pending } = rollDecisionFixture({ success: false, canPush: true, canLuck: true, luckCost: 30 });
+  const doc = block.ownerDocument;
+
+  // Odwzorowanie tego, co pointer-static.js dokłada przy domyślnym suwaku:
+  // klon całego wpisu wisi w środku wpisu i ma własną kopię pudełka rzutu.
+  const ghost = doc.createElement("div");
+  ghost.className = "static-ghost";
+  const ghostBox = doc.createElement("div");
+  ghostBox.className = "rollbox";
+  ghost.append(ghostBox);
+  block.append(ghost);
+
+  assert.equal(lastRollBox(block), box, "helper musi wskazać prawdziwe kości, nie ich kopię");
+
+  renderRollDecision(block, pending, { locale: "pl" }, noopHandlers);
+
+  assert.deepEqual(box.children.map((node) => node.className), ["roll-actions", "cheat"]);
+  assert.deepEqual(ghostBox.children, [], "w klonie nie może wylądować nic klikalnego");
+  assert.equal(ghost.querySelectorAll("button").length, 0);
+  assert.equal(block.querySelectorAll(".roll-actions").length, 1);
+});
+
+test("lastRollBox znosi wpis bez kości i dokument bez zapytań selektorowych", () => {
+  const doc = createFakeDocument();
+  const empty = doc.createElement("div");
+  assert.equal(lastRollBox(empty), null);
+  assert.equal(lastRollBox(null), null);
+  assert.equal(lastRollBox({}), null);
 });
 
 test("przyrost bez tekstu zostaje w tym samym paragrafie", () => {

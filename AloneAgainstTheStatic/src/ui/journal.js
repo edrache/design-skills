@@ -302,6 +302,21 @@ export function renderEvents(root, events, i18n, handlers, context = {}) {
   return block;
 }
 
+// Klon widmowy (pointer-static.js) wisi WEWNĄTRZ wpisu i niesie pełną kopię
+// jego węzłów, razem z pudełkiem rzutu. Naiwne „ostatnie .rollbox" trafiałoby
+// więc w warstwę aria-hidden/inert, którą każda synchronizacja klonu buduje od
+// nowa — dopięty tam panel decyzji nigdy nie dotarłby do gracza. Kopie
+// odsiewamy przez porównanie z poddrzewami klonów, a nie przez `closest`,
+// bo ten sam kod ma działać na uproszczonym dokumencie z testów.
+export function lastRollBox(block) {
+  if (typeof block?.querySelectorAll !== "function") return null;
+  const ghosted = new Set(
+    [...block.querySelectorAll(".static-ghost")]
+      .flatMap((ghost) => [...(ghost.querySelectorAll?.(".rollbox") ?? [])]),
+  );
+  return [...block.querySelectorAll(".rollbox")].filter((box) => !ghosted.has(box)).at(-1) ?? null;
+}
+
 // Jeden panel na wszystkie decyzje po rzucie: przyjęcie wyniku jest zawsze,
 // forsowanie i Szczęście zależą od zasad, a cheat stoi obok nich — zamiast, jak
 // dawniej, dopiero po tym, jak skutki rzutu już się wykonały.
@@ -328,7 +343,7 @@ export function renderRollDecision(block, pending, i18n, handlers) {
     actions.append(luck);
   }
 
-  const target = [...block.querySelectorAll(".rollbox")].at(-1) ?? block;
+  const target = lastRollBox(block) ?? block;
   target.append(actions);
 
   // Przycisk jest celowo ledwo widoczny — trzeba go poszukać, a wtedy zapala
