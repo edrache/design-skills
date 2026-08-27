@@ -2,7 +2,7 @@ import { createState } from "../engine/state.js";
 import { enter, resume } from "../engine/runner.js";
 import { createAudio } from "./audio.js";
 import { createI18n } from "./i18n.js";
-import { clearJournal, renderArchive, renderCheat, renderEvents, renderRollDecision } from "./journal.js";
+import { clearJournal, opensNewParagraph, renderArchive, renderEvents, renderRollDecision } from "./journal.js";
 import { clearSave, isSaveCompatible, loadGame, saveGame } from "./save.js";
 import { connectProgressReset, createSettings } from "./settings.js";
 import { readProgress, markChoice, resetProgress } from "./progress.js";
@@ -216,17 +216,6 @@ function renderCharacterSheet() {
   syncSheetDisclosure();
 }
 
-// Pudełko rzutu, którego dotyczy punkt cofnięcia. Przy odtworzeniu ramki
-// z zapisu nie ma zdarzeń do porównania po tożsamości, więc szukamy po
-// wyniku; ostatnie pudełko jest ostatecznością.
-function rollBoxOf(block, rewind) {
-  const boxes = [...block.querySelectorAll(".rollbox")];
-  const wanted = `= ${rewind.event?.result}`;
-  return boxes.findLast((box) => box.querySelector(".roll-total")?.textContent === wanted)
-    ?? boxes.at(-1)
-    ?? block;
-}
-
 function draw(record, isLast) {
   const block = renderEvents(dom.journal, record.events, i18n, {
     onChoose: choose,
@@ -243,9 +232,9 @@ function draw(record, isLast) {
       onLuck: () => decide("luck"),
       onPush: () => decide("push"),
       onAccept: () => decide("accept"),
+      onCheat: () => decide("cheat"),
     });
   }
-  if (isLast && frame.rewind) renderCheat(rollBoxOf(block, frame.rewind), frame.rewind, i18n, cheat);
   return block;
 }
 
@@ -289,6 +278,7 @@ function finishFrame() {
       onLuck: () => decide("luck"),
       onPush: () => decide("push"),
       onAccept: () => decide("accept"),
+      onCheat: () => decide("cheat"),
     });
     stagger(actions.children, revealConfig.choiceStaggerMs);
     // Przyciski decyzji zmieniły DOM wpisu, więc klon jest już nieaktualny —
@@ -321,12 +311,9 @@ function presentCurrent() {
     // Klon widmowy powstaje dopiero po domknięciu akapitu: do tej chwili
     // reveal.js przepisuje jego węzły tekstowe co klatkę.
     onParagraphDone: (paragraph) => pointerStatic?.syncEntry(paragraph.parentElement),
-    // Nawrót staje przy tych kościach, których dotyczy — a nie na końcu
-    // ramki, która potrafi ciągnąć się przez kilka paragrafów dalej.
+    // Kości wchodzą do wpisu długo po domknięciu akapitu, więc klon zbudowany
+    // wtedy pokazywałby wpis bez nich — trzeba go odświeżyć.
     onRoll: (event, box) => {
-      if (frame.rewind?.event === event) renderCheat(box, frame.rewind, i18n, cheat);
-      // Kości i przycisk nawrotu wchodzą do wpisu długo po domknięciu akapitu,
-      // więc klon zbudowany wtedy pokazywałby wpis bez nich.
       pointerStatic?.syncEntry(box.parentElement);
     },
     onComplete: finishFrame,
@@ -394,16 +381,20 @@ function choose(index) {
 }
 
 function decide(type) {
-  const originEntryId = frame.entryId;
-  advance(resume(ctx, frame, { type }), originEntryId);
-}
-
-// Nawrót przelicza ten sam paragraf od nowa, więc zastępuje ostatni rekord
-// zamiast dopisywać kolejny — w dzienniku ma zostać jedna wersja zdarzeń,
-// ta z przekreślonym oryginalnym werdyktem.
-function cheat() {
   const record = history.at(-1);
-  advance(resume(ctx, frame, { type: "cheat" }), record?.originEntryId ?? null, { replace: true });
+  const next = resume(ctx, frame, { type });
+  if (opensNewParagraph(next.events)) {
+    advance(next, frame.entryId);
+    return;
+  }
+  // Gra została w tym samym paragrafie: przyrost dopisujemy do wpisu, który
+  // gracz ma na ekranie, i pokazujemy od razu — tekst jest już przeczytany,
+  // powtórne wypisywanie go byłoby cofnięciem lektury.
+  advance(
+    { ...next, events: [...record.events, ...next.events] },
+    record?.originEntryId ?? null,
+    { animate: false, replace: true },
+  );
 }
 
 function detailRow(term, value) {

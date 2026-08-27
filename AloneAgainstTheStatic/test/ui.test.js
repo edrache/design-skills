@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createI18n } from "../src/ui/i18n.js";
-import { createEntryBlock, entryLabels, eventNodes, renderArchive, renderCheat, renderEvents, renderRollDecision, rollPresentation, segmentEvents } from "../src/ui/journal.js";
+import { createEntryBlock, entryLabels, eventNodes, opensNewParagraph, renderArchive, renderEvents, renderRollDecision, rollPresentation, segmentEvents } from "../src/ui/journal.js";
 import { stripMarkup } from "../src/ui/markup.js";
 import { classesOf, createFakeDocument } from "./helpers/fake-dom.js";
 import { frameMemory, recordFrame } from "../src/ui/memory.js";
@@ -350,55 +350,89 @@ test("zwykły rzut nie dostaje ani przekreślenia, ani przypisu", () => {
   assert.equal(block.querySelector(".cheat-note"), null);
 });
 
-test("przycisk nawrotu proponuje werdykt przeciwny do tego, który padł", () => {
+// Minimalny wpis z pudełkiem rzutu: panel decyzji doczepia się do ostatniego
+// .rollbox we wpisie.
+function rollDecisionFixture({ success, canPush, canLuck, luckCost = 0, canCheat = true }) {
   const doc = createFakeDocument();
-  const i18n = createI18n({}, "pl");
-  const failed = rollBoxOf(doc, {
-    kind: "roll", skill: "Psychology", target: 60, difficulty: "regular",
-    result: 90, units: 0, tens: [90], level: "fail", success: false,
-  });
-  const toSuccess = renderCheat(failed, { event: { success: false } }, i18n, () => {});
-  assert.equal(toSuccess.textContent, "A może jednak się udało?");
-  assert.ok(classesOf(toSuccess).includes("cheat"));
-  assert.ok(failed.querySelector(".rollbox").children.includes(toSuccess), "nawrót stoi pod kośćmi");
+  const block = doc.createElement("div");
+  const box = doc.createElement("div");
+  box.className = "rollbox";
+  block.append(box);
+  return {
+    block,
+    box,
+    pending: {
+      type: "rollDecision",
+      kind: "skill",
+      skill: "Spot Hidden",
+      roll: { target: 60, result: success ? 20 : 90, difficulty: "regular", success },
+      canPush, canLuck, luckCost, canCheat,
+      pushed: false, stepIndex: 0, cursor: 1,
+    },
+  };
+}
 
-  const won = rollBoxOf(doc, {
-    kind: "roll", skill: "Psychology", target: 60, difficulty: "regular",
-    result: 20, units: 0, tens: [20], level: "hard", success: true,
+const noopHandlers = { onAccept() {}, onPush() {}, onLuck() {}, onCheat() {} };
+
+test("panel decyzji zawsze daje przyjęcie wyniku i cheat", () => {
+  const { block, pending } = rollDecisionFixture({ success: true, canPush: false, canLuck: false });
+  const clicks = [];
+  renderRollDecision(block, pending, { locale: "pl" }, {
+    onAccept: () => clicks.push("accept"),
+    onPush: () => clicks.push("push"),
+    onLuck: () => clicks.push("luck"),
+    onCheat: () => clicks.push("cheat"),
   });
-  const toFail = renderCheat(won, { event: { success: true } }, i18n, () => {});
-  assert.equal(toFail.textContent, "A może jednak test się nie udał?");
+  const buttons = [...block.querySelectorAll("button")];
+  assert.equal(buttons.length, 2);
+  assert.equal(buttons[0].textContent, "Przyjmij wynik");
+  assert.ok(classesOf(buttons[1]).includes("cheat"));
+  buttons[0].click();
+  buttons[1].click();
+  assert.deepEqual(clicks, ["accept", "cheat"]);
 });
 
-test("nawrót staje pod kośćmi, przed decyzjami o Szczęściu i forsowaniu", () => {
-  const doc = createFakeDocument();
-  const i18n = createI18n({}, "pl");
-  const block = rollBoxOf(doc, {
-    kind: "roll", skill: "Psychology", target: 60, difficulty: "regular",
-    result: 90, units: 0, tens: [90], level: "fail", success: false,
-  });
-  const box = block.querySelector(".rollbox");
-  const button = renderCheat(box, { event: { success: false } }, i18n, () => {});
-  renderRollDecision(block, {
-    type: "rollDecision", roll: { result: 90, target: 60, difficulty: "regular" },
-    skill: "Psychology", canPush: true, canLuck: true, luckCost: 30, stepIndex: 0,
-  }, i18n, { onLuck() {}, onPush() {}, onAccept() {} });
-
-  const order = box.children.map((node) => node.className);
-  assert.deepEqual(order.slice(-2), ["cheat", "roll-actions"]);
-  assert.ok(box.children.includes(button));
+test("forsowanie i Szczęście dochodzą tylko wtedy, gdy pending je pozwala", () => {
+  const { block, pending } = rollDecisionFixture({ success: false, canPush: true, canLuck: true, luckCost: 30 });
+  renderRollDecision(block, pending, { locale: "pl" }, noopHandlers);
+  const labels = [...block.querySelectorAll("button")].map((b) => b.textContent);
+  assert.deepEqual(labels, ["Przyjmij wynik", "Forsuj rzut", "Wydaj 30 pkt. Szczęścia", "A może jednak się udało?"]);
 });
 
-test("kliknięcie nawrotu woła podany uchwyt dokładnie raz", () => {
-  const doc = createFakeDocument();
+test("cheat przy udanym rzucie proponuje porażkę", () => {
+  const { block, pending } = rollDecisionFixture({ success: true, canPush: false, canLuck: false });
+  renderRollDecision(block, pending, { locale: "pl" }, noopHandlers);
+  assert.equal(block.querySelector(".cheat").textContent, "A może jednak test się nie udał?");
+});
+
+test("cheat przy nieudanym rzucie proponuje sukces i nie powstaje, gdy zasady go nie dają", () => {
+  const failed = rollDecisionFixture({ success: false, canPush: false, canLuck: false });
+  renderRollDecision(failed.block, failed.pending, { locale: "pl" }, noopHandlers);
+  assert.equal(failed.block.querySelector(".cheat").textContent, "A może jednak się udało?");
+
+  const barred = rollDecisionFixture({ success: false, canPush: false, canLuck: false, canCheat: false });
+  renderRollDecision(barred.block, barred.pending, { locale: "pl" }, noopHandlers);
+  assert.equal(barred.block.querySelector(".cheat"), null);
+});
+
+test("cheat stoi w pudełku rzutu po decyzjach o Szczęściu i forsowaniu", () => {
+  const { block, box, pending } = rollDecisionFixture({ success: false, canPush: true, canLuck: true, luckCost: 30 });
+  renderRollDecision(block, pending, { locale: "pl" }, noopHandlers);
+  assert.deepEqual(box.children.map((node) => node.className), ["roll-actions", "cheat"]);
+});
+
+test("kliknięcie cheata woła podany uchwyt dokładnie raz", () => {
+  const { block, pending } = rollDecisionFixture({ success: false, canPush: false, canLuck: false });
   let calls = 0;
-  const block = rollBoxOf(doc, {
-    kind: "roll", skill: "Psychology", target: 60, difficulty: "regular",
-    result: 90, units: 0, tens: [90], level: "fail", success: false,
-  });
-  const button = renderCheat(block, { event: { success: false } }, createI18n({}, "pl"), () => { calls += 1; });
-  button.click();
+  renderRollDecision(block, pending, { locale: "pl" }, { ...noopHandlers, onCheat: () => { calls += 1; } });
+  block.querySelector(".cheat").click();
   assert.equal(calls, 1);
+});
+
+test("przyrost bez tekstu zostaje w tym samym paragrafie", () => {
+  assert.equal(opensNewParagraph([{ kind: "san" }, { kind: "choices", options: [] }]), false);
+  assert.equal(opensNewParagraph([{ kind: "san" }, { kind: "text", key: "e5.p2" }]), true);
+  assert.equal(opensNewParagraph([]), false);
 });
 
 test("index.html ma filtr zakłóceń pod wskaźnikiem z trzema kanałami", () => {

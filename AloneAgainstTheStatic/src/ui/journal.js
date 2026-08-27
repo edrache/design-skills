@@ -20,7 +20,7 @@ const COPY = {
     missing: (id) => `Paragraf ${id} nie został jeszcze przepisany. Dalszy zapis taśmy jest niedostępny.`,
     burnLuck: (amount) => `Wydaj ${amount} pkt. Szczęścia`,
     push: "Forsuj rzut",
-    accept: "Przyjmij porażkę",
+    accept: "Przyjmij wynik",
     roll: "Rzuć",
     next: "Dalej",
     rollHistory: "Już było",
@@ -47,7 +47,7 @@ const COPY = {
     missing: (id) => `Entry ${id} has not been transcribed yet. The rest of the tape is unavailable.`,
     burnLuck: (amount) => `Spend ${amount} Luck`,
     push: "Push the roll",
-    accept: "Accept failure",
+    accept: "Accept the result",
     roll: "Roll",
     next: "Continue",
     rollHistory: "Seen before",
@@ -302,47 +302,55 @@ export function renderEvents(root, events, i18n, handlers, context = {}) {
   return block;
 }
 
+// Jeden panel na wszystkie decyzje po rzucie: przyjęcie wyniku jest zawsze,
+// forsowanie i Szczęście zależą od zasad, a cheat stoi obok nich — zamiast, jak
+// dawniej, dopiero po tym, jak skutki rzutu już się wykonały.
 export function renderRollDecision(block, pending, i18n, handlers) {
   const doc = block.ownerDocument ?? document;
   const labels = copy(i18n);
   const actions = el(doc, "div", "roll-actions");
 
-  if (pending.canLuck) {
-    const luck = el(doc, "button", "action", labels.burnLuck(pending.luckCost));
-    luck.type = "button";
-    luck.addEventListener("click", handlers.onLuck);
-    actions.append(luck);
-  }
+  const accept = el(doc, "button", "action", labels.accept);
+  accept.type = "button";
+  accept.addEventListener("click", handlers.onAccept);
+  actions.append(accept);
+
   if (pending.canPush) {
     const push = el(doc, "button", "action action-danger", labels.push);
     push.type = "button";
     push.addEventListener("click", handlers.onPush);
     actions.append(push);
   }
-  const accept = el(doc, "button", "action", labels.accept);
-  accept.type = "button";
-  accept.addEventListener("click", handlers.onAccept);
-  actions.append(accept);
+  if (pending.canLuck) {
+    const luck = el(doc, "button", "action", labels.burnLuck(pending.luckCost));
+    luck.type = "button";
+    luck.addEventListener("click", handlers.onLuck);
+    actions.append(luck);
+  }
 
   const target = [...block.querySelectorAll(".rollbox")].at(-1) ?? block;
   target.append(actions);
+
+  // Przycisk jest celowo ledwo widoczny — trzeba go poszukać, a wtedy zapala
+  // się na czerwono. Stoi po pozostałych, bo dotyczy tego samego wyniku.
+  if (pending.canCheat) {
+    const cheat = el(
+      doc, "button", "cheat",
+      pending.roll?.success ? labels.cheatToFail : labels.cheatToSuccess,
+    );
+    cheat.type = "button";
+    cheat.addEventListener("click", handlers.onCheat);
+    target.append(cheat);
+  }
+
   return actions;
 }
 
-// Nawrót: przy stole nikt nie zabroni poprawić kości. Przycisk jest celowo
-// ledwo widoczny — trzeba go poszukać, a wtedy zapala się na czerwono.
-// Staje tuż pod kośćmi, przed ewentualnymi decyzjami o Szczęściu i
-// forsowaniu, bo dotyczy tego wyniku, a nie tego, co dalej. `target` może być
-// pudełkiem rzutu albo całym wpisem — wtedy bierzemy ostatnie pudełko.
-export function renderCheat(target, rewind, i18n, onCheat) {
-  const doc = target.ownerDocument ?? document;
-  const labels = copy(i18n);
-  const button = el(doc, "button", "cheat", rewind.event?.success ? labels.cheatToFail : labels.cheatToSuccess);
-  button.type = "button";
-  button.addEventListener("click", onCheat);
-  const box = target.className === "rollbox" ? target : ([...target.querySelectorAll(".rollbox")].at(-1) ?? target);
-  box.append(button);
-  return button;
+// Ramka po decyzji o rzucie niesie tylko przyrost zdarzeń. Jeśli nie ma w nim
+// tekstu, gra została w tym samym paragrafie — przyrost trzeba dopisać do wpisu,
+// który jest na ekranie, zamiast zastępować go samym skutkiem.
+export function opensNewParagraph(events) {
+  return (events ?? []).some((event) => event.kind === "text");
 }
 
 // Archiwum: te same wpisy, tylko do czytania. Nie przewija ekranu i nie
