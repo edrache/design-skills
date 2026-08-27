@@ -52,6 +52,7 @@ test("domyślne ustawienia działają bez localStorage i document", () => {
     scanlines: 0.05,
     proseSize: 1.05,
     textEffects: 0.6,
+    pointerStatic: 0.5,
   });
   assert.equal(Object.isFrozen(settings.values), true);
 });
@@ -78,6 +79,7 @@ test("odczyt przycina liczby, odrzuca obce pola i stosuje CSS", () => {
     scanlines: 0.15,
     proseSize: 0.9,
     textEffects: 0.6,
+    pointerStatic: 0.5,
   });
   assert.equal(doc.properties.get("--scanline-strength"), "0.15");
   assert.equal(doc.properties.get("--prose-size"), "0.9rem");
@@ -100,6 +102,7 @@ test("nieprawidłowe typy z magazynu spadają na wartości domyślne", () => {
     scanlines: 0.05,
     proseSize: 1.05,
     textEffects: 0.6,
+    pointerStatic: 0.5,
   });
 });
 
@@ -210,4 +213,35 @@ test("brak przycisku resetu nie przerywa startu gry", () => {
     const noop = connectProgressReset({ button: null, confirm: () => true, message: () => "", reset: () => {} });
     assert.equal(noop(), false);
   });
+});
+
+test("zakłócenia kursora startują na połowie siły", () => {
+  defineGlobal("localStorage", memoryStorage());
+  defineGlobal("document", fakeDocument());
+  const settings = createSettings();
+  assert.equal(settings.values.pointerStatic, 0.5);
+});
+
+test("siła zakłóceń kursora jest obcinana do zakresu 0–1", () => {
+  defineGlobal("localStorage", memoryStorage({ pointerStatic: 4 }));
+  defineGlobal("document", fakeDocument());
+  assert.equal(createSettings().values.pointerStatic, 1);
+
+  defineGlobal("localStorage", memoryStorage({ pointerStatic: -2 }));
+  assert.equal(createSettings().values.pointerStatic, 0);
+});
+
+test("śmieci w sile zakłóceń kursora spadają na domyślną wartość", () => {
+  defineGlobal("localStorage", memoryStorage({ pointerStatic: "mocno" }));
+  defineGlobal("document", fakeDocument());
+  assert.equal(createSettings().values.pointerStatic, 0.5);
+});
+
+test("siła zakłóceń kursora jedzie do dokumentu jako --pointer-static", () => {
+  defineGlobal("localStorage", memoryStorage());
+  const doc = fakeDocument();
+  defineGlobal("document", doc);
+  const settings = createSettings();
+  settings.set("pointerStatic", 0.25);
+  assert.equal(doc.properties.get("--pointer-static"), "0.25");
 });
