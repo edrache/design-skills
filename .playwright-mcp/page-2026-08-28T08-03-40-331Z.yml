@@ -1,0 +1,194 @@
+- generic [ref=e1]:
+  - link "Przejdź do dziennika" [ref=e2] [cursor=pointer]:
+    - /url: "#content"
+  - banner "Alone Against the Static" [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e6]: ARCHIWUM / TAŚMA 01
+      - generic [ref=e7]: Alone Against the Static
+    - navigation "Narzędzia" [ref=e8]:
+      - button "Switch language to English" [ref=e9] [cursor=pointer]: EN
+      - button "Nowa gra" [ref=e10] [cursor=pointer]
+      - button "Dziennik" [ref=e11] [cursor=pointer]
+      - button "Ustawienia" [ref=e12] [cursor=pointer]
+  - main [ref=e13]:
+    - generic [ref=e14] [cursor=pointer]:
+      - heading "Dziennik rozgrywki" [level=1] [ref=e15]
+      - generic [ref=e16]:
+        - generic [ref=e17]: PLAY
+        - generic [ref=e18]: SP
+        - generic [ref=e19]: 00:00:00
+        - generic "Sterowanie odtwarzaniem / Playback controls" [ref=e20]:
+          - button "Włącz automatyczne odtwarzanie akapitów" [ref=e21]: ○AUTOPLAY
+          - button "Wyłącz lektora" [pressed] [ref=e22]: ●VO
+      - generic [ref=e23]:
+        - article "Paragraf 21" [ref=e328]:
+          - generic [ref=e329]:
+            - text: Paragraf
+            - generic [ref=e330]: "21"
+          - paragraph [ref=e331]: Łapiesz jedną ręką torbę i idziesz do łazienki. „Zaraz wracam” — mówisz i wsuwasz się do środka. W łazience jest jeszcze zimniej. Stawiasz torbę na umywalce i mrugasz do swojego odbicia, które patrzy na ciebie z lustra obok.
+          - paragraph [ref=e332]: Drzwi uchylają się ze skrzypnięciem. Wzdychasz i popychasz je z powrotem, ale nie chcą się trzymać. Przyglądasz się bliżej i widzisz małą zasuwkę na wysokości głowy. Drzwi najwyraźniej nie utrzymają się zamknięte, jeśli ich nie zablokujesz. Przewracasz oczami, odpuszczasz drzwi i myjesz zęby.
+          - paragraph [ref=e333]: Kilka minut później wracasz do głównego pomieszczenia i przebierasz się, a Charlie cierpliwie czeka na łóżku. Film jest już przygotowany, zatrzymany na początku. Wdrapujesz się na łóżko i też się układasz.
+          - paragraph [ref=e334]: „Gotowa na losowy, mam nadzieję-nie-horror?” — pyta Charlie.
+          - paragraph [ref=e335]:
+            - text: „Jasne, odpalaj!” Uśmiechasz się i wsuwasz pod kołdrę. Charlie wciska na pilocie
+            - generic [ref=e336]: „play”
+            - text: .
+          - generic [ref=e337]: "Zapisano: occupied"
+          - generic:
+            - article:
+              - paragraph: Łapiesz jedną ręką torbę i idziesz do łazienki. „Zaraz wracam” — mówisz i wsuwasz się do środka. W łazience jest jeszcze zimniej. Stawiasz torbę na umywalce i mrugasz do swojego odbicia, które patrzy na ciebie z lustra obok.
+              - paragraph: Drzwi uchylają się ze skrzypnięciem. Wzdychasz i popychasz je z powrotem, ale nie chcą się trzymać. Przyglądasz się bliżej i widzisz małą zasuwkę na wysokości głowy. Drzwi najwyraźniej nie utrzymają się zamknięte, jeśli ich nie zablokujesz. Przewracasz oczami, odpuszczasz drzwi i myjesz zęby.
+              - paragraph: Kilka minut później wracasz do głównego pomieszczenia i przebierasz się, a Charlie cierpliwie czeka na łóżku. Film jest już przygotowany, zatrzymany na początku. Wdrapujesz się na łóżko i też się układasz.
+              - paragraph: „Gotowa na losowy, mam nadzieję-nie-horror?” — pyta Charlie.
+              - paragraph:
+                - text: „Jasne, odpalaj!” Uśmiechasz się i wsuwasz pod kołdrę. Charlie wciska na pilocie
+                - generic: „play”
+                - text: .
+        - article "Paragraf 22" [active] [ref=e338]:
+          - generic [ref=e339]:
+            - text: Paragraf
+            - generic [ref=e340]: "22"
+          - paragraph [ref=e341]: Kiedy film się zaczyna, ekran jest czarny. Słychać cichą muzykę, ale nie ma napisów początkowych. Potem obraz przeskakuje na rozmyte nagranie zrobione wyraźnie kamerą z ręki.
+          - paragraph [ref=e342]: „To jeden z domowych filmów Marka?” — pytasz. Charlie się śmieje i sięga po pilota. „O rany. Sorry.”
+          - paragraph [ref=e343]: „Chwila, to wygląda znajomo” — mówisz, wskazując na telewizor. Charlie się waha.
+          - paragraph [ref=e344]: Na ekranie widzisz ścianę wysokich leśnych drzew. Liście i sosnowe igły chrzęszczą pod stopami tego, kto filmuje. Kamera przesuwa się po krajobrazie, rozmazując zielenie i brązy. I nagle wypatrujesz chatę Marka, stojącą samotnie na swojej małej polanie. Przed nią zaparkowany jest matowoczerwony sedan.
+          - paragraph [ref=e345]: „To samochód Julie” — mówi Charlie. „To musiało być po ich weselu.” Kamera drży. Wiatr uderza w mikrofon, wyrzucając z głośników krótką kaskadę okropnego zgrzytu. Przy czerwonym samochodzie coś się rusza. Kobieta, Julie, wyjmuje torby z bagażnika. Uśmiecha się.
+          - paragraph [ref=e346]: „No” — mówi Charlie. „To co najmniej pięć, sześć lat temu.”
+          - paragraph [ref=e347]: Julie odwraca się, kiedy otwierają się drzwi chaty. Mark wychodzi, podchodzi i bierze od niej jedną z torb. Uśmiechają się i wymieniają niesłyszalne słowa.
+          - paragraph [ref=e348]: Prostujesz się jak struna. „Co, do cholery?” „Co się stało? To tylko Mark.” „No właśnie, więc kto filmuje?” Charlie zacina się i mruga. Na ekranie Mark i Julie wchodzą do środka i zamykają za sobą drzwi. Kamera przybliża się do okna. Obraz to ziarnista plama kolorów. Widzisz ruch w chacie. Kamera przybliża się jeszcze bardziej. Wtedy zrywa się ostry wiatr i wyje w głośnikach. Obraz rozbija się w gęstwę głośnego szumu. Biały szum grzmi w całym pomieszczeniu. Dźwięk wwierca się w czaszkę. Masz wrażenie, że rozsadzi ci głowę.
+          - generic [ref=e349]:
+            - generic [ref=e350]: Poczytalność · 50 / 25 / 10
+            - 'generic "Poczytalność: 83" [ref=e351]':
+              - generic [ref=e352]: "80"
+              - generic [ref=e353]: "3"
+              - generic [ref=e354]: = 83
+              - generic [ref=e355]: Porażka
+            - generic [ref=e356]: "Już było: Porażka"
+          - generic [ref=e357]: "Zapisano: unsettled"
+          - generic [ref=e358]: "Utrata Poczytalności: 1"
+          - button "Zatkać uszy →" [ref=e359]
+          - button "Rzucić się do gałki i przykręcić dźwięk →" [ref=e360]
+          - generic:
+            - article:
+              - paragraph: Kiedy film się zaczyna, ekran jest czarny. Słychać cichą muzykę, ale nie ma napisów początkowych. Potem obraz przeskakuje na rozmyte nagranie zrobione wyraźnie kamerą z ręki.
+              - paragraph: „To jeden z domowych filmów Marka?” — pytasz. Charlie się śmieje i sięga po pilota. „O rany. Sorry.”
+              - paragraph: „Chwila, to wygląda znajomo” — mówisz, wskazując na telewizor. Charlie się waha.
+              - paragraph: Na ekranie widzisz ścianę wysokich leśnych drzew. Liście i sosnowe igły chrzęszczą pod stopami tego, kto filmuje. Kamera przesuwa się po krajobrazie, rozmazując zielenie i brązy. I nagle wypatrujesz chatę Marka, stojącą samotnie na swojej małej polanie. Przed nią zaparkowany jest matowoczerwony sedan.
+              - paragraph: „To samochód Julie” — mówi Charlie. „To musiało być po ich weselu.” Kamera drży. Wiatr uderza w mikrofon, wyrzucając z głośników krótką kaskadę okropnego zgrzytu. Przy czerwonym samochodzie coś się rusza. Kobieta, Julie, wyjmuje torby z bagażnika. Uśmiecha się.
+              - paragraph: „No” — mówi Charlie. „To co najmniej pięć, sześć lat temu.”
+              - paragraph: Julie odwraca się, kiedy otwierają się drzwi chaty. Mark wychodzi, podchodzi i bierze od niej jedną z torb. Uśmiechają się i wymieniają niesłyszalne słowa.
+              - paragraph: Prostujesz się jak struna. „Co, do cholery?” „Co się stało? To tylko Mark.” „No właśnie, więc kto filmuje?” Charlie zacina się i mruga. Na ekranie Mark i Julie wchodzą do środka i zamykają za sobą drzwi. Kamera przybliża się do okna. Obraz to ziarnista plama kolorów. Widzisz ruch w chacie. Kamera przybliża się jeszcze bardziej. Wtedy zrywa się ostry wiatr i wyje w głośnikach. Obraz rozbija się w gęstwę głośnego szumu. Biały szum grzmi w całym pomieszczeniu. Dźwięk wwierca się w czaszkę. Masz wrażenie, że rozsadzi ci głowę.
+    - complementary "Karta postaci" [ref=e43]:
+      - 'region "Alex: PW, Poczytalność, Szczęście" [ref=e361]':
+        - generic [ref=e362]:
+          - generic [ref=e363]:
+            - generic [ref=e364]: PW 13/13
+            - progressbar "PW" [ref=e365]
+          - generic [ref=e367]:
+            - generic [ref=e368]: Poczytalność 49/50
+            - progressbar "Poczytalność" [ref=e369]
+          - generic [ref=e371]:
+            - generic [ref=e372]: Szczęście 20/100
+            - progressbar "Szczęście" [ref=e373]
+      - generic [ref=e375]:
+        - heading "Alex · Sprzedawczyni" [level=2] [ref=e376]
+        - heading "Parametry" [level=2] [ref=e377]
+        - list [ref=e378]:
+          - listitem [ref=e379]:
+            - generic [ref=e380]: "PM:"
+            - generic [ref=e382]: "10"
+          - listitem [ref=e383]:
+            - generic [ref=e384]: "Ruch:"
+            - generic [ref=e386]: "7"
+          - listitem [ref=e387]:
+            - generic [ref=e388]: "Krzepa:"
+            - generic [ref=e390]: "1"
+          - listitem [ref=e391]:
+            - generic [ref=e392]: "Modyfikator Obrażeń:"
+            - generic [ref=e394]: 1d4
+        - heading "Dziennik" [level=2] [ref=e395]
+        - list [ref=e396]:
+          - listitem [ref=e397]: ☑ alex
+          - listitem [ref=e398]: ☑ touched by cold
+          - listitem [ref=e399]: ☑ occupied
+          - listitem [ref=e400]: ☑ unsettled
+        - heading "Umiejętności" [level=2] [ref=e401]
+        - list [ref=e402]:
+          - listitem [ref=e403]:
+            - generic [ref=e404]: Majętność
+            - generic [ref=e406]: "40"
+          - listitem [ref=e407]:
+            - generic [ref=e408]: Unik
+            - generic [ref=e410]: "32"
+          - listitem [ref=e411]:
+            - generic [ref=e412]: Prowadzenie Samochodu
+            - generic [ref=e414]: "45"
+          - listitem [ref=e415]:
+            - generic [ref=e416]: Walka Wręcz (Bijatyka)
+            - generic [ref=e418]: "55"
+          - listitem [ref=e419]:
+            - generic [ref=e420]: Pierwsza Pomoc
+            - generic [ref=e422]: "40"
+          - listitem [ref=e423]:
+            - generic [ref=e424]: Zastraszanie
+            - generic [ref=e426]: "60"
+          - listitem [ref=e427]:
+            - generic [ref=e428]: Język Ojczysty
+            - generic [ref=e430]: "65"
+          - listitem [ref=e431]:
+            - generic [ref=e432]: Nasłuchiwanie
+            - generic [ref=e434]: "50"
+          - listitem [ref=e435]:
+            - generic [ref=e436]: Wiedza o Naturze
+            - generic [ref=e438]: "30"
+          - listitem [ref=e439]:
+            - generic [ref=e440]: Nawigacja
+            - generic [ref=e442]: "40"
+          - listitem [ref=e443]:
+            - generic [ref=e444]: Perswazja
+            - generic [ref=e446]: "60"
+          - listitem [ref=e447]:
+            - generic [ref=e448]: Psychologia
+            - generic [ref=e450]: "45"
+          - listitem [ref=e451]:
+            - generic [ref=e452]: Spostrzegawczość
+            - generic [ref=e454]: "35"
+          - listitem [ref=e455]:
+            - generic [ref=e456]: Ukrywanie
+            - generic [ref=e458]: "35"
+        - heading "Cechy" [level=2] [ref=e459]
+        - list [ref=e460]:
+          - listitem [ref=e461]:
+            - generic [ref=e462]: S
+            - generic [ref=e464]: "70"
+          - listitem [ref=e465]:
+            - generic [ref=e466]: KON
+            - generic [ref=e468]: "60"
+          - listitem [ref=e469]:
+            - generic [ref=e470]: BC
+            - generic [ref=e472]: "75"
+          - listitem [ref=e473]:
+            - generic [ref=e474]: ZR
+            - generic [ref=e476]: "65"
+          - listitem [ref=e477]:
+            - generic [ref=e478]: WYG
+            - generic [ref=e480]: "60"
+          - listitem [ref=e481]:
+            - generic [ref=e482]: WYK
+            - generic [ref=e484]: "65"
+          - listitem [ref=e485]:
+            - generic [ref=e486]: INT
+            - generic [ref=e488]: "55"
+          - listitem [ref=e489]:
+            - generic [ref=e490]: MOC
+            - generic [ref=e492]: "50"
+        - heading "Moja historia" [level=2] [ref=e493]
+        - paragraph [ref=e494]: Alex jest z Charliem od prawie pięciu lat. Charlie wydaje się coraz mniej szczęśliwy. Mark, brat Charliego, polecił im swoją chatę na odludziu — trochę czasu tylko dla siebie. Jemu i jego żonie Julie to pomogło. Może pomoże też Alex i Charliemu…
+        - heading "Historia Badacza" [level=2] [ref=e495]
+        - list [ref=e496]:
+          - listitem [ref=e497]: "Opis postaci: Zahartowana albo zapuszczona, zależnie od tego, jak życzliwie patrzysz."
+          - listitem [ref=e498]: "Przymioty: Beznadziejna romantyczka. Broni swoich zaciekle."
+          - listitem [ref=e499]: "Ideologia i przekonania: Wierzę tylko w to, co widzę."
+          - listitem [ref=e500]: "Ważne osoby: Charlie, wbrew wszystkiemu…"
+          - listitem [ref=e501]: "Znaczące miejsca: Restauracja, którą Charlie zarezerwował na ich pierwszą kolację."
+          - listitem [ref=e502]: "Rzeczy osobiste: List miłosny od Charliego."

@@ -1,0 +1,183 @@
+- generic [ref=f1e1]:
+  - link "Przejdź do dziennika" [ref=f1e2] [cursor=pointer]:
+    - /url: "#content"
+  - banner "Alone Against the Static" [ref=f1e3]:
+    - generic [ref=f1e4]:
+      - generic [ref=f1e6]: ARCHIWUM / TAŚMA 01
+      - generic [ref=f1e7]: Alone Against the Static
+    - navigation "Narzędzia" [ref=f1e8]:
+      - button "Switch language to English" [ref=f1e9] [cursor=pointer]: EN
+      - button "Nowa gra" [ref=f1e25] [cursor=pointer]
+      - button "Dziennik" [ref=f1e26] [cursor=pointer]
+      - button "Ustawienia" [ref=f1e10] [cursor=pointer]
+  - main [ref=f1e11]:
+    - text: ▶ ▶
+    - generic [ref=f1e27] [cursor=pointer]:
+      - heading "Dziennik rozgrywki" [level=1] [ref=f1e28]
+      - generic [ref=f1e29]:
+        - generic [ref=f1e30]: PLAY
+        - generic [ref=f1e31]: SP
+        - generic [ref=f1e32]: 00:00:00
+        - generic "Sterowanie odtwarzaniem / Playback controls" [ref=f1e33]:
+          - button "Włącz automatyczne odtwarzanie akapitów" [ref=f1e34]: ○AUTOPLAY
+          - button "Wyłącz lektora" [pressed] [ref=f1e35]: ●VO
+      - generic [ref=f1e36]:
+        - article "Paragraf 7" [ref=f1e484]:
+          - generic [ref=f1e485]:
+            - text: Paragraf
+            - generic [ref=f1e486]: "7"
+          - generic [ref=f1e487]:
+            - generic [ref=f1e488]: Psychologia · 45 / 22 / 9
+            - 'generic "Psychologia: 60" [ref=f1e489]':
+              - generic [ref=f1e490]: "60"
+              - generic [ref=f1e491]: "0"
+              - generic [ref=f1e492]: = 60
+              - generic [ref=f1e493]: Porażka
+              - generic [ref=f1e494]: Normalny sukces
+            - generic [ref=f1e495]: zapis poprawiony
+            - generic [ref=f1e496]: "Już było: Porażka · Sukces"
+        - article "Paragraf 4" [ref=f1e497]:
+          - generic [ref=f1e498]:
+            - text: Paragraf
+            - generic [ref=f1e499]: "4"
+          - paragraph [ref=f1e500]: Charlie wydaje się poirytowany. Siedzicie w samochodzie od ponad trzech godzin, więc to zrozumiałe. Wyciągasz rękę, kładziesz dłoń na jego nodze i ściskasz. Widzisz, jak w odpowiedzi lekko się uśmiecha.
+          - paragraph [ref=f1e501]: „Już niedaleko” — mówi Charlie. „Dobrze. Nie mogę się doczekać, kiedy rozprostuję nogi.” Jedziecie dalej, coraz głębiej w las. Dróżka wije się nieregularnie, opada i wznosi, przemykając między wzgórzami. Niebo gubi się w gałęziach sosen. Wieczorne cienie się wydłużają, a ty czujesz, jak z zewnątrz sączy się zimno.
+          - generic:
+            - article:
+              - paragraph: Charlie wydaje się poirytowany. Siedzicie w samochodzie od ponad trzech godzin, więc to zrozumiałe. Wyciągasz rękę, kładziesz dłoń na jego nodze i ściskasz. Widzisz, jak w odpowiedzi lekko się uśmiecha.
+              - paragraph: „Już niedaleko” — mówi Charlie. „Dobrze. Nie mogę się doczekać, kiedy rozprostuję nogi.” Jedziecie dalej, coraz głębiej w las. Dróżka wije się nieregularnie, opada i wznosi, przemykając między wzgórzami. Niebo gubi się w gałęziach sosen. Wieczorne cienie się wydłużają, a ty czujesz, jak z zewnątrz sączy się zimno.
+        - article "Paragraf 5" [active] [ref=f1e502]:
+          - generic [ref=f1e503]:
+            - text: Paragraf
+            - generic [ref=f1e504]: "5"
+          - paragraph [ref=f1e505]: Po kilku minutach, kilku kolejnych zakrętach i kilku milach w głąb lasu słońce zachodzi. Reflektory samochodu wykrawają w ciemności zaledwie kilka metrów drogi naraz. W końcu światła przesuwają się po froncie chaty i odbijają w dwóch oknach po obu stronach drzwi, które odpowiadają ci złowieszczym spojrzeniem.
+          - paragraph [ref=f1e506]: Samochód staje, reflektory gasną. „No wreszcie” — wzdychasz i wysiadasz na żwirowy podjazd. Kiedy obchodzisz auto do bagażnika, żeby pomóc z walizkami, zimne nocne powietrze zaciska się na tobie jak imadło.
+          - paragraph [ref=f1e507]: „Głodna jesteś?” — pyta Charlie, a ty starasz się nie szczękać zębami.
+          - generic [ref=f1e508]:
+            - generic [ref=f1e509]: KON · 60 / 30 / 12
+            - 'generic "KON: 84" [ref=f1e510]':
+              - generic [ref=f1e511]: "80"
+              - generic [ref=f1e512]: "4"
+              - generic [ref=f1e513]: = 84
+              - generic [ref=f1e514]: Porażka
+            - generic [ref=f1e515]: "Już było: Porażka"
+          - generic [ref=f1e516]: "Zapisano: touched by cold"
+          - button "Powiedzieć, że jesteś głodna →" [ref=f1e517]
+          - button "Powiedzieć, że nie jesteś głodna →" [ref=f1e518]
+          - generic:
+            - article:
+              - paragraph: Po kilku minutach, kilku kolejnych zakrętach i kilku milach w głąb lasu słońce zachodzi. Reflektory samochodu wykrawają w ciemności zaledwie kilka metrów drogi naraz. W końcu światła przesuwają się po froncie chaty i odbijają w dwóch oknach po obu stronach drzwi, które odpowiadają ci złowieszczym spojrzeniem.
+              - paragraph: Samochód staje, reflektory gasną. „No wreszcie” — wzdychasz i wysiadasz na żwirowy podjazd. Kiedy obchodzisz auto do bagażnika, żeby pomóc z walizkami, zimne nocne powietrze zaciska się na tobie jak imadło.
+              - paragraph: „Głodna jesteś?” — pyta Charlie, a ty starasz się nie szczękać zębami.
+    - complementary "Karta postaci" [ref=f1e42]:
+      - 'region "Alex: PW, Poczytalność, Szczęście" [ref=f1e519]':
+        - generic [ref=f1e520]:
+          - generic [ref=f1e521]:
+            - generic [ref=f1e522]: PW 13/13
+            - progressbar "PW" [ref=f1e523]
+          - generic [ref=f1e525]:
+            - generic [ref=f1e526]: Poczytalność 50/50
+            - progressbar "Poczytalność" [ref=f1e527]
+          - generic [ref=f1e529]:
+            - generic [ref=f1e530]: Szczęście 20/100
+            - progressbar "Szczęście" [ref=f1e531]
+      - generic [ref=f1e533]:
+        - heading "Alex · Sprzedawczyni" [level=2] [ref=f1e534]
+        - heading "Parametry" [level=2] [ref=f1e535]
+        - list [ref=f1e536]:
+          - listitem [ref=f1e537]:
+            - generic [ref=f1e538]: "PM:"
+            - generic [ref=f1e540]: "10"
+          - listitem [ref=f1e541]:
+            - generic [ref=f1e542]: "Ruch:"
+            - generic [ref=f1e544]: "7"
+          - listitem [ref=f1e545]:
+            - generic [ref=f1e546]: "Krzepa:"
+            - generic [ref=f1e548]: "1"
+          - listitem [ref=f1e549]:
+            - generic [ref=f1e550]: "Modyfikator Obrażeń:"
+            - generic [ref=f1e552]: 1d4
+        - heading "Dziennik" [level=2] [ref=f1e553]
+        - list [ref=f1e554]:
+          - listitem [ref=f1e555]: ☑ alex
+          - listitem [ref=f1e556]: ☑ touched by cold
+        - heading "Umiejętności" [level=2] [ref=f1e557]
+        - list [ref=f1e558]:
+          - listitem [ref=f1e559]:
+            - generic [ref=f1e560]: Majętność
+            - generic [ref=f1e562]: "40"
+          - listitem [ref=f1e563]:
+            - generic [ref=f1e564]: Unik
+            - generic [ref=f1e566]: "32"
+          - listitem [ref=f1e567]:
+            - generic [ref=f1e568]: Prowadzenie Samochodu
+            - generic [ref=f1e570]: "45"
+          - listitem [ref=f1e571]:
+            - generic [ref=f1e572]: Walka Wręcz (Bijatyka)
+            - generic [ref=f1e574]: "55"
+          - listitem [ref=f1e575]:
+            - generic [ref=f1e576]: Pierwsza Pomoc
+            - generic [ref=f1e578]: "40"
+          - listitem [ref=f1e579]:
+            - generic [ref=f1e580]: Zastraszanie
+            - generic [ref=f1e582]: "60"
+          - listitem [ref=f1e583]:
+            - generic [ref=f1e584]: Język Ojczysty
+            - generic [ref=f1e586]: "65"
+          - listitem [ref=f1e587]:
+            - generic [ref=f1e588]: Nasłuchiwanie
+            - generic [ref=f1e590]: "50"
+          - listitem [ref=f1e591]:
+            - generic [ref=f1e592]: Wiedza o Naturze
+            - generic [ref=f1e594]: "30"
+          - listitem [ref=f1e595]:
+            - generic [ref=f1e596]: Nawigacja
+            - generic [ref=f1e598]: "40"
+          - listitem [ref=f1e599]:
+            - generic [ref=f1e600]: Perswazja
+            - generic [ref=f1e602]: "60"
+          - listitem [ref=f1e603]:
+            - generic [ref=f1e604]: Psychologia
+            - generic [ref=f1e606]: "45"
+          - listitem [ref=f1e607]:
+            - generic [ref=f1e608]: Spostrzegawczość
+            - generic [ref=f1e610]: "35"
+          - listitem [ref=f1e611]:
+            - generic [ref=f1e612]: Ukrywanie
+            - generic [ref=f1e614]: "35"
+        - heading "Cechy" [level=2] [ref=f1e615]
+        - list [ref=f1e616]:
+          - listitem [ref=f1e617]:
+            - generic [ref=f1e618]: S
+            - generic [ref=f1e620]: "70"
+          - listitem [ref=f1e621]:
+            - generic [ref=f1e622]: KON
+            - generic [ref=f1e624]: "60"
+          - listitem [ref=f1e625]:
+            - generic [ref=f1e626]: BC
+            - generic [ref=f1e628]: "75"
+          - listitem [ref=f1e629]:
+            - generic [ref=f1e630]: ZR
+            - generic [ref=f1e632]: "65"
+          - listitem [ref=f1e633]:
+            - generic [ref=f1e634]: WYG
+            - generic [ref=f1e636]: "60"
+          - listitem [ref=f1e637]:
+            - generic [ref=f1e638]: WYK
+            - generic [ref=f1e640]: "65"
+          - listitem [ref=f1e641]:
+            - generic [ref=f1e642]: INT
+            - generic [ref=f1e644]: "55"
+          - listitem [ref=f1e645]:
+            - generic [ref=f1e646]: MOC
+            - generic [ref=f1e648]: "50"
+        - heading "Moja historia" [level=2] [ref=f1e649]
+        - paragraph [ref=f1e650]: Alex jest z Charliem od prawie pięciu lat. Charlie wydaje się coraz mniej szczęśliwy. Mark, brat Charliego, polecił im swoją chatę na odludziu — trochę czasu tylko dla siebie. Jemu i jego żonie Julie to pomogło. Może pomoże też Alex i Charliemu…
+        - heading "Historia Badacza" [level=2] [ref=f1e651]
+        - list [ref=f1e652]:
+          - listitem [ref=f1e653]: "Opis postaci: Zahartowana albo zapuszczona, zależnie od tego, jak życzliwie patrzysz."
+          - listitem [ref=f1e654]: "Przymioty: Beznadziejna romantyczka. Broni swoich zaciekle."
+          - listitem [ref=f1e655]: "Ideologia i przekonania: Wierzę tylko w to, co widzę."
+          - listitem [ref=f1e656]: "Ważne osoby: Charlie, wbrew wszystkiemu…"
+          - listitem [ref=f1e657]: "Znaczące miejsca: Restauracja, którą Charlie zarezerwował na ich pierwszą kolację."
+          - listitem [ref=f1e658]: "Rzeczy osobiste: List miłosny od Charliego."

@@ -1,0 +1,167 @@
+- generic [ref=e1]:
+  - link "Przejdź do dziennika" [ref=e2] [cursor=pointer]:
+    - /url: "#content"
+  - banner "Alone Against the Static" [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e6]: ARCHIWUM / TAŚMA 01
+      - generic [ref=e7]: Alone Against the Static
+    - navigation "Narzędzia" [ref=e8]:
+      - button "Switch language to English" [ref=e9] [cursor=pointer]: EN
+      - button "Nowa gra" [ref=e10] [cursor=pointer]
+      - button "Dziennik" [ref=e11] [cursor=pointer]
+      - button "Ustawienia" [ref=e12] [cursor=pointer]
+  - main [ref=e13]:
+    - generic [ref=e14] [cursor=pointer]:
+      - heading "Dziennik rozgrywki" [level=1] [ref=e15]
+      - generic [ref=e16]:
+        - generic [ref=e17]: PLAY
+        - generic [ref=e18]: SP
+        - generic [ref=e19]: 00:00:00
+        - generic "Sterowanie odtwarzaniem / Playback controls" [ref=e20]:
+          - button "Włącz automatyczne odtwarzanie akapitów" [ref=e21]: ○AUTOPLAY
+          - button "Wyłącz lektora" [pressed] [ref=e22]: ●VO
+      - article "Paragraf 95" [active] [ref=e801]:
+        - generic [ref=e802]:
+          - text: Paragraf
+          - generic [ref=e803]: "95"
+        - paragraph [ref=e804]: Wiesz, że w samochodzie jest porządna latarka, ale teraz nie masz do niej dostępu. Co da się znaleźć tutaj, w chacie? Po zachodzie słońca czeka cię ciemność.
+        - generic [ref=e805]:
+          - generic [ref=e806]: Spostrzegawczość · 35 / 17 / 7
+          - 'generic "Spostrzegawczość: 80" [ref=e807]':
+            - generic [ref=e808]: "80"
+            - generic [ref=e809]: "0"
+            - generic [ref=e810]: = 80
+            - generic [ref=e811]: Porażka
+          - generic [ref=e812]: "Już było: Porażka · Sukces"
+        - generic [ref=e813]:
+          - generic [ref=e814]: Spostrzegawczość · 35 / 17 / 7 · rzut forsowany
+          - 'generic "Spostrzegawczość: 16" [ref=e815]':
+            - generic [ref=e816]: "10"
+            - generic [ref=e817]: "6"
+            - generic [ref=e818]: = 16
+            - generic [ref=e819]: Trudny sukces
+          - generic [ref=e820]: "Już było: Porażka · Sukces"
+          - button "Przyjmij wynik" [ref=e822]
+          - button "A może jednak test się nie udał?" [ref=e823]
+        - generic:
+          - article:
+            - paragraph: Wiesz, że w samochodzie jest porządna latarka, ale teraz nie masz do niej dostępu. Co da się znaleźć tutaj, w chacie? Po zachodzie słońca czeka cię ciemność.
+    - complementary "Karta postaci" [ref=e43]:
+      - 'region "Alex: PW, Poczytalność, Szczęście" [ref=e824]':
+        - generic [ref=e825]:
+          - generic [ref=e826]:
+            - generic [ref=e827]: PW 13/13
+            - progressbar "PW" [ref=e828]
+          - generic [ref=e830]:
+            - generic [ref=e831]: Poczytalność 49/50
+            - progressbar "Poczytalność" [ref=e832]
+          - generic [ref=e834]:
+            - generic [ref=e835]: Szczęście 20/100
+            - progressbar "Szczęście" [ref=e836]
+      - generic [ref=e838]:
+        - heading "Alex · Sprzedawczyni" [level=2] [ref=e839]
+        - heading "Parametry" [level=2] [ref=e840]
+        - list [ref=e841]:
+          - listitem [ref=e842]:
+            - generic [ref=e843]: "PM:"
+            - generic [ref=e845]: "10"
+          - listitem [ref=e846]:
+            - generic [ref=e847]: "Ruch:"
+            - generic [ref=e849]: "7"
+          - listitem [ref=e850]:
+            - generic [ref=e851]: "Krzepa:"
+            - generic [ref=e853]: "1"
+          - listitem [ref=e854]:
+            - generic [ref=e855]: "Modyfikator Obrażeń:"
+            - generic [ref=e857]: 1d4
+        - heading "Dziennik" [level=2] [ref=e858]
+        - list [ref=e859]:
+          - listitem [ref=e860]: ☑ alex
+          - listitem [ref=e861]: ☑ touched by cold
+          - listitem [ref=e862]: ☑ occupied
+          - listitem [ref=e863]: ☑ unsettled
+          - listitem [ref=e864]: ☑ blame game
+          - listitem [ref=e865]: ☑ nyctophobe
+          - listitem [ref=e866]: ☑ the quiet in the evening
+          - listitem [ref=e867]: ☑ toolkit
+          - listitem [ref=e868]: ☑ practical
+        - heading "Umiejętności" [level=2] [ref=e869]
+        - list [ref=e870]:
+          - listitem [ref=e871]:
+            - generic [ref=e872]: Majętność
+            - generic [ref=e874]: "40"
+          - listitem [ref=e875]:
+            - generic [ref=e876]: Unik
+            - generic [ref=e878]: "32"
+          - listitem [ref=e879]:
+            - generic [ref=e880]: Prowadzenie Samochodu
+            - generic [ref=e882]: "45"
+          - listitem [ref=e883]:
+            - generic [ref=e884]: Walka Wręcz (Bijatyka)
+            - generic [ref=e886]: "55"
+          - listitem [ref=e887]:
+            - generic [ref=e888]: Pierwsza Pomoc
+            - generic [ref=e890]: "40"
+          - listitem [ref=e891]:
+            - generic [ref=e892]: Zastraszanie
+            - generic [ref=e894]: "60"
+          - listitem [ref=e895]:
+            - generic [ref=e896]: Język Ojczysty
+            - generic [ref=e898]: "65"
+          - listitem [ref=e899]:
+            - generic [ref=e900]: Nasłuchiwanie
+            - generic [ref=e902]: "50"
+          - listitem [ref=e903]:
+            - generic [ref=e904]: Wiedza o Naturze
+            - generic [ref=e906]: "30"
+          - listitem [ref=e907]:
+            - generic [ref=e908]: Nawigacja
+            - generic [ref=e910]: "40"
+          - listitem [ref=e911]:
+            - generic [ref=e912]: Perswazja
+            - generic [ref=e914]: "60"
+          - listitem [ref=e915]:
+            - generic [ref=e916]: Psychologia
+            - generic [ref=e918]: "45"
+          - listitem [ref=e919]:
+            - generic [ref=e920]: Spostrzegawczość
+            - generic [ref=e922]: "35"
+          - listitem [ref=e923]:
+            - generic [ref=e924]: Ukrywanie
+            - generic [ref=e926]: "35"
+        - heading "Cechy" [level=2] [ref=e927]
+        - list [ref=e928]:
+          - listitem [ref=e929]:
+            - generic [ref=e930]: S
+            - generic [ref=e932]: "70"
+          - listitem [ref=e933]:
+            - generic [ref=e934]: KON
+            - generic [ref=e936]: "60"
+          - listitem [ref=e937]:
+            - generic [ref=e938]: BC
+            - generic [ref=e940]: "75"
+          - listitem [ref=e941]:
+            - generic [ref=e942]: ZR
+            - generic [ref=e944]: "65"
+          - listitem [ref=e945]:
+            - generic [ref=e946]: WYG
+            - generic [ref=e948]: "60"
+          - listitem [ref=e949]:
+            - generic [ref=e950]: WYK
+            - generic [ref=e952]: "65"
+          - listitem [ref=e953]:
+            - generic [ref=e954]: INT
+            - generic [ref=e956]: "55"
+          - listitem [ref=e957]:
+            - generic [ref=e958]: MOC
+            - generic [ref=e960]: "50"
+        - heading "Moja historia" [level=2] [ref=e961]
+        - paragraph [ref=e962]: Alex jest z Charliem od prawie pięciu lat. Charlie wydaje się coraz mniej szczęśliwy. Mark, brat Charliego, polecił im swoją chatę na odludziu — trochę czasu tylko dla siebie. Jemu i jego żonie Julie to pomogło. Może pomoże też Alex i Charliemu…
+        - heading "Historia Badacza" [level=2] [ref=e963]
+        - list [ref=e964]:
+          - listitem [ref=e965]: "Opis postaci: Zahartowana albo zapuszczona, zależnie od tego, jak życzliwie patrzysz."
+          - listitem [ref=e966]: "Przymioty: Beznadziejna romantyczka. Broni swoich zaciekle."
+          - listitem [ref=e967]: "Ideologia i przekonania: Wierzę tylko w to, co widzę."
+          - listitem [ref=e968]: "Ważne osoby: Charlie, wbrew wszystkiemu…"
+          - listitem [ref=e969]: "Znaczące miejsca: Restauracja, którą Charlie zarezerwował na ich pierwszą kolację."
+          - listitem [ref=e970]: "Rzeczy osobiste: List miłosny od Charliego."

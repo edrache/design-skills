@@ -1,0 +1,147 @@
+- generic [ref=e1]:
+  - link "Przejdź do dziennika" [ref=e2] [cursor=pointer]:
+    - /url: "#content"
+  - banner "Alone Against the Static" [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e6]: ARCHIWUM / TAŚMA 01
+      - generic [ref=e7]: Alone Against the Static
+    - navigation "Narzędzia" [ref=e8]:
+      - button "Switch language to English" [ref=e9] [cursor=pointer]: EN
+      - button "Nowa gra" [ref=e10] [cursor=pointer]
+      - button "Dziennik" [ref=e11] [cursor=pointer]
+      - button "Ustawienia" [ref=e12] [cursor=pointer]
+  - main [ref=e13]:
+    - generic [ref=e14] [cursor=pointer]:
+      - heading "Dziennik rozgrywki" [level=1] [ref=e15]
+      - generic [ref=e16]:
+        - generic [ref=e17]: PLAY
+        - generic [ref=e18]: SP
+        - generic [ref=e19]: 00:00:00
+        - generic "Sterowanie odtwarzaniem / Playback controls" [ref=e20]:
+          - button "Włącz automatyczne odtwarzanie akapitów" [ref=e21]: ○AUTOPLAY
+          - button "Wyłącz lektora" [pressed] [ref=e22]: ●VO
+      - article "Paragraf 99" [active] [ref=e1124]:
+        - generic [ref=e1125]:
+          - text: Paragraf
+          - generic [ref=e1126]: "99"
+        - paragraph [ref=e1127]: W szafce pod zlewem zn ▍
+    - complementary "Karta postaci" [ref=e43]:
+      - 'region "Alex: PW, Poczytalność, Szczęście" [ref=e976]':
+        - generic [ref=e977]:
+          - generic [ref=e978]:
+            - generic [ref=e979]: PW 13/13
+            - progressbar "PW" [ref=e980]
+          - generic [ref=e982]:
+            - generic [ref=e983]: Poczytalność 49/50
+            - progressbar "Poczytalność" [ref=e984]
+          - generic [ref=e986]:
+            - generic [ref=e987]: Szczęście 20/100
+            - progressbar "Szczęście" [ref=e988]
+      - generic [ref=e990]:
+        - heading "Alex · Sprzedawczyni" [level=2] [ref=e991]
+        - heading "Parametry" [level=2] [ref=e992]
+        - list [ref=e993]:
+          - listitem [ref=e994]:
+            - generic [ref=e995]: "PM:"
+            - generic [ref=e997]: "10"
+          - listitem [ref=e998]:
+            - generic [ref=e999]: "Ruch:"
+            - generic [ref=e1001]: "7"
+          - listitem [ref=e1002]:
+            - generic [ref=e1003]: "Krzepa:"
+            - generic [ref=e1005]: "1"
+          - listitem [ref=e1006]:
+            - generic [ref=e1007]: "Modyfikator Obrażeń:"
+            - generic [ref=e1009]: 1d4
+        - heading "Dziennik" [level=2] [ref=e1010]
+        - list [ref=e1011]:
+          - listitem [ref=e1012]: ☑ alex
+          - listitem [ref=e1013]: ☑ touched by cold
+          - listitem [ref=e1014]: ☑ occupied
+          - listitem [ref=e1015]: ☑ unsettled
+          - listitem [ref=e1016]: ☑ blame game
+          - listitem [ref=e1017]: ☑ nyctophobe
+          - listitem [ref=e1018]: ☑ the quiet in the evening
+          - listitem [ref=e1019]: ☑ toolkit
+          - listitem [ref=e1020]: ☑ practical
+          - listitem [ref=e1021]: ☑ running on empty
+        - heading "Umiejętności" [level=2] [ref=e1022]
+        - list [ref=e1023]:
+          - listitem [ref=e1024]:
+            - generic [ref=e1025]: Majętność
+            - generic [ref=e1027]: "40"
+          - listitem [ref=e1028]:
+            - generic [ref=e1029]: Unik
+            - generic [ref=e1031]: "32"
+          - listitem [ref=e1032]:
+            - generic [ref=e1033]: Prowadzenie Samochodu
+            - generic [ref=e1035]: "45"
+          - listitem [ref=e1036]:
+            - generic [ref=e1037]: Walka Wręcz (Bijatyka)
+            - generic [ref=e1039]: "55"
+          - listitem [ref=e1040]:
+            - generic [ref=e1041]: Pierwsza Pomoc
+            - generic [ref=e1043]: "40"
+          - listitem [ref=e1044]:
+            - generic [ref=e1045]: Zastraszanie
+            - generic [ref=e1047]: "60"
+          - listitem [ref=e1048]:
+            - generic [ref=e1049]: Język Ojczysty
+            - generic [ref=e1051]: "65"
+          - listitem [ref=e1052]:
+            - generic [ref=e1053]: Nasłuchiwanie
+            - generic [ref=e1055]: "50"
+          - listitem [ref=e1056]:
+            - generic [ref=e1057]: Wiedza o Naturze
+            - generic [ref=e1059]: "30"
+          - listitem [ref=e1060]:
+            - generic [ref=e1061]: Nawigacja
+            - generic [ref=e1063]: "40"
+          - listitem [ref=e1064]:
+            - generic [ref=e1065]: Perswazja
+            - generic [ref=e1067]: "60"
+          - listitem [ref=e1068]:
+            - generic [ref=e1069]: Psychologia
+            - generic [ref=e1071]: "45"
+          - listitem [ref=e1072]:
+            - generic [ref=e1073]: Spostrzegawczość
+            - generic [ref=e1075]: "35"
+          - listitem [ref=e1076]:
+            - generic [ref=e1077]: Ukrywanie
+            - generic [ref=e1079]: "35"
+        - heading "Cechy" [level=2] [ref=e1080]
+        - list [ref=e1081]:
+          - listitem [ref=e1082]:
+            - generic [ref=e1083]: S
+            - generic [ref=e1085]: "70"
+          - listitem [ref=e1086]:
+            - generic [ref=e1087]: KON
+            - generic [ref=e1089]: "60"
+          - listitem [ref=e1090]:
+            - generic [ref=e1091]: BC
+            - generic [ref=e1093]: "75"
+          - listitem [ref=e1094]:
+            - generic [ref=e1095]: ZR
+            - generic [ref=e1097]: "65"
+          - listitem [ref=e1098]:
+            - generic [ref=e1099]: WYG
+            - generic [ref=e1101]: "60"
+          - listitem [ref=e1102]:
+            - generic [ref=e1103]: WYK
+            - generic [ref=e1105]: "65"
+          - listitem [ref=e1106]:
+            - generic [ref=e1107]: INT
+            - generic [ref=e1109]: "55"
+          - listitem [ref=e1110]:
+            - generic [ref=e1111]: MOC
+            - generic [ref=e1113]: "50"
+        - heading "Moja historia" [level=2] [ref=e1114]
+        - paragraph [ref=e1115]: Alex jest z Charliem od prawie pięciu lat. Charlie wydaje się coraz mniej szczęśliwy. Mark, brat Charliego, polecił im swoją chatę na odludziu — trochę czasu tylko dla siebie. Jemu i jego żonie Julie to pomogło. Może pomoże też Alex i Charliemu…
+        - heading "Historia Badacza" [level=2] [ref=e1116]
+        - list [ref=e1117]:
+          - listitem [ref=e1118]: "Opis postaci: Zahartowana albo zapuszczona, zależnie od tego, jak życzliwie patrzysz."
+          - listitem [ref=e1119]: "Przymioty: Beznadziejna romantyczka. Broni swoich zaciekle."
+          - listitem [ref=e1120]: "Ideologia i przekonania: Wierzę tylko w to, co widzę."
+          - listitem [ref=e1121]: "Ważne osoby: Charlie, wbrew wszystkiemu…"
+          - listitem [ref=e1122]: "Znaczące miejsca: Restauracja, którą Charlie zarezerwował na ich pierwszą kolację."
+          - listitem [ref=e1123]: "Rzeczy osobiste: List miłosny od Charliego."

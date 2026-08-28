@@ -1,0 +1,27 @@
+- generic [ref=f1e1]:
+  - link "Przejdź do dziennika" [ref=f1e2] [cursor=pointer]:
+    - /url: "#content"
+  - banner "Alone Against the Static" [ref=f1e3]:
+    - generic [ref=f1e4]:
+      - generic [ref=f1e6]: ARCHIWUM / TAŚMA 01
+      - generic [ref=f1e7]: Alone Against the Static
+    - navigation "Narzędzia" [ref=f1e8]:
+      - button "Switch language to English" [ref=f1e9] [cursor=pointer]: EN
+      - button "Ustawienia" [ref=f1e10] [cursor=pointer]
+  - main [ref=f1e11]:
+    - generic [ref=f1e12]:
+      - paragraph [ref=f1e13]: NAGRANIE OSOBISTE / WYBIERZ PERSPEKTYWĘ
+      - heading "Kim jesteś?" [active] [level=1] [ref=f1e14]
+      - paragraph [ref=f1e15]: Dwie osoby jadą do odciętej od świata chaty. Wybór określi, którą wersję wydarzeń zapamiętasz.
+      - generic [ref=f1e16]:
+        - button "Alex, Sprzedawczyni" [ref=f1e17] [cursor=pointer]:
+          - generic [ref=f1e18]: Alex
+          - generic [ref=f1e19]: Sprzedawczyni
+          - generic [ref=f1e20]: P 50 · PW 13
+          - text: ▶
+        - button "Charlie, Pielęgniarz" [ref=f1e21] [cursor=pointer]:
+          - generic [ref=f1e22]: Charlie
+          - generic [ref=f1e23]: Pielęgniarz
+          - generic [ref=f1e24]: P 60 · PW 13
+          - text: ▶
+    - text: ○ ● Karta postaci zostanie podłączona do tego panelu.
