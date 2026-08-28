@@ -13,11 +13,25 @@ export const LETTER_PX = 3.5;
 export const SLICE_PX = 6;
 export const GRAIN_OPACITY = 0.35;
 
-export const WAVE_SPEED_PX_MS = 1.6;
-export const WAVE_LIFE_MS = 520;
+// Dysk nie jest kołem: składa się z plam, które krążą wokół wskaźnika po
+// własnych orbitach i pulsują promieniem, więc jego brzeg oddycha. Sześć to
+// kompromis — mniej czyta się jak trzy nachodzące koła, więcej kosztuje warstw
+// maski w każdej klatce i w każdym maskowanym elemencie.
+export const BLOB_COUNT = 6;
+// Pierścień fali chodzi tym samym szumem, ale inną geometrią: kilka odłamków
+// o lekko rozjechanych środkach i promieniach. Anularnego kształtu nie da się
+// złożyć z plam, bo CSS nie umie przecinać masek wewnątrz jednej warstwy.
+export const RING_SHARDS = 4;
+export const RING_JITTER_PX = 18;
+
+// Fala nie rozchodzi się ze stałą prędkością: rusza leniwie i rozpędza się
+// przez całe swoje życie. Uderzenie zostaje wtedy przy punkcie kliknięcia
+// na tyle długo, żeby dało się je zobaczyć, a dopiero potem ucieka z ekranu.
+export const WAVE_LIFE_MS = 720;
+export const WAVE_REACH_PX = 900;
+export const WAVE_EASE = 2.2;
 export const WAVE_THICKNESS_PX = 120;
 export const WAVE_GAIN = 2.4;
-export const WAVE_REACH_PX = WAVE_SPEED_PX_MS * WAVE_LIFE_MS;
 
 const clamp01 = (value) => {
   const number = Number(value);
@@ -34,17 +48,19 @@ export function discFalloff(distancePx, radiusPx = DISC_RADIUS_PX) {
   return 1 - edge;
 }
 
-// Pierścień: promień rośnie liniowo w czasie, wzmocnienie gaśnie z promieniem.
-// Zwraca null, gdy fali nie ma — to jedyny sygnał "nic nie rysuj".
+// Pierścień: promień rośnie z rozpędem (WAVE_EASE), wzmocnienie gaśnie
+// liniowo z czasem — najmocniejsze jest przy kliknięciu, gdy fala dopiero
+// odrywa się od punktu uderzenia. Zwraca null, gdy fali nie ma — to jedyny
+// sygnał "nic nie rysuj".
 export function waveAt(timeMs, wave) {
   const time = Number(timeMs);
   const at = Number(wave?.at);
   if (!Number.isFinite(time) || !Number.isFinite(at)) return null;
   const elapsed = time - at;
   if (elapsed < 0 || elapsed >= WAVE_LIFE_MS) return null;
-  const radius = elapsed * WAVE_SPEED_PX_MS;
-  const decay = 1 - elapsed / WAVE_LIFE_MS;
-  return { radius, gain: 1 + (WAVE_GAIN - 1) * decay };
+  const progress = elapsed / WAVE_LIFE_MS;
+  const radius = WAVE_REACH_PX * progress ** WAVE_EASE;
+  return { radius, gain: 1 + (WAVE_GAIN - 1) * (1 - progress) };
 }
 
 export function staticScale({ strength = 0, reducedMotion = false, waveGain = 1 } = {}) {
@@ -61,30 +77,94 @@ export function staticScale({ strength = 0, reducedMotion = false, waveGain = 1 
   };
 }
 
+// Szum kształtu: suma dwóch sinusów o niewspółmiernych okresach.
+// Deterministyczny z założenia — klon i oryginał liczą swoje maski osobno, ale
+// w tej samej klatce i z tym samym czasem, więc obie krawędzie muszą wyjść
+// identyczne. Math.random() rozjechałby je o klatkę i w obwódce dysku pokazałby
+// oryginał.
+export function shapeNoise(index, timeMs, seed = 0) {
+  const i = Number(index) || 0;
+  const t = Number(timeMs) || 0;
+  const slow = Math.sin(i * 1.73 + seed * 3.11 + t / 260);
+  const fast = Math.sin(i * 4.31 + seed * 1.97 + t / 97);
+  return slow * 0.65 + fast * 0.35;
+}
+
+// Plamy dysku: jeden rdzeń pod samym wskaźnikiem i pięć satelitów krążących
+// wokół niego. Rdzeń jest po to, żeby pod kursorem nie otwierała się dziura
+// w dziurze — satelity same z siebie zostawiłyby w środku prześwit oryginału.
+const CORE_ORBIT = 0.06;
+const CORE_RADIUS = 0.55;
+const BLOB_ORBIT = 0.32;
+const BLOB_RADIUS = 0.55;
+const BLOB_WOBBLE = 0.15;
+// Pełny obrót satelitów. Wolno: kształt ma pełzać, a nie wirować.
+const ORBIT_PERIOD_MS = 5200;
+
+export function discBlobs({ x = 0, y = 0, radius = DISC_RADIUS_PX, time = 0 } = {}) {
+  const cx = Number(x) || 0;
+  const cy = Number(y) || 0;
+  const r = Number(radius) || DISC_RADIUS_PX;
+  const t = Number(time) || 0;
+  const blobs = [];
+  const satellites = BLOB_COUNT - 1;
+
+  for (let index = 0; index < BLOB_COUNT; index += 1) {
+    const wobble = shapeNoise(index, t, 5);
+    const core = index === 0;
+    // Rdzeń dryfuje wokół samego wskaźnika, satelity krążą po orbicie;
+    // wspólny obrót w czasie plus własny szum każdego z nich.
+    const angle = core
+      ? shapeNoise(index, t, 13) * Math.PI
+      : ((index - 1) / satellites) * Math.PI * 2 + (t / ORBIT_PERIOD_MS) * Math.PI * 2 + shapeNoise(index, t, 13) * 0.6;
+    const orbit = r * (core ? CORE_ORBIT : BLOB_ORBIT * (1 + shapeNoise(index, t, 29) * BLOB_WOBBLE));
+    // Zasięg plamy przycięty do promienia dysku: bez tego maska odwrotna
+    // wygryzłaby w oryginale dziurę tam, gdzie klon jest już wygaszony.
+    const wanted = r * (core ? CORE_RADIUS : BLOB_RADIUS) * (1 + wobble * BLOB_WOBBLE);
+    blobs.push({
+      cx: cx + Math.cos(angle) * orbit,
+      cy: cy + Math.sin(angle) * orbit,
+      r: Math.max(1, Math.min(wanted, r - orbit)),
+    });
+  }
+  return blobs;
+}
+
 // Stopnie gradientu są wspólne dla wersji prostej i odwróconej: suma alfy
 // obu masek musi wynosić 1 także na miękkiej krawędzi, inaczej w obwódce
 // dysku tekst blednie, zamiast przechodzić z oryginału w klon.
 const CORE_STOP = `${(DISC_CORE * 100).toFixed(0)}%`;
 
-function discLayer(x, y, radius, invert) {
+function blobLayer(blob, invert) {
   const inner = invert ? "transparent" : "#000";
   const outer = invert ? "#000" : "transparent";
-  return `radial-gradient(circle ${radius}px at ${x}px ${y}px, ${inner} ${CORE_STOP}, ${outer} 100%)`;
+  const round = (value) => value.toFixed(2);
+  return `radial-gradient(circle ${round(blob.r)}px at ${round(blob.cx)}px ${round(blob.cy)}px, ${inner} ${CORE_STOP}, ${outer} 100%)`;
 }
 
 // Pierścień: przezroczysty w środku, kryjący w obręczy, przezroczysty poza nią.
-function ringLayer(x, y, radius, invert) {
+// Odłamek to ten sam pierścień, tylko z przesuniętym środkiem i promieniem —
+// kilka takich warstw daje obręcz rwaną, a nie wyrysowaną cyrklem.
+function ringLayer(x, y, radius, invert, shard = 0, time = 0) {
   const band = invert ? "transparent" : "#000";
   const rest = invert ? "#000" : "transparent";
-  const half = WAVE_THICKNESS_PX / 2;
-  const from = Math.max(0, radius - half);
-  const to = radius + half;
-  return `radial-gradient(circle ${to}px at ${x}px ${y}px, ${rest} ${from}px, ${band} ${radius}px, ${rest} ${to}px)`;
+  const drift = shapeNoise(shard, time, 11) * RING_JITTER_PX;
+  const lift = shapeNoise(shard, time, 23) * RING_JITTER_PX;
+  const swell = 1 + shapeNoise(shard, time, 31) * 0.08;
+  const center = Math.max(0, radius * swell);
+  const half = (WAVE_THICKNESS_PX * 0.6) / 2;
+  const from = Math.max(0, center - half);
+  const to = center + half;
+  return `radial-gradient(circle ${to.toFixed(2)}px at ${(x + drift).toFixed(2)}px ${(y + lift).toFixed(2)}px, ${rest} ${from.toFixed(2)}px, ${band} ${center.toFixed(2)}px, ${rest} ${to.toFixed(2)}px)`;
 }
 
-export function discMask({ x = 0, y = 0, radius = DISC_RADIUS_PX, wave = null, invert = false } = {}) {
-  const layers = [discLayer(Number(x) || 0, Number(y) || 0, Number(radius) || DISC_RADIUS_PX, invert)];
-  if (wave) layers.push(ringLayer(Number(wave.x) || 0, Number(wave.y) || 0, Number(wave.radius) || 0, invert));
+function ringLayers(x, y, radius, invert, time) {
+  return Array.from({ length: RING_SHARDS }, (_, shard) => ringLayer(x, y, radius, invert, shard, time));
+}
+
+export function discMask({ x = 0, y = 0, radius = DISC_RADIUS_PX, wave = null, invert = false, time = 0 } = {}) {
+  const layers = discBlobs({ x, y, radius, time }).map((blob) => blobLayer(blob, invert));
+  if (wave) layers.push(...ringLayers(Number(wave.x) || 0, Number(wave.y) || 0, Number(wave.radius) || 0, invert, time));
   // Klon pokazuje sumę obszarów, oryginał — dopełnienie tej sumy:
   // ¬(dysk ∪ pierścień) = ¬dysk ∩ ¬pierścień.
   return { image: layers.join(", "), composite: invert ? "intersect" : "add" };
@@ -96,10 +176,10 @@ export function discMask({ x = 0, y = 0, radius = DISC_RADIUS_PX, wave = null, i
 // ZASTĄPIĆ. Współrzędne poza pudełkiem elementu wystarczą — warstwy dysku
 // nie da się „wypchnąć w nieskończoność", bo `Infinitypx` to niepoprawny CSS
 // i przeglądarka odrzuciłaby całą deklarację maski razem z pierścieniem.
-export function ringMask(ring, invert = false) {
+export function ringMask(ring, invert = false, time = 0) {
   const { x = 0, y = 0, radius = 0 } = ring ?? {};
   return {
-    image: ringLayer(Number(x) || 0, Number(y) || 0, Number(radius) || 0, invert),
+    image: ringLayers(Number(x) || 0, Number(y) || 0, Number(radius) || 0, invert, time).join(", "),
     composite: invert ? "intersect" : "add",
   };
 }
@@ -270,10 +350,10 @@ export function createPointerStatic({ root, doc = root?.ownerDocument ?? null, m
   // gradientu liczą się względem pudełka MASKOWANEGO elementu, więc każdy
   // poziom przelicza te same współrzędne ekranowe osobno — i dzięki temu obie
   // maski się zgadzają.
-  function maskFor(box, active, invert) {
+  function maskFor(box, active, invert, time) {
     const ring = active ? { x: wave.x - box.left, y: wave.y - box.top, radius: active.radius } : null;
-    if (!pointer.seen || (ring && !composite)) return ringMask(ring, invert);
-    return discMask({ x: pointer.x - box.left, y: pointer.y - box.top, wave: ring, invert });
+    if (!pointer.seen || (ring && !composite)) return ringMask(ring, invert, time);
+    return discMask({ x: pointer.x - box.left, y: pointer.y - box.top, wave: ring, invert, time });
   }
 
   function tick() {
@@ -313,9 +393,12 @@ export function createPointerStatic({ root, doc = root?.ownerDocument ?? null, m
 
       record.ghost.style.visibility = "";
       record.ghost.style.setProperty("--ghost-split", scale.letter.toFixed(3));
-      writeMask(record.ghost, maskFor(entry.getBoundingClientRect(), active, false));
+      // Ten sam `time` dla klonu i dla oryginału: kształt plam jest funkcją
+      // czasu, więc dwie różne wartości w jednej klatce rozjechałyby krawędzie
+      // i w obwódce dysku pokazałyby oryginał pod klonem.
+      writeMask(record.ghost, maskFor(entry.getBoundingClientRect(), active, false, time));
       for (const node of record.masked) {
-        writeMask(node, maskFor(node.getBoundingClientRect(), active, true));
+        writeMask(node, maskFor(node.getBoundingClientRect(), active, true, time));
       }
     }
 

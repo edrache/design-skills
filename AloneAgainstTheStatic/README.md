@@ -192,23 +192,31 @@ zmieniony przez inne narzędzie.
 ## Zakłócenia pod wskaźnikiem
 
 Proza paragrafów i kadr wpisu zniekształcają się lokalnie tam, gdzie stoi
-wskaźnik: litery falują, poziome pasma jadą w bok, na glify siada ziarno. Kliknięcie wypuszcza
-z punktu uderzenia rozchodzący się pierścień mocniejszego zniekształcenia; na
-dotyku zostaje sam pierścień, bo nie ma czego śledzić. Siłę reguluje suwak
+wskaźnik: litery falują, poziome pasma jadą w bok, na glify siada ziarno.
+Sama dziura nie jest kołem — składa się z sześciu plam krążących wokół
+wskaźnika po własnych orbitach i pulsujących promieniem, więc jej brzeg
+oddycha zamiast stać w miejscu. Kliknięcie wypuszcza z punktu uderzenia
+rozchodzący się pierścień mocniejszego zniekształcenia — rusza leniwie
+i rozpędza się (`WAVE_EASE`), więc uderzenie zostaje przy kursorze na tyle
+długo, żeby dało się je zobaczyć, zanim ucieknie z ekranu. Na dotyku zostaje
+sam pierścień, bo nie ma czego śledzić. Siłę reguluje suwak
 **Zakłócenia kursora** w ustawieniach (0 gasi efekt całkowicie), a
 `prefers-reduced-motion` wyłącza go bezwarunkowo.
 
 Technicznie: nad każdym wpisem leży `aria-hidden inert` klon (`.static-ghost`),
 zniekształcony filtrem `#pointer-static` i przycięty maską dysku wokół
-wskaźnika; oryginalne akapity i figura kadru (`.entry-art`) noszą maskę
-odwrotną, więc w dysku widać wyłącznie klon. Maskowana jest cała figura,
+wskaźnika (`discBlobs`); oryginalne akapity i figura kadru (`.entry-art`)
+noszą maskę odwrotną, więc w dysku widać wyłącznie klon. Maskowana jest cała figura,
 a nie sam kadr: warstwa szaleństwa jest z nim zlana trybem `screen`, więc
 rozdzielenie ich zostawiłoby w dysku samo świecenie oczu. Klon przebudowuje się tylko wtedy, gdy DOM wpisu naprawdę się
 zmienił: po domknięciu akapitu, po dołożeniu kości albo przycisków wyborów
 i decyzji, po przerysowaniu wpisu w całości oraz po ruchu suwaka. Akapit
 aktualnie wypisywany jest z efektu wyłączony, bo `reveal.js` przepisuje jego
 węzły tekstowe co klatkę — w klonie zostaje wygaszony widocznością, żeby układ
-wierszy zgadzał się z oryginałem co do piksela. To osobny kanał od szumu
+wierszy zgadzał się z oryginałem co do piksela. Kształt plam jest funkcją
+czasu, a nie losowania: klon i oryginał liczą swoje maski osobno, więc
+`Math.random()` rozjechałby ich krawędzie o klatkę i w obwódce dysku
+pokazałby oryginał pod klonem. To osobny kanał od szumu
 z Poczytalności (`src/ui/effects.js`), gdzie wskaźnik działa odwrotnie:
 uspokaja tekst.
 
