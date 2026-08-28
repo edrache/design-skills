@@ -29,6 +29,18 @@
         <feTurbulence type="fractalNoise" baseFrequency="0.9 0.04" numOctaves="2" seed="7" result="noise" />
         <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" />
       </filter>
+      <!-- Warstwa szaleństwa na kadrze paragrafu (src/ui/effects.js). Jeden
+           filtr na całą figurę .entry-art: dwa stopnie zniekształcenia rwą
+           kadr i warstwę madness.webp razem, więc oczy nie leżą na obrazie,
+           tylko rwą się razem z nim. Atrybuty scale (i seed/baseFrequency
+           turbulencji) przepisuje pętla rAF — tu stoją zera, bez skryptu
+           filtr jest neutralny. -->
+      <filter id="madness-warp" x="-6%" y="-6%" width="112%" height="112%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.004 0.09" numOctaves="2" seed="23" result="bands" />
+        <feDisplacementMap in="SourceGraphic" in2="bands" scale="0" xChannelSelector="R" yChannelSelector="G" result="torn" />
+        <feTurbulence type="fractalNoise" baseFrequency="0.7 0.5" numOctaves="1" seed="31" result="grain" />
+        <feDisplacementMap in="torn" in2="grain" scale="0" xChannelSelector="R" yChannelSelector="A" />
+      </filter>
       <!-- Zakłócenia pod wskaźnikiem (src/ui/pointer-static.js). Jeden filtr
            dla wszystkich klonów: lokalizację robi maska, nie amplituda.
            Wartości scale/seed/krycie przepisuje pętla rAF modułu. -->

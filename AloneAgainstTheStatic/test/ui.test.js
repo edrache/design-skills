@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createI18n } from "../src/ui/i18n.js";
-import { createEntryBlock, entryLabels, eventNodes, lastRollBox, opensNewParagraph, renderArchive, renderEvents, renderRollDecision, rollPresentation, segmentEvents } from "../src/ui/journal.js";
+import { createEntryBlock, entryLabels, eventNodes, inheritedMemory, lastEntryImage, lastRollBox, opensNewParagraph, renderArchive, renderEvents, renderRollDecision, resolveEntryImage, rollPresentation, segmentEvents } from "../src/ui/journal.js";
 import { stripMarkup } from "../src/ui/markup.js";
 import { classesOf, createFakeDocument } from "./helpers/fake-dom.js";
 import { frameMemory, recordFrame, recordRolls } from "../src/ui/memory.js";
@@ -129,6 +129,180 @@ test("createEntryBlock oznacza paragraf widziany wcześniej dopiero na życzenie
   const seen = createEntryBlock(doc, 31, labels, undefined, { seenBefore: true });
   assert.equal(seen.dataset.seen, "true");
   assert.equal(seen.dataset.entryId, "31");
+});
+
+test("createEntryBlock używa grafiki sceny i pozwala nadpisać ją dla paragrafu", () => {
+  const doc = createFakeDocument();
+  const labels = entryLabels(createI18n({ pl: {}, en: {} }, "pl"));
+  const media = {
+    scenes: { cabin: { image: "media/img/cabin.png" } },
+    entries: { 12: { image: "media/img/arrival.png" } },
+  };
+
+  const fromScene = createEntryBlock(doc, 11, labels, media, { scene: "cabin" });
+  assert.match(String(fromScene.querySelector("img").src), /media\/img\/cabin\.png$/);
+
+  const overridden = createEntryBlock(doc, 12, labels, media, { scene: "cabin" });
+  assert.match(String(overridden.querySelector("img").src), /media\/img\/arrival\.png$/);
+});
+
+test("paragraf z inherit powtarza kadr poprzednika zamiast grafiki sceny", () => {
+  const media = {
+    scenes: { cabin: { image: "media/img/cabin.png" } },
+    entries: { 327: { image: "03.png" }, 328: { inherit: true } },
+  };
+
+  assert.equal(resolveEntryImage(media, 328, "cabin", "09.png"), "09.png");
+  // Bez poprzednika zostaje ilustracja sceny.
+  assert.equal(resolveEntryImage(media, 328, "cabin", null), "media/img/cabin.png");
+  assert.equal(resolveEntryImage(media, 328, undefined, null), null);
+  assert.equal(resolveEntryImage(media, 327, "cabin", "09.png"), "03.png");
+});
+
+test("createEntryBlock zapisuje użyty kadr i dziedziczy go na życzenie", () => {
+  const doc = createFakeDocument();
+  const labels = entryLabels(createI18n({ pl: {}, en: {} }, "pl"));
+  const media = { entries: { 34: { image: "media/img/locations/03.png" }, 328: { inherit: true } } };
+
+  const own = createEntryBlock(doc, 34, labels, media);
+  assert.equal(own.dataset.image, "media/img/locations/03.png");
+
+  const heir = createEntryBlock(doc, 328, labels, media, { previousImage: own.dataset.image });
+  assert.match(String(heir.querySelector("img").src), /locations\/03\.png$/);
+  assert.equal(heir.dataset.image, "media/img/locations/03.png");
+
+  // Bez poprzednika i bez sceny nie ma czego pokazać.
+  const orphan = createEntryBlock(doc, 328, labels, media);
+  assert.equal(orphan.querySelector("img"), null);
+  assert.equal(orphan.dataset.image, undefined);
+
+  const scened = createEntryBlock(doc, 328, labels, { ...media, scenes: { cabin: { image: "cabin.webp" } } }, { scene: "cabin" });
+  assert.equal(scened.dataset.image, "cabin.webp");
+});
+
+test("createEntryBlock składa figurę z warstwą szaleństwa", () => {
+  const doc = createFakeDocument();
+  const labels = entryLabels(createI18n({ pl: {}, en: {} }, "pl"));
+  const media = { entries: { 34: { image: "media/img/locations/03.png" }, 328: { inherit: true } } };
+
+  const block = createEntryBlock(doc, 34, labels, media);
+  const figure = block.querySelector(".entry-art");
+  assert.ok(figure, "kadr siedzi w figurze");
+  assert.equal(figure.tagName, "FIGURE");
+  // Ścieżka zostaje na bloku — dziedziczenie kadru czyta ją stamtąd.
+  assert.equal(block.dataset.image, "media/img/locations/03.png");
+  assert.equal(figure.dataset.image, undefined);
+
+  const artwork = figure.querySelector(".entry-image");
+  assert.match(String(artwork.src), /locations\/03\.png$/);
+  assert.equal(artwork.alt, "");
+  assert.equal(artwork.loading, "lazy");
+  assert.equal(artwork.decoding, "async");
+
+  const madness = figure.querySelector(".entry-madness");
+  assert.ok(madness, "warstwa szaleństwa powstaje przy każdym kadrze");
+  assert.match(String(madness.src), /media\/img\/madness\.webp$/);
+  assert.equal(madness.alt, "");
+  assert.equal(madness.getAttribute("aria-hidden"), "true");
+  assert.equal(madness.loading, "lazy");
+  assert.equal(madness.decoding, "async");
+});
+
+test("data-madness rozróżnia paragrafy ataku od reszty", () => {
+  const doc = createFakeDocument();
+  const labels = entryLabels(createI18n({ pl: {}, en: {} }, "pl"));
+  const media = { entries: { 31: { image: "media/img/locations/03.png" }, 330: { inherit: true } } };
+
+  const plain = createEntryBlock(doc, 31, labels, media);
+  assert.equal(plain.querySelector(".entry-art").dataset.madness, "drift");
+
+  const attack = createEntryBlock(doc, 330, labels, media, { previousImage: "media/img/locations/03.png" });
+  assert.equal(attack.querySelector(".entry-art").dataset.madness, "entry");
+
+  // Identyfikator jako łańcuch (tak trafia z dataset) też ma trafić w listę.
+  const fromDataset = createEntryBlock(doc, "330", labels, media, { previousImage: "media/img/locations/03.png" });
+  assert.equal(fromDataset.querySelector(".entry-art").dataset.madness, "entry");
+});
+
+test("brak kadru zostawia blok bez figury", () => {
+  const doc = createFakeDocument();
+  const labels = entryLabels(createI18n({ pl: {}, en: {} }, "pl"));
+  const media = { entries: { 328: { inherit: true } } };
+
+  const orphan = createEntryBlock(doc, 328, labels, media);
+  assert.equal(orphan.querySelector(".entry-art"), null);
+  assert.equal(orphan.querySelector("img"), null);
+});
+
+test("błąd kadru gasi całą figurę, błąd warstwy tylko warstwę", () => {
+  const doc = createFakeDocument();
+  const labels = entryLabels(createI18n({ pl: {}, en: {} }, "pl"));
+  const media = { entries: { 34: { image: "media/img/locations/03.png" } } };
+
+  const withBadLayer = createEntryBlock(doc, 34, labels, media);
+  const layer = withBadLayer.querySelector(".entry-madness");
+  for (const handler of layer.listeners.error) handler();
+  assert.equal(withBadLayer.querySelector(".entry-madness"), null);
+  assert.ok(withBadLayer.querySelector(".entry-art"), "sam kadr zostaje");
+  assert.ok(withBadLayer.querySelector(".entry-image"));
+
+  const withBadArt = createEntryBlock(doc, 34, labels, media);
+  const artwork = withBadArt.querySelector(".entry-image");
+  for (const handler of artwork.listeners.error) handler();
+  // Bez kadru sama warstwa szaleństwa nie ma czego zniekształcać.
+  assert.equal(withBadArt.querySelector(".entry-art"), null);
+  assert.equal(withBadArt.querySelector(".entry-madness"), null);
+});
+
+test("lastEntryImage czyta ostatni kadr z dziennika", () => {
+  const doc = createFakeDocument();
+  const labels = entryLabels(createI18n({ pl: {}, en: {} }, "pl"));
+  const media = { entries: { 9: { image: "09.png" }, 328: { inherit: true } } };
+  const root = doc.createElement("div");
+
+  assert.equal(lastEntryImage(root), null);
+  root.append(createEntryBlock(doc, 9, labels, media));
+  assert.equal(lastEntryImage(root), "09.png");
+});
+
+test("renderEvents dziedziczy kadr przez granicę ramki", () => {
+  const i18n = createI18n({ pl: { "e9.p1": "Strumień.", "e328.p1": "Szum." }, en: {} }, "pl");
+  const doc = createFakeDocument();
+  const root = doc.createElement("div");
+  const media = {
+    scenes: { cabin: { image: "media/img/cabin.png" } },
+    entries: { 9: { image: "09.png" }, 328: { inherit: true } },
+  };
+
+  renderEvents(root, [{ kind: "text", key: "e9.p1" }], i18n, {}, { entryId: 9, media });
+  renderEvents(root, [{ kind: "text", key: "e328.p1" }], i18n, {}, {
+    entryId: 328,
+    media,
+    sceneForEntry: () => "cabin",
+  });
+
+  const blocks = root.querySelectorAll(".journal-entry");
+  assert.equal(blocks.at(-1).dataset.entryId, "328");
+  assert.equal(blocks.at(-1).dataset.image, "09.png", "szaleństwo zostaje nad strumieniem");
+});
+
+test("renderEvents rozwiązuje scenę osobno dla każdego paragrafu ramki", () => {
+  const i18n = createI18n({ pl: { "e4.p1": "Cztery.", "e5.p1": "Pięć." }, en: {} }, "pl");
+  const doc = createFakeDocument();
+  const root = doc.createElement("div");
+  const media = { scenes: { cabin: { image: "media/img/cabin.png" } } };
+
+  renderEvents(root, [
+    { kind: "text", key: "e4.p1" },
+    { kind: "text", key: "e5.p1" },
+  ], i18n, {}, {
+    entryId: 5,
+    media,
+    sceneForEntry: (entryId) => entryId === 4 ? "forest" : "cabin",
+  });
+
+  assert.equal(root.children[0].querySelector("img"), null);
+  assert.match(String(root.children[1].querySelector("img").src), /media\/img\/cabin\.png$/);
 });
 
 test("renderEvents przenosi flagę seenBefore z kontekstu na wpis", () => {
@@ -330,6 +504,53 @@ test("przyrost po decyzji zapisuje gałąź rzutu, ale nie liczy wizyty w paragr
     frameMemory({ ...shown, events: [...shown.events, { kind: "roll", skill: "Intimidate" }] }, progress).rollHistory,
     { Intimidate: ["pushedFail"] },
   );
+});
+
+test("rzut rozwiązany w tym samym paragrafie nie podpowiada sam siebie", (t) => {
+  t.after(restoreStorage);
+  useStorage(memoryStorage());
+
+  // Pierwsza w życiu wizyta w paragrafie: pauza na rzucie, magazyn pusty.
+  const shown = {
+    entryId: 22,
+    originEntryId: null,
+    events: [{ kind: "text", key: "e22.p1" }, { kind: "roll", skill: "Sanity", success: false }],
+  };
+  Object.assign(shown, frameMemory(shown, readProgress()));
+  assert.deepEqual(shown.rollHistory, {}, "na pauzie nie ma jeszcze czego podpowiadać");
+  recordFrame(shown);
+
+  // Gracz klika „Przyjmij wynik": przyrost zostaje w tym samym paragrafie.
+  const delta = [{ kind: "san", amount: 1 }];
+  recordRolls({ entryId: 22, originEntryId: null, events: delta });
+  const merged = { entryId: 22, originEntryId: null, events: [...shown.events, ...delta] };
+
+  // Pułapka: przeliczenie pamięci od nowa czyta magazyn, w którym gałąź tego
+  // rzutu już jest — pod świeżo rzuconymi kośćmi stanęłoby „Już było: Porażka".
+  assert.deepEqual(frameMemory(merged, readProgress()).rollHistory, { Sanity: ["fail"] });
+
+  // Reguła: scalony wpis dziedziczy pamięć wpisu z ekranu, więc podpowiedzi nie ma.
+  assert.deepEqual(inheritedMemory(shown).rollHistory, {});
+  assert.deepEqual(inheritedMemory(shown), {
+    seenBefore: shown.seenBefore,
+    seenEntries: shown.seenEntries,
+    takenChoices: shown.takenChoices,
+    rollHistory: shown.rollHistory,
+  });
+
+  // Dziedziczenie kopiuje, więc scalony rekord nie pisze po rekordzie z ekranu.
+  const inherited = inheritedMemory(shown);
+  inherited.rollHistory.Sanity = ["fail"];
+  inherited.seenEntries["22"] = true;
+  inherited.takenChoices.push(0);
+  assert.deepEqual(shown.rollHistory, {});
+  assert.deepEqual(shown.seenEntries, {});
+  assert.deepEqual(shown.takenChoices, []);
+
+  // Brak rekordu na ekranie (pierwsza ramka) nie może wywrócić dziedziczenia.
+  assert.deepEqual(inheritedMemory(undefined), {
+    seenBefore: false, seenEntries: {}, takenChoices: [], rollHistory: {},
+  });
 });
 
 // --- Nawrót w dzienniku (spec 2026-08-26-cheat-reroll-design.md) --------

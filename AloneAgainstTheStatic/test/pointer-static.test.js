@@ -3,8 +3,9 @@ import assert from "node:assert/strict";
 import {
   DISC_CORE, DISC_RADIUS_PX, GRAIN_OPACITY, LETTER_PX, SLICE_PX,
   WAVE_GAIN, WAVE_LIFE_MS, WAVE_REACH_PX, WAVE_SPEED_PX_MS, WAVE_THICKNESS_PX,
-  createPointerStatic, discFalloff, discMask, ringMask, staticScale, waveAt,
+  createPointerStatic, discFalloff, discMask, maskedNodes, ringMask, staticScale, waveAt,
 } from "../src/ui/pointer-static.js";
+import { createFakeDocument } from "./helpers/fake-dom.js";
 
 test("dysk trzyma pełną siłę w rdzeniu i gaśnie do zera na promieniu", () => {
   assert.equal(discFalloff(0), 1);
@@ -123,4 +124,31 @@ test("maska samego pierścienia ma jedną warstwę i dopełniające się składa
   const inverse = ringMask({ x: 30, y: 40, radius: 200 }, true);
   assert.equal(inverse.composite, "intersect");
   assert.notEqual(inverse.image, direct.image, "kolejność kolorów jest odwrócona");
+});
+
+test("maskowaniu podlegają akapity prozy i figura kadru", () => {
+  const doc = createFakeDocument();
+  const entry = doc.createElement("article");
+  const number = doc.createElement("div");
+  number.className = "entry-number";
+  const figure = doc.createElement("figure");
+  figure.className = "entry-art";
+  const closed = doc.createElement("p");
+  const typing = doc.createElement("p");
+  // Akapit wypisywany zostaje poza efektem: reveal.js przepisuje jego węzły
+  // co klatkę, więc klon nigdy by nie nadążył.
+  typing.dataset.typing = "1";
+  entry.append(number, figure, closed, typing);
+
+  assert.deepEqual(maskedNodes(entry), [figure, closed]);
+});
+
+test("wpis bez prozy i bez kadru nie ma czego maskować", () => {
+  const doc = createFakeDocument();
+  const entry = doc.createElement("article");
+  const number = doc.createElement("div");
+  number.className = "entry-number";
+  entry.append(number);
+
+  assert.deepEqual(maskedNodes(entry), []);
 });

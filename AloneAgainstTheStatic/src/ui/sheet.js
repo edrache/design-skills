@@ -120,7 +120,7 @@ export function portraitSourceFor(character, state) {
   const id = typeof character?.id === "string" ? character.id : "";
   if (!id) return "";
 
-  const base = `media/img/${id}.png`;
+  const base = `media/img/${id}.webp`;
   if (id !== "charlie") return base;
 
   const maximum = Number.isFinite(state?.startingSan) && state.startingSan > 0
@@ -129,10 +129,10 @@ export function portraitSourceFor(character, state) {
   if (!Number.isFinite(maximum) || maximum <= 0 || !Number.isFinite(state?.san)) return base;
 
   const percent = Math.max(0, Math.min(100, (state.san / maximum) * 100));
-  if (percent <= 20) return `media/img/${id}_0.png`;
-  if (percent <= 40) return `media/img/${id}_25.png`;
-  if (percent <= 60) return `media/img/${id}_50.png`;
-  if (percent < 70) return `media/img/${id}_75.png`;
+  if (percent <= 20) return `media/img/${id}_0.webp`;
+  if (percent <= 40) return `media/img/${id}_25.webp`;
+  if (percent <= 60) return `media/img/${id}_50.webp`;
+  if (percent < 70) return `media/img/${id}_75.webp`;
   return base;
 }
 

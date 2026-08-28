@@ -2,7 +2,7 @@ import { createState } from "../engine/state.js";
 import { enter, resume } from "../engine/runner.js";
 import { createAudio } from "./audio.js";
 import { createI18n } from "./i18n.js";
-import { clearJournal, lastRollBox, opensNewParagraph, renderArchive, renderEvents, renderRollDecision } from "./journal.js";
+import { clearJournal, inheritedMemory, lastRollBox, opensNewParagraph, renderArchive, renderEvents, renderRollDecision } from "./journal.js";
 import { clearSave, isSaveCompatible, loadGame, saveGame } from "./save.js";
 import { connectProgressReset, createSettings } from "./settings.js";
 import { readProgress, markChoice, resetProgress } from "./progress.js";
@@ -194,6 +194,10 @@ function labels() {
   return UI_COPY[i18n?.locale ?? storedLocale()] ?? UI_COPY.pl;
 }
 
+function sceneForEntry(entryId) {
+  return story?.entries?.[String(entryId)]?.scene;
+}
+
 function updatePlaybackControls(values = settings?.values) {
   if (!values) return;
   const text = labels();
@@ -264,9 +268,15 @@ function draw(record, isLast) {
     entryId: record.entryId,
     originEntryId: record.originEntryId,
     media,
+    sceneForEntry,
     seenBefore: (entryId) => Boolean(record.seenEntries?.[entryId]),
   });
   if (isLast && frame.pending?.type === "rollDecision") {
+    // Wybór, który uruchomił rzut, jest już podjęty, a jego przycisk wraca na
+    // ekran razem ze zdarzeniami wpisu. Pending rzutu nie ma listy opcji, więc
+    // powtórny klik wyleciałby z silnika wyjątkiem — decyzja jest teraz jedyną
+    // dostępną akcją.
+    for (const button of block.querySelectorAll(".choice")) button.disabled = true;
     renderRollDecision(block, frame.pending, i18n, {
       onLuck: () => decide("luck"),
       onPush: () => decide("push"),
@@ -343,6 +353,7 @@ function presentCurrent() {
   reveal.start(record, {
     i18n,
     media,
+    sceneForEntry,
     seenBefore: (entryId) => Boolean(record.seenEntries?.[entryId]),
     handlers: {
       onChoose: choose,
@@ -371,13 +382,15 @@ function presentCurrent() {
 
 // `animate: false` służy wznowieniu zapisu: gracz tę ramkę już przeczytał,
 // a stan odsłonięcia nie jest zapisywany.
-function advance(next, originEntryId = null, { animate = true, replace = false } = {}) {
+function advance(next, originEntryId = null, { animate = true, replace = false, memory = null } = {}) {
   frame = next;
   // Pamięć poznanych paragrafów idzie do rekordu, żeby dziennik pokazywał stan
   // z chwili wejścia w paragraf, a nie bieżący. Wznowiony zapis jest już
-  // policzony w magazynie, więc nie liczymy tej wizyty drugi raz.
+  // policzony w magazynie, więc nie liczymy tej wizyty drugi raz. Gotowa
+  // pamięć w `memory` znaczy: to ta sama wizyta co poprzedni rekord, więc
+  // kolejność „czytaj magazyn przed zapisem" nie ma tu czego pilnować.
   const record = { entryId: frame.entryId, originEntryId, events: frame.events };
-  Object.assign(record, frameMemory(record, readProgress(), { revisit: !animate }));
+  Object.assign(record, memory ?? frameMemory(record, readProgress(), { revisit: !animate }));
   if (replace) history.pop();
   history.push(record);
   if (animate) recordFrame(record);
@@ -415,7 +428,7 @@ function renderLog() {
     dom.logEntries.replaceChildren(empty);
     return;
   }
-  renderArchive(dom.logEntries, past, i18n, { media });
+  renderArchive(dom.logEntries, past, i18n, { media, sceneForEntry });
 }
 
 function refreshLog() {
@@ -425,28 +438,38 @@ function refreshLog() {
 function choose(index) {
   const originEntryId = frame.entryId;
   markChoice(originEntryId, index);
-  advance(resume(ctx, frame, { type: "choose", index }), originEntryId);
+  const next = resume(ctx, frame, { type: "choose", index });
+  // Wybór, który uruchamia rzut, nie przynosi nowego tekstu — bez tej gałęzi
+  // paragraf, o którym gracz właśnie decydował, zniknąłby z ekranu.
+  if (opensNewParagraph(next.events)) {
+    advance(next, originEntryId);
+    return;
+  }
+  continueParagraph(next);
 }
 
 function decide(type) {
-  const record = history.at(-1);
   const next = resume(ctx, frame, { type });
   if (opensNewParagraph(next.events)) {
     advance(next, frame.entryId);
     return;
   }
-  // Gra została w tym samym paragrafie: przyrost dopisujemy do wpisu, który
-  // gracz ma na ekranie, i pokazujemy od razu — tekst jest już przeczytany,
-  // powtórne wypisywanie go byłoby cofnięciem lektury.
-  //
+  continueParagraph(next);
+}
+
+// Gra została w tym samym paragrafie: przyrost dopisujemy do wpisu, który gracz
+// ma na ekranie, i pokazujemy od razu — tekst jest już przeczytany, powtórne
+// wypisywanie go byłoby cofnięciem lektury.
+function continueParagraph(next) {
+  const record = history.at(-1);
   // Zapis natychmiastowy pomija recordFrame, więc gałęzie rzutów z przyrostu
   // zapisujemy tu osobno — na samym przyroście, żeby ten sam rzut nie trafił
   // do magazynu dwa razy razem ze scalonym wpisem.
   recordRolls({ entryId: next.entryId, originEntryId: null, events: next.events });
   advance(
-    { ...next, events: [...record.events, ...next.events] },
+    { ...next, events: [...(record?.events ?? []), ...next.events] },
     record?.originEntryId ?? null,
-    { animate: false, replace: true },
+    { animate: false, replace: true, memory: inheritedMemory(record) },
   );
   cascadeInstantRoll(dom.journal.lastElementChild);
 }
@@ -530,7 +553,7 @@ function renderCharacterChoice({ focus = false } = {}) {
 
     const portrait = document.createElement("img");
     portrait.className = "character-portrait";
-    portrait.src = `media/img/${character.id}.png`;
+    portrait.src = `media/img/${character.id}.webp`;
     portrait.alt = "";
     portrait.width = 456;
     portrait.height = 596;

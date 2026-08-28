@@ -43,7 +43,9 @@
         translated += done;
         total += keys.length;
         const hasAudio = Boolean(media.entries?.[id]?.audio);
-        const hasImage = Boolean(media.entries?.[id]?.image);
+        const hasImage = Boolean(
+          media.entries?.[id]?.image ?? media.scenes?.[entry.scene]?.image,
+        );
         const tags = [...new Set(keys.flatMap((k) => Object.keys(tagCounts(pl[k] || en[k] || ""))))];
         row.innerHTML = `
           <td>${id}</td>

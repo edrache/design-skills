@@ -142,13 +142,28 @@ function clearMask(element) {
   }
 }
 
+// Elementy ORYGINAŁU, którym pętla zdejmuje piksele maską odwrotną — czyli
+// dokładnie to, co w klonie ma być widoczne: proza i figura kadru. Maskowana
+// jest cała figura, nie sam kadr: warstwa szaleństwa jest z nim zlana trybem
+// screen, więc rozdzielenie ich zostawiłoby w dysku samo świecenie oczu.
+//
+// Akapit wypisywany jest z efektu wyłączony: reveal.js przepisuje jego węzły
+// tekstowe co klatkę, więc klon nie miałby szans nadążyć — a maska odwrotna
+// wygryzłaby w oryginale dziurę wypełnioną nieaktualnym tekstem.
+export function maskedNodes(entry) {
+  return [...(entry?.children ?? [])].filter((node) => {
+    if (node.tagName === "P") return node.dataset?.typing === undefined;
+    return node.tagName === "FIGURE" && node.classList?.contains?.("entry-art");
+  });
+}
+
 export function createPointerStatic({ root, doc = root?.ownerDocument ?? null, matchMedia = globalThis.matchMedia } = {}) {
   const noop = {
     syncEntry() {}, dropEntry() {}, dropAll() {}, recompute() {}, destroy() {},
   };
   if (!root || !doc || typeof globalThis.requestAnimationFrame !== "function") return noop;
 
-  // entry → { ghost, prose }: kontener klonu i akapity prozy ORYGINAŁU,
+  // entry → { ghost, masked }: kontener klonu i te elementy ORYGINAŁU,
   // którym trzeba zdejmować maskę odwrotną.
   const ghosts = new Map();
   const pointer = { x: 0, y: 0, seen: false };
@@ -184,14 +199,14 @@ export function createPointerStatic({ root, doc = root?.ownerDocument ?? null, m
   function conceal(record) {
     record.ghost.style.visibility = "hidden";
     clearMask(record.ghost);
-    for (const paragraph of record.prose) clearMask(paragraph);
+    for (const node of record.masked) clearMask(node);
   }
 
   function dropEntry(entry) {
     const record = ghosts.get(entry);
     if (!record) return;
     record.ghost.remove?.();
-    for (const paragraph of record.prose) clearMask(paragraph);
+    for (const node of record.masked) clearMask(node);
     ghosts.delete(entry);
   }
 
@@ -207,11 +222,8 @@ export function createPointerStatic({ root, doc = root?.ownerDocument ?? null, m
     dropEntry(entry);
     if (silenced()) return;
 
-    // Akapit wypisywany jest z efektu wyłączony: reveal.js przepisuje jego
-    // węzły tekstowe co klatkę, więc klon nie miałby szans nadążyć — a maska
-    // odwrotna wygryzłaby w oryginale dziurę wypełnioną nieaktualnym tekstem.
-    const prose = [...entry.children].filter((node) => node.tagName === "P" && node.dataset?.typing === undefined);
-    if (prose.length === 0) return;
+    const masked = maskedNodes(entry);
+    if (masked.length === 0) return;
 
     const ghost = doc.createElement("div");
     ghost.className = "static-ghost";
@@ -230,7 +242,7 @@ export function createPointerStatic({ root, doc = root?.ownerDocument ?? null, m
     for (const typing of copy.querySelectorAll?.("[data-typing]") ?? []) typing.style.visibility = "hidden";
     ghost.append(copy);
     entry.append(ghost);
-    ghosts.set(entry, { ghost, prose });
+    ghosts.set(entry, { ghost, masked });
     start();
   }
 
@@ -302,8 +314,8 @@ export function createPointerStatic({ root, doc = root?.ownerDocument ?? null, m
       record.ghost.style.visibility = "";
       record.ghost.style.setProperty("--ghost-split", scale.letter.toFixed(3));
       writeMask(record.ghost, maskFor(entry.getBoundingClientRect(), active, false));
-      for (const paragraph of record.prose) {
-        writeMask(paragraph, maskFor(paragraph.getBoundingClientRect(), active, true));
+      for (const node of record.masked) {
+        writeMask(node, maskFor(node.getBoundingClientRect(), active, true));
       }
     }
 

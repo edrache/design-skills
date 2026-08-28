@@ -10,6 +10,7 @@
     "tag:editor": "node tools/tag-editor-server.mjs",
     "narration": "node tools/build-narration.mjs",
     "graph": "node tools/build-graph.mjs",
-    "music": "node tools/build-music.mjs"
+    "music": "node tools/build-music.mjs",
+    "locations": "node tools/build-locations.mjs"
   }
 }

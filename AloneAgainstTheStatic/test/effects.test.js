@@ -416,3 +416,162 @@ test("zapisy scale trafiają na cztery filtry", () => {
     globalThis.requestAnimationFrame = previousRAF;
   }
 });
+
+// --- Warstwa szaleństwa na grafikach (spec
+// docs/superpowers/specs/2026-08-28-madness-overlay-design.md) ---
+//
+// Cele [data-madness] jadą tą samą pętlą co tekst, ale z innego wzoru, więc
+// atrapa musi rozróżniać selektory — inaczej test nie odróżniłby, czy moduł
+// faktycznie pyta o [data-madness], czy tylko trafił w te same elementy.
+function fakeSelectiveRoot(bySelector) {
+  return {
+    style: { setProperty() {}, removeProperty() {} },
+    addEventListener() {},
+    removeEventListener() {},
+    getBoundingClientRect() { return { left: 0, top: 0, width: 100, height: 100 }; },
+    querySelectorAll(selector) { return bySelector[selector] ?? []; },
+  };
+}
+
+// Figura grafiki: element z closest(".journal-entry") oddającym wpis o danym
+// numerze paragrafu — stąd moduł bierze poziom szaleństwa.
+function fakeArt(entryId) {
+  const element = fakeElement();
+  const entry = { dataset: { entryId: String(entryId) } };
+  element.closest = (selector) => (selector === ".journal-entry" ? entry : null);
+  return element;
+}
+
+function fakeMadnessFilter() {
+  const turbulences = [fakeFilterNode(), fakeFilterNode()];
+  const displacements = [fakeFilterNode(), fakeFilterNode()];
+  return {
+    turbulences,
+    displacements,
+    querySelector() { return null; },
+    querySelectorAll(selector) {
+      if (selector === "feTurbulence") return turbulences;
+      if (selector === "feDisplacementMap") return displacements;
+      return [];
+    },
+  };
+}
+
+function madnessSetup({ entryId, dread = "0", textEffects = "1", reducedMotion = false } = {}) {
+  const art = fakeArt(entryId);
+  const root = fakeSelectiveRoot({ "[data-effect]": [], "[data-madness]": [art] });
+  const madnessFilter = fakeMadnessFilter();
+  const doc = fakeVarsDoc({
+    cssVars: { "--dread": dread, "--text-effects": textEffects },
+    filters: { ...fourFakeFilters(), "#madness-warp": madnessFilter },
+  });
+  const effects = createEffects({ root, doc, matchMedia: () => fakeMotionQuery(reducedMotion) });
+  return { art, root, effects, madnessFilter };
+}
+
+test("paragraf ataku szaleństwa dostaje przenikanie i zniekształcenie", () => {
+  const raf = createRafStub();
+  const previousRAF = globalThis.requestAnimationFrame;
+  globalThis.requestAnimationFrame = raf;
+  try {
+    const { art, root, effects, madnessFilter } = madnessSetup({ entryId: 330 });
+    effects.observe(root);
+    raf.runFrame(0);
+
+    assert.ok(art.hasProperty("--madness-blend"));
+    assert.ok(Number(art.getProperty("--madness-blend")) > 0);
+    assert.equal(art.getProperty("--madness-filter"), "url(#madness-warp)");
+    // Zniekształcenie musi dojść do filtra, inaczej figura tylko by pociemniała.
+    assert.ok(Number(madnessFilter.displacements[0].getAttribute("scale")) > 0);
+    assert.equal(raf.pending(), 1, "pulsujące zniekształcenie musi podtrzymać pętlę");
+  } finally {
+    globalThis.requestAnimationFrame = previousRAF;
+  }
+});
+
+test("zwykły paragraf przy pełnej Poczytalności zostaje czysty", () => {
+  const raf = createRafStub();
+  const previousRAF = globalThis.requestAnimationFrame;
+  globalThis.requestAnimationFrame = raf;
+  try {
+    const { art, root, effects } = madnessSetup({ entryId: 31, dread: "0" });
+    art.style.setProperty("--madness-blend", "0.500");
+    art.style.setProperty("--madness-filter", "url(#madness-warp)");
+    effects.observe(root);
+    raf.runFrame(0);
+
+    assert.equal(art.hasProperty("--madness-blend"), false);
+    assert.equal(art.hasProperty("--madness-filter"), false);
+  } finally {
+    globalThis.requestAnimationFrame = previousRAF;
+  }
+});
+
+test("zwykły paragraf przy niskiej Poczytalności zaczyna przenikać", () => {
+  const raf = createRafStub();
+  const previousRAF = globalThis.requestAnimationFrame;
+  globalThis.requestAnimationFrame = raf;
+  try {
+    const { art, root, effects } = madnessSetup({ entryId: 31, dread: "1" });
+    effects.observe(root);
+    raf.runFrame(0);
+
+    const drift = Number(art.getProperty("--madness-blend"));
+    assert.ok(drift > 0);
+    // Dryf ma być wyraźnie słabszy niż atak szaleństwa, nie jego kopią.
+    assert.ok(drift < 0.5, `dryf ${drift} powinien zostać poniżej połowy`);
+  } finally {
+    globalThis.requestAnimationFrame = previousRAF;
+  }
+});
+
+test("prefers-reduced-motion zostawia przenikanie, ale gasi zniekształcenie", () => {
+  const raf = createRafStub();
+  const previousRAF = globalThis.requestAnimationFrame;
+  globalThis.requestAnimationFrame = raf;
+  try {
+    const { art, root, effects } = madnessSetup({ entryId: 330, reducedMotion: true });
+    effects.observe(root);
+    raf.runFrame(0);
+
+    assert.ok(Number(art.getProperty("--madness-blend")) > 0);
+    assert.equal(art.hasProperty("--madness-filter"), false);
+    assert.equal(raf.pending(), 0, "bez ruchu nie ma czego animować");
+  } finally {
+    globalThis.requestAnimationFrame = previousRAF;
+  }
+});
+
+test("suwak \"Efekty tekstu\" na zero wyłącza też warstwę szaleństwa", () => {
+  const raf = createRafStub();
+  const previousRAF = globalThis.requestAnimationFrame;
+  globalThis.requestAnimationFrame = raf;
+  try {
+    const { art, root, effects } = madnessSetup({ entryId: 330, textEffects: "0" });
+    effects.observe(root);
+    raf.runFrame(0);
+
+    assert.equal(art.hasProperty("--madness-blend"), false);
+    assert.equal(art.hasProperty("--madness-filter"), false);
+  } finally {
+    globalThis.requestAnimationFrame = previousRAF;
+  }
+});
+
+test("unobserveAll czyści zmienne warstwy szaleństwa", () => {
+  const raf = createRafStub();
+  const previousRAF = globalThis.requestAnimationFrame;
+  globalThis.requestAnimationFrame = raf;
+  try {
+    const { art, root, effects } = madnessSetup({ entryId: 330 });
+    effects.observe(root);
+    raf.runFrame(0);
+    assert.ok(art.hasProperty("--madness-blend"));
+
+    effects.unobserveAll();
+    assert.equal(art.hasProperty("--madness-blend"), false);
+    assert.equal(art.hasProperty("--madness-filter"), false);
+  } finally {
+    globalThis.requestAnimationFrame = previousRAF;
+  }
+});

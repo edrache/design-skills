@@ -155,3 +155,45 @@ test("puste tłumaczenie nie jest porównywane ze znacznikami oryginału", () =>
   const out = validate(storyOf(entries), { "e1.p1": '[charlie]"A."[/charlie]' }, { "e1.p1": "  " });
   assert.ok(!out.warnings.some((warning) => warning.includes("charlie")));
 });
+
+// Silnik po rozdzieleniu rzutu od skutku opiera się na dwóch założeniach
+// o kształcie danych: `pending.kind` jest jeden na krok (nie ma czego
+// rozstrzygać, gdy krok ma dwa rodzaje rzutu), a gałęzie wyniku niosą już tylko
+// skutki — `sanCheck` w gałęzi nie jest przez nic obsługiwany.
+test("żaden krok nie łączy dwóch rodzajów rzutu, a gałęzie wyniku nie rzucają", () => {
+  const rollKeys = ["roll", "sanCheck", "bout"];
+  const branchKeys = ["onSuccess", "onFail", "onPushedFail"];
+  const entries = load("story.json").entries;
+  const offenders = [];
+
+  // Gałąź bywa listą kroków albo jednym krokiem (np. `onSuccess: { goto: 4 }`).
+  const asSteps = (value) => (Array.isArray(value) ? value : value === undefined ? [] : [value]);
+
+  const walk = (steps, where) => {
+    for (const [index, step] of asSteps(steps).entries()) {
+      const present = rollKeys.filter((key) => step?.[key] !== undefined);
+      if (present.length > 1) offenders.push(`${where}[${index}]: ${present.join(" + ")}`);
+      for (const branch of branchKeys) {
+        if (step?.[branch] === undefined) continue;
+        for (const [nested, inner] of asSteps(step[branch]).entries()) {
+          const rolls = rollKeys.filter((key) => inner?.[key] !== undefined);
+          if (rolls.length) offenders.push(`${where}[${index}].${branch}[${nested}]: ${rolls.join(" + ")}`);
+          for (const deeper of branchKeys) {
+            walk(inner?.[deeper], `${where}[${index}].${branch}[${nested}].${deeper}`);
+          }
+        }
+      }
+    }
+  };
+
+  for (const [id, entry] of Object.entries(entries)) {
+    walk(entry.on, `e${id}.on`);
+    for (const [index, choice] of (entry.choices ?? []).entries()) {
+      const present = rollKeys.filter((key) => choice?.[key] !== undefined);
+      if (present.length > 1) offenders.push(`e${id}.choices[${index}]: ${present.join(" + ")}`);
+      for (const branch of branchKeys) walk(choice?.[branch], `e${id}.choices[${index}].${branch}`);
+    }
+  }
+
+  assert.deepEqual(offenders, []);
+});

@@ -191,8 +191,8 @@ zmieniony przez inne narzędzie.
 
 ## Zakłócenia pod wskaźnikiem
 
-Proza paragrafów zniekształca się lokalnie tam, gdzie stoi wskaźnik: litery
-falują, poziome pasma jadą w bok, na glify siada ziarno. Kliknięcie wypuszcza
+Proza paragrafów i kadr wpisu zniekształcają się lokalnie tam, gdzie stoi
+wskaźnik: litery falują, poziome pasma jadą w bok, na glify siada ziarno. Kliknięcie wypuszcza
 z punktu uderzenia rozchodzący się pierścień mocniejszego zniekształcenia; na
 dotyku zostaje sam pierścień, bo nie ma czego śledzić. Siłę reguluje suwak
 **Zakłócenia kursora** w ustawieniach (0 gasi efekt całkowicie), a
@@ -200,8 +200,10 @@ dotyku zostaje sam pierścień, bo nie ma czego śledzić. Siłę reguluje suwak
 
 Technicznie: nad każdym wpisem leży `aria-hidden inert` klon (`.static-ghost`),
 zniekształcony filtrem `#pointer-static` i przycięty maską dysku wokół
-wskaźnika; oryginalne akapity noszą maskę odwrotną, więc w dysku widać
-wyłącznie klon. Klon przebudowuje się tylko wtedy, gdy DOM wpisu naprawdę się
+wskaźnika; oryginalne akapity i figura kadru (`.entry-art`) noszą maskę
+odwrotną, więc w dysku widać wyłącznie klon. Maskowana jest cała figura,
+a nie sam kadr: warstwa szaleństwa jest z nim zlana trybem `screen`, więc
+rozdzielenie ich zostawiłoby w dysku samo świecenie oczu. Klon przebudowuje się tylko wtedy, gdy DOM wpisu naprawdę się
 zmienił: po domknięciu akapitu, po dołożeniu kości albo przycisków wyborów
 i decyzji, po przerysowaniu wpisu w całości oraz po ruchu suwaka. Akapit
 aktualnie wypisywany jest z efektu wyłączony, bo `reveal.js` przepisuje jego
@@ -215,6 +217,11 @@ uspokaja tekst.
 Grafiki i lektora wrzucasz do `media/img/` i `media/narration/`, a ścieżki
 wpisujesz do `data/media.json`. Brakujący plik nie psuje gry: grafika usuwa się
 sama, a dźwięk po prostu nie zagra.
+
+Grafikę można przypisać do konkretnego paragrafu w `entries` albo jako wspólną
+ilustrację lokacji w `scenes`. Obraz paragrafu ma pierwszeństwo przed obrazem
+sceny; wpis `scenes.cabin.image` obejmuje więc wszystkie paragrafy oznaczone
+`"scene": "cabin"`, o ile któryś z nich nie ma własnej grafiki.
 
 Lektor działa **akapit po akapicie**. Klucz `e1.p1` wskazuje osobny plik.
 W trybie ręcznym gracz może poczekać na koniec VO albo przerwać je kolejnym

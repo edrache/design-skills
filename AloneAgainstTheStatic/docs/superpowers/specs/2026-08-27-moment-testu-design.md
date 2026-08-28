@@ -32,7 +32,7 @@ jedna funkcja.
 | --- | --- |
 | przyjmuję wynik | zawsze |
 | forsuj (push) | porażka ∧ `push: true` w danych ∧ rzut nie był już forsowany |
-| wypal Szczęście (N) | porażka ∧ rzut nie na Sanity i nie na Luck ∧ `luckCost > 0` ∧ `state.luck >= luckCost` |
+| wypal Szczęście (N) | porażka ∧ `kind === "skill"` ∧ rzut nie był forsowany ∧ rzut nie na Sanity i nie na Luck ∧ `luckCost > 0` ∧ `state.luck >= luckCost` |
 | cheat (przeciwny wynik) | zawsze, w obie strony |
 
 Świadome konsekwencje przyjęte przez zamawiającego:

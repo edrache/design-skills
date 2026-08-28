@@ -442,9 +442,14 @@ export function createReveal({
     session.steps = paragraph.events;
     session.stepIndex = 0;
     session.typing = null;
+    // Odsłanianie pokazuje jeden paragraf naraz i czyści kontener, więc
+    // grafikę do odziedziczenia trzeba pamiętać w sesji, a nie czytać z DOM.
     session.block = createEntryBlock(doc, paragraph.entryId, session.labels, session.media, {
       seenBefore: session.seenBefore?.(paragraph.entryId),
+      scene: session.sceneForEntry?.(paragraph.entryId),
+      previousImage: session.lastImage ?? null,
     });
+    session.lastImage = session.block.dataset.image ?? session.lastImage ?? null;
     root.append(session.block);
     session.onParagraph?.(session.block);
     nextStep();
@@ -453,7 +458,7 @@ export function createReveal({
   return {
     // Odsłania ramkę od początku: paragraf po paragrafie, akapit po akapicie.
     start(record, {
-      i18n, media, handlers, seenBefore, onParagraph, onTextStart, onTextSkip, onParagraphDone, onRoll, onComplete,
+      i18n, media, handlers, seenBefore, sceneForEntry, onParagraph, onTextStart, onTextSkip, onParagraphDone, onRoll, onComplete,
     } = {}) {
       clearTimers();
       session = {
@@ -468,6 +473,7 @@ export function createReveal({
         // Pamięć poznanych paragrafów przychodzi z main.js jako predykat, bo
         // jedna ramka może przejść przez kilka paragrafów o różnej historii.
         seenBefore,
+        sceneForEntry,
         onParagraph,
         onTextStart,
         onTextSkip,

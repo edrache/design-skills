@@ -4,6 +4,16 @@ import { readFileSync } from "node:fs";
 
 const css = readFileSync(new URL("../style.css", import.meta.url), "utf8");
 
+test("grafika paragrafu zachowuje pełny kadr i własne kolory", () => {
+  const blocks = [...css.matchAll(/\.entry-image\s*\{([^}]+)\}/g)].map((match) => match[1]);
+  const finalRule = blocks.at(-1) ?? "";
+
+  assert.match(finalRule, /height:\s*auto/);
+  assert.match(finalRule, /max-height:\s*none/);
+  assert.match(finalRule, /object-fit:\s*contain/);
+  assert.match(finalRule, /filter:\s*none/);
+});
+
 // `.t-wrong` i `[data-effect="static"]` mają identyczną specyficzność
 // (0,1,0) i trafiają w ten sam element (bo TAGS.wrong ma effect: "static"),
 // więc bez selektora złożonego o wygranej deklaracji `filter` decydowałaby
@@ -156,11 +166,11 @@ test("wpis dziennika jest kontekstem pozycjonowania dla klonu", () => {
   assert.match(entry, /position:\s*relative/);
 });
 
-test("w klonie widać wyłącznie prozę", () => {
-  // Wszystko poza akapitami prozy jest ukryte przez visibility, nie display:
-  // układ musi zostać identyczny z oryginałem, inaczej wiersze się rozjadą.
-  const hidden = rule(".static-ghost .journal-entry > *:not(p)");
-  assert.ok(hidden, "brak reguły ukrywającej niebędące prozą elementy klonu");
+test("w klonie widać prozę i figurę kadru", () => {
+  // Wszystko poza nimi jest ukryte przez visibility, nie display: układ musi
+  // zostać identyczny z oryginałem, inaczej wiersze się rozjadą.
+  const hidden = rule(".static-ghost .journal-entry > *:not(p):not(.entry-art)");
+  assert.ok(hidden, "brak reguły ukrywającej elementy klonu spoza efektu");
   assert.match(hidden, /visibility:\s*hidden/);
 });
 
@@ -172,4 +182,32 @@ test("rozszczepienie barwne na klonie jest sterowane zmienną", () => {
 
 test("reduced-motion gasi klon widmowy", () => {
   assert.match(css, /prefers-reduced-motion:\s*reduce[\s\S]*\.static-ghost\s*\{[^}]*display:\s*none/);
+});
+
+// Warstwa szaleństwa na grafice paragrafu (spec
+// 2026-08-28-madness-overlay-design.md). Filtr działa na całej figurze
+// .entry-art (nie na samym kadrze), żeby oczy i kadr rwały się razem;
+// .entry-madness zlewa się z kadrem trybem screen, zanim złożenie trafi
+// pod filtr. Testy pilnują tylko tego, co dałoby się zepsuć po cichu w CSS.
+test(".entry-art trzyma zniekształcenie całej figury pod zmienną --madness-filter", () => {
+  // rule() bierze pierwsze trafienie w pliku, a reduced-motion zeruje
+  // filtr tym samym selektorem wyżej — łapiemy więc regułę główną po
+  // position: relative, które ma tylko ona.
+  const blocks = [...css.matchAll(/\.entry-art\s*\{([^}]+)\}/g)].map((match) => match[1]);
+  const main = blocks.find((body) => /position:\s*relative/.test(body));
+  assert.ok(main, "brak głównej reguły .entry-art");
+  assert.match(main, /filter:\s*var\(--madness-filter/);
+});
+
+test(".entry-madness zlewa się z kadrem trybem screen pod sterowaniem --madness-blend", () => {
+  const madness = rule(".entry-madness");
+  assert.ok(madness, "brak reguły .entry-madness");
+  assert.match(madness, /mix-blend-mode:\s*screen\s*;/);
+  assert.match(madness, /opacity:\s*var\(--madness-blend/);
+});
+
+test("reduced-motion zeruje zniekształcenie figury, zostawiając krycie warstwy effects.js", () => {
+  const block = css.match(/@media \(prefers-reduced-motion: reduce\) \{([\s\S]*?)\n\}/);
+  assert.ok(block, "brak bloku prefers-reduced-motion");
+  assert.match(block[1], /\.entry-art\s*\{\s*filter:\s*none;\s*\}/);
 });

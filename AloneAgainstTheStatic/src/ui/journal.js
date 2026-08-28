@@ -1,3 +1,4 @@
+import { MADNESS_ENTRIES } from "./madness.js";
 import { termName } from "./terms.js";
 import { renderMarkup } from "./render-markup.js";
 
@@ -214,21 +215,71 @@ export function createEntryBlock(doc, entryId, labels, media, options = {}) {
     block.append(number);
   }
 
-  const image = media?.entries?.[String(entryId)]?.image;
-  if (typeof image === "string" && image) {
+  const image = resolveEntryImage(media, entryId, options?.scene, options?.previousImage);
+  if (image) {
+    const figure = el(doc, "figure", "entry-art");
     const artwork = el(doc, "img", "entry-image");
+    const madness = el(doc, "img", "entry-madness");
     try {
       artwork.src = new URL(image, new URL("../../", import.meta.url));
+      madness.src = new URL("media/img/madness.webp", new URL("../../", import.meta.url));
     } catch {
       return block;
     }
     artwork.alt = "";
     artwork.loading = "lazy";
     artwork.decoding = "async";
-    artwork.addEventListener("error", () => artwork.remove());
-    block.append(artwork);
+    // Bez kadru sama warstwa szaleństwa nie ma czego zniekształcać, więc
+    // błąd ładowania zdejmuje całą figurę, nie sam obraz.
+    artwork.addEventListener("error", () => figure.remove());
+
+    madness.alt = "";
+    madness.setAttribute("aria-hidden", "true");
+    madness.loading = "lazy";
+    madness.decoding = "async";
+    madness.addEventListener("error", () => madness.remove());
+
+    // Warstwa powstaje przy każdym kadrze, bo poziom szaleństwa zmienia się
+    // w trakcie gry, a wyrenderowane bloki zostają w dzienniku. Jeden URL na
+    // całą grę, więc przeglądarka pobiera go raz.
+    figure.dataset.madness = MADNESS_ENTRIES.includes(Number(entryId)) ? "entry" : "drift";
+    figure.append(artwork, madness);
+
+    // Ścieżka zostaje na bloku, żeby kolejny paragraf mógł ją odziedziczyć
+    // bez przeliczania URL-a z powrotem na zapis z media.json.
+    block.dataset.image = image;
+    block.append(figure);
   }
   return block;
+}
+
+// Obraz konkretnego paragrafu ma pierwszeństwo przed ilustracją sceny. Dzięki
+// temu wspólne lokacje nie wymagają powtarzania tej samej ścieżki w media.json,
+// ale nadal można nadać wybranemu paragrafowi osobny kadr.
+//
+// Wpis oznaczony jako `inherit` nie ma własnego kadru — powtarza grafikę
+// poprzedniego paragrafu. Tak działają wstawki szaleństwa (328–333): opisują
+// stan umysłu, a nie miejsce, więc zostają tam, gdzie zastały gracza. Gdy nie
+// ma czego dziedziczyć (ramka zaczyna się od takiego paragrafu), zostaje
+// ilustracja sceny.
+export function resolveEntryImage(media, entryId, scene, previousImage) {
+  const own = media?.entries?.[String(entryId)];
+  const inherited = own?.inherit && typeof previousImage === "string" && previousImage
+    ? previousImage
+    : null;
+  const image = inherited ?? (own?.inherit ? null : own?.image) ?? media?.scenes?.[scene]?.image;
+  return typeof image === "string" && image ? image : null;
+}
+
+// Ostatnia grafika w kontenerze — punkt odniesienia dla paragrafu, który
+// dziedziczy kadr po poprzedniku z wcześniejszej ramki.
+export function lastEntryImage(root) {
+  const blocks = root?.querySelectorAll?.(".journal-entry") ?? [];
+  for (let index = blocks.length - 1; index >= 0; index -= 1) {
+    const image = blocks[index]?.dataset?.image;
+    if (image) return image;
+  }
+  return null;
 }
 
 export function sealEntry(block) {
@@ -286,11 +337,15 @@ export function renderEvents(root, events, i18n, handlers, context = {}) {
     : () => Boolean(context.seenBefore);
 
   let block = null;
+  let previousImage = lastEntryImage(root);
   for (const segment of segmentEvents(events, context)) {
     if (block) sealEntry(block);
     block = createEntryBlock(doc, segment.entryId, labels, context.media, {
       seenBefore: seenBefore(segment.entryId),
+      scene: context.sceneForEntry?.(segment.entryId),
+      previousImage,
     });
+    previousImage = block.dataset.image ?? previousImage;
     for (const event of segment.events) appendEvent(block, event, doc, labels, i18n, handlers);
     root.append(block);
   }
@@ -361,6 +416,20 @@ export function renderRollDecision(block, pending, i18n, handlers) {
   return actions;
 }
 
+// Rozwiązanie rzutu w tym samym paragrafie to wciąż ta sama wizyta, więc
+// scalony wpis dziedziczy pamięć wpisu, który jest na ekranie. Przeliczenie jej
+// od nowa dałoby podpowiedź „Już było" o rzucie wykonanym sekundę wcześniej:
+// magazyn zdążył już zapisać jego gałąź. Z tego samego powodu dziedziczy się
+// lista podjętych wyborów — snapshot pochodzi z chwili wejścia w paragraf.
+export function inheritedMemory(record) {
+  return {
+    seenBefore: record?.seenBefore ?? false,
+    seenEntries: { ...(record?.seenEntries ?? {}) },
+    takenChoices: [...(record?.takenChoices ?? [])],
+    rollHistory: { ...(record?.rollHistory ?? {}) },
+  };
+}
+
 // Ramka po decyzji o rzucie niesie tylko przyrost zdarzeń. Jeśli nie ma w nim
 // tekstu, gra została w tym samym paragrafie — przyrost trzeba dopisać do wpisu,
 // który jest na ekranie, zamiast zastępować go samym skutkiem.
@@ -376,6 +445,9 @@ export function renderArchive(root, records, i18n, context = {}) {
   const labels = copy(i18n);
   root.replaceChildren();
 
+  // Archiwum jest liniowe, więc dziedziczenie kadru liczy się tak samo jak
+  // w trakcie gry — po prostu od pierwszego rekordu.
+  let previousImage = null;
   for (const record of records) {
     const segments = segmentEvents(record.events, {
       entryId: record.entryId,
@@ -388,7 +460,10 @@ export function renderArchive(root, records, i18n, context = {}) {
     for (const segment of segments) {
       const block = createEntryBlock(doc, segment.entryId, labels, context.media, {
         seenBefore: record.seenBefore,
+        scene: context.sceneForEntry?.(segment.entryId),
+        previousImage,
       });
+      previousImage = block.dataset.image ?? previousImage;
       for (const event of segment.events) appendEvent(block, event, doc, labels, i18n, handlers);
       sealEntry(block);
       root.append(block);

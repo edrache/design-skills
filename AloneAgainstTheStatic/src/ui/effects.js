@@ -1,6 +1,13 @@
 // Warstwa efektów: jedna pętla rAF, jeden IntersectionObserver, cztery kubełki
 // filtra SVG (vhs-static-0…3, wybierane przez bucketFor). Elementy poza
 // widokiem są wypisywane z pętli i mają zdejmowany filtr.
+//
+// Ta sama pętla obsługuje drugi, niezależny efekt: warstwę szaleństwa na
+// grafikach paragrafów ([data-madness], patrz src/ui/madness.js). Osobna pętla
+// rAF byłaby marnotrawstwem — oba efekty czytają te same --dread i
+// --text-effects i oba muszą zmieniać się co klatkę.
+
+import { madnessBase, pulseAt } from "./madness.js";
 
 // Zakłócenie jest stanem domyślnym: nawet przy pełnej Poczytalności obraz lekko
 // drga. Spadek Poczytalności podnosi amplitudę powyżej progu wygodnego czytania,
@@ -22,6 +29,15 @@ const SEED_STEP_FAST_MS = 40;
 
 const RELIEF_TOUCH_MS = 2500;
 const AMPLITUDE_EPSILON = 0.02;
+
+// Warstwa szaleństwa. Przy prefers-reduced-motion zostaje samo przenikanie,
+// o połowę słabsze i bez zniekształcenia — narracja się broni, a nic nie miga.
+const MADNESS_EPSILON = 0.01;
+const MADNESS_REDUCED_BLEND = 0.5;
+// Maksymalne przesunięcia filtra #madness-warp w pikselach: pasma trackingu
+// rwą kadr grubo, ziarno tylko go szarpie.
+const MADNESS_BAND_PX = 26;
+const MADNESS_GRAIN_PX = 5;
 
 const clamp01 = (value) => {
   const number = Number(value);
@@ -118,6 +134,10 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
   // unobserveAll() mogło odpiąć również te, które nigdy nie weszły do `active`.
   const observed = new Set();
   const active = new Set();
+  // Cele warstwy szaleństwa idą osobnymi zbiorami, bo liczy się je z zupełnie
+  // innego wzoru — ale przez tego samego IntersectionObservera.
+  const madnessObserved = new Set();
+  const madnessActive = new Set();
   const pointer = { x: 0, y: 0, seen: false, touch: false, at: 0 };
   let running = false;
   let frameId = 0;
@@ -138,19 +158,38 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
     };
   });
 
+  // #madness-warp ma po dwa węzły każdego rodzaju: pasma trackingu i ziarno.
+  // Jeden filtr dla wszystkich figur wystarcza — na ekranie jest ich najwyżej
+  // kilka, więc kubełki jak przy tekście byłyby kosztem bez zysku.
+  const madnessFilter = doc.querySelector("#madness-warp");
+  const madnessTurbulences = [...(madnessFilter?.querySelectorAll?.("feTurbulence") ?? [])];
+  const madnessDisplacements = [...(madnessFilter?.querySelectorAll?.("feDisplacementMap") ?? [])];
+
   const observer = typeof globalThis.IntersectionObserver === "function"
     ? new globalThis.IntersectionObserver((records) => {
         for (const record of records) {
-          if (record.isIntersecting) active.add(record.target);
+          // Ten sam obserwator obsługuje dwa rodzaje celów, więc o tym, do
+          // którego zbioru trafia węzeł, decyduje to, jak został zgłoszony.
+          const madness = madnessObserved.has(record.target);
+          const bucket = madness ? madnessActive : active;
+          if (record.isIntersecting) bucket.add(record.target);
           else {
-            active.delete(record.target);
-            record.target.style.removeProperty("--vhs-filter");
-            record.target.style.removeProperty("--glitch");
+            bucket.delete(record.target);
+            if (madness) clearMadness(record.target);
+            else {
+              record.target.style.removeProperty("--vhs-filter");
+              record.target.style.removeProperty("--glitch");
+            }
           }
         }
         start();
       })
     : null;
+
+  function clearMadness(element) {
+    element.style.removeProperty("--madness-blend");
+    element.style.removeProperty("--madness-filter");
+  }
 
   function onPointer(event) {
     pointer.x = event.clientX;
@@ -227,6 +266,30 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
       element.style.setProperty("--vhs-filter", `url(#vhs-static-${bucketIndex})`);
     }
 
+    // Drugi przebieg: warstwa szaleństwa na grafikach. Czyta te same `dread`
+    // i `textEffectsScale`, więc nie kosztuje ani jednego odczytu CSS więcej.
+    let maxWarp = 0;
+    for (const element of madnessActive) {
+      const entry = typeof element.closest === "function" ? element.closest(".journal-entry") : null;
+      const base = madnessBase({ entryId: entry?.dataset?.entryId, dread }) * textEffectsScale;
+      const { blend, warp } = reducedMotion
+        ? { blend: base * MADNESS_REDUCED_BLEND, warp: 0 }
+        : pulseAt(time, base);
+      if (blend < MADNESS_EPSILON) {
+        clearMadness(element);
+        continue;
+      }
+      element.style.setProperty("--madness-blend", blend.toFixed(3));
+      if (warp < MADNESS_EPSILON) element.style.removeProperty("--madness-filter");
+      else {
+        element.style.setProperty("--madness-filter", "url(#madness-warp)");
+        if (warp > maxWarp) maxWarp = warp;
+      }
+    }
+    // Samo przenikanie stoi w miejscu, więc pętli nie podtrzymuje — robi to
+    // dopiero zniekształcenie, które musi się zmieniać z klatki na klatkę.
+    if (maxWarp > 0) anyVisible = true;
+
     const { seed, frequencyY } = crawlAt(time, dread);
     for (let index = 0; index < BUCKET_LEVELS.length; index += 1) {
       const { turbulence, displacement } = filterRefs[index];
@@ -234,6 +297,15 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
       turbulence?.setAttribute("seed", String(seed));
       displacement?.setAttribute("scale", (BUCKET_LEVELS[index] * textEffectsScale * burst).toFixed(3));
     }
+
+    // Oba stopnie #madness-warp dostają wspólne `seed` (żeby rwały zgodnie) i
+    // własne skale. Drugie ziarno jest przesunięte, bo identyczna turbulencja
+    // dwa razy z rzędu tylko pogłębia to samo przesunięcie, zamiast dokładać
+    // nową fakturę.
+    madnessTurbulences[0]?.setAttribute("seed", String(seed));
+    madnessTurbulences[1]?.setAttribute("seed", String((seed + 137) % 1000));
+    madnessDisplacements[0]?.setAttribute("scale", (MADNESS_BAND_PX * maxWarp).toFixed(2));
+    madnessDisplacements[1]?.setAttribute("scale", (MADNESS_GRAIN_PX * maxWarp).toFixed(2));
 
     // Ta pętla MUSI się podtrzymywać, odwrotnie niż poprzednia wersja modułu.
     // Wtedy nie było generatora zmiany w czasie, więc kolejne klatki byłyby
@@ -275,8 +347,14 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
       element.style.removeProperty("--vhs-filter");
       element.style.removeProperty("--glitch");
     }
+    for (const element of madnessObserved) {
+      observer?.unobserve(element);
+      clearMadness(element);
+    }
     observed.clear();
     active.clear();
+    madnessObserved.clear();
+    madnessActive.clear();
   }
 
   return {
@@ -287,6 +365,11 @@ export function createEffects({ root, doc = root?.ownerDocument ?? null, matchMe
         // Bez IntersectionObserver rezygnujemy z optymalizacji, nie z efektu.
         if (observer) observer.observe(element);
         else active.add(element);
+      }
+      for (const element of block.querySelectorAll("[data-madness]")) {
+        madnessObserved.add(element);
+        if (observer) observer.observe(element);
+        else madnessActive.add(element);
       }
       start();
     },

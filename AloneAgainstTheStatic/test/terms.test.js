@@ -104,16 +104,16 @@ test("portret Charliego odpowiada procentowi pozostałego Sanity", () => {
   const charlie = { id: "charlie", san: 60 };
   const sourceAt = (san) => portraitSourceFor(charlie, { san, startingSan: 60 });
 
-  assert.equal(sourceAt(60), "media/img/charlie.png");
-  assert.equal(sourceAt(42), "media/img/charlie.png");
-  assert.equal(sourceAt(41), "media/img/charlie_75.png");
-  assert.equal(sourceAt(36), "media/img/charlie_50.png");
-  assert.equal(sourceAt(24), "media/img/charlie_25.png");
-  assert.equal(sourceAt(12), "media/img/charlie_0.png");
-  assert.equal(sourceAt(0), "media/img/charlie_0.png");
+  assert.equal(sourceAt(60), "media/img/charlie.webp");
+  assert.equal(sourceAt(42), "media/img/charlie.webp");
+  assert.equal(sourceAt(41), "media/img/charlie_75.webp");
+  assert.equal(sourceAt(36), "media/img/charlie_50.webp");
+  assert.equal(sourceAt(24), "media/img/charlie_25.webp");
+  assert.equal(sourceAt(12), "media/img/charlie_0.webp");
+  assert.equal(sourceAt(0), "media/img/charlie_0.webp");
 });
 
 test("portret Alex pozostaje bazowy niezależnie od Sanity", () => {
   const alex = { id: "alex", san: 50 };
-  assert.equal(portraitSourceFor(alex, { san: 0, startingSan: 50 }), "media/img/alex.png");
+  assert.equal(portraitSourceFor(alex, { san: 0, startingSan: 50 }), "media/img/alex.webp");
 });

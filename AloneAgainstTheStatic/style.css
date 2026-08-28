@@ -623,9 +623,10 @@ a:focus-visible {
   --ghost-grain: 0;
 }
 
-/* Układ klonu MUSI być identyczny z oryginałem, więc niebędące prozą
-   elementy gasimy widocznością, nie wyrzucamy z układu. */
-.static-ghost .journal-entry > *:not(p) {
+/* Układ klonu MUSI być identyczny z oryginałem, więc elementy spoza efektu
+   gasimy widocznością, nie wyrzucamy z układu. Figura kadru zostaje widoczna
+   razem z prozą — zniekształca ją ten sam filtr. */
+.static-ghost .journal-entry > *:not(p):not(.entry-art) {
   visibility: hidden;
 }
 
@@ -703,15 +704,10 @@ a:focus-visible {
     filter: none;
   }
   .static-ghost { display: none; }
-}
-
-.entry-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin: 1.6rem 0;
-  border: 1px solid var(--rule);
-  filter: grayscale(1) sepia(0.22) contrast(1.1);
+  /* Zniekształcenie figury to ruch — krycie warstwy szaleństwa zostaje,
+     bo samo w sobie się nie rusza; gasi je już effects.js (--madness-blend
+     zmniejszone o połowę). */
+  .entry-art { filter: none; }
 }
 
 .rollbox {
@@ -970,14 +966,40 @@ a:focus-visible {
   font-size: 0.65rem;
 }
 
+/* Figura kadru paragrafu (src/ui/journal.js). Nosi zniekształcenie całej
+   złożonej grafiki (kadr + warstwa szaleństwa), żeby oczy rwały się razem
+   z obrazem, a nie osobno na wierzchu. isolation: isolate zamyka mieszanie
+   trybów wewnątrz figury, żeby .entry-madness nie prześwitywało na tło
+   strony. */
+.entry-art {
+  position: relative;
+  margin: 0 0 1.8rem;
+  isolation: isolate;
+  filter: var(--madness-filter, none);
+}
+
 .entry-image {
   display: block;
   width: 100%;
-  max-height: 24rem;
-  margin: 0 0 1.8rem;
+  height: auto;
+  max-height: none;
   border: 1px solid var(--rule);
+  object-fit: contain;
+  filter: none;
+}
+
+/* Warstwa madness.webp: pełne pokrycie figury, zlana z kadrem trybem
+   screen. Krycie steruje effects.js przez --madness-blend, zależnie od
+   paragrafu i --dread. Bez wskaźnika, żeby nie łapała kliknięć. */
+.entry-madness {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  filter: grayscale(0.7) sepia(0.12) contrast(1.08);
+  mix-blend-mode: screen;
+  opacity: var(--madness-blend, 0);
+  pointer-events: none;
 }
 
 /* --- Odsłanianie tekstu (src/ui/reveal.js) ------------------------------ */
